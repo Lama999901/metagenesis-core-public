@@ -1,9 +1,5 @@
 name: MetaGenesis Policy Gate
 
-# Enforce repository access policies on all pull requests
-# Protects locked phases (30R-42) from unauthorized modifications
-# Legal Authority: Infinity Protocol v2.0
-
 on:
   pull_request:
     branches:
@@ -18,54 +14,48 @@ jobs:
   policy-gate:
     name: Policy Gate Enforcement
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Full history for git diff
-      
+          fetch-depth: 0
+
       - name: Fetch base ref
         run: |
           git fetch origin ${{ github.base_ref }}:refs/remotes/origin/${{ github.base_ref }}
-      
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      
+
       - name: Run Policy Gate
         run: |
           echo "==========================================================="
-          echo "MetaGenesis Policy Gate - Infinity Protocol v2.0"
+          echo "MetaGenesis Policy Gate"
           echo "==========================================================="
           echo "Base: origin/${{ github.base_ref }}"
           echo "Head: HEAD"
           echo "PR: #${{ github.event.pull_request.number }}"
           echo "==========================================================="
           echo ""
-          
+
           python scripts/mg_policy_gate.py \
             --policy scripts/mg_policy_gate_policy.json \
             --base origin/${{ github.base_ref }} \
             --head HEAD
-      
+
       - name: Policy Gate Result
         if: failure()
         run: |
           echo ""
           echo "==========================================================="
-          echo "❌ POLICY GATE FAILED"
+          echo "POLICY GATE FAILED"
           echo "==========================================================="
           echo ""
-          echo "This PR attempts to modify locked phase artifacts."
-          echo ""
-          echo "Locked phases (30R-42) are production-sealed and cannot be modified."
-          echo "See scripts/mg_policy_gate_policy.json for full policy."
-          echo ""
-          echo "If you need to modify locked phases:"
-          echo "  1. Review the policy violation details above"
-          echo "  2. Contact repository owner for exemption"
-          echo "  3. Consider alternative implementation approach"
+          echo "This PR modifies restricted paths."
+          echo "See scripts/mg_policy_gate_policy.json for policy."
+          echo "Review the violation details above and adjust your changes."
           echo ""
           exit 1

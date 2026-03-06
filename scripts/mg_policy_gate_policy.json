@@ -1,18 +1,17 @@
 {
-  "_comment": "MetaGenesis Core Policy Gate Configuration - Infinity Protocol v2.0",
-  "_description": "Protects locked phases and enforces allowlist for repository modifications",
+  "_comment": "MetaGenesis Core Policy Gate Configuration",
+  "_description": "Enforces allowlist for repository modifications",
   "_schema": {
     "version": "Policy schema version",
-    "locked_paths": "List of glob patterns for HARD BLOCKED paths (locked phases)",
+    "locked_paths": "List of glob patterns for HARD BLOCKED paths",
     "allow_globs": "List of glob patterns for ALLOWED modifications"
   },
-  
+
   "version": "1.0.0",
-  "last_updated": "2025-08-11",
-  "infinity_protocol": "v2.0",
-  
+  "last_updated": "2026-03-05",
+
   "locked_paths": [],
-  
+
   "allow_globs": [
     "api/evidence_api.py",
     "scripts/**",
@@ -23,11 +22,15 @@
     "reports/*.txt",
     "reports/*.json",
     "reports/*.jsonl",
+    "reports/*.yaml",
     "README.md",
     "CONTRIBUTING.md",
+    "COMMERCIAL.md",
+    "SECURITY.md",
+    "AGENTS.md",
+    "llms.txt",
     "LICENSE",
     ".gitignore",
-    ".gitconfig",
     "requirements.txt",
     "backend/requirements.txt",
     "backend/ledger/**",
@@ -35,34 +38,17 @@
     "api/ledger_api.py",
     "api/progress_api.py",
     "backend/server.py",
-    "frontend/**",
-    "visualizations/**",
-    "exports/**",
-    "ppa/README_PPA.md",
-    "ppa/CLAIMS_DRAFT.md",
-    "ppa/VERIFY.md",
-    "ppa/FIGURES/**",
-    "ppa/RELEASES/**",
-    "ppa/EVIDENCE_INDEX.md",
-    "ppa/USPTO_PPA_Receipt_*.pdf",
-    "legal/LEGAL_INDEX.md",
-    "legal_verification_chain.md",
-    "phase_registry.json",
+    "demos/**",
+    "ppa/**",
     "system_manifest.json",
     "*.md",
     "*.txt",
-    "*.json",
-    "archive/infinity/PHASE_INDEX.md",
-    "legal/LEGAL_INDEX.md",
-    "ppa/USPTO_PPA_Receipt_*.pdf"
+    "*.json"
   ],
-  
+
   "_notes": {
-    "locked_paths_purpose": "HARD BLOCK any modifications to production-sealed phases (30R-42)",
-    "allow_globs_purpose": "ALLOWLIST for permitted modifications (docs, tests, CI, new features)",
-    "enforcement_mode": "STRICT - all changed files must match at least one allow_glob AND not match any locked_path",
-    "phase_42_protection": "Phase 42 Vision Layer is fully locked: backend/vision/**, api/vision_api.py, legal signature, archives, tests",
-    "infinity_stack_protection": "Phases 30R-36 locked: scheduler, tracking, loop_diffusion, infinity, drift_synthesizer, phase_36",
-    "meta_science_protection": "Phases 37-41 locked: physics, chem, lab, safety, API files"
+    "locked_paths_purpose": "HARD BLOCK any modifications to sealed artifacts",
+    "allow_globs_purpose": "ALLOWLIST for permitted modifications",
+    "enforcement_mode": "STRICT — all changed files must match at least one allow_glob AND not match any locked_path"
   }
 }

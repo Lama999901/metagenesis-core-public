@@ -2,7 +2,7 @@
   "project": "MetaGenesis Core",
   "version": "1.0.0",
   "description": "Governance-enforced verification infrastructure for computational scientific claims",
-  "active_claims": ["MTR-1", "MTR-2", "MTR-3", "SYSID-01", "DATA-PIPE-01"],
+  "active_claims": ["MTR-1", "MTR-2", "MTR-3", "SYSID-01", "DATA-PIPE-01", "DRIFT-01"],
   "verified_innovations": [
     "bidirectional_claim_coverage",
     "tamper_evident_semantic_verification",
@@ -11,5 +11,6 @@
   ],
   "steward_audit": "PASS",
   "ppa_filed": "2026-03-05",
-  "ppa_number": "63/996,819"
+  "ppa_number": "63/996,819",
+  "inventor": "Yehor Bazhynov"
 }

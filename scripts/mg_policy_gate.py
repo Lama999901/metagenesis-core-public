@@ -131,7 +131,7 @@ class PolicyGate:
             return True
         
         print(f"\n{'='*80}")
-        print("MetaGenesis Policy Gate - Infinity Protocol v2.0")
+        print("MetaGenesis Policy Gate")
         print(f"{'='*80}")
         print(f"Policy Version: {self.policy.get('version', 'unknown')}")
         print(f"Changed Files: {len(files)}")
