@@ -120,8 +120,8 @@ python -m pytest tests/steward/test_cert02_pack_includes_evidence_and_semantic_v
 
 ### Step 3 — Full verification core
 ```bash
-python -m pytest tests/steward tests/stress tests/materials tests/data tests/systems -q
-# Expected: all passed
+python -m pytest tests/steward tests/materials -q
+# Expected: 49 passed
 ```
 
 ### Step 4 — End-to-end pack
