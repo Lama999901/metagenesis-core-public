@@ -1,1 +1,0 @@
-{"trace_id": "trace_621de0a6647b4e2d", "action": "job_completed_canary", "actor": "scheduler_v1_canary", "meta": {"canary_mode": true}}
