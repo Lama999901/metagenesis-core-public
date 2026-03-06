@@ -162,14 +162,10 @@ Pre-filing (legal):
 ## Key Protocol Documents
 
 ```
-docs/DETERMINISTIC_CLAIM_PROTOCOL_v1_0.md
-  → Defines: claim, job_kind, trace_id, canary, evidence artifact,
-    ledger snapshot, governance rules, canonical sync invariant,
-    conformance test suite
-
-docs/ARCHITECTURE_OVERVIEW.md  
-  → Proof loop diagram (Mermaid)
-  → Claim lifecycle diagram: Open→Implement→Validate→Register→Package→Submit
+docs/ARCHITECTURE.md
+  → Proof loop diagram
+  → Governance loop diagram
+  → Calibration anchor and drift example
 
 reports/scientific_claim_index.md
   → Canonical claim registry: claim_id, job_kind, V&V thresholds,

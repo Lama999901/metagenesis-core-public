@@ -7,7 +7,7 @@ Deterministic snapshot of project state for steward validation. No commentary; f
 | Field | Value |
 |-------|--------|
 | **project** | MetaGenesis Core |
-| **owner** | MetaGenesis |
+| **owner** | Yehor Bazhynov |
 | **workflow** | PR-only, CI mandatory, Policy Gate mandatory |
 | **incident_status** | none |
 | **merged_milestones** | W6-A3 Ledger Anchoring v1, W6-A5 Evidence Persistence & Canary Mode, W6-A6 Evidence Index v1, MTR-1 Young's Modulus Calibration, SCI-01 Scientific Claim Index v0.1 |
