@@ -69,4 +69,38 @@ Documentation-only registry of domain claims so new cases remain uniquely struct
 
 ---
 
+## DRIFT-01
+
+| Field | Value |
+|-------|--------|
+| **claim_id** | DRIFT-01 |
+| **job_kind** | `drift_calibration_monitor` |
+| **domain** | Simulation Correction / Calibration Traceability |
+| **reproduction** | `python -m pytest tests/steward/test_drift01_calibration_anchor.py -v` |
+| **evidence_fields** | Result lives under `job_snapshot.result`. Contains mtr_phase, inputs (anchor_claim_id, anchor_value, anchor_units, current_value, drift_threshold_pct), result (anchor_value, current_value, drift_pct, drift_threshold_pct, drift_detected, correction_required). |
+| **V&V thresholds** | drift_threshold_pct 5.0%; drift_detected False when within threshold; drift_detected True when >5%. |
+| **notes (canary vs normal)** | Same job kind runs in normal or canary mode via `run_job(..., canary_mode=...)`; evidence artifacts for both. |
+
+### Purpose
+
+Verified calibration results (e.g. MTR-1 Young's modulus = 70 GPa)
+become trusted anchor points. Any future computation is compared
+against the anchor. Drift beyond threshold signals that simulation
+correction is required.
+
+This is the foundational link between verification and simulation
+accuracy: without verified anchors, you cannot know what your
+simulation is drifting from.
+
+### V&V Thresholds (summary)
+
+| Parameter | Value |
+|-----------|-------|
+| drift_threshold_pct | 5.0% |
+| anchor_value (MTR-1 default) | 70000000000.0 Pa |
+| drift_detected (no-drift case) | False |
+| drift_detected (drift case, >5%) | True |
+
+---
+
 *Index authority: MetaGenesis Core / SCI-01. Append new claims as table rows under new headings.*

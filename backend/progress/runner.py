@@ -292,6 +292,16 @@ class ProgressRunner:
                 u_max=float(p.get("u_max", 1.0)),
                 noise_scale=float(p["noise_scale"]) if p.get("noise_scale") is not None else None,
             )
+        from backend.progress.drift_monitor import JOB_KIND as DRIFT01_KIND, run_drift_monitor as run_drift01
+        if payload.get("kind") == DRIFT01_KIND:
+            p = payload
+            return run_drift01(
+                anchor_value=float(p.get("anchor_value", 70000000000.0)),
+                current_value=float(p.get("current_value", 70000000000.0)),
+                anchor_claim_id=str(p.get("anchor_claim_id", "MTR-1")),
+                anchor_units=str(p.get("anchor_units", "Pa")),
+                drift_threshold_pct=float(p.get("drift_threshold_pct", 5.0)),
+            )
         return {
             'executed': True,
             'job_id': job.job_id,

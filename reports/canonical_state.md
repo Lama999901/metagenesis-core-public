@@ -12,7 +12,7 @@ Deterministic snapshot of project state for steward validation. No commentary; f
 | **incident_status** | none |
 | **merged_milestones** | W6-A3 Ledger Anchoring v1, W6-A5 Evidence Persistence & Canary Mode, W6-A6 Evidence Index v1, MTR-1 Young's Modulus Calibration, SCI-01 Scientific Claim Index v0.1 |
 
-| **current_claims_list** | MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01 |
+| **current_claims_list** | MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01 |
 
 ---
 
