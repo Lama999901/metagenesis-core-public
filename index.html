@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MetaGenesis Core — Verification Protocol</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink:#03060d; --ink1:#060a14; --ink2:#0a1020;
+  --c:#00e5ff; --c2:rgba(0,229,255,.08); --c3:rgba(0,229,255,.18); --c4:rgba(0,229,255,.5);
+  --err:#ff4060; --ok:#00ff99;
+  --txt:#e8f4f8; --txt2:rgba(232,244,248,.55); --txt3:rgba(232,244,248,.28);
+  --ln:rgba(232,244,248,.07); --ln2:rgba(232,244,248,.12);
+  --fd:'Unbounded','Impact','Arial Black',Arial,sans-serif;
+  --fm:'IBM Plex Mono','Courier New',Courier,monospace;
+  --fs:'DM Serif Display',Georgia,serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--txt);font-family:var(--fm);overflow-x:hidden;cursor:none;min-height:100vh}
+#cur,#ring{position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+#cur{width:6px;height:6px;background:var(--c);border-radius:50%}
+#ring{width:32px;height:32px;border:1px solid var(--c4);border-radius:50%;transition:transform .18s ease,border-color .18s ease}
+#bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+.scanlines{position:fixed;inset:0;z-index:2;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.04) 2px,rgba(0,0,0,.04) 4px);pointer-events:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:600;display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:60px}
+nav::before{content:'';position:absolute;inset:0;background:rgba(3,6,13,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--ln2);z-index:-1}
+.logo{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--txt);font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:.14em}
+.lmark{width:26px;height:26px;border:1px solid var(--c);display:grid;place-items:center;position:relative}
+.lmark::before{content:'';position:absolute;inset:0;background:var(--c);opacity:.12;animation:lmpulse 2.5s ease-in-out infinite}
+.lmark::after{content:'';position:absolute;top:-4px;right:-4px;bottom:-4px;left:-4px;border:1px solid rgba(0,229,255,.15)}
+.lmark span{font-size:10px;color:var(--c);font-weight:700;position:relative}
+@keyframes lmpulse{0%,100%{opacity:.12}50%{opacity:.35}}
+.ndot{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--ok);letter-spacing:.08em}
+.ndot::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok);animation:ndpulse 2s ease-in-out infinite}
+@keyframes ndpulse{0%,100%{opacity:1}50%{opacity:.3}}
+.nlinks{display:flex;align-items:center;gap:32px}
+.nlinks a{font-size:10px;letter-spacing:.1em;color:var(--txt3);text-decoration:none;text-transform:uppercase;transition:color .2s}
+.nlinks a:hover{color:var(--txt)}
+.ngit{padding:7px 18px;border:1px solid var(--c);color:var(--c)!important;transition:background .2s!important}
+.ngit:hover{background:var(--c3)!important}
+
+/* HERO: все строки видны без JS и без шрифтов */
+.hero{position:relative;z-index:10;display:grid;grid-template-rows:auto 1fr auto;min-height:100vh;padding-top:60px}
+.hero-meta{display:flex;align-items:center;justify-content:space-between;padding:16px 52px;border-bottom:1px solid var(--ln);background:rgba(3,6,13,.5);position:relative;z-index:11}
+.hmtag{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);display:flex;align-items:center;gap:10px}
+.hmtag::before{content:'';width:24px;height:1px;background:var(--c)}
+.hmpat{display:flex;align-items:center;gap:18px;font-size:10px;letter-spacing:.09em;color:var(--txt3)}
+.hmpat .hv{color:var(--ok);font-weight:700;font-size:13px}
+.hmpat .sep{color:var(--ln2)}
+.hero-stage{display:flex;flex-direction:column;justify-content:center;padding:0 52px;position:relative;z-index:11;overflow:hidden}
+.hline{display:block;overflow:hidden}
+/* ГЛАВНОЕ: никакого opacity:0 в дефолтном состоянии */
+.hspan{display:block;font-family:var(--fd);font-size:clamp(76px,10.8vw,184px);font-weight:900;line-height:.88;letter-spacing:-.04em}
+.word-proof .hspan{color:#00ff99;position:relative;animation:proofglow 4s 3s ease-in-out infinite}
+.word-not   .hspan{color:var(--c);position:relative}
+.word-trust .hspan{color:rgba(232,244,248,.22);position:relative}
+@keyframes proofglow{0%,100%{text-shadow:0 0 40px rgba(0,255,153,.15),0 0 80px rgba(0,255,153,.07)}50%{text-shadow:0 0 80px rgba(0,255,153,.5),0 0 200px rgba(0,255,153,.2)}}
+.word-not .hspan::before,.word-not .hspan::after{content:attr(data-t);position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}
+.word-not .hspan::before{color:#ff4060;clip-path:polygon(0 13%,100% 13%,100% 38%,0 38%);animation:gl1 3.6s 3s infinite;opacity:0}
+.word-not .hspan::after{color:#00ff99;clip-path:polygon(0 60%,100% 60%,100% 80%,0 80%);animation:gl2 3.6s 3.15s infinite;opacity:0}
+@keyframes gl1{0%,93%,100%{opacity:0;transform:none}94%{opacity:.9;transform:translateX(-6px) skewX(-2deg)}96%{opacity:.9;transform:translateX(4px)}97%{opacity:0}}
+@keyframes gl2{0%,93%,100%{opacity:0;transform:none}94%{opacity:.9;transform:translateX(6px) skewX(2deg)}96%{opacity:.9;transform:translateX(-3px)}97%{opacity:0}}
+.word-trust .hspan::after{content:'';position:absolute;top:50%;left:-1%;width:0;height:6px;background:linear-gradient(90deg,transparent 0%,#ff4060 5%,#ff4060 95%,transparent 100%);box-shadow:0 0 30px rgba(255,64,96,.8),0 0 65px rgba(255,64,96,.35);transform:translateY(-50%);animation:strike .48s cubic-bezier(.77,0,.18,1) 1.4s forwards}
+@keyframes strike{from{width:0;opacity:0}3%{opacity:1}to{width:102%;opacity:1}}
+.hdot{color:var(--err);opacity:0;animation:dotpop .12s 1.95s ease forwards}
+@keyframes dotpop{to{opacity:1}}
+/* Slide-in только с .mg-ready — transform, не opacity */
+body.mg-ready .word-proof .hspan{animation:slidein .85s .05s cubic-bezier(.16,1,.3,1) both,proofglow 4s 3s ease-in-out infinite}
+body.mg-ready .word-not   .hspan{animation:slidein .85s .18s cubic-bezier(.16,1,.3,1) both}
+body.mg-ready .word-trust .hspan{animation:slidein .85s .31s cubic-bezier(.16,1,.3,1) both}
+@keyframes slidein{from{transform:translateY(105%)}to{transform:translateY(0)}}
+
+.hero-bottom{display:grid;grid-template-columns:1fr auto;align-items:end;gap:48px;padding:32px 52px 60px;position:relative;z-index:11;background:linear-gradient(transparent,rgba(3,6,13,.65) 40%)}
+.hbio-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--c);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.hbio-label::before{content:'';width:20px;height:1px;background:var(--c)}
+.hbio-text{font-size:18px;color:rgba(232,244,248,.8);line-height:1.68;font-weight:300;max-width:580px}
+.hbio-text strong{color:#fff;font-weight:500}
+.hbtns{display:flex;gap:14px;flex-shrink:0;align-items:flex-end}
+.btn-c{font-family:var(--fd);font-size:11px;font-weight:700;padding:16px 36px;background:var(--c);color:var(--ink);border:none;cursor:pointer;text-decoration:none;letter-spacing:.06em;text-transform:uppercase;display:inline-block;transition:transform .2s,box-shadow .2s}
+.btn-c:hover{transform:translateY(-3px);box-shadow:0 12px 48px rgba(0,229,255,.4)}
+.btn-g{font-family:var(--fd);font-size:11px;font-weight:700;padding:16px 36px;background:transparent;color:var(--txt3);border:1px solid var(--ln2);cursor:pointer;text-decoration:none;letter-spacing:.06em;text-transform:uppercase;display:inline-block;transition:all .2s}
+.btn-g:hover{border-color:var(--c3);color:var(--txt);transform:translateY(-3px)}
+.hscroll{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);z-index:12}
+.hscroll-bar{width:1px;height:40px;background:linear-gradient(var(--txt3),transparent);animation:sb 2s ease-in-out infinite}
+@keyframes sb{0%,100%{transform:scaleY(1);opacity:1}50%{transform:scaleY(.5);opacity:.5}}
+
+.ticker{position:relative;z-index:10;border-top:1px solid var(--ln);border-bottom:1px solid var(--ln);background:var(--ink1);overflow:hidden;height:52px;display:flex;align-items:center}
+.ticker::before,.ticker::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:1;pointer-events:none}
+.ticker::before{left:0;background:linear-gradient(90deg,var(--ink1),transparent)}
+.ticker::after{right:0;background:linear-gradient(-90deg,var(--ink1),transparent)}
+.ttrack{display:flex;animation:tickmove 28s linear infinite;white-space:nowrap}
+.ttrack:hover{animation-play-state:paused}
+@keyframes tickmove{to{transform:translateX(-50%)}}
+.ti{display:inline-flex;align-items:center;gap:12px;padding:0 36px;border-right:1px solid var(--ln);flex-shrink:0}
+.tn{font-family:var(--fd);font-size:20px;font-weight:900;color:var(--c);line-height:1}
+.tl{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3)}
+
+.w{position:relative;z-index:10;max-width:1280px;margin:0 auto;padding:0 52px}
+.sec{padding:120px 0}
+.div{height:1px;background:var(--ln);position:relative;z-index:10}
+.stag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--txt3);display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.stag::before{content:'';width:20px;height:1px;background:var(--txt3)}
+h2{font-family:var(--fd);font-size:clamp(36px,4vw,64px);font-weight:900;line-height:1;letter-spacing:-.03em;margin-bottom:20px}
+.sdesc{font-size:15px;color:var(--txt2);max-width:560px;line-height:1.8;margin-bottom:60px;font-weight:300}
+
+.pp{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--ln);overflow:hidden}
+.ppc{padding:56px 48px;position:relative;overflow:hidden}
+.ppc:first-child{border-right:1px solid var(--ln)}
+.ppc::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;transition:opacity .3s;opacity:0}
+.ppc:first-child::after{background:linear-gradient(90deg,transparent,var(--err),transparent)}
+.ppc:last-child::after{background:linear-gradient(90deg,transparent,var(--c),transparent)}
+.ppc:hover::after{opacity:1}
+.ppchip{display:inline-block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:4px 12px;margin-bottom:28px}
+.ppchip.x{color:var(--err);border:1px solid rgba(255,64,96,.25);background:rgba(255,64,96,.06)}
+.ppchip.v{color:var(--c);border:1px solid var(--c3);background:var(--c2)}
+.ppc h3{font-family:var(--fd);font-size:28px;font-weight:700;margin-bottom:18px;line-height:1.15;letter-spacing:-.02em}
+.ppc p{font-size:14px;color:var(--txt2);line-height:1.85;font-weight:300}
+
+.pipe{display:flex;flex-direction:column;gap:1px;border:1px solid var(--ln);overflow:hidden}
+.prow{display:grid;grid-template-columns:56px 240px 1fr 100px;border-bottom:1px solid var(--ln);transition:background .2s;cursor:default;min-height:56px}
+.prow:last-child{border-bottom:none}
+.prow:hover{background:rgba(0,229,255,.03)}
+.prow.active{background:rgba(0,229,255,.05)}
+.pnum{display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:11px;font-weight:700;color:var(--txt3);border-right:1px solid var(--ln)}
+.ptitle{display:flex;align-items:center;padding:0 24px;font-family:var(--fm);font-size:12px;color:var(--txt);border-right:1px solid var(--ln);font-weight:400}
+.pdesc{display:flex;align-items:center;padding:0 28px;font-size:12px;color:var(--txt3);font-weight:300}
+.pstat{display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:11px;border-left:1px solid var(--ln)}
+.pstat.ok{color:var(--ok)}
+
+.term{background:var(--ink2);border:1px solid var(--ln2);overflow:hidden}
+.termh{display:flex;align-items:center;gap:8px;padding:14px 20px;border-bottom:1px solid var(--ln);background:var(--ink1)}
+.thdot{width:10px;height:10px;border-radius:50%}
+.thdot:nth-child(1){background:#ff5f57}.thdot:nth-child(2){background:#ffbd2e}.thdot:nth-child(3){background:#28c840}
+.thtit{font-size:10px;color:var(--txt3);margin-left:8px;letter-spacing:.06em}
+.termbody{padding:28px 32px;display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
+.tprompt{color:var(--c);font-size:13px}.tcmd{color:var(--txt);font-size:13px}
+#tcur{display:inline-block;width:8px;height:14px;background:var(--c);animation:blink .8s step-end infinite;vertical-align:middle}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.tline{font-size:12px;opacity:0;transition:opacity .3s;margin-top:8px;display:flex;align-items:center;gap:10px;line-height:1.6}
+.tline .tdm{color:var(--txt3)}.tline .tok{color:var(--ok)}.tline .tinfo{color:var(--c)}
+.tres{font-size:12px;opacity:0;transition:opacity .3s;padding-top:20px;border-top:1px solid var(--ln);margin-top:16px}
+.tres-row{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.tres-label{color:var(--txt3);font-size:11px;min-width:120px}
+.tres-val{color:var(--ok);font-size:12px}
+.tres-val.info{color:var(--c)}
+
+.atk{display:grid;grid-template-columns:1fr 48px 1fr;border:1px solid var(--ln);overflow:hidden}
+.atkl,.atkr{padding:44px 40px}
+.atkl{border-right:1px solid var(--ln)}
+.atkmid{display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--txt3);background:var(--ink2);border-right:1px solid var(--ln)}
+.atktit{font-size:9px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:20px}
+.atktit.x{color:var(--err)}.atktit.v{color:var(--c)}
+.atkstep{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--ln)}
+.atkstep:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.atkstepn{flex-shrink:0;width:22px;height:22px;border:1px solid var(--ln2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--txt3);margin-top:1px}
+.atkstepn.x{border-color:rgba(255,64,96,.3);color:var(--err)}.atkstepn.v{border-color:var(--c3);color:var(--c)}
+.atktext{font-size:12px;color:var(--txt2);line-height:1.7;font-weight:300}
+.atkresult{margin-top:20px;padding:14px 18px;border:1px solid;font-size:11px;display:flex;align-items:center;gap:12px;letter-spacing:.06em}
+.atkresult.x{border-color:rgba(255,64,96,.25);color:var(--err);background:rgba(255,64,96,.05)}
+.atkresult.v{border-color:var(--c3);color:var(--c);background:var(--c2)}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln)}
+.stat{background:var(--ink);padding:44px 40px;display:flex;flex-direction:column;gap:10px;transition:background .2s}
+.stat:hover{background:var(--ink1)}
+.stn{font-family:var(--fd);font-size:clamp(52px,5vw,80px);font-weight:900;line-height:1;letter-spacing:-.04em;color:var(--c)}
+.stl{font-size:11px;color:var(--txt3);letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
+.std{font-size:13px;color:var(--txt2);line-height:1.6;font-weight:300;margin-top:6px}
+
+.claimsgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1px;background:var(--ln);border:1px solid var(--ln)}
+.claim{background:var(--ink);padding:36px 32px;display:flex;flex-direction:column;gap:12px;transition:background .3s;cursor:default;position:relative;overflow:hidden}
+.claim::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--c),transparent);transform:scaleX(0);transform-origin:center;transition:transform .4s ease}
+.claim:hover{background:rgba(0,229,255,.03)}.claim:hover::before{transform:scaleX(1)}
+.claim.new-claim{background:rgba(0,229,255,.04)}.claim.new-claim::before{transform:scaleX(1);opacity:.7}
+.claimid{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--c)}
+.claimid-badge{font-size:8px;letter-spacing:.12em;padding:2px 7px;margin-left:10px;color:var(--ok);border:1px solid rgba(0,255,153,.3);background:rgba(0,255,153,.05);vertical-align:middle;text-transform:uppercase}
+.claimdomain{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3)}
+.claimname{font-size:14px;color:var(--txt);font-weight:400;line-height:1.4}
+.claimth{font-size:11px;color:var(--txt3);font-family:var(--fm);padding:8px 12px;background:var(--ink2);border:1px solid var(--ln);margin-top:4px}
+.claimth span{color:var(--c)}
+
+.proto{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--ln);border:1px solid var(--ln)}
+.protoc{background:var(--ink);padding:48px 44px}
+.protoc h3{font-family:var(--fd);font-size:20px;font-weight:700;letter-spacing:-.02em;margin-bottom:14px}
+.protoc p{font-size:13px;color:var(--txt2);line-height:1.8;font-weight:300;margin-bottom:20px}
+.proto-rule{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;font-size:12px;color:var(--txt2);line-height:1.6}
+.proto-rule::before{content:'&#8594;';color:var(--c);flex-shrink:0;margin-top:1px}
+.proto-rule.warn::before{content:'&#10007;';color:var(--err)}
+.proto-rule.ok::before{content:'&#10003;';color:var(--ok)}
+
+.gov{border:1px solid var(--ln2);overflow:hidden}
+.govh{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:var(--ink2);border-bottom:1px solid var(--ln)}
+.govhl{font-size:12px;color:var(--txt3)}
+.govbadge{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ok);border:1px solid rgba(0,255,153,.3);background:rgba(0,255,153,.08);padding:4px 12px}
+.govb{padding:24px;display:flex;flex-direction:column;gap:10px}
+.govb>div{font-size:12px;line-height:1.7}
+.tdm{color:var(--txt3)}.tok{color:var(--ok)}
+
+.ucg{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--ln);border:1px solid var(--ln)}
+.uc{background:var(--ink);padding:40px 36px;transition:background .25s;cursor:default}
+.uc:hover{background:var(--ink1)}
+.ucn{font-family:var(--fd);font-size:clamp(48px,5vw,70px);font-weight:900;color:rgba(0,229,255,.07);line-height:1;margin-bottom:16px;letter-spacing:-.04em}
+.uc h3{font-family:var(--fd);font-size:16px;font-weight:700;letter-spacing:-.01em;margin-bottom:12px}
+.uc p{font-size:13px;color:var(--txt2);line-height:1.75;font-weight:300}
+.uc-tag{font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:8px}
+
+.cband{position:relative;z-index:10;text-align:center;padding:120px 52px;background:var(--ink1);border-top:1px solid var(--ln);border-bottom:1px solid var(--ln);overflow:hidden}
+.cband::before{content:'';position:absolute;top:50%;left:50%;width:600px;height:600px;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(0,229,255,.07) 0%,transparent 65%);pointer-events:none}
+.cband h2{margin-bottom:20px}
+.cband em{color:var(--c);font-style:italic;font-family:var(--fs)}
+.cband p{font-size:15px;color:var(--txt2);margin-bottom:40px;line-height:1.7}
+.cmeta{font-size:10px;color:var(--txt3);margin-top:28px;letter-spacing:.08em}
+
+footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--ln);background:var(--ink1)}
+.fl{display:flex;flex-direction:column;gap:6px}
+.fla{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:.1em}
+.flb{font-size:11px;color:var(--txt3)}
+.flinks{display:flex;gap:28px}
+.flinks a{font-size:11px;color:var(--txt3);text-decoration:none;letter-spacing:.06em;transition:color .2s}
+.flinks a:hover{color:var(--txt)}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.rv.vis{opacity:1;transform:none}
+.d1{transition-delay:.05s}.d2{transition-delay:.15s}.d3{transition-delay:.25s}.d4{transition-delay:.35s}
+.note-block{margin-top:20px;padding:16px 20px;border:1px solid var(--ln);font-size:12px;color:var(--txt3)}
+.note-block code{color:var(--c)}
+
+@media (max-width:900px){
+  /* Nav */
+  nav{padding:0 20px}
+  .nlinks a:not(.ngit){display:none}
+  
+  /* Hero */
+  .hero-meta{padding:12px 20px;flex-direction:column;gap:8px;align-items:flex-start}
+  .hmpat{flex-wrap:wrap;gap:6px}
+  .hero-stage{padding:0 20px}
+  .hspan{font-size:clamp(52px,13vw,100px)!important}
+  .hero-bottom{grid-template-columns:1fr;padding:24px 20px 48px;gap:28px}
+  .hbtns{flex-direction:column;align-items:flex-start}
+  .btn-c,.btn-g{width:100%;text-align:center;padding:16px 20px}
+  .hbio-text{font-size:15px}
+  
+  /* General layout */
+  .w{padding:0 20px}
+  .sec{padding:72px 0}
+  
+  /* Problem grid */
+  .pp{grid-template-columns:1fr}
+  .ppc:first-child{border-right:none;border-bottom:1px solid var(--ln)}
+  
+  /* Pipeline table */
+  .prow{grid-template-columns:40px 1fr;grid-template-rows:auto auto;gap:0}
+  .ptitle{border-right:none;padding:12px 16px;grid-column:2;border-bottom:1px solid var(--ln2)}
+  .pdesc{grid-column:2;padding:10px 16px;font-size:11px}
+  .pstat{grid-column:2;justify-content:flex-start;padding:0 16px 12px;border-left:none}
+  .pnum{grid-row:1/3;border-right:1px solid var(--ln)}
+  
+  /* Terminal */
+  .termbody{grid-template-columns:1fr;gap:16px}
+  .tres{padding-top:16px;border-top:1px solid var(--ln);margin-top:0}
+  
+  /* Attack/Defense */
+  .atk{grid-template-columns:1fr;grid-template-rows:auto auto auto}
+  .atkl{border-right:none;border-bottom:1px solid var(--ln)}
+  .atkmid{padding:14px;font-size:24px;border-right:none;border-bottom:1px solid var(--ln);transform:rotate(90deg)}
+  
+  /* Stats */
+  .stats{grid-template-columns:1fr 1fr}
+  
+  /* Proto */
+  .proto{grid-template-columns:1fr}
+  
+  /* CTA band */
+  .cband{padding:72px 20px}
+  .cband h2{font-size:clamp(28px,7vw,48px)}
+  
+  /* Footer */
+  footer{padding:32px 20px;flex-direction:column;gap:24px;align-items:flex-start}
+  .flinks{flex-wrap:wrap;gap:16px}
+  
+  /* Hide custom cursor on touch */
+  #cur,#ring{display:none}
+  body{cursor:auto}
+  
+  /* Claims grid already uses auto-fill minmax — fine */
+  .claimsgrid{grid-template-columns:1fr}
+  
+  /* Use cases already auto-fill — fine */
+  .ucg{grid-template-columns:1fr}
+  
+  /* Governance */
+  .govb{overflow-x:auto}
+  .govb>div{white-space:nowrap;font-size:11px}
+}
+
+@media (max-width:480px){
+  .hspan{font-size:clamp(44px,15vw,80px)!important}
+  .stats{grid-template-columns:1fr}
+  .stat{padding:28px 20px}
+  h2{font-size:clamp(28px,8vw,48px)}
+  .ppc{padding:36px 24px}
+  .atkl,.atkr{padding:28px 24px}
+  .protoc{padding:32px 24px}
+  .hmpat{font-size:9px}
+}
+
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="ring"></div>
+<canvas id="bg"></canvas>
+<div class="scanlines"></div>
+
+<nav>
+  <a class="logo" href="#"><div class="lmark"><span>M</span></div>METAGENESIS</a>
+  <div class="ndot">AUDIT: PASS</div>
+  <div class="nlinks">
+    <a href="#protocol">Protocol</a><a href="#claims">Claims</a><a href="#verticals">Verticals</a>
+    <a href="https://github.com/Lama999901/metagenesis-core-public" class="ngit">GITHUB &#8594;</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-meta">
+    <div class="hmtag">Verification Protocol &nbsp;&#183;&nbsp; #63/996,819</div>
+    <div class="hmpat">
+      <span><span class="hv">7</span> active claims</span><span class="sep">|</span>
+      <span><span class="hv">71</span> tests</span><span class="sep">|</span>
+      <span class="hv">PASS</span><span class="sep">|</span>
+      <span>patent pending</span>
+    </div>
+  </div>
+  <div class="hero-stage">
+    <div class="hline word-proof"><span class="hspan">PROOF,</span></div>
+    <div class="hline word-not"><span class="hspan" data-t="NOT">NOT</span></div>
+    <div class="hline word-trust"><span class="hspan">TRUST<span class="hdot">.</span></span></div>
+  </div>
+  <div class="hero-bottom">
+    <div class="hbio">
+      <div class="hbio-label">What this is</div>
+      <p class="hbio-text">Any computational result &#8212; <strong>ML accuracy, physics simulation, pipeline output</strong> &#8212; packaged into a tamper-evident evidence bundle. Any third party verifies it offline with <strong>one command</strong>, without your code, data, or environment. <strong>PASS or FAIL. No grey zone. No trust required.</strong></p>
+    </div>
+    <div class="hbtns">
+      <a href="https://github.com/Lama999901/metagenesis-core-public" class="btn-c">TRY IN 5 MIN &#8594;</a>
+      <a href="/cdn-cgi/l/email-protection#413824292e3323203b29382f2e3701262c20282d6f222e2c" class="btn-g">FREE PILOT</a>
+    </div>
+  </div>
+  <div class="hscroll"><div class="hscroll-bar"></div>SCROLL</div>
+</section>
+
+<div class="ticker"><div class="ttrack">
+  <div class="ti"><span class="tn">7</span><span class="tl">Active Claims</span></div>
+  <div class="ti"><span class="tn">71</span><span class="tl">Tests Passing</span></div>
+  <div class="ti"><span class="tn">2</span><span class="tl">Verification Layers</span></div>
+  <div class="ti"><span class="tn">5</span><span class="tl">Domains</span></div>
+  <div class="ti"><span class="tn">0</span><span class="tl">Trust Required</span></div>
+  <div class="ti"><span class="tn" style="font-size:14px">PASS</span><span class="tl">steward_audit</span></div>
+  <div class="ti"><span class="tn" style="font-size:14px">MIT</span><span class="tl">License</span></div>
+  <div class="ti"><span class="tn">7</span><span class="tl">Active Claims</span></div>
+  <div class="ti"><span class="tn">71</span><span class="tl">Tests Passing</span></div>
+  <div class="ti"><span class="tn">2</span><span class="tl">Verification Layers</span></div>
+  <div class="ti"><span class="tn">5</span><span class="tl">Domains</span></div>
+  <div class="ti"><span class="tn">0</span><span class="tl">Trust Required</span></div>
+  <div class="ti"><span class="tn" style="font-size:14px">PASS</span><span class="tl">steward_audit</span></div>
+  <div class="ti"><span class="tn" style="font-size:14px">MIT</span><span class="tl">License</span></div>
+</div></div>
+
+<div class="div"></div>
+<div class="w"><section class="sec">
+  <div class="stag rv">The Problem</div>
+  <h2 class="rv d1">AI makes claims.<br>Nobody can verify.</h2>
+  <p class="sdesc rv d2">Every ML team claims state-of-the-art results. Every simulation produces numbers. Every pipeline outputs certificates. There is no standard way to check any of it independently.</p>
+  <div class="pp rv d3">
+    <div class="ppc"><span class="ppchip x">Without MetaGenesis</span><h3>Trust the number.<br>Or re-run everything.</h3><p>A reviewer cannot check a reported ML accuracy without the original model, training data, and compute environment. The only options are blind trust or complete reproduction.</p></div>
+    <div class="ppc"><span class="ppchip v">With MetaGenesis</span><h3>One command.<br>PASS or FAIL.</h3><p>Any computational result is packaged into a tamper-evident evidence bundle. A third party runs one command and gets an unambiguous verdict offline, without access to your environment. No grey zone.</p></div>
+  </div>
+</section></div>
+
+<div class="div"></div>
+<div class="w"><section class="sec" id="protocol">
+  <div class="stag rv">How It Works</div>
+  <h2 class="rv d1">Four steps.<br>Immutable proof.</h2>
+  <p class="sdesc rv d2">Every run produces an evidence bundle with two independent verification layers. Any deviation surfaces as FAIL with a specific reason.</p>
+  <div class="pipe rv d3">
+    <div class="prow active"><div class="pnum">01</div><div class="ptitle">runner.run_job()</div><div class="pdesc">Executes computation &#8594; produces run_artifact.json + ledger_snapshot.jsonl</div><div class="pstat ok">&#8594; artifact</div></div>
+    <div class="prow"><div class="pnum">02</div><div class="ptitle">evidence_index.json</div><div class="pdesc">Maps run artifacts to registered claims with provenance chain</div><div class="pstat ok">&#8594; index</div></div>
+    <div class="prow"><div class="pnum">03</div><div class="ptitle">mg.py pack build</div><div class="pdesc">Bundles artifacts + SHA-256 manifest + root_hash into submission pack</div><div class="pstat ok">&#8594; bundle</div></div>
+    <div class="prow"><div class="pnum">04</div><div class="ptitle">mg.py verify</div><div class="pdesc">Integrity check (SHA-256) + semantic check (job_snapshot, canary flag, kind)</div><div class="pstat ok">PASS / FAIL</div></div>
+  </div>
+</section></div>
+
+<div class="div"></div>
+<div class="w"><section class="sec">
+  <div class="stag rv">Live Demo</div>
+  <h2 class="rv d1">Five minutes<br>from zero to proof.</h2>
+  <div class="term rv d2">
+    <div class="termh"><div class="thdot"></div><div class="thdot"></div><div class="thdot"></div><span class="thtit">bash &#8212; metagenesis-core-public</span></div>
+    <div class="termbody">
+      <div>
+        <div style="margin-bottom:10px"><span class="tprompt">$ </span><span class="tcmd" id="typed"></span><span id="tcur"></span></div>
+        <div class="tline" id="l1"><span class="tdm">cloning...</span></div>
+        <div class="tline" id="l2"><span class="tdm">installing requirements...</span></div>
+        <div class="tline" id="l3"><span class="tinfo">&#8594; running verification demo</span></div>
+        <div class="tline" id="l4"><span class="tok">&#10003; PASS</span><span class="tdm" style="margin-left:8px">bundle integrity verified</span></div>
+        <div class="tline" id="l5"><span class="tok">&#10003; PASS</span><span class="tdm" style="margin-left:8px">semantic invariants verified</span></div>
+        <div class="tline" id="l6" style="margin-top:16px"><span class="tprompt">$ </span><span class="tcmd">python -m pytest tests/steward tests/materials tests/ml -q</span></div>
+        <div class="tline" id="l7"><span class="tok">71 passed</span><span class="tdm" style="margin-left:8px">in 2.70s</span></div>
+      </div>
+      <div>
+        <div class="tres" id="r1">
+          <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:16px">Steward Audit</div>
+          <div class="tres-row"><span class="tres-label">status</span><span class="tres-val">STEWARD AUDIT: PASS</span></div>
+          <div class="tres-row"><span class="tres-label">required files</span><span class="tres-val">all present</span></div>
+          <div class="tres-row"><span class="tres-label">phase 42</span><span class="tres-val">locked &#10003;</span></div>
+          <div class="tres-row"><span class="tres-label">claim coverage</span><span class="tres-val">bidirectional &#10003;</span></div>
+        </div>
+        <div class="tres" id="r2" style="margin-top:16px">
+          <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:16px">Canonical State</div>
+          <div class="tres-row"><span class="tres-label">MTR-1,2,3</span><span class="tres-val info">materials</span></div>
+          <div class="tres-row"><span class="tres-label">SYSID-01</span><span class="tres-val info">system id</span></div>
+          <div class="tres-row"><span class="tres-label">DATA-PIPE-01</span><span class="tres-val info">pipelines</span></div>
+          <div class="tres-row"><span class="tres-label">DRIFT-01</span><span class="tres-val info">drift</span></div>
+          <div class="tres-row"><span class="tres-label">ML_BENCH-01</span><span class="tres-val">NEW &#8212; ML accuracy</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section></div>
+
+<div class="div"></div>
+<div class="w"><section class="sec">
+  <div class="stag rv">Why SHA-256 Is Not Enough</div>
+  <h2 class="rv d1">The bypass attack.<br>Caught. Proven.</h2>
+  <p class="sdesc rv d2">Every system using only file hashes is vulnerable. An adversary removes content, recomputes all hashes, and passes integrity checks silently.</p>
+  <div class="atk rv d3">
+    <div class="atkl">
+      <div class="atktit x">The attack</div>
+      <div class="atkstep"><div class="atkstepn x">1</div><div class="atktext">Remove <code>job_snapshot</code> from <code>run_artifact.json</code> &#8212; stripping the core evidence</div></div>
+      <div class="atkstep"><div class="atkstepn x">2</div><div class="atktext">Recompute all SHA-256 hashes to match modified files &#8212; restoring apparent integrity</div></div>
+      <div class="atkstep"><div class="atkstepn x">3</div><div class="atktext">Submit bundle with no real evidence that passes all standard integrity checks</div></div>
+      <div class="atkresult x">&#10007; Standard check: PASS (attack succeeds silently)</div>
+    </div>
+    <div class="atkmid">&#8594;</div>
+    <div class="atkr">
+      <div class="atktit v">MetaGenesis defense</div>
+      <div class="atkstep"><div class="atkstepn v">1</div><div class="atktext">Integrity layer &#8212; SHA-256 + root_hash detects any file modification after manifest generation.</div></div>
+      <div class="atkstep"><div class="atkstepn v">2</div><div class="atktext">Semantic layer runs independently &#8212; checks <code>job_snapshot</code> present, <code>payload.kind</code> matches, <code>canary_mode</code> correct.</div></div>
+      <div class="atkstep"><div class="atkstepn v">3</div><div class="atktext">Even with all hashes recomputed, semantic check fails: <code>job_snapshot missing</code>.</div></div>
+      <div class="atkresult v">&#10003; Semantic check: FAIL &#8212; job_snapshot missing (caught)</div>
+    </div>
+  </div>
+  <div class="note-block rv d4">Adversarial test: <code>tests/steward/test_cert02_pack_includes_evidence_and_semantic_verify.py</code></div>
+</section></div>
+
+<div class="div"></div>
+<div class="w"><section class="sec">
+  <div class="stats rv">
+    <div class="stat"><div class="stn"><span id="cn1">7</span></div><div class="stl">Active Claims</div><div class="std">Across 5 domains: materials, ML/AI, system ID, data pipelines, drift monitoring</div></div>
+    <div class="stat"><div class="stn"><span id="cn2">71</span></div><div class="stl">Tests Passing</div><div class="std">Including adversarial tamper detection, determinism checks, and boundary conditions</div></div>
+    <div class="stat"><div class="stn"><span id="cn3">2</span></div><div class="stl">Verification Layers</div><div class="std">SHA-256 integrity + semantic invariants. Each layer catches attacks the other misses.</div></div>
+    <div class="stat"><div class="stn">0<span style="font-size:40px"> req.</span></div><div class="stl">Trust Required</div><div class="std">No GPU, no internet, no code access. Verify on any machine with Python.</div></div>
+  </div>
+</section></div>
+
+<div class="div"></div>
+<div class="w"><section class="sec" id="claims">
+  <div class="stag rv">Verified Claims</div>
+  <h2 class="rv d1">Seven claims.<br>All bidirectionally enforced.</h2>
+  <p class="sdesc rv d2">Every claim has an implementation, runner dispatch, threshold, and tests. Enforced on every PR &#8212; not by human review.</p>
+  <div class="claimsgrid rv d3">
+    <div class="claim"><div><span class="claimid">MTR-1</span></div><div class="claimdomain">Materials Science</div><div class="claimname">Young&#8217;s Modulus Calibration</div><div class="claimth"><span>relative_error</span> &#8804; 0.01</div></div>
+    <div class="claim"><div><span class="claimid">MTR-2</span></div><div class="claimdomain">Materials Science</div><div class="claimname">Thermal Paste Conductivity Calibration</div><div class="claimth"><span>relative_error</span> &#8804; 0.02</div></div>
+    <div class="claim"><div><span class="claimid">MTR-3</span></div><div class="claimdomain">Materials Science</div><div class="claimname">Multilayer Thermal Contact Calibration</div><div class="claimth"><span>rel_err_k</span> &#8804; 0.03 &#183; <span>rel_err_r</span> &#8804; 0.05</div></div>
+    <div class="claim"><div><span class="claimid">SYSID-01</span></div><div class="claimdomain">System Identification</div><div class="claimname">ARX Model Calibration</div><div class="claimth"><span>rel_err_a</span> &#8804; 0.03 &#183; <span>rel_err_b</span> &#8804; 0.03</div></div>
+    <div class="claim"><div><span class="claimid">DATA-PIPE-01</span></div><div class="claimdomain">Data Pipelines</div><div class="claimname">Data Pipeline Quality Certificate</div><div class="claimth"><span>schema</span> pass &#183; <span>range</span> pass</div></div>
+    <div class="claim"><div><span class="claimid">DRIFT-01</span></div><div class="claimdomain">Drift Monitoring</div><div class="claimname">Calibration Anchor &amp; Drift Monitor</div><div class="claimth"><span>drift_threshold</span> 5.0%</div></div>
+    <div class="claim new-claim"><div><span class="claimid">ML_BENCH-01</span><span class="claimid-badge">NEW</span></div><div class="claimdomain">ML / AI Benchmarking</div><div class="claimname">ML Model Accuracy Certificate</div><div class="claimth">|<span>actual</span> &#8722; <span>claimed</span>| &#8804; 0.02</div></div>
+  </div>
+</section></div>
+
+<div class="div"></div>
+<div class="w"><section class="sec">
+  <div class="stag rv">Governance</div>
+  <h2 class="rv d1">Code enforces.<br>Not people.</h2>
+  <p class="sdesc rv d2">Bidirectional claim coverage checked on every pull request. A claim without implementation blocks merge. An implementation without claim blocks merge.</p>
+  <div class="gov rv d3">
+    <div class="govh"><span class="govhl">$ python scripts/steward_audit.py</span><span class="govbadge">STEWARD AUDIT: PASS</span></div>
+    <div class="govb">
+      <div><span class="tdm">canonical_state: </span><span class="tok">['MTR-1','MTR-2','MTR-3','SYSID-01','DATA-PIPE-01','DRIFT-01','ML_BENCH-01']</span></div>
+      <div><span class="tdm">claim_index:     </span><span class="tok">['MTR-1','MTR-2','MTR-3','DATA-PIPE-01','SYSID-01','DRIFT-01','ML_BENCH-01']</span></div>
+      <div><span class="tdm">coverage check:  </span><span class="tok">all job_kinds dispatched &#8212; runner kinds in claim index</span></div>
+      <div><span class="tdm">canonical sync:  </span><span class="tok">PASS &#8212; bidirectional coverage verified</span></div>
+    </div>
+  </div>
+</section></div>
+
+<div class="div"></div>
+<div class="w"><section class="sec">
+  <div class="stag rv">Open Protocol</div>
+  <h2 class="rv d1">Not a tool.<br>A standard.</h2>
+  <p class="sdesc rv d2">MetaGenesis Verification Protocol (MVP) v0.1 &#8212; open spec for packaging computational claims into independently verifiable evidence bundles.</p>
+  <div class="proto rv d3">
+    <div class="protoc">
+      <h3>What MVP defines</h3>
+      <p>A minimal, concrete spec for what &#8220;independently verifiable&#8221; means for any computational result.</p>
+      <div class="proto-rule">Bundle: pack_manifest + evidence_index + per-claim artifacts</div>
+      <div class="proto-rule">Integrity: SHA-256 hashes + root_hash over all files</div>
+      <div class="proto-rule">Semantic: job_snapshot present, kind matches, canary flag correct</div>
+      <div class="proto-rule">Governance: runner kinds == claim_index kinds == canonical_state</div>
+      <div class="proto-rule">Output: PASS or FAIL with specific reason &#8212; no ambiguity</div>
+    </div>
+    <div class="protoc">
+      <h3>What it is not</h3>
+      <div class="proto-rule warn">Not a simulation platform</div>
+      <div class="proto-rule warn">Not an AI system</div>
+      <div class="proto-rule warn">Not &#8220;tamper-proof&#8221; &#8212; tamper-evident under trusted verifier assumptions</div>
+      <div class="proto-rule warn">Does not guarantee algorithm correctness &#8212; only evidence integrity</div>
+      <h3 style="margin-top:32px">Planned domains</h3>
+      <div class="proto-rule ok">PHARMA-01 &#8212; ADMET certificates (FDA 21 CFR Part 11)</div>
+      <div class="proto-rule ok">CARBON-01 &#8212; carbon sequestration model outputs</div>
+      <div class="proto-rule ok">FINRISK-01 &#8212; VaR model validation (Basel III/IV)</div>
+    </div>
+  </div>
+</section></div>
+
+<div class="div"></div>
+<div class="w"><section class="sec" id="verticals">
+  <div class="stag rv">Use Cases</div>
+  <h2 class="rv d1">Five verticals.<br>One protocol.</h2>
+  <div class="ucg rv d2">
+    <div class="uc"><div class="ucn">01</div><div class="uc-tag">ML / AI</div><h3>Benchmark Certification</h3><p>Any ML accuracy claim packaged into a tamper-evident bundle. Reviewers verify offline &#8212; no model access, no environment, no GPU.</p></div>
+    <div class="uc"><div class="ucn">02</div><div class="uc-tag">Pharma / Biotech</div><h3>Regulatory Submission</h3><p>ADMET predictions, PK/PD simulation outputs &#8212; packaged with full provenance. FDA 21 CFR Part 11 compatible audit trail.</p></div>
+    <div class="uc"><div class="ucn">03</div><div class="uc-tag">Carbon Markets</div><h3>ESG Model Auditing</h3><p>Carbon sequestration and deforestation models become independently auditable. Corporate buyers verify without proprietary model access.</p></div>
+    <div class="uc"><div class="ucn">04</div><div class="uc-tag">Financial Services</div><h3>Risk Model Validation</h3><p>VaR, credit scoring, stress test outputs packaged for Basel III/IV model risk management.</p></div>
+    <div class="uc"><div class="ucn">05</div><div class="uc-tag">Materials / Engineering</div><h3>Calibration Handoff</h3><p>Young&#8217;s modulus, thermal conductivity &#8212; delivered with machine-verifiable proof. Drift detection against verified baselines included.</p></div>
+  </div>
+</section></div>
+
+<div class="div"></div>
+<div class="cband">
+  <h2>One command.<br><em>Proof.</em></h2>
+  <p>Clone. Run the demo. See PASS.<br>No account. No API key. No GPU. No network.</p>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+    <a href="https://github.com/Lama999901/metagenesis-core-public" class="btn-c">View on GitHub &#8594;</a>
+    <a href="/cdn-cgi/l/email-protection#e8918d80879a8a8992809186879ea88f85898184c68b8785" class="btn-g">Request Free Pilot</a>
+  </div>
+  <div class="cmeta">MIT &#183; Patent Pending #63/996,819 &#183; Inventor: Yehor Bazhynov</div>
+</div>
+
+<footer>
+  <div class="fl"><span class="fla">METAGENESIS CORE</span><span class="flb">Open verification protocol &#183; MVP v0.1</span></div>
+  <div class="flinks">
+    <a href="https://github.com/Lama999901/metagenesis-core-public">GitHub</a>
+    <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/PROTOCOL.md">Protocol</a>
+    <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/COMMERCIAL.md">Commercial</a>
+    <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/SECURITY.md">Security</a>
+    <a href="/cdn-cgi/l/email-protection#7b021e131409191a01130215140d3b1c161a121755181416">Contact</a>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function(){
+  'use strict';
+  // Включить анимации после загрузки шрифтов (или через 800мс)
+  function go(){if(!document.body.classList.contains('mg-ready'))document.body.classList.add('mg-ready');}
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(go);
+  setTimeout(go,800);
+
+  // Курсор
+  var cur=document.getElementById('cur'),ring=document.getElementById('ring');
+  if(cur&&ring){
+    var mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+    (function L(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(L);})();
+    document.querySelectorAll('a,button').forEach(function(el){
+      el.addEventListener('mouseenter',function(){ring.style.transform='translate(-50%,-50%) scale(2)';ring.style.borderColor='var(--c)';});
+      el.addEventListener('mouseleave',function(){ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='var(--c4)';});
+    });
+  }
+
+  // Canvas hex
+  var cv=document.getElementById('bg'),ctx=cv?cv.getContext('2d'):null;
+  if(ctx){
+    var W,H;
+    function sz(){W=cv.width=innerWidth;H=cv.height=innerHeight;}sz();
+    window.addEventListener('resize',sz);
+    var R=52,hexes=[];
+    for(var r=0;r<34;r++)for(var c=0;c<30;c++)hexes.push({col:c,row:r,ph:Math.random()*Math.PI*2,sp:.003+Math.random()*.005,br:Math.random()*.5,r:R*.88+Math.random()*8});
+    function hp(cx,cy,r){ctx.beginPath();for(var i=0;i<6;i++){var a=Math.PI/180*(60*i-30);i?ctx.lineTo(cx+r*Math.cos(a),cy+r*Math.sin(a)):ctx.moveTo(cx+r*Math.cos(a),cy+r*Math.sin(a));}ctx.closePath();}
+    var t=0;(function fr(){ctx.clearRect(0,0,W,H);t+=.008;hexes.forEach(function(h){var x=h.col*R*1.73+(h.row%2?R*.865:0)-R,y=h.row*R*1.5-R,b=Math.max(0,(Math.sin(t*h.sp*200+h.ph)*.5+.5)*h.br);ctx.strokeStyle='rgba(0,229,255,'+(0.04+b*.16)+')';ctx.fillStyle='rgba(0,229,255,'+(b*.035)+')';ctx.lineWidth=.6;hp(x,y,h.r);ctx.fill();ctx.stroke();});requestAnimationFrame(fr);})();
+  }
+
+  // Терминал
+  var cmd='python demos/open_data_demo_01/run_demo.py',tel=document.getElementById('typed'),tcur=document.getElementById('tcur');
+  if(tel){var ti=0;setTimeout(function tw(){if(ti<cmd.length){tel.textContent+=cmd[ti++];setTimeout(tw,32+Math.random()*26);}else{if(tcur)tcur.style.display='none';[['l1',300],['l2',800],['l3',1300],['l4',1900],['l5',2400],['l6',3000],['l7',3600],['r1',2200],['r2',3200]].forEach(function(p){setTimeout(function(){var e=document.getElementById(p[0]);if(e)e.style.opacity='1';},p[1]);});}},1400);}
+
+  // Счётчики
+  function ct(el,n,d){if(!el)return;d=d||1200;var s=performance.now();(function f(now){var p=Math.min((now-s)/d,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(e*n);if(p<1)requestAnimationFrame(f);else el.textContent=n;})(performance.now());}
+  var done=false;function tryC(){var e=document.getElementById('cn1');if(!e||done)return;if(e.getBoundingClientRect().top<innerHeight*.9){done=true;ct(document.getElementById('cn1'),7);ct(document.getElementById('cn2'),71,1500);ct(document.getElementById('cn3'),2,900);}}
+  window.addEventListener('scroll',tryC,{passive:true});tryC();
+
+  // Scroll reveal
+  var
+  obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
+})();
+</script>
+</body>
+</html>
