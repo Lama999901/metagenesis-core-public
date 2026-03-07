@@ -1,4 +1,4 @@
-# MetaGenesis Core
+# MetaGenesis Core🌐 **Site:** https://metagenesis-core.dev
 
 [![Steward Audit Gate](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml/badge.svg)](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
