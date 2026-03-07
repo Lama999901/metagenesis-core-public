@@ -11,7 +11,6 @@ anchor. Any future run is compared: drift_pct = |new - anchor| / anchor.
 If drift_pct > threshold → drift_detected = True → simulation needs correction.
 
 No numpy. No external deps. Stdlib only.
-Legal Authority: Infinity Protocol v2.0
 """
 
 from typing import Dict, Any, Optional

@@ -187,12 +187,13 @@ MetaGenesis Core is a verification protocol layer, not a simulation platform
 or AI coordination system. Its purpose is to make computational scientific
 claims tamper-evident, reproducible, and independently auditable offline.
 
-The system operates on five active scientific claims (MTR-1, MTR-2, MTR-3,
-SYSID-01, DATA-PIPE-01) spanning materials science (Young's modulus
+The system operates on six active scientific claims (MTR-1, MTR-2, MTR-3,
+SYSID-01, DATA-PIPE-01, DRIFT-01) spanning materials science (Young's modulus
 calibration, thermal conductivity, multilayer thermal contact), systems
-identification (ARX model calibration), and data pipeline quality
-certification. These claims are representative examples of the claim
-types the system governs; the governance infrastructure is domain-agnostic.
+identification (ARX model calibration), data pipeline quality certification,
+and calibration drift monitoring. These claims are representative examples of
+the claim types the system governs; the governance infrastructure is
+domain-agnostic.
 
 ### 2. Bidirectional Claim Coverage (Claim 1)
 
@@ -204,10 +205,11 @@ function _execute_job_logic()) maps job_kind strings to deterministic
 calibration functions. Job kinds are registered by importing JOB_KIND
 constants from domain modules:
 - mtr1_youngs_modulus_calibration (backend/progress/mtr1_calibration.py)
-- mtr2_thermal_paste_conductivity_calibration (backend/progress/mtr2_calibration.py)
-- mtr3_thermal_multilayer_contact_calibration (backend/progress/mtr3_calibration.py)
+- mtr2_thermal_paste_conductivity_calibration (backend/progress/mtr2_thermal_conductivity.py)
+- mtr3_thermal_multilayer_contact_calibration (backend/progress/mtr3_thermal_multilayer.py)
 - sysid1_arx_calibration (backend/progress/sysid1_arx_calibration.py)
 - datapipe1_quality_certificate (backend/progress/datapipe1_quality_certificate.py)
+- drift_calibration_monitor (backend/progress/drift_monitor.py)
 
 The steward auditor (scripts/steward_audit.py) extracts runner job kinds
 by static analysis of import statements matching the pattern

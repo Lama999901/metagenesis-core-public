@@ -1,7 +1,7 @@
 # MetaGenesis Core — PPA Preflight Package v2
 
 **Scope:** Verification Core (backend/progress/, scripts/, tests/)
-**Protocol:** docs/DETERMINISTIC_CLAIM_PROTOCOL_v1_0.md
+**Protocol:** docs/ARCHITECTURE.md
 **Steward:** python scripts/steward_audit.py → PASS (2026-03-03)
 
 Previous version (v1.0) described phases 1-42 and
@@ -42,7 +42,7 @@ that makes any computational claim independently verifiable.
 ## Core Architecture (what is patented)
 
 ```
-PROOF LOOP (docs/ARCHITECTURE_OVERVIEW.md):
+PROOF LOOP (docs/ARCHITECTURE.md):
 
   Job Run
     ↓
@@ -139,16 +139,16 @@ python scripts/mg.py verify --pack /tmp/ppa_pack
 
 ```
 Pre-filing (technical):
-□ steward_audit.py → PASS
-□ test_cert02 → PASS (both normal + tamper tests)
-□ python -m pytest tests/steward tests/materials -q → 49 passed
-□ All 6 claims reproducible via python -m pytest
+[x] steward_audit.py → PASS
+[x] test_cert02 → PASS (both normal + tamper tests)
+[x] python -m pytest tests/steward tests/materials -q → 49 passed
+[x] All 6 claims reproducible via python -m pytest
 
 Pre-filing (documentation):
-□ CLAIMS_DRAFT.md — V2 (code-backed, no invented features)
-□ EVIDENCE_INDEX.md — V2 (real test paths, no fake SHA)
-□ SYSTEM_ARCHIVE.docx — legacy only, not part of claims (no action required)
-□ README.md — remove "GPT-5", "19x without baseline", "symbiotic AI"
+[x] CLAIMS_DRAFT.md — V2 (code-backed, no invented features)
+[x] EVIDENCE_INDEX.md — V2 (real test paths, no fake SHA)
+[x] SYSTEM_ARCHIVE.docx — legacy only, not part of claims (no action required)
+[x] README.md — verified clean (no "GPT-5", no "19x", no "symbiotic AI")
 
 Pre-filing (legal):
 □ Confirm grace period window (repo was public < 12 months ago)
