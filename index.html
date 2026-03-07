@@ -225,30 +225,156 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
 .d1{transition-delay:.05s}.d2{transition-delay:.15s}.d3{transition-delay:.25s}.d4{transition-delay:.35s}
 .note-block{margin-top:20px;padding:16px 20px;border:1px solid var(--ln);font-size:12px;color:var(--txt3)}
 .note-block code{color:var(--c)}
-@media(max-width:900px){
-  .hnav{display:none}
-  .hbtns{flex-direction:column;gap:10px}
-  .hero{padding:80px 24px 40px}
-  .hero-title{font-size:clamp(52px,14vw,96px)}
-  .hbio{max-width:100%}
-  .pipe{grid-template-columns:1fr;gap:0}
-  .pipe-arrow{display:none}
-  .stats{grid-template-columns:1fr 1fr}
-  .claimsgrid{grid-template-columns:1fr}
-  .atk{grid-template-columns:1fr;grid-template-rows:auto auto auto}
-  .atkmid{padding:10px;font-size:20px;border-right:none;border-top:1px solid var(--ln);border-bottom:1px solid var(--ln)}
-  .atkmid::before{content:'↓';display:block}
-  .atkmid .arrow-right{display:none}
-  .gov{grid-template-columns:1fr}
-  .proto-grid{grid-template-columns:1fr}
-  .ucg{grid-template-columns:1fr 1fr}
-  .termbody{grid-template-columns:1fr;gap:16px}
-  .cur,.ring{display:none}
+
+/* ═══════════════════════════════════════
+   MOBILE NAV HAMBURGER
+═══════════════════════════════════════ */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;z-index:700}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--c);transition:all .3s ease}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(3,6,13,.98);z-index:650;flex-direction:column;align-items:center;justify-content:center;gap:40px;backdrop-filter:blur(20px)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:var(--fd);font-size:22px;font-weight:700;letter-spacing:.12em;color:var(--txt3);text-decoration:none;text-transform:uppercase;transition:color .2s}
+.mobile-menu a:hover{color:var(--c)}
+.mobile-menu .mgit{color:var(--c)!important;border:1px solid var(--c);padding:14px 36px}
+
+/* ═══════════════════════════════════════
+   TABLET — 1024px
+═══════════════════════════════════════ */
+@media(max-width:1024px){
+  nav{padding:0 32px}
+  .w{padding:0 32px}
+  .hero-meta{padding:14px 32px}
+  .hero-stage{padding:0 32px}
+  .hero-bottom{padding:24px 32px 48px;gap:32px}
+  .cband{padding:80px 32px}
+  footer{padding:32px 32px}
+  .pp{grid-template-columns:1fr}
+  .ppc:first-child{border-right:none;border-bottom:1px solid var(--ln)}
+  .atk{grid-template-columns:1fr 40px 1fr}
+  .atkl,.atkr{padding:32px 28px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .proto{grid-template-columns:1fr}
+  .protoc:first-child{border-bottom:1px solid var(--ln)}
+  .termbody{grid-template-columns:1fr;gap:0}
+  .prow{grid-template-columns:44px 180px 1fr 80px}
 }
-@media(max-width:480px){
-  .hero-title{font-size:clamp(40px,16vw,72px)}
-  .stats{grid-template-columns:1fr}
+
+/* ═══════════════════════════════════════
+   MOBILE — 768px
+═══════════════════════════════════════ */
+@media(max-width:768px){
+  body{cursor:auto}
+  #cur,#ring{display:none}
+
+  /* NAV */
+  nav{padding:0 20px;height:56px}
+  .nlinks{display:none}
+  .hamburger{display:flex}
+
+  /* W / SECTIONS */
+  .w{padding:0 20px}
+  .sec{padding:64px 0}
+
+  /* HERO META */
+  .hero-meta{padding:10px 20px;flex-direction:column;align-items:flex-start;gap:8px}
+  .hmpat{flex-wrap:wrap;gap:8px}
+  .sep{display:none}
+
+  /* HERO STAGE */
+  .hero-stage{padding:0 20px}
+  .hspan{font-size:clamp(52px,16vw,100px)!important}
+
+  /* HERO BOTTOM */
+  .hero-bottom{grid-template-columns:1fr;gap:24px;padding:20px 20px 40px}
+  .hbio-text{font-size:15px}
+  .hbtns{flex-direction:column;align-items:stretch;width:100%}
+  .btn-c,.btn-g{text-align:center;padding:16px 24px;font-size:10px}
+
+  /* TICKER */
+  .ti{padding:0 24px}
+
+  /* PROBLEM/SOLUTION 2-col → 1-col */
+  .pp{grid-template-columns:1fr}
+  .ppc{padding:32px 24px}
+  .ppc:first-child{border-right:none;border-bottom:1px solid var(--ln)}
+
+  /* PIPELINE TABLE */
+  .pipe{font-size:11px}
+  .prow{grid-template-columns:36px 1fr 64px;min-height:48px}
+  .pdesc{display:none}
+  .ptitle{padding:0 14px;font-size:11px}
+  .pnum{font-size:10px}
+  .pstat{font-size:10px}
+
+  /* TERMINAL */
+  .term{overflow-x:auto}
+  .termbody{grid-template-columns:1fr;gap:16px;padding:20px}
+  .tprompt,.tcmd{font-size:12px}
+
+  /* ATTACK/DEFENSE */
+  .atk{grid-template-columns:1fr;border:1px solid var(--ln)}
+  .atkl{border-right:none;border-bottom:1px solid var(--ln)}
+  .atkmid{display:none}
+  .atkl,.atkr{padding:24px 20px}
+
+  /* STATS */
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat{padding:28px 24px}
+  .stn{font-size:clamp(40px,9vw,60px)!important}
+
+  /* CLAIMS GRID */
+  .claimsgrid{grid-template-columns:1fr}
+  .claim{padding:24px 20px}
+
+  /* PROTOCOL */
+  .proto{grid-template-columns:1fr}
+  .protoc{padding:28px 20px}
+  .protoc:first-child{border-right:none;border-bottom:1px solid var(--ln)}
+
+  /* USE CASES */
   .ucg{grid-template-columns:1fr}
+  .uc{padding:28px 20px}
+
+  /* CTA BAND */
+  .cband{padding:64px 20px}
+  .cband h2{font-size:clamp(28px,8vw,48px)}
+  .cband>div{flex-direction:column;align-items:stretch}
+  .cband .btn-c,.cband .btn-g{text-align:center}
+
+  /* FOOTER */
+  footer{padding:28px 20px;flex-direction:column;gap:24px;align-items:flex-start}
+  .flinks{flex-wrap:wrap;gap:16px}
+
+  /* H2 */
+  h2{font-size:clamp(28px,7vw,48px)!important}
+}
+
+/* ═══════════════════════════════════════
+   SMALL MOBILE — 480px
+═══════════════════════════════════════ */
+@media(max-width:480px){
+  .hspan{font-size:clamp(40px,18vw,80px)!important}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat{padding:20px 16px}
+  .hero-meta{padding:8px 16px}
+  .w{padding:0 16px}
+  .sec{padding:48px 0}
+  nav{padding:0 16px}
+  .hbio-text{font-size:14px}
+  .ppc{padding:24px 16px}
+  .claimsgrid{grid-template-columns:1fr}
+  .ucg{grid-template-columns:1fr}
+  .claim{padding:20px 16px}
+  .uc{padding:20px 16px}
+  .protoc{padding:20px 16px}
+  .cband{padding:48px 16px}
+  footer{padding:24px 16px}
+  .flinks{gap:12px}
+  .flinks a{font-size:10px}
+  .prow{grid-template-columns:32px 1fr 56px}
 }
 </style>
 </head>
@@ -264,7 +390,18 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
     <a href="#protocol">Protocol</a><a href="#claims">Claims</a><a href="#verticals">Verticals</a>
     <a href="https://github.com/Lama999901/metagenesis-core-public" class="ngit">GITHUB &#8594;</a>
   </div>
+  <button class="hamburger" id="hbtn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<div class="mobile-menu" id="mmenu">
+  <a href="#protocol" class="mmlink">Protocol</a>
+  <a href="#claims" class="mmlink">Claims</a>
+  <a href="#verticals" class="mmlink">Verticals</a>
+  <a href="https://github.com/Lama999901/metagenesis-core-public" class="mgit mmlink">GitHub &#8594;</a>
+  <a href="mailto:yehor@metagenesis-core.dev" class="mmlink" style="color:var(--c);font-size:13px;letter-spacing:.08em;text-transform:none;font-family:var(--fm)">yehor@metagenesis-core.dev</a>
+</div>
 
 <section class="hero">
   <div class="hero-meta">
@@ -288,7 +425,7 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
     </div>
     <div class="hbtns">
       <a href="https://github.com/Lama999901/metagenesis-core-public" class="btn-c">TRY IN 5 MIN &#8594;</a>
-      <a href="mailto:yehor@metagenesis-core.dev" class="btn-g">FREE PILOT</a>
+      <a href="mailto:yehor@metagenesis-core.dev?subject=Free%20Pilot%20Request&body=Hi%20Yehor%2C%0A%0AI%27d%20like%20to%20request%20a%20free%20pilot%20for%20MetaGenesis%20Core.%0A%0AMy%20use%20case%3A%20" class="btn-g">FREE PILOT</a>
     </div>
   </div>
   <div class="hscroll"><div class="hscroll-bar"></div>SCROLL</div>
@@ -386,7 +523,7 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
       <div class="atkstep"><div class="atkstepn x">3</div><div class="atktext">Submit bundle with no real evidence that passes all standard integrity checks</div></div>
       <div class="atkresult x">&#10007; Standard check: PASS (attack succeeds silently)</div>
     </div>
-    <div class="atkmid"><span class="arrow-right">&#8594;</span></div>
+    <div class="atkmid">&#8594;</div>
     <div class="atkr">
       <div class="atktit v">MetaGenesis defense</div>
       <div class="atkstep"><div class="atkstepn v">1</div><div class="atktext">Integrity layer &#8212; SHA-256 + root_hash detects any file modification after manifest generation.</div></div>
@@ -488,7 +625,7 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
   <p>Clone. Run the demo. See PASS.<br>No account. No API key. No GPU. No network.</p>
   <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
     <a href="https://github.com/Lama999901/metagenesis-core-public" class="btn-c">View on GitHub &#8594;</a>
-    <a href="mailto:yehor@metagenesis-core.dev" class="btn-g">Request Free Pilot</a>
+    <a href="mailto:yehor@metagenesis-core.dev?subject=Free%20Pilot%20Request&body=Hi%20Yehor%2C%0A%0AI%27d%20like%20to%20request%20a%20free%20pilot%20for%20MetaGenesis%20Core.%0A%0AMy%20use%20case%3A%20" class="btn-g">Request Free Pilot</a>
   </div>
   <div class="cmeta">MIT &#183; Patent Pending #63/996,819 &#183; Inventor: Yehor Bazhynov</div>
 </div>
@@ -511,6 +648,23 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
   function go(){if(!document.body.classList.contains('mg-ready'))document.body.classList.add('mg-ready');}
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(go);
   setTimeout(go,800);
+
+  // Hamburger menu
+  var hbtn=document.getElementById('hbtn'),mmenu=document.getElementById('mmenu');
+  if(hbtn&&mmenu){
+    hbtn.addEventListener('click',function(){
+      hbtn.classList.toggle('open');
+      mmenu.classList.toggle('open');
+      document.body.style.overflow=mmenu.classList.contains('open')?'hidden':'';
+    });
+    document.querySelectorAll('.mmlink').forEach(function(a){
+      a.addEventListener('click',function(){
+        hbtn.classList.remove('open');
+        mmenu.classList.remove('open');
+        document.body.style.overflow='';
+      });
+    });
+  }
 
   // Курсор
   var cur=document.getElementById('cur'),ring=document.getElementById('ring');
