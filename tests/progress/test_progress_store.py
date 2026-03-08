@@ -3,7 +3,7 @@
 Progress Engine Store Tests
 
 Purpose: Validate job store and runner with ledger integration
-Legal Authority: Infinity Protocol v2.0
+# Part of MetaGenesis Core verification pipeline (MVP v0.1)
 """
 
 import sys

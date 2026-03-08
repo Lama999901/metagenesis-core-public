@@ -3,7 +3,7 @@
 DATA-PIPE-01 Dataset Quality Certificate - Tests.
 
 Purpose: E2E, quality checks detect bad CSV, reproducibility shape.
-Legal Authority: Infinity Protocol v2.0 / DATA-PIPE-01
+# Part of MetaGenesis Core verification pipeline (MVP v0.1)
 """
 
 import json
