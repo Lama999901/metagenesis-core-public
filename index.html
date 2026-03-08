@@ -208,7 +208,7 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
 .hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
-.mobile-menu{display:none;position:fixed;inset:0;background:rgba(3,6,13,.98);z-index:650;flex-direction:column;align-items:center;justify-content:center;gap:40px;backdrop-filter:blur(20px)}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(3,6,13,.98);z-index:650;flex-direction:column;align-items:center;justify-content:center;gap:40px;backdrop-filter:blur(20px);overflow-y: auto;overflow-x: hidden}
 .mobile-menu.open{display:flex}
 .mobile-menu a{font-family:var(--fd);font-size:22px;font-weight:700;letter-spacing:.12em;color:var(--txt3);text-decoration:none;text-transform:uppercase;transition:color .2s}
 .mobile-menu a:hover{color:var(--c)}
