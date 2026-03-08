@@ -502,6 +502,24 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
   #page-totop.visible{display:flex}
   #page-totop:active{background:rgba(0,229,255,.15)}
 }
+.origin{position:relative;z-index:10;background:var(--ink1);border-top:1px solid var(--ln);border-bottom:1px solid var(--ln)}
+.origin-inner{max-width:900px;margin:0 auto;padding:100px 52px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.origin-quote{position:relative;padding-left:28px}
+.origin-quote::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(var(--c),transparent)}
+.origin-q{font-family:var(--fs);font-size:clamp(22px,2.8vw,36px);font-style:italic;color:var(--txt);line-height:1.55;margin-bottom:24px;font-weight:400}
+.origin-q em{color:var(--c);font-style:normal}
+.origin-who{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);display:flex;align-items:center;gap:12px}
+.origin-who::before{content:'';width:20px;height:1px;background:var(--txt3)}
+.origin-steps{display:flex;flex-direction:column;gap:0}
+.origin-step{display:flex;align-items:flex-start;gap:16px;padding:18px 0;border-bottom:1px solid var(--ln)}
+.origin-step:last-child{border-bottom:none}
+.origin-step-n{flex-shrink:0;width:28px;height:28px;border:1px solid var(--ln2);display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:10px;color:var(--txt3);margin-top:2px}
+.origin-step.active .origin-step-n{border-color:var(--c);color:var(--c);background:rgba(0,229,255,.06)}
+.origin-step-txt{font-size:13px;color:var(--txt3);line-height:1.65;font-weight:300}
+.origin-step.active .origin-step-txt{color:var(--txt2)}
+.origin-step-txt strong{color:var(--c);font-weight:500}
+@media(max-width:900px){.origin-inner{grid-template-columns:1fr;gap:48px;padding:64px 32px}}
+@media(max-width:768px){.origin-inner{padding:48px 20px}}
 </style>
 </head>
 <body>
@@ -677,6 +695,37 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
   </div>
 </section></div>
 
+<section class="origin" id="origin">
+  <div class="origin-inner">
+    <div class="origin-quote rv d1">
+      <p class="origin-q">
+        "Why make expensive lab experiments when you can simulate first, correct, then verify?
+        But nobody trusted the simulation result — there was
+        <em>no way to prove it was real.</em>
+        That's why MetaGenesis Core exists."
+      </p>
+      <p class="origin-who">Yehor Bazhynov — Inventor, Patent #63/996,819</p>
+    </div>
+    <div class="origin-steps rv d2">
+      <div class="origin-step">
+        <div class="origin-step-n">01</div>
+        <div class="origin-step-txt">Wanted to simulate a materials experiment — cheaper than a real lab</div>
+      </div>
+      <div class="origin-step">
+        <div class="origin-step-n">02</div>
+        <div class="origin-step-txt">Got results. But <strong>no one could verify</strong> them — no proof the computation was real</div>
+      </div>
+      <div class="origin-step">
+        <div class="origin-step-n">03</div>
+        <div class="origin-step-txt">Tried SHA-256 hashing, preregistration, manual logs — <strong>all insufficient</strong></div>
+      </div>
+      <div class="origin-step active">
+        <div class="origin-step-n">04</div>
+        <div class="origin-step-txt">Built <strong>MetaGenesis Core</strong> — tamper-evident bundles, semantic verification, adversarial proof</div>
+      </div>
+    </div>
+  </div>
+</section>
 <div class="div"></div>
 <div class="w"><section class="sec" id="protocol">
   <div class="stag rv">How It Works</div>
