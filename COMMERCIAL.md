@@ -109,7 +109,7 @@ any commercial conversation. No strings attached.
 ## Contact
 
 Yehor Bazhynov
-yehorbazhynov@gmail.com
+yehor@metagenesis-core.dev
 
 Response within 24 hours.
 
