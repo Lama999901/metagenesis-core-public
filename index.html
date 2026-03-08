@@ -434,6 +434,13 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
 .pilot-what-step code{font-family:var(--fm);font-size:10px;color:var(--c);background:var(--ink);padding:1px 6px;border:1px solid var(--ln)}
 @media(max-width:1000px){.pilot-wrap{grid-template-columns:1fr}.pilot-info-col{border-top:1px solid var(--ln)}}
 @media(max-width:600px){.pilot-form-col,.pilot-info-col{padding:28px 20px}.pilot-row{grid-template-columns:1fr}.pilot-footer{flex-direction:column;align-items:stretch}.pilot-submit{text-align:center}}
+.nlinks .ndrop{position:relative;display:inline-block}
+.nlinks .ndrop>a{pointer-events:auto}
+.ndmenu{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);min-width:220px;background:#060a14;border:1px solid rgba(0,229,255,.18);border-radius:6px;padding:6px 0;z-index:999;box-shadow:0 8px 32px rgba(0,0,0,.6)}
+.ndrop:hover .ndmenu,.ndrop:focus-within .ndmenu{display:block}
+.ndmenu a{display:block;padding:8px 18px;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:rgba(232,244,248,.7);letter-spacing:.06em;text-decoration:none;white-space:nowrap;transition:color .15s,background .15s}
+.ndmenu a:hover{color:#00e5ff;background:rgba(0,229,255,.07)}
+.ndmenu .ndiv{height:1px;background:rgba(0,229,255,.1);margin:4px 10px}
 </style>
 </head>
 <body>
@@ -445,7 +452,7 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
   <a class="logo" href="#"><div class="lmark"><span>M</span></div>METAGENESIS</a>
   <div class="ndot">AUDIT: PASS</div>
   <div class="nlinks">
-    <a href="#protocol">Protocol</a><a href="#claims">Claims</a><a href="#verticals">Verticals</a><a href="#segments">For You</a><a href="#verifier">Verify</a><a href="#pilot">Free Pilot</a>
+    <a href="#protocol">Protocol</a><span class="ndrop"><a href="#claims">Claims</a><div class="ndmenu"><a href="#claims" onclick="document.querySelectorAll('.cid')[0]?.scrollIntoView()">MTR-1 — Young's Modulus</a><a href="#claims" onclick="document.querySelectorAll('.cid')[1]?.scrollIntoView()">MTR-2 — Thermal Conductivity</a><a href="#claims" onclick="document.querySelectorAll('.cid')[2]?.scrollIntoView()">MTR-3 — Multilayer Contact</a><div class="ndiv"></div><a href="#claims">SYSID-01 — ARX Calibration</a><a href="#claims">DATA-PIPE-01 — Quality Cert</a><a href="#claims">DRIFT-01 — Drift Monitor</a><a href="#claims">ML_BENCH-01 — Accuracy Cert</a></div></span><a href="#verticals">Verticals</a><span class="ndrop"><a href="#segments">For You</a><div class="ndmenu"><a href="#segments" onclick="document.querySelector('[data-seg=ml]')?.click()">ML / AI Teams</a><a href="#segments" onclick="document.querySelector('[data-seg=pharma]')?.click()">Pharma / Biotech</a><a href="#segments" onclick="document.querySelector('[data-seg=finance]')?.click()">Finance / Quant</a><a href="#segments" onclick="document.querySelector('[data-seg=research]')?.click()">Research Labs</a></div></span><a href="#verifier">Verify</a><a href="#pilot">Free Pilot</a>
     <a href="https://github.com/Lama999901/metagenesis-core-public" class="ngit">GITHUB &#8594;</a>
   </div>
   <button class="hamburger" id="hbtn" aria-label="Menu"><span></span><span></span><span></span></button>
