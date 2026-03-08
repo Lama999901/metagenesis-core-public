@@ -2,7 +2,7 @@
 
 **Scope:** Verification Core (backend/progress/, scripts/, tests/)
 **Protocol:** docs/ARCHITECTURE.md
-**Steward:** python scripts/steward_audit.py → PASS (2026-03-03)
+**Steward:** python scripts/steward_audit.py → PASS (2026-03-05)
 
 Previous version (v1.0) described phases 1-42 and
 non-existent features. This version describes only what
@@ -120,8 +120,8 @@ python -m pytest tests/steward/test_cert02_pack_includes_evidence_and_semantic_v
 
 ### Step 3 — Full verification core
 ```bash
-python -m pytest tests/steward tests/materials -q
-# Expected: 49 passed
+python -m pytest tests/steward tests/materials tests/ml -q
+# Expected: all passed
 ```
 
 ### Step 4 — End-to-end pack
@@ -141,20 +141,20 @@ python scripts/mg.py verify --pack /tmp/ppa_pack
 Pre-filing (technical):
 [x] steward_audit.py → PASS
 [x] test_cert02 → PASS (both normal + tamper tests)
-[x] python -m pytest tests/steward tests/materials -q → 49 passed
-[x] All 6 claims reproducible via python -m pytest
+[x] python -m pytest tests/steward tests/materials tests/ml -q → all passed
+[x] All 7 claims reproducible via python -m pytest
 
 Pre-filing (documentation):
 [x] CLAIMS_DRAFT.md — V2 (code-backed, no invented features)
 [x] EVIDENCE_INDEX.md — V2 (real test paths, no fake SHA)
 [x] SYSTEM_ARCHIVE.docx — legacy only, not part of claims (no action required)
-[x] README.md — verified clean (no "GPT-5", no "19x", no "symbiotic AI")
+[x] README.md — verified clean (no "GPT-5", no "19x", no "tamper-proof")
 
 Pre-filing (legal):
-□ Confirm grace period window (repo was public < 12 months ago)
-□ Patent attorney review of Claims 1-4
-□ Confirm inventor name and assignment
-□ File via USPTO EFS-Web as Provisional Patent Application
+[ ] Confirm grace period window (repo was public < 12 months ago)
+[ ] Patent attorney review of Claims 1-4
+[ ] Confirm inventor name and assignment
+[ ] File via USPTO EFS-Web as Provisional Patent Application
 ```
 
 ---
@@ -166,6 +166,7 @@ docs/ARCHITECTURE.md
   → Proof loop diagram
   → Governance loop diagram
   → Calibration anchor and drift example
+  → ML accuracy certification flow
 
 reports/scientific_claim_index.md
   → Canonical claim registry: claim_id, job_kind, V&V thresholds,
@@ -173,10 +174,11 @@ reports/scientific_claim_index.md
 
 reports/canonical_state.md
   → Authoritative project state snapshot
-  → current_claims_list: MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01
+  → current_claims_list: MTR-1, MTR-2, MTR-3, SYSID-01,
+                          DATA-PIPE-01, DRIFT-01, ML_BENCH-01
 ```
 
 ---
 
-*PPA README v2. Scope: verification core only.
+*PPA README v2.1. Scope: verification core only.
 No invented features. Every section traceable to passing tests.*
