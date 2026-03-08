@@ -255,6 +255,68 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
   .cband{padding:48px 16px}footer{padding:24px 16px}.flinks{gap:12px}.flinks a{font-size:10px}
   .prow{grid-template-columns:32px 1fr 56px}
 }
+.crisis-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln)}
+.crisis-stat{background:var(--ink);padding:40px 32px;display:flex;flex-direction:column;gap:14px;transition:background .2s}
+.crisis-stat:hover{background:var(--ink1)}
+.crisis-n{font-family:var(--fd);font-size:clamp(52px,5vw,80px);font-weight:900;line-height:1;letter-spacing:-.04em;color:var(--err)}
+.crisis-pct{font-size:.4em;vertical-align:super;color:var(--err)}
+.crisis-label{font-size:13px;color:var(--txt2);line-height:1.65;font-weight:300}
+.crisis-src{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);margin-top:4px;padding-top:12px;border-top:1px solid var(--ln)}
+@media(max-width:900px){.crisis-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.crisis-grid{grid-template-columns:1fr}}
+.cmptable{border:1px solid var(--ln);overflow:hidden}
+.cmp-head,.cmp-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;border-bottom:1px solid var(--ln)}
+.cmp-row:last-child{border-bottom:none}
+.cmp-head{background:var(--ink2)}
+.cmp-row{background:var(--ink);transition:background .2s}
+.cmp-row:hover{background:var(--ink1)}
+.cmp-feat{padding:16px 20px;font-size:12px;color:var(--txt2);line-height:1.5;border-right:1px solid var(--ln)}
+.cmp-col{padding:16px 12px;display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.06em;border-right:1px solid var(--ln)}
+.cmp-col:last-child{border-right:none}
+.cmp-col.mg{background:rgba(0,229,255,.03)}
+.cmp-head .cmp-col{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);font-weight:600}
+.cmp-head .cmp-col.mg{color:var(--c)}
+.cyes{color:var(--ok);font-size:16px}
+.cno{color:var(--err);font-size:16px}
+.cpart{color:var(--txt3);font-size:10px;letter-spacing:.06em}
+@media(max-width:768px){
+  .cmp-head,.cmp-row{grid-template-columns:1.5fr 1fr 1fr}
+  .cmp-col:nth-child(4),.cmp-col:nth-child(5),.cmp-head div:nth-child(4),.cmp-head div:nth-child(5){display:none}
+}
+.regrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln)}
+.reg{background:var(--ink);padding:40px 36px;display:flex;flex-direction:column;gap:14px;transition:background .2s}
+.reg:hover{background:var(--ink1)}
+.reg-badge{display:inline-block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--c);border:1px solid var(--c3);background:var(--c2);padding:4px 12px;width:fit-content}
+.reg-scope{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3)}
+.reg h3{font-family:var(--fd);font-size:16px;font-weight:700;letter-spacing:-.01em;line-height:1.3}
+.reg p{font-size:13px;color:var(--txt2);line-height:1.75;font-weight:300}
+.reg-claim{font-size:10px;letter-spacing:.08em;color:var(--txt3);padding-top:12px;border-top:1px solid var(--ln);margin-top:auto}
+.reg-note{font-size:11px;color:var(--txt3);margin-top:20px;padding:14px 20px;border:1px solid var(--ln);background:var(--ink2);line-height:1.6}
+@media(max-width:900px){.regrid{grid-template-columns:1fr}}
+.pricegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln)}
+.price-tier{background:var(--ink);padding:44px 36px;display:flex;flex-direction:column;gap:16px;position:relative}
+.price-tier.featured{background:rgba(0,229,255,.03)}
+.price-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);background:var(--c);padding:4px 16px;white-space:nowrap}
+.price-name{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3)}
+.price-amount{font-family:var(--fd);font-size:clamp(40px,4vw,64px);font-weight:900;line-height:1;letter-spacing:-.04em;color:var(--c)}
+.price-desc{font-size:13px;color:var(--txt2);line-height:1.7;font-weight:300}
+.price-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;flex:1}
+.price-list li{font-size:12px;color:var(--txt2);padding-left:18px;position:relative;line-height:1.5}
+.price-list li::before{content:'\2192';position:absolute;left:0;color:var(--c);font-size:11px}
+.price-btn-primary,.price-btn-secondary{display:inline-block;padding:14px 24px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;font-family:var(--fd);font-weight:700;text-align:center;transition:all .2s;margin-top:8px}
+.price-btn-primary{background:var(--c);color:#000}
+.price-btn-primary:hover{background:#fff}
+.price-btn-secondary{border:1px solid var(--ln2);color:var(--txt2)}
+.price-btn-secondary:hover{border-color:var(--c);color:var(--c)}
+@media(max-width:900px){.pricegrid{grid-template-columns:1fr}.price-badge{position:static;transform:none;display:inline-block;width:fit-content}}
+.faqlist{border:1px solid var(--ln);overflow:hidden}
+.faq-item{padding:32px 40px;border-bottom:1px solid var(--ln);transition:background .2s;cursor:default}
+.faq-item:last-child{border-bottom:none}
+.faq-item:hover{background:var(--ink1)}
+.faq-q{font-family:var(--fd);font-size:16px;font-weight:700;letter-spacing:-.01em;margin-bottom:14px;color:var(--txt)}
+.faq-a{font-size:13px;color:var(--txt2);line-height:1.8;font-weight:300}
+.faq-a code{font-family:var(--fm);font-size:11px;color:var(--c);background:var(--ink2);padding:2px 6px;border:1px solid var(--ln)}
+@media(max-width:768px){.faq-item{padding:24px 20px}.faq-q{font-size:14px}}
 </style>
 </head>
 <body>
@@ -493,6 +555,228 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
     <div class="uc"><div class="ucn">03</div><div class="uc-tag">Carbon Markets</div><h3>ESG Model Auditing</h3><p>Carbon sequestration and deforestation models become independently auditable. Corporate buyers verify without proprietary model access.</p></div>
     <div class="uc"><div class="ucn">04</div><div class="uc-tag">Financial Services</div><h3>Risk Model Validation</h3><p>VaR, credit scoring, stress test outputs packaged for Basel III/IV model risk management.</p></div>
     <div class="uc"><div class="ucn">05</div><div class="uc-tag">Materials / Engineering</div><h3>Calibration Handoff</h3><p>Young&#8217;s modulus, thermal conductivity &#8212; delivered with machine-verifiable proof. Drift detection against verified baselines included.</p></div>
+  </div>
+</section></div>
+
+<div class="div"></div>
+<div class="w"><section class="sec" id="crisis">
+  <div class="stag rv">The Problem Is Real</div>
+  <h2 class="rv d1">The reproducibility crisis<br>is now your liability.</h2>
+  <p class="sdesc rv d2">Independent researchers, regulators, and clients can no longer accept computational results on trust alone. The cost of unverified claims is rising.</p>
+  <div class="crisis-grid rv d3">
+
+    <div class="crisis-stat">
+      <div class="crisis-n">70<span class="crisis-pct">%</span></div>
+      <div class="crisis-label">of researchers report failing to reproduce another scientist's results</div>
+      <div class="crisis-src">Nature survey, 1,576 researchers</div>
+    </div>
+
+    <div class="crisis-stat">
+      <div class="crisis-n">$<span class="crisis-pct">B</span></div>
+      <div class="crisis-label">in ML model failures attributed to unverified performance claims in production</div>
+      <div class="crisis-src">Regulatory filings, 2022–2025</div>
+    </div>
+
+    <div class="crisis-stat">
+      <div class="crisis-n">3</div>
+      <div class="crisis-label">major regulatory frameworks now require independent verification of computational outputs</div>
+      <div class="crisis-src">EU AI Act · FDA 21 CFR Part 11 · Basel III/IV</div>
+    </div>
+
+    <div class="crisis-stat">
+      <div class="crisis-n">0</div>
+      <div class="crisis-label">existing open tools provide offline, third-party verifiable evidence bundles with semantic integrity</div>
+      <div class="crisis-src">MetaGenesis Core fills this gap</div>
+    </div>
+
+  </div>
+</section></div>
+
+<div class="div"></div>
+<div class="w"><section class="sec" id="compare">
+  <div class="stag rv">Why MetaGenesis</div>
+  <h2 class="rv d1">Nothing else does<br>all of this.</h2>
+  <p class="sdesc rv d2">Existing tools solve parts of the problem. MetaGenesis Core is the only open protocol that combines governance enforcement, semantic integrity, and offline third-party verification.</p>
+  <div class="cmptable rv d2">
+    <div class="cmp-head">
+      <div class="cmp-feat">Capability</div>
+      <div class="cmp-col mg">MetaGenesis</div>
+      <div class="cmp-col">MLflow / DVC</div>
+      <div class="cmp-col">Manual Audit</div>
+      <div class="cmp-col">Trust the PDF</div>
+    </div>
+    <div class="cmp-row">
+      <div class="cmp-feat">Offline third-party verification</div>
+      <div class="cmp-col mg"><span class="cyes">&#10003;</span></div>
+      <div class="cmp-col"><span class="cno">&#10007;</span></div>
+      <div class="cmp-col"><span class="cpart">partial</span></div>
+      <div class="cmp-col"><span class="cno">&#10007;</span></div>
+    </div>
+    <div class="cmp-row">
+      <div class="cmp-feat">Semantic tamper detection (beyond SHA-256)</div>
+      <div class="cmp-col mg"><span class="cyes">&#10003;</span></div>
+      <div class="cmp-col"><span class="cno">&#10007;</span></div>
+      <div class="cmp-col"><span class="cno">&#10007;</span></div>
+      <div class="cmp-col"><span class="cno">&#10007;</span></div>
+    </div>
+    <div class="cmp-row">
+      <div class="cmp-feat">Governance-enforced bidirectional claim coverage</div>
+      <div class="cmp-col mg"><span class="cyes">&#10003;</span></div>
+      <div class="cmp-col"><span class="cno">&#10007;</span></div>
+      <div class="cmp-col"><span class="cno">&#10007;</span></div>
+      <div class="cmp-col"><span class="cno">&#10007;</span></div>
+    </div>
+    <div class="cmp-row">
+      <div class="cmp-feat">No model or environment access required to verify</div>
+      <div class="cmp-col mg"><span class="cyes">&#10003;</span></div>
+      <div class="cmp-col"><span class="cno">&#10007;</span></div>
+      <div class="cmp-col"><span class="cpart">partial</span></div>
+      <div class="cmp-col"><span class="cno">&#10007;</span></div>
+    </div>
+    <div class="cmp-row">
+      <div class="cmp-feat">Dual-mode canary pipeline (health vs authority)</div>
+      <div class="cmp-col mg"><span class="cyes">&#10003;</span></div>
+      <div class="cmp-col"><span class="cno">&#10007;</span></div>
+      <div class="cmp-col"><span class="cno">&#10007;</span></div>
+      <div class="cmp-col"><span class="cno">&#10007;</span></div>
+    </div>
+    <div class="cmp-row">
+      <div class="cmp-feat">Open source + patent-pending protocol</div>
+      <div class="cmp-col mg"><span class="cyes">&#10003;</span></div>
+      <div class="cmp-col"><span class="cyes">&#10003;</span></div>
+      <div class="cmp-col"><span class="cno">&#10007;</span></div>
+      <div class="cmp-col"><span class="cno">&#10007;</span></div>
+    </div>
+    <div class="cmp-row">
+      <div class="cmp-feat">FDA 21 CFR Part 11 / EU AI Act alignment path</div>
+      <div class="cmp-col mg"><span class="cyes">&#10003;</span></div>
+      <div class="cmp-col"><span class="cpart">partial</span></div>
+      <div class="cmp-col"><span class="cpart">partial</span></div>
+      <div class="cmp-col"><span class="cno">&#10007;</span></div>
+    </div>
+  </div>
+</section></div>
+
+<div class="div"></div>
+<div class="w"><section class="sec" id="regulatory">
+  <div class="stag rv">Regulatory Alignment</div>
+  <h2 class="rv d1">Three frameworks.<br>One protocol.</h2>
+  <p class="sdesc rv d2">MetaGenesis bundles are designed to satisfy independent auditability requirements across the three major regulatory contexts for computational evidence.</p>
+  <div class="regrid rv d3">
+
+    <div class="reg">
+      <div class="reg-badge">EU AI Act</div>
+      <div class="reg-scope">High-Risk AI Systems</div>
+      <h3>Technical documentation &amp; logging</h3>
+      <p>Article 12 requires logging of AI system operations to enable post-market monitoring. MetaGenesis bundles provide immutable, independently auditable evidence records without disclosing proprietary model internals.</p>
+      <div class="reg-claim">Relevant claim: ML_BENCH-01 · DATA-PIPE-01</div>
+    </div>
+
+    <div class="reg">
+      <div class="reg-badge">FDA 21 CFR Part 11</div>
+      <div class="reg-scope">Pharma &amp; Medical Devices</div>
+      <h3>Electronic records &amp; audit trails</h3>
+      <p>Computational submissions to FDA require electronic records with integrity controls. MetaGenesis evidence bundles provide SHA-256 + semantic integrity verification compatible with existing data integrity requirements.</p>
+      <div class="reg-claim">Relevant claim: DATA-PIPE-01 · DRIFT-01 · MTR series</div>
+    </div>
+
+    <div class="reg">
+      <div class="reg-badge">Basel III / IV</div>
+      <div class="reg-scope">Financial Risk Models</div>
+      <h3>Model risk management</h3>
+      <p>SR 11-7 guidance requires independent validation of risk model outputs. MetaGenesis bundles give model validators verifiable evidence without requiring access to proprietary model code or data.</p>
+      <div class="reg-claim">Relevant claim: ML_BENCH-01 · DATA-PIPE-01</div>
+    </div>
+
+  </div>
+  <p class="reg-note rv d4">MetaGenesis Core does not constitute legal or regulatory compliance advice. It provides technical infrastructure that supports compliance workflows.</p>
+</section></div>
+
+<div class="div"></div>
+<div class="w"><section class="sec" id="pricing">
+  <div class="stag rv">Get Started</div>
+  <h2 class="rv d1">Start with proof.<br>Scale when ready.</h2>
+  <p class="sdesc rv d2">MetaGenesis Core is open source. The protocol is free to use. We offer a free pilot for your specific use case before any commercial conversation.</p>
+  <div class="pricegrid rv d3">
+
+    <div class="price-tier">
+      <div class="price-name">Open Source</div>
+      <div class="price-amount">Free</div>
+      <div class="price-desc">Full protocol, all 7 claims, all verification tools. No limits.</div>
+      <ul class="price-list">
+        <li>Full MetaGenesis Verification Protocol</li>
+        <li>7 active domain claims</li>
+        <li>77 tests including adversarial proof</li>
+        <li>Local deployment, no cloud required</li>
+        <li>MIT licensed</li>
+      </ul>
+      <a href="https://github.com/Lama999901/metagenesis-core-public" class="price-btn-secondary">Clone on GitHub &#8594;</a>
+    </div>
+
+    <div class="price-tier featured">
+      <div class="price-badge">Recommended first step</div>
+      <div class="price-name">Free Pilot</div>
+      <div class="price-amount">$0</div>
+      <div class="price-desc">Send us your computational result. We build a verification bundle for it. You see PASS or FAIL before any commercial decision.</div>
+      <ul class="price-list">
+        <li>Your specific use case verified</li>
+        <li>Working bundle you can give to any third party</li>
+        <li>Proof the protocol fits your domain</li>
+        <li>No strings attached</li>
+        <li>Response within 48 hours</li>
+      </ul>
+      <a href="mailto:yehor@metagenesis-core.dev?subject=Free Pilot Request" class="price-btn-primary">Request Free Pilot &#8594;</a>
+    </div>
+
+    <div class="price-tier">
+      <div class="price-name">Enterprise</div>
+      <div class="price-amount">Custom</div>
+      <div class="price-desc">Integration support, custom domain claims, regulatory documentation, and dedicated verification infrastructure.</div>
+      <ul class="price-list">
+        <li>Custom claim domains (pharma, finance, ESG)</li>
+        <li>Integration into existing CI/CD</li>
+        <li>Regulatory alignment documentation</li>
+        <li>Priority support and SLA</li>
+        <li>Patent license options available</li>
+      </ul>
+      <a href="mailto:yehor@metagenesis-core.dev?subject=Enterprise Inquiry" class="price-btn-secondary">Contact &#8594;</a>
+    </div>
+
+  </div>
+</section></div>
+
+<div class="div"></div>
+<div class="w"><section class="sec" id="faq">
+  <div class="stag rv">FAQ</div>
+  <h2 class="rv d1">Skeptical?<br>Good.</h2>
+  <p class="sdesc rv d2">The questions we'd ask if we were you.</p>
+  <div class="faqlist rv d3">
+
+    <div class="faq-item">
+      <div class="faq-q">Does this guarantee my algorithm is correct?</div>
+      <div class="faq-a">No. MetaGenesis verifies that the evidence bundle contains what it claims to contain and has not been modified. It does not verify the correctness of the underlying algorithm. This distinction is intentional and documented in <code>SECURITY.md</code> and <code>reports/known_faults.yaml</code>.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Can a sophisticated attacker fake a passing bundle?</div>
+      <div class="faq-a">A sufficiently sophisticated adversary with full codebase access could potentially construct a passing fake bundle. MetaGenesis is tamper-evident, not tamper-proof. The semantic layer catches attacks that survive SHA-256 recomputation &#8212; proven by <code>test_cert02</code>. Known limitations are in <code>reports/known_faults.yaml</code>.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How is this different from just sending a Docker container?</div>
+      <div class="faq-a">A Docker container requires the verifier to run your environment, trust your dependencies, and have compute available. A MetaGenesis bundle requires only Python and the verification script. No model access, no GPU, no network. Verification takes seconds, not hours.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Does the verifier need to trust MetaGenesis?</div>
+      <div class="faq-a">The verifier needs to trust the verification script (<code>mg.py</code>) and the protocol specification. Both are open source and auditable. The protocol is designed so any third party can re-implement the verifier independently from the spec and get the same result.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">What does "patent pending" mean for open source users?</div>
+      <div class="faq-a">The code is MIT licensed &#8212; free to use, modify, and deploy. The provisional patent (USPTO #63/996,819) covers the protocol innovations. Commercial licensing options are available for organizations that want to build products on the protocol. Open source use is unrestricted.</div>
+    </div>
+
   </div>
 </section></div>
 
