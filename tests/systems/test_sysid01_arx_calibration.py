@@ -3,7 +3,7 @@
 SYSID-01 ARX Calibration - Tests.
 
 Purpose: E2E, V&V thresholds, reproducibility shape.
-Legal Authority: Infinity Protocol v2.0 / SYSID-01
+# Part of MetaGenesis Core verification pipeline (MVP v0.1)
 """
 
 import json
