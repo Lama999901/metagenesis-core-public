@@ -557,6 +557,12 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
   <div class="mo-title"><h2>— SITE NAVIGATION —</h2></div>
   <div class="mo-grid">
     <div class="mo-col">
+      <div class="mo-col-title">Origin</div>
+      <a href="#origin" onclick="document.getElementById('megaover').classList.remove('open')">Why It Exists</a>
+      <a href="#origin" onclick="document.getElementById('megaover').classList.remove('open')">The Problem</a>
+      <a href="#origin" onclick="document.getElementById('megaover').classList.remove('open')">The Solution</a>
+    </div>
+    <div class="mo-col">
       <h3>Protocol</h3>
       <a href="#protocol" onclick="document.getElementById('megaover').classList.remove('open')">How It Works<span>4-step verification pipeline</span></a>
       <a href="#protocol" onclick="document.getElementById('megaover').classList.remove('open')">Claim Coverage<span>Bidirectional governance enforcement</span></a>
@@ -608,6 +614,7 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
 
 <div class="mobile-menu" id="mmenu">
     <button id="mmclose" aria-label="Close menu" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">✕</button>
+    <a href="#origin" onclick="document.getElementById('mmenu').classList.remove('open');document.querySelector('.hamburger')?.classList.remove('open')">— Why It Exists</a>
     <a href="#protocol" class="mmlink" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">Protocol</a>
     <div class="mm-acc">
       <div class="mm-acc-head" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('open')">
