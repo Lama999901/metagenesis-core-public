@@ -874,12 +874,12 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
 
     <div class="faq-item">
       <div class="faq-q">Does this guarantee my algorithm is correct?</div>
-      <div class="faq-a">No. MetaGenesis verifies that the evidence bundle contains what it claims to contain and has not been modified. It does not verify the correctness of the underlying algorithm. This distinction is intentional and documented in <code>SECURITY.md</code> and <code>reports/known_faults.yaml</code>.</div>
+      <div class="faq-a">No. MetaGenesis verifies that the evidence bundle contains what it claims to contain and has not been modified. It does not verify the correctness of the underlying algorithm. This distinction is intentional and documented in <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/SECURITY.md" target="_blank"><code>SECURITY.md</code></a> and <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/known_faults.yaml" target="_blank"><code>reports/known_faults.yaml</code></a>.</div>
     </div>
 
     <div class="faq-item">
       <div class="faq-q">Can a sophisticated attacker fake a passing bundle?</div>
-      <div class="faq-a">A sufficiently sophisticated adversary with full codebase access could potentially construct a passing fake bundle. MetaGenesis is tamper-evident, not tamper-proof. The semantic layer catches attacks that survive SHA-256 recomputation &#8212; proven by <code>test_cert02</code>. Known limitations are in <code>reports/known_faults.yaml</code>.</div>
+      <div class="faq-a">A sufficiently sophisticated adversary with full codebase access could potentially construct a passing fake bundle. MetaGenesis is tamper-evident, not tamper-proof. The semantic layer catches attacks that survive SHA-256 recomputation &#8212; proven by <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/tests/steward/test_cert02_pack_includes_evidence_and_semantic_verify.py" target="_blank"><code>test_cert02</code></a>. Known limitations are in <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/known_faults.yaml" target="_blank"><code>reports/known_faults.yaml</code></a>.</div>
     </div>
 
     <div class="faq-item">
@@ -889,7 +889,7 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
 
     <div class="faq-item">
       <div class="faq-q">Does the verifier need to trust MetaGenesis?</div>
-      <div class="faq-a">The verifier needs to trust the verification script (<code>mg.py</code>) and the protocol specification. Both are open source and auditable. The protocol is designed so any third party can re-implement the verifier independently from the spec and get the same result.</div>
+      <div class="faq-a">The verifier needs to trust the verification script (<a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/mg.py" target="_blank"><code>mg.py</code></a>) and the protocol specification. Both are open source and auditable. The protocol is designed so any third party can re-implement the verifier independently from the spec and get the same result.</div>
     </div>
 
     <div class="faq-item">
@@ -1140,7 +1140,7 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
 
   <div class="pilot-wrap rv d3">
     <div class="pilot-form-col">
-      <form class="pilot-form" id="pilot-form" action="https://formspree.io/f/xlgpdwop" method="POST">
+      <form class="pilot-form" id="pilot-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
         <div class="pilot-row">
           <div class="pilot-field">
             <label class="pilot-label" for="pf-name">Name</label>
@@ -1184,7 +1184,7 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
         <div class="pilot-what-title">What happens next</div>
         <div class="pilot-what-step"><span class="pilot-what-n">01</span><div><strong>You describe your result</strong><p>Any computational output — ML accuracy, calibration data, pipeline certificate, simulation output.</p></div></div>
         <div class="pilot-what-step"><span class="pilot-what-n">02</span><div><strong>We build the bundle</strong><p>We implement the verification claim for your domain and generate a tamper-evident evidence bundle.</p></div></div>
-        <div class="pilot-what-step"><span class="pilot-what-n">03</span><div><strong>You verify it yourself</strong><p>Run <code>mg.py verify --pack bundle.zip</code> on your machine. See PASS or FAIL. No trust required.</p></div></div>
+        <div class="pilot-what-step"><span class="pilot-what-n">03</span><div><strong>You verify it yourself</strong><p>Run <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/mg.py" target="_blank"><code>mg.py verify --pack bundle.zip</code></a> on your machine. See PASS or FAIL. No trust required.</p></div></div>
         <div class="pilot-what-step"><span class="pilot-what-n">04</span><div><strong>Then we talk</strong><p>If it solves your problem, we discuss next steps. If it doesn't fit, we tell you honestly.</p></div></div>
       </div>
     </div>
