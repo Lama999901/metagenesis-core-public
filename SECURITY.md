@@ -47,7 +47,7 @@ It does not mean modifications are impossible.
 If you find a way to construct a bundle that passes verification
 but contains incorrect or missing evidence, please report it:
 
-yehorbazhynov@gmail.com
+yehor@metagenesis-core.dev
 
 Include: reproduction steps, what verification reported,
 what the bundle actually contained.
