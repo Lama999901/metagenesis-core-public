@@ -524,10 +524,10 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
   <h2 class="rv d1">Four steps.<br>Immutable proof.</h2>
   <p class="sdesc rv d2">Every run produces an evidence bundle with two independent verification layers. Any deviation surfaces as FAIL with a specific reason.</p>
   <div class="pipe rv d3">
-    <div class="prow active"><div class="pnum">01</div><div class="ptitle">runner.run_job()</div><div class="pdesc">Executes computation &#8594; produces run_artifact.json + ledger_snapshot.jsonl</div><div class="pstat ok">&#8594; artifact</div></div>
-    <div class="prow"><div class="pnum">02</div><div class="ptitle">evidence_index.json</div><div class="pdesc">Maps run artifacts to registered claims with provenance chain</div><div class="pstat ok">&#8594; index</div></div>
-    <div class="prow"><div class="pnum">03</div><div class="ptitle">mg.py pack build</div><div class="pdesc">Bundles artifacts + SHA-256 manifest + root_hash into submission pack</div><div class="pstat ok">&#8594; bundle</div></div>
-    <div class="prow"><div class="pnum">04</div><div class="ptitle">mg.py verify</div><div class="pdesc">Integrity check (SHA-256) + semantic check (job_snapshot, canary flag, kind)</div><div class="pstat ok">PASS / FAIL</div></div>
+    <div class="prow active"><div class="pnum">01</div><div class="ptitle"><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/runner.py" target="_blank">runner.run_job()</a></div><div class="pdesc">Executes computation &#8594; produces run_artifact.json + ledger_snapshot.jsonl</div><div class="pstat ok">&#8594; artifact</div></div>
+    <div class="prow"><div class="pnum">02</div><div class="ptitle"><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/demos/open_data_demo_01/evidence_index.json" target="_blank">evidence_index.json</a></div><div class="pdesc">Maps run artifacts to registered claims with provenance chain</div><div class="pstat ok">&#8594; index</div></div>
+    <div class="prow"><div class="pnum">03</div><div class="ptitle"><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/mg.py" target="_blank">mg.py pack build</a></div><div class="pdesc">Bundles artifacts + SHA-256 manifest + root_hash into submission pack</div><div class="pstat ok">&#8594; bundle</div></div>
+    <div class="prow"><div class="pnum">04</div><div class="ptitle"><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/mg.py" target="_blank">mg.py verify</a></div><div class="pdesc">Integrity check (SHA-256) + semantic check (job_snapshot, canary flag, kind)</div><div class="pstat ok">PASS / FAIL</div></div>
   </div>
 </section></div>
 
@@ -535,6 +535,7 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
 <div class="w"><section class="sec">
   <div class="stag rv">Live Demo</div>
   <h2 class="rv d1">Five minutes<br>from zero to proof.</h2>
+<p class="sdesc rv d2">Clone the repo. Run one command. Your result is now cryptographically anchored, semantically verified, and independently auditable by anyone — offline, without trusting you.</p>
   <div class="term rv d2">
     <div class="termh"><div class="thdot"></div><div class="thdot"></div><div class="thdot"></div><span class="thtit">bash &#8212; metagenesis-core-public</span></div>
     <div class="termbody">
