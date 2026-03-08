@@ -52,8 +52,8 @@ nav::before{content:'';position:absolute;inset:0;background:rgba(3,6,13,.92);bac
 .hero-stage{display:flex;flex-direction:column;justify-content:center;padding:0 52px;position:relative;z-index:11;overflow:hidden}
 .hline{display:block;overflow:hidden}
 .hspan{display:block;font-family:var(--fd);font-size:clamp(76px,10.8vw,184px);font-weight:900;line-height:.88;letter-spacing:-.04em}
-.word-proof .hspan{color:#00ff99;position:relative;animation:proofglow 4s 3s ease-in-out infinite}
-.word-proof .hspan::before{content:'';position:absolute;left:0;right:0;top:-2px;height:3px;background:linear-gradient(90deg,transparent 0%,rgba(0,255,153,.9) 30%,rgba(0,255,153,1) 50%,rgba(0,255,153,.9) 70%,transparent 100%);box-shadow:0 0 14px rgba(0,255,153,.7),0 0 30px rgba(0,255,153,.3);pointer-events:none;animation:proofscan 7s 4s ease-in-out infinite;z-index:2}
+.word-proof .hspan{color:#00ff99;position:relative;animation:proofglow 4s 3s ease-in-out infinite;overflow:hidden}
+.word-proof .hspan::before{content:'';position:absolute;left:0;right:0;top:-2px;height:2px;background:linear-gradient(90deg,transparent 0%,transparent 5%,rgba(0,255,153,.7) 20%,rgba(0,255,153,1) 50%,rgba(0,255,153,.7) 80%,transparent 95%,transparent 100%);box-shadow:0 0 10px rgba(0,255,153,.5),0 0 24px rgba(0,255,153,.15);pointer-events:none;animation:proofscan 7s 4s ease-in-out infinite;z-index:2}
 .word-not   .hspan{color:var(--c);position:relative}
 .word-trust .hspan{color:rgba(232,244,248,.22);position:relative}
 .word-trust .hspan::before{content:attr(data-t);position:absolute;top:0;left:0;width:100%;height:100%;color:#ff4060;pointer-events:none;opacity:0;animation:trusthit .35s 1.5s ease-out forwards}
