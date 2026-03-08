@@ -20,6 +20,7 @@
 }
 html{scroll-behavior:smooth;overflow-x:hidden}
 body{background:var(--ink);color:var(--txt);font-family:var(--fm);overflow-x:hidden;cursor:none;min-height:100vh}
+.sec p:not(.sdesc):not(.reg-note):not(.origin-q){font-size:14px;line-height:1.85;color:rgba(232,244,248,.6);letter-spacing:.01em}
 #cur,#ring{position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
 #cur{width:6px;height:6px;background:var(--c);border-radius:50%}
 #ring{width:32px;height:32px;border:1px solid var(--c4);border-radius:50%;transition:transform .18s ease,border-color .18s ease}
@@ -92,10 +93,10 @@ body.mg-ready .word-trust .hspan{animation:slidein .85s .31s cubic-bezier(.16,1,
 .w{position:relative;z-index:10;max-width:1280px;margin:0 auto;padding:0 52px}
 .sec{padding:120px 0}
 .div{height:1px;background:var(--ln);position:relative;z-index:10}
-.stag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--txt3);display:flex;align-items:center;gap:12px;margin-bottom:20px}
-.stag::before{content:'';width:20px;height:1px;background:var(--txt3)}
-h2{font-family:var(--fd);font-size:clamp(36px,4vw,64px);font-weight:900;line-height:1;letter-spacing:-.03em;margin-bottom:20px}
-.sdesc{font-size:15px;color:var(--txt2);max-width:560px;line-height:1.8;margin-bottom:60px;font-weight:300}
+.stag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(0,229,255,.5);display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.stag::before{content:'';width:20px;height:1px;background:rgba(0,229,255,.4)}
+h2{font-family:var(--fd);font-size:clamp(36px,4vw,64px);font-weight:900;line-height:1.05;letter-spacing:-.03em;margin-bottom:20px;text-shadow:0 0 60px rgba(0,229,255,.18),0 0 120px rgba(0,229,255,.08);animation:h2glitch 9s ease-in-out infinite}
+.sdesc{font-size:16px;color:rgba(232,244,248,.65);max-width:580px;line-height:1.9;margin-bottom:60px;font-weight:300;letter-spacing:.01em}
 .pp{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--ln);overflow:hidden}
 .ppc{padding:56px 48px;position:relative;overflow:hidden}
 .ppc:first-child{border-right:1px solid var(--ln)}
@@ -106,7 +107,7 @@ h2{font-family:var(--fd);font-size:clamp(36px,4vw,64px);font-weight:900;line-hei
 .ppchip{display:inline-block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:4px 12px;margin-bottom:28px}
 .ppchip.x{color:var(--err);border:1px solid rgba(255,64,96,.25);background:rgba(255,64,96,.06)}
 .ppchip.v{color:var(--c);border:1px solid var(--c3);background:var(--c2)}
-.ppc h3{font-family:var(--fd);font-size:28px;font-weight:700;margin-bottom:18px;line-height:1.15;letter-spacing:-.02em}
+.ppc h3{text-shadow:0 0 40px rgba(0,229,255,.12);font-family:var(--fd);font-size:28px;font-weight:700;margin-bottom:18px;line-height:1.15;letter-spacing:-.02em}
 .ppc p{font-size:14px;color:var(--txt2);line-height:1.85;font-weight:300}
 .pipe{display:flex;flex-direction:column;gap:1px;border:1px solid var(--ln);overflow:hidden}
 .prow{display:grid;grid-template-columns:56px 240px 1fr 100px;border-bottom:1px solid var(--ln);transition:background .2s;cursor:default;min-height:56px}
@@ -549,6 +550,27 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
 .pitch-banner-line em{color:#00e5ff;font-style:normal}
 .pitch-banner-sub{font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(232,244,248,.3);letter-spacing:.14em;text-transform:uppercase}
 .pitch-asterisk{font-size:10px;color:rgba(232,244,248,.25);font-family:'IBM Plex Mono',monospace;margin-top:20px;text-align:right;letter-spacing:.06em}
+#pitch h2{animation-name:h2glitch2;animation-delay:7.4s}
+@keyframes h2glitch{
+  0%,95%,100%{text-shadow:0 0 60px rgba(0,229,255,.18),0 0 120px rgba(0,229,255,.08);transform:none}
+  96%{text-shadow:-5px 0 rgba(255,64,96,.75),5px 0 rgba(0,229,255,.75),0 0 40px rgba(0,229,255,.4);transform:skewX(-1.5deg) translateX(-2px)}
+  97%{text-shadow:4px 0 rgba(255,64,96,.6),-4px 0 rgba(0,255,153,.6);transform:skewX(1deg) translateX(2px)}
+  97.5%{text-shadow:-3px 0 rgba(0,229,255,.8),3px 0 rgba(255,64,96,.5);transform:translateX(-1px)}
+  98%{text-shadow:0 0 60px rgba(0,229,255,.18),0 0 120px rgba(0,229,255,.08);transform:none}
+}
+@keyframes h2glitch2{
+  0%,94%,100%{text-shadow:0 0 60px rgba(0,229,255,.18),0 0 120px rgba(0,229,255,.08);transform:none}
+  95%{text-shadow:5px 0 rgba(0,255,153,.7),-5px 0 rgba(255,64,96,.7);transform:skewX(2deg) translateX(3px)}
+  96%{text-shadow:-4px 0 rgba(0,229,255,.8),4px 0 rgba(255,64,96,.5);transform:skewX(-1deg)}
+  96.5%{text-shadow:2px 0 rgba(255,64,96,.6),-2px 0 rgba(0,255,153,.5);transform:translateX(1px)}
+  97%{text-shadow:0 0 60px rgba(0,229,255,.18),0 0 120px rgba(0,229,255,.08);transform:none}
+}
+.sec:nth-child(2) h2{animation-name:h2glitch2;animation-delay:2.1s}
+.sec:nth-child(3) h2{animation-delay:4.3s}
+.sec:nth-child(4) h2{animation-name:h2glitch2;animation-delay:1.7s}
+.sec:nth-child(5) h2{animation-delay:6.2s}
+.sec:nth-child(6) h2{animation-name:h2glitch2;animation-delay:3.5s}
+.sec:nth-child(7) h2{animation-delay:5.8s}
 </style>
 </head>
 <body>
