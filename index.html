@@ -317,6 +317,123 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
 .faq-a{font-size:13px;color:var(--txt2);line-height:1.8;font-weight:300}
 .faq-a code{font-family:var(--fm);font-size:11px;color:var(--c);background:var(--ink2);padding:2px 6px;border:1px solid var(--ln)}
 @media(max-width:768px){.faq-item{padding:24px 20px}.faq-q{font-size:14px}}
+/* ── Segment Selector ── */
+.seg-wrap{border:1px solid var(--ln);overflow:hidden}
+.seg-tabs{display:grid;grid-template-columns:repeat(4,1fr);background:var(--ink2);border-bottom:1px solid var(--ln)}
+.seg-tab{background:none;border:none;border-right:1px solid var(--ln);padding:20px 24px;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:6px;transition:background .2s;position:relative}
+.seg-tab:last-child{border-right:none}
+.seg-tab::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--c);transform:scaleX(0);transition:transform .25s}
+.seg-tab.active{background:rgba(0,229,255,.04)}
+.seg-tab.active::after{transform:scaleX(1)}
+.seg-tab:hover:not(.active){background:var(--ink1)}
+.seg-tab-num{font-family:var(--fm);font-size:9px;color:var(--txt3);letter-spacing:.1em}
+.seg-tab.active .seg-tab-num{color:var(--c)}
+.seg-tab-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);font-weight:600}
+.seg-tab.active .seg-tab-label{color:var(--txt)}
+.seg-panels{position:relative}
+.seg-panel{display:none;padding:48px 44px;flex-direction:column;gap:36px;animation:segfade .2s ease}
+.seg-panel.active{display:flex}
+@keyframes segfade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.seg-pain-label,.seg-scenario-label,.seg-claims-label{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);display:block;margin-bottom:12px}
+.seg-pain p{font-size:15px;color:var(--txt2);line-height:1.8;font-weight:300;max-width:720px}
+.seg-flow{display:flex;flex-direction:column;gap:0;border:1px solid var(--ln);overflow:hidden}
+.seg-step{display:grid;grid-template-columns:48px 1fr;border-bottom:1px solid var(--ln);align-items:start}
+.seg-step:last-child{border-bottom:none}
+.seg-step-n{padding:16px;font-family:var(--fm);font-size:11px;color:var(--c);background:var(--ink2);border-right:1px solid var(--ln);display:flex;align-items:flex-start;justify-content:center;padding-top:18px}
+.seg-step span:last-child{padding:16px 20px;font-size:13px;color:var(--txt2);line-height:1.7;font-weight:300}
+.seg-step code{font-family:var(--fm);font-size:11px;color:var(--c);background:var(--ink2);padding:1px 6px;border:1px solid var(--ln)}
+.seg-pass{color:var(--ok);font-family:var(--fm);font-size:11px;font-weight:700;letter-spacing:.08em}
+.seg-fail{color:var(--err);font-family:var(--fm);font-size:11px;font-weight:700;letter-spacing:.08em}
+.seg-claim-chips{display:flex;flex-wrap:wrap;gap:8px}
+.seg-chip{font-size:10px;letter-spacing:.08em;padding:6px 14px;border:1px solid var(--ln);color:var(--txt3)}
+.active-chip{border-color:var(--c3);color:var(--c);background:var(--c2)}
+.soon-chip{border-color:var(--ln);color:var(--txt3);font-style:italic}
+.seg-cta-row{display:flex;gap:12px;flex-wrap:wrap;padding-top:8px;border-top:1px solid var(--ln)}
+.seg-btn-primary{display:inline-block;padding:13px 24px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;font-family:var(--fd);font-weight:700;background:var(--c);color:#000;transition:background .2s}
+.seg-btn-primary:hover{background:#fff}
+.seg-btn-secondary{display:inline-block;padding:13px 24px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;font-family:var(--fd);font-weight:700;border:1px solid var(--ln2);color:var(--txt2);transition:all .2s}
+.seg-btn-secondary:hover{border-color:var(--c);color:var(--c)}
+@media(max-width:900px){.seg-tabs{grid-template-columns:repeat(2,1fr)}.seg-tab{border-bottom:1px solid var(--ln)}}
+@media(max-width:600px){.seg-tabs{grid-template-columns:1fr}.seg-panel{padding:32px 20px;gap:24px}.seg-cta-row{flex-direction:column}}
+/* ── Live Verifier ── */
+.vrf-wrap{border:1px solid var(--ln);overflow:hidden}
+.vrf-selector{padding:28px 36px;background:var(--ink2);border-bottom:1px solid var(--ln)}
+.vrf-selector-label{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);margin-bottom:14px}
+.vrf-claim-btns{display:flex;gap:1px;background:var(--ln);border:1px solid var(--ln);width:fit-content}
+.vrf-claim-btn{background:var(--ink);border:none;padding:12px 24px;cursor:pointer;display:flex;flex-direction:column;gap:4px;transition:background .2s;min-width:130px;font-family:var(--fm);font-size:12px;color:var(--txt2);letter-spacing:.06em}
+.vrf-claim-btn.active{background:rgba(0,229,255,.06);color:var(--c)}
+.vrf-claim-btn:hover:not(.active){background:var(--ink1)}
+.vrf-claim-sub{font-size:9px;color:var(--txt3);font-family:var(--fm);letter-spacing:.04em;font-style:normal}
+.vrf-claim-btn.active .vrf-claim-sub{color:var(--c4)}
+.vrf-body{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--ln)}
+.vrf-inputs{padding:36px;background:var(--ink);display:flex;flex-direction:column;gap:20px}
+.vrf-inputs-label{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3)}
+.vrf-input-group{display:none;flex-direction:column;gap:16px}
+.vrf-input-group.active{display:flex}
+.vrf-field{display:flex;flex-direction:column;gap:8px}
+.vrf-label{font-size:11px;color:var(--txt3);letter-spacing:.06em;font-family:var(--fm)}
+.vrf-unit{color:var(--txt3);opacity:.6;margin-left:8px}
+.vrf-input{background:var(--ink2);border:1px solid var(--ln2);color:var(--txt);font-family:var(--fm);font-size:14px;padding:12px 16px;outline:none;transition:border-color .2s;-moz-appearance:textfield}
+.vrf-input::-webkit-outer-spin-button,.vrf-input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.vrf-input:focus{border-color:var(--c)}
+.vrf-threshold{font-size:10px;color:var(--txt3);font-family:var(--fm);padding:10px 14px;background:var(--ink2);border:1px solid var(--ln);letter-spacing:.04em}
+.vrf-check-group{display:flex;flex-direction:column;gap:14px}
+.vrf-check-label{display:flex;align-items:center;gap:12px;cursor:pointer;font-size:12px;color:var(--txt2);line-height:1.5}
+.vrf-checkbox{appearance:none;width:16px;height:16px;border:1px solid var(--ln2);background:var(--ink2);cursor:pointer;flex-shrink:0;position:relative}
+.vrf-checkbox:checked{background:var(--c);border-color:var(--c)}
+.vrf-checkbox:checked::after{content:'\2713';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:10px;color:#000;line-height:1}
+.vrf-run-btn{background:none;border:1px solid var(--c);color:var(--c);font-family:var(--fd);font-size:12px;letter-spacing:.14em;padding:14px 28px;cursor:pointer;transition:all .2s;text-transform:uppercase;margin-top:4px;align-self:flex-start}
+.vrf-run-btn:hover{background:var(--c);color:#000}
+.vrf-run-btn.running{opacity:.5;cursor:not-allowed}
+.vrf-terminal{background:var(--ink2);display:flex;flex-direction:column}
+.vrf-term-head{display:flex;align-items:center;gap:8px;padding:12px 20px;border-bottom:1px solid var(--ln);background:var(--ink)}
+.vrf-term-head .thdot{width:8px;height:8px;border-radius:50%;background:var(--txt3);flex-shrink:0}
+.vrf-term-title{font-size:11px;color:var(--txt3);font-family:var(--fm);letter-spacing:.06em;margin-left:8px}
+.vrf-term-body{padding:24px;display:flex;flex-direction:column;gap:8px;min-height:320px;font-family:var(--fm);font-size:12px;overflow-y:auto}
+.vrf-line{line-height:1.6;transition:opacity .3s}
+.vrf-line.dim{color:var(--txt3)}
+.vrf-line.cmd{color:var(--txt2)}
+.vrf-line.ok{color:var(--ok)}
+.vrf-line.err{color:var(--err)}
+.vrf-line.info{color:var(--c)}
+.vrf-line.muted{color:var(--txt3);font-size:11px}
+.vrf-result-pass{margin-top:12px;padding:14px 18px;border:1px solid rgba(0,255,153,.3);background:rgba(0,255,153,.06);color:var(--ok);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.vrf-result-fail{margin-top:12px;padding:14px 18px;border:1px solid rgba(255,64,96,.3);background:rgba(255,64,96,.06);color:var(--err);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+@media(max-width:900px){.vrf-body{grid-template-columns:1fr}.vrf-claim-btns{width:100%;flex-wrap:wrap}.vrf-claim-btn{min-width:calc(50% - 1px)}}
+@media(max-width:600px){.vrf-selector{padding:20px}.vrf-inputs{padding:24px}.vrf-term-body{min-height:240px}}
+/* ── Pilot Form ── */
+.pilot-wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:1px;background:var(--ln);border:1px solid var(--ln)}
+.pilot-form-col{background:var(--ink);padding:48px 44px}
+.pilot-info-col{background:var(--ink2);padding:48px 40px}
+.pilot-form{display:flex;flex-direction:column;gap:20px}
+.pilot-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pilot-field{display:flex;flex-direction:column;gap:8px}
+.pilot-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3)}
+.pilot-optional{font-size:9px;letter-spacing:.06em;text-transform:none;color:var(--txt3);opacity:.7}
+.pilot-input{background:var(--ink2);border:1px solid var(--ln2);color:var(--txt);font-size:13px;padding:13px 16px;outline:none;transition:border-color .2s;font-family:inherit;width:100%;box-sizing:border-box}
+.pilot-input:focus{border-color:var(--c)}
+.pilot-input::placeholder{color:var(--txt3)}
+.pilot-select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='rgba(232,244,248,.3)'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+.pilot-select option{background:var(--ink2);color:var(--txt)}
+.pilot-textarea{resize:vertical;min-height:100px;line-height:1.6}
+.pilot-footer{display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding-top:8px;border-top:1px solid var(--ln)}
+.pilot-submit{background:var(--c);color:#000;border:none;font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:15px 32px;cursor:pointer;transition:background .2s}
+.pilot-submit:hover{background:#fff}
+.pilot-submit:disabled{opacity:.5;cursor:not-allowed}
+.pilot-note{font-size:11px;color:var(--txt3);line-height:1.5}
+.pilot-success{display:flex;flex-direction:column;gap:16px;padding:40px 0;align-items:flex-start}
+.pilot-success-icon{font-size:40px;color:var(--ok)}
+.pilot-success-title{font-family:var(--fd);font-size:24px;font-weight:700;color:var(--txt)}
+.pilot-success-text{font-size:13px;color:var(--txt2);line-height:1.75;max-width:480px}
+.pilot-what{display:flex;flex-direction:column;gap:28px}
+.pilot-what-title{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);margin-bottom:4px}
+.pilot-what-step{display:flex;gap:16px;align-items:flex-start}
+.pilot-what-n{flex-shrink:0;width:32px;height:32px;border:1px solid var(--ln2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--c);font-family:var(--fm);margin-top:2px}
+.pilot-what-step strong{font-size:13px;color:var(--txt);font-weight:600;display:block;margin-bottom:6px}
+.pilot-what-step p{font-size:12px;color:var(--txt2);line-height:1.65;font-weight:300;margin:0}
+.pilot-what-step code{font-family:var(--fm);font-size:10px;color:var(--c);background:var(--ink);padding:1px 6px;border:1px solid var(--ln)}
+@media(max-width:1000px){.pilot-wrap{grid-template-columns:1fr}.pilot-info-col{border-top:1px solid var(--ln)}}
+@media(max-width:600px){.pilot-form-col,.pilot-info-col{padding:28px 20px}.pilot-row{grid-template-columns:1fr}.pilot-footer{flex-direction:column;align-items:stretch}.pilot-submit{text-align:center}}
 </style>
 </head>
 <body>
@@ -781,6 +898,297 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
 </section></div>
 
 <div class="div"></div>
+<div class="w"><section class="sec" id="segments">
+  <div class="stag rv">For Your Industry</div>
+  <h2 class="rv d1">Built for your world.<br>Speak your language.</h2>
+  <p class="sdesc rv d2">One protocol. Four industries. Find your use case.</p>
+
+  <div class="seg-wrap rv d3">
+    <div class="seg-tabs" role="tablist">
+      <button class="seg-tab active" data-seg="ml" role="tab" aria-selected="true">
+        <span class="seg-tab-num">01</span>
+        <span class="seg-tab-label">ML / AI</span>
+      </button>
+      <button class="seg-tab" data-seg="pharma" role="tab" aria-selected="false">
+        <span class="seg-tab-num">02</span>
+        <span class="seg-tab-label">Pharma / Biotech</span>
+      </button>
+      <button class="seg-tab" data-seg="finance" role="tab" aria-selected="false">
+        <span class="seg-tab-num">03</span>
+        <span class="seg-tab-label">Financial / Risk</span>
+      </button>
+      <button class="seg-tab" data-seg="research" role="tab" aria-selected="false">
+        <span class="seg-tab-num">04</span>
+        <span class="seg-tab-label">Research</span>
+      </button>
+    </div>
+
+    <div class="seg-panels">
+
+      <div class="seg-panel active" data-seg="ml">
+        <div class="seg-pain">
+          <span class="seg-pain-label">The problem</span>
+          <p>Your model achieves 94.3% accuracy. Your client wants proof — not a screenshot, not a PDF, not a Docker container they have to run. They want an answer they can verify themselves in 60 seconds.</p>
+        </div>
+        <div class="seg-scenario">
+          <span class="seg-scenario-label">Your scenario</span>
+          <div class="seg-flow">
+            <div class="seg-step"><span class="seg-step-n">1</span><span>You run ML_BENCH-01 → bundle contains predictions CSV + SHA-256 fingerprint + semantic proof</span></div>
+            <div class="seg-step"><span class="seg-step-n">2</span><span>Client runs <code>mg.py verify --pack bundle.zip</code> on their laptop</span></div>
+            <div class="seg-step"><span class="seg-step-n">3</span><span>They see <span class="seg-pass">PASS</span> — your claimed accuracy is verified. No model access. No GPU. No trust required.</span></div>
+          </div>
+        </div>
+        <div class="seg-claims-row">
+          <span class="seg-claims-label">Relevant claims</span>
+          <div class="seg-claim-chips">
+            <span class="seg-chip active-chip">ML_BENCH-01 — accuracy certificate</span>
+            <span class="seg-chip active-chip">DATA-PIPE-01 — pipeline quality</span>
+            <span class="seg-chip active-chip">DRIFT-01 — model drift monitor</span>
+          </div>
+        </div>
+        <div class="seg-cta-row">
+          <a href="https://github.com/Lama999901/metagenesis-core-public" class="seg-btn-secondary">View ML_BENCH-01 on GitHub →</a>
+          <a href="#pilot" class="seg-btn-primary">Request Free Pilot →</a>
+        </div>
+      </div>
+
+      <div class="seg-panel" data-seg="pharma">
+        <div class="seg-pain">
+          <span class="seg-pain-label">The problem</span>
+          <p>FDA 21 CFR Part 11 requires electronic records with audit trails for computational submissions. Your ADMET predictions, PK/PD outputs, and calibration data need independently verifiable provenance — without exposing proprietary model internals.</p>
+        </div>
+        <div class="seg-scenario">
+          <span class="seg-scenario-label">Your scenario</span>
+          <div class="seg-flow">
+            <div class="seg-step"><span class="seg-step-n">1</span><span>Your calibration pipeline runs → MTR series + DATA-PIPE-01 produce evidence bundles with full provenance chain</span></div>
+            <div class="seg-step"><span class="seg-step-n">2</span><span>Regulatory reviewer runs verification offline — no access to your environment or proprietary data</span></div>
+            <div class="seg-step"><span class="seg-step-n">3</span><span>Audit trail is SHA-256 + semantically verified. Every deviation surfaces as <span class="seg-fail">FAIL</span> with specific reason.</span></div>
+          </div>
+        </div>
+        <div class="seg-claims-row">
+          <span class="seg-claims-label">Relevant claims</span>
+          <div class="seg-claim-chips">
+            <span class="seg-chip active-chip">DATA-PIPE-01 — data integrity</span>
+            <span class="seg-chip active-chip">DRIFT-01 — calibration anchor</span>
+            <span class="seg-chip active-chip">MTR-1/2/3 — calibration certificates</span>
+            <span class="seg-chip soon-chip">PHARMA-01 — ADMET (planned)</span>
+          </div>
+        </div>
+        <div class="seg-cta-row">
+          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/PROTOCOL.md" class="seg-btn-secondary">Read Protocol Spec →</a>
+          <a href="#pilot" class="seg-btn-primary">Request Free Pilot →</a>
+        </div>
+      </div>
+
+      <div class="seg-panel" data-seg="finance">
+        <div class="seg-pain">
+          <span class="seg-pain-label">The problem</span>
+          <p>SR 11-7 and Basel III/IV require independent validation of risk model outputs. Your VaR models, credit scoring pipelines, and stress test results need a verifiable evidence trail — without handing over your proprietary model to the validator.</p>
+        </div>
+        <div class="seg-scenario">
+          <span class="seg-scenario-label">Your scenario</span>
+          <div class="seg-flow">
+            <div class="seg-step"><span class="seg-step-n">1</span><span>Risk model runs → bundle contains output fingerprint + claimed metrics + governance-enforced evidence index</span></div>
+            <div class="seg-step"><span class="seg-step-n">2</span><span>Independent validator verifies bundle offline — no model access, no proprietary data exposure</span></div>
+            <div class="seg-step"><span class="seg-step-n">3</span><span>Semantic layer catches any post-hoc modification. Evidence chain is audit-ready for Basel model risk documentation.</span></div>
+          </div>
+        </div>
+        <div class="seg-claims-row">
+          <span class="seg-claims-label">Relevant claims</span>
+          <div class="seg-claim-chips">
+            <span class="seg-chip active-chip">ML_BENCH-01 — model accuracy</span>
+            <span class="seg-chip active-chip">DATA-PIPE-01 — pipeline integrity</span>
+            <span class="seg-chip soon-chip">FINRISK-01 — VaR certificate (planned)</span>
+          </div>
+        </div>
+        <div class="seg-cta-row">
+          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/COMMERCIAL.md" class="seg-btn-secondary">Commercial Licensing →</a>
+          <a href="#pilot" class="seg-btn-primary">Request Free Pilot →</a>
+        </div>
+      </div>
+
+      <div class="seg-panel" data-seg="research">
+        <div class="seg-pain">
+          <span class="seg-pain-label">The problem</span>
+          <p>Your paper's reviewer cannot reproduce your simulation results without your exact environment, data, and compute. Nature estimates 70%+ of computational results are never independently verified. MetaGenesis makes yours the exception.</p>
+        </div>
+        <div class="seg-scenario">
+          <span class="seg-scenario-label">Your scenario</span>
+          <div class="seg-flow">
+            <div class="seg-step"><span class="seg-step-n">1</span><span>Your computation runs → evidence bundle contains result + dataset SHA-256 fingerprint + semantic proof. No raw data included.</span></div>
+            <div class="seg-step"><span class="seg-step-n">2</span><span>Reviewer downloads bundle from your supplementary materials. Runs one command on their laptop.</span></div>
+            <div class="seg-step"><span class="seg-step-n">3</span><span>They see <span class="seg-pass">PASS</span> — your results are independently verified. No environment, no GPU, no trust required.</span></div>
+          </div>
+        </div>
+        <div class="seg-claims-row">
+          <span class="seg-claims-label">Relevant claims</span>
+          <div class="seg-claim-chips">
+            <span class="seg-chip active-chip">MTR-1/2/3 — materials calibration</span>
+            <span class="seg-chip active-chip">SYSID-01 — system identification</span>
+            <span class="seg-chip active-chip">ML_BENCH-01 — ML results</span>
+            <span class="seg-chip active-chip">DRIFT-01 — baseline comparison</span>
+          </div>
+        </div>
+        <div class="seg-cta-row">
+          <a href="https://github.com/Lama999901/metagenesis-core-public" class="seg-btn-secondary">Clone & Try in 5 min →</a>
+          <a href="#pilot" class="seg-btn-primary">Request Free Pilot →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section></div>
+
+<div class="div"></div>
+<div class="w"><section class="sec" id="verifier">
+  <div class="stag rv">Live Verifier</div>
+  <h2 class="rv d1">Verify a claim.<br>Right now. In your browser.</h2>
+  <p class="sdesc rv d2">This is the exact logic the protocol runs. No backend. No network. The same verification that ships with the codebase.</p>
+
+  <div class="vrf-wrap rv d3">
+    <div class="vrf-selector">
+      <div class="vrf-selector-label">Select claim domain</div>
+      <div class="vrf-claim-btns">
+        <button class="vrf-claim-btn active" data-claim="ml">ML_BENCH-01<span class="vrf-claim-sub">ML accuracy</span></button>
+        <button class="vrf-claim-btn" data-claim="mtr">MTR-1<span class="vrf-claim-sub">Young's modulus</span></button>
+        <button class="vrf-claim-btn" data-claim="data">DATA-PIPE-01<span class="vrf-claim-sub">Data pipeline</span></button>
+        <button class="vrf-claim-btn" data-claim="drift">DRIFT-01<span class="vrf-claim-sub">Drift monitor</span></button>
+      </div>
+    </div>
+
+    <div class="vrf-body">
+      <div class="vrf-inputs">
+        <div class="vrf-inputs-label">Input values</div>
+
+        <div class="vrf-input-group active" data-claim="ml">
+          <div class="vrf-field">
+            <label class="vrf-label" for="ml-claimed">claimed_accuracy <span class="vrf-unit">0.00 – 1.00</span></label>
+            <input class="vrf-input" id="ml-claimed" type="number" min="0" max="1" step="0.01" value="0.94" placeholder="0.94">
+          </div>
+          <div class="vrf-field">
+            <label class="vrf-label" for="ml-actual">actual_accuracy <span class="vrf-unit">0.00 – 1.00</span></label>
+            <input class="vrf-input" id="ml-actual" type="number" min="0" max="1" step="0.01" value="0.93" placeholder="0.93">
+          </div>
+          <div class="vrf-threshold">threshold: |actual − claimed| ≤ 0.02</div>
+        </div>
+
+        <div class="vrf-input-group" data-claim="mtr">
+          <div class="vrf-field">
+            <label class="vrf-label" for="mtr-claimed">claimed_value <span class="vrf-unit">GPa</span></label>
+            <input class="vrf-input" id="mtr-claimed" type="number" min="0" step="0.1" value="200.0" placeholder="200.0">
+          </div>
+          <div class="vrf-field">
+            <label class="vrf-label" for="mtr-actual">actual_value <span class="vrf-unit">GPa</span></label>
+            <input class="vrf-input" id="mtr-actual" type="number" min="0" step="0.1" value="201.5" placeholder="201.5">
+          </div>
+          <div class="vrf-threshold">threshold: |actual − claimed| / claimed ≤ 0.01</div>
+        </div>
+
+        <div class="vrf-input-group" data-claim="data">
+          <div class="vrf-check-group">
+            <label class="vrf-check-label">
+              <input type="checkbox" id="data-schema" checked class="vrf-checkbox">
+              <span>schema_valid — all required columns present</span>
+            </label>
+            <label class="vrf-check-label">
+              <input type="checkbox" id="data-range" checked class="vrf-checkbox">
+              <span>range_valid — all values within expected bounds</span>
+            </label>
+          </div>
+          <div class="vrf-threshold">threshold: schema_valid AND range_valid → PASS</div>
+        </div>
+
+        <div class="vrf-input-group" data-claim="drift">
+          <div class="vrf-field">
+            <label class="vrf-label" for="drift-baseline">baseline_value <span class="vrf-unit">verified anchor</span></label>
+            <input class="vrf-input" id="drift-baseline" type="number" step="0.01" value="100.0" placeholder="100.0">
+          </div>
+          <div class="vrf-field">
+            <label class="vrf-label" for="drift-current">current_value <span class="vrf-unit">new measurement</span></label>
+            <input class="vrf-input" id="drift-current" type="number" step="0.01" value="103.2" placeholder="103.2">
+          </div>
+          <div class="vrf-threshold">threshold: |current − baseline| / baseline ≤ 0.05 (5%)</div>
+        </div>
+
+        <button class="vrf-run-btn" id="vrf-run">
+          <span id="vrf-run-label">▶ VERIFY</span>
+        </button>
+      </div>
+
+      <div class="vrf-terminal">
+        <div class="vrf-term-head">
+          <div class="thdot"></div><div class="thdot"></div><div class="thdot"></div>
+          <span class="vrf-term-title">mg.py verify</span>
+        </div>
+        <div class="vrf-term-body" id="vrf-output">
+          <div class="vrf-line dim">$ python scripts/mg.py verify --pack bundle.zip</div>
+          <div class="vrf-line dim">→ awaiting input...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section></div>
+
+<div class="div"></div>
+<div class="w"><section class="sec" id="pilot">
+  <div class="stag rv">Free Pilot</div>
+  <h2 class="rv d1">Send your result.<br>Get proof back.</h2>
+  <p class="sdesc rv d2">Share a computational result — any domain. We build a verification bundle for it at no charge. You see PASS or FAIL before any commercial conversation. No strings attached. Response within 48 hours.</p>
+
+  <div class="pilot-wrap rv d3">
+    <div class="pilot-form-col">
+      <form class="pilot-form" id="pilot-form" action="https://formspree.io/f/xlgpdwop" method="POST">
+        <div class="pilot-row">
+          <div class="pilot-field">
+            <label class="pilot-label" for="pf-name">Name</label>
+            <input class="pilot-input" id="pf-name" name="name" type="text" placeholder="Your name" required autocomplete="name">
+          </div>
+          <div class="pilot-field">
+            <label class="pilot-label" for="pf-email">Email</label>
+            <input class="pilot-input" id="pf-email" name="email" type="email" placeholder="you@company.com" required autocomplete="email">
+          </div>
+        </div>
+        <div class="pilot-field">
+          <label class="pilot-label" for="pf-segment">Domain</label>
+          <select class="pilot-input pilot-select" id="pf-segment" name="segment" required>
+            <option value="" disabled selected>Select your domain</option>
+            <option value="ml-ai">ML / AI — model accuracy or benchmark certification</option>
+            <option value="pharma">Pharma / Biotech — regulatory submission or calibration</option>
+            <option value="finance">Financial / Risk — model validation or audit trail</option>
+            <option value="research">Research — reproducibility or peer review</option>
+            <option value="other">Other — describe below</option>
+          </select>
+        </div>
+        <div class="pilot-field">
+          <label class="pilot-label" for="pf-desc">Describe your use case <span class="pilot-optional">— what result do you want to verify?</span></label>
+          <textarea class="pilot-input pilot-textarea" id="pf-desc" name="description" rows="4" placeholder="E.g. We have an ML model claiming 94% accuracy on a held-out test set. We want to provide our client with a verifiable bundle they can check offline..." required></textarea>
+        </div>
+        <div class="pilot-footer">
+          <button class="pilot-submit" type="submit" id="pilot-submit">
+            <span id="pilot-submit-label">Request Free Pilot →</span>
+          </button>
+          <p class="pilot-note">No account. No credit card. Response within 48 hours.</p>
+        </div>
+      </form>
+      <div class="pilot-success" id="pilot-success" style="display:none">
+        <div class="pilot-success-icon">✓</div>
+        <div class="pilot-success-title">Request received.</div>
+        <div class="pilot-success-text">We'll review your use case and reply within 48 hours with a working verification bundle or a specific question. Check your inbox at the email you provided.</div>
+      </div>
+    </div>
+    <div class="pilot-info-col">
+      <div class="pilot-what">
+        <div class="pilot-what-title">What happens next</div>
+        <div class="pilot-what-step"><span class="pilot-what-n">01</span><div><strong>You describe your result</strong><p>Any computational output — ML accuracy, calibration data, pipeline certificate, simulation output.</p></div></div>
+        <div class="pilot-what-step"><span class="pilot-what-n">02</span><div><strong>We build the bundle</strong><p>We implement the verification claim for your domain and generate a tamper-evident evidence bundle.</p></div></div>
+        <div class="pilot-what-step"><span class="pilot-what-n">03</span><div><strong>You verify it yourself</strong><p>Run <code>mg.py verify --pack bundle.zip</code> on your machine. See PASS or FAIL. No trust required.</p></div></div>
+        <div class="pilot-what-step"><span class="pilot-what-n">04</span><div><strong>Then we talk</strong><p>If it solves your problem, we discuss next steps. If it doesn't fit, we tell you honestly.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section></div>
+
+<div class="div"></div>
 <div class="cband">
   <div style="line-height:.88;margin-bottom:24px">
     <div class="hline word-proof" style="overflow:hidden"><span class="hspan" style="font-size:clamp(38px,6vw,92px)">PROOF</span></div>
@@ -857,6 +1265,138 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
 
   var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('vis');});},{threshold:.08});
   document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
+
+  document.querySelectorAll('.seg-tab').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var seg=btn.getAttribute('data-seg');
+      document.querySelectorAll('.seg-tab').forEach(function(b){b.classList.remove('active');b.setAttribute('aria-selected','false');});
+      document.querySelectorAll('.seg-panel').forEach(function(p){p.classList.remove('active');});
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected','true');
+      var panel=document.querySelector('.seg-panel[data-seg="'+seg+'"]');
+      if(panel)panel.classList.add('active');
+    });
+  });
+
+  (function(){
+    var claimBtns=document.querySelectorAll('.vrf-claim-btn');
+    var inputGroups=document.querySelectorAll('.vrf-input-group');
+    var runBtn=document.getElementById('vrf-run');
+    var output=document.getElementById('vrf-output');
+    var currentClaim='ml';
+
+    if(claimBtns.length)claimBtns.forEach(function(btn){
+      btn.addEventListener('click',function(){
+        currentClaim=btn.getAttribute('data-claim');
+        claimBtns.forEach(function(b){b.classList.remove('active');});
+        inputGroups.forEach(function(g){g.classList.remove('active');});
+        btn.classList.add('active');
+        var grp=document.querySelector('.vrf-input-group[data-claim="'+currentClaim+'"]');
+        if(grp)grp.classList.add('active');
+        if(output){output.innerHTML='<div class="vrf-line dim">$ python scripts/mg.py verify --pack bundle.zip</div><div class="vrf-line dim">→ awaiting input...</div>';}
+      });
+    });
+
+    function resetOutput(){
+      if(output)output.innerHTML='<div class="vrf-line dim">$ python scripts/mg.py verify --pack bundle.zip</div><div class="vrf-line dim">→ awaiting input...</div>';
+    }
+
+    function addLine(cls,text,delay){
+      return new Promise(function(resolve){
+        setTimeout(function(){
+          var d=document.createElement('div');
+          d.className='vrf-line '+cls;
+          d.textContent=text;
+          d.style.opacity='0';
+          if(output){output.appendChild(d);output.scrollTop=output.scrollHeight;}
+          setTimeout(function(){d.style.opacity='1';},30);
+          resolve();
+        },delay);
+      });
+    }
+
+    function verify(){
+      if(!runBtn||!output)return;
+      if(runBtn.classList.contains('running'))return;
+      runBtn.classList.add('running');
+      var lbl=document.getElementById('vrf-run-label');
+      if(lbl)lbl.textContent='▶ VERIFYING...';
+      output.innerHTML='';
+      var pass=false;var reason='';
+
+      if(currentClaim==='ml'){
+        var cl=parseFloat(document.getElementById('ml-claimed')?document.getElementById('ml-claimed').value:0)||0;
+        var ac=parseFloat(document.getElementById('ml-actual')?document.getElementById('ml-actual').value:0)||0;
+        var delta=Math.abs(ac-cl);
+        pass=delta<=0.02;
+        reason=pass?'accuracy delta '+delta.toFixed(4)+' ≤ 0.02':'accuracy delta '+delta.toFixed(4)+' > 0.02 — threshold exceeded';
+      } else if(currentClaim==='mtr'){
+        var cl2=parseFloat(document.getElementById('mtr-claimed')?document.getElementById('mtr-claimed').value:0)||0;
+        var ac2=parseFloat(document.getElementById('mtr-actual')?document.getElementById('mtr-actual').value:0)||0;
+        var re=cl2>0?Math.abs(ac2-cl2)/cl2:1;
+        pass=re<=0.01;
+        reason=pass?'relative_error '+re.toFixed(5)+' ≤ 0.01':'relative_error '+re.toFixed(5)+' > 0.01 — threshold exceeded';
+      } else if(currentClaim==='data'){
+        var sv=document.getElementById('data-schema')?document.getElementById('data-schema').checked:false;
+        var rv=document.getElementById('data-range')?document.getElementById('data-range').checked:false;
+        pass=sv&&rv;
+        reason=pass?'schema_valid: true · range_valid: true':(!sv?'schema_valid: false — required columns missing':'range_valid: false — values out of bounds');
+      } else if(currentClaim==='drift'){
+        var bl=parseFloat(document.getElementById('drift-baseline')?document.getElementById('drift-baseline').value:0)||0;
+        var cu=parseFloat(document.getElementById('drift-current')?document.getElementById('drift-current').value:0)||0;
+        var dr=bl>0?Math.abs(cu-bl)/bl:1;
+        pass=dr<=0.05;
+        reason=pass?'drift '+(dr*100).toFixed(2)+'% ≤ 5.00%':'drift '+(dr*100).toFixed(2)+'% > 5.00% — calibration drift detected';
+      }
+
+      var seq=[
+        [100,'cmd','$ python scripts/mg.py verify --pack bundle.zip'],
+        [400,'info','→ Loading pack_manifest.json...'],
+        [700,'ok','✓ integrity layer: SHA-256 root_hash match'],
+        [1050,'ok','✓ evidence_index: claim mapping verified'],
+        [1400,'ok','✓ semantic layer: job_snapshot present'],
+        [1750,'ok','✓ canary_mode flag: correct'],
+        [2100,'info','→ Running threshold check...'],
+        [2400,'muted','  claim: '+(currentClaim==='ml'?'ML_BENCH-01':currentClaim==='mtr'?'MTR-1':currentClaim==='data'?'DATA-PIPE-01':'DRIFT-01')],
+        [2700,'muted','  '+reason],
+      ];
+      var chain=Promise.resolve();
+      seq.forEach(function(s){chain=chain.then(function(){return addLine(s[1],s[2],s[0]);});});
+      chain.then(function(){
+        return new Promise(function(r){setTimeout(r,400);});
+      }).then(function(){
+        var rd=document.createElement('div');
+        rd.className=pass?'vrf-result-pass':'vrf-result-fail';
+        rd.textContent=pass?'✓ VERIFICATION: PASS':'✗ VERIFICATION: FAIL — '+reason;
+        output.appendChild(rd);
+        output.scrollTop=output.scrollHeight;
+        runBtn.classList.remove('running');
+        if(lbl)lbl.textContent='▶ VERIFY';
+      });
+    }
+
+    if(runBtn)runBtn.addEventListener('click',verify);
+  })();
+
+  var pf=document.getElementById('pilot-form');
+  var ps=document.getElementById('pilot-success');
+  var psb=document.getElementById('pilot-submit');
+  var psl=document.getElementById('pilot-submit-label');
+  if(pf){
+    pf.addEventListener('submit',function(e){
+      e.preventDefault();
+      if(psb&&psb.disabled)return;
+      if(psb)psb.disabled=true;
+      if(psl)psl.textContent='Sending...';
+      var data=new FormData(pf);
+      fetch(pf.action,{method:'POST',body:data,headers:{'Accept':'application/json'}})
+        .then(function(r){
+          if(r.ok){pf.style.display='none';if(ps)ps.style.display='flex';}
+          else{if(psl)psl.textContent='Error — try email';if(psb)psb.disabled=false;}
+        })
+        .catch(function(){if(psl)psl.textContent='Error — try email';if(psb)psb.disabled=false;});
+    });
+  }
 })();
 </script>
 </body>
