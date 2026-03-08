@@ -14,8 +14,7 @@ All items are subject to change based on community feedback and priorities.
 - [x] Adversarial tamper detection test (test_cert02)
 - [x] Bidirectional claim coverage governance
 - [x] Dual-mode canary pipeline
-- [x] 6 active claims: MTR-1/2/3, SYSID-01, DATA-PIPE-01, DRIFT-01
-- [x] ML_BENCH-01 — ML accuracy certificate claim
+- [x] 7 active claims: MTR-1/2/3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01
 - [x] Protocol specification (docs/PROTOCOL.md)
 - [x] Use case documentation for 5 verticals
 

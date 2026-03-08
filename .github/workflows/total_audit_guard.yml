@@ -34,4 +34,4 @@ jobs:
 
       - name: Run tests
         run: |
-          python -m pytest tests/steward tests/materials -q
+          python -m pytest tests/steward tests/materials tests/ml tests/systems tests/data -q
