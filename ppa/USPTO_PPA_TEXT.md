@@ -187,13 +187,15 @@ MetaGenesis Core is a verification protocol layer, not a simulation platform
 or AI coordination system. Its purpose is to make computational scientific
 claims tamper-evident, reproducible, and independently auditable offline.
 
-The system operates on six active scientific claims (MTR-1, MTR-2, MTR-3,
-SYSID-01, DATA-PIPE-01, DRIFT-01) spanning materials science (Young's modulus
-calibration, thermal conductivity, multilayer thermal contact), systems
-identification (ARX model calibration), data pipeline quality certification,
-and calibration drift monitoring. These claims are representative examples of
-the claim types the system governs; the governance infrastructure is
-domain-agnostic.
+The system operates on five active scientific claims at filing
+(MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01); additional claims
+(DRIFT-01, ML_BENCH-01) were added post-filing and will be included
+in the non-provisional application. These claims are representative
+examples; the governance infrastructure is domain-agnostic.
+They span materials science (Young's modulus calibration, thermal
+conductivity, multilayer thermal contact), systems identification (ARX model
+calibration), data pipeline quality certification, and calibration drift
+monitoring.
 
 ### 2. Bidirectional Claim Coverage (Claim 1)
 
@@ -255,8 +257,11 @@ verification fails with non-zero exit and identifies missing key.
 
 The policy configuration (scripts/mg_policy_gate_policy.json) defines:
 - locked_paths: glob patterns for permanently sealed files; currently
-  empty (no paths locked in public repo); populated when specific
-  evidence artifacts are designated as sealed
+  empty (no paths locked in public repo).
+  The enforcement mechanism is active and validated by the policy gate
+  test suite; the locked_paths list is populated when specific evidence
+  artifacts are designated as sealed in a deployment context, providing
+  immutability guarantees without key custody or external timestamping.
 - allow_globs: glob patterns for permitted modifications including
   scripts/**, tests/**, backend/progress/**, reports/*.md,
   reports/*.yaml, ppa/**, docs/**, *.md, *.json

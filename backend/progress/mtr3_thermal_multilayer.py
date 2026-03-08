@@ -4,7 +4,7 @@ MTR-3 Two-parameter thermal calibration: k + contact resistance.
 
 Model: ΔT = (L/(k*A) + r_contact)*Q. Two setups (L1,A1) and (L2,A2) give
 y = a*x1 + b*x2 with x1=(L/A)*Q, x2=Q; a=1/k, b=r_contact.
-OLS 2-param via normal equations (no numpy). Legal Authority: Infinity Protocol v2.0
+OLS 2-param via normal equations (no numpy). Part of MetaGenesis Core verification pipeline (MVP v0.1)
 """
 
 import random

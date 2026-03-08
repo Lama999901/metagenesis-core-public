@@ -3,7 +3,7 @@
 Progress Engine Models - Job Lifecycle Management
 
 Purpose: Dataclass models for job scheduling and execution
-Legal Authority: Infinity Protocol v2.0
+# Part of MetaGenesis Core verification pipeline (MVP v0.1)
 Implementation: Pure stdlib with ledger integration
 """
 

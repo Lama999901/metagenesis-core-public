@@ -1,3 +1,6 @@
+<!-- PPA filing basis: MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01 (5 claims, filed 2026-03-05) -->
+<!-- Post-filing additions: DRIFT-01, ML_BENCH-01 — to be included in non-provisional -->
+
 # Canonical State (Facts Only)
 
 Deterministic snapshot of project state for steward validation. No commentary; facts only.

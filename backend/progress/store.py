@@ -3,7 +3,7 @@
 Progress Engine Store - In-Memory Job Storage
 
 Purpose: Simple in-memory job store for v1 (no persistence)
-Legal Authority: Infinity Protocol v2.0
+# Part of MetaGenesis Core verification pipeline (MVP v0.1)
 Implementation: Dict + list for deterministic ordering
 """
 

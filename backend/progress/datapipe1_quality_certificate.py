@@ -4,7 +4,7 @@ DATA-PIPE-01 Dataset Quality Certificate.
 
 Deterministic dataset integrity + quality checks. Fingerprint, schema, ranges.
 Stdlib only. No network. No heavy deps.
-Legal Authority: Infinity Protocol v2.0
+# Part of MetaGenesis Core verification pipeline (MVP v0.1)
 """
 
 import csv

@@ -81,7 +81,7 @@ test mtr_phase key present, test determinism (same seed → same result)
 
 Step 6 — Verify:
 python scripts/steward_audit.py → STEWARD AUDIT: PASS
-python -m pytest tests/steward tests/materials tests/ml -q → all passed
+python -m pytest tests/steward tests/materials tests/ml tests/systems tests/data -q → all passed
 
 ---
 
@@ -102,9 +102,10 @@ python -m pytest tests/steward tests/materials tests/ml -q → all passed
 ## Acceptance commands (run before any commit)
 
 python scripts/steward_audit.py
-python -m pytest tests/steward tests/materials tests/ml -q
+python -m pytest tests/steward tests/materials tests/ml tests/systems tests/data -q
 python demos/open_data_demo_01/run_demo.py
-grep -r "tamper-proof\|GPT-5\|19x\|VacuumGenesis" docs/ scripts/ backend/
+grep -r "tamper-proof\|GPT-5\|19x\|VacuumGenesis\|Infinity Protocol" docs/ scripts/ backend/ tests/
+# → must return empty
 
 All must pass. grep must return empty.
 

@@ -3,7 +3,7 @@
 Progress Engine Runner - Job Execution with Ledger Integration
 
 Purpose: Execute jobs and emit ledger entries for traceability
-Legal Authority: Infinity Protocol v2.0
+# Part of MetaGenesis Core verification pipeline (MVP v0.1)
 Implementation: In-process runner with deterministic ledger events
 """
 
@@ -59,7 +59,7 @@ class ProgressRunner:
             },
             outputs={},
             artifacts=[],
-            legal_sig_refs=["LEGAL_SIG_W6_LEDGER_ANCHORING_V1_20260203"],
+            legal_sig_refs=["metagenesis-core-ppa-63996819"],
             meta={'job_status': job.status.value}
         )
         
@@ -113,7 +113,7 @@ class ProgressRunner:
                     'result': job.result
                 },
                 artifacts=[],
-                legal_sig_refs=["LEGAL_SIG_W6_LEDGER_ANCHORING_V1_20260203"],
+                legal_sig_refs=["metagenesis-core-ppa-63996819"],
                 meta=meta
             )
             
@@ -142,7 +142,7 @@ class ProgressRunner:
                     'error': job.error
                 },
                 artifacts=[],
-                legal_sig_refs=["LEGAL_SIG_W6_LEDGER_ANCHORING_V1_20260203"],
+                legal_sig_refs=["metagenesis-core-ppa-63996819"],
                 meta=meta
             )
             

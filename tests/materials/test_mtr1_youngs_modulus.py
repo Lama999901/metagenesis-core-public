@@ -3,7 +3,7 @@
 MTR-1 Young's Modulus Calibration - Tests.
 
 Purpose: E2E proof-loop, V&V thresholds, reproducibility shape.
-Legal Authority: Infinity Protocol v2.0 / MTR-1
+# Part of MetaGenesis Core verification pipeline (MVP v0.1)
 """
 
 import json

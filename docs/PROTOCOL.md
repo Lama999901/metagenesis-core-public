@@ -199,7 +199,7 @@ This protocol uses precise language about what it guarantees:
 
 **Use:** "tamper-evident under trusted verifier assumptions and semantic invariants"
 
-**Never use:** "tamper-proof", "impossible to forge", "100% secure"
+**Never use:** claims of perfect or unfalsifiable security (e.g. impossible to forge, 100% secure). Prefer "tamper-evident" over absolute integrity wording.
 
 The distinction is material. Tamper-evident means modifications are detectable
 by the verification layer under the threat model described above. It does not

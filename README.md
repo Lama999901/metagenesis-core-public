@@ -193,7 +193,7 @@ without a registered claim — blocks the merge.
 ## Run the test suite
 
 ```bash
-python -m pytest tests/steward tests/materials tests/ml -q
+python -m pytest tests/steward tests/materials tests/ml tests/systems tests/data -q
 ```
 
 Adversarial tamper detection:

@@ -3,7 +3,7 @@
 UQ-01 Deterministic Bootstrap Uncertainty Engine v1.
 
 Seeded bootstrap OLS-through-origin. No heavy deps (stdlib only).
-Legal Authority: Infinity Protocol v2.0 / UQ-01
+# Part of MetaGenesis Core verification pipeline (MVP v0.1)
 """
 
 import random

@@ -146,3 +146,13 @@ Model predictions (y_true / y_pred)
 | DATA-PIPE-01 | backend/progress/datapipe1_quality_certificate.py | datapipe1_quality_certificate | Data |
 | DRIFT-01 | backend/progress/drift_monitor.py | drift_calibration_monitor | Drift |
 | ML_BENCH-01 | backend/progress/mlbench1_accuracy_certificate.py | mlbench1_accuracy_certificate | ML/AI |
+
+---
+
+## Supporting files
+
+| File | Role |
+|------|------|
+| `system_manifest.json` | Top-level project identity and version metadata. Not a claim artifact; not part of evidence bundles. Referenced by external tooling only. |
+| `phase_registry.json` | Pointer to `reports/phase_registry_v0_1.md`. Legacy phase artifact registry. Phase 42 locked status enforced by steward_audit via `reports/phase_registry_v0_1.md`. |
+| `reports/phase_registry_v0_1.md` | Machine-readable phase registry. steward_audit parses this to verify phase 42 locked — a required governance invariant under the Third Innovation (Policy-Gate Immutable Evidence Anchors). |

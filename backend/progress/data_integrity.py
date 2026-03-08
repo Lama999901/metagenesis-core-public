@@ -3,7 +3,7 @@
 DATA-01 Data Integrity Layer.
 
 Deterministic dataset_fingerprint (sha256 over canonicalized bytes).
-No heavy deps (stdlib only). Legal Authority: Infinity Protocol v2.0 / DATA-01
+No heavy deps (stdlib only). Part of MetaGenesis Core verification pipeline (MVP v0.1)
 """
 
 import csv

@@ -3,7 +3,7 @@
 MTR-3 Two-parameter thermal calibration (k + contact resistance) - Tests.
 
 Purpose: E2E proof-loop, V&V thresholds, reproducibility shape.
-Legal Authority: Infinity Protocol v2.0 / MTR-3
+# Part of MetaGenesis Core verification pipeline (MVP v0.1)
 """
 
 import json

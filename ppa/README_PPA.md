@@ -1,72 +1,35 @@
-# MetaGenesis Core — PPA Preflight Package v2
+# MetaGenesis Core — PPA Filing Record
 
-**Scope:** Verification Core (backend/progress/, scripts/, tests/)
-**Protocol:** docs/ARCHITECTURE.md
-**Steward:** python scripts/steward_audit.py → PASS (2026-03-05)
+## Filed: 2026-03-05 — PPA #63/996,819
 
-Previous version (v1.0) described phases 1-42 and
-non-existent features. This version describes only what
-exists in code and passes tests.
+**This section reflects what was physically submitted to the USPTO.**
 
----
-
-## What This PPA Covers
-
-```
-MetaGenesis Core is a verification-grade computational
-discipline framework: an infrastructure layer that turns
-computational claims into tamper-evident, reproducible,
-governance-enforced evidence bundles.
-
-NOT claimed: simulation engines, AI coordination,
-surveillance, quantum fields, molecular assembly.
-
-CLAIMED: the governance + evidence + verification pipeline
-that makes any computational claim independently verifiable.
-```
+- **4 patentable innovations** (the actual patent subject matter — unchanged)
+- **5 example claims at filing**: MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01
+  *(claims are illustrative examples; the 4 innovations are domain-agnostic)*
+- **Test basis at filing**: 39 tests (17 steward + 22 domain)
+- **Inventor**: Yehor Bazhynov
+- **Deadline for non-provisional**: 2027-03-05
 
 ---
 
-## Package Contents
+## Post-Filing Additions (NOT in PPA #63/996,819)
 
-| File | Purpose | Based on |
-|------|---------|----------|
-| `CLAIMS_DRAFT.md` | 4 independent + 8 dependent claims | Verified code only |
-| `EVIDENCE_INDEX.md` | Claim-to-code-to-test mapping | steward_audit PASS |
-| `README_PPA.md` | This file | Current |
-| `SYSTEM_ARCHIVE.docx` | Technical documentation (legacy, not part of claims) | — |
-| `FIGURES/` | Architecture diagrams | See below |
+These were added after the PPA filing date and will be included
+in the non-provisional application.
 
----
+| Addition | Date added | Status |
+|----------|-----------|--------|
+| DRIFT-01 claim | post 2026-03-05 | To include in non-provisional |
+| ML_BENCH-01 claim | post 2026-03-05 | To include in non-provisional |
+| Tests 40–71 | post 2026-03-05 | Additional coverage |
 
-## Core Architecture (what is patented)
-
-```
-PROOF LOOP (docs/ARCHITECTURE.md):
-
-  Job Run
-    ↓
-  Runner (backend/progress/runner.py)
-    ↓ normal mode          ↓ canary mode
-  run_artifact.json      run_artifact.json
-  (canary_mode=false)    (canary_mode=true)
-  ledger_snapshot.jsonl  ledger_snapshot.jsonl
-    ↓
-  Evidence Index (backend/progress/evidence_index.py)
-    ↓
-  Submission Pack (scripts/steward_submission_pack.py)
-    pack_manifest.json    ← integrity layer
-    evidence_index.json   ← claim mapping
-    evidence/<ID>/        ← per-claim bundles
-    ↓
-  mg verify (scripts/mg.py)
-    integrity check (SHA-256 + root_hash)
-    semantic check (job_snapshot present, kind matches, canary flag correct)
-    ↓
-  PASS or FAIL with specific reason
-```
+**Current state (2026-03-07):** 7 claims, 71 tests.
+Live state: reports/canonical_state.md
 
 ---
+
+## 4 Patentable Innovations (Filed — Unchanged)
 
 ## The 4 Independent Claims (summary)
 
@@ -120,7 +83,7 @@ python -m pytest tests/steward/test_cert02_pack_includes_evidence_and_semantic_v
 
 ### Step 3 — Full verification core
 ```bash
-python -m pytest tests/steward tests/materials tests/ml -q
+python -m pytest tests/steward tests/materials tests/ml tests/systems tests/data -q
 # Expected: all passed
 ```
 
@@ -141,14 +104,14 @@ python scripts/mg.py verify --pack /tmp/ppa_pack
 Pre-filing (technical):
 [x] steward_audit.py → PASS
 [x] test_cert02 → PASS (both normal + tamper tests)
-[x] python -m pytest tests/steward tests/materials tests/ml -q → all passed
+[x] python -m pytest tests/steward tests/materials tests/ml tests/systems tests/data -q → all passed
 [x] All 7 claims reproducible via python -m pytest
 
 Pre-filing (documentation):
 [x] CLAIMS_DRAFT.md — V2 (code-backed, no invented features)
 [x] EVIDENCE_INDEX.md — V2 (real test paths, no fake SHA)
 [x] SYSTEM_ARCHIVE.docx — legacy only, not part of claims (no action required)
-[x] README.md — verified clean (no "GPT-5", no "19x", no "tamper-proof")
+[x] README.md — verified clean (no banned terms per CONTRIBUTING)
 
 Pre-filing (legal):
 [ ] Confirm grace period window (repo was public < 12 months ago)

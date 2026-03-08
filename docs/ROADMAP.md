@@ -94,7 +94,7 @@ All items are subject to change based on community feedback and priorities.
 - Build a simulation platform
 - Add AI-generated code without adversarial test proof
 - Add claims without the full lifecycle: implementation + test + governance
-- Use language: "tamper-proof", "impossible", "100% secure"
+- Use absolute or unverifiable security claims (see PROTOCOL.md)
 
 ---
 
