@@ -462,16 +462,21 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
 
 /* ── MOBILE ACCORDION ── */
 @media(max-width:768px){
-  .mm-acc{width:100%}
-  .mm-acc-head{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid rgba(0,229,255,.08);cursor:pointer;}
-  .mm-acc-head span.mm-label{font-family:'Unbounded','Impact',sans-serif;font-size:1.35rem;letter-spacing:.08em;color:rgba(232,244,248,.45);}
-  .mm-acc-head .acc-arrow{font-size:.8rem;color:rgba(0,229,255,.5);transition:transform .25s;}
+  #mmclose{position:absolute;top:20px;right:20px;background:none;border:1px solid rgba(0,229,255,.35);color:#00e5ff;font-size:1rem;width:38px;height:38px;border-radius:50%;cursor:pointer;z-index:900;display:flex;align-items:center;justify-content:center;transition:background .2s}
+  #mmclose:hover{background:rgba(0,229,255,.12)}
+  .mobile-menu{position:relative!important;flex-direction:column!important;align-items:flex-start!important;justify-content:flex-start!important;padding:72px 32px 40px!important;overflow-y:auto!important;box-sizing:border-box!important;gap:0!important}
+  .mobile-menu .mmlink,.mobile-menu .mgit{width:100%;text-align:center;display:block;padding:14px 0}
+  .mm-acc{width:100%!important;max-width:100%!important;box-sizing:border-box}
+  .mm-acc-head{display:flex!important;justify-content:space-between!important;align-items:center!important;padding:16px 0!important;border-bottom:1px solid rgba(0,229,255,.1)!important;cursor:pointer;width:100%!important;box-sizing:border-box}
+  .mm-acc-head .mm-label{font-family:'Unbounded','Impact',sans-serif;font-size:22px;font-weight:700;letter-spacing:.12em;color:rgba(232,244,248,.45);text-transform:uppercase}
+  .mm-acc-head .acc-arrow{font-size:.9rem;color:rgba(0,229,255,.5);transition:transform .25s;flex-shrink:0;margin-left:12px}
   .mm-acc-head.active .mm-label{color:#00e5ff}
   .mm-acc-head.active .acc-arrow{transform:rotate(180deg);color:#00e5ff}
-  .mm-acc-body{display:none;padding:8px 0 4px 16px;}
+  .mm-acc-body{display:none;padding:4px 0;width:100%}
   .mm-acc-body.open{display:block}
-  .mm-acc-body a{display:block;padding:9px 0;font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:rgba(232,244,248,.55);letter-spacing:.05em;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.04);}
-  .mm-acc-divider{height:1px;background:rgba(0,229,255,.08);margin:4px 0}
+  .mm-acc-body a{display:block!important;padding:11px 0!important;font-family:'IBM Plex Mono',monospace!important;font-size:.82rem!important;color:rgba(232,244,248,.55)!important;letter-spacing:.05em;text-decoration:none;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.05);width:100%}
+  .mm-acc-body a:active{color:#00e5ff!important}
+  .mm-acc-divider{height:1px;background:rgba(0,229,255,.1);margin:4px 0}
 }
 </style>
 </head>
@@ -546,6 +551,7 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
 </div>
 
 <div class="mobile-menu" id="mmenu">
+  <button id="mmclose" aria-label="Close menu" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">✕</button>
   <a href="#protocol" class="mmlink">Protocol</a>
   <div class="mm-acc">
     <div class="mm-acc-head" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('open')">
