@@ -136,7 +136,7 @@ python scripts/steward_audit.py
 python -m pytest tests/steward/test_<your_claim_lower>.py -v
 # All tests passed
 
-python -m pytest tests/steward tests/materials -q
+python -m pytest tests/steward tests/materials tests/ml tests/systems tests/data -q
 # All passed (previous count + your new tests)
 
 python demos/open_data_demo_01/run_demo.py

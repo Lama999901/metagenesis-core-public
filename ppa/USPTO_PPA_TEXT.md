@@ -2,7 +2,7 @@
 # Inventor: Yehor Bazhynov
 # Filing type: Pro Se Provisional Patent Application (PPA)
 # Date prepared: 2026-03-04
-# Authority: steward_audit.py PASS + test_cert02 PASS + 49 tests PASS
+# Authority: steward_audit.py PASS + test_cert02 PASS + 77 tests PASS
 
 ---
 
@@ -325,5 +325,5 @@ Not applicable.
 
 *Prepared by: Yehor Bazhynov (Inventor, Pro Se)*
 *Based on: verified codebase, steward_audit PASS 2026-03-03,*
-*test_cert02 adversarial tamper PASS, 49 tests PASS*
+*test_cert02 adversarial tamper PASS, 77 tests PASS*
 *No invented features. Every section traceable to passing tests.*

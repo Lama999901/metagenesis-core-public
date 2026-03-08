@@ -22,9 +22,9 @@ in the non-provisional application.
 |----------|-----------|--------|
 | DRIFT-01 claim | post 2026-03-05 | To include in non-provisional |
 | ML_BENCH-01 claim | post 2026-03-05 | To include in non-provisional |
-| Tests 40–71 | post 2026-03-05 | Additional coverage |
+| Tests 40–77 | post 2026-03-05 | Additional coverage |
 
-**Current state (2026-03-07):** 7 claims, 71 tests.
+**Current state (2026-03-07):** 7 claims, 77 tests.
 Live state: reports/canonical_state.md
 
 ---
