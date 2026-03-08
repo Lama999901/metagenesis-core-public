@@ -448,7 +448,8 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
 /* ── MEGA OVERLAY ── */
 #megaover{display:none;position:fixed;inset:0;z-index:8888;background:rgba(3,6,13,.97);backdrop-filter:blur(14px);overflow-y:auto;padding:80px 60px 60px;}
 #megaover.open{display:block}
-#mm-totop{position:sticky;bottom:16px;left:50%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:6px;background:rgba(3,6,13,.95);border:1px solid rgba(0,229,255,.35);color:#00e5ff;font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.1em;padding:8px 20px;cursor:pointer;border-radius:20px;white-space:nowrap;margin-top:24px;transition:background .2s}
+#mm-totop{display:none;position:fixed;bottom:28px;right:20px;background:rgba(3,6,13,.92);border:1px solid rgba(0,229,255,.4);color:#00e5ff;font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;padding:9px 18px;cursor:pointer;border-radius:20px;z-index:1100;transition:opacity .25s;align-items:center;gap:6px}
+#mm-totop.visible{display:flex}
 #mm-totop:hover{background:rgba(0,229,255,.12)}
 .mm-section-link{display:block;width:100%;text-align:left;padding:16px 0;font-family:'Unbounded','Impact',sans-serif;font-size:16px;font-weight:700;letter-spacing:.1em;color:rgba(232,244,248,.45);text-decoration:none;text-transform:uppercase;border-bottom:1px solid rgba(0,229,255,.08);box-sizing:border-box}
 .mm-section-link:active{color:#00e5ff}
@@ -477,7 +478,7 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
   .mm-acc{width:100%!important;max-width:100%!important;box-sizing:border-box}
   .mm-acc-head{display:flex!important;justify-content:space-between!important;align-items:center!important;padding:16px 0!important;border-bottom:1px solid rgba(0,229,255,.1)!important;cursor:pointer;width:100%!important;box-sizing:border-box}
   .mm-acc-head .mm-label{font-family:'Unbounded','Impact',sans-serif;font-size:22px;font-weight:700;letter-spacing:.12em;color:rgba(232,244,248,.45);text-transform:uppercase}
-  .mm-acc-head .acc-arrow{font-size:.9rem;color:rgba(0,229,255,.5);transition:transform .25s;flex-shrink:0;margin-left:12px}
+  .mm-acc-head .acc-arrow{display:none}
   .mm-acc-head.active .mm-label{color:#00e5ff}
   .mm-acc-head.active .acc-arrow{transform:rotate(180deg);color:#00e5ff}
   .mm-acc-body{display:none;padding:4px 0;width:100%}
@@ -565,8 +566,7 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
     <a href="#protocol" class="mmlink" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">Protocol</a>
     <div class="mm-acc">
       <div class="mm-acc-head" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('open')">
-        <span class="mm-label">CLAIMS</span><span class="acc-arrow">▾</span>
-      </div>
+        <span class="mm-label">CLAIMS</span>      </div>
       <div class="mm-acc-body">
         <a href="#claims" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">MTR-1 — Young's Modulus</a>
         <a href="#claims" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">MTR-2 — Thermal Conductivity</a>
@@ -581,8 +581,7 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
     <a href="#verticals" class="mmlink" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">Verticals</a>
     <div class="mm-acc">
       <div class="mm-acc-head" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('open')">
-        <span class="mm-label">FOR YOU</span><span class="acc-arrow">▾</span>
-      </div>
+        <span class="mm-label">FOR YOU</span>      </div>
       <div class="mm-acc-body">
         <a href="#segments" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open');document.querySelector('[data-seg=ml]')?.click()">ML / AI Teams</a>
         <a href="#segments" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open');document.querySelector('[data-seg=pharma]')?.click()">Pharma / Biotech</a>
@@ -592,8 +591,7 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
     </div>
     <div class="mm-acc">
       <div class="mm-acc-head" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('open')">
-        <span class="mm-label">EVIDENCE</span><span class="acc-arrow">▾</span>
-      </div>
+        <span class="mm-label">EVIDENCE</span>      </div>
       <div class="mm-acc-body">
         <a href="#compare" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">vs SHA-256 only</a>
         <a href="#compare" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">Adversarial Proof</a>
@@ -1385,6 +1383,15 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
         hbtn.classList.remove('open');mmenu.classList.remove('open');document.body.style.overflow='';
       });
     });
+  }
+
+  var mmenuEl=document.getElementById('mmenu');
+  var mmtotop=document.getElementById('mm-totop');
+  if(mmenuEl&&mmtotop){
+    mmenuEl.addEventListener('scroll',function(){
+      mmenuEl.scrollTop>100?mmtotop.classList.add('visible'):mmtotop.classList.remove('visible');
+    });
+    mmtotop.onclick=function(){mmenuEl.scrollTo({top:0,behavior:'smooth'});};
   }
 
   var cur=document.getElementById('cur'),ring=document.getElementById('ring');
