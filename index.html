@@ -1923,19 +1923,21 @@ a.soon-chip{border-bottom:none!important}
         var gv = Math.min(160 + life*48 + crest*18, 238);
         var bv = Math.min(190 + life*40 + crest*12, 248);
 
-        // яркость: минимум 0.18 везде (сетка видна), по краям до 1.0
-        var bright = 0.18 + dim * 0.82;
+        // dim: только для glow/символов — сетка НЕ затухает
+        // stroke сетки всегда виден, просто чуть тише в центре
 
         // ═══ OUTER HEX ═══
-        var ca = (life*life*0.07 + crest*0.08) * bright;
+        // fill glow — тихий в центре, яркий по краям
+        var ca = (life*life*0.08 + crest*0.10) * (0.12 + dim*0.88);
         var rg = ctx.createRadialGradient(x,y,0,x,y,h.rad*0.80);
-        rg.addColorStop(0,   'rgba(0,'+gv+','+bv+','+Math.min(ca,0.11)+')');
-        rg.addColorStop(0.55,'rgba(0,'+gv+','+bv+','+(ca*0.18)+')');
+        rg.addColorStop(0,   'rgba(0,'+gv+','+bv+','+Math.min(ca,0.13)+')');
+        rg.addColorStop(0.55,'rgba(0,'+gv+','+bv+','+(ca*0.20)+')');
         rg.addColorStop(1,   'rgba(0,'+gv+','+bv+',0)');
         ctx.fillStyle = rg;
 
-        var sa = (0.012 + flow*0.088 + crest*0.070 + pulse*0.012) * bright;
-        var lw = 0.22 + flow*0.72 + crest*0.50;
+        // stroke сетки: постоянная база + волна, БЕЗ dim-множителя
+        var sa = 0.042 + flow*0.078 + crest*0.058 + pulse*0.010;
+        var lw = 0.25 + flow*0.68 + crest*0.45;
         ctx.strokeStyle = 'rgba(0,'+gv+','+bv+','+Math.min(sa,0.22)+')';
         ctx.lineWidth = lw;
         hp(x,y,h.rad,0); ctx.fill(); ctx.stroke();
