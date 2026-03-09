@@ -45,8 +45,12 @@ A claim requires ALL of:
 
 **5. Never touch these without explicit instruction.**
 - reports/canonical_state.md (except to add claim to current_claims_list)
+- reports/known_faults.yaml (do not remove or downgrade any fault entry)
 - scripts/steward_audit.py
+- scripts/mg_policy_gate_policy.json
 - tests/steward/test_cert02_pack_includes_evidence_and_semantic_verify.py
+- ppa/CLAIMS_DRAFT.md (frozen — incorporated by reference into USPTO PPA)
+- docs/ROADMAP.md (do not change version numbers)
 - .github/workflows/
 
 **6. Separate FACTS from ASSUMPTIONS.**

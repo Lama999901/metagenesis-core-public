@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use MetaGenesis Core in research or products, please cite it."
+title: "MetaGenesis Core: Open Verification Protocol for Computational Claims"
+authors:
+  - family-names: Bazhynov
+    given-names: Yehor
+version: 0.1.0
+date-released: "2026-03-05"
+url: "https://metagenesis-core.dev"
+repository-code: "https://github.com/Lama999901/metagenesis-core-public"
+license: MIT
+abstract: >
+  MetaGenesis Core is an open verification protocol that packages any
+  computational result into a tamper-evident evidence bundle verifiable
+  offline by any third party with one command. Implements governance-enforced
+  bidirectional claim coverage, dual-layer verification (integrity + semantic),
+  and a dual-mode canary execution pipeline. Patent Pending USPTO #63/996,819.
+keywords:
+  - verification
+  - reproducibility
+  - computational-claims
+  - machine-learning
+  - audit-trail
+  - evidence-bundle
+  - open-protocol

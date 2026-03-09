@@ -96,6 +96,20 @@ an audit-ready evidence trail without exposing proprietary model IP.
 
 ---
 
+## Pricing overview
+
+| Tier | Price | Description |
+|---|---|---|
+| Free Pilot | $0 | One verification bundle, no strings attached |
+| Single Bundle | $299 | One-time verification bundle for your result |
+| Integration project | $2,000–5,000 | Full integration into your existing pipeline |
+| Ongoing verification | $500–2,000/mo | Continuous monitoring + monthly audit report |
+| Enterprise | Contact | Custom SLA, dedicated support, regulatory packaging |
+
+Full details and onboarding: https://metagenesis-core.dev/#pricing
+
+---
+
 ## Free pilot
 
 If you have a specific computational result you want to verify, contact

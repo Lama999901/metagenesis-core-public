@@ -19,6 +19,9 @@ Both must pass before and after any change.
 
 - reports/canonical_state.md (steward-managed)
 - reports/scientific_claim_index.md (claim registry — requires steward PASS)
+- reports/known_faults.yaml (fault registry — do not remove or downgrade faults)
+- ppa/CLAIMS_DRAFT.md (frozen PPA document — never edit)
+- docs/ROADMAP.md (do not change version numbers without steward PASS)
 - Any path locked in scripts/mg_policy_gate_policy.json
 
 ## Pull request requirements

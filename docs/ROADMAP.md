@@ -3,7 +3,7 @@
 This roadmap reflects planned development directions.
 All items are subject to change based on community feedback and priorities.
 
-**Current version:** 0.2.0
+**Current version:** 0.1.0-ppa-filing
 **Protocol:** MetaGenesis Verification Protocol (MVP) v0.1
 
 ---
