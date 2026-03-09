@@ -1887,7 +1887,7 @@ a.soon-chip{border-bottom:none!important}
     var t=0;
     (function fr(){
       ctx.clearRect(0,0,W,H);
-      t+=0.0013;
+      t+=0.0019;
 
       hexes.forEach(function(h){
         h.rot  += h.rspd;
@@ -1986,17 +1986,15 @@ a.soon-chip{border-bottom:none!important}
         });
 
         }else if(h.dna===5){
-          // ДНК-5: символ из алфавита (A T G C 0 1 Ψ Σ Ω Δ ∂ φ)
-          var SYMS=['A','T','G','C','0','1','Ψ','Σ','Ω','Δ','∂','φ','λ','μ','∇','⊕','01','FF','7E','∞'];
-          var sym=SYMS[Math.floor((h.ph*7.3+h.wx*13+h.wy*17)%SYMS.length)];
-          var fsize=Math.floor(ir*1.05+pulse*ir*0.18);
-          ctx.save();
-          ctx.globalAlpha=Math.min(0.055+pulse*0.07+crest*0.055, 0.21);
-          ctx.font='600 '+fsize+'px "IBM Plex Mono",monospace';
-          ctx.fillStyle='rgb(0,'+gv+','+bv+')';
-          ctx.textAlign='center'; ctx.textBaseline='middle';
-          ctx.fillText(sym,x,y);
-          ctx.restore();
+          // ДНК-5: двойная орбита — два кольца в противофазе с пульсирующей точкой
+          ctx.strokeStyle='rgba(0,'+gv+','+bv+','+ia+')';
+          ctx.lineWidth=0.18+pulse*0.12;
+          ctx.beginPath(); ctx.arc(x,y,ir*(0.78+pulse*0.06),0,Math.PI*2); ctx.stroke();
+          ctx.strokeStyle='rgba(0,'+gv+','+bv+','+(ia*0.4)+')';
+          ctx.beginPath(); ctx.arc(x,y,ir*(0.44+pulse2*0.08),0,Math.PI*2); ctx.stroke();
+          // орбитная точка
+          ctx.beginPath(); ctx.arc(x+ir*0.62*Math.cos(h.orb),y+ir*0.62*Math.sin(h.orb),0.9+pulse*0.5,0,Math.PI*2);
+          ctx.fillStyle='rgba(0,'+gv+','+bv+','+(0.18+pulse*0.14)+')'; ctx.fill();
 
         }else if(h.dna===6){
           // ДНК-6: крест + диагональный перекрёст (hash #)
@@ -2020,7 +2018,7 @@ a.soon-chip{border-bottom:none!important}
             ctx.fillStyle='rgba(0,'+gv+','+bv+','+(bits[i]?(0.18+pulse*0.15):(0.06+pulse*0.06))+')'; ctx.fill();
           }
 
-        }else{
+        }else if(h.dna===8){
           // ДНК-8: вращающаяся ДНК-лестница (две дуги со связями)
           var ang1=h.rot, ang2=h.rot+Math.PI;
           var stepsD=4;
@@ -2044,6 +2042,55 @@ a.soon-chip{border-bottom:none!important}
             var ppx1=px1, ppy1=py1, ppx2=px2, ppy2=py2;
           }
         }
+
+        // ══════════════════════════════════════════════════
+        // СИМВОЛЬНЫЙ СЛОЙ — живёт в каждой клетке
+        // тихий crossfade, медленная ротация, дышит с волной
+        // ══════════════════════════════════════════════════
+        if(!h._sI){
+          var _SP=[
+            'α','β','γ','δ','ε','ζ','η','θ','κ','λ','μ','ν','ξ','π','ρ','σ','τ','φ','χ','ψ','ω',
+            'Γ','Δ','Θ','Λ','Ξ','Π','Σ','Φ','Ψ','Ω',
+            '∂','∇','∞','∑','∏','√','∫','≈','≡','≠','≤','≥','∈','∅','⊕','⊗','⊥',
+            'ℏ','⟨⟩','|ψ⟩',
+            '∀','∃','¬','→','∧','∨',
+            'SHA','256','0xFF','4.2σ','p<.05','r²',
+            '01','10','11','∞','λ→∞','ε→0'
+          ];
+          h._sI  = 1 + Math.floor(Math.abs(Math.sin(h.ph*17+h.wx*53))*(_SP.length-1));
+          h._sN  = 1 + (h._sI + 2 + Math.floor(h.ph*11)) % (_SP.length-1);
+          h._sT  = Math.random();
+          h._sSp = 0.00022 + Math.random()*0.00045;
+          h._sP  = _SP;
+        }
+        h._sT += h._sSp;
+        if(h._sT >= 1){ h._sT-=1; h._sI=h._sN; h._sN=1+(h._sN+3+Math.floor(h.ph*9))%(h._sP.length-1); }
+        // плавный S-образный crossfade
+        var _cf = h._sT < 0.35 ? h._sT/0.35 : (h._sT>0.65 ? (1-h._sT)/0.35 : 1.0);
+        _cf = Math.max(0,Math.min(_cf,1));
+        var _s  = h._sP[h._sI];
+        var _sn = h._sP[h._sN];
+        var _short = _s.length<=2, _snSh = _sn.length<=2;
+        // прозрачность: очень тихо, дышит с волной
+        var _ba = 0.032 + pulse*0.042 + crest*0.028;
+        var _aA = Math.min(_ba*_cf, 0.17);
+        var _aN = Math.min(_ba*(1-_cf)*0.5, 0.085);
+        if(_aA>0.003 || _aN>0.003){
+          ctx.save();
+          ctx.textAlign='center'; ctx.textBaseline='middle';
+          if(_aA>0.003){
+            ctx.font=(_short?'500':'400')+' '+Math.max(6,Math.floor((_short?ir*0.86:ir*0.48)+pulse*ir*0.08))+'px "IBM Plex Mono",monospace';
+            ctx.globalAlpha=_aA; ctx.fillStyle='rgb(0,'+gv+','+bv+')';
+            ctx.fillText(_s,x,y);
+          }
+          if(_aN>0.003){
+            ctx.font=(_snSh?'500':'400')+' '+Math.max(6,Math.floor((_snSh?ir*0.86:ir*0.48)+pulse*ir*0.08))+'px "IBM Plex Mono",monospace';
+            ctx.globalAlpha=_aN; ctx.fillStyle='rgb(0,'+gv+','+bv+')';
+            ctx.fillText(_sn,x,y);
+          }
+          ctx.restore();
+        }
+
       });
 
       // виньетка — тёмные края, центр открыт
