@@ -2390,13 +2390,9 @@ a.soon-chip{border-bottom:none!important}
         // stroke сетки всегда виден, просто чуть тише в центре
 
         // ═══ OUTER HEX ═══
-        // fill glow — тихий в центре, яркий по краям
+        // fill glow — flat fill (no gradient for perf)
         var ca = (life*life*0.08 + crest*0.10) * (0.12 + dim*0.88);
-        var rg = ctx.createRadialGradient(x,y,0,x,y,h.rad*0.80);
-        rg.addColorStop(0,   'rgba(0,'+gv+','+bv+','+Math.min(ca,0.13)+')');
-        rg.addColorStop(0.55,'rgba(0,'+gv+','+bv+','+(ca*0.20)+')');
-        rg.addColorStop(1,   'rgba(0,'+gv+','+bv+',0)');
-        ctx.fillStyle = rg;
+        ctx.fillStyle = 'rgba(0,'+gv+','+bv+','+Math.min(ca*0.55,0.07)+')';
 
         // stroke сетки: постоянная база + волна, БЕЗ dim-множителя
         var sa = 0.060 + flow*0.115 + crest*0.092 + pulse*0.020;
@@ -2555,28 +2551,13 @@ a.soon-chip{border-bottom:none!important}
         var _aN = Math.min(_ba*(1-_cf)*0.45, 0.38);
         if(_aA>0.005){
           var _fs = Math.max(10, Math.floor(_scale*ir + pulse*ir*0.10));
-          ctx.save();
+          // no ctx.save/restore — set state directly for perf
           ctx.textAlign='center'; ctx.textBaseline='middle';
-          ctx.fillStyle = 'rgb(0,'+gv+','+bv+')';
-          // мягкий ореол
-          ctx.font = _fw+' '+(_fs+2)+'px "IBM Plex Mono",monospace';
-          ctx.globalAlpha = _aA*0.22;
-          ctx.fillText(_s,x,y);
-          // основной рендер
           ctx.font = _fw+' '+_fs+'px "IBM Plex Mono",monospace';
           ctx.globalAlpha = _aA;
+          ctx.fillStyle = 'rgb(0,'+gv+','+bv+')';
           ctx.fillText(_s,x,y);
-          // следующий символ — тихо
-          if(_aN>0.005){
-            var _snLen=_sn.length;
-            var _snSc=_snLen<=2?1.05:_snLen<=4?0.68:0.48;
-            var _snFw=_snLen<=2?'700':'600';
-            var _fsN=Math.max(7,Math.floor(_snSc*ir+pulse*ir*0.10));
-            ctx.font=_snFw+' '+_fsN+'px "IBM Plex Mono",monospace';
-            ctx.globalAlpha=_aN;
-            ctx.fillText(_sn,x,y);
-          }
-          ctx.restore();
+          ctx.globalAlpha = 1;
         }
 
       });
