@@ -1,0 +1,47 @@
+{
+  "_comment": "Maps run artifacts to registered claims with provenance chain.",
+  "_schema_version": "1.0",
+  "demo": "open_data_demo_01",
+  "dataset": "demos/open_data_demo_01/data/strain_stress_open.csv",
+  "claims": [
+    {
+      "claim_id": "MTR-1",
+      "title": "Material Test Result — Elastic Modulus Reproducibility",
+      "threshold": { "relative_error_max": 0.01 },
+      "artifacts": [
+        {
+          "mode": "normal",
+          "file": "progress_runs/run_artifact.json",
+          "role": "primary_result",
+          "description": "Computed elastic modulus from open strain-stress dataset"
+        },
+        {
+          "mode": "canary",
+          "file": "progress_runs/run_artifact_canary.json",
+          "role": "canary_result",
+          "description": "Intentionally perturbed run — must deviate from normal by >threshold"
+        },
+        {
+          "mode": "normal",
+          "file": "ledger_snapshots/ledger_snapshot.jsonl",
+          "role": "ledger",
+          "description": "Append-only ledger of all job events with timestamps"
+        }
+      ],
+      "provenance": {
+        "runner": "backend/progress/runner.py :: ProgressRunner.run_job()",
+        "job_kind": "mtr1_calibration",
+        "pack_script": "scripts/mg.py :: pack build",
+        "verify_script": "scripts/mg.py :: verify",
+        "ci_gate": ".github/workflows/mg_policy_gate.yml"
+      },
+      "verification": {
+        "integrity_layer": "SHA-256 root_hash in pack_manifest.json",
+        "semantic_layer": "job_snapshot.kind + canary_mode flag — mg._verify_semantic()",
+        "adversarial_test": "tests/steward/test_cert02 — bypass attack caught, PASS"
+      }
+    }
+  ],
+  "pack_output": "demos/open_data_demo_01/pack/",
+  "verify_report": "demos/open_data_demo_01/VERIFY_REPORT.json"
+}

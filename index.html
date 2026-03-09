@@ -1923,8 +1923,8 @@ a.soon-chip{border-bottom:none!important}
         var gv = Math.min(160 + life*48 + crest*18, 238);
         var bv = Math.min(190 + life*40 + crest*12, 248);
 
-        // яркость клетки = волна * dim (у центра — dim≈01, тихо)
-        var bright = dim;
+        // яркость: минимум 0.18 везде (сетка видна), по краям до 1.0
+        var bright = 0.18 + dim * 0.82;
 
         // ═══ OUTER HEX ═══
         var ca = (life*life*0.07 + crest*0.08) * bright;
@@ -1934,9 +1934,9 @@ a.soon-chip{border-bottom:none!important}
         rg.addColorStop(1,   'rgba(0,'+gv+','+bv+',0)');
         ctx.fillStyle = rg;
 
-        var sa = (0.010 + flow*0.082 + crest*0.065 + pulse*0.010) * bright;
-        var lw = 0.20 + flow*0.70 + crest*0.48;
-        ctx.strokeStyle = 'rgba(0,'+gv+','+bv+','+Math.min(sa,0.18)+')';
+        var sa = (0.012 + flow*0.088 + crest*0.070 + pulse*0.012) * bright;
+        var lw = 0.22 + flow*0.72 + crest*0.50;
+        ctx.strokeStyle = 'rgba(0,'+gv+','+bv+','+Math.min(sa,0.22)+')';
         ctx.lineWidth = lw;
         hp(x,y,h.rad,0); ctx.fill(); ctx.stroke();
 
@@ -2077,8 +2077,8 @@ a.soon-chip{border-bottom:none!important}
         var _s  = h._sP[h._sI];
         var _sn = h._sP[h._sN];
         var _short = _s.length<=2;
-        // прозрачность: dim у центра делает символы тихими где читаешь
-        var _ba = (0.12 + pulse*0.18 + crest*0.14) * (0.25 + dim*0.75);
+        // прозрачность: минимум 0.08 в центре, ярче к краям
+        var _ba = (0.12 + pulse*0.18 + crest*0.14) * (0.15 + dim*0.85);
         var _aA = Math.min(_ba*_cf, 0.55);
         var _aN = Math.min(_ba*(1-_cf)*0.4, 0.22);
         if(_aA>0.005){
