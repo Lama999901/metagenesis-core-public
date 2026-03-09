@@ -260,6 +260,14 @@ body.mg-ready .word-trust .hspan{animation:slidein .85s .31s cubic-bezier(.16,1,
   flex-shrink:0;
 }
 h2{font-family:var(--fd);font-size:clamp(36px,4vw,64px);font-weight:900;line-height:1;letter-spacing:-.03em;margin-bottom:20px;position:relative}
+/* ── h2 SEMANTIC COLOUR SPANS ── */
+h2 .hc{color:var(--c)}
+h2 .hg{color:var(--ok)}
+h2 .hr{color:var(--err)}
+h2 .hw{color:rgba(238,247,251,.30)}
+h2 .ha{color:#ffb84d}
+h2 .hgrad-cy{background:linear-gradient(95deg,var(--c) 10%,#00ff99 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+h2 .hgrad-gn{background:linear-gradient(95deg,#00ff99 10%,var(--c) 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
 @keyframes h2glitch{
   0%,96%,100%{text-shadow:none}
@@ -1219,7 +1227,7 @@ a.soon-chip{border-bottom:none!important}
 <div class="div"></div>
 <div class="w"><section class="sec">
   <div class="stag rv">The Problem</div>
-  <h2 class="rv d1" style="--h2d:0s" data-glitch="AI makes claims. Nobody can verify.">AI makes claims.<br>Nobody can verify.</h2>
+  <h2 class="rv d1" style="--h2d:0s" data-glitch="AI makes claims. Nobody can verify.">AI makes claims.<br><span class="hr">Nobody can verify.</span></h2>
   <p class="sdesc rv d2">Every ML team claims state-of-the-art results. Every simulation produces numbers. Every pipeline outputs certificates. There is no standard way to check any of it independently.</p>
   <div class="pp rv d3">
     <div class="ppc"><span class="ppchip x">Without MetaGenesis</span><h3>Trust the number.<br>Or re-run everything.</h3><p>A reviewer cannot check a reported ML accuracy without the original model, training data, and compute environment. The only options are blind trust or complete reproduction.</p></div>
@@ -1230,7 +1238,7 @@ a.soon-chip{border-bottom:none!important}
 <div class="div"></div>
 <div class="w"><section class="sec" id="crisis">
   <div class="stag rv">The Problem Is Real</div>
-  <h2 class="rv d1" style="--h2d:0.8s" data-glitch="The reproducibility crisis is now your liability.">The reproducibility crisis<br>is now your liability.</h2>
+  <h2 class="rv d1" style="--h2d:0.8s" data-glitch="The reproducibility crisis is now your liability.">The reproducibility <span class="hr">crisis</span><br>is now your <span class="hr">liability.</span></h2>
   <p class="sdesc rv d2">Independent researchers, regulators, and clients can no longer accept computational results on trust alone. The cost of unverified claims is rising.</p>
   <div class="crisis-grid rv d3">
 
@@ -1296,7 +1304,7 @@ a.soon-chip{border-bottom:none!important}
 
 <div class="w"><section class="sec" id="pitch">
   <div class="stag rv">How It Started</div>
-  <h2 class="rv d1" style="--h2d:1.6s" data-glitch="Built for one thing. Became universal.">Built for one thing.<br>Became universal.</h2>
+  <h2 class="rv d1" style="--h2d:1.6s" data-glitch="Built for one thing. Became universal."><span class="hw">Built for one thing.</span><br><span class="hgrad-cy">Became universal.</span></h2>
   <p class="sdesc rv d2">MetaGenesis Core started as a materials simulation verifier. Then the protocol worked for ML accuracy. Then data pipelines. Then risk models. The same 4-step structure handles every computational claim — because the problem is always the same: <em style="color:var(--c);font-style:normal">proof, not trust.</em></p>
 
   <div class="pitch-grid rv d3">
@@ -1340,7 +1348,7 @@ a.soon-chip{border-bottom:none!important}
 <div class="div"></div>
 <div class="w"><section class="sec" id="protocol">
   <div class="stag rv">How It Works</div>
-  <h2 class="rv d1" style="--h2d:2.4s" data-glitch="Four steps. Immutable proof.">Four steps.<br>Immutable proof.</h2>
+  <h2 class="rv d1" style="--h2d:2.4s" data-glitch="Four steps. Immutable proof."><span class="hw">Four steps.</span><br><span class="hg">Immutable proof.</span></h2>
   <p class="sdesc rv d2">Every run produces an evidence bundle with two independent verification layers. Any deviation surfaces as FAIL with a specific reason.</p>
   <div class="pipe rv d3">
     <div class="prow active"><div class="pnum">01</div><div class="ptitle"><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/runner.py" target="_blank">runner.run_job()</a></div><div class="pdesc">Executes computation &#8594; produces run_artifact.json + ledger_snapshot.jsonl</div><div class="pstat ok">&#8594; artifact</div></div>
@@ -1353,7 +1361,7 @@ a.soon-chip{border-bottom:none!important}
 <div class="div"></div>
 <div class="w"><section class="sec">
   <div class="stag rv">Live Demo</div>
-  <h2 class="rv d1" style="--h2d:3.2s" data-glitch="Five minutes from zero to proof.">Five minutes<br>from zero to proof.</h2>
+  <h2 class="rv d1" style="--h2d:3.2s" data-glitch="Five minutes from zero to proof."><span class="hc">Five minutes</span><br>from zero to <span class="hg">proof.</span></h2>
 <p class="sdesc rv d2">Clone the repo. Run one command. Your result is now cryptographically anchored, semantically verified, and independently auditable by anyone — offline, without trusting you.</p>
   <div class="term rv d2">
     <div class="termh"><div class="thdot"></div><div class="thdot"></div><div class="thdot"></div><span class="thtit">bash &#8212; metagenesis-core-public</span></div>
@@ -1392,7 +1400,7 @@ a.soon-chip{border-bottom:none!important}
 <div class="div"></div>
 <div class="w"><section class="sec">
   <div class="stag rv">Why SHA-256 Is Not Enough</div>
-  <h2 class="rv d1" style="--h2d:4.0s" data-glitch="The bypass attack. Caught. Proven.">The bypass attack.<br>Caught. Proven.</h2>
+  <h2 class="rv d1" style="--h2d:4.0s" data-glitch="The bypass attack. Caught. Proven.">The bypass <span class="hr">attack.</span><br><span class="hg">Caught. Proven.</span></h2>
   <p class="sdesc rv d2">Every system using only file hashes is vulnerable. An adversary removes content, recomputes all hashes, and passes integrity checks silently.</p>
   <div class="atk rv d3">
     <div class="atkl">
@@ -1427,7 +1435,7 @@ a.soon-chip{border-bottom:none!important}
 <div class="div"></div>
 <div class="w"><section class="sec" id="claims">
   <div class="stag rv">Verified Claims</div>
-  <h2 class="rv d1" style="--h2d:4.8s" data-glitch="Seven claims. All bidirectionally enforced.">Seven claims.<br>All bidirectionally enforced.</h2>
+  <h2 class="rv d1" style="--h2d:4.8s" data-glitch="Seven claims. All bidirectionally enforced."><span class="hc">Seven</span> claims.<br>All bidirectionally <span class="hg">enforced.</span></h2>
   <p class="sdesc rv d2">Every claim has an implementation, runner dispatch, threshold, and tests. Enforced on every PR &#8212; not by human review.</p>
   <div class="claimsgrid rv d3">
     <div class="claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mtr1_calibration.py" target="_blank"><span class="claimid">MTR-1</span></a></div><div class="claimdomain">Materials Science</div><div class="claimname">Young&#8217;s Modulus Calibration</div><div class="claimth"><span>relative_error</span> &#8804; 0.01</div></div>
@@ -1443,7 +1451,7 @@ a.soon-chip{border-bottom:none!important}
 <div class="div"></div>
 <div class="w"><section class="sec">
   <div class="stag rv">Governance</div>
-  <h2 class="rv d1" style="--h2d:5.6s" data-glitch="Code enforces. Not people.">Code enforces.<br>Not people.</h2>
+  <h2 class="rv d1" style="--h2d:5.6s" data-glitch="Code enforces. Not people."><span class="hc">Code</span> enforces.<br><span class="hr">Not people.</span></h2>
   <p class="sdesc rv d2">Bidirectional claim coverage checked on every pull request. A claim without implementation blocks merge. An implementation without claim blocks merge.</p>
   <div class="gov rv d3">
     <div class="govh"><span class="govhl">$ python <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/steward_audit.py" target="_blank">scripts/steward_audit.py</a></span><span class="govbadge">STEWARD AUDIT: PASS</span></div>
@@ -1459,7 +1467,7 @@ a.soon-chip{border-bottom:none!important}
 <div class="div"></div>
 <div class="w"><section class="sec">
   <div class="stag rv">Open Protocol</div>
-  <h2 class="rv d1" style="--h2d:6.4s" data-glitch="Not a tool. A standard.">Not a tool.<br>A standard.</h2>
+  <h2 class="rv d1" style="--h2d:6.4s" data-glitch="Not a tool. A standard."><span class="hw">Not a tool.</span><br><span class="hgrad-cy">A standard.</span></h2>
   <p class="sdesc rv d2">MetaGenesis Verification Protocol (MVP) v0.1 &#8212; open spec for packaging computational claims into independently verifiable evidence bundles.</p>
   <div class="proto rv d3">
     <div class="protoc">
@@ -1488,7 +1496,7 @@ a.soon-chip{border-bottom:none!important}
 <div class="div"></div>
 <div class="w"><section class="sec" id="verticals">
   <div class="stag rv">Use Cases</div>
-  <h2 class="rv d1" style="--h2d:7.2s" data-glitch="Five verticals. One protocol.">Five verticals.<br>One protocol.</h2>
+  <h2 class="rv d1" style="--h2d:7.2s" data-glitch="Five verticals. One protocol."><span class="hw">Five verticals.</span><br><span class="hc">One protocol.</span></h2>
   <div class="ucg rv d2">
     <div class="uc"><div class="ucn">01</div><div class="uc-tag">ML / AI</div><h3>Benchmark Certification</h3><p>Any ML accuracy claim packaged into a tamper-evident bundle. Reviewers verify offline &#8212; no model access, no environment, no GPU.</p></div>
     <div class="uc"><div class="ucn">02</div><div class="uc-tag">Pharma / Biotech</div><h3>Regulatory Submission</h3><p>ADMET predictions, PK/PD simulation outputs &#8212; packaged with full provenance. FDA 21 CFR Part 11 compatible audit trail.</p></div>
@@ -1501,7 +1509,7 @@ a.soon-chip{border-bottom:none!important}
 <div class="div"></div>
 <div class="w"><section class="sec" id="compare">
   <div class="stag rv">Why MetaGenesis</div>
-  <h2 class="rv d1" style="--h2d:8.0s" data-glitch="Nothing else does all of this.">Nothing else does<br>all of this.</h2>
+  <h2 class="rv d1" style="--h2d:8.0s" data-glitch="Nothing else does all of this."><span class="hr">Nothing else</span> does<br><span class="hg">all of this.</span></h2>
   <p class="sdesc rv d2">Existing tools solve parts of the problem. MetaGenesis Core is the only open protocol that combines governance enforcement, semantic integrity, and offline third-party verification.</p>
   <div class="cmptable rv d2">
     <div class="cmp-head">
@@ -1566,7 +1574,7 @@ a.soon-chip{border-bottom:none!important}
 <div class="div"></div>
 <div class="w"><section class="sec" id="regulatory">
   <div class="stag rv">Regulatory Alignment</div>
-  <h2 class="rv d1" style="--h2d:8.8s" data-glitch="Three frameworks. One protocol.">Three frameworks.<br>One protocol.</h2>
+  <h2 class="rv d1" style="--h2d:8.8s" data-glitch="Three frameworks. One protocol."><span class="hw">Three frameworks.</span><br><span class="hc">One protocol.</span></h2>
   <p class="sdesc rv d2">MetaGenesis bundles are designed to satisfy independent auditability requirements across the three major regulatory contexts for computational evidence.</p>
   <div class="regrid rv d3">
 
@@ -1601,7 +1609,7 @@ a.soon-chip{border-bottom:none!important}
 <div class="div"></div>
 <div class="w"><section class="sec" id="pricing">
   <div class="stag rv">Get Started</div>
-  <h2 class="rv d1" style="--h2d:9.6s" data-glitch="Start with proof. Scale when ready.">Start with proof.<br>Scale when ready.</h2>
+  <h2 class="rv d1" style="--h2d:9.6s" data-glitch="Start with proof. Scale when ready.">Start with <span class="hg">proof.</span><br><span class="hc">Scale</span> when ready.</h2>
   <p class="sdesc rv d2">MetaGenesis Core is open source. The protocol is free to use. We offer a free pilot for your specific use case before any commercial conversation.</p>
   <div class="pricegrid rv d3">
 
@@ -1654,7 +1662,7 @@ a.soon-chip{border-bottom:none!important}
 <div class="div"></div>
 <div class="w"><section class="sec" id="faq">
   <div class="stag rv">FAQ</div>
-  <h2 class="rv d1" style="--h2d:10.4s" data-glitch="Skeptical? Good.">Skeptical?<br>Good.</h2>
+  <h2 class="rv d1" style="--h2d:10.4s" data-glitch="Skeptical? Good."><span class="ha">Skeptical?</span><br><span class="hg">Good.</span></h2>
   <p class="sdesc rv d2">The questions we'd ask if we were you.</p>
   <div class="faqlist rv d3">
 
@@ -1689,7 +1697,7 @@ a.soon-chip{border-bottom:none!important}
 <div class="div"></div>
 <div class="w"><section class="sec" id="segments">
   <div class="stag rv">For Your Industry</div>
-  <h2 class="rv d1" style="--h2d:11.2s" data-glitch="Built for your world. Speak your language.">Built for your world.<br>Speak your language.</h2>
+  <h2 class="rv d1" style="--h2d:11.2s" data-glitch="Built for your world. Speak your language.">Built for <span class="hc">your world.</span><br>Speak your language.</h2>
   <p class="sdesc rv d2">One protocol. Four industries. Find your use case.</p>
 
   <div class="seg-wrap rv d3">
@@ -1831,7 +1839,7 @@ a.soon-chip{border-bottom:none!important}
 <div class="div"></div>
 <div class="w"><section class="sec" id="verifier">
   <div class="stag rv">Live Verifier</div>
-  <h2 class="rv d1" style="--h2d:12.0s" data-glitch="Verify a claim. Right now. In your browser.">Verify a claim.<br>Right now. In your browser.</h2>
+  <h2 class="rv d1" style="--h2d:12.0s" data-glitch="Verify a claim. Right now. In your browser."><span class="hg">Verify</span> a claim.<br><span class="hc">Right now.</span> In your browser.</h2>
   <p class="sdesc rv d2">This is the exact logic the protocol runs. No backend. No network. The same verification that ships with the codebase.</p>
 
   <div class="vrf-wrap rv d3">
@@ -1921,7 +1929,7 @@ a.soon-chip{border-bottom:none!important}
 <div class="div"></div>
 <div class="w"><section class="sec" id="pilot">
   <div class="stag rv">Free Pilot</div>
-  <h2 class="rv d1" style="--h2d:12.8s" data-glitch="Send your result. Get proof back.">Send your result.<br>Get proof back.</h2>
+  <h2 class="rv d1" style="--h2d:12.8s" data-glitch="Send your result. Get proof back.">Send your result.<br>Get <span class="hg">proof</span> back.</h2>
   <p class="sdesc rv d2">Share a computational result — any domain. We build a verification bundle for it at no charge. You see PASS or FAIL before any commercial conversation. No strings attached. Response within 48 hours.</p>
 
   <div class="pilot-wrap rv d3">
