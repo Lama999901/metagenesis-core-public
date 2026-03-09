@@ -933,8 +933,8 @@ a.soon-chip{border-bottom:none!important}
   #page-totop.visible{display:flex}
   #page-totop:active{background:rgba(0,229,255,.15)}
 }
-.origin{position:relative;z-index:10;background:var(--ink1);border-top:1px solid var(--ln);border-bottom:1px solid var(--ln)}
-.origin-inner{max-width:960px;margin:0 auto;padding:100px 52px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.origin{position:relative;z-index:10;background:rgba(7,12,31,0.55);border-top:1px solid var(--ln);border-bottom:1px solid var(--ln)}
+.origin-inner{max-width:1100px;margin:0 auto;padding:100px 52px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
 .origin-quote{position:relative;padding-left:28px;padding-top:8px}
 .origin-quote::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(var(--c),transparent)}
 .origin-q{font-family:var(--fs);font-size:clamp(22px,2.8vw,36px);font-style:italic;color:var(--txt);line-height:1.55;margin-bottom:28px}
@@ -2304,11 +2304,11 @@ a.soon-chip{border-bottom:none!important}
       });
 
       // виньетка: центр полупрозрачный (контент), края тёмные
-      var vg=ctx.createRadialGradient(W*0.5,H*0.45,H*0.04,W*0.5,H*0.5,H*0.78);
+      var vg=ctx.createRadialGradient(W*0.5,H*0.45,H*0.10,W*0.5,H*0.5,H*0.72);
       vg.addColorStop(0,   'rgba(4,8,26,0)');
-      vg.addColorStop(0.35,'rgba(4,8,26,0.06)');
-      vg.addColorStop(0.70,'rgba(4,8,26,0.22)');
-      vg.addColorStop(1,   'rgba(4,8,26,0.82)');
+      vg.addColorStop(0.40,'rgba(4,8,26,0.04)');
+      vg.addColorStop(0.72,'rgba(4,8,26,0.14)');
+      vg.addColorStop(1,   'rgba(4,8,26,0.48)');
       ctx.fillStyle=vg; ctx.fillRect(0,0,W,H);
 
       requestAnimationFrame(fr);
