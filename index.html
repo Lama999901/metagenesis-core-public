@@ -2086,7 +2086,7 @@ a.soon-chip{border-bottom:none!important}
     var t=0;
     (function fr(){
       ctx.clearRect(0,0,W,H);
-      t+=0.0024;
+      t+=0.0032;
 
       // центр экрана — фон затухает у контента, живёт по краям
       var cx = W*0.5, cy = H*0.5;
@@ -2279,7 +2279,7 @@ a.soon-chip{border-bottom:none!important}
           h._sI = Math.floor(Math.abs(Math.sin(h.ph*17+h.wx*53))*h._sP.length) % h._sP.length;
           h._sN = (h._sI+3+Math.floor(h.ph*11)) % h._sP.length;
           h._sT = Math.random();
-          h._sSp= 0.00006 + Math.random()*0.00010; // ультра-плавная смена
+          h._sSp= 0.00016 + Math.random()*0.00022; // средняя скорость смены
         }
         h._sT += h._sSp;
         if(h._sT>=1){ h._sT-=1; h._sI=h._sN; h._sN=(h._sN+3+Math.floor(h.ph*9))%h._sP.length; }
