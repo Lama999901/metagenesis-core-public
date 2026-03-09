@@ -1,5 +1,5 @@
 {
-  "_comment": "MetaGenesis Core Policy Gate Configuration",
+  "_comment": "MetaGenesis Core Policy Gate — locked_paths enforces Patent Claim 3: Policy-Gate Immutable Evidence Anchor",
   "_description": "Enforces allowlist for repository modifications",
   "_schema": {
     "version": "Policy schema version",
@@ -10,7 +10,13 @@
   "version": "1.0.0",
   "last_updated": "2026-03-05",
 
-  "locked_paths": [],
+  "locked_paths": [
+    "reports/canonical_state.md",
+    "reports/scientific_claim_index.md",
+    "demos/open_data_demo_01/evidence_index.json",
+    "system_manifest.json",
+    "scripts/mg_policy_gate_policy.json"
+  ],
 
   "allow_globs": [
     "api/evidence_api.py",
