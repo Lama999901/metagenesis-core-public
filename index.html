@@ -2195,12 +2195,23 @@ a.soon-chip{border-bottom:none!important}
         if(!h._sP){
           // только проверенные Unicode символы, нет многосимвольных строк
           h._sP=[
+            // Greek — physics alphabet
             'α','β','γ','δ','ε','η','θ','λ','μ','ν','ξ','π','ρ','σ','τ','φ','χ','ψ','ω',
             'Γ','Δ','Λ','Σ','Φ','Ψ','Ω',
-            '∂','∇','∞','∑','∏','√','∫',
-            '≈','≡','≠','≤','≥','∈','∅','⊕','⊥','ℏ',
-            '∀','∃','¬','→','∧','∨','±',
-            '01','10','11','FF','42','σ²','r²'
+            // Math operators
+            '∂','∇','∞','∑','∏','√','∫','≈','≡','≠','≤','≥','∈','⊥','ℏ','±',
+            // Materials science — Young's modulus, thermal conductivity
+            'E','σ/ε','λ/κ','ΔT','k·A','∂T','dF/dA','GPa','W/mK',
+            // ML/AI
+            'L(θ)','∂L','argmax','p(y)','f(x)','ŷ','y−ŷ','MSE','R²',
+            // Verification / cryptography
+            'SHA','PASS','FAIL','hash','Δ≤ε','H(x)','∫dt','⊕','¬',
+            // System identification / ARX
+            'ARX','A(z)','B(z)','z⁻¹','ŷ(t)','e(t)','SSE',
+            // Data / drift
+            'μ+σ','|Δ|','%err','drift','∫f·dx','N(μ,σ)','P(x)','KL',
+            // Logic / protocol
+            '→','∧','∨','∀','∃','⊢','⊨','◻','◇'
           ];
           h._sI = Math.floor(Math.abs(Math.sin(h.ph*17+h.wx*53))*h._sP.length) % h._sP.length;
           h._sN = (h._sI+3+Math.floor(h.ph*11)) % h._sP.length;
@@ -2214,30 +2225,34 @@ a.soon-chip{border-bottom:none!important}
         _cf = Math.max(0,Math.min(_cf,1));
         var _s  = h._sP[h._sI];
         var _sn = h._sP[h._sN];
-        var _short = _s.length<=2;
+        // размер по длине: 1-2 = крупно, 3-4 = средне, 5+ = мелко
+        var _len = _s.length;
+        var _scale = _len<=2 ? 1.05 : _len<=4 ? 0.68 : 0.48;
+        var _fw    = _len<=2 ? '700' : '600';
         // прозрачность: минимум 0.08 в центре, ярче к краям
         var _ba = (0.22 + pulse*0.26 + crest*0.20) * (0.30 + dim*0.70);
         var _aA = Math.min(_ba*_cf, 0.72);
         var _aN = Math.min(_ba*(1-_cf)*0.45, 0.36);
         if(_aA>0.005){
-          var _fs = Math.max(8, Math.floor((_short ? ir*1.05 : ir*0.58)+pulse*ir*0.10));
+          var _fs = Math.max(7, Math.floor(_scale*ir + pulse*ir*0.10));
           ctx.save();
           ctx.textAlign='center'; ctx.textBaseline='middle';
-          ctx.font = (_short?'700':'600')+' '+_fs+'px "IBM Plex Mono",monospace';
           ctx.fillStyle = 'rgb(0,'+gv+','+bv+')';
-          // мягкий ореол — чуть крупнее + полупрозрачный (без shadowBlur)
-          ctx.font = (_short?'700':'600')+' '+(_fs+2)+'px "IBM Plex Mono",monospace';
+          // мягкий ореол
+          ctx.font = _fw+' '+(_fs+2)+'px "IBM Plex Mono",monospace';
           ctx.globalAlpha = _aA*0.22;
           ctx.fillText(_s,x,y);
-          // основной чёткий рендер
-          ctx.font = (_short?'700':'600')+' '+_fs+'px "IBM Plex Mono",monospace';
+          // основной рендер
+          ctx.font = _fw+' '+_fs+'px "IBM Plex Mono",monospace';
           ctx.globalAlpha = _aA;
           ctx.fillText(_s,x,y);
           // следующий символ — тихо
           if(_aN>0.005){
-            var _snSh=_sn.length<=2;
-            var _fsN=Math.max(8,Math.floor((_snSh?ir*1.05:ir*0.58)+pulse*ir*0.10));
-            ctx.font=(_snSh?'700':'600')+' '+_fsN+'px "IBM Plex Mono",monospace';
+            var _snLen=_sn.length;
+            var _snSc=_snLen<=2?1.05:_snLen<=4?0.68:0.48;
+            var _snFw=_snLen<=2?'700':'600';
+            var _fsN=Math.max(7,Math.floor(_snSc*ir+pulse*ir*0.10));
+            ctx.font=_snFw+' '+_fsN+'px "IBM Plex Mono",monospace';
             ctx.globalAlpha=_aN;
             ctx.fillText(_sn,x,y);
           }
