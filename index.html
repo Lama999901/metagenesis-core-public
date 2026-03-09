@@ -20,9 +20,50 @@
 }
 html{scroll-behavior:smooth;overflow-x:hidden}
 body{background:var(--ink);color:var(--txt);font-family:var(--fm);overflow-x:hidden;cursor:none;min-height:100vh}
-#cur,#ring{position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
-#cur{width:6px;height:6px;background:var(--c);border-radius:50%}
-#ring{width:32px;height:32px;border:1px solid var(--c4);border-radius:50%;transition:transform .18s ease,border-color .18s ease}
+/* ══ CURSOR SYSTEM ══ */
+:root{--cc:#00e5ff;--cc2:rgba(0,229,255,.55)}
+body.cur-hover{--cc:#00ff99;--cc2:rgba(0,255,153,.55)}
+/* Center diamond */
+#cur{position:fixed;pointer-events:none;z-index:9999;
+  width:5px;height:5px;
+  background:var(--cc);
+  box-shadow:0 0 9px var(--cc2);
+  transform:translate(-50%,-50%) rotate(45deg);
+  transition:background .15s,box-shadow .15s;
+}
+body.cur-click #cur{transform:translate(-50%,-50%) rotate(45deg) scale(.4)}
+/* Corner-bracket reticle */
+#ring{position:fixed;pointer-events:none;z-index:9998;
+  width:28px;height:28px;
+  background:
+    linear-gradient(var(--cc),var(--cc)) top left/7px 1px no-repeat,
+    linear-gradient(var(--cc),var(--cc)) top left/1px 7px no-repeat,
+    linear-gradient(var(--cc),var(--cc)) top right/7px 1px no-repeat,
+    linear-gradient(var(--cc),var(--cc)) top right/1px 7px no-repeat,
+    linear-gradient(var(--cc),var(--cc)) bottom left/7px 1px no-repeat,
+    linear-gradient(var(--cc),var(--cc)) bottom left/1px 7px no-repeat,
+    linear-gradient(var(--cc),var(--cc)) bottom right/7px 1px no-repeat,
+    linear-gradient(var(--cc),var(--cc)) bottom right/1px 7px no-repeat;
+  opacity:.65;
+  transition:width .2s,height .2s,opacity .2s;
+}
+body.cur-hover #ring{width:20px;height:20px;opacity:.9}
+/* Trail dots */
+.ctrail{position:fixed;pointer-events:none;z-index:9997;border-radius:50%;transform:translate(-50%,-50%)}
+#t1{width:3px;height:3px;background:var(--cc);opacity:.38}
+#t2{width:2.5px;height:2.5px;background:var(--cc);opacity:.24}
+#t3{width:2px;height:2px;background:var(--cc);opacity:.14}
+/* Click ripple */
+#ripple{position:fixed;pointer-events:none;z-index:9996;
+  width:36px;height:36px;
+  border:1px solid var(--cc);
+  border-radius:50%;
+  transform:translate(-50%,-50%) scale(0);
+  opacity:0;
+}
+#ripple.fire{animation:crpl .48s ease-out forwards}
+@keyframes crpl{0%{transform:translate(-50%,-50%) scale(0);opacity:.7}100%{transform:translate(-50%,-50%) scale(1.8);opacity:0}}
+@media(max-width:768px){#cur,#ring,.ctrail,#ripple{display:none}}
 #bg{position:fixed;inset:0;z-index:0;pointer-events:none}
 .scanlines{position:fixed;inset:0;z-index:2;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.04) 2px,rgba(0,0,0,.04) 4px);pointer-events:none}
 nav{position:fixed;top:0;left:0;right:0;z-index:600;display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:60px}
@@ -291,6 +332,87 @@ a[href*="/demos/"]:hover{border-bottom-color:#5dd8d8}
 .claimid a:hover{opacity:.75}
 /* Site-map overlay links — keep as-is, no file styling */
 .mo-col a{border-bottom:none}
+/* ════════════════════════════════════════
+   CUSTOM CURSOR — verification reticle
+════════════════════════════════════════ */
+*{cursor:none!important}
+#cur-dot,#cur-ring{
+  position:fixed;top:0;left:0;
+  pointer-events:none;
+  z-index:99999;
+  border-radius:50%;
+  will-change:transform;
+}
+#cur-dot{
+  width:5px;height:5px;
+  background:var(--c);
+  box-shadow:0 0 6px var(--c);
+  transform:translate(-50%,-50%);
+  transition:background .18s,box-shadow .18s,transform .1s;
+}
+#cur-ring{
+  width:28px;height:28px;
+  border:1.5px solid rgba(0,229,255,.55);
+  box-shadow:0 0 0 0 rgba(0,229,255,0);
+  transform:translate(-50%,-50%);
+  transition:width .22s cubic-bezier(.16,1,.3,1),
+             height .22s cubic-bezier(.16,1,.3,1),
+             border-color .22s,
+             box-shadow .22s,
+             opacity .22s;
+  opacity:.7;
+}
+/* 4 corner tick marks on the ring */
+#cur-ring::before,#cur-ring::after{
+  content:'';
+  position:absolute;
+  background:var(--c);
+  transition:background .22s;
+}
+#cur-ring::before{
+  top:-1px;left:50%;
+  width:1px;height:5px;
+  transform:translateX(-50%);
+  box-shadow:0 calc(28px - 3px) 0 var(--c);
+}
+#cur-ring::after{
+  left:-1px;top:50%;
+  height:1px;width:5px;
+  transform:translateY(-50%);
+  box-shadow:calc(28px - 3px) 0 0 var(--c);
+}
+/* Hover state — locked on */
+body.cur-hover #cur-dot{
+  background:var(--ok);
+  box-shadow:0 0 10px var(--ok),0 0 22px rgba(0,255,153,.35);
+  transform:translate(-50%,-50%) scale(1.6);
+}
+body.cur-hover #cur-ring{
+  width:42px;height:42px;
+  border-color:rgba(0,255,153,.75);
+  box-shadow:0 0 16px rgba(0,255,153,.18);
+  opacity:1;
+}
+body.cur-hover #cur-ring::before{
+  background:var(--ok);
+  box-shadow:0 calc(42px - 3px) 0 var(--ok);
+}
+body.cur-hover #cur-ring::after{
+  background:var(--ok);
+  box-shadow:calc(42px - 3px) 0 0 var(--ok);
+}
+/* Click flash */
+body.cur-click #cur-ring{
+  width:18px;height:18px;
+  opacity:1;
+  border-color:rgba(0,255,153,1);
+  box-shadow:0 0 28px rgba(0,255,153,.55);
+}
+/* Err hover — red targets */
+body.cur-err #cur-dot{background:var(--err);box-shadow:0 0 10px var(--err)}
+body.cur-err #cur-ring{border-color:rgba(255,64,96,.7);box-shadow:0 0 14px rgba(255,64,96,.2)}
+body.cur-err #cur-ring::before{background:var(--err);box-shadow:0 calc(28px - 3px) 0 var(--err)}
+body.cur-err #cur-ring::after{background:var(--err);box-shadow:calc(28px - 3px) 0 0 var(--err)}
 /* Segment chip links */
 .seg-chip{cursor:pointer}
 a.seg-chip{text-decoration:none;display:inline-block}
@@ -635,7 +757,10 @@ a.soon-chip{border-bottom:none!important}
 </style>
 </head>
 <body>
-<div id="cur"></div><div id="ring"></div>
+<!-- verification reticle cursor -->
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+<div id="ripple"></div>
 <canvas id="bg"></canvas>
 <div class="scanlines"></div>
 
@@ -1958,6 +2083,77 @@ a.soon-chip{border-bottom:none!important}
     });
   },{threshold:0.25});
   io.observe(origin);
+})();
+</script>
+<script>
+/* ════════════════════════════════════════
+   VERIFICATION RETICLE CURSOR
+   dot = exact mouse pos
+   ring = lerp follow (lag = 0.12)
+   states: idle | hover-ok | hover-err | click
+════════════════════════════════════════ */
+(function(){
+  var dot=document.getElementById('cur-dot');
+  var ring=document.getElementById('cur-ring');
+  if(!dot||!ring)return;
+
+  var mx=window.innerWidth/2,my=window.innerHeight/2;
+  var rx=mx,ry=my;
+  var LAG=0.11;          /* ring lerp speed (lower = more lag) */
+  var raf=null;
+  var body=document.body;
+
+  /* — mouse tracking */
+  document.addEventListener('mousemove',function(e){
+    mx=e.clientX; my=e.clientY;
+    dot.style.transform='translate('+mx+'px,'+my+'px) translate(-50%,-50%)';
+  },{ passive:true });
+
+  /* — hover detection: green for links/buttons, red for .err/.warn elements */
+  var ERR_SEL='.err,.warn,[data-err],a[href*=".yaml"],a[href*="known_faults"]';
+  var OK_SEL='a,button,.cta,.btn,.seg-chip';
+
+  document.addEventListener('mouseover',function(e){
+    var t=e.target;
+    if(t.closest(ERR_SEL)){
+      body.classList.remove('cur-hover');
+      body.classList.add('cur-err');
+    } else if(t.closest(OK_SEL)){
+      body.classList.remove('cur-err');
+      body.classList.add('cur-hover');
+    }
+  });
+  document.addEventListener('mouseout',function(e){
+    var t=e.relatedTarget;
+    if(!t||(!t.closest(OK_SEL)&&!t.closest(ERR_SEL))){
+      body.classList.remove('cur-hover','cur-err');
+    }
+  });
+
+  /* — click flash */
+  document.addEventListener('mousedown',function(){
+    body.classList.add('cur-click');
+  });
+  document.addEventListener('mouseup',function(){
+    body.classList.remove('cur-click');
+  });
+
+  /* — hide when leaving window */
+  document.addEventListener('mouseleave',function(){
+    dot.style.opacity='0'; ring.style.opacity='0';
+  });
+  document.addEventListener('mouseenter',function(){
+    dot.style.opacity=''; ring.style.opacity='';
+  });
+
+  /* — lerp loop */
+  function loop(){
+    rx+=(mx-rx)*LAG;
+    ry+=(my-ry)*LAG;
+    ring.style.transform='translate('+rx.toFixed(2)+'px,'+ry.toFixed(2)+'px) translate(-50%,-50%)';
+    raf=requestAnimationFrame(loop);
+  }
+  loop();
 })();
 </script>
 </body>
