@@ -3049,3 +3049,84 @@ a.soon-chip{border-bottom:none!important}
   /* — hide when leaving window */
   document.addEventListener('mouseleave',function(){
     dot.style.opacity='0'; ring.style.opacity='0';
+  });
+  document.addEventListener('mouseenter',function(){
+    dot.style.opacity=''; ring.style.opacity='';
+  });
+
+  /* ── RAF lerp loop ── */
+  function loop(){
+    rx+=(mx-rx)*LAG;
+    ry+=(my-ry)*LAG;
+    ring.style.transform='translate('+rx.toFixed(2)+'px,'+ry.toFixed(2)+'px) translate(-50%,-50%)';
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+</script>
+
+<style>
+/* ════════════════════════════════════════
+   PURE WHITE .hw — FULL REVEAL ANIMATION
+   Starts ghost → blazes to full white → fades back
+   + vertical scan stripe sweeping across
+════════════════════════════════════════ */
+
+/* Override previous hw-ghost with upgraded version */
+h2 .hw,
+h2.vis .hw {
+  color: rgba(255,255,255,.15) !important;
+  position: relative;
+  display: inline-block;
+  animation: hw-reveal 7s ease-in-out infinite !important;
+  isolation: isolate;
+}
+
+/* Scan stripe pseudo-element */
+h2 .hw::after {
+  content: '';
+  position: absolute;
+  top: -8%;
+  left: -15%;
+  width: 35%;
+  height: 120%;
+  background: linear-gradient(105deg,
+    transparent 0%,
+    rgba(255,255,255,.0) 30%,
+    rgba(255,255,255,.55) 48%,
+    rgba(255,255,255,.75) 52%,
+    rgba(255,255,255,.0) 70%,
+    transparent 100%
+  );
+  pointer-events: none;
+  animation: hw-scan 7s ease-in-out infinite;
+  mix-blend-mode: overlay;
+}
+
+/* Stagger per heading */
+h2:nth-of-type(2n)   .hw { animation-delay: 0s !important; }
+h2:nth-of-type(2n)   .hw::after { animation-delay: 0s; }
+h2:nth-of-type(2n+1) .hw { animation-delay: 2.8s !important; }
+h2:nth-of-type(2n+1) .hw::after { animation-delay: 2.8s; }
+h2:nth-of-type(3n)   .hw { animation-delay: 1.4s !important; }
+h2:nth-of-type(3n)   .hw::after { animation-delay: 1.4s; }
+
+@keyframes hw-reveal {
+  0%          { color: rgba(255,255,255,.10); text-shadow: none; }
+  18%         { color: rgba(255,255,255,.38); text-shadow: 0 0 20px rgba(255,255,255,.12); }
+  28%, 42%    { color: rgba(255,255,255,.96); text-shadow: 0 0 16px rgba(255,255,255,.55), 0 0 48px rgba(255,255,255,.22), 0 0 90px rgba(255,255,255,.08); }
+  58%         { color: rgba(255,255,255,.32); text-shadow: 0 0 10px rgba(255,255,255,.08); }
+  72%, 100%   { color: rgba(255,255,255,.10); text-shadow: none; }
+}
+
+@keyframes hw-scan {
+  0%    { left: -35%; opacity: 0; }
+  14%   { opacity: 0; }
+  22%   { opacity: 1; left: -35%; }
+  50%   { left: 115%; opacity: 0.85; }
+  55%, 100% { left: 115%; opacity: 0; }
+}
+</style>
+
+</body>
+</html>
