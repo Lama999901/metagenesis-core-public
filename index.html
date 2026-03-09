@@ -94,8 +94,35 @@ body.mg-ready .word-trust .hspan{animation:slidein .85s .31s cubic-bezier(.16,1,
 .div{height:1px;background:var(--ln);position:relative;z-index:10}
 .stag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--txt3);display:flex;align-items:center;gap:12px;margin-bottom:20px}
 .stag::before{content:'';width:20px;height:1px;background:var(--txt3)}
-h2{font-family:var(--fd);font-size:clamp(36px,4vw,64px);font-weight:900;line-height:1;letter-spacing:-.03em;margin-bottom:20px}
-.sdesc{font-size:15px;color:var(--txt2);max-width:560px;line-height:1.8;margin-bottom:60px;font-weight:300}
+h2{font-family:var(--fd);font-size:clamp(36px,4vw,64px);font-weight:900;line-height:1;letter-spacing:-.03em;margin-bottom:20px;position:relative;overflow:visible}
+h2::before{content:attr(data-glitch);position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;font-family:var(--fd);font-size:clamp(36px,4vw,64px);font-weight:900;line-height:1;letter-spacing:-.03em;color:var(--err);clip-path:polygon(0 18%,100% 18%,100% 42%,0 42%);opacity:0;animation:h2gl1 4.5s 0.6s infinite}
+h2::after{content:attr(data-glitch);position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;font-family:var(--fd);font-size:clamp(36px,4vw,64px);font-weight:900;line-height:1;letter-spacing:-.03em;color:var(--c);clip-path:polygon(0 55%,100% 55%,100% 80%,0 80%);opacity:0;animation:h2gl2 4.5s 0.75s infinite}
+@keyframes h2gl1{
+  0%,70%,100%{opacity:0;transform:none}
+  71%{opacity:1;transform:translateX(-7px) skewX(-2.5deg)}
+  73%{opacity:.9;transform:translateX(5px)}
+  75%{opacity:1;transform:translateX(-3px) skewX(-1deg)}
+  77%{opacity:0;transform:none}
+}
+@keyframes h2gl2{
+  0%,70%,100%{opacity:0;transform:none}
+  71%{opacity:1;transform:translateX(7px) skewX(2.5deg)}
+  73%{opacity:.9;transform:translateX(-4px)}
+  75%{opacity:1;transform:translateX(2px) skewX(1deg)}
+  77%{opacity:0;transform:none}
+}
+h2.vis{
+  animation:h2glow 4.5s 0.4s ease-in-out infinite;
+}
+@keyframes h2glow{
+  0%,65%,100%{text-shadow:none}
+  70%{text-shadow:0 0 20px rgba(0,229,255,.4),0 0 50px rgba(0,229,255,.2),0 0 90px rgba(0,229,255,.08)}
+  72%{text-shadow:0 0 40px rgba(0,229,255,.7),0 0 90px rgba(0,229,255,.35),0 0 160px rgba(0,229,255,.15)}
+  75%{text-shadow:0 0 60px rgba(0,229,255,.5),0 0 110px rgba(0,229,255,.2)}
+  80%{text-shadow:0 0 18px rgba(0,229,255,.18)}
+  82%{text-shadow:none}
+}
+.sdesc{font-family:var(--fs);font-size:clamp(16px,1.4vw,19px);font-style:italic;color:rgba(232,244,248,.72);max-width:580px;line-height:1.75;margin-bottom:60px;font-weight:400;letter-spacing:.015em}
 .pp{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--ln);overflow:hidden}
 .ppc{padding:56px 48px;position:relative;overflow:hidden}
 .ppc:first-child{border-right:1px solid var(--ln)}
@@ -198,9 +225,9 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
 .flinks{display:flex;gap:28px}
 .flinks a{font-size:11px;color:var(--txt3);text-decoration:none;letter-spacing:.06em;transition:color .2s}
 .flinks a:hover{color:var(--txt)}
-.rv{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.rv{opacity:0;transform:translateY(32px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1)}
 .rv.vis{opacity:1;transform:none}
-.d1{transition-delay:.05s}.d2{transition-delay:.15s}.d3{transition-delay:.25s}.d4{transition-delay:.35s}
+.d1{transition-delay:.06s}.d2{transition-delay:.18s}.d3{transition-delay:.3s}.d4{transition-delay:.42s}
 .note-block{margin-top:20px;padding:16px 20px;border:1px solid var(--ln);font-size:12px;color:var(--txt3)}
 .note-block code{color:var(--c)}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;z-index:700}
@@ -701,7 +728,7 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
 <div class="div"></div>
 <div class="w"><section class="sec">
   <div class="stag rv">The Problem</div>
-  <h2 class="rv d1">AI makes claims.<br>Nobody can verify.</h2>
+  <h2 class="rv d1" data-glitch="AI makes claims. Nobody can verify.">AI makes claims.<br>Nobody can verify.</h2>
   <p class="sdesc rv d2">Every ML team claims state-of-the-art results. Every simulation produces numbers. Every pipeline outputs certificates. There is no standard way to check any of it independently.</p>
   <div class="pp rv d3">
     <div class="ppc"><span class="ppchip x">Without MetaGenesis</span><h3>Trust the number.<br>Or re-run everything.</h3><p>A reviewer cannot check a reported ML accuracy without the original model, training data, and compute environment. The only options are blind trust or complete reproduction.</p></div>
@@ -743,7 +770,7 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
 <div class="div"></div>
 <div class="w"><section class="sec" id="protocol">
   <div class="stag rv">How It Works</div>
-  <h2 class="rv d1">Four steps.<br>Immutable proof.</h2>
+  <h2 class="rv d1" data-glitch="Four steps. Immutable proof.">Four steps.<br>Immutable proof.</h2>
   <p class="sdesc rv d2">Every run produces an evidence bundle with two independent verification layers. Any deviation surfaces as FAIL with a specific reason.</p>
   <div class="pipe rv d3">
     <div class="prow active"><div class="pnum">01</div><div class="ptitle"><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/runner.py" target="_blank">runner.run_job()</a></div><div class="pdesc">Executes computation &#8594; produces run_artifact.json + ledger_snapshot.jsonl</div><div class="pstat ok">&#8594; artifact</div></div>
@@ -756,7 +783,7 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
 <div class="div"></div>
 <div class="w"><section class="sec">
   <div class="stag rv">Live Demo</div>
-  <h2 class="rv d1">Five minutes<br>from zero to proof.</h2>
+  <h2 class="rv d1" data-glitch="Five minutes from zero to proof.">Five minutes<br>from zero to proof.</h2>
 <p class="sdesc rv d2">Clone the repo. Run one command. Your result is now cryptographically anchored, semantically verified, and independently auditable by anyone — offline, without trusting you.</p>
   <div class="term rv d2">
     <div class="termh"><div class="thdot"></div><div class="thdot"></div><div class="thdot"></div><span class="thtit">bash &#8212; metagenesis-core-public</span></div>
@@ -1492,7 +1519,7 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
             ph: Math.random()*Math.PI*2, sp: 0.09+Math.random()*0.17,
             rot:  Math.random()*Math.PI*2, rspd: (Math.random()-0.5)*0.0013,
             rot2: Math.random()*Math.PI*2, rspd2:(Math.random()-0.5)*0.0022,
-            dna:  Math.floor(Math.random()*5),
+            dna:  Math.floor(Math.random()*9),
             orb:  Math.random()*Math.PI*2, ospd:0.003+Math.random()*0.005,
             ph2:  Math.random()*Math.PI*2, sp2: 0.07+Math.random()*0.26
           });
@@ -1589,25 +1616,84 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
           ctx.fillStyle='rgba(0,'+gv+','+bv+','+(0.14+pulse*0.15)+')'; ctx.fill();
 
         }else if(h.dna===3){
-          // ДНК-3: снежинка — 6 лучей
-          for(var i=0;i<6;i++){
-            var as=Math.PI/3*i+h.rot;
-            ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+ir*0.76*Math.cos(as),y+ir*0.76*Math.sin(as));
-            ctx.strokeStyle='rgba(0,'+gv+','+bv+','+(ia*(0.55+i%2*0.18))+')';
-            ctx.lineWidth=0.20+pulse*0.15; ctx.stroke();
+        // ДНК-3: снежинка — 6 лучей
+        for(var i=0;i<6;i++){
+        var as=Math.PI/3*i+h.rot;
+        ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+ir*0.76*Math.cos(as),y+ir*0.76*Math.sin(as));
+        ctx.strokeStyle='rgba(0,'+gv+','+bv+','+(ia*(0.55+i%2*0.18))+')'; 
+        ctx.lineWidth=0.20+pulse*0.15; ctx.stroke();
+        }
+        ctx.beginPath(); ctx.arc(x,y,0.75+pulse2*0.65,0,Math.PI*2);
+        ctx.fillStyle='rgba(0,'+gv+','+bv+','+(0.16+pulse2*0.18)+')'; ctx.fill();
+
+        }else if(h.dna===4){
+        // ДНК-4: малый гексагон + два орбитных спутника
+        ctx.fillStyle='rgba(0,0,0,0)';
+        hp(x,y,ir*0.60,h.rot2); ctx.fill(); ctx.stroke();
+        var sr=ir*0.76;
+        [[h.orb,0.85+pulse*0.45],[h.orb+Math.PI,0.65+pulse2*0.38]].forEach(function(od){
+        ctx.beginPath(); ctx.arc(x+sr*Math.cos(od[0]),y+sr*Math.sin(od[0]),od[1],0,Math.PI*2);
+        ctx.fillStyle='rgba(0,'+gv+','+bv+','+(0.15+pulse*0.14)+')'; ctx.fill();
+        });
+
+        }else if(h.dna===5){
+          // ДНК-5: символ из алфавита (A T G C 0 1 Ψ Σ Ω Δ ∂ φ)
+          var SYMS=['A','T','G','C','0','1','Ψ','Σ','Ω','Δ','∂','φ','λ','μ','∇','⊕','01','FF','7E','∞'];
+          var sym=SYMS[Math.floor((h.ph*7.3+h.wx*13+h.wy*17)%SYMS.length)];
+          var fsize=Math.floor(ir*1.05+pulse*ir*0.18);
+          ctx.save();
+          ctx.globalAlpha=Math.min(0.055+pulse*0.07+crest*0.055, 0.21);
+          ctx.font='600 '+fsize+'px "IBM Plex Mono",monospace';
+          ctx.fillStyle='rgb(0,'+gv+','+bv+')';
+          ctx.textAlign='center'; ctx.textBaseline='middle';
+          ctx.fillText(sym,x,y);
+          ctx.restore();
+
+        }else if(h.dna===6){
+          // ДНК-6: крест + диагональный перекрёст (hash #)
+          var hl=ir*0.68;
+          [0,Math.PI/2,Math.PI/4,Math.PI*3/4].forEach(function(ang,idx){
+            ctx.beginPath();
+            ctx.moveTo(x+hl*Math.cos(ang+h.rot),y+hl*Math.sin(ang+h.rot));
+            ctx.lineTo(x+hl*Math.cos(ang+h.rot+Math.PI),y+hl*Math.sin(ang+h.rot+Math.PI));
+            ctx.strokeStyle='rgba(0,'+gv+','+bv+','+(ia*(idx<2?1:0.45))+')'; ctx.lineWidth=0.20+pulse*0.14; ctx.stroke();
+          });
+          ctx.beginPath(); ctx.arc(x,y,0.7+pulse*0.5,0,Math.PI*2);
+          ctx.fillStyle='rgba(0,'+gv+','+bv+','+(0.18+pulse*0.16)+')'; ctx.fill();
+
+        }else if(h.dna===7){
+          // ДНК-7: бинарные биты по окружности
+          var bits=[1,0,1,1,0,1,0,0]; // 8 битов
+          for(var i=0;i<8;i++){
+            var ab=Math.PI/4*i+h.rot2;
+            var br=ir*(bits[i]?0.82:0.50);
+            ctx.beginPath(); ctx.arc(x+br*Math.cos(ab),y+br*Math.sin(ab),0.7+pulse*(bits[i]?0.5:0.25),0,Math.PI*2);
+            ctx.fillStyle='rgba(0,'+gv+','+bv+','+(bits[i]?(0.18+pulse*0.15):(0.06+pulse*0.06))+')'; ctx.fill();
           }
-          ctx.beginPath(); ctx.arc(x,y,0.75+pulse2*0.65,0,Math.PI*2);
-          ctx.fillStyle='rgba(0,'+gv+','+bv+','+(0.16+pulse2*0.18)+')'; ctx.fill();
 
         }else{
-          // ДНК-4: малый гексагон + два орбитных спутника
-          ctx.fillStyle='rgba(0,0,0,0)';
-          hp(x,y,ir*0.60,h.rot2); ctx.fill(); ctx.stroke();
-          var sr=ir*0.76;
-          [[h.orb,0.85+pulse*0.45],[h.orb+Math.PI,0.65+pulse2*0.38]].forEach(function(od){
-            ctx.beginPath(); ctx.arc(x+sr*Math.cos(od[0]),y+sr*Math.sin(od[0]),od[1],0,Math.PI*2);
-            ctx.fillStyle='rgba(0,'+gv+','+bv+','+(0.15+pulse*0.14)+')'; ctx.fill();
-          });
+          // ДНК-8: вращающаяся ДНК-лестница (две дуги со связями)
+          var ang1=h.rot, ang2=h.rot+Math.PI;
+          var stepsD=4;
+          for(var i=0;i<=stepsD;i++){
+            var t2=i/stepsD;
+            var a1=ang1+t2*Math.PI*1.4;
+            var a2=ang2+t2*Math.PI*1.4;
+            var r1=ir*(0.30+pulse*0.08), r2=ir*(0.70+pulse*0.06);
+            var px1=x+r1*Math.cos(a1), py1=y+r1*Math.sin(a1);
+            var px2=x+r2*Math.cos(a2), py2=y+r2*Math.sin(a2);
+            if(i>0){
+              ctx.beginPath(); ctx.moveTo(ppx1,ppy1); ctx.lineTo(px1,py1);
+              ctx.strokeStyle='rgba(0,'+gv+','+bv+','+(ia*0.8)+')'; ctx.lineWidth=0.22+pulse*0.12; ctx.stroke();
+              ctx.beginPath(); ctx.moveTo(ppx2,ppy2); ctx.lineTo(px2,py2);
+              ctx.strokeStyle='rgba(0,'+gv+','+bv+','+(ia*0.5)+')'; ctx.lineWidth=0.18+pulse*0.10; ctx.stroke();
+            }
+            if(i%2===0){
+              ctx.beginPath(); ctx.moveTo(px1,py1); ctx.lineTo(px2,py2);
+              ctx.strokeStyle='rgba(0,'+gv+','+bv+','+(ia*0.35)+')'; ctx.lineWidth=0.14; ctx.stroke();
+            }
+            var ppx1=px1, ppy1=py1, ppx2=px2, ppy2=py2;
+          }
         }
       });
 
