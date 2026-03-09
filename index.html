@@ -284,27 +284,32 @@ h2 .hgrad-gn, h3.hgrad-gn{
   50%{background-position:100% 50%}
 }
 
-/* ── .hg (green) — PROOF scan + glow ── */
+/* ── .hg (green) — точная копия PROOF scan из хедера ── */
 h2.vis .hg{
   position:relative; display:inline-block; overflow:hidden;
-  animation:hg-glow 4.5s ease-in-out infinite;
+  animation:hg-glow 4s 1s ease-in-out infinite;
 }
 h2.vis .hg::after{
   content:'';
-  position:absolute;left:-3%;width:106%;top:-5%;height:1.5px;
-  background:linear-gradient(90deg,transparent,rgba(0,255,153,.9) 30%,rgba(0,255,153,1) 50%,rgba(0,255,153,.9) 70%,transparent);
-  box-shadow:0 0 10px rgba(0,255,153,.65),0 0 24px rgba(0,255,153,.28);
-  animation:span-proofscan 4.2s ease-in-out infinite;
+  position:absolute; left:-3%; width:106%; top:-5%; height:3px;
+  background:linear-gradient(90deg,
+    transparent,
+    rgba(0,255,153,.85) 25%,
+    rgba(0,255,153,1)   50%,
+    rgba(0,255,153,.85) 75%,
+    transparent);
+  box-shadow:0 0 14px rgba(0,255,153,.7), 0 0 32px rgba(0,255,153,.32);
+  animation:span-proofscan 3.8s ease-in-out infinite;
   pointer-events:none;
 }
 @keyframes hg-glow{
-  0%,100%{text-shadow:0 0 30px rgba(0,255,153,.12),0 0 60px rgba(0,255,153,.06)}
-  50%{text-shadow:0 0 65px rgba(0,255,153,.52),0 0 130px rgba(0,255,153,.22)}
+  0%,100%{text-shadow:0 0 40px rgba(0,255,153,.15),0 0 80px rgba(0,255,153,.07)}
+  50%{text-shadow:0 0 80px rgba(0,255,153,.55),0 0 200px rgba(0,255,153,.22)}
 }
 @keyframes span-proofscan{
   0%{top:-5%;opacity:0}
   7%{opacity:1}
-  78%{top:110%;opacity:.72}
+  78%{top:110%;opacity:.75}
   88%,100%{top:110%;opacity:0}
 }
 
@@ -360,16 +365,21 @@ h2.vis .hr{
 h2.vis .hr::after{
   content:'';
   position:absolute;
-  top:50%; left:-1%;
-  width:0; height:2px;
-  background:linear-gradient(90deg, transparent 0%, #ff4060 6%, #ff4060 94%, transparent 100%);
-  box-shadow:0 0 10px rgba(255,64,96,.9), 0 0 28px rgba(255,64,96,.45);
+  top:52%; left:-1%;
+  width:0; height:3px;
+  background:linear-gradient(90deg,
+    transparent 0%,
+    #00ff99 5%,
+    #00ff99 95%,
+    transparent 100%);
+  box-shadow:0 0 12px rgba(0,255,153,.9), 0 0 32px rgba(0,255,153,.5);
   transform:translateY(-50%);
-  animation:hr-strike .55s cubic-bezier(.77,0,.18,1) .3s forwards;
+  animation:hr-strike-green .65s cubic-bezier(.77,0,.18,1) .35s forwards;
+  pointer-events:none;
 }
-@keyframes hr-strike{
+@keyframes hr-strike-green{
   from{width:0; opacity:0}
-  3%{opacity:1}
+  4%{opacity:1}
   to{width:102%; opacity:1}
 }
 @keyframes hr-glow{
