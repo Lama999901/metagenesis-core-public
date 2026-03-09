@@ -2329,16 +2329,7 @@ a.soon-chip{border-bottom:none!important}
     });
   }
 
-  var cur=document.getElementById('cur'),ring=document.getElementById('ring');
-  if(cur&&ring){
-    var mx=0,my=0,rx=0,ry=0;
-    document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
-    (function L(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(L);})();
-    document.querySelectorAll('a,button').forEach(function(el){
-      el.addEventListener('mouseenter',function(){ring.style.transform='translate(-50%,-50%) scale(2)';ring.style.borderColor='var(--c)';});
-      el.addEventListener('mouseleave',function(){ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='var(--c4)';});
-    });
-  }
+  /* old #cur/#ring removed — replaced by #cur-dot/#cur-ring system */
 
   var cv=document.getElementById('bg'),ctx=cv?cv.getContext('2d'):null;
   if(ctx){
@@ -3067,66 +3058,102 @@ a.soon-chip{border-bottom:none!important}
 
 <style>
 /* ════════════════════════════════════════
-   PURE WHITE .hw — FULL REVEAL ANIMATION
-   Starts ghost → blazes to full white → fades back
-   + vertical scan stripe sweeping across
-════════════════════════════════════════ */
-
-/* Override previous hw-ghost with upgraded version */
+   .hw — semi-transparent white words
+   Subtle pulse only — NO blur, always readable
+   ════════════════════════════════════════ */
 h2 .hw,
 h2.vis .hw {
-  color: rgba(255,255,255,.15) !important;
+  color: rgba(238,247,251,.30) !important;
   position: relative;
   display: inline-block;
-  animation: hw-reveal 7s ease-in-out infinite !important;
-  isolation: isolate;
+  animation: hw-pulse 6s ease-in-out infinite !important;
+}
+/* REMOVE broken ::after that caused blur */
+h2 .hw::after { display: none !important; content: none !important; }
+
+@keyframes hw-pulse {
+  0%,100% { color: rgba(238,247,251,.22); }
+  40%,55% { color: rgba(238,247,251,.70); text-shadow: 0 0 18px rgba(238,247,251,.15); }
 }
 
-/* Scan stripe pseudo-element */
-h2 .hw::after {
+/* Stagger */
+h2:nth-of-type(2n)   .hw { animation-delay: 0s !important; }
+h2:nth-of-type(2n+1) .hw { animation-delay: 2.5s !important; }
+h2:nth-of-type(3n)   .hw { animation-delay: 1.3s !important; }
+
+/* ════════════════════════════════════════
+   PURE WHITE main h2 text (no class)
+   Precision glitch-scan: text always readable
+   Subtle scan line + occasional digit-glitch
+   ════════════════════════════════════════ */
+
+/* Scan: thin bright horizontal line sweeps top→bottom over the h2 */
+h2.vis::before {
   content: '';
   position: absolute;
-  top: -8%;
-  left: -15%;
-  width: 35%;
-  height: 120%;
-  background: linear-gradient(105deg,
+  left: -4%;
+  width: 108%;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
     transparent 0%,
-    rgba(255,255,255,.0) 30%,
-    rgba(255,255,255,.55) 48%,
-    rgba(255,255,255,.75) 52%,
-    rgba(255,255,255,.0) 70%,
+    rgba(238,247,251,.0) 15%,
+    rgba(238,247,251,.55) 40%,
+    rgba(255,255,255,.90) 50%,
+    rgba(238,247,251,.55) 60%,
+    rgba(238,247,251,.0) 85%,
     transparent 100%
   );
   pointer-events: none;
-  animation: hw-scan 7s ease-in-out infinite;
-  mix-blend-mode: overlay;
+  /* transform instead of top — GPU accelerated, no layout reflow */
+  transform: translateY(-8px);
+  animation: h2-scan 16s ease-in-out infinite;
+  z-index: 2;
+  will-change: transform, opacity;
 }
 
-/* Stagger per heading */
-h2:nth-of-type(2n)   .hw { animation-delay: 0s !important; }
-h2:nth-of-type(2n)   .hw::after { animation-delay: 0s; }
-h2:nth-of-type(2n+1) .hw { animation-delay: 2.8s !important; }
-h2:nth-of-type(2n+1) .hw::after { animation-delay: 2.8s; }
-h2:nth-of-type(3n)   .hw { animation-delay: 1.4s !important; }
-h2:nth-of-type(3n)   .hw::after { animation-delay: 1.4s; }
+/* Different delays per heading so they stagger */
+h2:nth-of-type(2).vis::before  { animation-delay: 0s; }
+h2:nth-of-type(3).vis::before  { animation-delay: 2.1s; }
+h2:nth-of-type(4).vis::before  { animation-delay: 4.3s; }
+h2:nth-of-type(5).vis::before  { animation-delay: 1.0s; }
+h2:nth-of-type(6).vis::before  { animation-delay: 3.5s; }
+h2:nth-of-type(7).vis::before  { animation-delay: 0.5s; }
+h2:nth-of-type(8).vis::before  { animation-delay: 2.7s; }
+h2:nth-of-type(9).vis::before  { animation-delay: 4.9s; }
+h2:nth-of-type(10).vis::before { animation-delay: 1.6s; }
+h2:nth-of-type(11).vis::before { animation-delay: 3.2s; }
+h2:nth-of-type(12).vis::before { animation-delay: 0.9s; }
 
-@keyframes hw-reveal {
-  0%          { color: rgba(255,255,255,.10); text-shadow: none; }
-  18%         { color: rgba(255,255,255,.38); text-shadow: 0 0 20px rgba(255,255,255,.12); }
-  28%, 42%    { color: rgba(255,255,255,.96); text-shadow: 0 0 16px rgba(255,255,255,.55), 0 0 48px rgba(255,255,255,.22), 0 0 90px rgba(255,255,255,.08); }
-  58%         { color: rgba(255,255,255,.32); text-shadow: 0 0 10px rgba(255,255,255,.08); }
-  72%, 100%   { color: rgba(255,255,255,.10); text-shadow: none; }
-}
-
-@keyframes hw-scan {
-  0%    { left: -35%; opacity: 0; }
-  14%   { opacity: 0; }
-  22%   { opacity: 1; left: -35%; }
-  50%   { left: 115%; opacity: 0.85; }
-  55%, 100% { left: 115%; opacity: 0; }
+@keyframes h2-scan {
+  0%          { transform: translateY(-8px);   opacity: 0; }
+  6%          { transform: translateY(-8px);   opacity: 0; }
+  14%         { transform: translateY(0px);    opacity: 1; }
+  80%         { transform: translateY(calc(var(--h2h, 80px) + 8px)); opacity: .6; }
+  88%, 100%   { transform: translateY(calc(var(--h2h, 80px) + 8px)); opacity: 0; }
 }
 </style>
 
+<script>
+/* Set --h2h CSS var on each h2 so scan line travels exactly its height */
+(function(){
+  function setH2Heights(){
+    document.querySelectorAll('h2.vis').forEach(function(h){
+      h.style.setProperty('--h2h', h.offsetHeight + 'px');
+    });
+  }
+  setH2Heights();
+  window.addEventListener('resize', setH2Heights);
+  // Also run when .vis is added via IntersectionObserver
+  var mo = new MutationObserver(function(muts){
+    muts.forEach(function(m){
+      if(m.target.tagName==='H2') setH2Heights();
+    });
+  });
+  document.querySelectorAll('h2').forEach(function(h){
+    mo.observe(h, {attributes:true, attributeFilter:['class']});
+  });
+})();
+</script>
 </body>
 </html>
