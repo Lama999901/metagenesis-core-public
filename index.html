@@ -2591,7 +2591,7 @@ a.soon-chip{border-bottom:none!important}
       vg.addColorStop(1,   'rgba(4,8,26,0.48)');
       ctx.fillStyle=vg; ctx.fillRect(0,0,W,H);
 
-      requestAnimationFrame(fr);
+      if(!document.hidden) requestAnimationFrame(fr);
     })();
   }
 
@@ -2796,7 +2796,6 @@ a.soon-chip{border-bottom:none!important}
 
   var t=0;
   function fr(){
-    requestAnimationFrame(fr);
     c.clearRect(0,0,W,H);
     t+=0.016;
 
@@ -2881,7 +2880,27 @@ a.soon-chip{border-bottom:none!important}
     c.lineWidth=0.8;
     c.stroke();
   }
-  fr();
+  /* — pause RAF when canvas not visible — saves CPU/GPU entirely — */
+  var isVisible = false;
+  var rafId = null;
+
+  function startLoop(){ if(!rafId){ rafId = requestAnimationFrame(tick); } }
+  function stopLoop(){ if(rafId){ cancelAnimationFrame(rafId); rafId=null; } }
+  function tick(){ fr(); rafId = requestAnimationFrame(tick); }
+
+  /* Override fr to not auto-call requestAnimationFrame */
+  /* Instead tick() drives the loop */
+
+  var visObs = new IntersectionObserver(function(entries){
+    if(entries[0].isIntersecting){
+      isVisible = true;
+      startLoop();
+    } else {
+      isVisible = false;
+      stopLoop();
+    }
+  }, {threshold: 0.01});
+  visObs.observe(cv);
 
   /* — slide-in trigger — */
   var io=new IntersectionObserver(function(entries){
