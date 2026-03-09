@@ -1476,39 +1476,27 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
     var W,H;
     function sz(){W=cv.width=innerWidth;H=cv.height=innerHeight;}sz();
     window.addEventListener('resize',sz);
-    var R=50,hexes=[],hexMap={};
+    var R=50,hexes=[];
     for(var r=0;r<38;r++)for(var c=0;c<34;c++){
-      var h={
+      hexes.push({
         col:c,row:r,
-        ox:c*0.55+r*0.38,oy:c*0.38+r*0.55,od:c*0.18-r*0.12,
+        ox:c*0.55+r*0.38, oy:c*0.38+r*0.55, od:c*0.18-r*0.12,
         rad:R*(0.78+Math.random()*0.08),
-        ph:Math.random()*Math.PI*2,
-        sp:0.35+Math.random()*0.9,
-        rot:Math.random()*Math.PI*2,       // угол внутр. формы
-        rot2:Math.random()*Math.PI*2,      // угол второго слоя (contra)
-        rspd:(Math.random()-0.5)*0.004,    // скорость вращения
-        rspd2:(Math.random()-0.5)*0.007,   // скорость второго слоя
-        dna:Math.floor(Math.random()*5),   // тип внутренности 0-4
-        orb:Math.random()*Math.PI*2,       // фаза орбиты точки
-        ospd:0.008+Math.random()*0.018,    // скорость орбиты
-        ph2:Math.random()*Math.PI*2,       // вторая фаза дыхания
-        sp2:0.4+Math.random()*1.2,         // вторая скорость дыхания
-        charge:Math.random()*0.4,          // накопленный заряд 0→1
-        cspd:0.00008+Math.random()*0.00012, // скорость накопления (медленнее)
-        energy:0,                          // входящая энергия от соседей
-        flash:0,                           // яркость разряда (затухает)
-        neighbors:[]
-      };
-      hexes.push(h); hexMap[c+','+r]=h;
+        // внешнее дыхание
+        ph: Math.random()*Math.PI*2,
+        sp: 0.18+Math.random()*0.32,
+        // внутренная жизнь
+        rot:  Math.random()*Math.PI*2,
+        rot2: Math.random()*Math.PI*2,
+        rspd: (Math.random()-0.5)*0.0018,
+        rspd2:(Math.random()-0.5)*0.0032,
+        dna:  Math.floor(Math.random()*5),
+        orb:  Math.random()*Math.PI*2,
+        ospd: 0.004+Math.random()*0.008,
+        ph2:  Math.random()*Math.PI*2,
+        sp2:  0.15+Math.random()*0.55
+      });
     }
-    // карта соседей по hex-сетке
-    hexes.forEach(function(h){
-      var c=h.col,r=h.row,odd=r%2;
-      var nb=odd?
-        [[c-1,r],[c+1,r],[c,r-1],[c+1,r-1],[c,r+1],[c+1,r+1]]:
-        [[c-1,r],[c+1,r],[c-1,r-1],[c,r-1],[c-1,r+1],[c,r+1]];
-      nb.forEach(function(n){var nh=hexMap[n[0]+','+n[1]];if(nh)h.neighbors.push(nh);});
-    });
     function hp(cx,cy,r,angle){
       ctx.beginPath();
       for(var i=0;i<6;i++){var a=Math.PI/3*i+(angle||0);i?ctx.lineTo(cx+r*Math.cos(a),cy+r*Math.sin(a)):ctx.moveTo(cx+r*Math.cos(a),cy+r*Math.sin(a));}
@@ -1517,141 +1505,102 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
     var t=0;
     (function fr(){
       ctx.clearRect(0,0,W,H);
-      t+=0.003;
+      t+=0.0018; // очень медленно
 
-      // фаза 1: обновить физику всех клеток
       hexes.forEach(function(h){
-        h.rot+=h.rspd;
-        h.rot2+=h.rspd2;
-        h.orb+=h.ospd;
-        // накапливаем заряд (быстрее если есть входящая энергия)
-        h.charge+=h.cspd*(1+h.energy*3);
-        h.energy*=0.82; // энергия от соседей затухает быстрее
-        h.flash*=0.72;  // вспышка затухает быстрее
-        // РАЗРЯД — когда заряд переполнен
-        if(h.charge>=1){
-          h.charge=0;
-          h.flash=1;
-          // передаём энергию соседям с небольшой задержкой
-          h.neighbors.forEach(function(nb){
-            nb.energy=Math.min(1,nb.energy+0.18);
-          });
-        }
-      });
+        h.rot  += h.rspd;
+        h.rot2 += h.rspd2;
+        h.orb  += h.ospd;
 
-      // фаза 2: рисовать
-      hexes.forEach(function(h){
         var x=h.col*R*1.732+(h.row%2?R*0.866:0)-R;
         var y=h.row*R*1.5-R;
 
-        // волны фона
-        var w1=Math.sin(t*1.7+h.ox)*0.5+0.5;
-        var w2=Math.sin(t*1.05+h.oy+1.3)*0.5+0.5;
-        var w3=Math.sin(t*0.65+h.od+2.6)*0.5+0.5;
+        // три медленных волны — никаких резких скачков
+        var w1=Math.sin(t*1.1+h.ox)*0.5+0.5;
+        var w2=Math.sin(t*0.7+h.oy+1.3)*0.5+0.5;
+        var w3=Math.sin(t*0.42+h.od+2.6)*0.5+0.5;
         var flow=w1*0.5+w2*0.32+w3*0.18;
 
-        // личное дыхание
-        var pulse=Math.sin(t*h.sp*2.8+h.ph)*0.5+0.5;
+        // личное медленное дыхание
+        var pulse =Math.sin(t*h.sp *2.2+h.ph )*0.5+0.5;
+        var pulse2=Math.sin(t*h.sp2*1.8+h.ph2)*0.5+0.5;
 
-        // итоговая жизнь: волна + дыхание + заряд + вспышка + энергия соседей
-        var life=flow*0.42+pulse*0.22+h.charge*0.22+h.flash*0.10+h.energy*0.08;
-        var glow=h.flash+h.energy*0.5; // отдельная яркость для взрыва
+        // жизнь — всё плавно, без флэшей
+        var life=flow*0.55+pulse*0.28+pulse2*0.17;
 
-        var g=Math.round(180+life*52+glow*28);
-        var b=Math.round(205+life*50+glow*20);
-        g=Math.min(g,255); b=Math.min(b,255);
+        // цвет — диапазон циана без белых вспышек
+        var g=Math.round(175+life*55);
+        var b=Math.round(200+life*45);
 
-        // --- внешний гексагон ---
+        // ——— внешний гексагон: мягкий радиальный свет из центра
+        var ca=life*life*0.13;
         var rg=ctx.createRadialGradient(x,y,0,x,y,h.rad);
-        var ca=life*life*0.20+glow*0.45;
-        rg.addColorStop(0,'rgba(0,'+g+','+b+','+Math.min(ca,0.9)+')');
-        rg.addColorStop(0.5,'rgba(0,'+g+','+b+','+(ca*0.35)+')');
-        rg.addColorStop(1,'rgba(0,'+g+','+b+',0)');
-        var stroke_a=0.016+flow*0.08+pulse*0.04+glow*0.6;
-        ctx.strokeStyle='rgba(0,'+g+','+b+','+Math.min(stroke_a,0.85)+')';
+        rg.addColorStop(0,  'rgba(0,'+g+','+b+','+Math.min(ca,0.22)+')');
+        rg.addColorStop(0.5,'rgba(0,'+g+','+b+','+(ca*0.3)+')');
+        rg.addColorStop(1,  'rgba(0,'+g+','+b+',0)');
         ctx.fillStyle=rg;
-        ctx.lineWidth=0.38+flow*0.4+glow*1.4;
-        hp(x,y,h.rad,0);
-        ctx.fill();
-        ctx.stroke();
+        ctx.lineWidth=0.35+flow*0.35+pulse*0.15;
+        ctx.strokeStyle='rgba(0,'+g+','+b+','+(0.012+flow*0.055+pulse*0.025)+')';
+        hp(x,y,h.rad,0); ctx.fill(); ctx.stroke();
 
-        // --- УНИКАЛЬНЫЕ ВНУТРЕННОСТИ (по ДНК) ---
-        var pulse2=Math.sin(t*h.sp2*2.2+h.ph2)*0.5+0.5;
-        var ir=h.rad*(0.36+h.charge*0.10+h.flash*0.06);
-        var inner_a=0.05+pulse*0.10+h.charge*0.18+glow*0.55;
-        var ia=Math.min(inner_a,0.88);
-        ctx.strokeStyle='rgba(0,'+g+','+b+','+ia+')';
-        ctx.lineWidth=0.28+h.charge*0.45+glow*0.65;
+        // ——— УНИКАЛЬНЫЕ ВНУТРЕННОСТИ (по ДНК) — очень тихие
+        var ir=h.rad*0.34;
+        var ia=0.06+pulse*0.09+pulse2*0.05;
+        ctx.strokeStyle='rgba(0,'+g+','+b+','+Math.min(ia,0.28)+')';
+        ctx.lineWidth=0.25+pulse*0.2;
 
         if(h.dna===0){
-          // ДНК-0: два встречных гексагона (звезда давида)
-          ctx.fillStyle='rgba(0,'+g+','+b+','+(glow*0.10)+')';
-          hp(x,y,ir,h.rot); ctx.fill(); ctx.stroke();
-          hp(x,y,ir*0.72,h.rot+Math.PI/6); ctx.stroke();
+          // ДНК-0: два встречных гексагона
+          ctx.fillStyle='rgba(0,'+g+','+b+',0)';
+          hp(x,y,ir,h.rot);       ctx.fill(); ctx.stroke();
+          hp(x,y,ir*0.7,h.rot+Math.PI/6); ctx.stroke();
 
         }else if(h.dna===1){
-          // ДНК-1: треугольник + орбитная точка
+          // ДНК-1: треугольник + плавная орбитная точка
           ctx.beginPath();
-          for(var i=0;i<3;i++){var a=Math.PI*2/3*i+h.rot;i?ctx.lineTo(x+ir*Math.cos(a),y+ir*Math.sin(a)):ctx.moveTo(x+ir*Math.cos(a),y+ir*Math.sin(a));}
-          ctx.closePath(); ctx.fillStyle='rgba(0,'+g+','+b+','+(glow*0.08)+')'; ctx.fill(); ctx.stroke();
-          // точка на орбите
-          var dotR=ir*0.55;
-          var dx=x+dotR*Math.cos(h.orb), dy=y+dotR*Math.sin(h.orb);
-          ctx.beginPath(); ctx.arc(dx,dy,1.2+pulse2*0.8+glow*1.2,0,Math.PI*2);
-          ctx.fillStyle='rgba(0,'+g+','+b+','+(0.3+pulse2*0.4+glow*0.5)+')'; ctx.fill();
+          for(var i=0;i<3;i++){var a3=Math.PI*2/3*i+h.rot;i?ctx.lineTo(x+ir*Math.cos(a3),y+ir*Math.sin(a3)):ctx.moveTo(x+ir*Math.cos(a3),y+ir*Math.sin(a3));}
+          ctx.closePath(); ctx.fillStyle='rgba(0,'+g+','+b+',0)'; ctx.fill(); ctx.stroke();
+          var dotR=ir*0.52;
+          ctx.beginPath(); ctx.arc(x+dotR*Math.cos(h.orb),y+dotR*Math.sin(h.orb),1.0+pulse2*0.6,0,Math.PI*2);
+          ctx.fillStyle='rgba(0,'+g+','+b+','+(0.18+pulse2*0.18)+')'; ctx.fill();
 
         }else if(h.dna===2){
-          // ДНК-2: концентрические кольца — пульсируют в противофазе
-          var r1=ir*(0.9+pulse*0.08); var r2=ir*(0.55+pulse2*0.08);
-          ctx.beginPath(); ctx.arc(x,y,r1,0,Math.PI*2); ctx.stroke();
-          ctx.beginPath(); ctx.arc(x,y,r2,0,Math.PI*2);
-          ctx.strokeStyle='rgba(0,'+g+','+b+','+(ia*0.6)+')'; ctx.stroke();
-          // центральная точка
-          ctx.beginPath(); ctx.arc(x,y,1.0+glow*1.5,0,Math.PI*2);
-          ctx.fillStyle='rgba(0,'+g+','+b+','+(0.2+pulse*0.4+glow*0.6)+')'; ctx.fill();
+          // ДНК-2: два кольца в противофазе
+          ctx.beginPath(); ctx.arc(x,y,ir*(0.88+pulse*0.06),0,Math.PI*2); ctx.stroke();
+          ctx.beginPath(); ctx.arc(x,y,ir*(0.52+pulse2*0.06),0,Math.PI*2);
+          ctx.strokeStyle='rgba(0,'+g+','+b+','+(ia*0.55)+')'; ctx.stroke();
+          ctx.beginPath(); ctx.arc(x,y,0.9+pulse*0.5,0,Math.PI*2);
+          ctx.fillStyle='rgba(0,'+g+','+b+','+(0.15+pulse*0.18)+')'; ctx.fill();
 
         }else if(h.dna===3){
-          // ДНК-3: крест из 6 лучей (снежинка) вращается
+          // ДНК-3: шестилучевая снежинка
           for(var i=0;i<6;i++){
-            var a=Math.PI/3*i+h.rot;
-            var lx=x+ir*0.82*Math.cos(a), ly=y+ir*0.82*Math.sin(a);
-            ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(lx,ly);
-            ctx.strokeStyle='rgba(0,'+g+','+b+','+(ia*(0.4+i%2*0.25))+')'; ctx.lineWidth=0.3+pulse*0.3+glow*0.5;
+            var as=Math.PI/3*i+h.rot;
+            ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+ir*0.78*Math.cos(as),y+ir*0.78*Math.sin(as));
+            ctx.strokeStyle='rgba(0,'+g+','+b+','+(ia*(0.5+i%2*0.2))+')'; ctx.lineWidth=0.22+pulse*0.18;
             ctx.stroke();
           }
-          // центр
-          ctx.beginPath(); ctx.arc(x,y,1.5+pulse2*1.0+glow*1.8,0,Math.PI*2);
-          ctx.fillStyle='rgba(0,'+g+','+b+','+(0.25+pulse2*0.35+glow*0.55)+')'; ctx.fill();
+          ctx.beginPath(); ctx.arc(x,y,0.8+pulse2*0.7,0,Math.PI*2);
+          ctx.fillStyle='rgba(0,'+g+','+b+','+(0.18+pulse2*0.2)+')'; ctx.fill();
 
         }else{
-          // ДНК-4: два орбитных спутника + гексагон
-          ctx.fillStyle='rgba(0,'+g+','+b+','+(glow*0.08)+')';
-          hp(x,y,ir*0.65,h.rot2); ctx.fill(); ctx.stroke();
-          // два спутника в противофазе
-          var sr=ir*0.82;
-          [[h.orb,1.4+pulse*0.8],[h.orb+Math.PI,1.0+pulse2*0.8]].forEach(function(od){
-            var sx=x+sr*Math.cos(od[0]), sy=y+sr*Math.sin(od[0]);
-            ctx.beginPath(); ctx.arc(sx,sy,od[1]+glow*1.2,0,Math.PI*2);
-            ctx.fillStyle='rgba(0,'+g+','+b+','+(0.28+pulse*0.3+glow*0.45)+')'; ctx.fill();
+          // ДНК-4: малый гексагон + два орбитных спутника
+          ctx.fillStyle='rgba(0,'+g+','+b+',0)';
+          hp(x,y,ir*0.62,h.rot2); ctx.fill(); ctx.stroke();
+          var sr=ir*0.78;
+          [[h.orb,0.9+pulse*0.5],[h.orb+Math.PI,0.7+pulse2*0.4]].forEach(function(od){
+            ctx.beginPath(); ctx.arc(x+sr*Math.cos(od[0]),y+sr*Math.sin(od[0]),od[1],0,Math.PI*2);
+            ctx.fillStyle='rgba(0,'+g+','+b+','+(0.16+pulse*0.16)+')'; ctx.fill();
           });
-        }
-
-        // --- кольцо разряда (расширяется и гаснет) ---
-        if(h.flash>0.05){
-          var ring_r=h.rad*(0.5+(1-h.flash)*1.1);
-          ctx.beginPath();
-          ctx.arc(x,y,ring_r,0,Math.PI*2);
-          ctx.strokeStyle='rgba(0,'+g+','+b+','+(h.flash*0.28)+')';
-          ctx.lineWidth=h.flash*1.2;
-          ctx.stroke();
         }
       });
 
+      // виньетка
       var vg=ctx.createRadialGradient(W*0.5,H*0.38,H*0.04,W*0.5,H*0.52,H*0.85);
-      vg.addColorStop(0,'rgba(4,8,18,0)');
-      vg.addColorStop(0.55,'rgba(4,8,18,0.15)');
-      vg.addColorStop(1,'rgba(4,8,18,0.58)');
-      ctx.fillStyle=vg;ctx.fillRect(0,0,W,H);
+      vg.addColorStop(0,'rgba(4,8,26,0)');
+      vg.addColorStop(0.5,'rgba(4,8,26,0.18)');
+      vg.addColorStop(1,'rgba(4,8,26,0.62)');
+      ctx.fillStyle=vg; ctx.fillRect(0,0,W,H);
       requestAnimationFrame(fr);
     })();
   }
