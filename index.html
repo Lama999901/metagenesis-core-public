@@ -2105,12 +2105,12 @@ a.soon-chip{border-bottom:none!important}
         var dim = Math.pow(distC, 1.6);
 
         // 3 бегущих волны — плавная интерференция
-        var w1 = Math.sin(t*1.20 + h.wx*6.28*2.2)*0.5+0.5;
-        var w2 = Math.sin(t*0.76 + (h.wx+h.wy)*6.28*1.6 + 1.9)*0.5+0.5;
-        var w3 = Math.sin(t*0.50 + h.wd*6.28*2.8 + 3.7)*0.5+0.5;
+        var w1 = Math.sin(t*0.90 + h.wx*6.28*1.4)*0.5+0.5;
+        var w2 = Math.sin(t*0.55 + (h.wx+h.wy)*6.28*1.1 + 1.9)*0.5+0.5;
+        var w3 = Math.sin(t*0.35 + h.wd*6.28*1.8 + 3.7)*0.5+0.5;
         // добавляем медленное дыхание центра (пульс от центра)
-        var wRadial = Math.sin(t*0.32 - distC*6.28*1.4)*0.5+0.5;
-        var flow = w1*0.42 + w2*0.28 + w3*0.16 + wRadial*0.14;
+        var wRadial = Math.sin(t*0.22 - distC*6.28*1.0)*0.5+0.5;
+        var flow = w1*0.38 + w2*0.30 + w3*0.20 + wRadial*0.12;
 
         var pulse  = Math.sin(t*h.sp *2.0 + h.ph )*0.5+0.5;
         var pulse2 = Math.sin(t*h.sp2*1.6 + h.ph2)*0.5+0.5;
@@ -2290,14 +2290,14 @@ a.soon-chip{border-bottom:none!important}
         var _sn = h._sP[h._sN];
         // размер по длине: 1-2 = крупно, 3-4 = средне, 5+ = мелко
         var _len = _s.length;
-        var _scale = _len<=2 ? 1.05 : _len<=4 ? 0.68 : 0.48;
-        var _fw    = _len<=2 ? '700' : '600';
+        var _scale = _len<=2 ? 1.40 : _len<=4 ? 0.90 : 0.64;
+        var _fw    = _len<=2 ? '700' : _len<=4 ? '600' : '500';
         // прозрачность: минимум 0.08 в центре, ярче к краям
-        var _ba = (0.22 + pulse*0.26 + crest*0.20) * (0.30 + dim*0.70);
-        var _aA = Math.min(_ba*_cf, 0.72);
-        var _aN = Math.min(_ba*(1-_cf)*0.45, 0.36);
+        var _ba = (0.30 + pulse*0.28 + crest*0.22) * (0.42 + dim*0.58);
+        var _aA = Math.min(_ba*_cf, 0.82);
+        var _aN = Math.min(_ba*(1-_cf)*0.50, 0.42);
         if(_aA>0.005){
-          var _fs = Math.max(7, Math.floor(_scale*ir + pulse*ir*0.10));
+          var _fs = Math.max(10, Math.floor(_scale*ir + pulse*ir*0.12));
           ctx.save();
           ctx.textAlign='center'; ctx.textBaseline='middle';
           ctx.fillStyle = 'rgb(0,'+gv+','+bv+')';
@@ -2314,7 +2314,7 @@ a.soon-chip{border-bottom:none!important}
             var _snLen=_sn.length;
             var _snSc=_snLen<=2?1.05:_snLen<=4?0.68:0.48;
             var _snFw=_snLen<=2?'700':'600';
-            var _fsN=Math.max(7,Math.floor(_snSc*ir+pulse*ir*0.10));
+            var _fsN=Math.max(10,Math.floor(_snSc*ir+pulse*ir*0.12));
             ctx.font=_snFw+' '+_fsN+'px "IBM Plex Mono",monospace';
             ctx.globalAlpha=_aN;
             ctx.fillText(_sn,x,y);
