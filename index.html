@@ -2171,8 +2171,6 @@ a.soon-chip{border-bottom:none!important}
         ctx.strokeStyle='rgba(0,'+gv+','+bv+','+(ia*(0.55+i%2*0.18))+')'; 
         ctx.lineWidth=0.20+pulse*0.15; ctx.stroke();
         }
-        ctx.beginPath(); ctx.arc(x,y,2.2+pulse2*0.9,0,Math.PI*2);
-        ctx.fillStyle='rgba(0,'+gv+','+bv+','+(0.30+pulse2*0.20)+')'; ctx.fill();
 
         }else if(h.dna===4){
         // ДНК-4: малый гексагон + два орбитных спутника
@@ -2210,9 +2208,6 @@ a.soon-chip{border-bottom:none!important}
             ctx.lineTo(x+hl*Math.cos(ang+h.rot+Math.PI),y+hl*Math.sin(ang+h.rot+Math.PI));
             ctx.strokeStyle='rgba(0,'+gv+','+bv+','+(ia*(idx<2?1:0.45))+')'; ctx.lineWidth=0.20+pulse*0.14; ctx.stroke();
           });
-          ctx.beginPath(); ctx.arc(x,y,2.2+pulse*1.0,0,Math.PI*2);
-          ctx.fillStyle='rgba(0,'+gv+','+bv+','+(0.30+pulse*0.22)+')'; ctx.fill();
-
         }else if(h.dna===7){
           // ДНК-7: бинарные биты по окружности
           var bits=[1,0,1,1,0,1,0,0]; // 8 битов
@@ -2256,23 +2251,19 @@ a.soon-chip{border-bottom:none!important}
         if(!h._sP){
           // только проверенные Unicode символы, нет многосимвольных строк
           h._sP=[
-            // Greek — physics alphabet
+            // Greek — physics alphabet (single/double char only)
             'α','β','γ','δ','ε','η','θ','λ','μ','ν','ξ','π','ρ','σ','τ','φ','χ','ψ','ω',
             'Γ','Δ','Λ','Σ','Φ','Ψ','Ω',
             // Math operators
             '∂','∇','∞','∑','∏','√','∫','≈','≡','≠','≤','≥','∈','⊥','ℏ','±',
-            // Materials science — Young's modulus, thermal conductivity
-            'E','σ/ε','λ/κ','ΔT','k·A','∂T','dF/dA','GPa','W/mK',
-            // ML/AI
-            'L(θ)','∂L','argmax','p(y)','f(x)','ŷ','y−ŷ','MSE','R²',
-            // Verification / cryptography
-            'SHA','PASS','FAIL','hash','Δ≤ε','H(x)','∫dt','⊕','¬',
-            // System identification / ARX
-            'ARX','A(z)','B(z)','z⁻¹','ŷ(t)','e(t)','SSE',
-            // Data / drift
-            'μ+σ','|Δ|','%err','drift','∫f·dx','N(μ,σ)','P(x)','KL',
-            // Logic / protocol
-            '→','∧','∨','∀','∃','⊢','⊨','◻','◇'
+            // Short science tokens (≤3 char)
+            'E₀','ΔT','∂T','⊕','¬','↔',
+            // Short ML tokens
+            'ŷ','R²','ℓ²','f̂',
+            // Verification
+            '→','∧','∨','∀','∃','⊢','⊨','◻','◇',
+            // 2-char combos
+            'dσ','dε','dF','Δk','Δμ','P₀','k₀','z⁻','εᵣ'
           ];
           h._sI = Math.floor(Math.abs(Math.sin(h.ph*17+h.wx*53))*h._sP.length) % h._sP.length;
           h._sN = (h._sI+3+Math.floor(h.ph*11)) % h._sP.length;
@@ -2288,14 +2279,14 @@ a.soon-chip{border-bottom:none!important}
         var _sn = h._sP[h._sN];
         // размер по длине: 1-2 = крупно, 3-4 = средне, 5+ = мелко
         var _len = _s.length;
-        var _scale = _len<=2 ? 1.05 : _len<=4 ? 0.68 : 0.48;
-        var _fw    = _len<=2 ? '700' : '600';
+        var _scale = _len<=2 ? 1.10 : _len<=3 ? 0.82 : 0.68;
+        var _fw    = _len<=2 ? '700' : '500';
         // прозрачность: минимум 0.08 в центре, ярче к краям
-        var _ba = (0.22 + pulse*0.26 + crest*0.20) * (0.30 + dim*0.70);
-        var _aA = Math.min(_ba*_cf, 0.72);
-        var _aN = Math.min(_ba*(1-_cf)*0.45, 0.36);
+        var _ba = (0.26 + pulse*0.28 + crest*0.22) * (0.48 + dim*0.52);
+        var _aA = Math.min(_ba*_cf, 0.78);
+        var _aN = Math.min(_ba*(1-_cf)*0.45, 0.38);
         if(_aA>0.005){
-          var _fs = Math.max(7, Math.floor(_scale*ir + pulse*ir*0.10));
+          var _fs = Math.max(10, Math.floor(_scale*ir + pulse*ir*0.10));
           ctx.save();
           ctx.textAlign='center'; ctx.textBaseline='middle';
           ctx.fillStyle = 'rgb(0,'+gv+','+bv+')';
