@@ -979,7 +979,7 @@ a.soon-chip{border-bottom:none!important}
 .reg-claim{font-size:10px;letter-spacing:.08em;color:var(--txt3);padding-top:12px;border-top:1px solid var(--ln);margin-top:auto}
 .reg-note{font-size:11px;color:var(--txt3);margin-top:20px;padding:14px 20px;border:1px solid var(--ln);background:var(--ink2);line-height:1.6}
 @media(max-width:900px){.regrid{grid-template-columns:1fr}}
-.pricegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln)}
+.pricegrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln)}
 .price-tier{background:var(--ink);padding:44px 36px;display:flex;flex-direction:column;gap:16px;position:relative}
 .price-tier.featured{background:rgba(0,229,255,.03)}
 .price-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);background:var(--c);padding:4px 16px;white-space:nowrap}
@@ -994,7 +994,7 @@ a.soon-chip{border-bottom:none!important}
 .price-btn-primary:hover{background:#fff}
 .price-btn-secondary{border:1px solid var(--ln2);color:var(--txt2)}
 .price-btn-secondary:hover{border-color:var(--c);color:var(--c)}
-@media(max-width:900px){.pricegrid{grid-template-columns:1fr}.price-badge{position:static;transform:none;display:inline-block;width:fit-content}}
+@media(max-width:1100px){.pricegrid{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.pricegrid{grid-template-columns:1fr}}.price-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);background:var(--c);padding:4px 16px;white-space:nowrap}@media(max-width:600px){.price-badge{position:static;transform:none;display:inline-block;width:fit-content}}
 .faqlist{border:1px solid var(--ln);overflow:hidden}
 .faq-item{padding:32px 40px;border-bottom:1px solid var(--ln);transition:background .2s;cursor:default;background:rgba(4,8,26,.6)}
 .faq-item:last-child{border-bottom:none}
@@ -1887,6 +1887,21 @@ a.soon-chip{border-bottom:none!important}
         <li>Response within 48 hours</li>
       </ul>
       <a href="#pilot" class="price-btn-primary">Request Free Pilot &#8594;</a>
+    </div>
+
+    <div class="price-tier featured">
+      <div class="price-badge">Most popular</div>
+      <div class="price-name">Verification Bundle</div>
+      <div class="price-amount">$299</div>
+      <div class="price-desc">Your result → tamper-evident bundle in 48h. Any third party verifies offline with one command.</div>
+      <ul class="price-list">
+        <li>Your specific claim packaged &amp; signed</li>
+        <li>mg.py verify → PASS or FAIL</li>
+        <li>Any reviewer verifies offline, no access to your code</li>
+        <li>Patent-pending protocol (USPTO #63/996,819)</li>
+        <li>Delivered within 48 hours</li>
+      </ul>
+      <a href="https://buy.stripe.com/test_aFa14naSF5A32CpbCM7N600" class="price-btn-primary" id="stripe-buy-btn">Buy Bundle — $299 &#8594;</a>
     </div>
 
     <div class="price-tier">
