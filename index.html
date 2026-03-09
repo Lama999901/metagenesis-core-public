@@ -263,8 +263,54 @@ h2{font-family:var(--fd);font-size:clamp(36px,4vw,64px);font-weight:900;line-hei
 /* ── h2 SEMANTIC COLOUR SPANS ── */
 h2 .hc{color:var(--c)}
 h2 .hg{color:var(--ok)}
-h2 .hr{color:var(--err)}
-h2 .hw{color:rgba(238,247,251,.30)}
+/* ── .hr: красные слова — зелёное перечёркивание появляется и исчезает ── */
+h2 .hr{
+  color:var(--err);
+  position:relative;
+  display:inline-block;
+}
+h2 .hr::after{
+  content:'';
+  position:absolute;
+  left:-3%;
+  width:106%;
+  top:52%;
+  height:2.5px;
+  background:linear-gradient(90deg,transparent 0%,#00ff99 12%,#00ff99 88%,transparent 100%);
+  box-shadow:0 0 10px rgba(0,255,153,.9),0 0 28px rgba(0,255,153,.4);
+  transform-origin:left center;
+  animation:hr-strike 5.5s ease-in-out infinite;
+  pointer-events:none;
+}
+h2:nth-of-type(3) .hr::after{animation-delay:0s}
+h2:nth-of-type(5) .hr::after{animation-delay:1.4s}
+h2:nth-of-type(7) .hr::after{animation-delay:0.7s}
+h2:nth-of-type(9) .hr::after{animation-delay:2.1s}
+h2:nth-of-type(11) .hr::after{animation-delay:0.4s}
+@keyframes hr-strike{
+  0%  {transform:scaleX(0);opacity:0}
+  12% {transform:scaleX(1);opacity:1}
+  48% {transform:scaleX(1);opacity:.85}
+  64% {transform:scaleX(1);opacity:0}
+  100%{transform:scaleX(0);opacity:0}
+}
+
+/* ── .hw: белые полупрозрачные — ghostly signal shimmer ── */
+h2 .hw{
+  color:rgba(238,247,251,.18);
+  position:relative;
+  display:inline-block;
+  animation:hw-ghost 6s ease-in-out infinite;
+}
+h2.vis .hw{
+  animation:hw-ghost 6s ease-in-out infinite;
+}
+@keyframes hw-ghost{
+  0%,100%{color:rgba(238,247,251,.16);text-shadow:none}
+  32%    {color:rgba(238,247,251,.68);text-shadow:0 0 28px rgba(238,247,251,.22),0 0 60px rgba(238,247,251,.08)}
+  52%    {color:rgba(238,247,251,.68);text-shadow:0 0 28px rgba(238,247,251,.22)}
+  70%    {color:rgba(238,247,251,.22);text-shadow:none}
+}
 h2 .ha{color:#ffb84d}
 /* gradient — wider so shimmer has room to travel */
 h2 .hgrad-cy, h3.hgrad-cy{
@@ -362,25 +408,9 @@ h2.vis .hr{
   position:relative; display:inline-block;
   animation:hr-glow 3.8s ease-in-out infinite;
 }
+/* h2.vis .hr::after — override: use looping animation from above */
 h2.vis .hr::after{
-  content:'';
-  position:absolute;
-  top:52%; left:-1%;
-  width:0; height:3px;
-  background:linear-gradient(90deg,
-    transparent 0%,
-    #00ff99 5%,
-    #00ff99 95%,
-    transparent 100%);
-  box-shadow:0 0 12px rgba(0,255,153,.9), 0 0 32px rgba(0,255,153,.5);
-  transform:translateY(-50%);
-  animation:hr-strike-green .65s cubic-bezier(.77,0,.18,1) .35s forwards;
-  pointer-events:none;
-}
-@keyframes hr-strike-green{
-  from{width:0; opacity:0}
-  4%{opacity:1}
-  to{width:102%; opacity:1}
+  animation:hr-strike 5.5s ease-in-out infinite;
 }
 @keyframes hr-glow{
   0%,100%{text-shadow:0 0 20px rgba(255,64,96,.10),0 0 40px rgba(255,64,96,.05)}
@@ -1337,7 +1367,7 @@ a.soon-chip{border-bottom:none!important}
       <h3>Get Started</h3>
       <a href="#pricing" onclick="document.getElementById('megaover').classList.remove('open')">Pricing<span>Open Source · Pilot · Enterprise</span></a>
       <a href="#pilot" onclick="document.getElementById('megaover').classList.remove('open')">Free Pilot<span>Send your claim, get bundle</span></a>
-      <a href="mailto:yehor@metagenesis-core.dev">Contact<span>yehor@metagenesis-core.dev</span></a>
+      <a href="/cdn-cgi/l/email-protection#c7bea2afa8b587aaa2b3a6a0a2a9a2b4aeb4eaa4a8b5a2e9a3a2b1">Contact<span><span class="__cf_email__" data-cfemail="ccb5a9a4a3be8ca1a9b8adaba9a2a9bfa5bfe1afa3bea9e2a8a9ba">[email&#160;protected]</span></span></a>
     </div>
   </div>
 </div>
@@ -1915,7 +1945,7 @@ a.soon-chip{border-bottom:none!important}
         <li>Priority support and SLA</li>
         <li>Patent license options available</li>
       </ul>
-      <a href="mailto:yehor@metagenesis-core.dev?subject=Enterprise Inquiry" class="price-btn-secondary">Contact &#8594;</a>
+      <a href="/cdn-cgi/l/email-protection#9de4f8f5f2efddf0f8e9fcfaf8f3f8eef4eeb0fef2eff8b3f9f8eba2eee8fff7f8fee9a0d8f3e9f8efedeff4eef8bdd4f3ece8f4efe4" class="price-btn-secondary">Contact &#8594;</a>
     </div>
 
   </div>
@@ -2275,11 +2305,11 @@ a.soon-chip{border-bottom:none!important}
     <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/PROTOCOL.md">Protocol</a>
     <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/COMMERCIAL.md">Commercial</a>
     <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/SECURITY.md">Security</a>
-    <a href="mailto:yehor@metagenesis-core.dev">Contact</a>
+    <a href="/cdn-cgi/l/email-protection#19607c71766b59747c6d787e7c777c6a706a347a766b7c377d7c6f">Contact</a>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function(){
   'use strict';
   function go(){if(!document.body.classList.contains('mg-ready'))document.body.classList.add('mg-ready');}
@@ -3019,20 +3049,3 @@ a.soon-chip{border-bottom:none!important}
   /* — hide when leaving window */
   document.addEventListener('mouseleave',function(){
     dot.style.opacity='0'; ring.style.opacity='0';
-  });
-  document.addEventListener('mouseenter',function(){
-    dot.style.opacity=''; ring.style.opacity='';
-  });
-
-  /* — lerp loop */
-  function loop(){
-    rx+=(mx-rx)*LAG;
-    ry+=(my-ry)*LAG;
-    ring.style.transform='translate('+rx.toFixed(2)+'px,'+ry.toFixed(2)+'px) translate(-50%,-50%)';
-    raf=requestAnimationFrame(loop);
-  }
-  loop();
-})();
-</script>
-</body>
-</html>
