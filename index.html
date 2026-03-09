@@ -2057,14 +2057,14 @@ a.soon-chip{border-bottom:none!important}
             'SHA','256','0xFF','4.2σ','p<.05','r²',
             '01','10','11','∞','λ→∞','ε→0'
           ];
-          h._sI  = 1 + Math.floor(Math.abs(Math.sin(h.ph*17+h.wx*53))*(_SP.length-1));
-          h._sN  = 1 + (h._sI + 2 + Math.floor(h.ph*11)) % (_SP.length-1);
+          h._sI  = Math.floor(Math.abs(Math.sin(h.ph*17+h.wx*53)) * _SP.length) % _SP.length;
+          h._sN  = (h._sI + 3 + Math.floor(h.ph*11)) % _SP.length;
           h._sT  = Math.random();
           h._sSp = 0.00022 + Math.random()*0.00045;
           h._sP  = _SP;
         }
         h._sT += h._sSp;
-        if(h._sT >= 1){ h._sT-=1; h._sI=h._sN; h._sN=1+(h._sN+3+Math.floor(h.ph*9))%(h._sP.length-1); }
+        if(h._sT >= 1){ h._sT-=1; h._sI=h._sN; h._sN=(h._sN+3+Math.floor(h.ph*9))%h._sP.length; }
         // плавный S-образный crossfade
         var _cf = h._sT < 0.35 ? h._sT/0.35 : (h._sT>0.65 ? (1-h._sT)/0.35 : 1.0);
         _cf = Math.max(0,Math.min(_cf,1));
