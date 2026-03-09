@@ -126,13 +126,26 @@ body.cur-hover #ring{width:20px;height:20px;opacity:.9}
 nav{position:fixed;top:0;left:0;right:0;z-index:600;display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:60px}
 nav::before{content:'';position:absolute;inset:0;background:rgba(3,6,13,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--ln2);z-index:-1}
 .logo{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--txt);font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:.14em}
+.logo{animation:logoidle 12s ease 3s infinite}
+.logo .lmark-svg{transition:filter 0.1s;will-change:filter,transform}
+@keyframes logoidle{
+  0%,72%,100%{filter:none;transform:none}
+  73%{filter:drop-shadow(0 0 6px rgba(0,229,255,0.6));transform:none}
+  73.5%{filter:drop-shadow(-2px 0 0 rgba(255,64,96,0.7)) drop-shadow(2px 0 0 rgba(0,229,255,0.7));transform:translateX(-1.5px)}
+  74%{filter:drop-shadow(2px 0 0 rgba(255,64,96,0.5)) drop-shadow(-1px 0 0 rgba(0,229,255,0.5));transform:translateX(1px)}
+  74.5%{filter:drop-shadow(0 0 12px rgba(0,229,255,0.4));transform:none}
+  75.5%{filter:drop-shadow(0 0 4px rgba(0,229,255,0.15));transform:none}
+  77%,100%{filter:none;transform:none}
+}
+.lmark-svg{overflow:visible;transition:filter 0.08s}
+.logo-txt{display:inline-block;letter-spacing:0.14em;font-size:11px;font-weight:700;font-family:var(--fd);will-change:clip-path,transform}
 .lmark{width:26px;height:26px;border:1px solid var(--c);display:grid;place-items:center;position:relative}
 .lmark::before{content:'';position:absolute;inset:0;background:var(--c);opacity:.12;animation:lmpulse 2.5s ease-in-out infinite}
 .lmark::after{content:'';position:absolute;top:-4px;right:-4px;bottom:-4px;left:-4px;border:1px solid rgba(0,229,255,.15)}
 .lmark span{font-size:10px;color:var(--c);font-weight:700;position:relative}
 @keyframes lmpulse{0%,100%{opacity:.12}50%{opacity:.35}}
 .ndot{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--ok);letter-spacing:.08em}
-.ndot::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok);animation:ndpulse 2s ease-in-out infinite}
+.ndot::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok);animation:ndpulse 2s ease-in-out infinite, logoidle 12s ease 3s infinite;filter:none}
 @keyframes ndpulse{0%,100%{opacity:1}50%{opacity:.3}}
 .nlinks{display:flex;align-items:center;gap:32px}
 .nlinks a{font-size:10px;letter-spacing:.1em;color:var(--txt3);text-decoration:none;text-transform:uppercase;transition:color .2s}
@@ -1021,7 +1034,7 @@ a.soon-chip{border-bottom:none!important}
                 stroke-linejoin="round" stroke-linecap="round"/>
       <circle cx="32" cy="33" r="2" fill="#00ff99" opacity="0.9"/>
     </svg>
-    METAGENESIS
+    <span class="logo-txt">METAGENESIS</span>
   </a>
   <div class="ndot">AUDIT: PASS</div>
   <div class="nlinks">
