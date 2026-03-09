@@ -518,6 +518,135 @@ h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
 .cband::before{content:'';position:absolute;top:50%;left:50%;width:600px;height:600px;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(0,229,255,.07) 0%,transparent 65%);pointer-events:none}
 .cband p{font-size:15px;color:var(--txt2);margin-bottom:40px;line-height:1.7}
 .cmeta{font-size:10px;color:var(--txt3);margin-top:28px;letter-spacing:.08em}
+/* ══════════════════════════════════
+   FINALE SECTION
+══════════════════════════════════ */
+#finale{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:transparent;
+  z-index:10;
+}
+#fnc{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+}
+.fn-inner{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:0;
+}
+/* PROOF NOT TRUST — same scale as hero */
+.fn-pnt{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  line-height:.88;
+  margin-bottom:44px;
+}
+.fn-word{ overflow:hidden; display:block; }
+.fn-span{
+  display:block;
+  font-family:var(--fd);
+  font-size:clamp(72px,11vw,190px);
+  font-weight:900;
+  letter-spacing:-.04em;
+  line-height:.88;
+}
+/* PROOF — green + scan */
+.fn-proof .fn-span{
+  color:#00ff99;
+  position:relative; overflow:hidden;
+  animation:proofglow 4s 3s ease-in-out infinite;
+}
+.fn-proof .fn-span::after{
+  content:'';
+  position:absolute;left:-3%;width:106%;top:-5%;height:2px;
+  background:linear-gradient(90deg,transparent,rgba(0,255,153,.85) 25%,rgba(0,255,153,1) 50%,rgba(0,255,153,.85) 75%,transparent);
+  box-shadow:0 0 12px rgba(0,255,153,.6),0 0 28px rgba(0,255,153,.25);
+  animation:proofscan 3.8s 1.6s ease-in-out infinite;
+  pointer-events:none;
+}
+/* NOT — cyan + glitch */
+.fn-not .fn-span{
+  color:var(--c);
+  position:relative;
+  animation:notglow 5s 2s ease-in-out infinite;
+}
+.fn-not .fn-span::before{
+  content:attr(data-t);
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  font-family:var(--fd);font-size:inherit;font-weight:900;
+  line-height:inherit;letter-spacing:inherit;
+  color:#ff4060;
+  clip-path:polygon(0 11%,100% 11%,100% 36%,0 36%);
+  opacity:0;
+  animation:gl1 4.8s 3.4s infinite;
+  pointer-events:none;
+}
+.fn-not .fn-span::after{
+  content:attr(data-t);
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  font-family:var(--fd);font-size:inherit;font-weight:900;
+  line-height:inherit;letter-spacing:inherit;
+  color:#00ff99;
+  clip-path:polygon(0 57%,100% 57%,100% 80%,0 80%);
+  opacity:0;
+  animation:gl2 4.8s 3.55s infinite;
+  pointer-events:none;
+}
+/* TRUST — dim + green strikethrough */
+.fn-trust .fn-span{
+  color:rgba(238,247,251,.22);
+  position:relative;
+}
+.fn-trust .fn-span::after{
+  content:'';
+  position:absolute;
+  top:52%;left:-1%;
+  width:0;height:3px;
+  background:linear-gradient(90deg,transparent 0%,#00ff99 5%,#00ff99 95%,transparent 100%);
+  box-shadow:0 0 12px rgba(0,255,153,.9),0 0 32px rgba(0,255,153,.5);
+  transform:translateY(-50%);
+  animation:fn-strike .65s cubic-bezier(.77,0,.18,1) 1.4s forwards;
+}
+@keyframes fn-strike{from{width:0;opacity:0}4%{opacity:1}to{width:102%;opacity:1}}
+/* slide-in on load */
+#finale.fn-vis .fn-proof .fn-span{animation:slidein .85s .05s cubic-bezier(.16,1,.3,1) both,proofglow 4s 3s ease-in-out infinite}
+#finale.fn-vis .fn-not .fn-span{animation:slidein .85s .18s cubic-bezier(.16,1,.3,1) both,notglow 5s 2s ease-in-out infinite}
+#finale.fn-vis .fn-trust .fn-span{animation:slidein .85s .31s cubic-bezier(.16,1,.3,1) both}
+.fn-sub{
+  font-family:var(--fb);
+  font-size:clamp(16px,1.4vw,22px);
+  font-weight:300;
+  color:rgba(238,247,251,.65);
+  line-height:1.7;
+  margin-bottom:44px;
+  letter-spacing:.01em;
+}
+.fn-sub em{color:var(--ok);font-style:normal;font-weight:600}
+.fn-btns{
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-bottom:52px;
+}
+.fn-meta{
+  font-size:11px;
+  letter-spacing:.08em;
+  color:var(--txt3);
+}
 footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--ln);background:var(--ink1)}
 .fl{display:flex;flex-direction:column;gap:6px}
 .fla{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:.1em}
@@ -2118,6 +2247,24 @@ a.soon-chip{border-bottom:none!important}
   <div class="cmeta">MIT &#183; Patent Pending #63/996,819 &#183; Inventor: Yehor Bazhynov</div>
 </div>
 
+<!-- FINALE -->
+<section id="finale">
+  <canvas id="fnc"></canvas>
+  <div class="fn-inner">
+    <div class="fn-pnt">
+      <div class="fn-word fn-proof"><span class="fn-span">PROOF</span></div>
+      <div class="fn-word fn-not"><span class="fn-span" data-t="NOT">NOT</span></div>
+      <div class="fn-word fn-trust"><span class="fn-span">TRUST</span></div>
+    </div>
+    <p class="fn-sub">Clone. Run the demo. See <em>PASS.</em><br>No account. No API key. No GPU. No network.</p>
+    <div class="fn-btns">
+      <a href="https://github.com/Lama999901/metagenesis-core-public" class="btn-c" target="_blank">VIEW ON GITHUB &rarr;</a>
+      <a href="#pilot" class="btn-g">REQUEST FREE PILOT</a>
+    </div>
+    <div class="fn-meta">MIT &middot; Patent Pending #63/996,819 &middot; Inventor: Yehor Bazhynov</div>
+  </div>
+</section>
+
 <footer>
   <div class="fl"><span class="fla">METAGENESIS CORE</span><span class="flb">Open verification protocol &#183; MVP v0.1</span></div>
   <div class="flinks">
@@ -2584,6 +2731,161 @@ a.soon-chip{border-bottom:none!important}
         .catch(function(){if(psl)psl.textContent='Error — try email';if(psb)psb.disabled=false;});
     });
   }
+})();
+</script>
+<script>
+/* ════════════════════════════════════════
+   FINALE CANVAS — concentric verification rings
+   + particles + pulse from center
+════════════════════════════════════════ */
+(function(){
+  var cv=document.getElementById('fnc');
+  if(!cv)return;
+  var c=cv.getContext('2d');
+  var W,H,cx,cy;
+  function sz(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight;cx=W/2;cy=H/2;}
+  var ro=new ResizeObserver(sz); ro.observe(cv); sz();
+
+  /* — rings config — */
+  var RINGS=[
+    {r:0.08,spd:0.0006,col:'0,255,153',  lw:1.5,gap:0.18,dash:0},     /* inner green */
+    {r:0.14,spd:-0.0004,col:'0,229,255', lw:1.0,gap:0.28,dash:0},    /* cyan */
+    {r:0.22,spd:0.0003,col:'0,255,153',  lw:0.7,gap:0.40,dash:1},    /* green dashed */
+    {r:0.30,spd:-0.0005,col:'0,229,255', lw:1.2,gap:0.22,dash:0},    /* cyan */
+    {r:0.38,spd:0.0002,col:'0,255,153',  lw:0.5,gap:0.55,dash:1},    /* green thin */
+    {r:0.46,spd:-0.0003,col:'0,229,255', lw:0.8,gap:0.35,dash:0},
+    {r:0.56,spd:0.00015,col:'0,255,153', lw:0.5,gap:0.60,dash:1},
+    {r:0.66,spd:-0.0002,col:'0,229,255', lw:0.4,gap:0.65,dash:1},
+  ];
+  RINGS.forEach(function(r){r.rot=Math.random()*Math.PI*2;});
+
+  /* — expanding pulse rings — */
+  var pulses=[];
+  function spawnPulse(){
+    pulses.push({r:0,alpha:0.7,col:Math.random()<0.6?'0,255,153':'0,229,255'});
+    setTimeout(spawnPulse, 1800+Math.random()*2400);
+  }
+  spawnPulse();
+
+  /* — orbit particles — */
+  var PARTS=24;
+  var parts=[];
+  for(var i=0;i<PARTS;i++){
+    parts.push({
+      angle:Math.PI*2/PARTS*i,
+      speed:(Math.random()<0.5?1:-1)*(0.0003+Math.random()*0.0005),
+      orb:0.28+Math.random()*0.28,
+      size:1.0+Math.random()*1.4,
+      alpha:0.18+Math.random()*0.32,
+      col:Math.random()<0.6?'0,255,153':'0,229,255'
+    });
+  }
+
+  /* — hex markers on rings — */
+  var HEX_R=5;
+  function hex(x,y,r,rot){
+    c.beginPath();
+    for(var i=0;i<6;i++){var a=Math.PI/3*i+rot;i?c.lineTo(x+r*Math.cos(a),y+r*Math.sin(a)):c.moveTo(x+r*Math.cos(a),y+r*Math.sin(a));}
+    c.closePath();
+  }
+
+  var t=0;
+  function fr(){
+    requestAnimationFrame(fr);
+    c.clearRect(0,0,W,H);
+    t+=0.016;
+
+    var maxR=Math.min(W,H)*0.5;
+
+    /* — pulse rings — */
+    pulses=pulses.filter(function(p){
+      p.r+=0.008;
+      p.alpha-=0.008;
+      if(p.alpha<=0)return false;
+      c.beginPath();
+      c.arc(cx,cy,p.r*maxR,0,Math.PI*2);
+      c.strokeStyle='rgba('+p.col+','+p.alpha.toFixed(3)+')';
+      c.lineWidth=1.5;
+      c.stroke();
+      return true;
+    });
+
+    /* — static rings — */
+    RINGS.forEach(function(ring){
+      ring.rot+=ring.spd;
+      var R=ring.r*maxR;
+      var gp=ring.gap;
+      var pulse=Math.sin(t*0.8+ring.r*10)*0.5+0.5;
+      var al=0.12+pulse*0.20;
+      c.strokeStyle='rgba('+ring.col+','+al.toFixed(3)+')';
+      c.lineWidth=ring.lw;
+      if(ring.dash){
+        var dashLen=R*0.18;
+        var gapLen=R*0.10;
+        c.setLineDash([dashLen,gapLen]);
+        c.lineDashOffset=-ring.rot*R;
+      } else {
+        c.setLineDash([]);
+        /* arc with gap */
+        c.beginPath();
+        c.arc(cx,cy,R, ring.rot+gp/2, ring.rot+Math.PI*2-gp/2);
+        c.stroke();
+        /* hex markers at gap edges */
+        [-1,1].forEach(function(side){
+          var a=ring.rot+(side>0?gp/2:Math.PI*2-gp/2);
+          var hx=cx+R*Math.cos(a), hy=cy+R*Math.sin(a);
+          hex(hx,hy,HEX_R*(ring.lw*0.6+0.4),a+t*0.3);
+          c.fillStyle='rgba('+ring.col+','+(al*0.9).toFixed(3)+')';
+          c.fill();
+        });
+        return;
+      }
+      c.beginPath();
+      c.arc(cx,cy,R,0,Math.PI*2);
+      c.stroke();
+      c.setLineDash([]);
+    });
+
+    /* — orbit particles — */
+    parts.forEach(function(p){
+      p.angle+=p.speed;
+      var r=p.orb*maxR;
+      var px=cx+r*Math.cos(p.angle), py=cy+r*Math.sin(p.angle);
+      var pulse=Math.sin(t*1.2+p.angle*3)*0.5+0.5;
+      c.beginPath();
+      c.arc(px,py,p.size*(0.7+pulse*0.6),0,Math.PI*2);
+      c.fillStyle='rgba('+p.col+','+(p.alpha*(0.5+pulse*0.5)).toFixed(3)+')';
+      c.fill();
+    });
+
+    /* — center reticle — */
+    var cr=18+Math.sin(t*1.5)*3;
+    var ca=0.28+Math.sin(t*0.9)*0.10;
+    /* cross-hairs */
+    [0,Math.PI/2,Math.PI,Math.PI*3/2].forEach(function(a){
+      c.beginPath();
+      c.moveTo(cx+cr*Math.cos(a)*0.45, cy+cr*Math.sin(a)*0.45);
+      c.lineTo(cx+cr*Math.cos(a),      cy+cr*Math.sin(a));
+      c.strokeStyle='rgba(0,255,153,'+ca+')';
+      c.lineWidth=1.2;
+      c.stroke();
+    });
+    c.beginPath();
+    c.arc(cx,cy,cr,0,Math.PI*2);
+    c.strokeStyle='rgba(0,229,255,'+(ca*0.5)+')';
+    c.lineWidth=0.8;
+    c.stroke();
+  }
+  fr();
+
+  /* — slide-in trigger — */
+  var io=new IntersectionObserver(function(entries){
+    if(entries[0].isIntersecting){
+      document.getElementById('finale').classList.add('fn-vis');
+    }
+  },{threshold:0.25});
+  var fin=document.getElementById('finale');
+  if(fin) io.observe(fin);
 })();
 </script>
 <button id="page-totop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
