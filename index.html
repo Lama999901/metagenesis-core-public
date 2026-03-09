@@ -352,13 +352,29 @@ h2.vis .hc::after{
   93.5%{opacity:0}
 }
 
-/* ── .hr (red) — pulsing threat glow ── */
+/* ── .hr (red) — strike-through line grows left-to-right, then pulsing glow ── */
 h2.vis .hr{
+  position:relative; display:inline-block;
   animation:hr-glow 3.8s ease-in-out infinite;
 }
+h2.vis .hr::after{
+  content:'';
+  position:absolute;
+  top:50%; left:-1%;
+  width:0; height:2px;
+  background:linear-gradient(90deg, transparent 0%, #ff4060 6%, #ff4060 94%, transparent 100%);
+  box-shadow:0 0 10px rgba(255,64,96,.9), 0 0 28px rgba(255,64,96,.45);
+  transform:translateY(-50%);
+  animation:hr-strike .55s cubic-bezier(.77,0,.18,1) .3s forwards;
+}
+@keyframes hr-strike{
+  from{width:0; opacity:0}
+  3%{opacity:1}
+  to{width:102%; opacity:1}
+}
 @keyframes hr-glow{
-  0%,100%{text-shadow:0 0 20px rgba(255,64,96,.1),0 0 40px rgba(255,64,96,.05)}
-  50%{text-shadow:0 0 58px rgba(255,64,96,.55),0 0 115px rgba(255,64,96,.22)}
+  0%,100%{text-shadow:0 0 20px rgba(255,64,96,.10),0 0 40px rgba(255,64,96,.05)}
+  50%{text-shadow:0 0 55px rgba(255,64,96,.50),0 0 110px rgba(255,64,96,.20)}
 }
 h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
 @keyframes h2glitch{
