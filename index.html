@@ -176,8 +176,33 @@ body.mg-ready .word-trust .hspan{animation:slidein .85s .31s cubic-bezier(.16,1,
   z-index:-1;
 }
 .div{height:1px;background:var(--ln);position:relative;z-index:10}
-.stag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--txt3);display:flex;align-items:center;gap:12px;margin-bottom:20px}
-.stag::before{content:'';width:20px;height:1px;background:var(--txt3)}
+.stag{
+  font-family:var(--fb);
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--txt2);
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:22px;
+  opacity:0;
+  transform:translateY(6px);
+  transition:opacity .5s ease, transform .5s ease;
+}
+.stag.vis{
+  opacity:1;
+  transform:none;
+}
+.stag::before{
+  content:'';
+  width:24px;
+  height:1px;
+  background:var(--c);
+  opacity:.5;
+  flex-shrink:0;
+}
 h2{font-family:var(--fd);font-size:clamp(36px,4vw,64px);font-weight:900;line-height:1;letter-spacing:-.03em;margin-bottom:20px;position:relative}
 h2.vis{animation:h2glitch 7s 0.9s infinite}
 @keyframes h2glitch{
@@ -199,8 +224,11 @@ h2.vis{animation:h2glitch 7s 0.9s infinite}
   margin-bottom:60px;
   letter-spacing:.012em;
 }
-/* override .rv so word animation takes full control */
+/* override .rv only for sdesc — word animation takes full control */
 .sdesc.rv{opacity:1!important;transform:none!important}
+/* stag own animation — override .rv */
+.stag.rv{opacity:0!important;transform:translateY(6px)!important}
+.stag.rv.vis{opacity:1!important;transform:none!important}
 /* per-word span */
 .sw{
   display:inline-block;
@@ -2215,6 +2243,18 @@ a.soon-chip{border-bottom:none!important}
    SDESC WORD-BY-WORD REVEAL
 ════════════════════════════════════════ */
 (function(){
+  /* ── .stag reveal ── */
+  var stags = document.querySelectorAll('.stag');
+  if(stags.length){
+    var stagIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('vis'); stagIO.unobserve(e.target); }
+      });
+    }, { threshold: 0.3 });
+    stags.forEach(function(el){ stagIO.observe(el); });
+  }
+
+  /* ── .sdesc word reveal ── */
   var els = document.querySelectorAll('.sdesc');
   if(!els.length) return;
 
