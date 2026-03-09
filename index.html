@@ -1887,7 +1887,7 @@ a.soon-chip{border-bottom:none!important}
     var t=0;
     (function fr(){
       ctx.clearRect(0,0,W,H);
-      t+=0.0019;
+      t+=0.0026;
 
       hexes.forEach(function(h){
         h.rot  += h.rspd;
@@ -2072,19 +2072,30 @@ a.soon-chip{border-bottom:none!important}
         var _sn = h._sP[h._sN];
         var _short = _s.length<=2, _snSh = _sn.length<=2;
         // прозрачность: тихо но видно, дышит с волной
-        var _ba = 0.10 + pulse*0.13 + crest*0.09;
-        var _aA = Math.min(_ba*_cf, 0.38);
-        var _aN = Math.min(_ba*(1-_cf)*0.5, 0.18);
+        var _ba = 0.16 + pulse*0.22 + crest*0.18;
+        var _aA = Math.min(_ba*_cf, 0.62);
+        var _aN = Math.min(_ba*(1-_cf)*0.45, 0.28);
         if(_aA>0.003 || _aN>0.003){
           ctx.save();
           ctx.textAlign='center'; ctx.textBaseline='middle';
           if(_aA>0.003){
-            ctx.font=(_short?'500':'400')+' '+Math.max(6,Math.floor((_short?ir*0.86:ir*0.48)+pulse*ir*0.08))+'px "IBM Plex Mono",monospace';
-            ctx.globalAlpha=_aA; ctx.fillStyle='rgb(0,'+gv+','+bv+')';
+            var _fs=Math.max(8,Math.floor((_short?ir*1.10:ir*0.62)+pulse*ir*0.12));
+            ctx.font=(_short?'700':'500')+' '+_fs+'px "IBM Plex Mono",monospace';
+            // glow pass
+            ctx.globalAlpha=_aA*0.45;
+            ctx.shadowColor='rgb(0,'+gv+','+bv+')';
+            ctx.shadowBlur=_fs*0.9;
+            ctx.fillStyle='rgb(0,'+gv+','+bv+')';
+            ctx.fillText(_s,x,y);
+            // sharp pass
+            ctx.shadowBlur=0;
+            ctx.globalAlpha=_aA;
             ctx.fillText(_s,x,y);
           }
           if(_aN>0.003){
-            ctx.font=(_snSh?'500':'400')+' '+Math.max(6,Math.floor((_snSh?ir*0.86:ir*0.48)+pulse*ir*0.08))+'px "IBM Plex Mono",monospace';
+            var _fsN=Math.max(8,Math.floor((_snSh?ir*1.10:ir*0.62)+pulse*ir*0.12));
+            ctx.font=(_snSh?'700':'500')+' '+_fsN+'px "IBM Plex Mono",monospace';
+            ctx.shadowBlur=0;
             ctx.globalAlpha=_aN; ctx.fillStyle='rgb(0,'+gv+','+bv+')';
             ctx.fillText(_sn,x,y);
           }
