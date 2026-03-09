@@ -1484,8 +1484,15 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
         rad:R*(0.78+Math.random()*0.08),
         ph:Math.random()*Math.PI*2,
         sp:0.35+Math.random()*0.9,
-        rot:Math.random()*Math.PI*2,       // начальный угол внутр. гексагона
-        rspd:(Math.random()-0.5)*0.004,    // скорость вращения (+ или -)
+        rot:Math.random()*Math.PI*2,       // угол внутр. формы
+        rot2:Math.random()*Math.PI*2,      // угол второго слоя (contra)
+        rspd:(Math.random()-0.5)*0.004,    // скорость вращения
+        rspd2:(Math.random()-0.5)*0.007,   // скорость второго слоя
+        dna:Math.floor(Math.random()*5),   // тип внутренности 0-4
+        orb:Math.random()*Math.PI*2,       // фаза орбиты точки
+        ospd:0.008+Math.random()*0.018,    // скорость орбиты
+        ph2:Math.random()*Math.PI*2,       // вторая фаза дыхания
+        sp2:0.4+Math.random()*1.2,         // вторая скорость дыхания
         charge:Math.random()*0.4,          // накопленный заряд 0→1
         cspd:0.00008+Math.random()*0.00012, // скорость накопления (медленнее)
         energy:0,                          // входящая энергия от соседей
@@ -1515,6 +1522,8 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
       // фаза 1: обновить физику всех клеток
       hexes.forEach(function(h){
         h.rot+=h.rspd;
+        h.rot2+=h.rspd2;
+        h.orb+=h.ospd;
         // накапливаем заряд (быстрее если есть входящая энергия)
         h.charge+=h.cspd*(1+h.energy*3);
         h.energy*=0.82; // энергия от соседей затухает быстрее
@@ -1566,15 +1575,66 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
         ctx.fill();
         ctx.stroke();
 
-        // --- внутренний вращающийся гексагон ---
-        var ir=h.rad*(0.38+h.charge*0.12+h.flash*0.08); // размер растёт с зарядом
-        var inner_a=0.04+pulse*0.08+h.charge*0.14+glow*0.55;
-        ctx.strokeStyle='rgba(0,'+g+','+b+','+Math.min(inner_a,0.9)+')';
-        ctx.lineWidth=0.3+h.charge*0.5+glow*0.7;
-        ctx.fillStyle='rgba(0,'+g+','+b+','+(glow*0.12)+')';
-        hp(x,y,ir,h.rot);
-        ctx.fill();
-        ctx.stroke();
+        // --- УНИКАЛЬНЫЕ ВНУТРЕННОСТИ (по ДНК) ---
+        var pulse2=Math.sin(t*h.sp2*2.2+h.ph2)*0.5+0.5;
+        var ir=h.rad*(0.36+h.charge*0.10+h.flash*0.06);
+        var inner_a=0.05+pulse*0.10+h.charge*0.18+glow*0.55;
+        var ia=Math.min(inner_a,0.88);
+        ctx.strokeStyle='rgba(0,'+g+','+b+','+ia+')';
+        ctx.lineWidth=0.28+h.charge*0.45+glow*0.65;
+
+        if(h.dna===0){
+          // ДНК-0: два встречных гексагона (звезда давида)
+          ctx.fillStyle='rgba(0,'+g+','+b+','+(glow*0.10)+')';
+          hp(x,y,ir,h.rot); ctx.fill(); ctx.stroke();
+          hp(x,y,ir*0.72,h.rot+Math.PI/6); ctx.stroke();
+
+        }else if(h.dna===1){
+          // ДНК-1: треугольник + орбитная точка
+          ctx.beginPath();
+          for(var i=0;i<3;i++){var a=Math.PI*2/3*i+h.rot;i?ctx.lineTo(x+ir*Math.cos(a),y+ir*Math.sin(a)):ctx.moveTo(x+ir*Math.cos(a),y+ir*Math.sin(a));}
+          ctx.closePath(); ctx.fillStyle='rgba(0,'+g+','+b+','+(glow*0.08)+')'; ctx.fill(); ctx.stroke();
+          // точка на орбите
+          var dotR=ir*0.55;
+          var dx=x+dotR*Math.cos(h.orb), dy=y+dotR*Math.sin(h.orb);
+          ctx.beginPath(); ctx.arc(dx,dy,1.2+pulse2*0.8+glow*1.2,0,Math.PI*2);
+          ctx.fillStyle='rgba(0,'+g+','+b+','+(0.3+pulse2*0.4+glow*0.5)+')'; ctx.fill();
+
+        }else if(h.dna===2){
+          // ДНК-2: концентрические кольца — пульсируют в противофазе
+          var r1=ir*(0.9+pulse*0.08); var r2=ir*(0.55+pulse2*0.08);
+          ctx.beginPath(); ctx.arc(x,y,r1,0,Math.PI*2); ctx.stroke();
+          ctx.beginPath(); ctx.arc(x,y,r2,0,Math.PI*2);
+          ctx.strokeStyle='rgba(0,'+g+','+b+','+(ia*0.6)+')'; ctx.stroke();
+          // центральная точка
+          ctx.beginPath(); ctx.arc(x,y,1.0+glow*1.5,0,Math.PI*2);
+          ctx.fillStyle='rgba(0,'+g+','+b+','+(0.2+pulse*0.4+glow*0.6)+')'; ctx.fill();
+
+        }else if(h.dna===3){
+          // ДНК-3: крест из 6 лучей (снежинка) вращается
+          for(var i=0;i<6;i++){
+            var a=Math.PI/3*i+h.rot;
+            var lx=x+ir*0.82*Math.cos(a), ly=y+ir*0.82*Math.sin(a);
+            ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(lx,ly);
+            ctx.strokeStyle='rgba(0,'+g+','+b+','+(ia*(0.4+i%2*0.25))+')'; ctx.lineWidth=0.3+pulse*0.3+glow*0.5;
+            ctx.stroke();
+          }
+          // центр
+          ctx.beginPath(); ctx.arc(x,y,1.5+pulse2*1.0+glow*1.8,0,Math.PI*2);
+          ctx.fillStyle='rgba(0,'+g+','+b+','+(0.25+pulse2*0.35+glow*0.55)+')'; ctx.fill();
+
+        }else{
+          // ДНК-4: два орбитных спутника + гексагон
+          ctx.fillStyle='rgba(0,'+g+','+b+','+(glow*0.08)+')';
+          hp(x,y,ir*0.65,h.rot2); ctx.fill(); ctx.stroke();
+          // два спутника в противофазе
+          var sr=ir*0.82;
+          [[h.orb,1.4+pulse*0.8],[h.orb+Math.PI,1.0+pulse2*0.8]].forEach(function(od){
+            var sx=x+sr*Math.cos(od[0]), sy=y+sr*Math.sin(od[0]);
+            ctx.beginPath(); ctx.arc(sx,sy,od[1]+glow*1.2,0,Math.PI*2);
+            ctx.fillStyle='rgba(0,'+g+','+b+','+(0.28+pulse*0.3+glow*0.45)+')'; ctx.fill();
+          });
+        }
 
         // --- кольцо разряда (расширяется и гаснет) ---
         if(h.flash>0.05){
