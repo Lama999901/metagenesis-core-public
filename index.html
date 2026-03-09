@@ -151,7 +151,32 @@ h2.vis{animation:h2glitch 7s 0.9s infinite}
   72%{transform:translateX(-.5px);text-shadow:0 0 14px rgba(0,229,255,.1)}
   73%{text-shadow:none;transform:none}
 }
-.sdesc{font-family:var(--fs);font-size:clamp(18px,1.5vw,22px);font-style:italic;color:rgba(232,244,248,.72);max-width:620px;line-height:1.78;margin-bottom:60px;font-weight:400;letter-spacing:.015em}
+.sdesc{
+  font-family:var(--fb);
+  font-size:clamp(19px,1.55vw,24px);
+  font-weight:300;
+  font-style:normal;
+  color:rgba(232,244,248,.78);
+  max-width:640px;
+  line-height:1.82;
+  margin-bottom:60px;
+  letter-spacing:.012em;
+}
+/* override .rv so word animation takes full control */
+.sdesc.rv{opacity:1!important;transform:none!important}
+/* per-word span */
+.sw{
+  display:inline-block;
+  opacity:0;
+  transform:translateY(9px);
+  transition:opacity .52s cubic-bezier(.16,1,.3,1),
+             transform .52s cubic-bezier(.16,1,.3,1);
+  transition-delay:calc(var(--si) * 36ms);
+}
+.sdesc.sw-on .sw{
+  opacity:1;
+  transform:none;
+}
 .pp{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--ln);overflow:hidden}
 .ppc{padding:56px 48px;position:relative;overflow:hidden}
 .ppc:first-child{border-right:1px solid var(--ln)}
@@ -2146,6 +2171,42 @@ a.soon-chip{border-bottom:none!important}
     });
   },{threshold:0.25});
   io.observe(origin);
+})();
+</script>
+<script>
+/* ════════════════════════════════════════
+   SDESC WORD-BY-WORD REVEAL
+════════════════════════════════════════ */
+(function(){
+  var els = document.querySelectorAll('.sdesc');
+  if(!els.length) return;
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var el = e.target;
+      if(el._swDone) return;
+      el._swDone = true;
+
+      /* split text into word spans */
+      var text = el.innerText.trim();
+      var words = text.split(/\s+/);
+      el.innerHTML = words.map(function(w, i){
+        return '<span class="sw" style="--si:' + i + '">' + w + '</span>';
+      }).join(' ');
+
+      /* small tick so CSS picks up transition */
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){
+          el.classList.add('sw-on');
+        });
+      });
+
+      io.unobserve(el);
+    });
+  }, { threshold: 0.18 });
+
+  els.forEach(function(el){ io.observe(el); });
 })();
 </script>
 <script>
