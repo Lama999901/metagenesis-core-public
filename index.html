@@ -2325,21 +2325,13 @@ a.soon-chip{border-bottom:none!important}
       });
 
       // виньетка: центр полупрозрачный (контент), края тёмные
-      // Radial vignette — edges dark
-      var vg=ctx.createRadialGradient(W*0.5,H*0.45,H*0.05,W*0.5,H*0.5,H*0.80);
-      vg.addColorStop(0,   'rgba(4,8,26,0.55)');
-      vg.addColorStop(0.30,'rgba(4,8,26,0.30)');
-      vg.addColorStop(0.62,'rgba(4,8,26,0.14)');
-      vg.addColorStop(1,   'rgba(4,8,26,0.88)');
+      // Vignette — center readable, sides open
+      var vg=ctx.createRadialGradient(W*0.5,H*0.45,H*0.05,W*0.5,H*0.5,H*0.85);
+      vg.addColorStop(0,   'rgba(4,8,26,0.52)');
+      vg.addColorStop(0.40,'rgba(4,8,26,0.18)');
+      vg.addColorStop(0.75,'rgba(4,8,26,0.06)');
+      vg.addColorStop(1,   'rgba(4,8,26,0.22)');
       ctx.fillStyle=vg; ctx.fillRect(0,0,W,H);
-      // Vertical content column — extra darkening in readable center strip
-      var cg=ctx.createLinearGradient(0,0,W,0);
-      var col=Math.min(W*0.26,340);
-      cg.addColorStop(0,              'rgba(4,8,26,0.72)');
-      cg.addColorStop(col/W,          'rgba(4,8,26,0)');
-      cg.addColorStop(1-(col/W),      'rgba(4,8,26,0)');
-      cg.addColorStop(1,              'rgba(4,8,26,0.72)');
-      ctx.fillStyle=cg; ctx.fillRect(0,0,W,H);
 
       requestAnimationFrame(fr);
     })();
