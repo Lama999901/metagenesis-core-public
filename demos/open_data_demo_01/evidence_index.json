@@ -30,7 +30,7 @@
       ],
       "provenance": {
         "runner": "backend/progress/runner.py :: ProgressRunner.run_job()",
-        "job_kind": "mtr1_calibration",
+        "job_kind": "mtr1_youngs_modulus_calibration",
         "pack_script": "scripts/mg.py :: pack build",
         "verify_script": "scripts/mg.py :: verify",
         "ci_gate": ".github/workflows/mg_policy_gate.yml"
