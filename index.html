@@ -1887,7 +1887,7 @@ a.soon-chip{border-bottom:none!important}
     var t=0;
     (function fr(){
       ctx.clearRect(0,0,W,H);
-      t+=0.0026;
+      t+=0.0042;
 
       hexes.forEach(function(h){
         h.rot  += h.rspd;
@@ -1898,12 +1898,12 @@ a.soon-chip{border-bottom:none!important}
 
         // 3 бегущих волны — интерференционный узор
         // волна идёт вправо: wx*6.28*2.5 = 2.5 цикла по ширине экрана
-        var w1 = Math.sin(t*1.05 + h.wx*6.28*2.4)*0.5+0.5;
+        var w1 = Math.sin(t*1.40 + h.wx*6.28*2.6)*0.5+0.5;
         // волна идёт по диагонали вправо-вниз
-        var w2 = Math.sin(t*0.68 + (h.wx+h.wy)*6.28*1.6 + 1.9)*0.5+0.5;
+        var w2 = Math.sin(t*0.90 + (h.wx+h.wy)*6.28*1.8 + 1.9)*0.5+0.5;
         // волна идёт по обратной диагонали
-        var w3 = Math.sin(t*0.43 + h.wd*6.28*2.8 + 3.7)*0.5+0.5;
-        var flow = w1*0.46 + w2*0.34 + w3*0.20;
+        var w3 = Math.sin(t*0.58 + h.wd*6.28*3.2 + 3.7)*0.5+0.5;
+        var flow = w1*0.50 + w2*0.32 + w3*0.18;
 
         // личное дыхание — каждая клетка живёт отдельно
         var pulse  = Math.sin(t*h.sp *2.0 + h.ph )*0.5+0.5;
@@ -1912,7 +1912,7 @@ a.soon-chip{border-bottom:none!important}
         // wave + breath = life
         var life = flow*0.60 + pulse*0.24 + pulse2*0.16;
         // sharp wave crest — gives strong contrast between peak and trough
-        var crest = Math.pow(flow, 3.5);
+        var crest = Math.pow(flow, 2.8);
 
         // color: pure cyan, no white peaks
         var gv = Math.min(168 + life*54 + crest*20, 245);
@@ -1928,8 +1928,8 @@ a.soon-chip{border-bottom:none!important}
         ctx.fillStyle = rg;
 
         // stroke: visibly pulses with wave — THIS is the grid effect
-        var sa = 0.012 + flow*0.098 + crest*0.078 + pulse*0.014;
-        var lw = 0.22  + flow*0.72  + crest*0.52;
+        var sa = 0.018 + flow*0.14 + crest*0.11 + pulse*0.018;
+        var lw = 0.28  + flow*0.95  + crest*0.72;
         ctx.strokeStyle = 'rgba(0,'+gv+','+bv+','+Math.min(sa,0.26)+')';
         ctx.lineWidth = lw;
         hp(x,y,h.rad,0); ctx.fill(); ctx.stroke();
