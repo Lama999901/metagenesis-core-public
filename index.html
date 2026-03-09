@@ -266,8 +266,8 @@ h2 .hg{color:var(--ok)}
 h2 .hr{color:var(--err)}
 h2 .hw{color:rgba(238,247,251,.30)}
 h2 .ha{color:#ffb84d}
-h2 .hgrad-cy{background:linear-gradient(95deg,var(--c) 10%,#00ff99 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-h2 .hgrad-gn{background:linear-gradient(95deg,#00ff99 10%,var(--c) 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+h2 .hgrad-cy, h3.hgrad-cy{background:linear-gradient(95deg,var(--c) 10%,#00ff99 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+h2 .hgrad-gn, h3.hgrad-gn{background:linear-gradient(95deg,#00ff99 10%,var(--c) 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
 @keyframes h2glitch{
   0%,96%,100%{text-shadow:none}
@@ -1324,7 +1324,7 @@ a.soon-chip{border-bottom:none!important}
 
     <div class="pitch-col pitch-col-right">
       <div class="pitch-origin-tag pitch-origin-tag-ok">Today — universal protocol</div>
-      <h3 class="pitch-title" style="color:var(--ok)">Verification engine for any domain</h3>
+      <h3 class="pitch-title hgrad-cy">Verification engine for any domain</h3>
       <p class="pitch-body">The same 4-step pipeline — run, index, pack, verify — works for ML benchmarks, system identification, data pipelines, drift monitoring. Any computational claim. Any domain. One command. PASS or FAIL.</p>
       <div class="pitch-claims">
         <span class="pitch-chip pitch-chip-ok">ML_BENCH-01</span>
