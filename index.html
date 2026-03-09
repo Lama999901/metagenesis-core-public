@@ -2071,10 +2071,10 @@ a.soon-chip{border-bottom:none!important}
         var _s  = h._sP[h._sI];
         var _sn = h._sP[h._sN];
         var _short = _s.length<=2, _snSh = _sn.length<=2;
-        // прозрачность: очень тихо, дышит с волной
-        var _ba = 0.032 + pulse*0.042 + crest*0.028;
-        var _aA = Math.min(_ba*_cf, 0.17);
-        var _aN = Math.min(_ba*(1-_cf)*0.5, 0.085);
+        // прозрачность: тихо но видно, дышит с волной
+        var _ba = 0.10 + pulse*0.13 + crest*0.09;
+        var _aA = Math.min(_ba*_cf, 0.38);
+        var _aN = Math.min(_ba*(1-_cf)*0.5, 0.18);
         if(_aA>0.003 || _aN>0.003){
           ctx.save();
           ctx.textAlign='center'; ctx.textBaseline='middle';
