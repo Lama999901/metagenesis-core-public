@@ -3091,26 +3091,28 @@ h2:nth-of-type(3n)   .hw { animation-delay: 1.3s !important; }
 h2.vis::before {
   content: '';
   position: absolute;
-  left: -4%;
-  width: 108%;
+  left: 0;
+  width: 100%;
   top: 0;
-  height: 2px;
+  height: 1.5px;
   background: linear-gradient(90deg,
     transparent 0%,
-    rgba(238,247,251,.0) 15%,
-    rgba(238,247,251,.55) 40%,
-    rgba(255,255,255,.90) 50%,
-    rgba(238,247,251,.55) 60%,
-    rgba(238,247,251,.0) 85%,
+    rgba(238,247,251,.45) 35%,
+    rgba(255,255,255,.88) 50%,
+    rgba(238,247,251,.45) 65%,
     transparent 100%
   );
   pointer-events: none;
-  /* transform instead of top — GPU accelerated, no layout reflow */
-  transform: translateY(-8px);
+  transform: translateY(0px);
   animation: h2-scan 16s ease-in-out infinite;
   z-index: 2;
-  will-change: transform, opacity;
+  /* NO will-change — causes blur on some GPUs */
+  /* clip to h2 bounds so line never bleeds outside */
+  overflow: hidden;
 }
+
+/* h2 needs overflow:hidden for clip to work */
+h2.vis { overflow: hidden; }
 
 /* Different delays per heading so they stagger */
 h2:nth-of-type(2).vis::before  { animation-delay: 0s; }
