@@ -300,7 +300,7 @@ h2.vis{animation:h2glitch 7s 0.9s infinite}
 .stn{font-family:var(--fd);font-size:clamp(52px,5vw,80px);font-weight:900;line-height:1;letter-spacing:-.04em;color:var(--c)}
 .stl{font-size:11px;color:var(--txt3);letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
 .std{font-size:13px;color:var(--txt2);line-height:1.6;font-weight:300;margin-top:6px}
-.claimsgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1px;background:var(--ln);border:1px solid var(--ln)}
+.claimsgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink);border:1px solid var(--ln)}
 .claim{background:var(--ink);padding:36px 32px;display:flex;flex-direction:column;gap:12px;transition:background .3s;cursor:default;position:relative;overflow:hidden}
 .claim::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--c),transparent);transform:scaleX(0);transform-origin:center;transition:transform .4s ease}
 .claim:hover{background:rgba(0,229,255,.03)}.claim:hover::before{transform:scaleX(1)}
@@ -326,10 +326,10 @@ h2.vis{animation:h2glitch 7s 0.9s infinite}
 .govb{padding:24px;display:flex;flex-direction:column;gap:10px}
 .govb>div{font-size:12px;line-height:1.7}
 .tdm{color:var(--txt3)}.tok{color:var(--ok)}
-.ucg{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--ln);border:1px solid var(--ln)}
+.ucg{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--ink);border:1px solid var(--ln)}
 .uc{background:rgba(7,12,31,.82);padding:40px 36px;transition:background .25s;cursor:default}
 .uc:hover{background:var(--ink1)}
-.ucn{font-family:var(--fd);font-size:clamp(48px,5vw,70px);font-weight:900;color:rgba(0,229,255,.07);line-height:1;margin-bottom:16px;letter-spacing:-.04em}
+.ucn{font-family:var(--fd);font-size:clamp(48px,5vw,70px);font-weight:900;color:rgba(0,229,255,.14);line-height:1;margin-bottom:16px;letter-spacing:-.04em}
 .uc h3{font-family:var(--fd);font-size:16px;font-weight:700;letter-spacing:-.01em;margin-bottom:12px}
 .uc p{font-size:13px;color:var(--txt2);line-height:1.75;font-weight:300}
 .uc-tag{font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:8px}
@@ -1085,6 +1085,40 @@ a.soon-chip{border-bottom:none!important}
   </div>
 </section></div>
 
+<div class="div"></div>
+<div class="w"><section class="sec" id="crisis">
+  <div class="stag rv">The Problem Is Real</div>
+  <h2 class="rv d1">The reproducibility crisis<br>is now your liability.</h2>
+  <p class="sdesc rv d2">Independent researchers, regulators, and clients can no longer accept computational results on trust alone. The cost of unverified claims is rising.</p>
+  <div class="crisis-grid rv d3">
+
+    <div class="crisis-stat">
+      <div class="crisis-n">70<span class="crisis-pct">%</span></div>
+      <div class="crisis-label">of researchers report failing to reproduce another scientist's results</div>
+      <div class="crisis-src">Nature survey, 1,576 researchers</div>
+    </div>
+
+    <div class="crisis-stat">
+      <div class="crisis-n">$<span class="crisis-pct">B</span></div>
+      <div class="crisis-label">in ML model failures attributed to unverified performance claims in production</div>
+      <div class="crisis-src">Regulatory filings, 2022–2025</div>
+    </div>
+
+    <div class="crisis-stat">
+      <div class="crisis-n">3</div>
+      <div class="crisis-label">major regulatory frameworks now require independent verification of computational outputs</div>
+      <div class="crisis-src">EU AI Act · FDA 21 CFR Part 11 · Basel III/IV</div>
+    </div>
+
+    <div class="crisis-stat">
+      <div class="crisis-n">0</div>
+      <div class="crisis-label">existing open tools provide offline, third-party verifiable evidence bundles with semantic integrity</div>
+      <div class="crisis-src">MetaGenesis Core fills this gap</div>
+    </div>
+
+  </div>
+</section></div>
+
 <section class="origin" id="origin">
   <div class="origin-inner">
     <div class="origin-quote rv d1">
@@ -1274,40 +1308,6 @@ a.soon-chip{border-bottom:none!important}
     <div class="uc"><div class="ucn">03</div><div class="uc-tag">Carbon Markets</div><h3>ESG Model Auditing</h3><p>Carbon sequestration and deforestation models become independently auditable. Corporate buyers verify without proprietary model access.</p></div>
     <div class="uc"><div class="ucn">04</div><div class="uc-tag">Financial Services</div><h3>Risk Model Validation</h3><p>VaR, credit scoring, stress test outputs packaged for Basel III/IV model risk management.</p></div>
     <div class="uc"><div class="ucn">05</div><div class="uc-tag">Materials / Engineering</div><h3>Calibration Handoff</h3><p>Young&#8217;s modulus, thermal conductivity &#8212; delivered with machine-verifiable proof. Drift detection against verified baselines included.</p></div>
-  </div>
-</section></div>
-
-<div class="div"></div>
-<div class="w"><section class="sec" id="crisis">
-  <div class="stag rv">The Problem Is Real</div>
-  <h2 class="rv d1">The reproducibility crisis<br>is now your liability.</h2>
-  <p class="sdesc rv d2">Independent researchers, regulators, and clients can no longer accept computational results on trust alone. The cost of unverified claims is rising.</p>
-  <div class="crisis-grid rv d3">
-
-    <div class="crisis-stat">
-      <div class="crisis-n">70<span class="crisis-pct">%</span></div>
-      <div class="crisis-label">of researchers report failing to reproduce another scientist's results</div>
-      <div class="crisis-src">Nature survey, 1,576 researchers</div>
-    </div>
-
-    <div class="crisis-stat">
-      <div class="crisis-n">$<span class="crisis-pct">B</span></div>
-      <div class="crisis-label">in ML model failures attributed to unverified performance claims in production</div>
-      <div class="crisis-src">Regulatory filings, 2022–2025</div>
-    </div>
-
-    <div class="crisis-stat">
-      <div class="crisis-n">3</div>
-      <div class="crisis-label">major regulatory frameworks now require independent verification of computational outputs</div>
-      <div class="crisis-src">EU AI Act · FDA 21 CFR Part 11 · Basel III/IV</div>
-    </div>
-
-    <div class="crisis-stat">
-      <div class="crisis-n">0</div>
-      <div class="crisis-label">existing open tools provide offline, third-party verifiable evidence bundles with semantic integrity</div>
-      <div class="crisis-src">MetaGenesis Core fills this gap</div>
-    </div>
-
   </div>
 </section></div>
 
@@ -1936,7 +1936,7 @@ a.soon-chip{border-bottom:none!important}
         ctx.fillStyle = rg;
 
         // stroke сетки: постоянная база + волна, БЕЗ dim-множителя
-        var sa = 0.042 + flow*0.078 + crest*0.058 + pulse*0.010;
+        var sa = 0.060 + flow*0.115 + crest*0.092 + pulse*0.020;
         var lw = 0.25 + flow*0.68 + crest*0.45;
         ctx.strokeStyle = 'rgba(0,'+gv+','+bv+','+Math.min(sa,0.22)+')';
         ctx.lineWidth = lw;
@@ -2080,9 +2080,9 @@ a.soon-chip{border-bottom:none!important}
         var _sn = h._sP[h._sN];
         var _short = _s.length<=2;
         // прозрачность: минимум 0.08 в центре, ярче к краям
-        var _ba = (0.12 + pulse*0.18 + crest*0.14) * (0.15 + dim*0.85);
-        var _aA = Math.min(_ba*_cf, 0.55);
-        var _aN = Math.min(_ba*(1-_cf)*0.4, 0.22);
+        var _ba = (0.22 + pulse*0.26 + crest*0.20) * (0.30 + dim*0.70);
+        var _aA = Math.min(_ba*_cf, 0.72);
+        var _aN = Math.min(_ba*(1-_cf)*0.45, 0.36);
         if(_aA>0.005){
           var _fs = Math.max(8, Math.floor((_short ? ir*1.05 : ir*0.58)+pulse*ir*0.10));
           ctx.save();
@@ -2112,10 +2112,10 @@ a.soon-chip{border-bottom:none!important}
 
       // виньетка: центр полупрозрачный (контент), края тёмные
       var vg=ctx.createRadialGradient(W*0.5,H*0.45,H*0.04,W*0.5,H*0.5,H*0.78);
-      vg.addColorStop(0,   'rgba(4,8,26,0.38)');
-      vg.addColorStop(0.28,'rgba(4,8,26,0.18)');
-      vg.addColorStop(0.55,'rgba(4,8,26,0.06)');
-      vg.addColorStop(1,   'rgba(4,8,26,0.78)');
+      vg.addColorStop(0,   'rgba(4,8,26,0)');
+      vg.addColorStop(0.35,'rgba(4,8,26,0.06)');
+      vg.addColorStop(0.70,'rgba(4,8,26,0.22)');
+      vg.addColorStop(1,   'rgba(4,8,26,0.82)');
       ctx.fillStyle=vg; ctx.fillRect(0,0,W,H);
 
       requestAnimationFrame(fr);
