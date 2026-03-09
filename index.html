@@ -1474,8 +1474,6 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
   var cv=document.getElementById('bg'),ctx=cv?cv.getContext('2d'):null;
   if(ctx){
     var W,H;
-    function sz(){W=cv.width=innerWidth;H=cv.height=innerHeight;}sz();
-    window.addEventListener('resize',sz);
     // --- HEX GRID: pixel-aligned, wave-driven ---
     var R=48, hexes=[];
     function buildGrid(){
