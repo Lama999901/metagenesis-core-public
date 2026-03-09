@@ -2335,7 +2335,7 @@ a.soon-chip{border-bottom:none!important}
   if(ctx){
     var W,H;
     // --- HEX GRID: pixel-aligned, wave-driven ---
-    var R=72, hexes=[];
+    var R=48, hexes=[];
     function buildGrid(){
       hexes=[];
       var cw=R*1.732, ch=R*1.5;
@@ -2369,21 +2369,13 @@ a.soon-chip{border-bottom:none!important}
     }
 
     var t=0;
-    var _lastFrame=0;
     (function fr(){
-      if(!document.hidden) requestAnimationFrame(fr);
-      // Throttle to ~30fps — imperceptible for background, halves CPU cost
-      var now=performance.now();
-      if(now-_lastFrame < 38){return;}  /* ~26fps */
-      _lastFrame=now;
       ctx.clearRect(0,0,W,H);
       t+=0.0036;
 
       // центр экрана — фон затухает у контента, живёт по краям
       var cx = W*0.5, cy = H*0.5;
 
-      // Set text props once per frame — not per hex
-      ctx.textAlign='center'; ctx.textBaseline='middle';
       hexes.forEach(function(h){
         h.rot  += h.rspd;
         h.rot2 += h.rspd2;
@@ -2430,9 +2422,7 @@ a.soon-chip{border-bottom:none!important}
         ctx.lineWidth = lw;
         hp(x,y,h.rad,0); ctx.fill(); ctx.stroke();
 
-        // ═══ ДНК — только для части гексов ═══
-        // skip DNA for dna>5 → 33% draw calls saved
-        if(h.dna > 5){ /* no DNA */ } else {
+        // ═══ УНИКАЛЬНАЯ ДНК — тихая, выровненная ═══
         var ir = h.rad * 0.44;
         var ia = 0.10 + pulse*0.14 + pulse2*0.07 + crest*0.10;
         ia = Math.min(ia, 0.40);
@@ -2536,8 +2526,7 @@ a.soon-chip{border-bottom:none!important}
         }
         var ppx1=px1, ppy1=py1, ppx2=px2, ppy2=py2;
         }
-        } // end dna>5 skip
-        } // end dna block
+        }
 
         // ════════════════════════════════════════
         // СИМВОЛЬНЫЙ СЛОЙ
@@ -2581,14 +2570,11 @@ a.soon-chip{border-bottom:none!important}
         var _ba = (0.26 + pulse*0.28 + crest*0.22) * (0.48 + dim*0.52);
         var _aA = Math.min(_ba*_cf, 0.78);
         var _aN = Math.min(_ba*(1-_cf)*0.45, 0.38);
-        if(_aA>0.005 && h.dna < 7){
+        if(_aA>0.005){
           var _fs = Math.max(10, Math.floor(_scale*ir + pulse*ir*0.10));
-          var _fstr = _fw+' '+_fs+'px "IBM Plex Mono",monospace';
-          // only set ctx.font when it changes — saves ~60% of font-set cost
-          if(ctx.font !== _fstr){
-            if(!ctx._taBSet){ctx.textAlign='center';ctx.textBaseline='middle';ctx._taBSet=true;}
-            ctx.font = _fstr;
-          }
+          // no ctx.save/restore — set state directly for perf
+          ctx.textAlign='center'; ctx.textBaseline='middle';
+          ctx.font = _fw+' '+_fs+'px "IBM Plex Mono",monospace';
           ctx.globalAlpha = _aA;
           ctx.fillStyle = 'rgb(0,'+gv+','+bv+')';
           ctx.fillText(_s,x,y);
@@ -2605,6 +2591,7 @@ a.soon-chip{border-bottom:none!important}
       vg.addColorStop(1,   'rgba(4,8,26,0.48)');
       ctx.fillStyle=vg; ctx.fillRect(0,0,W,H);
 
+      requestAnimationFrame(fr);
     })();
   }
 
@@ -2809,6 +2796,7 @@ a.soon-chip{border-bottom:none!important}
 
   var t=0;
   function fr(){
+    requestAnimationFrame(fr);
     c.clearRect(0,0,W,H);
     t+=0.016;
 
@@ -2893,27 +2881,7 @@ a.soon-chip{border-bottom:none!important}
     c.lineWidth=0.8;
     c.stroke();
   }
-  /* — pause RAF when canvas not visible — saves CPU/GPU entirely — */
-  var isVisible = false;
-  var rafId = null;
-
-  function startLoop(){ if(!rafId){ rafId = requestAnimationFrame(tick); } }
-  function stopLoop(){ if(rafId){ cancelAnimationFrame(rafId); rafId=null; } }
-  function tick(){ fr(); rafId = requestAnimationFrame(tick); }
-
-  /* Override fr to not auto-call requestAnimationFrame */
-  /* Instead tick() drives the loop */
-
-  var visObs = new IntersectionObserver(function(entries){
-    if(entries[0].isIntersecting){
-      isVisible = true;
-      startLoop();
-    } else {
-      isVisible = false;
-      stopLoop();
-    }
-  }, {threshold: 0.01});
-  visObs.observe(cv);
+  fr();
 
   /* — slide-in trigger — */
   var io=new IntersectionObserver(function(entries){
@@ -3030,7 +2998,7 @@ a.soon-chip{border-bottom:none!important}
 
   var mx=window.innerWidth/2,my=window.innerHeight/2;
   var rx=mx,ry=my;
-  var LAG=0.18;          /* ring lerp speed — snappier */
+  var LAG=0.11;          /* ring lerp speed (lower = more lag) */
   var raf=null;
   var body=document.body;
 
@@ -3077,12 +3045,14 @@ a.soon-chip{border-bottom:none!important}
     dot.style.opacity=''; ring.style.opacity='';
   });
 
-  /* ── CSS transition instead of JS RAF lerp ── 
-     Browser compositor handles this — no main thread cost */
-  ring.style.transition = ring.style.transition + ', transform 0.08s linear';
-  document.addEventListener('mousemove', function(e){
-    ring.style.transform = 'translate('+e.clientX+'px,'+e.clientY+'px) translate(-50%,-50%)';
-  }, {passive:true});
+  /* ── RAF lerp loop ── */
+  function loop(){
+    rx+=(mx-rx)*LAG;
+    ry+=(my-ry)*LAG;
+    ring.style.transform='translate('+rx.toFixed(2)+'px,'+ry.toFixed(2)+'px) translate(-50%,-50%)';
+    requestAnimationFrame(loop);
+  }
+  loop();
 })();
 </script>
 
