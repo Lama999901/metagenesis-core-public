@@ -929,6 +929,37 @@ a.soon-chip{border-bottom:none!important}
 .origin-step-txt{font-size:13px;color:var(--txt3);line-height:1.65;font-weight:300;transition:all .4s ease}
 @media(max-width:900px){.origin-inner{grid-template-columns:1fr;gap:48px;padding:64px 32px}}
 @media(max-width:768px){.origin-inner{padding:48px 20px}}
+/* ════════════════════════════════════════
+   #PITCH — Built for one. Became universal.
+════════════════════════════════════════ */
+.pitch-grid{display:grid;grid-template-columns:1fr 48px 1fr;gap:0;border:1px solid var(--ln);overflow:hidden;background:var(--ink)}
+.pitch-col{padding:48px 44px;display:flex;flex-direction:column;gap:20px}
+.pitch-col-left{border-right:none;background:rgba(255,64,96,.03)}
+.pitch-col-right{background:rgba(0,255,153,.03)}
+.pitch-arrow{display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--txt3);background:var(--ink2);border-left:1px solid var(--ln);border-right:1px solid var(--ln)}
+.pitch-origin-tag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--err);display:flex;align-items:center;gap:10px}
+.pitch-origin-tag::before{content:'';width:16px;height:1px;background:var(--err)}
+.pitch-origin-tag-ok{color:var(--ok)}
+.pitch-origin-tag-ok::before{background:var(--ok)}
+.pitch-title{font-family:var(--fd);font-size:clamp(18px,2vw,26px);font-weight:700;letter-spacing:-.02em;line-height:1.15;color:var(--txt)}
+.pitch-body{font-size:14px;color:var(--txt2);line-height:1.8;font-weight:300;max-width:420px}
+.pitch-claims{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.pitch-chip{font-family:var(--fm);font-size:10px;letter-spacing:.08em;padding:5px 12px;border:1px solid rgba(255,64,96,.28);color:rgba(255,64,96,.7);background:rgba(255,64,96,.05)}
+.pitch-chip-ok{border-color:rgba(0,255,153,.3);color:var(--ok);background:rgba(0,255,153,.06)}
+.pitch-chip-dim{border-color:var(--ln2);color:var(--txt3);background:transparent;font-style:italic}
+.pitch-banner{display:flex;align-items:center;gap:28px;margin-top:2px;padding:20px 28px;border:1px solid var(--ln2);background:linear-gradient(90deg,rgba(0,229,255,.04),rgba(0,229,255,.01));border-top:none}
+.pitch-banner-label{font-family:var(--fd);font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--c);flex-shrink:0}
+.pitch-banner-text{font-size:13px;color:var(--txt2);line-height:1.7;font-weight:300}
+@media(max-width:900px){
+  .pitch-grid{grid-template-columns:1fr}
+  .pitch-arrow{display:flex;width:100%;height:44px;border-left:none;border-right:none;border-top:1px solid var(--ln);border-bottom:1px solid var(--ln);writing-mode:horizontal-tb;transform:rotate(90deg) scaleX(.5)}
+  .pitch-col-left,.pitch-col-right{padding:32px 28px}
+  .pitch-banner{flex-direction:column;align-items:flex-start;gap:10px;border-top:none}
+}
+@media(max-width:600px){
+  .pitch-col{padding:24px 20px}.pitch-body{font-size:13px}
+  .pitch-banner{padding:16px 20px;gap:8px}
+}
 </style>
 </head>
 <body>
@@ -1209,6 +1240,51 @@ a.soon-chip{border-bottom:none!important}
     </div>
   </div>
 </section>
+<div class="div"></div>
+
+<div class="w"><section class="sec" id="pitch">
+  <div class="stag rv">How It Started</div>
+  <h2 class="rv d1" data-glitch="Built for one thing. Became universal.">Built for one thing.<br>Became universal.</h2>
+  <p class="sdesc rv d2">MetaGenesis Core started as a materials simulation verifier. Then the protocol worked for ML accuracy. Then data pipelines. Then risk models. The same 4-step structure handles every computational claim — because the problem is always the same: <em style="color:var(--c);font-style:normal">proof, not trust.</em></p>
+
+  <div class="pitch-grid rv d3">
+
+    <div class="pitch-col pitch-col-left">
+      <div class="pitch-origin-tag">Version 0.1 — origin</div>
+      <h3 class="pitch-title">Materials science verifier</h3>
+      <p class="pitch-body">Young's modulus. Thermal conductivity. Multilayer contact. Three claims, one physicist, one problem: simulation results that couldn't be independently verified by any external party.</p>
+      <div class="pitch-claims">
+        <span class="pitch-chip">MTR-1</span>
+        <span class="pitch-chip">MTR-2</span>
+        <span class="pitch-chip">MTR-3</span>
+      </div>
+    </div>
+
+    <div class="pitch-arrow">&#8594;</div>
+
+    <div class="pitch-col pitch-col-right">
+      <div class="pitch-origin-tag pitch-origin-tag-ok">Today — universal protocol</div>
+      <h3 class="pitch-title" style="color:var(--ok)">Verification engine for any domain</h3>
+      <p class="pitch-body">The same 4-step pipeline — run, index, pack, verify — works for ML benchmarks, system identification, data pipelines, drift monitoring. Any computational claim. Any domain. One command. PASS or FAIL.</p>
+      <div class="pitch-claims">
+        <span class="pitch-chip pitch-chip-ok">ML_BENCH-01</span>
+        <span class="pitch-chip pitch-chip-ok">SYSID-01</span>
+        <span class="pitch-chip pitch-chip-ok">DATA-PIPE-01</span>
+        <span class="pitch-chip pitch-chip-ok">DRIFT-01</span>
+        <span class="pitch-chip pitch-chip-dim">PHARMA-01 &#8594;</span>
+        <span class="pitch-chip pitch-chip-dim">FINRISK-01 &#8594;</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="pitch-banner rv d4">
+    <span class="pitch-banner-label">The insight</span>
+    <span class="pitch-banner-text">The problem of unverifiable computational claims is the same in every domain. The protocol that solves it for materials science solves it everywhere &mdash; because verification is domain-agnostic.</span>
+  </div>
+
+</section></div>
+
 <div class="div"></div>
 <div class="w"><section class="sec" id="protocol">
   <div class="stag rv">How It Works</div>
