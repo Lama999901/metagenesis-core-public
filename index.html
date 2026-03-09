@@ -1487,7 +1487,7 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
         rot:Math.random()*Math.PI*2,       // начальный угол внутр. гексагона
         rspd:(Math.random()-0.5)*0.004,    // скорость вращения (+ или -)
         charge:Math.random()*0.4,          // накопленный заряд 0→1
-        cspd:0.00035+Math.random()*0.0006, // скорость накопления
+        cspd:0.00008+Math.random()*0.00012, // скорость накопления (медленнее)
         energy:0,                          // входящая энергия от соседей
         flash:0,                           // яркость разряда (затухает)
         neighbors:[]
@@ -1517,15 +1517,15 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
         h.rot+=h.rspd;
         // накапливаем заряд (быстрее если есть входящая энергия)
         h.charge+=h.cspd*(1+h.energy*3);
-        h.energy*=0.88; // энергия от соседей затухает
-        h.flash*=0.82;  // вспышка затухает
+        h.energy*=0.82; // энергия от соседей затухает быстрее
+        h.flash*=0.72;  // вспышка затухает быстрее
         // РАЗРЯД — когда заряд переполнен
         if(h.charge>=1){
           h.charge=0;
           h.flash=1;
           // передаём энергию соседям с небольшой задержкой
           h.neighbors.forEach(function(nb){
-            nb.energy=Math.min(1,nb.energy+0.32);
+            nb.energy=Math.min(1,nb.energy+0.18);
           });
         }
       });
