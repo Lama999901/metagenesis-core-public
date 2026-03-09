@@ -212,6 +212,90 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
 .flinks{display:flex;gap:28px}
 .flinks a{font-size:11px;color:var(--txt3);text-decoration:none;letter-spacing:.06em;transition:color .2s}
 .flinks a:hover{color:var(--txt)}
+/* ════════════════════════════════════════
+   FILE LINK COLOR SYSTEM
+   .py  → cyan   .json → amber  .yaml → coral
+   .md  → violet  tests/ → green  demos/ → teal
+════════════════════════════════════════ */
+a[href*="github.com/Lama999901"]{
+  text-decoration:none;
+  transition:color .18s,opacity .18s,border-color .18s,background .18s;
+}
+/* Python scripts → cyan */
+a[href*=".py"]{
+  color:var(--c);
+  border-bottom:1px solid rgba(0,229,255,.25);
+}
+a[href*=".py"]:hover{border-bottom-color:var(--c);opacity:.82}
+/* Test files → green (overrides .py) */
+a[href*="/tests/"]{
+  color:var(--ok);
+  border-bottom:1px solid rgba(0,255,153,.25);
+}
+a[href*="/tests/"]:hover{border-bottom-color:var(--ok)}
+/* JSON → amber */
+a[href*=".json"]{
+  color:#ffb347;
+  border-bottom:1px solid rgba(255,179,71,.25);
+}
+a[href*=".json"]:hover{border-bottom-color:#ffb347}
+/* YAML → coral */
+a[href*=".yaml"]{
+  color:#ff8c6b;
+  border-bottom:1px solid rgba(255,140,107,.25);
+}
+a[href*=".yaml"]:hover{border-bottom-color:#ff8c6b}
+/* Markdown docs → soft violet */
+a[href*=".md"]{
+  color:#b8a4ff;
+  border-bottom:1px solid rgba(184,164,255,.25);
+}
+a[href*=".md"]:hover{border-bottom-color:#b8a4ff}
+/* Demos/bundles → teal */
+a[href*="/demos/"]{
+  color:#5dd8d8;
+  border-bottom:1px solid rgba(93,216,216,.25);
+}
+a[href*="/demos/"]:hover{border-bottom-color:#5dd8d8}
+/* Pipeline table pills */
+.ptitle a{
+  font-family:var(--fm);
+  font-size:12px;
+  letter-spacing:.02em;
+  padding:3px 10px;
+  background:rgba(0,229,255,.05);
+  border:1px solid rgba(0,229,255,.18)!important;
+  border-radius:3px;
+  display:inline-block;
+}
+.ptitle a[href*=".py"]{border-color:rgba(0,229,255,.22)!important;background:rgba(0,229,255,.06)}
+.ptitle a[href*=".json"]{color:#ffb347;border-color:rgba(255,179,71,.22)!important;background:rgba(255,179,71,.05)}
+.ptitle a:hover{background:rgba(0,229,255,.12)!important;border-color:rgba(0,229,255,.45)!important}
+.ptitle a[href*=".json"]:hover{background:rgba(255,179,71,.12)!important;border-color:#ffb347!important}
+/* Governance heading link */
+.govhl a{font-family:var(--fm);color:var(--ok);border-bottom:1px solid rgba(0,255,153,.25)}
+.govhl a:hover{border-bottom-color:var(--ok)}
+/* note-block inline file link */
+.note-block a{color:var(--ok);border-bottom:1px solid rgba(0,255,153,.25)}
+.note-block a code{color:inherit!important}
+.note-block a:hover{border-bottom-color:var(--ok)}
+/* FAQ prose links */
+.faq-a a{border-bottom:1px solid rgba(0,229,255,.25)}
+.faq-a a:hover{border-bottom-color:var(--c)}
+.faq-a a code{color:inherit!important}
+/* Segment step code links */
+.seg-step a{color:var(--c);border-bottom:1px solid rgba(0,229,255,.22)}
+.seg-step a:hover{border-bottom-color:var(--c)}
+/* Claim ID links in grid — keep cyan, inherit pill style */
+.claimid a{color:var(--c);border-bottom:none;font-family:inherit;font-size:inherit;font-weight:inherit;letter-spacing:inherit}
+.claimid a:hover{opacity:.75}
+/* Site-map overlay links — keep as-is, no file styling */
+.mo-col a{border-bottom:none}
+/* Segment chip links */
+.seg-chip{cursor:pointer}
+a.seg-chip{text-decoration:none;display:inline-block}
+a.active-chip{border-bottom:none!important}
+a.soon-chip{border-bottom:none!important}
 .rv{opacity:0;transform:translateY(32px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1)}
 .rv.vis{opacity:1;transform:none}
 .d1{transition-delay:.06s}.d2{transition-delay:.18s}.d3{transition-delay:.3s}.d4{transition-delay:.42s}
