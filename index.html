@@ -2160,11 +2160,11 @@ a.soon-chip{border-bottom:none!important}
         hp(x,y,h.rad,0); ctx.fill(); ctx.stroke();
 
         // ═══ УНИКАЛЬНАЯ ДНК — тихая, выровненная ═══
-        var ir = h.rad * 0.32;
-        var ia = 0.08 + pulse*0.12 + pulse2*0.06 + crest*0.09;
-        ia = Math.min(ia, 0.34);
+        var ir = h.rad * 0.44;
+        var ia = 0.10 + pulse*0.14 + pulse2*0.07 + crest*0.10;
+        ia = Math.min(ia, 0.42);
         ctx.strokeStyle = 'rgba(0,'+gv+','+bv+','+ia+')';
-        ctx.lineWidth = 0.22 + pulse*0.18 + crest*0.1;
+        ctx.lineWidth = 0.45 + pulse*0.35 + crest*0.18;
 
         if(h.dna===0){
           // ДНК-0: две встречных звезды Давида
@@ -2178,16 +2178,22 @@ a.soon-chip{border-bottom:none!important}
           for(var i=0;i<3;i++){var a3=Math.PI*2/3*i+h.rot;i?ctx.lineTo(x+ir*Math.cos(a3),y+ir*Math.sin(a3)):ctx.moveTo(x+ir*Math.cos(a3),y+ir*Math.sin(a3));}
           ctx.closePath(); ctx.fillStyle='rgba(0,0,0,0)'; ctx.fill(); ctx.stroke();
           var dr=ir*0.50;
-          ctx.beginPath(); ctx.arc(x+dr*Math.cos(h.orb),y+dr*Math.sin(h.orb),0.9+pulse2*0.55,0,Math.PI*2);
-          ctx.fillStyle='rgba(0,'+gv+','+bv+','+(0.16+pulse2*0.16)+')'; ctx.fill();
+          ctx.beginPath(); ctx.arc(x+dr*Math.cos(h.orb),y+dr*Math.sin(h.orb),2.4+pulse2*1.2,0,Math.PI*2);
+          ctx.fillStyle='rgba(0,'+gv+','+bv+','+(0.30+pulse2*0.24)+')'; ctx.fill();
 
         }else if(h.dna===2){
-          // ДНК-2: два концентрических кольца в противофазе
-          ctx.beginPath(); ctx.arc(x,y,ir*(0.86+pulse*0.07),0,Math.PI*2); ctx.stroke();
-          ctx.strokeStyle='rgba(0,'+gv+','+bv+','+(ia*0.5)+')';
-          ctx.beginPath(); ctx.arc(x,y,ir*(0.50+pulse2*0.07),0,Math.PI*2); ctx.stroke();
-          ctx.beginPath(); ctx.arc(x,y,0.85+pulse*0.45,0,Math.PI*2);
-          ctx.fillStyle='rgba(0,'+gv+','+bv+','+(0.14+pulse*0.15)+')'; ctx.fill();
+          // ДНК-2: два вращающихся дуговых сегмента + орбитная точка
+          var r2a=ir*(0.88+pulse*0.06), r2b=ir*(0.52+pulse2*0.07);
+          var segA=Math.PI*1.3+pulse*0.3, gapA=Math.PI*0.22;
+          ctx.beginPath(); ctx.arc(x,y,r2a, h.rot, h.rot+segA); ctx.stroke();
+          ctx.beginPath(); ctx.arc(x,y,r2a, h.rot+segA+gapA, h.rot+Math.PI*2-0.1); ctx.stroke();
+          ctx.strokeStyle='rgba(0,'+gv+','+bv+','+(ia*0.55)+')';
+          var segB=Math.PI*0.9+pulse2*0.25;
+          ctx.beginPath(); ctx.arc(x,y,r2b, -h.rot, -h.rot+segB); ctx.stroke();
+          ctx.beginPath(); ctx.arc(x,y,r2b, -h.rot+segB+0.35, -h.rot+Math.PI*2-0.1); ctx.stroke();
+          var od2=ir*0.70;
+          ctx.beginPath(); ctx.arc(x+od2*Math.cos(h.orb),y+od2*Math.sin(h.orb),2.2+pulse*1.0,0,Math.PI*2);
+          ctx.fillStyle='rgba(0,'+gv+','+bv+','+(0.30+pulse*0.22)+')'; ctx.fill();
 
         }else if(h.dna===3){
         // ДНК-3: снежинка — 6 лучей
@@ -2197,8 +2203,8 @@ a.soon-chip{border-bottom:none!important}
         ctx.strokeStyle='rgba(0,'+gv+','+bv+','+(ia*(0.55+i%2*0.18))+')'; 
         ctx.lineWidth=0.20+pulse*0.15; ctx.stroke();
         }
-        ctx.beginPath(); ctx.arc(x,y,0.75+pulse2*0.65,0,Math.PI*2);
-        ctx.fillStyle='rgba(0,'+gv+','+bv+','+(0.16+pulse2*0.18)+')'; ctx.fill();
+        ctx.beginPath(); ctx.arc(x,y,2.0+pulse2*0.9,0,Math.PI*2);
+        ctx.fillStyle='rgba(0,'+gv+','+bv+','+(0.28+pulse2*0.20)+')'; ctx.fill();
 
         }else if(h.dna===4){
         // ДНК-4: малый гексагон + два орбитных спутника
@@ -2206,20 +2212,26 @@ a.soon-chip{border-bottom:none!important}
         hp(x,y,ir*0.60,h.rot2); ctx.fill(); ctx.stroke();
         var sr=ir*0.76;
         [[h.orb,0.85+pulse*0.45],[h.orb+Math.PI,0.65+pulse2*0.38]].forEach(function(od){
-        ctx.beginPath(); ctx.arc(x+sr*Math.cos(od[0]),y+sr*Math.sin(od[0]),od[1],0,Math.PI*2);
-        ctx.fillStyle='rgba(0,'+gv+','+bv+','+(0.15+pulse*0.14)+')'; ctx.fill();
+        ctx.beginPath(); ctx.arc(x+sr*Math.cos(od[0]),y+sr*Math.sin(od[0]),od[1]*2.2,0,Math.PI*2);
+        ctx.fillStyle='rgba(0,'+gv+','+bv+','+(0.28+pulse*0.20)+')'; ctx.fill();
         });
 
         }else if(h.dna===5){
-          // ДНК-5: двойная орбита — два кольца в противофазе с пульсирующей точкой
+          // ДНК-5: два вращающихся дуговых кольца + два орбитных спутника
           ctx.strokeStyle='rgba(0,'+gv+','+bv+','+ia+')';
-          ctx.lineWidth=0.18+pulse*0.12;
-          ctx.beginPath(); ctx.arc(x,y,ir*(0.78+pulse*0.06),0,Math.PI*2); ctx.stroke();
-          ctx.strokeStyle='rgba(0,'+gv+','+bv+','+(ia*0.4)+')';
-          ctx.beginPath(); ctx.arc(x,y,ir*(0.44+pulse2*0.08),0,Math.PI*2); ctx.stroke();
-          // орбитная точка
-          ctx.beginPath(); ctx.arc(x+ir*0.62*Math.cos(h.orb),y+ir*0.62*Math.sin(h.orb),0.9+pulse*0.5,0,Math.PI*2);
-          ctx.fillStyle='rgba(0,'+gv+','+bv+','+(0.18+pulse*0.14)+')'; ctx.fill();
+          ctx.lineWidth=0.40+pulse*0.22;
+          var r5a=ir*(0.80+pulse*0.06), r5b=ir*(0.46+pulse2*0.08);
+          var s5=Math.PI*1.5+pulse*0.2;
+          ctx.beginPath(); ctx.arc(x,y,r5a, h.rot2, h.rot2+s5); ctx.stroke();
+          ctx.beginPath(); ctx.arc(x,y,r5a, h.rot2+s5+0.3, h.rot2+Math.PI*2-0.05); ctx.stroke();
+          ctx.strokeStyle='rgba(0,'+gv+','+bv+','+(ia*0.5)+')';
+          ctx.beginPath(); ctx.arc(x,y,r5b, -h.rot2*1.3, -h.rot2*1.3+Math.PI*1.1); ctx.stroke();
+          ctx.beginPath(); ctx.arc(x,y,r5b, -h.rot2*1.3+Math.PI*1.4, -h.rot2*1.3+Math.PI*2-0.1); ctx.stroke();
+          var od5=ir*0.63;
+          ctx.beginPath(); ctx.arc(x+od5*Math.cos(h.orb),y+od5*Math.sin(h.orb),2.4+pulse*1.1,0,Math.PI*2);
+          ctx.fillStyle='rgba(0,'+gv+','+bv+','+(0.32+pulse*0.20)+')'; ctx.fill();
+          ctx.beginPath(); ctx.arc(x+od5*Math.cos(h.orb+Math.PI),y+od5*Math.sin(h.orb+Math.PI),1.6+pulse2*0.8,0,Math.PI*2);
+          ctx.fillStyle='rgba(0,'+gv+','+bv+','+(0.20+pulse2*0.14)+')'; ctx.fill();
 
         }else if(h.dna===6){
           // ДНК-6: крест + диагональный перекрёст (hash #)
@@ -2230,8 +2242,8 @@ a.soon-chip{border-bottom:none!important}
             ctx.lineTo(x+hl*Math.cos(ang+h.rot+Math.PI),y+hl*Math.sin(ang+h.rot+Math.PI));
             ctx.strokeStyle='rgba(0,'+gv+','+bv+','+(ia*(idx<2?1:0.45))+')'; ctx.lineWidth=0.20+pulse*0.14; ctx.stroke();
           });
-          ctx.beginPath(); ctx.arc(x,y,0.7+pulse*0.5,0,Math.PI*2);
-          ctx.fillStyle='rgba(0,'+gv+','+bv+','+(0.18+pulse*0.16)+')'; ctx.fill();
+          ctx.beginPath(); ctx.arc(x,y,2.2+pulse*1.0,0,Math.PI*2);
+          ctx.fillStyle='rgba(0,'+gv+','+bv+','+(0.30+pulse*0.22)+')'; ctx.fill();
 
         }else if(h.dna===7){
           // ДНК-7: бинарные биты по окружности
