@@ -228,13 +228,17 @@ body.mg-ready .word-trust .hspan{animation:slidein .85s .31s cubic-bezier(.16,1,
 .w > .sec::before{
   content:'';
   position:absolute;
-  inset:-80px -120px;
+  /* no negative top — prevent bleeding into ticker */
+  top:0;
+  bottom:0;
+  left:-60px;
+  right:-60px;
   background:radial-gradient(
-    ellipse 85% 92% at 50% 46%,
-    rgba(4,8,26,.96) 0%,
-    rgba(4,8,26,.88) 30%,
-    rgba(4,8,26,.62) 58%,
-    rgba(4,8,26,.18) 82%,
+    ellipse 88% 85% at 50% 42%,
+    rgba(4,8,26,.88) 0%,
+    rgba(4,8,26,.72) 35%,
+    rgba(4,8,26,.42) 62%,
+    rgba(4,8,26,.12) 82%,
     transparent 100%
   );
   pointer-events:none;
@@ -975,6 +979,15 @@ a.soon-chip{border-bottom:none!important}
   .cband>div{flex-direction:column;align-items:stretch}.cband .btn-c,.cband .btn-g{text-align:center}
   footer{padding:28px 20px;flex-direction:column;gap:24px;align-items:flex-start}.flinks{flex-wrap:wrap;gap:16px}
   h2{font-size:clamp(28px,7vw,48px)!important}
+  /* Fix: proto-rule text wrapping (Image 3) */
+  .proto-rule{font-size:13px;word-break:break-word;overflow-wrap:break-word;white-space:normal}
+  .proto-rule::before{flex-shrink:0;margin-top:2px}
+  .protoc{overflow:hidden}
+  /* Fix: pipeline pills on mobile (Image 4) */
+  .ptitle a{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;display:inline-block;vertical-align:middle}
+  .pipe{overflow-x:hidden}
+  /* Fix: section backdrop on mobile — no side bleed */
+  .w > .sec::before{left:-16px;right:-16px}
 }
 @media(max-width:480px){
   .hspan{font-size:clamp(40px,18vw,80px)!important}.stats{grid-template-columns:1fr 1fr}.stat{padding:20px 16px}
