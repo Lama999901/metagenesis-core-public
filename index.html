@@ -2569,23 +2569,20 @@ a.soon-chip{border-bottom:none!important}
         h._sT += h._sSp * (0.5 + flow*0.8);
         if(h._sT>=1){ h._sT-=1; h._sI=h._sN; h._sN=(h._sN+2+Math.floor(h.ph*7))%h._sP.length; }
 
-        // S-curve crossfade: smooth sine ease, not linear
-        var _t01 = h._sT; // 0..1 full cycle
-        // fade-out zone: last 25% of cycle; fade-in: first 25%
+        // S-curve crossfade — continuous across reset boundary
+        // 0..0.72: A fully visible, B invisible
+        // 0.72..1.0: A fades OUT, B fades IN (sine ease)
+        // at reset _sT=0: A=old_B (alpha=1), new B=0 → no jump
+        var _t01 = h._sT;
+        var _hold = 0.72;
         var _cfA, _cfB;
-        if(_t01 < 0.25){
-          // A fading in, B not yet visible
-          _cfA = 0.5 - 0.5*Math.cos(_t01/0.25 * Math.PI); // 0→1
-          _cfB = 0;
-        } else if(_t01 < 0.75){
-          // A fully visible
-          _cfA = 1.0;
-          _cfB = 0;
+        if(_t01 < _hold){
+          _cfA = 1.0; _cfB = 0.0;
         } else {
-          // A fading out, B fading in simultaneously
-          var _x = (_t01 - 0.75) / 0.25; // 0→1
-          _cfA = 0.5 + 0.5*Math.cos(_x * Math.PI); // 1→0
-          _cfB = 0.5 - 0.5*Math.cos(_x * Math.PI); // 0→1
+          var _xf = (_t01 - _hold) / (1.0 - _hold); // 0→1
+          var _ease = 0.5 - 0.5*Math.cos(_xf * Math.PI); // S-curve 0→1
+          _cfA = 1.0 - _ease; // 1→0
+          _cfB = _ease;       // 0→1
         }
 
         var _s  = h._sP[h._sI];
