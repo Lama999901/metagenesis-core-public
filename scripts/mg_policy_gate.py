@@ -151,17 +151,17 @@ class PolicyGate:
         
         # Report locked path violations
         if locked_violations:
-            print("❌ LOCKED PATH VIOLATIONS (HARD BLOCK):")
+            print("FAIL LOCKED PATH VIOLATIONS (HARD BLOCK):")
             for filepath, pattern in locked_violations:
-                print(f"  ✗ {filepath}")
+                print(f"  - {filepath}")
                 print(f"    Matched locked pattern: {pattern}")
             print()
         
         # Report allowlist violations
         if allowlist_violations:
-            print("❌ ALLOWLIST VIOLATIONS:")
+            print("FAIL ALLOWLIST VIOLATIONS:")
             for filepath in allowlist_violations:
-                print(f"  ✗ {filepath}")
+                print(f"  - {filepath}")
                 print(f"    Does not match any allowed pattern")
             print()
             print("ALLOWED PATTERNS:")
@@ -174,7 +174,7 @@ class PolicyGate:
         
         if has_violations:
             print(f"{'='*80}")
-            print("POLICY GATE: ❌ FAILED")
+            print("POLICY GATE: FAILED")
             print(f"{'='*80}")
             print(f"Locked path violations: {len(locked_violations)}")
             print(f"Allowlist violations: {len(allowlist_violations)}")
@@ -190,7 +190,7 @@ class PolicyGate:
             return False
         else:
             print(f"{'='*80}")
-            print("POLICY GATE: ✅ PASSED")
+            print("POLICY GATE: PASSED")
             print(f"{'='*80}")
             print("All changed files comply with repository policy.")
             print()

@@ -8,7 +8,7 @@
   },
 
   "version": "1.0.0",
-  "last_updated": "2026-03-05",
+  "last_updated": "2026-03-09",
 
   "locked_paths": [
     "reports/canonical_state.md",
@@ -46,7 +46,6 @@
     "backend/server.py",
     "demos/**",
     "ppa/**",
-    "system_manifest.json",
     "*.md",
     "*.txt",
     "*.json"
