@@ -45,7 +45,8 @@
     "ppa/**",
     "*.md",
     "*.txt",
-    "*.json"
+    "*.json",
+    "index.html"
   ],
   "_notes": {
     "locked_paths_purpose": "HARD BLOCK any modifications to sealed evidence artifacts",
