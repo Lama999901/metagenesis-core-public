@@ -2565,10 +2565,11 @@ a.soon-chip{border-bottom:none!important}
           h._sT = Math.random(); // start at random phase so no sync
           h._sSp= 0.00035 + Math.random()*0.00045; // faster cycle, no freezing
         }
-        h._sT += h._sSp;
+        // symbol speed follows wave — faster at crests, slower in troughs
+        h._sT += h._sSp * (0.4 + flow*1.2);
         if(h._sT>=1){ h._sT-=1; h._sI=h._sN; h._sN=(h._sN+3+Math.floor(h.ph*9))%h._sP.length; }
-        // плавный crossfade — долгие плато: 40% fade-in, 20% full, 40% fade-out
-        var _cf = h._sT<0.35 ? h._sT/0.35 : (h._sT>0.65 ? (1-h._sT)/0.35 : 1.0);
+        // crossfade envelope: 30% fade-in, 40% full, 30% fade-out
+        var _cf = h._sT<0.30 ? h._sT/0.30 : (h._sT>0.70 ? (1-h._sT)/0.30 : 1.0);
         _cf = Math.max(0,Math.min(_cf,1));
         var _s  = h._sP[h._sI];
         var _sn = h._sP[h._sN];
@@ -2576,10 +2577,11 @@ a.soon-chip{border-bottom:none!important}
         var _len = _s.length;
         var _scale = _len<=2 ? 1.10 : _len<=4 ? 0.72 : 0.58;
         var _fw    = _len<=2 ? '700' : _len<=4 ? '800' : '500';
-        // прозрачность плавная, нет застревания
-        var _ba = (0.30 + pulse*0.28 + crest*0.22) * (0.55 + dim*0.45);
-        var _aA = Math.min(_ba*_cf, 0.72);
-        var _aN = Math.min(_ba*(1-_cf)*0.40, 0.32);
+        // alpha DRIVEN by flow wave — symbols breathe with the grid
+        var _wave = flow*0.68 + crest*0.22 + pulse*0.10;
+        var _ba = _wave * (0.55 + dim*0.45);
+        var _aA = Math.min(_ba*_cf, 0.80);
+        var _aN = Math.min(_ba*(1-_cf)*0.35, 0.30);
         if(_aA>0.005){
           var _fs = Math.max(10, Math.floor(_scale*ir + pulse*ir*0.10));
           var _fstr = _fw+' '+_fs+'px "IBM Plex Mono",monospace';
