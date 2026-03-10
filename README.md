@@ -184,8 +184,8 @@ The verification workflow is identical regardless of domain:
 python scripts/steward_audit.py
 # → STEWARD AUDIT: PASS
 
-python -m pytest tests/steward tests/materials tests/ml tests/systems tests/data -q
-# → 91 passed
+  python -m pytest tests/ -q
+  # → 91 passed
 
 grep -r "tamper-proof|GPT-5|19x|VacuumGenesis" docs/ scripts/ backend/ tests/
 # → (empty — no forbidden claims)
