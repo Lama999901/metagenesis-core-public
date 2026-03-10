@@ -220,12 +220,13 @@ body.mg-ready .word-trust .hspan{animation:slidein .85s .31s cubic-bezier(.16,1,
 .w > .sec::before{
   content:'';
   position:absolute;
-  inset:-60px -80px;
+  inset:-80px -120px;
   background:radial-gradient(
-    ellipse 78% 88% at 50% 46%,
-    rgba(4,8,26,.88) 0%,
-    rgba(4,8,26,.72) 38%,
-    rgba(4,8,26,.32) 68%,
+    ellipse 85% 92% at 50% 46%,
+    rgba(4,8,26,.96) 0%,
+    rgba(4,8,26,.88) 30%,
+    rgba(4,8,26,.62) 58%,
+    rgba(4,8,26,.18) 82%,
     transparent 100%
   );
   pointer-events:none;
@@ -1221,7 +1222,7 @@ a.soon-chip{border-bottom:none!important}
 .origin{position:relative;z-index:10;background:rgba(5,9,22,0.72);border-top:1px solid var(--ln);border-bottom:1px solid var(--ln)}
 .origin-inner{max-width:1100px;margin:0 auto;padding:100px 52px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;position:relative;z-index:1}
 /* dark text-area panel inside origin */
-.origin-inner::before{content:'';position:absolute;inset:-20px -40px;background:radial-gradient(ellipse 90% 100% at 50% 50%,rgba(4,8,26,.78) 0%,rgba(4,8,26,.50) 55%,transparent 100%);pointer-events:none;z-index:-1}
+.origin-inner::before{content:'';position:absolute;inset:-30px -60px;background:radial-gradient(ellipse 92% 104% at 50% 50%,rgba(4,8,26,.95) 0%,rgba(4,8,26,.80) 40%,rgba(4,8,26,.40) 70%,transparent 100%);pointer-events:none;z-index:-1}
 .origin-quote{position:relative;padding-left:28px;padding-top:8px}
 .origin-quote::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(var(--c),transparent)}
 .origin-q{font-family:var(--fs);font-size:clamp(22px,2.8vw,36px);font-style:italic;color:var(--txt);line-height:1.55;margin-bottom:28px}
