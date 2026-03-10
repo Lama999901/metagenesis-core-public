@@ -68,8 +68,8 @@ class TestProgressStore:
     
     def test_run_job_transitions_status_and_writes_ledger(self, runner, temp_ledger):
         """Test running job transitions status and writes completion ledger entry."""
-        # Create job
-        job = runner.create_job(payload={'task': 'test'})
+        # Create job with a registered job kind so execution succeeds
+        job = runner.create_job(payload={'kind': 'drift_calibration_monitor'})
         initial_ledger_count = temp_ledger.count()
         
         # Run job
