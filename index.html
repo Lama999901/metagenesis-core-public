@@ -154,7 +154,7 @@ nav::before{content:'';position:absolute;inset:0;background:rgba(3,6,13,.92);bac
 .word-proof .hspan::after{content:'';position:absolute;left:-3%;width:106%;top:-5%;height:2px;background:linear-gradient(90deg,transparent,rgba(0,255,153,.85) 25%,rgba(0,255,153,1) 50%,rgba(0,255,153,.85) 75%,transparent);box-shadow:0 0 12px rgba(0,255,153,.6),0 0 28px rgba(0,255,153,.25);animation:proofscan 3.8s 1.6s ease-in-out infinite;pointer-events:none}
 @keyframes proofscan{0%{top:-5%;opacity:0}7%{opacity:1}78%{top:110%;opacity:.7}88%,100%{top:110%;opacity:0}}
 /* ── NOT: цветной глитч-дублирование ── */
-.word-not   .hspan{color:var(--c);position:relative;animation:notglow 5s 2s ease-in-out infinite}
+.word-not   .hspan{color:rgba(238,247,251,.28);position:relative;animation:notglow 5s 2s ease-in-out infinite}
 .word-not .hspan::before{content:attr(data-t);position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;font-family:var(--fd);font-size:inherit;font-weight:900;line-height:inherit;letter-spacing:inherit;color:#ff4060;clip-path:polygon(0 11%,100% 11%,100% 36%,0 36%);opacity:0;animation:gl1 4.8s 3.4s infinite}
 .word-not .hspan::after{content:attr(data-t);position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;font-family:var(--fd);font-size:inherit;font-weight:900;line-height:inherit;letter-spacing:inherit;color:#00ff99;clip-path:polygon(0 57%,100% 57%,100% 80%,0 80%);opacity:0;animation:gl2 4.8s 3.55s infinite}
 @keyframes gl1{0%,91%,100%{opacity:0;transform:none}92%{opacity:.78;transform:translateX(-5px) skewX(-1.5deg)}94%{opacity:.78;transform:translateX(3.5px)}95.5%{opacity:0}}
@@ -162,7 +162,7 @@ nav::before{content:'';position:absolute;inset:0;background:rgba(3,6,13,.92);bac
 /* ── TRUST: перечёркивание ── */
 .word-trust .hspan{color:rgba(238,247,251,.22);position:relative}
 @keyframes proofglow{0%,100%{text-shadow:0 0 40px rgba(0,255,153,.15),0 0 80px rgba(0,255,153,.07)}50%{text-shadow:0 0 80px rgba(0,255,153,.5),0 0 200px rgba(0,255,153,.2)}}
-@keyframes notglow{0%,100%{text-shadow:0 0 30px rgba(0,229,255,.08),0 0 60px rgba(0,229,255,.04)}50%{text-shadow:0 0 55px rgba(0,229,255,.28),0 0 120px rgba(0,229,255,.12)}}
+@keyframes notglow{0%,100%{text-shadow:none}50%{text-shadow:0 0 40px rgba(238,247,251,.08),0 0 80px rgba(238,247,251,.04)}}
 .word-trust .hspan::after{content:'';position:absolute;top:50%;left:-1%;width:0;height:6px;background:linear-gradient(90deg,transparent 0%,#ff4060 5%,#ff4060 95%,transparent 100%);box-shadow:0 0 30px rgba(255,64,96,.8),0 0 65px rgba(255,64,96,.35);transform:translateY(-50%);animation:strike .48s cubic-bezier(.77,0,.18,1) 1.4s forwards}
 @keyframes strike{from{width:0;opacity:0}3%{opacity:1}to{width:102%;opacity:1}}
 body.mg-ready .word-proof .hspan{animation:slidein .85s .05s cubic-bezier(.16,1,.3,1) both,proofglow 4s 3s ease-in-out infinite}
