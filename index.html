@@ -193,11 +193,19 @@ body.mg-ready .word-trust .hspan{animation:slidein .85s .31s cubic-bezier(.16,1,
 .hbio-label::before{content:'';width:20px;height:1px;background:var(--c)}
 .hbio-text{font-size:18px;color:rgba(238,247,251,.88);line-height:1.68;font-weight:300;max-width:580px}
 .hbio-text strong{color:#fff;font-weight:500}
-.hbtns{display:flex;gap:14px;flex-shrink:0;align-items:flex-end}
-.btn-c{font-family:var(--fd);font-size:11px;font-weight:700;padding:16px 36px;background:var(--c);color:var(--ink);border:none;cursor:pointer;text-decoration:none;letter-spacing:.06em;text-transform:uppercase;display:inline-block;transition:transform .2s,box-shadow .2s}
+.hbtns{display:flex;gap:12px;flex-shrink:0;align-items:flex-end;flex-wrap:wrap}
+.btn-c{font-family:var(--fd);font-size:11px;font-weight:700;padding:16px 32px;background:var(--c);color:var(--ink);border:none;cursor:pointer;text-decoration:none;letter-spacing:.06em;text-transform:uppercase;display:inline-block;transition:transform .2s,box-shadow .2s}
 .btn-c:hover{transform:translateY(-3px);box-shadow:0 12px 48px rgba(0,229,255,.4)}
-.btn-g{font-family:var(--fd);font-size:11px;font-weight:700;padding:16px 36px;background:transparent;color:var(--txt3);border:1px solid var(--ln2);cursor:pointer;text-decoration:none;letter-spacing:.06em;text-transform:uppercase;display:inline-block;transition:all .2s}
+.btn-g{font-family:var(--fd);font-size:11px;font-weight:700;padding:16px 32px;background:transparent;color:var(--txt3);border:1px solid var(--ln2);cursor:pointer;text-decoration:none;letter-spacing:.06em;text-transform:uppercase;display:inline-block;transition:all .2s}
 .btn-g:hover{border-color:var(--c3);color:var(--txt);transform:translateY(-3px)}
+.btn-green{font-family:var(--fd);font-size:11px;font-weight:700;padding:16px 32px;background:#00ff99;color:#000;border:none;cursor:pointer;text-decoration:none;letter-spacing:.06em;text-transform:uppercase;display:inline-block;transition:transform .2s,box-shadow .2s;position:relative}
+.btn-green:hover{transform:translateY(-3px);box-shadow:0 12px 48px rgba(0,255,153,.5)}
+.hero-pitch{font-size:12px;letter-spacing:.10em;text-transform:uppercase;color:rgba(238,247,251,.42);margin-bottom:28px;display:flex;align-items:center;gap:16px;font-family:var(--fm)}
+.hero-pitch span{color:var(--ok);font-weight:600}
+.hero-pitch .hp-arr{color:rgba(238,247,251,.2)}
+.hero-trust{display:flex;align-items:center;gap:10px;padding:14px 0 0;border-top:1px solid rgba(238,247,251,.06);margin-top:14px;flex-wrap:wrap}
+.hero-trust-label{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);margin-right:4px}
+.htbadge{font-size:9px;letter-spacing:.10em;text-transform:uppercase;color:rgba(238,247,251,.38);border:1px solid rgba(238,247,251,.10);padding:4px 10px;border-radius:2px;white-space:nowrap}
 .hscroll{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);z-index:12}
 .hscroll-bar{width:1px;height:40px;background:linear-gradient(var(--txt3),transparent);animation:sb 2s ease-in-out infinite}
 @keyframes sb{0%,100%{transform:scaleY(1);opacity:1}50%{transform:scaleY(.5);opacity:.5}}
@@ -1444,12 +1452,20 @@ a.soon-chip{border-bottom:none!important}
     <!-- main row: text + CTA -->
     <div class="hbottom-main">
       <div class="hbio">
+        <div class="hero-pitch">Your result <span class="hp-arr">&#8594;</span> evidence bundle <span class="hp-arr">&#8594;</span> any reviewer runs <span>one command</span> <span class="hp-arr">&#8594;</span> <span>PASS</span> or FAIL. Offline. No trust required.</div>
         <div class="hbio-label">What this is</div>
         <p class="hbio-text">Any computational result &#8212; <strong>ML accuracy, physics simulation, pipeline output</strong> &#8212; packaged into a tamper-evident evidence bundle. Any third party verifies it offline with <strong>one command</strong>, without your code, data, or environment.</p>
+        <div class="hero-trust">
+          <span class="hero-trust-label">Regulatory alignment</span>
+          <span class="htbadge">EU AI Act Art.&nbsp;9</span>
+          <span class="htbadge">FDA 21 CFR Part&nbsp;11</span>
+          <span class="htbadge">Basel III/IV SR&nbsp;11-7</span>
+        </div>
       </div>
       <div class="hbtns">
-        <a href="https://github.com/Lama999901/metagenesis-core-public" class="btn-c">VIEW ON GITHUB &#8594;</a>
-        <a href="#pilot" class="btn-g">REQUEST FREE PILOT</a>
+        <a href="https://buy.stripe.com/14AcN57qH19R1qN3QQ6Na00" class="btn-green">BUY BUNDLE &#8212; $299 &#8594;</a>
+        <a href="#pilot" class="btn-c">FREE PILOT</a>
+        <a href="https://github.com/Lama999901/metagenesis-core-public" class="btn-g">GITHUB &#8594;</a>
       </div>
     </div>
 
