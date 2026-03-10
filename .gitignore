@@ -48,3 +48,6 @@ demos/open_data_demo_01/pack/
 demos/open_data_demo_01/VERIFY_REPORT.json
 demos/open_data_demo_01/progress_runs/
 demos/open_data_demo_01/ledger_snapshots/
+
+write_operations_file.py
+write_ops.py
