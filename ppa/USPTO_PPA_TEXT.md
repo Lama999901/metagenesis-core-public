@@ -2,7 +2,8 @@
 # Inventor: Yehor Bazhynov
 # Filing type: Pro Se Provisional Patent Application (PPA)
 # Date prepared: 2026-03-04
-# Authority: steward_audit.py PASS + test_cert02 PASS + 77 tests PASS
+# Authority: steward_audit.py PASS + test_cert02 PASS + 91 tests PASS
+# Amendment note (2026-03-09): locked_paths populated — 5 sealed paths active
 
 ---
 
@@ -256,12 +257,15 @@ verification fails with non-zero exit and identifies missing key.
 ### 4. Policy-Gate Immutable Evidence Anchors (Claim 3)
 
 The policy configuration (scripts/mg_policy_gate_policy.json) defines:
-- locked_paths: glob patterns for permanently sealed files; currently
-  empty (no paths locked in public repo).
+- locked_paths: glob patterns for permanently sealed files; populated
+  with 5 sealed file patterns (as of 2026-03-09):
+  reports/canonical_state.md, reports/scientific_claim_index.md,
+  demos/open_data_demo_01/evidence_index.json, system_manifest.json,
+  scripts/mg_policy_gate_policy.json (self-sealed).
   The enforcement mechanism is active and validated by the policy gate
-  test suite; the locked_paths list is populated when specific evidence
-  artifacts are designated as sealed in a deployment context, providing
-  immutability guarantees without key custody or external timestamping.
+  test suite. Any PR modifying these paths is blocked before merge,
+  providing immutability guarantees without key custody or external
+  timestamping.
 - allow_globs: glob patterns for permitted modifications including
   scripts/**, tests/**, backend/progress/**, reports/*.md,
   reports/*.yaml, ppa/**, docs/**, *.md, *.json
@@ -325,5 +329,5 @@ Not applicable.
 
 *Prepared by: Yehor Bazhynov (Inventor, Pro Se)*
 *Based on: verified codebase, steward_audit PASS 2026-03-03,*
-*test_cert02 adversarial tamper PASS, 77 tests PASS*
+*test_cert02 adversarial tamper PASS, 91 tests PASS*
 *No invented features. Every section traceable to passing tests.*
