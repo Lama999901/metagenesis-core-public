@@ -260,7 +260,7 @@ def main():
     pack_build.add_argument("--source-reports-dir", type=Path, default=None)
     pack_build.set_defaults(func=cmd_pack_build)
     pack_verify = pack_sub.add_parser("verify")
-    pack_verify.add_argument("--input", "-i", type=Path, required=True, help="Pack directory to verify")
+    pack_verify.add_argument("--pack", "-p", type=Path, required=True, dest="input", help="Pack directory to verify")
     pack_verify.set_defaults(func=cmd_pack_verify)
 
     verify_top = sub.add_parser("verify")
