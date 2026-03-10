@@ -2577,21 +2577,23 @@ a.soon-chip{border-bottom:none!important}
         var _len = _s.length;
         var _scale = _len<=2 ? 1.10 : _len<=4 ? 0.72 : 0.58;
         var _fw    = _len<=2 ? '700' : _len<=4 ? '800' : '500';
-        // alpha DRIVEN by flow wave — symbols breathe with the grid
-        var _wave = flow*0.68 + crest*0.22 + pulse*0.10;
-        var _ba = _wave * (0.55 + dim*0.45);
-        var _aA = Math.min(_ba*_cf, 0.80);
-        var _aN = Math.min(_ba*(1-_cf)*0.35, 0.30);
+        // alpha + brightness FULLY DRIVEN by flow wave
+        var _wave = flow*0.72 + crest*0.20 + pulse*0.08;
+        var _ba = _wave * (0.50 + dim*0.50);
+        var _aA = Math.min(_ba*_cf, 0.85);
+        var _aN = Math.min(_ba*(1-_cf)*0.35, 0.28);
         if(_aA>0.005){
-          var _fs = Math.max(10, Math.floor(_scale*ir + pulse*ir*0.10));
+          var _fs = Math.max(10, Math.floor(_scale*ir + flow*ir*0.08));
           var _fstr = _fw+' '+_fs+'px "IBM Plex Mono",monospace';
-          // only set ctx.font when it changes — saves ~60% of font-set cost
           if(ctx.font !== _fstr){
             if(!ctx._taBSet){ctx.textAlign='center';ctx.textBaseline='middle';ctx._taBSet=true;}
             ctx.font = _fstr;
           }
+          // color brightness also follows wave: dim on troughs, bright on crests
+          var _sgv = Math.min(120 + Math.floor(_wave*130), 240);
+          var _sbv = Math.min(180 + Math.floor(_wave*60), 255);
           ctx.globalAlpha = _aA;
-          ctx.fillStyle = 'rgb(0,'+gv+','+bv+')';
+          ctx.fillStyle = 'rgb(0,'+_sgv+','+_sbv+')';
           ctx.fillText(_s,x,y);
           ctx.globalAlpha = 1;
         }
