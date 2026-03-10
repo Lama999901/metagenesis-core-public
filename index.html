@@ -2894,23 +2894,7 @@ a.soon-chip{border-bottom:none!important}
       c.fill();
     });
 
-    /* — center reticle — */
-    var cr=18+Math.sin(t*1.5)*3;
-    var ca=0.28+Math.sin(t*0.9)*0.10;
-    /* cross-hairs */
-    [0,Math.PI/2,Math.PI,Math.PI*3/2].forEach(function(a){
-      c.beginPath();
-      c.moveTo(cx+cr*Math.cos(a)*0.45, cy+cr*Math.sin(a)*0.45);
-      c.lineTo(cx+cr*Math.cos(a),      cy+cr*Math.sin(a));
-      c.strokeStyle='rgba(0,255,153,'+ca+')';
-      c.lineWidth=1.2;
-      c.stroke();
-    });
-    c.beginPath();
-    c.arc(cx,cy,cr,0,Math.PI*2);
-    c.strokeStyle='rgba(0,229,255,'+(ca*0.5)+')';
-    c.lineWidth=0.8;
-    c.stroke();
+
   }
   /* — pause RAF when canvas not visible — saves CPU/GPU entirely — */
   var isVisible = false;
