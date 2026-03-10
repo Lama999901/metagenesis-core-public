@@ -14,7 +14,8 @@
     "reports/canonical_state.md",
     "reports/scientific_claim_index.md",
     "demos/open_data_demo_01/evidence_index.json",
-    "system_manifest.json"
+    "system_manifest.json",
+    "scripts/mg_policy_gate_policy.json"
   ],
 
   "allow_globs": [
