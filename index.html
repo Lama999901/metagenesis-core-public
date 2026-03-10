@@ -2566,37 +2566,55 @@ a.soon-chip{border-bottom:none!important}
           h._sSp= 0.00035 + Math.random()*0.00045; // faster cycle, no freezing
         }
         // symbol speed follows wave — faster at crests, slower in troughs
-        h._sT += h._sSp * (0.4 + flow*1.2);
-        if(h._sT>=1){ h._sT-=1; h._sI=h._sN; h._sN=(h._sN+3+Math.floor(h.ph*9))%h._sP.length; }
-        // crossfade envelope: 30% fade-in, 40% full, 30% fade-out
-        var _cf = h._sT<0.30 ? h._sT/0.30 : (h._sT>0.70 ? (1-h._sT)/0.30 : 1.0);
-        _cf = Math.max(0,Math.min(_cf,1));
+        h._sT += h._sSp * (0.5 + flow*0.8);
+        if(h._sT>=1){ h._sT-=1; h._sI=h._sN; h._sN=(h._sN+2+Math.floor(h.ph*7))%h._sP.length; }
+
+        // S-curve crossfade: smooth sine ease, not linear
+        var _t01 = h._sT; // 0..1 full cycle
+        // fade-out zone: last 25% of cycle; fade-in: first 25%
+        var _cfA, _cfB;
+        if(_t01 < 0.25){
+          // A fading in, B not yet visible
+          _cfA = 0.5 - 0.5*Math.cos(_t01/0.25 * Math.PI); // 0→1
+          _cfB = 0;
+        } else if(_t01 < 0.75){
+          // A fully visible
+          _cfA = 1.0;
+          _cfB = 0;
+        } else {
+          // A fading out, B fading in simultaneously
+          var _x = (_t01 - 0.75) / 0.25; // 0→1
+          _cfA = 0.5 + 0.5*Math.cos(_x * Math.PI); // 1→0
+          _cfB = 0.5 - 0.5*Math.cos(_x * Math.PI); // 0→1
+        }
+
         var _s  = h._sP[h._sI];
         var _sn = h._sP[h._sN];
-        // размер по длине: 1-2 = крупно, 3-4 = средне, 4(PASS/FAIL) = средне, 5+ = мелко
-        var _len = _s.length;
-        var _scale = _len<=2 ? 1.10 : _len<=4 ? 0.72 : 0.58;
-        var _fw    = _len<=2 ? '700' : _len<=4 ? '800' : '500';
-        // alpha + brightness FULLY DRIVEN by flow wave
-        var _wave = flow*0.72 + crest*0.20 + pulse*0.08;
-        var _ba = _wave * (0.50 + dim*0.50);
-        var _aA = Math.min(_ba*_cf, 0.85);
-        var _aN = Math.min(_ba*(1-_cf)*0.35, 0.28);
-        if(_aA>0.005){
-          var _fs = Math.max(10, Math.floor(_scale*ir + flow*ir*0.08));
-          var _fstr = _fw+' '+_fs+'px "IBM Plex Mono",monospace';
-          if(ctx.font !== _fstr){
-            if(!ctx._taBSet){ctx.textAlign='center';ctx.textBaseline='middle';ctx._taBSet=true;}
-            ctx.font = _fstr;
-          }
-          // color brightness also follows wave: dim on troughs, bright on crests
-          var _sgv = Math.min(120 + Math.floor(_wave*130), 240);
-          var _sbv = Math.min(180 + Math.floor(_wave*60), 255);
-          ctx.globalAlpha = _aA;
+
+        // wave drives master brightness
+        var _wave = flow*0.68 + crest*0.22 + pulse*0.10;
+        var _master = _wave * (0.50 + dim*0.50);
+        var _sgv = Math.min(110 + Math.floor(_wave*138), 242);
+        var _sbv = Math.min(175 + Math.floor(_wave*65), 255);
+
+        // helper: draw one symbol at alpha
+        function _drawSym(sym, alpha){
+          if(alpha < 0.005) return;
+          var _len = sym.length;
+          var _sc  = _len<=2 ? 1.10 : _len<=4 ? 0.72 : 0.58;
+          var _fw2 = _len<=2 ? '700' : _len<=4 ? '800' : '500';
+          var _fs  = Math.max(10, Math.floor(_sc*ir + flow*ir*0.06));
+          var _fstr= _fw2+' '+_fs+'px "IBM Plex Mono",monospace';
+          if(ctx.font!==_fstr){ctx.font=_fstr;}
+          ctx.globalAlpha = Math.min(alpha, 0.85);
           ctx.fillStyle = 'rgb(0,'+_sgv+','+_sbv+')';
-          ctx.fillText(_s,x,y);
-          ctx.globalAlpha = 1;
+          ctx.fillText(sym, x, y);
         }
+
+        if(!ctx._taBSet){ctx.textAlign='center';ctx.textBaseline='middle';ctx._taBSet=true;}
+        _drawSym(_s,  _master * _cfA);
+        _drawSym(_sn, _master * _cfB);
+        ctx.globalAlpha = 1;
 
       });
 
