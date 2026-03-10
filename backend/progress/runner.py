@@ -192,6 +192,10 @@ class ProgressRunner:
         from backend.progress.mtr1_calibration import JOB_KIND as MTR1_KIND, run_calibration as run_mtr1
         from backend.progress.mtr2_thermal_conductivity import JOB_KIND as MTR2_KIND, run_calibration as run_mtr2
         from backend.progress.mtr3_thermal_multilayer import JOB_KIND as MTR3_KIND, run_calibration as run_mtr3
+        from backend.progress.sysid1_arx_calibration import JOB_KIND as SYSID1_KIND
+        from backend.progress.datapipe1_quality_certificate import JOB_KIND as DATAPIPE1_KIND
+        from backend.progress.drift_monitor import JOB_KIND as DRIFT01_KIND
+        from backend.progress.mlbench1_accuracy_certificate import JOB_KIND as MLBENCH1_KIND
 
         if payload.get("kind") == MTR1_KIND:
             p = payload
@@ -285,10 +289,6 @@ class ProgressRunner:
                 kwargs["dataset_relpath"] = str(p["dataset_relpath"]).strip()
             return run_mlbench1(**kwargs)
 
-        from backend.progress.sysid1_arx_calibration import JOB_KIND as SYSID1_KIND
-        from backend.progress.datapipe1_quality_certificate import JOB_KIND as DATAPIPE1_KIND
-        from backend.progress.drift_monitor import JOB_KIND as DRIFT01_KIND
-        from backend.progress.mlbench1_accuracy_certificate import JOB_KIND as MLBENCH1_KIND
         registered = [
             MTR1_KIND, MTR2_KIND, MTR3_KIND,
             SYSID1_KIND, DATAPIPE1_KIND, DRIFT01_KIND, MLBENCH1_KIND,
