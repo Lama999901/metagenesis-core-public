@@ -2394,8 +2394,8 @@ a.soon-chip{border-bottom:none!important}
         // расстояние от центра экрана, нормализовано 0..1
         var dx=(x-cx)/W, dy=(y-cy)/H;
         var distC = Math.min(Math.sqrt(dx*dx*1.8+dy*dy*2.2), 1.0);
-        // близко к центру — dim=0 (почти невиден), по краям — dim=1 (полная яркость)
-        var dim = Math.pow(distC, 1.6);
+        // близко к центру — dim=0.35 минимум, по краям — dim=1 (полная яркость)
+        var dim = 0.35 + Math.pow(distC, 1.4) * 0.65;
 
         // 3 бегущих волны — плавная интерференция
         var w1 = Math.sin(t*1.20 + h.wx*6.28*2.2)*0.5+0.5;
@@ -2575,7 +2575,7 @@ a.soon-chip{border-bottom:none!important}
         var _scale = _len<=2 ? 1.10 : _len<=3 ? 0.82 : 0.68;
         var _fw    = _len<=2 ? '700' : '500';
         // прозрачность: минимум 0.08 в центре, ярче к краям
-        var _ba = (0.26 + pulse*0.28 + crest*0.22) * (0.48 + dim*0.52);
+        var _ba = (0.32 + pulse*0.30 + crest*0.24) * (0.55 + dim*0.45);
         var _aA = Math.min(_ba*_cf, 0.78);
         var _aN = Math.min(_ba*(1-_cf)*0.45, 0.38);
         if(_aA>0.005){
@@ -2597,9 +2597,9 @@ a.soon-chip{border-bottom:none!important}
       // виньетка: центр полупрозрачный (контент), края тёмные
       var vg=ctx.createRadialGradient(W*0.5,H*0.45,H*0.10,W*0.5,H*0.5,H*0.72);
       vg.addColorStop(0,   'rgba(4,8,26,0)');
-      vg.addColorStop(0.40,'rgba(4,8,26,0.04)');
-      vg.addColorStop(0.72,'rgba(4,8,26,0.14)');
-      vg.addColorStop(1,   'rgba(4,8,26,0.48)');
+      vg.addColorStop(0.45,'rgba(4,8,26,0.03)');
+      vg.addColorStop(0.75,'rgba(4,8,26,0.10)');
+      vg.addColorStop(1,   'rgba(4,8,26,0.40)');
       ctx.fillStyle=vg; ctx.fillRect(0,0,W,H);
 
     })();
