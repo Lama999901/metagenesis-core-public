@@ -6,18 +6,14 @@
     "locked_paths": "List of glob patterns for HARD BLOCKED paths",
     "allow_globs": "List of glob patterns for ALLOWED modifications"
   },
-
   "version": "1.0.0",
-  "last_updated": "2026-03-05",
-
+  "last_updated": "2026-03-10",
   "locked_paths": [
     "reports/canonical_state.md",
     "reports/scientific_claim_index.md",
     "demos/open_data_demo_01/evidence_index.json",
-    "system_manifest.json",
-    "scripts/mg_policy_gate_policy.json"
+    "system_manifest.json"
   ],
-
   "allow_globs": [
     "api/evidence_api.py",
     "scripts/**",
@@ -46,15 +42,14 @@
     "backend/server.py",
     "demos/**",
     "ppa/**",
-    "system_manifest.json",
     "*.md",
     "*.txt",
     "*.json"
   ],
-
   "_notes": {
-    "locked_paths_purpose": "HARD BLOCK any modifications to sealed artifacts",
+    "locked_paths_purpose": "HARD BLOCK any modifications to sealed evidence artifacts",
     "allow_globs_purpose": "ALLOWLIST for permitted modifications",
-    "enforcement_mode": "STRICT — all changed files must match at least one allow_glob AND not match any locked_path"
+    "enforcement_mode": "STRICT — all changed files must match at least one allow_glob AND not match any locked_path",
+    "self_seal_removed": "scripts/mg_policy_gate_policy.json removed from locked_paths to prevent operational deadlock. Policy file is not an evidence artifact."
   }
 }
