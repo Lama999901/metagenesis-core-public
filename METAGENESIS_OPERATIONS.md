@@ -29,7 +29,7 @@ A **verification protocol layer** that makes computational claims:
    -> PROOF: tests/steward/test_cert02 (adversarial tamper test PASS)
 
 3. Policy-Gate-Enforced Immutable Evidence Anchor
-   -> scripts/mg_policy_gate_policy.json :: locked_paths (5 sealed paths)
+   -> scripts/mg_policy_gate_policy.json :: locked_paths (4 sealed paths + steward_audit.py)
    -> .github/workflows/mg_policy_gate.yml :: CI enforcement
 
 4. Dual-Mode Canary Execution Pipeline
@@ -53,7 +53,10 @@ A **verification protocol layer** that makes computational claims:
   reports/scientific_claim_index.md             <- claim registry with V&V thresholds
   demos/open_data_demo_01/evidence_index.json  <- demo provenance
   system_manifest.json                          <- PPA metadata
-  scripts/mg_policy_gate_policy.json            <- policy itself (self-sealing)
+  scripts/steward_audit.py                      <- governance enforcer (CI-locked)
+
+NOTE: scripts/mg_policy_gate_policy.json is intentionally NOT in locked_paths
+to prevent operational deadlock (self_seal_removed by design).
 
 ---
 
