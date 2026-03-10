@@ -200,12 +200,13 @@ body.mg-ready .word-trust .hspan{animation:slidein .85s .31s cubic-bezier(.16,1,
 .btn-g:hover{border-color:var(--c3);color:var(--txt);transform:translateY(-3px)}
 .btn-green{font-family:var(--fd);font-size:11px;font-weight:700;padding:16px 32px;background:#00ff99;color:#000;border:none;cursor:pointer;text-decoration:none;letter-spacing:.06em;text-transform:uppercase;display:inline-block;transition:transform .2s,box-shadow .2s;position:relative}
 .btn-green:hover{transform:translateY(-3px);box-shadow:0 12px 48px rgba(0,255,153,.5)}
-.hero-pitch{font-size:12px;letter-spacing:.10em;text-transform:uppercase;color:rgba(238,247,251,.42);margin-bottom:28px;display:flex;align-items:center;gap:16px;font-family:var(--fm)}
+.hero-pitch{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:rgba(238,247,251,.42);margin-bottom:20px;display:flex;align-items:center;gap:8px;font-family:var(--fm);flex-wrap:wrap;row-gap:6px}
 .hero-pitch span{color:var(--ok);font-weight:600}
 .hero-pitch .hp-arr{color:rgba(238,247,251,.2)}
 .hero-trust{display:flex;align-items:center;gap:10px;padding:14px 0 0;border-top:1px solid rgba(238,247,251,.06);margin-top:14px;flex-wrap:wrap}
 .hero-trust-label{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);margin-right:4px}
-.htbadge{font-size:9px;letter-spacing:.10em;text-transform:uppercase;color:rgba(238,247,251,.38);border:1px solid rgba(238,247,251,.10);padding:4px 10px;border-radius:2px;white-space:nowrap}
+.htbadge{font-size:9px;letter-spacing:.10em;text-transform:uppercase;color:rgba(238,247,251,.38);border:1px solid rgba(238,247,251,.10);padding:4px 10px;border-radius:2px;white-space:nowrap;text-decoration:none;transition:color .18s,border-color .18s}
+a.htbadge:hover{color:rgba(238,247,251,.72);border-color:rgba(238,247,251,.28)}
 .hscroll{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);z-index:12}
 .hscroll-bar{width:1px;height:40px;background:linear-gradient(var(--txt3),transparent);animation:sb 2s ease-in-out infinite}
 @keyframes sb{0%,100%{transform:scaleY(1);opacity:1}50%{transform:scaleY(.5);opacity:.5}}
@@ -979,15 +980,47 @@ a.soon-chip{border-bottom:none!important}
   .cband>div{flex-direction:column;align-items:stretch}.cband .btn-c,.cband .btn-g{text-align:center}
   footer{padding:28px 20px;flex-direction:column;gap:24px;align-items:flex-start}.flinks{flex-wrap:wrap;gap:16px}
   h2{font-size:clamp(28px,7vw,48px)!important}
-  /* Fix: proto-rule text wrapping (Image 3) */
-  .proto-rule{font-size:13px;word-break:break-word;overflow-wrap:break-word;white-space:normal}
-  .proto-rule::before{flex-shrink:0;margin-top:2px}
-  .protoc{overflow:hidden}
-  /* Fix: pipeline pills on mobile (Image 4) */
-  .ptitle a{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;display:inline-block;vertical-align:middle}
+  /* ═══ MOBILE FIXES ═══ */
+
+  /* FIX 1: inventor name */
+  .hbottom-meta{flex-direction:column;align-items:flex-start;gap:6px;padding:12px 0 36px}
+  .hbmeta-left{font-size:9px;letter-spacing:.05em;gap:5px;flex-wrap:wrap;line-height:1.6}
+  .hbmeta-right{font-size:9px;letter-spacing:.05em}
+
+  /* FIX 2: proto MVP defines */
+  .proto{grid-template-columns:1fr}
+  .protoc{padding:28px 20px;overflow:hidden}
+  .proto-rule{font-size:13px;word-break:break-word;overflow-wrap:break-word;white-space:normal;flex-wrap:wrap;gap:6px;line-height:1.7}
+  .proto-rule code{word-break:break-word;white-space:normal}
+  .proto-rule::before{flex-shrink:0;margin-top:3px}
+  .protoc:first-child{border-bottom:1px solid var(--ln)}
+
+  /* FIX 3: adversarial test link */
+  .note-block{overflow:hidden;word-break:break-word;overflow-wrap:break-word}
+  .note-block a{word-break:break-all;overflow-wrap:break-word}
+  .note-block code{white-space:normal;word-break:break-all}
+
+  /* FIX 4: pipeline 2-row layout */
   .pipe{overflow-x:hidden}
-  /* Fix: section backdrop on mobile — no side bleed */
-  .w > .sec::before{left:-16px;right:-16px}
+  .prow{display:grid;grid-template-columns:36px 1fr;grid-template-rows:auto auto;min-height:auto;border-bottom:1px solid var(--ln)}
+  .pnum{grid-row:1/3;border-right:1px solid var(--ln)}
+  .ptitle{grid-column:2;grid-row:1;border-right:none;padding:10px 14px 4px;font-size:12px}
+  .ptitle a{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:calc(100vw - 90px);display:inline-block;vertical-align:middle}
+  .pdesc{display:block;grid-column:2;grid-row:2;padding:0 14px 10px;font-size:12px;line-height:1.5;color:var(--txt2);font-family:var(--fb);border-right:none;overflow:hidden;overflow-wrap:break-word;word-break:break-word}
+  .pdesc code{white-space:normal!important;word-break:break-word}
+  .pstat{display:none}
+
+  /* FIX 5: compare table all 4 cols */
+  .cmptable{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .cmp-head,.cmp-row{grid-template-columns:130px 68px 68px 68px 68px!important;min-width:410px}
+  .cmp-col:nth-child(4),.cmp-col:nth-child(5),
+  .cmp-head div:nth-child(4),.cmp-head div:nth-child(5){display:flex!important}
+  .cmp-feat{font-size:11px;padding:10px 8px;line-height:1.45}
+  .cmp-col{padding:10px 4px;font-size:9px;letter-spacing:.02em}
+  .cmp-head div{font-size:9px;padding:10px 4px;letter-spacing:.04em}
+
+  /* backdrop */
+  .w > .sec::before{top:-40px;bottom:-40px;left:-16px;right:-16px;inset:unset;position:absolute}
 }
 @media(max-width:480px){
   .hspan{font-size:clamp(40px,18vw,80px)!important}.stats{grid-template-columns:1fr 1fr}.stat{padding:20px 16px}
@@ -1470,9 +1503,9 @@ a.soon-chip{border-bottom:none!important}
         <p class="hbio-text">Any computational result &#8212; <strong>ML accuracy, physics simulation, pipeline output</strong> &#8212; packaged into a tamper-evident evidence bundle. Any third party verifies it offline with <strong>one command</strong>, without your code, data, or environment.</p>
         <div class="hero-trust">
           <span class="hero-trust-label">Regulatory alignment</span>
-          <span class="htbadge">EU AI Act Art.&nbsp;9</span>
-          <span class="htbadge">FDA 21 CFR Part&nbsp;11</span>
-          <span class="htbadge">Basel III/IV SR&nbsp;11-7</span>
+          <a class="htbadge" href="#regulatory">EU AI Act Art.&nbsp;9</a>
+          <a class="htbadge" href="#regulatory">FDA 21 CFR Part&nbsp;11</a>
+          <a class="htbadge" href="#regulatory">Basel III/IV SR&nbsp;11-7</a>
         </div>
       </div>
       <div class="hbtns">
