@@ -285,11 +285,18 @@ class ProgressRunner:
                 kwargs["dataset_relpath"] = str(p["dataset_relpath"]).strip()
             return run_mlbench1(**kwargs)
 
-        return {
-            'executed': True,
-            'job_id': job.job_id,
-            'payload_processed': job.payload is not None
-        }
+        from backend.progress.sysid1_arx_calibration import JOB_KIND as SYSID1_KIND
+        from backend.progress.datapipe1_quality_certificate import JOB_KIND as DATAPIPE1_KIND
+        from backend.progress.drift_monitor import JOB_KIND as DRIFT01_KIND
+        from backend.progress.mlbench1_accuracy_certificate import JOB_KIND as MLBENCH1_KIND
+        registered = [
+            MTR1_KIND, MTR2_KIND, MTR3_KIND,
+            SYSID1_KIND, DATAPIPE1_KIND, DRIFT01_KIND, MLBENCH1_KIND,
+        ]
+        raise ValueError(
+            f"Unknown job kind: '{payload.get('kind')}'. "
+            f"Registered kinds: {registered}"
+        )
     
     def _compute_execution_time(self, job: Job) -> float:
         """Compute job execution time in milliseconds."""
