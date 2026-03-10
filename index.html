@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MetaGenesis Core — Verification Protocol</title>
+<title>MetaGenesis Core ΓÇö Verification Protocol</title>
 
-<!-- ── SEO + Social Preview ── -->
-<meta name="description" content="Any computational result — ML accuracy, physics simulation, pipeline output — packaged into a tamper-evident evidence bundle. Any third party verifies offline with one command. PASS or FAIL.">
+<!-- ΓöÇΓöÇ SEO + Social Preview ΓöÇΓöÇ -->
+<meta name="description" content="Any computational result ΓÇö ML accuracy, physics simulation, pipeline output ΓÇö packaged into a tamper-evident evidence bundle. Any third party verifies offline with one command. PASS or FAIL.">
 <meta name="keywords" content="verification protocol, reproducibility, ML benchmark, computational claims, tamper-evident, audit, MetaGenesis">
 <meta name="author" content="Yehor Bazhynov">
 <meta name="robots" content="index, follow">
@@ -14,7 +14,7 @@
 <!-- Open Graph -->
 <meta property="og:type"        content="website">
 <meta property="og:url"         content="https://metagenesis-core.dev/">
-<meta property="og:title"       content="MetaGenesis Core — Proof, Not Trust">
+<meta property="og:title"       content="MetaGenesis Core ΓÇö Proof, Not Trust">
 <meta property="og:description" content="Any computational result packaged into a tamper-evident evidence bundle. One command. PASS or FAIL. No trust required.">
 <meta property="og:image"       content="https://metagenesis-core.dev/og-image.png">
 <meta property="og:image:width"  content="1200">
@@ -26,7 +26,7 @@
 <!-- Twitter Card -->
 <meta name="twitter:card"        content="summary_large_image">
 <meta name="twitter:url"         content="https://metagenesis-core.dev/">
-<meta name="twitter:title"       content="MetaGenesis Core — Proof, Not Trust">
+<meta name="twitter:title"       content="MetaGenesis Core ΓÇö Proof, Not Trust">
 <meta name="twitter:description" content="Any computational result packaged into a tamper-evident evidence bundle. One command. PASS or FAIL.">
 <meta name="twitter:image"       content="https://metagenesis-core.dev/og-image.png">
 
@@ -70,14 +70,14 @@ body{
   -moz-osx-font-smoothing:grayscale;
   text-rendering:optimizeLegibility;
 }
-/* Prose bloom — subtle luminous glow on all body text */
+/* Prose bloom ΓÇö subtle luminous glow on all body text */
 p, li, .cmp-feat, .faq-a, .faq-a p,
 .uc p, .ppc p, .reg p, .reg li,
 .seg-step-txt, .price-feat li,
 .proto-rule, .note-block, .origin-step {
   text-shadow: var(--glow);
 }
-/* ══ CURSOR SYSTEM ══ */
+/* ΓòÉΓòÉ CURSOR SYSTEM ΓòÉΓòÉ */
 :root{--cc:#00e5ff;--cc2:rgba(0,229,255,.55)}
 body.cur-hover{--cc:#00ff99;--cc2:rgba(0,255,153,.55)}
 /* Center diamond */
@@ -149,17 +149,17 @@ nav::before{content:'';position:absolute;inset:0;background:rgba(3,6,13,.92);bac
 .hero-stage{display:flex;flex-direction:column;justify-content:center;padding:0 52px;position:relative;z-index:11;overflow:hidden}
 .hline{display:block;overflow:hidden}
 .hspan{display:block;font-family:var(--fd);font-size:clamp(76px,10.8vw,184px);font-weight:900;line-height:.88;letter-spacing:-.04em}
-/* ── PROOF: верификационная развёртка сверху вниз ── */
+/* ΓöÇΓöÇ PROOF: ╨▓╨╡╤Ç╨╕╤ä╨╕╨║╨░╤å╨╕╨╛╨╜╨╜╨░╤Å ╤Ç╨░╨╖╨▓╤æ╤Ç╤é╨║╨░ ╤ü╨▓╨╡╤Ç╤à╤â ╨▓╨╜╨╕╨╖ ΓöÇΓöÇ */
 .word-proof .hspan{color:#00ff99;position:relative;overflow:hidden;animation:proofglow 4s 3s ease-in-out infinite}
 .word-proof .hspan::after{content:'';position:absolute;left:-3%;width:106%;top:-5%;height:2px;background:linear-gradient(90deg,transparent,rgba(0,255,153,.85) 25%,rgba(0,255,153,1) 50%,rgba(0,255,153,.85) 75%,transparent);box-shadow:0 0 12px rgba(0,255,153,.6),0 0 28px rgba(0,255,153,.25);animation:proofscan 3.8s 1.6s ease-in-out infinite;pointer-events:none}
 @keyframes proofscan{0%{top:-5%;opacity:0}7%{opacity:1}78%{top:110%;opacity:.7}88%,100%{top:110%;opacity:0}}
-/* ── NOT: цветной глитч-дублирование ── */
+/* ΓöÇΓöÇ NOT: ╤å╨▓╨╡╤é╨╜╨╛╨╣ ╨│╨╗╨╕╤é╤ç-╨┤╤â╨▒╨╗╨╕╤Ç╨╛╨▓╨░╨╜╨╕╨╡ ΓöÇΓöÇ */
 .word-not   .hspan{color:var(--c);position:relative;animation:notglow 5s 2s ease-in-out infinite}
 .word-not .hspan::before{content:attr(data-t);position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;font-family:var(--fd);font-size:inherit;font-weight:900;line-height:inherit;letter-spacing:inherit;color:#ff4060;clip-path:polygon(0 11%,100% 11%,100% 36%,0 36%);opacity:0;animation:gl1 4.8s 3.4s infinite}
 .word-not .hspan::after{content:attr(data-t);position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;font-family:var(--fd);font-size:inherit;font-weight:900;line-height:inherit;letter-spacing:inherit;color:#00ff99;clip-path:polygon(0 57%,100% 57%,100% 80%,0 80%);opacity:0;animation:gl2 4.8s 3.55s infinite}
 @keyframes gl1{0%,91%,100%{opacity:0;transform:none}92%{opacity:.78;transform:translateX(-5px) skewX(-1.5deg)}94%{opacity:.78;transform:translateX(3.5px)}95.5%{opacity:0}}
 @keyframes gl2{0%,91%,100%{opacity:0;transform:none}92%{opacity:.78;transform:translateX(5px) skewX(1.5deg)}94%{opacity:.78;transform:translateX(-2.5px)}95.5%{opacity:0}}
-/* ── TRUST: перечёркивание ── */
+/* ΓöÇΓöÇ TRUST: ╨┐╨╡╤Ç╨╡╤ç╤æ╤Ç╨║╨╕╨▓╨░╨╜╨╕╨╡ ΓöÇΓöÇ */
 .word-trust .hspan{color:rgba(238,247,251,.22);position:relative}
 @keyframes proofglow{0%,100%{text-shadow:0 0 40px rgba(0,255,153,.15),0 0 80px rgba(0,255,153,.07)}50%{text-shadow:0 0 80px rgba(0,255,153,.5),0 0 200px rgba(0,255,153,.2)}}
 @keyframes notglow{0%,100%{text-shadow:0 0 30px rgba(0,229,255,.08),0 0 60px rgba(0,229,255,.04)}50%{text-shadow:0 0 55px rgba(0,229,255,.28),0 0 120px rgba(0,229,255,.12)}}
@@ -213,7 +213,7 @@ body.mg-ready .word-trust .hspan{animation:slidein .85s .31s cubic-bezier(.16,1,
 .tl{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3)}
 .w{position:relative;z-index:10;max-width:1280px;margin:0 auto;padding:0 52px}
 .sec{padding:120px 0}
-/* Reading backdrop — subtle dark panel under text sections */
+/* Reading backdrop ΓÇö subtle dark panel under text sections */
 .w > .sec{
   position:relative;
 }
@@ -260,10 +260,10 @@ body.mg-ready .word-trust .hspan{animation:slidein .85s .31s cubic-bezier(.16,1,
   flex-shrink:0;
 }
 h2{font-family:var(--fd);font-size:clamp(36px,4vw,64px);font-weight:900;line-height:1;letter-spacing:-.03em;margin-bottom:20px;position:relative}
-/* ── h2 SEMANTIC COLOUR SPANS ── */
+/* ΓöÇΓöÇ h2 SEMANTIC COLOUR SPANS ΓöÇΓöÇ */
 h2 .hc{color:var(--c)}
 h2 .hg{color:var(--ok)}
-/* ── .hr: красные слова — зелёное перечёркивание появляется и исчезает ── */
+/* ΓöÇΓöÇ .hr: ╨║╤Ç╨░╤ü╨╜╤ï╨╡ ╤ü╨╗╨╛╨▓╨░ ΓÇö ╨╖╨╡╨╗╤æ╨╜╨╛╨╡ ╨┐╨╡╤Ç╨╡╤ç╤æ╤Ç╨║╨╕╨▓╨░╨╜╨╕╨╡ ╨┐╨╛╤Å╨▓╨╗╤Å╨╡╤é╤ü╤Å ╨╕ ╨╕╤ü╤ç╨╡╨╖╨░╨╡╤é ΓöÇΓöÇ */
 h2 .hr{
   color:var(--err);
   position:relative;
@@ -295,7 +295,7 @@ h2:nth-of-type(11) .hr::after{animation-delay:0.4s}
   100%{transform:scaleX(0);opacity:0}
 }
 
-/* ── .hw: белые полупрозрачные — ghostly signal shimmer ── */
+/* ΓöÇΓöÇ .hw: ╨▒╨╡╨╗╤ï╨╡ ╨┐╨╛╨╗╤â╨┐╤Ç╨╛╨╖╤Ç╨░╤ç╨╜╤ï╨╡ ΓÇö ghostly signal shimmer ΓöÇΓöÇ */
 h2 .hw{
   color:rgba(238,247,251,.18);
   position:relative;
@@ -312,7 +312,7 @@ h2.vis .hw{
   70%    {color:rgba(238,247,251,.22);text-shadow:none}
 }
 h2 .ha{color:#ffb84d}
-/* gradient — wider so shimmer has room to travel */
+/* gradient ΓÇö wider so shimmer has room to travel */
 h2 .hgrad-cy, h3.hgrad-cy{
   background:linear-gradient(95deg,var(--c) 0%,#00ff99 30%,var(--c) 55%,#00ff99 100%);
   background-size:220% 100%;
@@ -330,7 +330,7 @@ h2 .hgrad-gn, h3.hgrad-gn{
   50%{background-position:100% 50%}
 }
 
-/* ── .hg (green) — точная копия PROOF scan из хедера ── */
+/* ΓöÇΓöÇ .hg (green) ΓÇö ╤é╨╛╤ç╨╜╨░╤Å ╨║╨╛╨┐╨╕╤Å PROOF scan ╨╕╨╖ ╤à╨╡╨┤╨╡╤Ç╨░ ΓöÇΓöÇ */
 h2.vis .hg{
   position:relative; display:inline-block; overflow:hidden;
   animation:hg-glow 4s 1s ease-in-out infinite;
@@ -359,7 +359,7 @@ h2.vis .hg::after{
   88%,100%{top:110%;opacity:0}
 }
 
-/* ── .hc (cyan) — NOT glitch duplication ── */
+/* ΓöÇΓöÇ .hc (cyan) ΓÇö NOT glitch duplication ΓöÇΓöÇ */
 h2.vis .hc{
   position:relative; display:inline-block;
   animation:hc-glow 5.5s ease-in-out infinite;
@@ -403,12 +403,12 @@ h2.vis .hc::after{
   93.5%{opacity:0}
 }
 
-/* ── .hr (red) — strike-through line grows left-to-right, then pulsing glow ── */
+/* ΓöÇΓöÇ .hr (red) ΓÇö strike-through line grows left-to-right, then pulsing glow ΓöÇΓöÇ */
 h2.vis .hr{
   position:relative; display:inline-block;
   animation:hr-glow 3.8s ease-in-out infinite;
 }
-/* h2.vis .hr::after — override: use looping animation from above */
+/* h2.vis .hr::after ΓÇö override: use looping animation from above */
 h2.vis .hr::after{
   animation:hr-strike 5.5s ease-in-out infinite;
 }
@@ -435,9 +435,9 @@ h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
   margin-bottom:60px;
   letter-spacing:.012em;
 }
-/* override .rv only for sdesc — word animation takes full control */
+/* override .rv only for sdesc ΓÇö word animation takes full control */
 .sdesc.rv{opacity:1!important;transform:none!important}
-/* stag own animation — override .rv */
+/* stag own animation ΓÇö override .rv */
 .stag.rv{opacity:0!important;transform:translateY(6px)!important}
 .stag.rv.vis{opacity:1!important;transform:none!important}
 /* per-word span */
@@ -548,9 +548,9 @@ h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
 .cband::before{content:'';position:absolute;top:50%;left:50%;width:600px;height:600px;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(0,229,255,.07) 0%,transparent 65%);pointer-events:none}
 .cband p{font-size:15px;color:var(--txt2);margin-bottom:40px;line-height:1.7}
 .cmeta{font-size:10px;color:var(--txt3);margin-top:28px;letter-spacing:.08em}
-/* ══════════════════════════════════
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
    FINALE SECTION
-══════════════════════════════════ */
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 #finale{
   position:relative;
   min-height:100vh;
@@ -576,7 +576,7 @@ h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
   text-align:center;
   gap:0;
 }
-/* PROOF NOT TRUST — same scale as hero */
+/* PROOF NOT TRUST ΓÇö same scale as hero */
 .fn-pnt{
   display:flex;
   flex-direction:column;
@@ -593,7 +593,7 @@ h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
   letter-spacing:-.04em;
   line-height:.88;
 }
-/* PROOF — green + scan */
+/* PROOF ΓÇö green + scan */
 .fn-proof .fn-span{
   color:#00ff99;
   position:relative; overflow:hidden;
@@ -607,7 +607,7 @@ h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
   animation:proofscan 3.8s 1.6s ease-in-out infinite;
   pointer-events:none;
 }
-/* NOT — cyan + glitch */
+/* NOT ΓÇö cyan + glitch */
 .fn-not .fn-span{
   color:var(--c);
   position:relative;
@@ -635,7 +635,7 @@ h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
   animation:gl2 4.8s 3.55s infinite;
   pointer-events:none;
 }
-/* TRUST — dim + green strikethrough */
+/* TRUST ΓÇö dim + green strikethrough */
 .fn-trust .fn-span{
   color:rgba(238,247,251,.22);
   position:relative;
@@ -684,46 +684,46 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
 .flinks{display:flex;gap:28px}
 .flinks a{font-size:11px;color:var(--txt3);text-decoration:none;letter-spacing:.06em;transition:color .2s}
 .flinks a:hover{color:var(--txt)}
-/* ════════════════════════════════════════
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
    FILE LINK COLOR SYSTEM
-   .py  → cyan   .json → amber  .yaml → coral
-   .md  → violet  tests/ → green  demos/ → teal
-════════════════════════════════════════ */
+   .py  ΓåÆ cyan   .json ΓåÆ amber  .yaml ΓåÆ coral
+   .md  ΓåÆ violet  tests/ ΓåÆ green  demos/ ΓåÆ teal
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 a[href*="github.com/Lama999901"]{
   text-decoration:none;
   transition:color .18s,opacity .18s,border-color .18s,background .18s;
 }
-/* Python scripts → cyan */
+/* Python scripts ΓåÆ cyan */
 a[href*=".py"]{
   color:var(--c);
   border-bottom:1px solid rgba(0,229,255,.25);
 }
 a[href*=".py"]:hover{border-bottom-color:var(--c);opacity:.82}
-/* Test files → green (overrides .py) */
+/* Test files ΓåÆ green (overrides .py) */
 a[href*="/tests/"]{
   color:var(--ok);
   border-bottom:1px solid rgba(0,255,153,.25);
 }
 a[href*="/tests/"]:hover{border-bottom-color:var(--ok)}
-/* JSON → amber */
+/* JSON ΓåÆ amber */
 a[href*=".json"]{
   color:#ffb347;
   border-bottom:1px solid rgba(255,179,71,.25);
 }
 a[href*=".json"]:hover{border-bottom-color:#ffb347}
-/* YAML → coral */
+/* YAML ΓåÆ coral */
 a[href*=".yaml"]{
   color:#ff8c6b;
   border-bottom:1px solid rgba(255,140,107,.25);
 }
 a[href*=".yaml"]:hover{border-bottom-color:#ff8c6b}
-/* Markdown docs → soft violet */
+/* Markdown docs ΓåÆ soft violet */
 a[href*=".md"]{
   color:#b8a4ff;
   border-bottom:1px solid rgba(184,164,255,.25);
 }
 a[href*=".md"]:hover{border-bottom-color:#b8a4ff}
-/* Demos/bundles → teal */
+/* Demos/bundles ΓåÆ teal */
 a[href*="/demos/"]{
   color:#5dd8d8;
   border-bottom:1px solid rgba(93,216,216,.25);
@@ -758,10 +758,10 @@ a[href*="/demos/"]:hover{border-bottom-color:#5dd8d8}
 /* Segment step code links */
 .seg-step a{color:var(--c);border-bottom:1px solid rgba(0,229,255,.22)}
 .seg-step a:hover{border-bottom-color:var(--c)}
-/* ════════════════════════════════════════
-   PROSE FONT — Inter (readable body text)
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   PROSE FONT ΓÇö Inter (readable body text)
    Mono stays for code/labels/numbers
-════════════════════════════════════════ */
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 p,li,.cmp-feat,.faq-a,.faq-a p,.uc p,.ppc p,.reg p,.reg li,
 .seg-step-txt,.seg-step p,.price-feat li,.proto-rule,
 .note-block,.sdesc-plain,.origin-step,.verifier-note,
@@ -810,7 +810,7 @@ p,li,.cmp-feat,.faq-a,.faq-a p,.uc p,.ppc p,.reg p,.reg li,
   font-size:15.5px;
   line-height:1.72;
 }
-/* External links in table (.cmp-feat) — violet like .md links + subtle arrow */
+/* External links in table (.cmp-feat) ΓÇö violet like .md links + subtle arrow */
 .cmp-feat a[target="_blank"]{
   color:#b8a4ff;
   border-bottom:1px solid rgba(184,164,255,.3);
@@ -820,14 +820,14 @@ p,li,.cmp-feat,.faq-a,.faq-a p,.uc p,.ppc p,.reg p,.reg li,
   border-bottom-color:#b8a4ff;
   opacity:.85;
 }
-/* Claim ID links in grid — keep cyan, inherit pill style */
+/* Claim ID links in grid ΓÇö keep cyan, inherit pill style */
 .claimid a{color:var(--c);border-bottom:none;font-family:inherit;font-size:inherit;font-weight:inherit;letter-spacing:inherit}
 .claimid a:hover{opacity:.75}
-/* Site-map overlay links — keep as-is, no file styling */
+/* Site-map overlay links ΓÇö keep as-is, no file styling */
 .mo-col a{border-bottom:none}
-/* ════════════════════════════════════════
-   CUSTOM CURSOR — verification reticle
-════════════════════════════════════════ */
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   CUSTOM CURSOR ΓÇö verification reticle
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 *{cursor:none!important}
 #cur-dot,#cur-ring{
   position:fixed;top:0;left:0;
@@ -874,7 +874,7 @@ p,li,.cmp-feat,.faq-a,.faq-a p,.uc p,.ppc p,.reg p,.reg li,
   transform:translateY(-50%);
   box-shadow:calc(28px - 3px) 0 0 var(--c);
 }
-/* Hover state — locked on */
+/* Hover state ΓÇö locked on */
 body.cur-hover #cur-dot{
   background:var(--ok);
   box-shadow:0 0 10px var(--ok),0 0 22px rgba(0,255,153,.35);
@@ -901,7 +901,7 @@ body.cur-click #cur-ring{
   border-color:rgba(0,255,153,1);
   box-shadow:0 0 28px rgba(0,255,153,.55);
 }
-/* Err hover — red targets */
+/* Err hover ΓÇö red targets */
 body.cur-err #cur-dot{background:var(--err);box-shadow:0 0 10px var(--err)}
 body.cur-err #cur-ring{border-color:rgba(255,64,96,.7);box-shadow:0 0 14px rgba(255,64,96,.2)}
 body.cur-err #cur-ring::before{background:var(--err);box-shadow:0 calc(28px - 3px) 0 var(--err)}
@@ -1033,7 +1033,7 @@ a.soon-chip{border-bottom:none!important}
 .faq-a{font-size:13px;color:var(--txt2);line-height:1.8;font-weight:300}
 .faq-a code{font-family:var(--fm);font-size:11px;color:var(--c);background:var(--ink2);padding:2px 6px;border:1px solid var(--ln)}
 @media(max-width:768px){.faq-item{padding:24px 20px}.faq-q{font-size:14px}}
-/* ── Segment Selector ── */
+/* ΓöÇΓöÇ Segment Selector ΓöÇΓöÇ */
 .seg-wrap{border:1px solid var(--ln);overflow:hidden}
 .seg-tabs{display:grid;grid-template-columns:repeat(4,1fr);background:var(--ink2);border-bottom:1px solid var(--ln)}
 .seg-tab{background:none;border:none;border-right:1px solid var(--ln);padding:20px 24px;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:6px;transition:background .2s;position:relative}
@@ -1071,7 +1071,7 @@ a.soon-chip{border-bottom:none!important}
 .seg-btn-secondary:hover{border-color:var(--c);color:var(--c)}
 @media(max-width:900px){.seg-tabs{grid-template-columns:repeat(2,1fr)}.seg-tab{border-bottom:1px solid var(--ln)}}
 @media(max-width:600px){.seg-tabs{grid-template-columns:1fr}.seg-panel{padding:32px 20px;gap:24px}.seg-cta-row{flex-direction:column}}
-/* ── Live Verifier ── */
+/* ΓöÇΓöÇ Live Verifier ΓöÇΓöÇ */
 .vrf-wrap{border:1px solid var(--ln);overflow:hidden}
 .vrf-selector{padding:28px 36px;background:var(--ink2);border-bottom:1px solid var(--ln)}
 .vrf-selector-label{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);margin-bottom:14px}
@@ -1117,7 +1117,7 @@ a.soon-chip{border-bottom:none!important}
 .vrf-result-fail{margin-top:12px;padding:14px 18px;border:1px solid rgba(255,64,96,.3);background:rgba(255,64,96,.06);color:var(--err);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
 @media(max-width:900px){.vrf-body{grid-template-columns:1fr}.vrf-claim-btns{width:100%;flex-wrap:wrap}.vrf-claim-btn{min-width:calc(50% - 1px)}}
 @media(max-width:600px){.vrf-selector{padding:20px}.vrf-inputs{padding:24px}.vrf-term-body{min-height:240px}}
-/* ── Pilot Form ── */
+/* ΓöÇΓöÇ Pilot Form ΓöÇΓöÇ */
 .pilot-wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:1px;background:var(--ln);border:1px solid var(--ln)}
 .pilot-form-col{background:var(--ink);padding:48px 44px}
 .pilot-info-col{background:var(--ink2);padding:48px 40px}
@@ -1157,11 +1157,11 @@ a.soon-chip{border-bottom:none!important}
 .ndmenu a{display:block;padding:8px 18px;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:rgba(238,247,251,.72);letter-spacing:.06em;text-decoration:none;white-space:nowrap;transition:color .15s,background .15s}
 .ndmenu a:hover{color:#00e5ff;background:rgba(0,229,255,.07)}
 .ndmenu .ndiv{height:1px;background:rgba(0,229,255,.1);margin:4px 10px}
-/* ── SITE MAP BUTTON ── */
+/* ΓöÇΓöÇ SITE MAP BUTTON ΓöÇΓöÇ */
 #navmap-btn{display:inline-flex;align-items:center;gap:5px;background:none;border:1px solid rgba(0,229,255,.25);color:rgba(0,229,255,.7);font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.12em;padding:5px 11px;cursor:pointer;border-radius:3px;transition:all .2s;vertical-align:middle;}
 #navmap-btn:hover{border-color:#00e5ff;color:#00e5ff;background:rgba(0,229,255,.07)}
 
-/* ── MEGA OVERLAY ── */
+/* ΓöÇΓöÇ MEGA OVERLAY ΓöÇΓöÇ */
 #megaover{display:none;position:fixed;inset:0;z-index:8888;background:rgba(3,6,13,.97);backdrop-filter:blur(14px);overflow-y:auto;padding:80px 60px 60px;}
 #megaover.open{display:block}
 .mm-section-link{display:block;width:100%;text-align:left;padding:16px 0;font-family:'Unbounded','Impact',sans-serif;font-size:16px;font-weight:700;letter-spacing:.1em;color:rgba(238,247,251,.55);text-decoration:none;text-transform:uppercase;border-bottom:1px solid rgba(0,229,255,.08);box-sizing:border-box}
@@ -1178,7 +1178,7 @@ a.soon-chip{border-bottom:none!important}
 .mo-title{text-align:center;margin-bottom:48px;}
 .mo-title h2{font-family:'Unbounded','Impact',sans-serif;font-size:1.1rem;letter-spacing:.2em;color:rgba(238,247,251,.42);text-transform:uppercase;margin:0;}
 
-/* ── MOBILE ACCORDION ── */
+/* ΓöÇΓöÇ MOBILE ACCORDION ΓöÇΓöÇ */
 @media(max-width:768px){
   #mmclose{position:absolute;top:20px;right:20px;background:none;border:1px solid rgba(0,229,255,.35);color:#00e5ff;font-size:1rem;width:38px;height:38px;border-radius:50%;cursor:pointer;z-index:900;display:flex;align-items:center;justify-content:center;transition:background .2s}
   #mmclose:hover{background:rgba(0,229,255,.12)}
@@ -1236,25 +1236,25 @@ a.soon-chip{border-bottom:none!important}
 .origin-steps::before{content:'';position:absolute;left:13px;top:14px;bottom:80px;width:1px;background:linear-gradient(rgba(255,64,96,.35) 0%,rgba(255,64,96,.15) 65%,rgba(0,255,153,.6) 100%);z-index:0}
 .origin-step{display:flex;align-items:flex-start;gap:16px;padding:18px 0;border-bottom:1px solid var(--ln);opacity:0;transform:translateX(-14px);transition:opacity .5s ease,transform .5s ease;position:relative;z-index:1}
 .origin-step.on{opacity:1;transform:none}
-/* steps 01-03 — failed attempts */
+/* steps 01-03 ΓÇö failed attempts */
 .origin-step:nth-child(1) .origin-step-n,
 .origin-step:nth-child(2) .origin-step-n,
 .origin-step:nth-child(3) .origin-step-n{border-color:rgba(255,64,96,.25);color:rgba(238,247,251,.2)}
 .origin-step:nth-child(1) .origin-step-txt,
 .origin-step:nth-child(2) .origin-step-txt,
 .origin-step:nth-child(3) .origin-step-txt{color:rgba(238,247,251,.28);text-decoration:line-through;text-decoration-color:rgba(255,64,96,.35)}
-/* step 04 — THE solution */
+/* step 04 ΓÇö THE solution */
 .origin-step.active{border:1px solid rgba(0,229,255,.2)!important;border-bottom:1px solid rgba(0,229,255,.2)!important;background:rgba(0,229,255,.04);padding:18px 16px;margin-top:10px;position:relative}
-.origin-step.active::before{content:'→ SOLUTION';position:absolute;top:-10px;left:16px;font-size:9px;letter-spacing:.18em;color:var(--ok);background:var(--ink1);padding:0 8px}
+.origin-step.active::before{content:'ΓåÆ SOLUTION';position:absolute;top:-10px;left:16px;font-size:9px;letter-spacing:.18em;color:var(--ok);background:var(--ink1);padding:0 8px}
 .origin-step.active .origin-step-n{border-color:var(--ok)!important;color:var(--ok)!important;background:rgba(0,255,153,.08)!important;box-shadow:0 0 16px rgba(0,255,153,.25)}
 .origin-step.active .origin-step-txt{color:var(--txt)!important;font-size:14px!important;text-decoration:none!important}
 .origin-step-n{flex-shrink:0;width:28px;height:28px;border:1px solid var(--ln2);display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:10px;color:var(--txt3);margin-top:2px;transition:all .4s ease}
 .origin-step-txt{font-size:13px;color:var(--txt3);line-height:1.65;font-weight:300;transition:all .4s ease}
 @media(max-width:900px){.origin-inner{grid-template-columns:1fr;gap:48px;padding:64px 32px}}
 @media(max-width:768px){.origin-inner{padding:48px 20px}}
-/* ════════════════════════════════════════
-   #PITCH — Built for one. Became universal.
-════════════════════════════════════════ */
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   #PITCH ΓÇö Built for one. Became universal.
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 .pitch-grid{display:grid;grid-template-columns:1fr 48px 1fr;gap:0;border:1px solid var(--ln);overflow:hidden;background:var(--ink)}
 .pitch-col{padding:48px 44px;display:flex;flex-direction:column;gap:20px}
 .pitch-col-left{border-right:none;background:rgba(255,64,96,.03)}
@@ -1276,7 +1276,7 @@ a.soon-chip{border-bottom:none!important}
 @media(max-width:900px){
   .pitch-grid{grid-template-columns:1fr}
   .pitch-arrow{display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--txt3);background:var(--ink2);border:none;border-top:1px solid var(--ln);border-bottom:1px solid var(--ln);width:100%;height:40px;font-size:0}
-  .pitch-arrow::after{content:'↓';font-size:20px}
+  .pitch-arrow::after{content:'Γåô';font-size:20px}
   .pitch-col-left{border-right:none}
   .pitch-col-left,.pitch-col-right{padding:32px 28px}
   .pitch-banner{flex-direction:column;align-items:flex-start;gap:10px;border-top:none}
@@ -1311,16 +1311,16 @@ a.soon-chip{border-bottom:none!important}
   </a>
   <div class="ndot">AUDIT: PASS</div>
   <div class="nlinks">
-    <a href="#protocol">Protocol</a><span class="ndrop"><a href="#claims">Claims</a><div class="ndmenu"><a href="#claims" onclick="document.querySelectorAll('.cid')[0]?.scrollIntoView()">MTR-1 — Young's Modulus</a><a href="#claims" onclick="document.querySelectorAll('.cid')[1]?.scrollIntoView()">MTR-2 — Thermal Conductivity</a><a href="#claims" onclick="document.querySelectorAll('.cid')[2]?.scrollIntoView()">MTR-3 — Multilayer Contact</a><div class="ndiv"></div><a href="#claims">SYSID-01 — ARX Calibration</a><a href="#claims">DATA-PIPE-01 — Quality Cert</a><a href="#claims">DRIFT-01 — Drift Monitor</a><a href="#claims">ML_BENCH-01 — Accuracy Cert</a></div></span><a href="#verticals">Verticals</a><span class="ndrop"><a href="#segments">For You</a><div class="ndmenu"><a href="#segments" onclick="document.querySelector('[data-seg=ml]')?.click()">ML / AI Teams</a><a href="#segments" onclick="document.querySelector('[data-seg=pharma]')?.click()">Pharma / Biotech</a><a href="#segments" onclick="document.querySelector('[data-seg=finance]')?.click()">Finance / Quant</a><a href="#segments" onclick="document.querySelector('[data-seg=research]')?.click()">Research Labs</a></div></span><a href="#verifier">Verify</a><a href="#pilot">Free Pilot</a>
-    <button id="navmap-btn" onclick="document.getElementById('megaover').classList.add('open')">⊞ SITE MAP</button>
+    <a href="#protocol">Protocol</a><span class="ndrop"><a href="#claims">Claims</a><div class="ndmenu"><a href="#claims" onclick="document.querySelectorAll('.cid')[0]?.scrollIntoView()">MTR-1 ΓÇö Young's Modulus</a><a href="#claims" onclick="document.querySelectorAll('.cid')[1]?.scrollIntoView()">MTR-2 ΓÇö Thermal Conductivity</a><a href="#claims" onclick="document.querySelectorAll('.cid')[2]?.scrollIntoView()">MTR-3 ΓÇö Multilayer Contact</a><div class="ndiv"></div><a href="#claims">SYSID-01 ΓÇö ARX Calibration</a><a href="#claims">DATA-PIPE-01 ΓÇö Quality Cert</a><a href="#claims">DRIFT-01 ΓÇö Drift Monitor</a><a href="#claims">ML_BENCH-01 ΓÇö Accuracy Cert</a></div></span><a href="#verticals">Verticals</a><span class="ndrop"><a href="#segments">For You</a><div class="ndmenu"><a href="#segments" onclick="document.querySelector('[data-seg=ml]')?.click()">ML / AI Teams</a><a href="#segments" onclick="document.querySelector('[data-seg=pharma]')?.click()">Pharma / Biotech</a><a href="#segments" onclick="document.querySelector('[data-seg=finance]')?.click()">Finance / Quant</a><a href="#segments" onclick="document.querySelector('[data-seg=research]')?.click()">Research Labs</a></div></span><a href="#verifier">Verify</a><a href="#pilot">Free Pilot</a>
+    <button id="navmap-btn" onclick="document.getElementById('megaover').classList.add('open')">Γè₧ SITE MAP</button>
     <a href="https://github.com/Lama999901/metagenesis-core-public" class="ngit">GITHUB &#8594;</a>
   </div>
   <button class="hamburger" id="hbtn" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
 <div id="megaover">
-  <button class="mo-close" onclick="document.getElementById('megaover').classList.remove('open');return false;">✕ CLOSE</button>
-  <div class="mo-title"><h2>— SITE NAVIGATION —</h2></div>
+  <button class="mo-close" onclick="document.getElementById('megaover').classList.remove('open');return false;">Γ£ò CLOSE</button>
+  <div class="mo-title"><h2>ΓÇö SITE NAVIGATION ΓÇö</h2></div>
   <div class="mo-grid">
     <div class="mo-col">
       <h3>Protocol</h3>
@@ -1331,7 +1331,7 @@ a.soon-chip{border-bottom:none!important}
       <a href="#protocol" onclick="document.getElementById('megaover').classList.remove('open')">Canary Pipeline<span>Dual-mode execution proof</span></a>
     </div>
     <div class="mo-col">
-      <h3>Claims — 7 active</h3>
+      <h3>Claims ΓÇö 7 active</h3>
       <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">MTR-1<span>Young's Modulus Calibration</span></a>
       <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">MTR-2<span>Thermal Conductivity</span></a>
       <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">MTR-3<span>Multilayer Contact</span></a>
@@ -1350,7 +1350,7 @@ a.soon-chip{border-bottom:none!important}
     <div class="mo-col">
       <h3>Evidence</h3>
       <a href="#compare" onclick="document.getElementById('megaover').classList.remove('open')">vs SHA-256 only<span>Why hashes aren't enough</span></a>
-      <a href="#compare" onclick="document.getElementById('megaover').classList.remove('open')">Adversarial Proof<span>test_cert02 — attack caught</span></a>
+      <a href="#compare" onclick="document.getElementById('megaover').classList.remove('open')">Adversarial Proof<span>test_cert02 ΓÇö attack caught</span></a>
       <a href="#crisis" onclick="document.getElementById('megaover').classList.remove('open')">Reproducibility Crisis<span>The problem we solve</span></a>
       <a href="#regulatory" onclick="document.getElementById('megaover').classList.remove('open')">EU AI Act<span>Article 9 compliance</span></a>
       <a href="#regulatory" onclick="document.getElementById('megaover').classList.remove('open')">FDA 2025<span>Reproducible model artifacts</span></a>
@@ -1360,12 +1360,12 @@ a.soon-chip{border-bottom:none!important}
       <h3>Tools</h3>
       <a href="#verifier" onclick="document.getElementById('megaover').classList.remove('open')">Live Verifier<span>Test 4 claims in browser</span></a>
       <a href="#faq" onclick="document.getElementById('megaover').classList.remove('open')">FAQ<span>Technical Q&A</span></a>
-      <a href="https://github.com/Lama999901/metagenesis-core-public" target="_blank">GitHub Repo<span>MIT · 91 tests · AUDIT PASS</span></a>
+      <a href="https://github.com/Lama999901/metagenesis-core-public" target="_blank">GitHub Repo<span>MIT ┬╖ 91 tests ┬╖ AUDIT PASS</span></a>
       <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/mg.py" target="_blank">mg.py source<span>Core verification script</span></a>
     </div>
     <div class="mo-col">
       <h3>Get Started</h3>
-      <a href="#pricing" onclick="document.getElementById('megaover').classList.remove('open')">Pricing<span>Open Source · Pilot · Enterprise</span></a>
+      <a href="#pricing" onclick="document.getElementById('megaover').classList.remove('open')">Pricing<span>Open Source ┬╖ Pilot ┬╖ Enterprise</span></a>
       <a href="#pilot" onclick="document.getElementById('megaover').classList.remove('open')">Free Pilot<span>Send your claim, get bundle</span></a>
       <a href="/cdn-cgi/l/email-protection#c7bea2afa8b587aaa2b3a6a0a2a9a2b4aeb4eaa4a8b5a2e9a3a2b1">Contact<span><span class="__cf_email__" data-cfemail="ccb5a9a4a3be8ca1a9b8adaba9a2a9bfa5bfe1afa3bea9e2a8a9ba">[email&#160;protected]</span></span></a>
     </div>
@@ -1373,15 +1373,15 @@ a.soon-chip{border-bottom:none!important}
 </div>
 
 <div class="mobile-menu" id="mmenu">
-    <button id="mmclose" aria-label="Close menu" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">✕</button>
+    <button id="mmclose" aria-label="Close menu" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">Γ£ò</button>
     <a href="#protocol" class="mmlink" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">Protocol</a>
     <div class="mm-acc">
       <div class="mm-acc-head" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('open')">
         <span class="mm-label">CLAIMS</span>      </div>
       <div class="mm-acc-body">
-        <a href="#claims" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">MTR-1 — Young's Modulus</a>
-        <a href="#claims" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">MTR-2 — Thermal Conductivity</a>
-        <a href="#claims" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">MTR-3 — Multilayer Contact</a>
+        <a href="#claims" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">MTR-1 ΓÇö Young's Modulus</a>
+        <a href="#claims" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">MTR-2 ΓÇö Thermal Conductivity</a>
+        <a href="#claims" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">MTR-3 ΓÇö Multilayer Contact</a>
         <div class="mm-acc-divider"></div>
         <a href="#claims" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">SYSID-01</a>
         <a href="#claims" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">DATA-PIPE-01</a>
@@ -1416,7 +1416,7 @@ a.soon-chip{border-bottom:none!important}
     <a href="#pricing" class="mmlink" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">Pricing</a>
     <a href="#faq" class="mmlink" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">FAQ</a>
     <a href="#pilot" class="mmlink" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">Free Pilot</a>
-    <a href="https://github.com/Lama999901/metagenesis-core-public" class="mgit mmlink">GitHub →</a>
+    <a href="https://github.com/Lama999901/metagenesis-core-public" class="mgit mmlink">GitHub ΓåÆ</a>
 </div>
 
 <section class="hero">
@@ -1528,13 +1528,13 @@ a.soon-chip{border-bottom:none!important}
     <div class="crisis-stat">
       <div class="crisis-n">$<span class="crisis-pct">B</span></div>
       <div class="crisis-label">in ML model failures attributed to unverified performance claims in production</div>
-      <div class="crisis-src">Regulatory filings, 2022–2025</div>
+      <div class="crisis-src">Regulatory filings, 2022ΓÇô2025</div>
     </div>
 
     <div class="crisis-stat">
       <div class="crisis-n">3</div>
       <div class="crisis-label">major regulatory frameworks now require independent verification of computational outputs</div>
-      <div class="crisis-src">EU AI Act · FDA 21 CFR Part 11 · Basel III/IV</div>
+      <div class="crisis-src">EU AI Act ┬╖ FDA 21 CFR Part 11 ┬╖ Basel III/IV</div>
     </div>
 
     <div class="crisis-stat">
@@ -1551,28 +1551,28 @@ a.soon-chip{border-bottom:none!important}
     <div class="origin-quote rv d1">
       <p class="origin-q">
         "Why make expensive lab experiments when you can simulate first, correct, then verify?
-        But nobody trusted the simulation result — there was
+        But nobody trusted the simulation result ΓÇö there was
         <em>no way to prove it was real.</em>
         That's why MetaGenesis Core exists."
       </p>
-      <p class="origin-who">Yehor Bazhynov — Inventor, Patent #63/996,819</p>
+      <p class="origin-who">Yehor Bazhynov ΓÇö Inventor, Patent #63/996,819</p>
     </div>
     <div class="origin-steps rv d2">
       <div class="origin-step">
         <div class="origin-step-n">01</div>
-        <div class="origin-step-txt">Wanted to simulate a materials experiment — cheaper than a real lab</div>
+        <div class="origin-step-txt">Wanted to simulate a materials experiment ΓÇö cheaper than a real lab</div>
       </div>
       <div class="origin-step">
         <div class="origin-step-n">02</div>
-        <div class="origin-step-txt">Got results. But <strong>no one could verify</strong> them — no proof the computation was real</div>
+        <div class="origin-step-txt">Got results. But <strong>no one could verify</strong> them ΓÇö no proof the computation was real</div>
       </div>
       <div class="origin-step">
         <div class="origin-step-n">03</div>
-        <div class="origin-step-txt">Tried SHA-256 hashing, preregistration, manual logs — <strong>all insufficient</strong></div>
+        <div class="origin-step-txt">Tried SHA-256 hashing, preregistration, manual logs ΓÇö <strong>all insufficient</strong></div>
       </div>
       <div class="origin-step active">
         <div class="origin-step-n">04</div>
-        <div class="origin-step-txt">Built <strong>MetaGenesis Core</strong> — tamper-evident bundles, semantic verification, adversarial proof</div>
+        <div class="origin-step-txt">Built <strong>MetaGenesis Core</strong> ΓÇö tamper-evident bundles, semantic verification, adversarial proof</div>
       </div>
     </div>
   </div>
@@ -1582,12 +1582,12 @@ a.soon-chip{border-bottom:none!important}
 <div class="w"><section class="sec" id="pitch">
   <div class="stag rv">How It Started</div>
   <h2 class="rv d1" style="--h2d:1.6s" data-glitch="Built for one thing. Became universal."><span class="hw">Built for one thing.</span><br><span class="hgrad-cy">Became universal.</span></h2>
-  <p class="sdesc rv d2">MetaGenesis Core started as a materials simulation verifier. Then the protocol worked for ML accuracy. Then data pipelines. Then risk models. The same 4-step structure handles every computational claim — because the problem is always the same: <em style="color:var(--c);font-style:normal">proof, not trust.</em></p>
+  <p class="sdesc rv d2">MetaGenesis Core started as a materials simulation verifier. Then the protocol worked for ML accuracy. Then data pipelines. Then risk models. The same 4-step structure handles every computational claim ΓÇö because the problem is always the same: <em style="color:var(--c);font-style:normal">proof, not trust.</em></p>
 
   <div class="pitch-grid rv d3">
 
     <div class="pitch-col pitch-col-left">
-      <div class="pitch-origin-tag">Version 0.1 — origin</div>
+      <div class="pitch-origin-tag">Version 0.1 ΓÇö origin</div>
       <h3 class="pitch-title">Materials science verifier</h3>
       <p class="pitch-body">Young's modulus. Thermal conductivity. Multilayer contact. Three claims, one physicist, one problem: simulation results that couldn't be independently verified by any external party.</p>
       <div class="pitch-claims">
@@ -1600,9 +1600,9 @@ a.soon-chip{border-bottom:none!important}
     <div class="pitch-arrow">&#8594;</div>
 
     <div class="pitch-col pitch-col-right">
-      <div class="pitch-origin-tag pitch-origin-tag-ok">Today — universal protocol</div>
+      <div class="pitch-origin-tag pitch-origin-tag-ok">Today ΓÇö universal protocol</div>
       <h3 class="pitch-title hgrad-cy">Verification engine for any domain</h3>
-      <p class="pitch-body">The same 4-step pipeline — run, index, pack, verify — works for ML benchmarks, system identification, data pipelines, drift monitoring. Any computational claim. Any domain. One command. PASS or FAIL.</p>
+      <p class="pitch-body">The same 4-step pipeline ΓÇö run, index, pack, verify ΓÇö works for ML benchmarks, system identification, data pipelines, drift monitoring. Any computational claim. Any domain. One command. PASS or FAIL.</p>
       <div class="pitch-claims">
         <span class="pitch-chip pitch-chip-ok">ML_BENCH-01</span>
         <span class="pitch-chip pitch-chip-ok">SYSID-01</span>
@@ -1639,7 +1639,7 @@ a.soon-chip{border-bottom:none!important}
 <div class="w"><section class="sec">
   <div class="stag rv">Live Demo</div>
   <h2 class="rv d1" style="--h2d:3.2s" data-glitch="Five minutes from zero to proof."><span class="hc">Five minutes</span><br>from zero to <span class="hg">proof.</span></h2>
-<p class="sdesc rv d2">Clone the repo. Run one command. Your result is now cryptographically anchored, semantically verified, and independently auditable by anyone — offline, without trusting you.</p>
+<p class="sdesc rv d2">Clone the repo. Run one command. Your result is now cryptographically anchored, semantically verified, and independently auditable by anyone ΓÇö offline, without trusting you.</p>
   <div class="term rv d2">
     <div class="termh"><div class="thdot"></div><div class="thdot"></div><div class="thdot"></div><span class="thtit">bash &#8212; metagenesis-core-public</span></div>
     <div class="termbody">
@@ -1860,7 +1860,7 @@ a.soon-chip{border-bottom:none!important}
       <div class="reg-scope">High-Risk AI Systems</div>
       <h3>Technical documentation &amp; logging</h3>
       <p>Article 12 requires logging of AI system operations to enable post-market monitoring. MetaGenesis bundles provide immutable, independently auditable evidence records without disclosing proprietary model internals.</p>
-      <div class="reg-claim">Relevant claim: ML_BENCH-01 · DATA-PIPE-01</div>
+      <div class="reg-claim">Relevant claim: ML_BENCH-01 ┬╖ DATA-PIPE-01</div>
     </div>
 
     <div class="reg">
@@ -1868,7 +1868,7 @@ a.soon-chip{border-bottom:none!important}
       <div class="reg-scope">Pharma &amp; Medical Devices</div>
       <h3>Electronic records &amp; audit trails</h3>
       <p>Computational submissions to FDA require electronic records with integrity controls. MetaGenesis evidence bundles provide SHA-256 + semantic integrity verification compatible with existing data integrity requirements.</p>
-      <div class="reg-claim">Relevant claim: DATA-PIPE-01 · DRIFT-01 · MTR series</div>
+      <div class="reg-claim">Relevant claim: DATA-PIPE-01 ┬╖ DRIFT-01 ┬╖ MTR series</div>
     </div>
 
     <div class="reg">
@@ -1876,7 +1876,7 @@ a.soon-chip{border-bottom:none!important}
       <div class="reg-scope">Financial Risk Models</div>
       <h3>Model risk management</h3>
       <p>SR 11-7 guidance requires independent validation of risk model outputs. MetaGenesis bundles give model validators verifiable evidence without requiring access to proprietary model code or data.</p>
-      <div class="reg-claim">Relevant claim: ML_BENCH-01 · DATA-PIPE-01</div>
+      <div class="reg-claim">Relevant claim: ML_BENCH-01 ┬╖ DATA-PIPE-01</div>
     </div>
 
   </div>
@@ -1923,15 +1923,15 @@ a.soon-chip{border-bottom:none!important}
       <div class="price-badge">Most popular</div>
       <div class="price-name">Verification Bundle</div>
       <div class="price-amount">$299</div>
-      <div class="price-desc">Your result → tamper-evident bundle in 48h. Any third party verifies offline with one command.</div>
+      <div class="price-desc">Your result ΓåÆ tamper-evident bundle in 48h. Any third party verifies offline with one command.</div>
       <ul class="price-list">
         <li>Your specific claim packaged &amp; signed</li>
-        <li>mg.py verify → PASS or FAIL</li>
+        <li>mg.py verify ΓåÆ PASS or FAIL</li>
         <li>Any reviewer verifies offline, no access to your code</li>
         <li>Patent-pending protocol (USPTO #63/996,819)</li>
         <li>Delivered within 48 hours</li>
       </ul>
-      <a href="https://buy.stripe.com/14AcN57qH19R1qN3QQ6Na00" class="price-btn-primary" id="stripe-buy-btn">Buy Bundle — $299 &#8594;</a>
+      <a href="https://buy.stripe.com/14AcN57qH19R1qN3QQ6Na00" class="price-btn-primary" id="stripe-buy-btn">Buy Bundle ΓÇö $299 &#8594;</a>
     </div>
 
     <div class="price-tier">
@@ -2017,82 +2017,82 @@ a.soon-chip{border-bottom:none!important}
       <div class="seg-panel active" data-seg="ml">
         <div class="seg-pain">
           <span class="seg-pain-label">The problem</span>
-          <p>Your model achieves 94.3% accuracy. Your client wants proof — not a screenshot, not a PDF, not a Docker container they have to run. They want an answer they can verify themselves in 60 seconds.</p>
+          <p>Your model achieves 94.3% accuracy. Your client wants proof ΓÇö not a screenshot, not a PDF, not a Docker container they have to run. They want an answer they can verify themselves in 60 seconds.</p>
         </div>
         <div class="seg-scenario">
           <span class="seg-scenario-label">Your scenario</span>
           <div class="seg-flow">
-            <div class="seg-step"><span class="seg-step-n">1</span><span>You run ML_BENCH-01 → <a href="https://github.com/Lama999901/metagenesis-core-public/tree/main/demos/open_data_demo_01" target="_blank">bundle</a> contains predictions CSV + SHA-256 fingerprint + semantic proof</span></div>
+            <div class="seg-step"><span class="seg-step-n">1</span><span>You run ML_BENCH-01 ΓåÆ <a href="https://github.com/Lama999901/metagenesis-core-public/tree/main/demos/open_data_demo_01" target="_blank">bundle</a> contains predictions CSV + SHA-256 fingerprint + semantic proof</span></div>
             <div class="seg-step"><span class="seg-step-n">2</span><span>Client runs <code>mg.py verify --pack bundle.zip</code> on their laptop</span></div>
-            <div class="seg-step"><span class="seg-step-n">3</span><span>They see <span class="seg-pass">PASS</span> — your claimed accuracy is verified. No model access. No GPU. No trust required.</span></div>
+            <div class="seg-step"><span class="seg-step-n">3</span><span>They see <span class="seg-pass">PASS</span> ΓÇö your claimed accuracy is verified. No model access. No GPU. No trust required.</span></div>
           </div>
         </div>
         <div class="seg-claims-row">
           <span class="seg-claims-label">Relevant claims</span>
           <div class="seg-claim-chips">
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-01 — accuracy certificate</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank"><span class="seg-chip active-chip">DATA-PIPE-01 — pipeline quality</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="seg-chip active-chip">DRIFT-01 — model drift monitor</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-01 ΓÇö accuracy certificate</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank"><span class="seg-chip active-chip">DATA-PIPE-01 ΓÇö pipeline quality</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="seg-chip active-chip">DRIFT-01 ΓÇö model drift monitor</span></a>
           </div>
         </div>
         <div class="seg-cta-row">
-          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" class="seg-btn-secondary">View ML_BENCH-01 on GitHub →</a>
-          <a href="#pilot" class="seg-btn-primary">Request Free Pilot →</a>
+          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" class="seg-btn-secondary">View ML_BENCH-01 on GitHub ΓåÆ</a>
+          <a href="#pilot" class="seg-btn-primary">Request Free Pilot ΓåÆ</a>
         </div>
       </div>
 
       <div class="seg-panel" data-seg="pharma">
         <div class="seg-pain">
           <span class="seg-pain-label">The problem</span>
-          <p>FDA 21 CFR Part 11 requires electronic records with audit trails for computational submissions. Your ADMET predictions, PK/PD outputs, and calibration data need independently verifiable provenance — without exposing proprietary model internals.</p>
+          <p>FDA 21 CFR Part 11 requires electronic records with audit trails for computational submissions. Your ADMET predictions, PK/PD outputs, and calibration data need independently verifiable provenance ΓÇö without exposing proprietary model internals.</p>
         </div>
         <div class="seg-scenario">
           <span class="seg-scenario-label">Your scenario</span>
           <div class="seg-flow">
-            <div class="seg-step"><span class="seg-step-n">1</span><span>Your calibration pipeline runs → MTR series + DATA-PIPE-01 produce evidence bundles with full provenance chain</span></div>
-            <div class="seg-step"><span class="seg-step-n">2</span><span>Regulatory reviewer runs verification offline — no access to your environment or proprietary data</span></div>
+            <div class="seg-step"><span class="seg-step-n">1</span><span>Your calibration pipeline runs ΓåÆ MTR series + DATA-PIPE-01 produce evidence bundles with full provenance chain</span></div>
+            <div class="seg-step"><span class="seg-step-n">2</span><span>Regulatory reviewer runs verification offline ΓÇö no access to your environment or proprietary data</span></div>
             <div class="seg-step"><span class="seg-step-n">3</span><span>Audit trail is SHA-256 + semantically verified. Every deviation surfaces as <span class="seg-fail">FAIL</span> with specific reason.</span></div>
           </div>
         </div>
         <div class="seg-claims-row">
           <span class="seg-claims-label">Relevant claims</span>
           <div class="seg-claim-chips">
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank"><span class="seg-chip active-chip">DATA-PIPE-01 — data integrity</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="seg-chip active-chip">DRIFT-01 — calibration anchor</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/scientific_claim_index.md" target="_blank"><span class="seg-chip active-chip">MTR-1/2/3 — calibration certificates</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/ROADMAP.md" target="_blank"><span class="seg-chip soon-chip">PHARMA-01 — ADMET (planned)</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank"><span class="seg-chip active-chip">DATA-PIPE-01 ΓÇö data integrity</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="seg-chip active-chip">DRIFT-01 ΓÇö calibration anchor</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/scientific_claim_index.md" target="_blank"><span class="seg-chip active-chip">MTR-1/2/3 ΓÇö calibration certificates</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/ROADMAP.md" target="_blank"><span class="seg-chip soon-chip">PHARMA-01 ΓÇö ADMET (planned)</span></a>
           </div>
         </div>
         <div class="seg-cta-row">
-          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/PROTOCOL.md" class="seg-btn-secondary">Read Protocol Spec →</a>
-          <a href="#pilot" class="seg-btn-primary">Request Free Pilot →</a>
+          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/PROTOCOL.md" class="seg-btn-secondary">Read Protocol Spec ΓåÆ</a>
+          <a href="#pilot" class="seg-btn-primary">Request Free Pilot ΓåÆ</a>
         </div>
       </div>
 
       <div class="seg-panel" data-seg="finance">
         <div class="seg-pain">
           <span class="seg-pain-label">The problem</span>
-          <p>SR 11-7 and Basel III/IV require independent validation of risk model outputs. Your VaR models, credit scoring pipelines, and stress test results need a verifiable evidence trail — without handing over your proprietary model to the validator.</p>
+          <p>SR 11-7 and Basel III/IV require independent validation of risk model outputs. Your VaR models, credit scoring pipelines, and stress test results need a verifiable evidence trail ΓÇö without handing over your proprietary model to the validator.</p>
         </div>
         <div class="seg-scenario">
           <span class="seg-scenario-label">Your scenario</span>
           <div class="seg-flow">
-            <div class="seg-step"><span class="seg-step-n">1</span><span>Risk model runs → bundle contains output fingerprint + claimed metrics + governance-enforced evidence index</span></div>
-            <div class="seg-step"><span class="seg-step-n">2</span><span>Independent validator verifies bundle offline — no model access, no proprietary data exposure</span></div>
+            <div class="seg-step"><span class="seg-step-n">1</span><span>Risk model runs ΓåÆ bundle contains output fingerprint + claimed metrics + governance-enforced evidence index</span></div>
+            <div class="seg-step"><span class="seg-step-n">2</span><span>Independent validator verifies bundle offline ΓÇö no model access, no proprietary data exposure</span></div>
             <div class="seg-step"><span class="seg-step-n">3</span><span>Semantic layer catches any post-hoc modification. Evidence chain is audit-ready for Basel model risk documentation.</span></div>
           </div>
         </div>
         <div class="seg-claims-row">
           <span class="seg-claims-label">Relevant claims</span>
           <div class="seg-claim-chips">
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-01 — model accuracy</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank"><span class="seg-chip active-chip">DATA-PIPE-01 — pipeline integrity</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/ROADMAP.md" target="_blank"><span class="seg-chip soon-chip">FINRISK-01 — VaR certificate (planned)</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-01 ΓÇö model accuracy</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank"><span class="seg-chip active-chip">DATA-PIPE-01 ΓÇö pipeline integrity</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/ROADMAP.md" target="_blank"><span class="seg-chip soon-chip">FINRISK-01 ΓÇö VaR certificate (planned)</span></a>
           </div>
         </div>
         <div class="seg-cta-row">
-          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/COMMERCIAL.md" class="seg-btn-secondary">Commercial Licensing →</a>
-          <a href="#pilot" class="seg-btn-primary">Request Free Pilot →</a>
+          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/COMMERCIAL.md" class="seg-btn-secondary">Commercial Licensing ΓåÆ</a>
+          <a href="#pilot" class="seg-btn-primary">Request Free Pilot ΓåÆ</a>
         </div>
       </div>
 
@@ -2104,23 +2104,23 @@ a.soon-chip{border-bottom:none!important}
         <div class="seg-scenario">
           <span class="seg-scenario-label">Your scenario</span>
           <div class="seg-flow">
-            <div class="seg-step"><span class="seg-step-n">1</span><span>Your computation runs → evidence bundle contains result + dataset SHA-256 fingerprint + semantic proof. No raw data included.</span></div>
+            <div class="seg-step"><span class="seg-step-n">1</span><span>Your computation runs ΓåÆ evidence bundle contains result + dataset SHA-256 fingerprint + semantic proof. No raw data included.</span></div>
             <div class="seg-step"><span class="seg-step-n">2</span><span>Reviewer downloads bundle from your supplementary materials. Runs one command on their laptop.</span></div>
-            <div class="seg-step"><span class="seg-step-n">3</span><span>They see <span class="seg-pass">PASS</span> — your results are independently verified. No environment, no GPU, no trust required.</span></div>
+            <div class="seg-step"><span class="seg-step-n">3</span><span>They see <span class="seg-pass">PASS</span> ΓÇö your results are independently verified. No environment, no GPU, no trust required.</span></div>
           </div>
         </div>
         <div class="seg-claims-row">
           <span class="seg-claims-label">Relevant claims</span>
           <div class="seg-claim-chips">
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/scientific_claim_index.md" target="_blank"><span class="seg-chip active-chip">MTR-1/2/3 — materials calibration</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/sysid1_arx_calibration.py" target="_blank"><span class="seg-chip active-chip">SYSID-01 — system identification</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-01 — ML results</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="seg-chip active-chip">DRIFT-01 — baseline comparison</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/scientific_claim_index.md" target="_blank"><span class="seg-chip active-chip">MTR-1/2/3 ΓÇö materials calibration</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/sysid1_arx_calibration.py" target="_blank"><span class="seg-chip active-chip">SYSID-01 ΓÇö system identification</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-01 ΓÇö ML results</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="seg-chip active-chip">DRIFT-01 ΓÇö baseline comparison</span></a>
           </div>
         </div>
         <div class="seg-cta-row">
-          <a href="https://github.com/Lama999901/metagenesis-core-public#try-it-in-5-minutes" class="seg-btn-secondary">Clone & Try in 5 min →</a>
-          <a href="#pilot" class="seg-btn-primary">Request Free Pilot →</a>
+          <a href="https://github.com/Lama999901/metagenesis-core-public#try-it-in-5-minutes" class="seg-btn-secondary">Clone & Try in 5 min ΓåÆ</a>
+          <a href="#pilot" class="seg-btn-primary">Request Free Pilot ΓåÆ</a>
         </div>
       </div>
 
@@ -2151,14 +2151,14 @@ a.soon-chip{border-bottom:none!important}
 
         <div class="vrf-input-group active" data-claim="ml">
           <div class="vrf-field">
-            <label class="vrf-label" for="ml-claimed">claimed_accuracy <span class="vrf-unit">0.00 – 1.00</span></label>
+            <label class="vrf-label" for="ml-claimed">claimed_accuracy <span class="vrf-unit">0.00 ΓÇô 1.00</span></label>
             <input class="vrf-input" id="ml-claimed" type="number" min="0" max="1" step="0.01" value="0.94" placeholder="0.94">
           </div>
           <div class="vrf-field">
-            <label class="vrf-label" for="ml-actual">actual_accuracy <span class="vrf-unit">0.00 – 1.00</span></label>
+            <label class="vrf-label" for="ml-actual">actual_accuracy <span class="vrf-unit">0.00 ΓÇô 1.00</span></label>
             <input class="vrf-input" id="ml-actual" type="number" min="0" max="1" step="0.01" value="0.93" placeholder="0.93">
           </div>
-          <div class="vrf-threshold">threshold: |actual − claimed| ≤ 0.02</div>
+          <div class="vrf-threshold">threshold: |actual ΓêÆ claimed| Γëñ 0.02</div>
         </div>
 
         <div class="vrf-input-group" data-claim="mtr">
@@ -2170,21 +2170,21 @@ a.soon-chip{border-bottom:none!important}
             <label class="vrf-label" for="mtr-actual">actual_value <span class="vrf-unit">GPa</span></label>
             <input class="vrf-input" id="mtr-actual" type="number" min="0" step="0.1" value="201.5" placeholder="201.5">
           </div>
-          <div class="vrf-threshold">threshold: |actual − claimed| / claimed ≤ 0.01</div>
+          <div class="vrf-threshold">threshold: |actual ΓêÆ claimed| / claimed Γëñ 0.01</div>
         </div>
 
         <div class="vrf-input-group" data-claim="data">
           <div class="vrf-check-group">
             <label class="vrf-check-label">
               <input type="checkbox" id="data-schema" checked class="vrf-checkbox">
-              <span>schema_valid — all required columns present</span>
+              <span>schema_valid ΓÇö all required columns present</span>
             </label>
             <label class="vrf-check-label">
               <input type="checkbox" id="data-range" checked class="vrf-checkbox">
-              <span>range_valid — all values within expected bounds</span>
+              <span>range_valid ΓÇö all values within expected bounds</span>
             </label>
           </div>
-          <div class="vrf-threshold">threshold: schema_valid AND range_valid → PASS</div>
+          <div class="vrf-threshold">threshold: schema_valid AND range_valid ΓåÆ PASS</div>
         </div>
 
         <div class="vrf-input-group" data-claim="drift">
@@ -2196,11 +2196,11 @@ a.soon-chip{border-bottom:none!important}
             <label class="vrf-label" for="drift-current">current_value <span class="vrf-unit">new measurement</span></label>
             <input class="vrf-input" id="drift-current" type="number" step="0.01" value="103.2" placeholder="103.2">
           </div>
-          <div class="vrf-threshold">threshold: |current − baseline| / baseline ≤ 0.05 (5%)</div>
+          <div class="vrf-threshold">threshold: |current ΓêÆ baseline| / baseline Γëñ 0.05 (5%)</div>
         </div>
 
         <button class="vrf-run-btn" id="vrf-run">
-          <span id="vrf-run-label">▶ VERIFY</span>
+          <span id="vrf-run-label">Γû╢ VERIFY</span>
         </button>
       </div>
 
@@ -2211,7 +2211,7 @@ a.soon-chip{border-bottom:none!important}
         </div>
         <div class="vrf-term-body" id="vrf-output">
           <div class="vrf-line dim">$ python scripts/mg.py verify --pack bundle.zip</div>
-          <div class="vrf-line dim">→ awaiting input...</div>
+          <div class="vrf-line dim">ΓåÆ awaiting input...</div>
         </div>
       </div>
     </div>
@@ -2222,7 +2222,7 @@ a.soon-chip{border-bottom:none!important}
 <div class="w"><section class="sec" id="pilot">
   <div class="stag rv">Free Pilot</div>
   <h2 class="rv d1" style="--h2d:12.8s" data-glitch="Send your result. Get proof back.">Send your result.<br>Get <span class="hg">proof</span> back.</h2>
-  <p class="sdesc rv d2">Share a computational result — any domain. We build a verification bundle for it at no charge. You see PASS or FAIL before any commercial conversation. No strings attached. Response within 48 hours.</p>
+  <p class="sdesc rv d2">Share a computational result ΓÇö any domain. We build a verification bundle for it at no charge. You see PASS or FAIL before any commercial conversation. No strings attached. Response within 48 hours.</p>
 
   <div class="pilot-wrap rv d3">
     <div class="pilot-form-col">
@@ -2241,26 +2241,26 @@ a.soon-chip{border-bottom:none!important}
           <label class="pilot-label" for="pf-segment">Domain</label>
           <select class="pilot-input pilot-select" id="pf-segment" name="segment" required>
             <option value="" disabled selected>Select your domain</option>
-            <option value="ml-ai">ML / AI — model accuracy or benchmark certification</option>
-            <option value="pharma">Pharma / Biotech — regulatory submission or calibration</option>
-            <option value="finance">Financial / Risk — model validation or audit trail</option>
-            <option value="research">Research — reproducibility or peer review</option>
-            <option value="other">Other — describe below</option>
+            <option value="ml-ai">ML / AI ΓÇö model accuracy or benchmark certification</option>
+            <option value="pharma">Pharma / Biotech ΓÇö regulatory submission or calibration</option>
+            <option value="finance">Financial / Risk ΓÇö model validation or audit trail</option>
+            <option value="research">Research ΓÇö reproducibility or peer review</option>
+            <option value="other">Other ΓÇö describe below</option>
           </select>
         </div>
         <div class="pilot-field">
-          <label class="pilot-label" for="pf-desc">Describe your use case <span class="pilot-optional">— what result do you want to verify?</span></label>
+          <label class="pilot-label" for="pf-desc">Describe your use case <span class="pilot-optional">ΓÇö what result do you want to verify?</span></label>
           <textarea class="pilot-input pilot-textarea" id="pf-desc" name="description" rows="4" placeholder="E.g. We have an ML model claiming 94% accuracy on a held-out test set. We want to provide our client with a verifiable bundle they can check offline..." required></textarea>
         </div>
         <div class="pilot-footer">
           <button class="pilot-submit" type="submit" id="pilot-submit">
-            <span id="pilot-submit-label">Request Free Pilot →</span>
+            <span id="pilot-submit-label">Request Free Pilot ΓåÆ</span>
           </button>
           <p class="pilot-note">No account. No credit card. Response within 48 hours.</p>
         </div>
       </form>
       <div class="pilot-success" id="pilot-success" style="display:none">
-        <div class="pilot-success-icon">✓</div>
+        <div class="pilot-success-icon">Γ£ô</div>
         <div class="pilot-success-title">Request received.</div>
         <div class="pilot-success-text">We'll review your use case and reply within 48 hours with a working verification bundle or a specific question. Check your inbox at the email you provided.</div>
       </div>
@@ -2268,7 +2268,7 @@ a.soon-chip{border-bottom:none!important}
     <div class="pilot-info-col">
       <div class="pilot-what">
         <div class="pilot-what-title">What happens next</div>
-        <div class="pilot-what-step"><span class="pilot-what-n">01</span><div><strong>You describe your result</strong><p>Any computational output — ML accuracy, calibration data, pipeline certificate, simulation output.</p></div></div>
+        <div class="pilot-what-step"><span class="pilot-what-n">01</span><div><strong>You describe your result</strong><p>Any computational output ΓÇö ML accuracy, calibration data, pipeline certificate, simulation output.</p></div></div>
         <div class="pilot-what-step"><span class="pilot-what-n">02</span><div><strong>We build the bundle</strong><p>We implement the verification claim for your domain and generate a tamper-evident evidence bundle.</p></div></div>
         <div class="pilot-what-step"><span class="pilot-what-n">03</span><div><strong>You verify it yourself</strong><p>Run <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/mg.py" target="_blank"><code>mg.py verify --pack bundle.zip</code></a> on your machine. See PASS or FAIL. No trust required.</p></div></div>
         <div class="pilot-what-step"><span class="pilot-what-n">04</span><div><strong>Then we talk</strong><p>If it solves your problem, we discuss next steps. If it doesn't fit, we tell you honestly.</p></div></div>
@@ -2329,7 +2329,7 @@ a.soon-chip{border-bottom:none!important}
     });
   }
 
-  /* old #cur/#ring removed — replaced by #cur-dot/#cur-ring system */
+  /* old #cur/#ring removed ΓÇö replaced by #cur-dot/#cur-ring system */
 
   var cv=document.getElementById('bg'),ctx=cv?cv.getContext('2d'):null;
   if(ctx){
@@ -2373,7 +2373,7 @@ a.soon-chip{border-bottom:none!important}
       ctx.clearRect(0,0,W,H);
       t+=0.0036;
 
-      // центр экрана — фон затухает у контента, живёт по краям
+      // ╤å╨╡╨╜╤é╤Ç ╤ì╨║╤Ç╨░╨╜╨░ ΓÇö ╤ä╨╛╨╜ ╨╖╨░╤é╤â╤à╨░╨╡╤é ╤â ╨║╨╛╨╜╤é╨╡╨╜╤é╨░, ╨╢╨╕╨▓╤æ╤é ╨┐╨╛ ╨║╤Ç╨░╤Å╨╝
       var cx = W*0.5, cy = H*0.5;
 
       hexes.forEach(function(h){
@@ -2383,17 +2383,17 @@ a.soon-chip{border-bottom:none!important}
 
         var x=h.x, y=h.y;
 
-        // расстояние от центра экрана, нормализовано 0..1
+        // ╤Ç╨░╤ü╤ü╤é╨╛╤Å╨╜╨╕╨╡ ╨╛╤é ╤å╨╡╨╜╤é╤Ç╨░ ╤ì╨║╤Ç╨░╨╜╨░, ╨╜╨╛╤Ç╨╝╨░╨╗╨╕╨╖╨╛╨▓╨░╨╜╨╛ 0..1
         var dx=(x-cx)/W, dy=(y-cy)/H;
         var distC = Math.min(Math.sqrt(dx*dx*1.8+dy*dy*2.2), 1.0);
-        // близко к центру — dim=0 (почти невиден), по краям — dim=1 (полная яркость)
+        // ╨▒╨╗╨╕╨╖╨║╨╛ ╨║ ╤å╨╡╨╜╤é╤Ç╤â ΓÇö dim=0 (╨┐╨╛╤ç╤é╨╕ ╨╜╨╡╨▓╨╕╨┤╨╡╨╜), ╨┐╨╛ ╨║╤Ç╨░╤Å╨╝ ΓÇö dim=1 (╨┐╨╛╨╗╨╜╨░╤Å ╤Å╤Ç╨║╨╛╤ü╤é╤î)
         var dim = Math.pow(distC, 1.6);
 
-        // 3 бегущих волны — плавная интерференция
+        // 3 ╨▒╨╡╨│╤â╤ë╨╕╤à ╨▓╨╛╨╗╨╜╤ï ΓÇö ╨┐╨╗╨░╨▓╨╜╨░╤Å ╨╕╨╜╤é╨╡╤Ç╤ä╨╡╤Ç╨╡╨╜╤å╨╕╤Å
         var w1 = Math.sin(t*1.20 + h.wx*6.28*2.2)*0.5+0.5;
         var w2 = Math.sin(t*0.76 + (h.wx+h.wy)*6.28*1.6 + 1.9)*0.5+0.5;
         var w3 = Math.sin(t*0.50 + h.wd*6.28*2.8 + 3.7)*0.5+0.5;
-        // добавляем медленное дыхание центра (пульс от центра)
+        // ╨┤╨╛╨▒╨░╨▓╨╗╤Å╨╡╨╝ ╨╝╨╡╨┤╨╗╨╡╨╜╨╜╨╛╨╡ ╨┤╤ï╤à╨░╨╜╨╕╨╡ ╤å╨╡╨╜╤é╤Ç╨░ (╨┐╤â╨╗╤î╤ü ╨╛╤é ╤å╨╡╨╜╤é╤Ç╨░)
         var wRadial = Math.sin(t*0.32 - distC*6.28*1.4)*0.5+0.5;
         var flow = w1*0.42 + w2*0.28 + w3*0.16 + wRadial*0.14;
 
@@ -2403,26 +2403,26 @@ a.soon-chip{border-bottom:none!important}
         var life = flow*0.62 + pulse*0.22 + pulse2*0.16;
         var crest = Math.pow(flow, 3.2);
 
-        // цвет: чистый циан
+        // ╤å╨▓╨╡╤é: ╤ç╨╕╤ü╤é╤ï╨╣ ╤å╨╕╨░╨╜
         var gv = Math.min(160 + life*48 + crest*18, 238);
         var bv = Math.min(190 + life*40 + crest*12, 248);
 
-        // dim: только для glow/символов — сетка НЕ затухает
-        // stroke сетки всегда виден, просто чуть тише в центре
+        // dim: ╤é╨╛╨╗╤î╨║╨╛ ╨┤╨╗╤Å glow/╤ü╨╕╨╝╨▓╨╛╨╗╨╛╨▓ ΓÇö ╤ü╨╡╤é╨║╨░ ╨¥╨ò ╨╖╨░╤é╤â╤à╨░╨╡╤é
+        // stroke ╤ü╨╡╤é╨║╨╕ ╨▓╤ü╨╡╨│╨┤╨░ ╨▓╨╕╨┤╨╡╨╜, ╨┐╤Ç╨╛╤ü╤é╨╛ ╤ç╤â╤é╤î ╤é╨╕╤ê╨╡ ╨▓ ╤å╨╡╨╜╤é╤Ç╨╡
 
-        // ═══ OUTER HEX ═══
-        // fill glow — flat fill (no gradient for perf)
+        // ΓòÉΓòÉΓòÉ OUTER HEX ΓòÉΓòÉΓòÉ
+        // fill glow ΓÇö flat fill (no gradient for perf)
         var ca = (life*life*0.08 + crest*0.10) * (0.12 + dim*0.88);
         ctx.fillStyle = 'rgba(0,'+gv+','+bv+','+Math.min(ca*0.55,0.07)+')';
 
-        // stroke сетки: постоянная база + волна, БЕЗ dim-множителя
+        // stroke ╤ü╨╡╤é╨║╨╕: ╨┐╨╛╤ü╤é╨╛╤Å╨╜╨╜╨░╤Å ╨▒╨░╨╖╨░ + ╨▓╨╛╨╗╨╜╨░, ╨æ╨ò╨ù dim-╨╝╨╜╨╛╨╢╨╕╤é╨╡╨╗╤Å
         var sa = 0.060 + flow*0.115 + crest*0.092 + pulse*0.020;
         var lw = 0.25 + flow*0.68 + crest*0.45;
         ctx.strokeStyle = 'rgba(0,'+gv+','+bv+','+Math.min(sa,0.22)+')';
         ctx.lineWidth = lw;
         hp(x,y,h.rad,0); ctx.fill(); ctx.stroke();
 
-        // ═══ УНИКАЛЬНАЯ ДНК — тихая, выровненная ═══
+        // ΓòÉΓòÉΓòÉ ╨ú╨¥╨ÿ╨Ü╨É╨¢╨¼╨¥╨É╨» ╨ö╨¥╨Ü ΓÇö ╤é╨╕╤à╨░╤Å, ╨▓╤ï╤Ç╨╛╨▓╨╜╨╡╨╜╨╜╨░╤Å ΓòÉΓòÉΓòÉ
         var ir = h.rad * 0.44;
         var ia = 0.10 + pulse*0.14 + pulse2*0.07 + crest*0.10;
         ia = Math.min(ia, 0.40);
@@ -2430,13 +2430,13 @@ a.soon-chip{border-bottom:none!important}
         ctx.lineWidth = 0.45 + pulse*0.32 + crest*0.16;
 
         if(h.dna===0){
-        // ДНК-0: звезда Давида (два треугольника)
+        // ╨ö╨¥╨Ü-0: ╨╖╨▓╨╡╨╖╨┤╨░ ╨ö╨░╨▓╨╕╨┤╨░ (╨┤╨▓╨░ ╤é╤Ç╨╡╤â╨│╨╛╨╗╤î╨╜╨╕╨║╨░)
         ctx.fillStyle='rgba(0,0,0,0)';
         hp(x,y,ir,h.rot);            ctx.fill(); ctx.stroke();
         hp(x,y,ir*0.68,h.rot+Math.PI/6);         ctx.stroke();
 
         }else if(h.dna===1){
-        // ДНК-1: треугольник + одна орбитная точка
+        // ╨ö╨¥╨Ü-1: ╤é╤Ç╨╡╤â╨│╨╛╨╗╤î╨╜╨╕╨║ + ╨╛╨┤╨╜╨░ ╨╛╤Ç╨▒╨╕╤é╨╜╨░╤Å ╤é╨╛╤ç╨║╨░
         ctx.beginPath();
         for(var i=0;i<3;i++){var a3=Math.PI*2/3*i+h.rot;i?ctx.lineTo(x+ir*Math.cos(a3),y+ir*Math.sin(a3)):ctx.moveTo(x+ir*Math.cos(a3),y+ir*Math.sin(a3));}
         ctx.closePath(); ctx.fillStyle='rgba(0,0,0,0)'; ctx.fill(); ctx.stroke();
@@ -2445,16 +2445,16 @@ a.soon-chip{border-bottom:none!important}
         ctx.fillStyle='rgba(0,'+gv+','+bv+','+(0.30+pulse2*0.18)+')'; ctx.fill();
 
         }else if(h.dna===2){
-        // ДНК-2: одно аккуратное кольцо с зазором
+        // ╨ö╨¥╨Ü-2: ╨╛╨┤╨╜╨╛ ╨░╨║╨║╤â╤Ç╨░╤é╨╜╨╛╨╡ ╨║╨╛╨╗╤î╤å╨╛ ╤ü ╨╖╨░╨╖╨╛╤Ç╨╛╨╝
         var r2a=ir*0.80;
         var gapA=0.55+pulse*0.12;
         ctx.beginPath(); ctx.arc(x,y,r2a, h.rot+gapA/2, h.rot+Math.PI*2-gapA/2); ctx.stroke();
-        // короткая внутренняя дуга
+        // ╨║╨╛╤Ç╨╛╤é╨║╨░╤Å ╨▓╨╜╤â╤é╤Ç╨╡╨╜╨╜╤Å╤Å ╨┤╤â╨│╨░
         ctx.strokeStyle='rgba(0,'+gv+','+bv+','+(ia*0.48)+')';
         ctx.beginPath(); ctx.arc(x,y,r2a*0.55, h.rot+Math.PI+gapA, h.rot+Math.PI*2-gapA/2); ctx.stroke();
 
         }else if(h.dna===3){
-        // ДНК-3: снежинка — 6 лучей
+        // ╨ö╨¥╨Ü-3: ╤ü╨╜╨╡╨╢╨╕╨╜╨║╨░ ΓÇö 6 ╨╗╤â╤ç╨╡╨╣
         for(var i=0;i<6;i++){
         var as=Math.PI/3*i+h.rot;
         ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+ir*0.74*Math.cos(as),y+ir*0.74*Math.sin(as));
@@ -2463,16 +2463,16 @@ a.soon-chip{border-bottom:none!important}
         }
 
         }else if(h.dna===4){
-        // ДНК-4: малый гексагон без точек
+        // ╨ö╨¥╨Ü-4: ╨╝╨░╨╗╤ï╨╣ ╨│╨╡╨║╤ü╨░╨│╨╛╨╜ ╨▒╨╡╨╖ ╤é╨╛╤ç╨╡╨║
         ctx.fillStyle='rgba(0,0,0,0)';
         hp(x,y,ir*0.62,h.rot2); ctx.fill(); ctx.stroke();
-        // тонкий внешний контур
+        // ╤é╨╛╨╜╨║╨╕╨╣ ╨▓╨╜╨╡╤ê╨╜╨╕╨╣ ╨║╨╛╨╜╤é╤â╤Ç
         ctx.strokeStyle='rgba(0,'+gv+','+bv+','+(ia*0.30)+')';
         ctx.lineWidth=0.20;
         hp(x,y,ir*0.90,h.rot2+Math.PI/6); ctx.stroke();
 
         }else if(h.dna===5){
-          // ДНК-5: два чистых концентрических кольца
+          // ╨ö╨¥╨Ü-5: ╨┤╨▓╨░ ╤ç╨╕╤ü╤é╤ï╤à ╨║╨╛╨╜╤å╨╡╨╜╤é╤Ç╨╕╤ç╨╡╤ü╨║╨╕╤à ╨║╨╛╨╗╤î╤å╨░
           ctx.strokeStyle='rgba(0,'+gv+','+bv+','+ia+')';
           ctx.lineWidth=0.38+pulse*0.18;
           var r5a=ir*0.82;
@@ -2485,7 +2485,7 @@ a.soon-chip{border-bottom:none!important}
         ctx.beginPath(); ctx.arc(x,y,r5b, -h.rot2+gapInner, -h.rot2+Math.PI*2-gapInner); ctx.stroke();
 
         }else if(h.dna===6){
-        // ДНК-6: крест + диагональный перекрёст (hash #)
+        // ╨ö╨¥╨Ü-6: ╨║╤Ç╨╡╤ü╤é + ╨┤╨╕╨░╨│╨╛╨╜╨░╨╗╤î╨╜╤ï╨╣ ╨┐╨╡╤Ç╨╡╨║╤Ç╤æ╤ü╤é (hash #)
         var hl=ir*0.70;
         [0,Math.PI/2,Math.PI/4,Math.PI*3/4].forEach(function(ang,idx){
           ctx.beginPath();
@@ -2495,7 +2495,7 @@ a.soon-chip{border-bottom:none!important}
         });
 
         }else if(h.dna===7){
-        // ДНК-7: 6 точек по кольцу (равномерно, не биты)
+        // ╨ö╨¥╨Ü-7: 6 ╤é╨╛╤ç╨╡╨║ ╨┐╨╛ ╨║╨╛╨╗╤î╤å╤â (╤Ç╨░╨▓╨╜╨╛╨╝╨╡╤Ç╨╜╨╛, ╨╜╨╡ ╨▒╨╕╤é╤ï)
         for(var i=0;i<6;i++){
           var ab=Math.PI/3*i+h.rot2;
         var br=ir*0.70;
@@ -2504,15 +2504,15 @@ a.soon-chip{border-bottom:none!important}
         }
 
         }else if(h.dna===8){
-        // ДНК-8: правильная двойная спираль — точки на двух синусоидах
+        // ╨ö╨¥╨Ü-8: ╨┐╤Ç╨░╨▓╨╕╨╗╤î╨╜╨░╤Å ╨┤╨▓╨╛╨╣╨╜╨░╤Å ╤ü╨┐╨╕╤Ç╨░╨╗╤î ΓÇö ╤é╨╛╤ç╨║╨╕ ╨╜╨░ ╨┤╨▓╤â╤à ╤ü╨╕╨╜╤â╤ü╨╛╨╕╨┤╨░╤à
         var stepsD=6;
         for(var i=0;i<=stepsD;i++){
         var t2=i/stepsD;
         var angle=h.rot+t2*Math.PI*2;
         var r8=ir*0.55;
-        // первая нить
+        // ╨┐╨╡╤Ç╨▓╨░╤Å ╨╜╨╕╤é╤î
           var px1=x+r8*Math.cos(angle),  py1=y+r8*Math.sin(angle);
-            // вторая нить (сдвиг на π)
+            // ╨▓╤é╨╛╤Ç╨░╤Å ╨╜╨╕╤é╤î (╤ü╨┤╨▓╨╕╨│ ╨╜╨░ ╧Ç)
             var px2=x+r8*Math.cos(angle+Math.PI), py2=y+r8*Math.sin(angle+Math.PI);
           if(i>0){
             ctx.beginPath(); ctx.moveTo(ppx1,ppy1); ctx.lineTo(px1,py1);
@@ -2528,51 +2528,51 @@ a.soon-chip{border-bottom:none!important}
         }
         }
 
-        // ════════════════════════════════════════
-        // СИМВОЛЬНЫЙ СЛОЙ
-        // нет shadowBlur, чистый пул: только безопасные Unicode
-        // символы ярче у краёв, тихо в центре
-        // ════════════════════════════════════════
+        // ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+        // ╨í╨ÿ╨£╨Æ╨₧╨¢╨¼╨¥╨½╨Ö ╨í╨¢╨₧╨Ö
+        // ╨╜╨╡╤é shadowBlur, ╤ç╨╕╤ü╤é╤ï╨╣ ╨┐╤â╨╗: ╤é╨╛╨╗╤î╨║╨╛ ╨▒╨╡╨╖╨╛╨┐╨░╤ü╨╜╤ï╨╡ Unicode
+        // ╤ü╨╕╨╝╨▓╨╛╨╗╤ï ╤Å╤Ç╤ç╨╡ ╤â ╨║╤Ç╨░╤æ╨▓, ╤é╨╕╤à╨╛ ╨▓ ╤å╨╡╨╜╤é╤Ç╨╡
+        // ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
         if(!h._sP){
-          // только проверенные Unicode символы, нет многосимвольных строк
+          // ╤é╨╛╨╗╤î╨║╨╛ ╨┐╤Ç╨╛╨▓╨╡╤Ç╨╡╨╜╨╜╤ï╨╡ Unicode ╤ü╨╕╨╝╨▓╨╛╨╗╤ï, ╨╜╨╡╤é ╨╝╨╜╨╛╨│╨╛╤ü╨╕╨╝╨▓╨╛╨╗╤î╨╜╤ï╤à ╤ü╤é╤Ç╨╛╨║
           h._sP=[
-            // Greek — physics alphabet (single/double char only)
-            'α','β','γ','δ','ε','η','θ','λ','μ','ν','ξ','π','ρ','σ','τ','φ','χ','ψ','ω',
-            'Γ','Δ','Λ','Σ','Φ','Ψ','Ω',
+            // Greek ΓÇö physics alphabet (single/double char only)
+            '╬▒','╬▓','╬│','╬┤','╬╡','╬╖','╬╕','╬╗','╬╝','╬╜','╬╛','╧Ç','╧ü','╧â','╧ä','╧å','╧ç','╧ê','╧ë',
+            '╬ô','╬ö','╬¢','╬ú','╬ª','╬¿','╬⌐',
             // Math operators
-            '∂','∇','∞','∑','∏','√','∫','≈','≡','≠','≤','≥','∈','⊥','ℏ','±',
-            // Short science tokens (≤3 char)
-            'E₀','ΔT','∂T','⊕','¬','↔',
+            'Γêé','Γêç','Γê₧','Γêæ','ΓêÅ','ΓêÜ','Γê½','Γëê','Γëí','Γëá','Γëñ','ΓëÑ','Γêê','ΓèÑ','ΓäÅ','┬▒',
+            // Short science tokens (Γëñ3 char)
+            'EΓéÇ','╬öT','ΓêéT','Γèò','┬¼','Γåö',
             // Short ML tokens
-            'ŷ','R²','ℓ²','f̂',
+            '┼╖','R┬▓','Γäô┬▓','f╠é',
             // Verification
-            '→','∧','∨','∀','∃','⊢','⊨','◻','◇',
+            'ΓåÆ','Γêº','Γê¿','ΓêÇ','Γêâ','Γèó','Γè¿','Γù╗','Γùç',
             // 2-char combos
-            'dσ','dε','dF','Δk','Δμ','P₀','k₀','z⁻','εᵣ'
+            'd╧â','d╬╡','dF','╬ök','╬ö╬╝','PΓéÇ','kΓéÇ','zΓü╗','╬╡ß╡ú'
           ];
           h._sI = Math.floor(Math.abs(Math.sin(h.ph*17+h.wx*53))*h._sP.length) % h._sP.length;
           h._sN = (h._sI+3+Math.floor(h.ph*11)) % h._sP.length;
           h._sT = Math.random();
-          h._sSp= 0.00018 + Math.random()*0.00032; // очень медленная смена
+          h._sSp= 0.00018 + Math.random()*0.00032; // ╨╛╤ç╨╡╨╜╤î ╨╝╨╡╨┤╨╗╨╡╨╜╨╜╨░╤Å ╤ü╨╝╨╡╨╜╨░
         }
         h._sT += h._sSp;
         if(h._sT>=1){ h._sT-=1; h._sI=h._sN; h._sN=(h._sN+3+Math.floor(h.ph*9))%h._sP.length; }
-        // плавный crossfade — долгие плато: 40% fade-in, 20% full, 40% fade-out
+        // ╨┐╨╗╨░╨▓╨╜╤ï╨╣ crossfade ΓÇö ╨┤╨╛╨╗╨│╨╕╨╡ ╨┐╨╗╨░╤é╨╛: 40% fade-in, 20% full, 40% fade-out
         var _cf = h._sT<0.4 ? h._sT/0.4 : (h._sT>0.6 ? (1-h._sT)/0.4 : 1.0);
         _cf = Math.max(0,Math.min(_cf,1));
         var _s  = h._sP[h._sI];
         var _sn = h._sP[h._sN];
-        // размер по длине: 1-2 = крупно, 3-4 = средне, 5+ = мелко
+        // ╤Ç╨░╨╖╨╝╨╡╤Ç ╨┐╨╛ ╨┤╨╗╨╕╨╜╨╡: 1-2 = ╨║╤Ç╤â╨┐╨╜╨╛, 3-4 = ╤ü╤Ç╨╡╨┤╨╜╨╡, 5+ = ╨╝╨╡╨╗╨║╨╛
         var _len = _s.length;
         var _scale = _len<=2 ? 1.10 : _len<=3 ? 0.82 : 0.68;
         var _fw    = _len<=2 ? '700' : '500';
-        // прозрачность: минимум 0.08 в центре, ярче к краям
+        // ╨┐╤Ç╨╛╨╖╤Ç╨░╤ç╨╜╨╛╤ü╤é╤î: ╨╝╨╕╨╜╨╕╨╝╤â╨╝ 0.08 ╨▓ ╤å╨╡╨╜╤é╤Ç╨╡, ╤Å╤Ç╤ç╨╡ ╨║ ╨║╤Ç╨░╤Å╨╝
         var _ba = (0.26 + pulse*0.28 + crest*0.22) * (0.48 + dim*0.52);
         var _aA = Math.min(_ba*_cf, 0.78);
         var _aN = Math.min(_ba*(1-_cf)*0.45, 0.38);
         if(_aA>0.005){
           var _fs = Math.max(10, Math.floor(_scale*ir + pulse*ir*0.10));
-          // no ctx.save/restore — set state directly for perf
+          // no ctx.save/restore ΓÇö set state directly for perf
           ctx.textAlign='center'; ctx.textBaseline='middle';
           ctx.font = _fw+' '+_fs+'px "IBM Plex Mono",monospace';
           ctx.globalAlpha = _aA;
@@ -2583,7 +2583,7 @@ a.soon-chip{border-bottom:none!important}
 
       });
 
-      // виньетка: центр полупрозрачный (контент), края тёмные
+      // ╨▓╨╕╨╜╤î╨╡╤é╨║╨░: ╤å╨╡╨╜╤é╤Ç ╨┐╨╛╨╗╤â╨┐╤Ç╨╛╨╖╤Ç╨░╤ç╨╜╤ï╨╣ (╨║╨╛╨╜╤é╨╡╨╜╤é), ╨║╤Ç╨░╤Å ╤é╤æ╨╝╨╜╤ï╨╡
       var vg=ctx.createRadialGradient(W*0.5,H*0.45,H*0.10,W*0.5,H*0.5,H*0.72);
       vg.addColorStop(0,   'rgba(4,8,26,0)');
       vg.addColorStop(0.40,'rgba(4,8,26,0.04)');
@@ -2632,12 +2632,12 @@ a.soon-chip{border-bottom:none!important}
         btn.classList.add('active');
         var grp=document.querySelector('.vrf-input-group[data-claim="'+currentClaim+'"]');
         if(grp)grp.classList.add('active');
-        if(output){output.innerHTML='<div class="vrf-line dim">$ python scripts/mg.py verify --pack bundle.zip</div><div class="vrf-line dim">→ awaiting input...</div>';}
+        if(output){output.innerHTML='<div class="vrf-line dim">$ python scripts/mg.py verify --pack bundle.zip</div><div class="vrf-line dim">ΓåÆ awaiting input...</div>';}
       });
     });
 
     function resetOutput(){
-      if(output)output.innerHTML='<div class="vrf-line dim">$ python scripts/mg.py verify --pack bundle.zip</div><div class="vrf-line dim">→ awaiting input...</div>';
+      if(output)output.innerHTML='<div class="vrf-line dim">$ python scripts/mg.py verify --pack bundle.zip</div><div class="vrf-line dim">ΓåÆ awaiting input...</div>';
     }
 
     function addLine(cls,text,delay){
@@ -2659,7 +2659,7 @@ a.soon-chip{border-bottom:none!important}
       if(runBtn.classList.contains('running'))return;
       runBtn.classList.add('running');
       var lbl=document.getElementById('vrf-run-label');
-      if(lbl)lbl.textContent='▶ VERIFYING...';
+      if(lbl)lbl.textContent='Γû╢ VERIFYING...';
       output.innerHTML='';
       var pass=false;var reason='';
 
@@ -2668,34 +2668,34 @@ a.soon-chip{border-bottom:none!important}
         var ac=parseFloat(document.getElementById('ml-actual')?document.getElementById('ml-actual').value:0)||0;
         var delta=Math.abs(ac-cl);
         pass=delta<=0.02;
-        reason=pass?'accuracy delta '+delta.toFixed(4)+' ≤ 0.02':'accuracy delta '+delta.toFixed(4)+' > 0.02 — threshold exceeded';
+        reason=pass?'accuracy delta '+delta.toFixed(4)+' Γëñ 0.02':'accuracy delta '+delta.toFixed(4)+' > 0.02 ΓÇö threshold exceeded';
       } else if(currentClaim==='mtr'){
         var cl2=parseFloat(document.getElementById('mtr-claimed')?document.getElementById('mtr-claimed').value:0)||0;
         var ac2=parseFloat(document.getElementById('mtr-actual')?document.getElementById('mtr-actual').value:0)||0;
         var re=cl2>0?Math.abs(ac2-cl2)/cl2:1;
         pass=re<=0.01;
-        reason=pass?'relative_error '+re.toFixed(5)+' ≤ 0.01':'relative_error '+re.toFixed(5)+' > 0.01 — threshold exceeded';
+        reason=pass?'relative_error '+re.toFixed(5)+' Γëñ 0.01':'relative_error '+re.toFixed(5)+' > 0.01 ΓÇö threshold exceeded';
       } else if(currentClaim==='data'){
         var sv=document.getElementById('data-schema')?document.getElementById('data-schema').checked:false;
         var rv=document.getElementById('data-range')?document.getElementById('data-range').checked:false;
         pass=sv&&rv;
-        reason=pass?'schema_valid: true · range_valid: true':(!sv?'schema_valid: false — required columns missing':'range_valid: false — values out of bounds');
+        reason=pass?'schema_valid: true ┬╖ range_valid: true':(!sv?'schema_valid: false ΓÇö required columns missing':'range_valid: false ΓÇö values out of bounds');
       } else if(currentClaim==='drift'){
         var bl=parseFloat(document.getElementById('drift-baseline')?document.getElementById('drift-baseline').value:0)||0;
         var cu=parseFloat(document.getElementById('drift-current')?document.getElementById('drift-current').value:0)||0;
         var dr=bl>0?Math.abs(cu-bl)/bl:1;
         pass=dr<=0.05;
-        reason=pass?'drift '+(dr*100).toFixed(2)+'% ≤ 5.00%':'drift '+(dr*100).toFixed(2)+'% > 5.00% — calibration drift detected';
+        reason=pass?'drift '+(dr*100).toFixed(2)+'% Γëñ 5.00%':'drift '+(dr*100).toFixed(2)+'% > 5.00% ΓÇö calibration drift detected';
       }
 
       var seq=[
         [100,'cmd','$ python scripts/mg.py verify --pack bundle.zip'],
-        [400,'info','→ Loading pack_manifest.json...'],
-        [700,'ok','✓ integrity layer: SHA-256 root_hash match'],
-        [1050,'ok','✓ evidence_index: claim mapping verified'],
-        [1400,'ok','✓ semantic layer: job_snapshot present'],
-        [1750,'ok','✓ canary_mode flag: correct'],
-        [2100,'info','→ Running threshold check...'],
+        [400,'info','ΓåÆ Loading pack_manifest.json...'],
+        [700,'ok','Γ£ô integrity layer: SHA-256 root_hash match'],
+        [1050,'ok','Γ£ô evidence_index: claim mapping verified'],
+        [1400,'ok','Γ£ô semantic layer: job_snapshot present'],
+        [1750,'ok','Γ£ô canary_mode flag: correct'],
+        [2100,'info','ΓåÆ Running threshold check...'],
         [2400,'muted','  claim: '+(currentClaim==='ml'?'ML_BENCH-01':currentClaim==='mtr'?'MTR-1':currentClaim==='data'?'DATA-PIPE-01':'DRIFT-01')],
         [2700,'muted','  '+reason],
       ];
@@ -2706,11 +2706,11 @@ a.soon-chip{border-bottom:none!important}
       }).then(function(){
         var rd=document.createElement('div');
         rd.className=pass?'vrf-result-pass':'vrf-result-fail';
-        rd.textContent=pass?'✓ VERIFICATION: PASS':'✗ VERIFICATION: FAIL — '+reason;
+        rd.textContent=pass?'Γ£ô VERIFICATION: PASS':'Γ£ù VERIFICATION: FAIL ΓÇö '+reason;
         output.appendChild(rd);
         output.scrollTop=output.scrollHeight;
         runBtn.classList.remove('running');
-        if(lbl)lbl.textContent='▶ VERIFY';
+        if(lbl)lbl.textContent='Γû╢ VERIFY';
       });
     }
 
@@ -2731,18 +2731,18 @@ a.soon-chip{border-bottom:none!important}
       fetch(pf.action,{method:'POST',body:data,headers:{'Accept':'application/json'}})
         .then(function(r){
           if(r.ok){pf.style.display='none';if(ps)ps.style.display='flex';}
-          else{if(psl)psl.textContent='Error — try email';if(psb)psb.disabled=false;}
+          else{if(psl)psl.textContent='Error ΓÇö try email';if(psb)psb.disabled=false;}
         })
-        .catch(function(){if(psl)psl.textContent='Error — try email';if(psb)psb.disabled=false;});
+        .catch(function(){if(psl)psl.textContent='Error ΓÇö try email';if(psb)psb.disabled=false;});
     });
   }
 })();
 </script>
 <script>
-/* ════════════════════════════════════════
-   FINALE CANVAS — concentric verification rings
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   FINALE CANVAS ΓÇö concentric verification rings
    + particles + pulse from center
-════════════════════════════════════════ */
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   var cv=document.getElementById('fnc');
   if(!cv)return;
@@ -2751,7 +2751,7 @@ a.soon-chip{border-bottom:none!important}
   function sz(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight;cx=W/2;cy=H/2;}
   var ro=new ResizeObserver(sz); ro.observe(cv); sz();
 
-  /* — rings config — */
+  /* ΓÇö rings config ΓÇö */
   var RINGS=[
     {r:0.08,spd:0.0006,col:'0,255,153',  lw:1.5,gap:0.18,dash:0},     /* inner green */
     {r:0.14,spd:-0.0004,col:'0,229,255', lw:1.0,gap:0.28,dash:0},    /* cyan */
@@ -2764,7 +2764,7 @@ a.soon-chip{border-bottom:none!important}
   ];
   RINGS.forEach(function(r){r.rot=Math.random()*Math.PI*2;});
 
-  /* — expanding pulse rings — */
+  /* ΓÇö expanding pulse rings ΓÇö */
   var pulses=[];
   function spawnPulse(){
     pulses.push({r:0,alpha:0.7,col:Math.random()<0.6?'0,255,153':'0,229,255'});
@@ -2772,7 +2772,7 @@ a.soon-chip{border-bottom:none!important}
   }
   spawnPulse();
 
-  /* — orbit particles — */
+  /* ΓÇö orbit particles ΓÇö */
   var PARTS=24;
   var parts=[];
   for(var i=0;i<PARTS;i++){
@@ -2786,7 +2786,7 @@ a.soon-chip{border-bottom:none!important}
     });
   }
 
-  /* — hex markers on rings — */
+  /* ΓÇö hex markers on rings ΓÇö */
   var HEX_R=5;
   function hex(x,y,r,rot){
     c.beginPath();
@@ -2802,7 +2802,7 @@ a.soon-chip{border-bottom:none!important}
 
     var maxR=Math.min(W,H)*0.5;
 
-    /* — pulse rings — */
+    /* ΓÇö pulse rings ΓÇö */
     pulses=pulses.filter(function(p){
       p.r+=0.008;
       p.alpha-=0.008;
@@ -2815,7 +2815,7 @@ a.soon-chip{border-bottom:none!important}
       return true;
     });
 
-    /* — static rings — */
+    /* ΓÇö static rings ΓÇö */
     RINGS.forEach(function(ring){
       ring.rot+=ring.spd;
       var R=ring.r*maxR;
@@ -2851,7 +2851,7 @@ a.soon-chip{border-bottom:none!important}
       c.setLineDash([]);
     });
 
-    /* — orbit particles — */
+    /* ΓÇö orbit particles ΓÇö */
     parts.forEach(function(p){
       p.angle+=p.speed;
       var r=p.orb*maxR;
@@ -2863,7 +2863,7 @@ a.soon-chip{border-bottom:none!important}
       c.fill();
     });
 
-    /* — center reticle — */
+    /* ΓÇö center reticle ΓÇö */
     var cr=18+Math.sin(t*1.5)*3;
     var ca=0.28+Math.sin(t*0.9)*0.10;
     /* cross-hairs */
@@ -2883,7 +2883,7 @@ a.soon-chip{border-bottom:none!important}
   }
   fr();
 
-  /* — slide-in trigger — */
+  /* ΓÇö slide-in trigger ΓÇö */
   var io=new IntersectionObserver(function(entries){
     if(entries[0].isIntersecting){
       document.getElementById('finale').classList.add('fn-vis');
@@ -2893,7 +2893,7 @@ a.soon-chip{border-bottom:none!important}
   if(fin) io.observe(fin);
 })();
 </script>
-<button id="page-totop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<button id="page-totop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Γåæ</button>
 <script>
 (function(){
   var btn=document.getElementById('page-totop');
@@ -2932,16 +2932,16 @@ a.soon-chip{border-bottom:none!important}
 })();
 </script>
 <script>
-/* ════════════════════════════════════════
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
    SDESC WORD-BY-WORD REVEAL
-════════════════════════════════════════ */
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
-  /* ── .hc glitch: set data-t = text content so ::before/::after can duplicate ── */
+  /* ΓöÇΓöÇ .hc glitch: set data-t = text content so ::before/::after can duplicate ΓöÇΓöÇ */
   document.querySelectorAll('h2 .hc').forEach(function(s){
     s.setAttribute('data-t', s.textContent);
   });
 
-  /* ── .stag reveal ── */
+  /* ΓöÇΓöÇ .stag reveal ΓöÇΓöÇ */
   var stags = document.querySelectorAll('.stag');
   if(stags.length){
     var stagIO = new IntersectionObserver(function(entries){
@@ -2952,7 +2952,7 @@ a.soon-chip{border-bottom:none!important}
     stags.forEach(function(el){ stagIO.observe(el); });
   }
 
-  /* ── .sdesc word reveal ── */
+  /* ΓöÇΓöÇ .sdesc word reveal ΓöÇΓöÇ */
   var els = document.querySelectorAll('.sdesc');
   if(!els.length) return;
 
@@ -2985,12 +2985,12 @@ a.soon-chip{border-bottom:none!important}
 })();
 </script>
 <script>
-/* ════════════════════════════════════════
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
    VERIFICATION RETICLE CURSOR
    dot = exact mouse pos
    ring = lerp follow (lag = 0.12)
    states: idle | hover-ok | hover-err | click
-════════════════════════════════════════ */
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   var dot=document.getElementById('cur-dot');
   var ring=document.getElementById('cur-ring');
@@ -3002,13 +3002,13 @@ a.soon-chip{border-bottom:none!important}
   var raf=null;
   var body=document.body;
 
-  /* — mouse tracking */
+  /* ΓÇö mouse tracking */
   document.addEventListener('mousemove',function(e){
     mx=e.clientX; my=e.clientY;
     dot.style.transform='translate('+mx+'px,'+my+'px) translate(-50%,-50%)';
   },{ passive:true });
 
-  /* — hover detection: green for links/buttons, red for .err/.warn elements */
+  /* ΓÇö hover detection: green for links/buttons, red for .err/.warn elements */
   var ERR_SEL='.err,.warn,[data-err],a[href*=".yaml"],a[href*="known_faults"]';
   var OK_SEL='a,button,.cta,.btn,.seg-chip';
 
@@ -3029,7 +3029,7 @@ a.soon-chip{border-bottom:none!important}
     }
   });
 
-  /* — click flash */
+  /* ΓÇö click flash */
   document.addEventListener('mousedown',function(){
     body.classList.add('cur-click');
   });
@@ -3037,7 +3037,7 @@ a.soon-chip{border-bottom:none!important}
     body.classList.remove('cur-click');
   });
 
-  /* — hide when leaving window */
+  /* ΓÇö hide when leaving window */
   document.addEventListener('mouseleave',function(){
     dot.style.opacity='0'; ring.style.opacity='0';
   });
@@ -3045,7 +3045,7 @@ a.soon-chip{border-bottom:none!important}
     dot.style.opacity=''; ring.style.opacity='';
   });
 
-  /* ── RAF lerp loop ── */
+  /* ΓöÇΓöÇ RAF lerp loop ΓöÇΓöÇ */
   function loop(){
     rx+=(mx-rx)*LAG;
     ry+=(my-ry)*LAG;
@@ -3057,10 +3057,10 @@ a.soon-chip{border-bottom:none!important}
 </script>
 
 <style>
-/* ════════════════════════════════════════
-   .hw — semi-transparent white words
-   Subtle pulse only — NO blur, always readable
-   ════════════════════════════════════════ */
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   .hw ΓÇö semi-transparent white words
+   Subtle pulse only ΓÇö NO blur, always readable
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 h2 .hw,
 h2.vis .hw {
   color: rgba(238,247,251,.30) !important;
@@ -3081,13 +3081,13 @@ h2:nth-of-type(2n)   .hw { animation-delay: 0s !important; }
 h2:nth-of-type(2n+1) .hw { animation-delay: 2.5s !important; }
 h2:nth-of-type(3n)   .hw { animation-delay: 1.3s !important; }
 
-/* ════════════════════════════════════════
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
    PURE WHITE main h2 text (no class)
    Precision glitch-scan: text always readable
    Subtle scan line + occasional digit-glitch
-   ════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 
-/* Scan: thin bright horizontal line sweeps top→bottom over the h2 */
+/* Scan: thin bright horizontal line sweeps topΓåÆbottom over the h2 */
 h2.vis::before {
   content: '';
   position: absolute;
@@ -3106,7 +3106,7 @@ h2.vis::before {
   transform: translateY(0px);
   animation: h2-scan 16s ease-in-out infinite;
   z-index: 2;
-  /* NO will-change — causes blur on some GPUs */
+  /* NO will-change ΓÇö causes blur on some GPUs */
   /* clip to h2 bounds so line never bleeds outside */
   overflow: hidden;
 }
