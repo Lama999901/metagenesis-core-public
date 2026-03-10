@@ -473,7 +473,11 @@ h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
 .prow.active{background:rgba(0,229,255,.05)}
 .pnum{display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:11px;font-weight:700;color:var(--txt3);border-right:1px solid var(--ln)}
 .ptitle{display:flex;align-items:center;padding:0 24px;font-family:var(--fm);font-size:12px;color:var(--txt);border-right:1px solid var(--ln);font-weight:400}
-.pdesc{display:flex;align-items:center;padding:0 28px;font-size:12px;color:var(--txt3);font-weight:300}
+.pdesc{display:flex;align-items:center;padding:0 28px;font-size:13px;color:rgba(238,247,251,.72);font-weight:400;letter-spacing:.01em;line-height:1.55;font-family:var(--fs)}
+.pdesc code{font-family:var(--fm);font-size:11.5px;color:var(--c);background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.18);padding:1px 6px;border-radius:3px;font-weight:500}
+.pdesc strong{color:#fff;font-weight:600}
+.pdesc .kw-green{color:var(--ok);font-weight:600;font-family:var(--fm);font-size:11.5px}
+.pdesc .kw-amber{color:#ffb347;font-weight:600;font-family:var(--fm);font-size:11.5px}
 .pstat{display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:11px;border-left:1px solid var(--ln)}
 .pstat.ok{color:var(--ok)}
 .term{background:var(--ink2);border:1px solid var(--ln2);overflow:hidden}
@@ -1629,10 +1633,10 @@ a.soon-chip{border-bottom:none!important}
   <h2 class="rv d1" style="--h2d:2.4s" data-glitch="Four steps. Immutable proof."><span class="hw">Four steps.</span><br><span class="hg">Immutable proof.</span></h2>
   <p class="sdesc rv d2">Every run produces an evidence bundle with two independent verification layers. Any deviation surfaces as FAIL with a specific reason.</p>
   <div class="pipe rv d3">
-    <div class="prow active"><div class="pnum">01</div><div class="ptitle"><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/runner.py" target="_blank">runner.run_job()</a></div><div class="pdesc">Executes computation &#8594; produces run_artifact.json + ledger_snapshot.jsonl</div><div class="pstat ok">&#8594; artifact</div></div>
-    <div class="prow"><div class="pnum">02</div><div class="ptitle"><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/demos/open_data_demo_01/evidence_index.json" target="_blank">evidence_index.json</a></div><div class="pdesc">Maps run artifacts to registered claims with provenance chain</div><div class="pstat ok">&#8594; index</div></div>
-    <div class="prow"><div class="pnum">03</div><div class="ptitle"><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/mg.py" target="_blank">mg.py pack build</a></div><div class="pdesc">Bundles artifacts + SHA-256 manifest + root_hash into submission pack</div><div class="pstat ok">&#8594; bundle</div></div>
-    <div class="prow"><div class="pnum">04</div><div class="ptitle"><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/mg.py" target="_blank">mg.py verify</a></div><div class="pdesc">Integrity check (SHA-256) + semantic check (job_snapshot, canary flag, kind)</div><div class="pstat ok">PASS / FAIL</div></div>
+    <div class="prow active"><div class="pnum">01</div><div class="ptitle"><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/runner.py" target="_blank">runner.run_job()</a></div><div class="pdesc">Executes computation &#8594; produces <code>run_artifact.json</code> + <code>ledger_snapshot.jsonl</code></div><div class="pstat ok">&#8594; artifact</div></div>
+    <div class="prow"><div class="pnum">02</div><div class="ptitle"><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/demos/open_data_demo_01/evidence_index.json" target="_blank">evidence_index.json</a></div><div class="pdesc">Maps run artifacts to <strong>registered claims</strong> with <span class="kw-amber">provenance chain</span></div><div class="pstat ok">&#8594; index</div></div>
+    <div class="prow"><div class="pnum">03</div><div class="ptitle"><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/mg.py" target="_blank">mg.py pack build</a></div><div class="pdesc">Bundles artifacts + <code>SHA-256</code> manifest + <code>root_hash</code> into <strong>submission pack</strong></div><div class="pstat ok">&#8594; bundle</div></div>
+    <div class="prow"><div class="pnum">04</div><div class="ptitle"><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/mg.py" target="_blank">mg.py verify</a></div><div class="pdesc"><strong>Integrity</strong> check (<code>SHA-256</code>) + <strong>semantic</strong> check (<code>job_snapshot</code>, <span class="kw-amber">canary flag</span>, <code>kind</code>)</div><div class="pstat ok"><span class="kw-green">PASS</span> / FAIL</div></div>
   </div>
 </section></div>
 
