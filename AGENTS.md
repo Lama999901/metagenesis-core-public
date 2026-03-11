@@ -5,6 +5,25 @@ the rules of this repository. Read this before making any change.
 
 ---
 
+## HOW TO FULLY ORIENT YOURSELF (read these files in order)
+
+```
+1. CONTEXT_SNAPSHOT.md   ← start here: current state, done, pending, contacts
+2. AGENTS.md             ← this file: rules, forbidden terms, workflow
+3. README.md             ← architecture, claims, quickstart
+4. llms.txt              ← AI-optimized summary of entire repo
+5. reports/canonical_state.md    ← verified claim list
+6. reports/scientific_claim_index.md  ← all 7 claims with thresholds
+7. reports/known_faults.yaml     ← known limitations, do not overclaim
+8. docs/PROTOCOL.md      ← full protocol specification
+```
+
+After reading these 8 files you can answer any question about this project.
+
+---
+
+---
+
 ## What this repo is
 
 MetaGenesis Core is an open verification protocol layer.
