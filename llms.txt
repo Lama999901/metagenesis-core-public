@@ -83,10 +83,12 @@ git push origin fix/your-branch-name
 
 - Tests: 91 passing
 - steward_audit: PASS
-- Last PR merged: #14 (fix/cmp-header-mobile) — mobile compare table fix
+- Last PR merged: #20 (feat/agent-full) — agent topbar + sitemap column + file links
 - Site: metagenesis-core.dev — deployed on Vercel, auto-deploys from main
 - PPA filed: 2026-03-05 — non-provisional deadline 2027-03-05
 - Stripe: configured at $299/license
-- Outreach sent: Jeffrey Ip (Patronus AI), Elena Samuylova (Evidently AI),
-  Giovanni Pizzi (PSI/AiiDA), Brian Nosek (UVA/reproducibility)
-- Show HN post: drafted, not yet posted
+- Outreach sent: Tongqi Wen (ElaTBot, Mar 5), Giovanni Pizzi (PSI/AiiDA, Mar 7),
+  Brian Nosek (UVA, Mar 7), Peter Coveney (UCL, Mar 8),
+  Arvind Narayanan (Princeton, Mar 8), Jeffrey Ip (Confident AI, Mar 11),
+  Elena Samuylova (Evidently AI, Mar 11)
+- Show HN post: posting 2026-03-11 6:30am Vancouver PST
