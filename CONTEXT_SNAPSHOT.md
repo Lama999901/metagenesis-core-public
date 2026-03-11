@@ -109,16 +109,16 @@ docs/ROADMAP.md
 
 ## Key contacts (outreach tracker)
 
-| Name | Org | Status |
-|---|---|---|
-| Jeffrey Ip | Patronus AI | Sent 2026-03-10 |
-| Elena Samuylova | Evidently AI | Sent 2026-03-10 |
-| Giovanni Pizzi | PSI / AiiDA | Sent 2026-03-10 |
-| Brian Nosek | UVA / COS | Sent 2026-03-10 |
-| Peter Coveney | UCL | PENDING |
-| Arvind Narayanan | Princeton | PENDING |
-| Emanuele Bosoni | EPFL | Find email first |
-| Anand Kannappan | Patronus AI | PENDING |
+| Name | Email | Org | Status | Subject |
+|---|---|---|---|---|
+| Giovanni Pizzi | giovanni.pizzi@psi.ch | PSI / AiiDA | Sent 2026-03-07 | Verification layer for AiiDA-generated computational claims |
+| Brian Nosek | ban2b@virginia.edu | UVA / COS | Sent 2026-03-07 | Machine-enforceable claim verification layer beyond preregistration |
+| Peter Coveney | p.v.coveney@ucl.ac.uk | UCL | Sent 2026-03-08 | Open-source tamper-evident verification layer for computational science |
+| Arvind Narayanan | arvindn@cs.princeton.edu | Princeton | Sent 2026-03-08 | A technical layer for verifiable ML accuracy claims |
+| Jeffrey Ip | jeffreyip@confident-ai.com | Confident AI / DeepEval | Sent 2026-03-11 | Offline-verifiable evidence bundles for DeepEval results |
+| Elena Samuylova | founders@evidentlyai.com | Evidently AI | Sent 2026-03-11 | (no subject — check draft) |
+| Emanuele Bosoni | — | EPFL | Find email first | — |
+| Anand Kannappan | patronus.ai/contact | Patronus AI | PENDING | — |
 
 ---
 
