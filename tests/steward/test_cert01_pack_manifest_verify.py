@@ -53,7 +53,7 @@ class TestCert01PackManifestVerify:
     def test_verify_passes_for_valid_pack(self, tmp_path):
         pack_dir = tmp_path / "pack"
         _run_mg("pack", "build", "--output", str(pack_dir))
-        r = _run_mg("pack", "verify", "--input", str(pack_dir))
+        r = _run_mg("pack", "verify", "--pack", str(pack_dir))
         assert r.returncode == 0
         assert "PASS" in r.stdout
 
@@ -63,6 +63,6 @@ class TestCert01PackManifestVerify:
         overview = pack_dir / "overview.md"
         assert overview.exists()
         overview.write_bytes(overview.read_bytes() + b"\n")
-        r = _run_mg("pack", "verify", "--input", str(pack_dir))
+        r = _run_mg("pack", "verify", "--pack", str(pack_dir))
         assert r.returncode != 0
         assert "mismatch" in r.stdout.lower()

@@ -4,6 +4,10 @@
 # Date prepared: 2026-03-04
 # Authority: steward_audit.py PASS + test_cert02 PASS + 91 tests PASS
 # Amendment note (2026-03-09): locked_paths populated — 5 sealed paths active
+# Amendment note (2026-03-10): locked_paths updated — scripts/mg_policy_gate_policy.json
+#   removed from locked_paths (self_seal_removed: operational deadlock prevention).
+#   scripts/steward_audit.py added as CI-locked governance enforcer.
+#   locked_paths now contains 4 paths + steward_audit.py enforced via CI.
 
 ---
 
