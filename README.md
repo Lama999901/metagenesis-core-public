@@ -241,4 +241,20 @@ Commercial licensing available for organizations building products on the protoc
 
 ---
 
+## For AI agents and LLMs working in this repo
+
+If you are an AI agent (Cursor, Claude, Copilot, GPT, Gemini, etc.) — read these files in order:
+
+```
+1. CONTEXT_SNAPSHOT.md          ← current state, what was done, what is next
+2. AGENTS.md                    ← hard rules, forbidden terms, protected files
+3. llms.txt                     ← AI-optimized repo summary
+4. reports/canonical_state.md   ← verified claims list
+5. reports/known_faults.yaml    ← known limitations
+```
+
+After these 5 files you are fully oriented and can answer any question about this project.
+
+---
+
 *MetaGenesis Core — MVP v0.1 · Inventor: Yehor Bazhynov · Patent Pending #63/996,819*

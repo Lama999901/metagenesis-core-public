@@ -66,3 +66,27 @@ detection, policy-gate immutable anchors, dual-mode canary pipeline
 python scripts/steward_audit.py                              # PASS
 python -m pytest tests/steward tests/materials tests/ml tests/systems tests/data -q  # all passed
 python demos/open_data_demo_01/run_demo.py                   # PASS PASS
+
+## Git workflow (current — direct clone, no zip)
+
+Git repo: C:\Users\999ye\Downloads\metagenesis-core-public
+All edits go directly into this folder.
+Push via PR only — main branch is protected (requires CI + PR).
+
+git checkout -b fix/your-branch-name
+git add <files>
+git commit -m "type: description"
+git push origin fix/your-branch-name
+# then open PR on GitHub
+
+## Current state (2026-03-11)
+
+- Tests: 91 passing
+- steward_audit: PASS
+- Last PR merged: #14 (fix/cmp-header-mobile) — mobile compare table fix
+- Site: metagenesis-core.dev — deployed on Vercel, auto-deploys from main
+- PPA filed: 2026-03-05 — non-provisional deadline 2027-03-05
+- Stripe: configured at $299/license
+- Outreach sent: Jeffrey Ip (Patronus AI), Elena Samuylova (Evidently AI),
+  Giovanni Pizzi (PSI/AiiDA), Brian Nosek (UVA/reproducibility)
+- Show HN post: drafted, not yet posted
