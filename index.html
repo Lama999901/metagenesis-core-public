@@ -2087,6 +2087,20 @@ a.soon-chip{border-bottom:none!important}
     </div>
 
   </div>
+
+  <div class="agent-bar rv d4">
+    <div class="agent-bar-label">For AI agents &amp; LLMs</div>
+    <div class="agent-bar-intro">Clone the repo. Read these 5 files in order. Any agent is fully oriented and can answer any question about this project.</div>
+    <div class="agent-bar-files">
+      <div class="agent-bar-file"><span class="agent-bar-fname">CONTEXT_SNAPSHOT.md</span><span class="agent-bar-fdesc">current state + what’s next</span></div>
+      <div class="agent-bar-file"><span class="agent-bar-fname">AGENTS.md</span><span class="agent-bar-fdesc">rules + protected files</span></div>
+      <div class="agent-bar-file"><span class="agent-bar-fname">llms.txt</span><span class="agent-bar-fdesc">AI-optimized repo summary</span></div>
+      <div class="agent-bar-file"><span class="agent-bar-fname">canonical_state.md</span><span class="agent-bar-fdesc">7 verified claims</span></div>
+      <div class="agent-bar-file"><span class="agent-bar-fname">known_faults.yaml</span><span class="agent-bar-fdesc">known limitations</span></div>
+    </div>
+    <div class="agent-bar-note"><code>git clone https://github.com/Lama999901/metagenesis-core-public</code> &mdash; then read those 5 files.</div>
+  </div>
+
 </section></div>
 
 <div class="div"></div>
@@ -2443,6 +2457,7 @@ a.soon-chip{border-bottom:none!important}
     <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/PROTOCOL.md">Protocol</a>
     <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/COMMERCIAL.md">Commercial</a>
     <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/SECURITY.md">Security</a>
+    <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/AGENTS.md">For Agents</a>
     <a href="/cdn-cgi/l/email-protection#19607c71766b59747c6d787e7c777c6a706a347a766b7c377d7c6f">Contact</a>
   </div>
 </footer>
@@ -3254,6 +3269,28 @@ h2 .hw::after { display: none !important; content: none !important; }
 h2:nth-of-type(2n)   .hw { animation-delay: 0s !important; }
 h2:nth-of-type(2n+1) .hw { animation-delay: 2.5s !important; }
 h2:nth-of-type(3n)   .hw { animation-delay: 1.3s !important; }
+
+/* ── Agent orientation bar ── */
+.agent-bar{margin-top:64px;padding:40px 48px;border:1px solid rgba(0,229,255,.18);background:rgba(0,229,255,.025);border-radius:2px}
+.agent-bar-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--c);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.agent-bar-label::before{content:'';width:20px;height:1px;background:var(--c)}
+.agent-bar-intro{font-family:var(--fb);font-size:14px;color:rgba(238,247,251,.52);margin-bottom:22px;line-height:1.65}
+.agent-bar-files{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:20px}
+.agent-bar-file{padding:10px 14px;border:1px solid rgba(0,229,255,.1);background:rgba(0,0,0,.18)}
+.agent-bar-fname{display:block;font-family:var(--fm);font-size:12px;color:var(--c);margin-bottom:3px}
+.agent-bar-fdesc{display:block;font-size:11px;color:rgba(238,247,251,.35);line-height:1.4}
+.agent-bar-note{font-size:12px;color:rgba(238,247,251,.45);font-family:var(--fb);padding-top:16px;border-top:1px solid rgba(0,229,255,.08)}
+.agent-bar-note code{font-family:var(--fm);font-size:11px;color:rgba(0,229,255,.7)}
+@media(max-width:768px){
+  .agent-bar{padding:28px 20px;margin-top:40px}
+  .agent-bar-files{grid-template-columns:1fr 1fr;gap:8px}
+  .agent-bar-file{padding:8px 10px}
+  .agent-bar-fname{font-size:11px}
+  .agent-bar-fdesc{font-size:10px}
+}
+@media(max-width:480px){
+  .agent-bar-files{grid-template-columns:1fr}
+}
 
 /* ════════════════════════════════════════
    PURE WHITE main h2 text (no class)
