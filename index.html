@@ -1289,6 +1289,31 @@ a.soon-chip{border-bottom:none!important}
 .origin-q .w.on{opacity:1}
 .origin-who{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);display:flex;align-items:center;gap:12px}
 .origin-who::before{content:'';width:20px;height:1px;background:var(--txt3)}
+/* Founder block */
+.founder-block{margin-top:48px;padding-top:36px;border-top:1px solid var(--ln)}
+.founder-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--c);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.founder-label::before{content:'';width:20px;height:1px;background:var(--c)}
+.founder-body{font-family:var(--fb);font-size:15px;color:rgba(238,247,251,.72);line-height:1.78;font-weight:300}
+.founder-body p{margin-bottom:14px;font-size:15px;line-height:1.78}
+.founder-body p:last-child{margin-bottom:0}
+.founder-body strong{color:var(--txt);font-weight:500}
+.founder-name{margin-top:24px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);display:flex;align-items:center;gap:12px}
+.founder-name::before{content:'';width:20px;height:1px;background:var(--txt3)}
+/* Plain language block */
+.plain-lang{border:1px solid var(--ln);background:rgba(0,229,255,.02);padding:44px 48px;margin-bottom:64px;position:relative;overflow:hidden}
+.plain-lang::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--c),transparent);opacity:.4}
+.plain-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--c);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.plain-label::before{content:'';width:20px;height:1px;background:var(--c)}
+.plain-text{font-family:var(--fb);font-size:clamp(16px,1.4vw,20px);color:rgba(238,247,251,.82);line-height:1.75;font-weight:300;max-width:680px}
+.plain-text p{margin-bottom:16px}
+.plain-text p:last-child{margin-bottom:0;color:var(--txt);font-weight:400}
+.plain-text strong{color:var(--ok);font-weight:500}
+@media(max-width:768px){
+  .founder-block{margin-top:32px;padding-top:24px}
+  .founder-body p{font-size:14px}
+  .plain-lang{padding:28px 20px;margin-bottom:40px}
+  .plain-text{font-size:15px}
+}
 /* steps */
 .origin-steps{display:flex;flex-direction:column;gap:0;position:relative}
 .origin-steps::before{content:'';position:absolute;left:13px;top:14px;bottom:80px;width:1px;background:linear-gradient(rgba(255,64,96,.35) 0%,rgba(255,64,96,.15) 65%,rgba(0,255,153,.6) 100%);z-index:0}
@@ -1592,9 +1617,9 @@ a.soon-chip{border-bottom:none!important}
     </div>
 
     <div class="crisis-stat">
-      <div class="crisis-n">$<span class="crisis-pct">B</span></div>
-      <div class="crisis-label">in ML model failures attributed to unverified performance claims in production</div>
-      <div class="crisis-src">Regulatory filings, 2022–2025</div>
+      <div class="crisis-n">50<span class="crisis-pct">%</span></div>
+      <div class="crisis-label">of ML models fail in production due to performance gaps between reported benchmarks and real-world conditions</div>
+      <div class="crisis-src">VentureBeat AI Index · 2023</div>
     </div>
 
     <div class="crisis-stat">
@@ -1622,6 +1647,16 @@ a.soon-chip{border-bottom:none!important}
         That's why MetaGenesis Core exists."
       </p>
       <p class="origin-who">Yehor Bazhynov — Inventor, Patent #63/996,819</p>
+      <div class="founder-block">
+        <div class="founder-label">About the founder</div>
+        <div class="founder-body">
+          <p>I work construction. No formal background in software or science.</p>
+          <p>4–5 years ago I started experimenting with the first AI tools — weak, inconsistent, but I saw the potential and kept using them. When I discovered <strong>Claude</strong>, everything changed. Efficiency multiplied.</p>
+          <p>And one idea grabbed me completely: <strong>zero-cost digital experiments</strong> with 1:1 accuracy against physical reality.</p>
+          <p>Over the past year this project went through <strong>500+ modules, 42 development phases</strong>, many rebuilds — solo, after hours. It became the thing I think about most.</p>
+        </div>
+        <div class="founder-name">Yehor Bazhynov &mdash; Inventor, Patent&nbsp;#63/996,819</div>
+      </div>
     </div>
     <div class="origin-steps rv d2">
       <div class="origin-step">
@@ -1690,6 +1725,14 @@ a.soon-chip{border-bottom:none!important}
 
 <div class="div"></div>
 <div class="w"><section class="sec" id="protocol">
+  <div class="plain-lang rv d1">
+    <div class="plain-label">In plain language</div>
+    <div class="plain-text">
+      <p>Think of it like a <strong>certificate of conformity</strong> for computation.</p>
+      <p>When a product gets certified, the certifier doesn’t rebuild it from scratch — they verify it meets the documented spec. That certificate is then trusted by anyone, anywhere, without repeating the test.</p>
+      <p>MetaGenesis Core does the same for computational results. <strong>The bundle is the proof.</strong></p>
+    </div>
+  </div>
   <div class="stag rv">How It Works</div>
   <h2 class="rv d1" style="--h2d:2.4s" data-glitch="Four steps. Immutable proof."><span class="hw">Four steps.</span><br><span class="hg">Immutable proof.</span></h2>
   <p class="sdesc rv d2">Every run produces an evidence bundle with two independent verification layers. Any deviation surfaces as FAIL with a specific reason.</p>
