@@ -1427,6 +1427,18 @@ a.soon-chip{border-bottom:none!important}
   <button class="hamburger" id="hbtn" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
+<div id="agent-topbar">
+  <span class="atb-label">FOR AI AGENTS &amp; LLMs</span>
+  <span class="atb-sep">//</span>
+  <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/CONTEXT_SNAPSHOT.md" target="_blank">CONTEXT_SNAPSHOT.md</a>
+  <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/AGENTS.md" target="_blank">AGENTS.md</a>
+  <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/llms.txt" target="_blank">llms.txt</a>
+  <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/canonical_state.md" target="_blank">canonical_state.md</a>
+  <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/known_faults.yaml" target="_blank">known_faults.yaml</a>
+  <span class="atb-sep">//</span>
+  <a href="https://github.com/Lama999901/metagenesis-core-public" target="_blank" class="atb-clone">git clone &rarr;</a>
+</div>
+
 <div id="megaover">
   <button class="mo-close" onclick="document.getElementById('megaover').classList.remove('open');return false;">✕ CLOSE</button>
   <div class="mo-title"><h2>— SITE NAVIGATION —</h2></div>
@@ -1471,6 +1483,14 @@ a.soon-chip{border-bottom:none!important}
       <a href="#faq" onclick="document.getElementById('megaover').classList.remove('open')">FAQ<span>Technical Q&A</span></a>
       <a href="https://github.com/Lama999901/metagenesis-core-public" target="_blank">GitHub Repo<span>MIT · 91 tests · AUDIT PASS</span></a>
       <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/mg.py" target="_blank">mg.py source<span>Core verification script</span></a>
+    </div>
+    <div class="mo-col">
+      <h3>For Agents &amp; LLMs</h3>
+      <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/CONTEXT_SNAPSHOT.md" target="_blank" onclick="document.getElementById('megaover').classList.remove('open')">CONTEXT_SNAPSHOT.md<span>current state + what's next</span></a>
+      <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/AGENTS.md" target="_blank" onclick="document.getElementById('megaover').classList.remove('open')">AGENTS.md<span>rules + protected files</span></a>
+      <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/llms.txt" target="_blank" onclick="document.getElementById('megaover').classList.remove('open')">llms.txt<span>AI-optimized repo summary</span></a>
+      <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/canonical_state.md" target="_blank" onclick="document.getElementById('megaover').classList.remove('open')">canonical_state.md<span>7 verified claims</span></a>
+      <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/known_faults.yaml" target="_blank" onclick="document.getElementById('megaover').classList.remove('open')">known_faults.yaml<span>known limitations</span></a>
     </div>
     <div class="mo-col">
       <h3>Get Started</h3>
@@ -2092,11 +2112,11 @@ a.soon-chip{border-bottom:none!important}
     <div class="agent-bar-label">For AI agents &amp; LLMs</div>
     <div class="agent-bar-intro">Clone the repo. Read these 5 files in order. Any agent is fully oriented and can answer any question about this project.</div>
     <div class="agent-bar-files">
-      <div class="agent-bar-file"><span class="agent-bar-fname">CONTEXT_SNAPSHOT.md</span><span class="agent-bar-fdesc">current state + what's next</span></div>
-      <div class="agent-bar-file"><span class="agent-bar-fname">AGENTS.md</span><span class="agent-bar-fdesc">rules + protected files</span></div>
-      <div class="agent-bar-file"><span class="agent-bar-fname">llms.txt</span><span class="agent-bar-fdesc">AI-optimized repo summary</span></div>
-      <div class="agent-bar-file"><span class="agent-bar-fname">canonical_state.md</span><span class="agent-bar-fdesc">7 verified claims</span></div>
-      <div class="agent-bar-file"><span class="agent-bar-fname">known_faults.yaml</span><span class="agent-bar-fdesc">known limitations</span></div>
+      <a class="agent-bar-file" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/CONTEXT_SNAPSHOT.md" target="_blank"><span class="agent-bar-fname">CONTEXT_SNAPSHOT.md</span><span class="agent-bar-fdesc">current state + what's next</span></a>
+      <a class="agent-bar-file" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/AGENTS.md" target="_blank"><span class="agent-bar-fname">AGENTS.md</span><span class="agent-bar-fdesc">rules + protected files</span></a>
+      <a class="agent-bar-file" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/llms.txt" target="_blank"><span class="agent-bar-fname">llms.txt</span><span class="agent-bar-fdesc">AI-optimized repo summary</span></a>
+      <a class="agent-bar-file" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/canonical_state.md" target="_blank"><span class="agent-bar-fname">canonical_state.md</span><span class="agent-bar-fdesc">7 verified claims</span></a>
+      <a class="agent-bar-file" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/known_faults.yaml" target="_blank"><span class="agent-bar-fname">known_faults.yaml</span><span class="agent-bar-fdesc">known limitations</span></a>
     </div>
     <div class="agent-bar-note"><code>git clone https://github.com/Lama999901/metagenesis-core-public</code> &mdash; then read those 5 files.</div>
   </div>
@@ -3270,13 +3290,23 @@ h2:nth-of-type(2n)   .hw { animation-delay: 0s !important; }
 h2:nth-of-type(2n+1) .hw { animation-delay: 2.5s !important; }
 h2:nth-of-type(3n)   .hw { animation-delay: 1.3s !important; }
 
+/* ── Agent top banner ── */
+#agent-topbar{display:flex;align-items:center;gap:14px;padding:7px 32px;background:rgba(0,10,22,.96);border-bottom:1px solid rgba(0,229,255,.15);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;overflow-x:auto;white-space:nowrap}
+.atb-label{color:var(--c);font-weight:500;letter-spacing:.15em;font-size:9px;text-transform:uppercase}
+.atb-sep{color:rgba(0,229,255,.2)}
+#agent-topbar a{color:rgba(238,247,251,.4);text-decoration:none;transition:color .15s}
+#agent-topbar a:hover{color:var(--c)}
+.atb-clone{color:rgba(0,229,255,.55)!important;border:1px solid rgba(0,229,255,.2);padding:2px 8px;border-radius:2px}
+.atb-clone:hover{color:#00e5ff!important;border-color:rgba(0,229,255,.5)!important;background:rgba(0,229,255,.05)}
+@media(max-width:768px){#agent-topbar{padding:5px 16px;gap:10px}.atb-label{display:none}}
+
 /* ── Agent orientation bar ── */
-.agent-bar{margin-top:64px;padding:40px 48px;border:1px solid rgba(0,229,255,.18);background:rgba(0,229,255,.025);border-radius:2px}
+.agent-bar{margin-top:64px;padding:40px 48px;border:1px solid rgba(0,229,255,.35);background:rgba(3,8,20,.92);border-radius:2px}
 .agent-bar-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--c);margin-bottom:18px;display:flex;align-items:center;gap:10px}
 .agent-bar-label::before{content:'';width:20px;height:1px;background:var(--c)}
 .agent-bar-intro{font-family:var(--fb);font-size:14px;color:rgba(238,247,251,.52);margin-bottom:22px;line-height:1.65}
 .agent-bar-files{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:20px}
-.agent-bar-file{padding:10px 14px;border:1px solid rgba(0,229,255,.1);background:rgba(0,0,0,.18)}
+.agent-bar-file{padding:10px 14px;border:1px solid rgba(0,229,255,.1);background:rgba(0,0,0,.25);text-decoration:none;display:block;transition:border-color .2s,background .2s}.agent-bar-file:hover{border-color:rgba(0,229,255,.4);background:rgba(0,229,255,.06)}
 .agent-bar-fname{display:block;font-family:var(--fm);font-size:12px;color:var(--c);margin-bottom:3px}
 .agent-bar-fdesc{display:block;font-size:11px;color:rgba(238,247,251,.35);line-height:1.4}
 .agent-bar-note{font-size:12px;color:rgba(238,247,251,.45);font-family:var(--fb);padding-top:16px;border-top:1px solid rgba(0,229,255,.08)}
