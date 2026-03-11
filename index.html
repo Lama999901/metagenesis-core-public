@@ -1343,6 +1343,33 @@ a.soon-chip{border-bottom:none!important}
   .pitch-col{padding:24px 20px}.pitch-body{font-size:13px}
   .pitch-banner{padding:16px 20px;gap:8px}
 }
+
+/* ── Founder block ── */
+.founder-block{margin-top:48px;padding-top:36px;border-top:1px solid var(--ln)}
+.founder-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--c);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.founder-label::before{content:'';width:20px;height:1px;background:var(--c)}
+.founder-body{font-family:var(--fb);font-size:15px;color:rgba(238,247,251,.72);line-height:1.78;font-weight:300}
+.founder-body p{margin-bottom:14px;font-size:15px;line-height:1.78}
+.founder-body p:last-child{margin-bottom:0}
+.founder-body strong{color:var(--txt);font-weight:500}
+.founder-name{margin-top:24px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);display:flex;align-items:center;gap:12px}
+.founder-name::before{content:'';width:20px;height:1px;background:var(--txt3)}
+@media(max-width:768px){
+  .founder-block{margin-top:32px;padding-top:24px}
+  .founder-body p{font-size:14px}
+}
+/* ── Plain language block ── */
+.plain-lang{border:1px solid var(--ln);background:rgba(0,229,255,.02);padding:44px 48px;margin-bottom:64px;border-radius:2px}
+.plain-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--c);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.plain-label::before{content:'';width:20px;height:1px;background:var(--c)}
+.plain-text{font-family:var(--fb);font-size:clamp(16px,1.4vw,20px);color:rgba(238,247,251,.82);line-height:1.72;font-weight:300}
+.plain-text p{margin-bottom:16px}
+.plain-text p:last-child{margin-bottom:0}
+.plain-text strong{color:var(--txt);font-weight:500}
+@media(max-width:768px){
+  .plain-lang{padding:28px 20px;margin-bottom:40px}
+  .plain-text{font-size:15px}
+}
 </style>
 </head>
 <body>
@@ -1622,6 +1649,19 @@ a.soon-chip{border-bottom:none!important}
         That's why MetaGenesis Core exists."
       </p>
       <p class="origin-who">Yehor Bazhynov — Inventor, Patent #63/996,819</p>
+      <div class="founder-block">
+        <div class="founder-label">About the founder</div>
+        <div class="founder-body">
+          <p>No degree. No background in software or science. Odd jobs — wherever the work was, for whatever it paid.</p>
+          <p>For years I wanted something different. I just didn’t have the tools.</p>
+          <p>For 4–5 years I followed AI as it grew — weak models, early agents, inconsistent results. I kept watching, kept learning.</p>
+          <p>Then the last year: deep focus. <strong>500+ modules built and rebuilt. 42 development phases.</strong> Solo, after hours. That’s when I found the problem — and the solution.</p>
+          <p>Meanwhile the problem was everywhere: ML teams publishing benchmark numbers nobody could verify. Labs reporting results nobody could reproduce. Pipelines producing outputs nobody could audit. It just didn’t have a name yet.</p>
+          <p>One tool finally fit the way I think. Two weeks — working protocol, 91 passing tests, USPTO patent application filed, this site live.</p>
+          <p>That’s not a story about me being special. It’s a story about what’s possible right now, for anyone willing to stay with it.</p>
+        </div>
+        <div class="founder-name">Yehor Bazhynov &mdash; Inventor, Patent&nbsp;#63/996,819</div>
+      </div>
     </div>
     <div class="origin-steps rv d2">
       <div class="origin-step">
