@@ -3,8 +3,8 @@
   "version": "0.2.0",
   "description": "Open verification protocol for computational claims. Any computation — ML model accuracy, calibration result, data pipeline output — packaged into a tamper-evident bundle verifiable offline by any third party with one command.",
   "protocol": "MetaGenesis Verification Protocol (MVP) v0.1",
-  "active_claims": ["MTR-1", "MTR-2", "MTR-3", "SYSID-01", "DATA-PIPE-01", "DRIFT-01", "ML_BENCH-01"],
-  "domains": ["materials_science", "system_identification", "data_pipelines", "ml_benchmarking"],
+  "active_claims": ["MTR-1", "MTR-2", "MTR-3", "SYSID-01", "DATA-PIPE-01", "DRIFT-01", "ML_BENCH-01", "DT-FEM-01"],
+  "domains": ["materials_science", "system_identification", "data_pipelines", "ml_benchmarking", "digital_twin"],
   "verified_innovations": [
     "bidirectional_claim_coverage",
     "tamper_evident_semantic_verification",
