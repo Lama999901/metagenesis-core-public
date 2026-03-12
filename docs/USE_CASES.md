@@ -131,6 +131,53 @@ simulation teams, component qualification for safety-critical applications.
 
 ---
 
+## 6. Digital twin calibration verification
+
+**The problem:** Digital twins — simulation models that mirror physical
+systems in real time — require continuous calibration against physical
+measurements. A twin claiming 1% accuracy from a structural FEM solver,
+a thermal CFD model, or a materials simulation has no standard way to
+prove that claim to clients, regulators, or partner teams. The calibration
+result exists as a number in a report. Nothing ties it to the computation
+that produced it.
+
+**What MetaGenesis Core does:** Every calibration step becomes a
+tamper-evident evidence bundle. The physical reference measurement and
+the simulation output are packaged together with SHA-256 fingerprints,
+provenance metadata, and a verified threshold. A third party verifies
+the entire calibration chain offline with one command.
+
+The protocol supports the full digital twin lifecycle:
+Physical measurement → MTR-1 (anchor: E = 70 GPa, rel_err ≤ 1%) → PASS
+FEM solver output   → DT-FEM-01 (vs. reference, rel_err ≤ 2%) → PASS
+Drift monitoring    → DRIFT-01 (current vs. anchor, drift ≤ 5%) → OK
+↓ drift > 5% → correction_required = True
+Iteration           → new calibration → rel_err decreasing → provably closer to reality
+
+Each step in the chain is independently verifiable. The chain is
+tamper-evident. Any reviewer — client, regulator, partner — runs:
+```bash
+mg.py verify --pack calibration_bundle.zip → PASS or FAIL
+```
+
+No FEM solver access required. No simulation environment. No trust.
+
+**Target claim types:**
+- Structural displacement vs. lab measurement (DT-FEM-01)
+- Material property calibration vs. physical constants (MTR-1/2/3)
+- Thermal field vs. thermocouple readings
+- System identification vs. measured impulse response (SYSID-01)
+- Calibration drift against verified anchor (DRIFT-01)
+
+**Who needs this:** Aerospace and automotive simulation teams handing
+off FEM results to clients, materials science labs with ongoing calibration
+workflows, medical device manufacturers requiring simulation evidence for
+regulatory submissions (FDA, CE), engineering firms building digital twins
+of industrial equipment, research groups publishing simulation-backed
+physical claims.
+
+---
+
 ## Common pattern across all domains
 
 The verification workflow is identical regardless of domain:

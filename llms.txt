@@ -32,7 +32,7 @@ A governance + evidence + verification pipeline. An open protocol.
 - scripts/mg.py — pack build and verify
 - demos/open_data_demo_01/run_demo.py — working end-to-end demo
 
-## Active claims (7)
+## Active claims (8)
 
 MTR-1        mtr1_youngs_modulus_calibration          (materials science)
 MTR-2        mtr2_thermal_paste_conductivity_calibration
@@ -41,6 +41,7 @@ SYSID-01     sysid1_arx_calibration                   (system identification)
 DATA-PIPE-01 datapipe1_quality_certificate             (data pipelines)
 DRIFT-01     drift_calibration_monitor                 (drift detection)
 ML_BENCH-01  mlbench1_accuracy_certificate             (ML benchmarking)
+DT-FEM-01    dtfem1_displacement_verification          (digital twin / FEM)
 
 ## Governance invariant
 
@@ -64,7 +65,7 @@ detection, policy-gate immutable anchors, dual-mode canary pipeline
 ## How to verify everything works
 
 python scripts/steward_audit.py                              # PASS
-python -m pytest tests/steward tests/materials tests/ml tests/systems tests/data -q  # all passed
+python -m pytest tests/steward tests/materials tests/ml tests/systems tests/data tests/digital_twin -q  # all passed (107)
 python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 
 ## Git workflow (current — direct clone, no zip)
@@ -79,14 +80,15 @@ git commit -m "type: description"
 git push origin fix/your-branch-name
 # then open PR on GitHub
 
-## Current state (2026-03-11)
+## Current state (2026-03-12)
 
-- Tests: 91 passing
+- Tests: 107 passing
 - steward_audit: PASS
-- Last PR merged: #14 (fix/cmp-header-mobile) — mobile compare table fix
+- Last PR merged: #28 (feat/physics-demo-section) — counters 8/107, DT-FEM-01 card
 - Site: metagenesis-core.dev — deployed on Vercel, auto-deploys from main
 - PPA filed: 2026-03-05 — non-provisional deadline 2027-03-05
 - Stripe: configured at $299/license
-- Outreach sent: Jeffrey Ip (Patronus AI), Elena Samuylova (Evidently AI),
-  Giovanni Pizzi (PSI/AiiDA), Brian Nosek (UVA/reproducibility)
-- Show HN post: drafted, not yet posted
+- Outreach sent: Tongqi Wen (ElaTBot, Mar 5), Giovanni Pizzi (PSI/AiiDA, Mar 7),
+  Brian Nosek (UVA, Mar 7), Peter Coveney (UCL, Mar 8),
+  Arvind Narayanan (Princeton, Mar 8), Jeffrey Ip (Confident AI, Mar 11),
+  Elena Samuylova (Evidently AI, Mar 11)

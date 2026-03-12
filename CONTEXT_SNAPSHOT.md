@@ -2,7 +2,7 @@
 
 > Read this file first if you are an AI agent starting a new session.
 > This is the authoritative snapshot of what has been done and what is next.
-> Updated: 2026-03-11
+> Updated: 2026-03-12
 
 ---
 
@@ -21,11 +21,11 @@
 
 | Parameter | Value |
 |---|---|
-| Tests | 91 passing |
+| Tests | 107 passing |
 | steward_audit | PASS |
 | CI | GREEN |
-| Active claims | 7: MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01 |
-| Last PR merged | #14 fix/cmp-header-mobile — mobile compare table headers fixed |
+| Active claims | 8: MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01, DT-FEM-01 |
+| Last PR merged | #28 feat/physics-demo-section — counters 8/107, DT-FEM-01 card |
 
 ---
 
@@ -50,8 +50,9 @@
 
 ## What is next (priority order)
 
-- [ ] POST Show HN — 6:00am Vancouver PST — text ready in project context
-- [ ] Send outreach: Peter Coveney (UCL), Arvind Narayanan (Princeton)
+- [ ] POST Show HN — obnovit' tekst: 8 claims, 107 tests
+- [x] Send outreach: Peter Coveney (UCL) — sent 2026-03-08
+- [x] Send outreach: Arvind Narayanan (Princeton) — sent 2026-03-08
 - [ ] Find Emanuele Bosoni email (EPFL) and send outreach
 - [ ] Post to MLOps Community Slack #tools-and-frameworks
 - [ ] Post to r/MachineLearning [P] post
@@ -111,9 +112,10 @@ docs/ROADMAP.md
 
 | Name | Email | Org | Status | Subject |
 |---|---|---|---|---|
+| Tongqi Wen | tongqwen (Gmail) | ElaTBot / atomistic sim | Sent 2026-03-05 | Verification layer for ElaTBot predictions |
 | Giovanni Pizzi | giovanni.pizzi@psi.ch | PSI / AiiDA | Sent 2026-03-07 | Verification layer for AiiDA-generated computational claims |
 | Brian Nosek | ban2b@virginia.edu | UVA / COS | Sent 2026-03-07 | Machine-enforceable claim verification layer beyond preregistration |
-| Peter Coveney | p.v.coveney@ucl.ac.uk | UCL | Sent 2026-03-08 | Open-source tamper-evident verification layer for computational science |
+| Peter Coveney | p.v.coveney@ucl.ac.uk | UCL | Sent 2026-03-08 | Open-source tamper-evident verification layer for computational science claims |
 | Arvind Narayanan | arvindn@cs.princeton.edu | Princeton | Sent 2026-03-08 | A technical layer for verifiable ML accuracy claims |
 | Jeffrey Ip | jeffreyip@confident-ai.com | Confident AI / DeepEval | Sent 2026-03-11 | Offline-verifiable evidence bundles for DeepEval results |
 | Elena Samuylova | founders@evidentlyai.com | Evidently AI | Sent 2026-03-11 | (no subject — check draft) |
