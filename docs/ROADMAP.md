@@ -8,15 +8,18 @@ All items are subject to change based on community feedback and priorities.
 
 ---
 
-## Done (v0.1 → v0.2)
+## Done (v0.1 → v0.3)
 
 - [x] Core verification protocol (integrity + semantic layers)
 - [x] Adversarial tamper detection test (test_cert02)
 - [x] Bidirectional claim coverage governance
 - [x] Dual-mode canary pipeline
-- [x] 7 active claims: MTR-1/2/3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01
+- [x] 8 active claims: MTR-1/2/3, SYSID-01, DATA-PIPE-01, DRIFT-01,
+      ML_BENCH-01, DT-FEM-01
 - [x] Protocol specification (docs/PROTOCOL.md)
-- [x] Use case documentation for 5 verticals
+- [x] Use case documentation for 6 verticals (incl. digital twin)
+- [x] DT-FEM-01 — FEM output vs. physical reference verification
+      (rel_err ≤ 0.02, synthetic + real CSV modes)
 
 ---
 
@@ -64,6 +67,33 @@ All items are subject to change based on community feedback and priorities.
 - [ ] FINRISK-01 — VaR model output certificate
 - [ ] FINRISK-02 — credit scoring model certificate
 - [ ] Basel model risk management documentation
+
+---
+
+## Digital Twin Verification Path (v0.6+)
+
+MetaGenesis Core is the universal verification layer for computational
+scientific claims. Digital twin calibration is the highest-value
+application: every step from physical measurement to simulation output
+to drift monitoring becomes independently verifiable.
+
+**DT-FEM-01** is the first claim in this path (merged, 107 tests PASS).
+
+Next claims in the digital twin path:
+
+- [ ] DT-SENSOR-01 — sensor data integrity certificate
+      (schema validation + range check + SHA-256 fingerprint for IoT streams)
+- [ ] DT-CALIB-LOOP-01 — calibration convergence certificate
+      (drift_pct decreasing over N iterations → twin provably approaching reality)
+- [ ] DT-CFD-01 — CFD output vs. physical measurement
+      (pressure, velocity, temperature fields — rel_err per quantity)
+- [ ] DT-MODAL-01 — structural modal analysis vs. experimental FRF
+      (natural frequency match within threshold)
+
+**Architecture note:** MetaGenesis Core does NOT implement FEM solvers,
+CFD engines, or any simulation platform. It verifies the OUTPUT of any
+external simulator against physical reference measurements.
+The verified result becomes a trusted anchor for DRIFT-01 monitoring.
 
 ---
 
