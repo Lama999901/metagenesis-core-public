@@ -1659,8 +1659,48 @@ a.soon-chip{border-bottom:none!important}
   <h2 class="rv d1" style="--h2d:0s" data-glitch="AI makes claims. Nobody can verify.">AI makes claims.<br><span class="hr">Nobody can verify.</span></h2>
   <p class="sdesc rv d2">Every ML team claims state-of-the-art results. Every simulation produces numbers. Every pipeline outputs certificates. There is no standard way to check any of it independently.</p>
   <div class="pp rv d3">
-    <div class="ppc"><span class="ppchip x">Without MetaGenesis</span><h3>Trust the number.<br>Or re-run everything.</h3><p>A reviewer cannot check a reported ML accuracy without the original model, training data, and compute environment. The only options are blind trust or complete reproduction.</p></div>
-    <div class="ppc"><span class="ppchip v">With MetaGenesis</span><h3>One command.<br>PASS or FAIL.</h3><p>Any computational result is packaged into a tamper-evident evidence bundle. A third party runs one command and gets an unambiguous verdict offline, without access to your environment. No grey zone.</p></div>
+
+    <div class="ppc ppc-x">
+      <span class="ppchip x">Without MetaGenesis</span>
+      <h3>Trust the number.<br>Or re-run everything.</h3>
+      <p>A reviewer cannot verify a reported ML accuracy, FEM displacement result, or pipeline certificate without the original model, solver, training data, and compute environment. The only options are blind trust or full reproduction. Neither is acceptable for audit, regulatory submission, or third-party client review.</p>
+      <div class="pp-rows">
+        <div class="pp-row">
+          <span class="pp-domain">ML accuracy: 94%</span>
+          <span class="pp-verdict pp-verdict-x">no third-party proof</span>
+        </div>
+        <div class="pp-row">
+          <span class="pp-domain">FEM displacement: rel_err 0.8%</span>
+          <span class="pp-verdict pp-verdict-x">no third-party proof</span>
+        </div>
+        <div class="pp-row">
+          <span class="pp-domain">Pipeline: schema PASS</span>
+          <span class="pp-verdict pp-verdict-x">no third-party proof</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ppc ppc-v">
+      <span class="ppchip v">With MetaGenesis</span>
+      <h3>One command.<br>PASS or FAIL.</h3>
+      <p>Any computational result is packaged into a tamper-evident evidence bundle with two independent verification layers — cryptographic integrity and semantic invariant check. A third party runs one command and gets an unambiguous verdict offline, without access to your model or environment.</p>
+      <div class="pp-rows">
+        <div class="pp-row">
+          <a class="pp-domain pp-claim-link" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank">ML_BENCH-01</a>
+          <span class="pp-verdict pp-verdict-v">&Delta;accuracy &le; 0.02 &middot; PASS</span>
+        </div>
+        <div class="pp-row">
+          <a class="pp-domain pp-claim-link" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtfem1_displacement_verification.py" target="_blank">DT-FEM-01</a>
+          <span class="pp-verdict pp-verdict-v">rel_err &le; 0.02 &middot; PASS</span>
+        </div>
+        <div class="pp-row">
+          <a class="pp-domain pp-claim-link" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank">DATA-PIPE-01</a>
+          <span class="pp-verdict pp-verdict-v">schema &middot; range &middot; PASS</span>
+        </div>
+      </div>
+      <div class="pp-cmd"><span class="pp-cmd-prompt">$</span> mg.py verify --pack bundle.zip <span class="pp-cmd-pass">&rarr; PASS</span></div>
+    </div>
+
   </div>
 </section></div>
 
@@ -3626,6 +3666,67 @@ h2:nth-of-type(3n)   .hw { animation-delay: 1.3s !important; }
 @media(max-width:600px){
   .phys-step-body{padding:20px 18px}
   .phys-step-n{padding:20px 0}
+}
+
+/* ── Compare cards upgrade ── */
+.pp-rows{
+  margin-top:16px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  border-top:1px solid var(--ln);
+  padding-top:14px;
+}
+.pp-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+}
+.pp-domain{
+  font-family:var(--fm);
+  font-size:11px;
+  color:var(--txt2);
+}
+a.pp-claim-link{
+  font-family:var(--fm);
+  font-size:11px;
+  color:var(--c);
+  text-decoration:none;
+  border-bottom:1px dotted var(--c3);
+  transition:color .2s;
+}
+a.pp-claim-link:hover{color:#fff}
+.pp-verdict{
+  font-family:var(--fm);
+  font-size:11px;
+  font-weight:600;
+  white-space:nowrap;
+}
+.pp-verdict-x{
+  color:var(--err);
+  opacity:.7;
+}
+.pp-verdict-v{
+  color:var(--ok);
+}
+.pp-cmd{
+  margin-top:16px;
+  background:rgba(0,0,0,.35);
+  border:1px solid var(--ln2);
+  border-radius:6px;
+  padding:10px 14px;
+  font-family:var(--fm);
+  font-size:12px;
+  color:var(--txt2);
+}
+.pp-cmd-prompt{
+  color:var(--txt3);
+  margin-right:6px;
+}
+.pp-cmd-pass{
+  color:var(--ok);
+  font-weight:700;
 }
 
 /* ── Crisis closes block ── */
