@@ -1678,15 +1678,15 @@ a.soon-chip{border-bottom:none!important}
     </div>
 
     <div class="crisis-stat">
-      <div class="crisis-n">50<span class="crisis-pct">%</span></div>
-      <div class="crisis-label">of ML models fail in production due to performance gaps between reported benchmarks and real-world conditions</div>
-      <div class="crisis-src">VentureBeat AI Index · 2023</div>
+      <div class="crisis-n">294</div>
+      <div class="crisis-label">ML papers across 17 scientific disciplines contained data leakage silently inflating accuracy claims — discovered only after publication</div>
+      <div class="crisis-src">Kapoor &amp; Narayanan &middot; <em>Science</em> &middot; 2023</div>
     </div>
 
     <div class="crisis-stat">
-      <div class="crisis-n">3</div>
-      <div class="crisis-label">major regulatory frameworks now require independent verification of computational outputs</div>
-      <div class="crisis-src">EU AI Act · FDA 21 CFR Part 11 · Basel III/IV</div>
+      <div class="crisis-n">4</div>
+      <div class="crisis-label">major regulatory and engineering standards now require independent verification of computational and simulation outputs</div>
+      <div class="crisis-src">EU AI Act &middot; FDA 21 CFR Part 11 &middot; Basel III/IV &middot; ISO/ASME V&amp;V&nbsp;10</div>
     </div>
 
     <div class="crisis-stat">
@@ -1696,6 +1696,70 @@ a.soon-chip{border-bottom:none!important}
     </div>
 
   </div>
+
+  <div class="crisis-closes rv d4">
+    <div class="crisis-closes-title">What MetaGenesis Core closes — <span class="hg">with executable proof</span></div>
+    <div class="crisis-closes-sub">Every row below maps to running code. Clone the repo and verify in 60 seconds.</div>
+    <div class="crisis-closes-grid">
+
+      <div class="ccl-row">
+        <div class="ccl-problem">Accuracy claim with no third-party proof</div>
+        <div class="ccl-arrow">→</div>
+        <div class="ccl-solution">
+          <span class="ccl-badge">CLOSED</span>
+          <span class="ccl-claim">ML_BENCH-01</span>
+          <a class="ccl-path" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank">mlbench1_accuracy_certificate.py</a>
+          <span class="ccl-threshold">&Delta;accuracy ≤ 0.02 &middot; semantic PASS</span>
+        </div>
+      </div>
+
+      <div class="ccl-row">
+        <div class="ccl-problem">Data leakage inflating benchmark results (294 papers)</div>
+        <div class="ccl-arrow">→</div>
+        <div class="ccl-solution">
+          <span class="ccl-badge">CLOSED</span>
+          <span class="ccl-claim">DATA-PIPE-01</span>
+          <a class="ccl-path" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank">datapipe1_quality_certificate.py</a>
+          <span class="ccl-threshold">schema PASS &middot; range PASS &middot; policy-gate enforced</span>
+        </div>
+      </div>
+
+      <div class="ccl-row">
+        <div class="ccl-problem">FEM/CFD simulation outputs unverifiable by engineering auditors</div>
+        <div class="ccl-arrow">→</div>
+        <div class="ccl-solution">
+          <span class="ccl-badge">CLOSED</span>
+          <span class="ccl-claim">DT-FEM-01</span>
+          <a class="ccl-path" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtfem1_displacement_verification.py" target="_blank">dtfem1_displacement_verification.py</a>
+          <span class="ccl-threshold">rel_err ≤ 0.02 vs physical reference &middot; ISO/ASME V&amp;V&nbsp;10</span>
+        </div>
+      </div>
+
+      <div class="ccl-row">
+        <div class="ccl-problem">Calibration drift undetected between model versions</div>
+        <div class="ccl-arrow">→</div>
+        <div class="ccl-solution">
+          <span class="ccl-badge">CLOSED</span>
+          <span class="ccl-claim">DRIFT-01 &middot; MTR-1/2/3</span>
+          <a class="ccl-path" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank">drift_monitor.py</a>
+          <span class="ccl-threshold">drift_threshold 5.0% &middot; rel_err ≤ 0.01–0.03</span>
+        </div>
+      </div>
+
+      <div class="ccl-row">
+        <div class="ccl-problem">Regulatory submissions with no offline-verifiable audit trail</div>
+        <div class="ccl-arrow">→</div>
+        <div class="ccl-solution">
+          <span class="ccl-badge">CLOSED</span>
+          <span class="ccl-claim">All 8 claims</span>
+          <a class="ccl-path" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/mg.py" target="_blank">mg.py verify --pack bundle.zip → PASS</a>
+          <span class="ccl-threshold">offline &middot; no model access &middot; 60 seconds</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </section></div>
 
 <section class="origin" id="origin">
@@ -3562,6 +3626,103 @@ h2:nth-of-type(3n)   .hw { animation-delay: 1.3s !important; }
 @media(max-width:600px){
   .phys-step-body{padding:20px 18px}
   .phys-step-n{padding:20px 0}
+}
+
+/* ── Crisis closes block ── */
+.crisis-closes{
+  margin-top:56px;
+  border-top:1px solid var(--ln2);
+  padding-top:48px;
+}
+.crisis-closes-title{
+  font-family:var(--fd);
+  font-size:clamp(16px,2vw,22px);
+  font-weight:700;
+  color:var(--txt);
+  margin-bottom:8px;
+  letter-spacing:-.01em;
+}
+.crisis-closes-sub{
+  font-size:13px;
+  color:var(--txt3);
+  font-family:var(--fm);
+  margin-bottom:32px;
+}
+.crisis-closes-grid{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.ccl-row{
+  display:grid;
+  grid-template-columns:1fr 32px 2fr;
+  align-items:center;
+  gap:16px;
+  background:rgba(10,16,32,.7);
+  border:1px solid var(--ln);
+  border-radius:8px;
+  padding:14px 20px;
+  transition:border-color .2s;
+}
+.ccl-row:hover{
+  border-color:var(--c3);
+}
+.ccl-problem{
+  font-size:13px;
+  color:var(--err);
+  font-family:var(--fm);
+  line-height:1.4;
+}
+.ccl-arrow{
+  font-size:20px;
+  color:var(--txt3);
+  text-align:center;
+}
+.ccl-solution{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:8px;
+}
+.ccl-badge{
+  background:rgba(0,255,153,.12);
+  color:var(--ok);
+  border:1px solid rgba(0,255,153,.3);
+  border-radius:4px;
+  font-family:var(--fm);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.12em;
+  padding:3px 8px;
+  flex-shrink:0;
+}
+.ccl-claim{
+  font-family:var(--fm);
+  font-size:12px;
+  color:var(--c);
+  font-weight:500;
+  flex-shrink:0;
+}
+.ccl-path{
+  font-family:var(--fm);
+  font-size:11px;
+  color:var(--txt2);
+  text-decoration:none;
+  border-bottom:1px dotted var(--txt3);
+  transition:color .2s;
+}
+.ccl-path:hover{color:var(--c)}
+.ccl-threshold{
+  font-size:11px;
+  color:var(--txt3);
+  font-family:var(--fm);
+  margin-left:auto;
+  white-space:nowrap;
+}
+@media(max-width:768px){
+  .ccl-row{grid-template-columns:1fr}
+  .ccl-arrow{display:none}
+  .ccl-threshold{margin-left:0;white-space:normal}
 }
 
 /* ── Pilot domain hint ── */
