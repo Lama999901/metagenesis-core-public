@@ -1050,7 +1050,7 @@ a.soon-chip{border-bottom:none!important}
 .cmp-col{padding:16px 12px;display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.06em;border-right:1px solid var(--ln)}
 .cmp-col:last-child{border-right:none}
 .cmp-col.mg{background:rgba(0,229,255,.03)}
-.cmp-head .cmp-col{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);font-weight:600}
+.cmp-head .cmp-col{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);font-weight:600;word-break:break-word;white-space:normal;text-align:center;line-height:1.4;padding:12px 8px}
 .cmp-head .cmp-col.mg{color:var(--c)}
 .cyes{color:var(--ok);font-size:16px}
 .cno{color:var(--err);font-size:16px}
@@ -3403,11 +3403,12 @@ h2:nth-of-type(3n)   .hw { animation-delay: 1.3s !important; }
    ════════════════════════════════════════ */
 
 /* ══ PHYSICS DEMO SECTION ══ */
-.phys-flow{display:flex;flex-direction:column;gap:0;border:1px solid var(--ln);overflow:hidden}
-.phys-step{display:grid;grid-template-columns:72px 1fr;border-bottom:1px solid var(--ln);transition:background .2s}
+.phys-flow{display:flex;flex-direction:column;gap:0;border:1px solid var(--ln);overflow:hidden;background:rgba(4,8,26,.92)}
+.phys-step{display:grid;grid-template-columns:72px 1fr;border-bottom:1px solid var(--ln);transition:background .2s;background:rgba(4,8,26,.88)}
 .phys-step:last-child{border-bottom:none}
-.phys-step:hover{background:rgba(0,229,255,.025)}
-.phys-step-final{background:rgba(0,255,153,.025)}
+.phys-step:hover{background:rgba(7,12,31,.97)}
+.phys-step-final{background:rgba(4,14,10,.92)}
+.phys-step-final:hover{background:rgba(4,18,12,.97)}
 .phys-step-n{display:flex;align-items:flex-start;justify-content:center;padding:32px 0 32px;font-family:var(--fd);font-size:13px;font-weight:700;color:var(--txt3);border-right:1px solid var(--ln)}
 .phys-n-pass{color:var(--ok)}
 .phys-step-body{padding:32px 40px;display:flex;flex-direction:column;gap:14px}
@@ -3416,7 +3417,7 @@ h2:nth-of-type(3n)   .hw { animation-delay: 1.3s !important; }
 .phys-cm{color:var(--txt);letter-spacing:.02em}
 .phys-dim{color:var(--txt3)}
 .phys-step-note{font-size:12px;color:var(--txt3);font-style:italic;line-height:1.6}
-.phys-arrow{display:flex;align-items:center;justify-content:center;height:32px;font-family:var(--fm);font-size:16px;color:rgba(0,229,255,.3);background:var(--ink1);border-left:1px solid var(--ln);border-right:1px solid var(--ln)}
+.phys-arrow{display:flex;align-items:center;justify-content:center;height:32px;font-family:var(--fm);font-size:16px;color:rgba(0,229,255,.3);background:rgba(7,12,31,.97);border-left:1px solid var(--ln);border-right:1px solid var(--ln)}
 .phys-eq{display:flex;align-items:baseline;gap:16px;padding:18px 20px;background:var(--ink2);border:1px solid rgba(0,229,255,.18);font-family:var(--fm);font-size:15px}
 .phys-eq-lhs{color:var(--txt2)}
 .phys-eq-op{color:var(--txt3)}
