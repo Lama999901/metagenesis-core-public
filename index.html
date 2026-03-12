@@ -6,7 +6,7 @@
 <title>MetaGenesis Core — Verification Protocol</title>
 
 <!-- ── SEO + Social Preview ── -->
-<meta name="description" content="Any computational result — ML accuracy, physics simulation, pipeline output — packaged into a tamper-evident evidence bundle. Any third party verifies offline with one command. PASS or FAIL.">
+<meta name="description" content="Any computational result — ML accuracy, FEM simulation, pipeline output — packaged into a tamper-evident evidence bundle. Any third party verifies offline with one command. PASS or FAIL.">
 <meta name="keywords" content="verification protocol, reproducibility, ML benchmark, computational claims, tamper-evident, audit, MetaGenesis">
 <meta name="author" content="Yehor Bazhynov">
 <meta name="robots" content="index, follow">
@@ -1022,6 +1022,19 @@ a.soon-chip{border-bottom:none!important}
   /* backdrop — mobile: dark bg only behind readable text, not visuals */
   .sec{background:rgba(4,8,26,.82);position:relative}
   .w > .sec::before{display:none}
+
+  /* Verifier claim buttons — wrap and scroll on mobile */
+  .vrf-claim-btns{flex-wrap:wrap;gap:6px}
+  .vrf-claim-btn{font-size:9px;padding:8px 10px;min-width:0;flex:1 1 auto}
+
+  /* Verticals grid — 2 columns on tablet */
+  .ucg{grid-template-columns:1fr 1fr;gap:16px}
+
+  /* Compare table — horizontal scroll on mobile */
+  .cmptable{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+  /* FAQ items — full width readable */
+  .faq-q{font-size:14px;padding:16px 14px}
 }
 @media(max-width:480px){
   .hspan{font-size:clamp(40px,18vw,80px)!important}.stats{grid-template-columns:1fr 1fr}.stat{padding:20px 16px}
@@ -1572,7 +1585,7 @@ a.soon-chip{border-bottom:none!important}
       <div class="hbio">
         <div class="hero-pitch">Your result <span class="hp-arr">&#8594;</span> evidence bundle <span class="hp-arr">&#8594;</span> any reviewer runs <span>one command</span> <span class="hp-arr">&#8594;</span> <span>PASS</span> or FAIL. Offline. No trust required.</div>
         <div class="hbio-label">What this is</div>
-        <p class="hbio-text">Any computational result &#8212; <strong>ML accuracy, physics simulation, pipeline output</strong> &#8212; packaged into a tamper-evident evidence bundle. Any third party verifies it offline with <strong>one command</strong>, without your code, data, or environment.</p>
+        <p class="hbio-text">Any computational result &#8212; <strong>ML accuracy, FEM simulation, pipeline output</strong> &#8212; packaged into a tamper-evident evidence bundle. Any third party verifies it offline with <strong>one command</strong>, without your code, data, or environment.</p>
         <div class="hero-trust">
           <span class="hero-trust-label">Regulatory alignment</span>
           <a class="htbadge" href="#regulatory">EU AI Act Art.&nbsp;9</a>
@@ -1627,14 +1640,14 @@ a.soon-chip{border-bottom:none!important}
   <div class="ti"><span class="tn">8</span><span class="tl">Active Claims</span></div>
   <div class="ti"><span class="tn">107</span><span class="tl">Tests Passing</span></div>
   <div class="ti"><span class="tn">2</span><span class="tl">Verification Layers</span></div>
-  <div class="ti"><span class="tn">5</span><span class="tl">Domains</span></div>
+  <div class="ti"><span class="tn">6</span><span class="tl">Domains</span></div>
   <div class="ti"><span class="tn">0</span><span class="tl">Trust Required</span></div>
   <div class="ti"><span class="tn" style="font-size:14px">PASS</span><span class="tl">steward_audit</span></div>
   <div class="ti"><span class="tn" style="font-size:14px">MIT</span><span class="tl">License</span></div>
   <div class="ti"><span class="tn">8</span><span class="tl">Active Claims</span></div>
   <div class="ti"><span class="tn">107</span><span class="tl">Tests Passing</span></div>
   <div class="ti"><span class="tn">2</span><span class="tl">Verification Layers</span></div>
-  <div class="ti"><span class="tn">5</span><span class="tl">Domains</span></div>
+  <div class="ti"><span class="tn">6</span><span class="tl">Domains</span></div>
   <div class="ti"><span class="tn">0</span><span class="tl">Trust Required</span></div>
   <div class="ti"><span class="tn" style="font-size:14px">PASS</span><span class="tl">steward_audit</span></div>
   <div class="ti"><span class="tn" style="font-size:14px">MIT</span><span class="tl">License</span></div>
@@ -1760,8 +1773,8 @@ a.soon-chip{border-bottom:none!important}
         <span class="pitch-chip pitch-chip-ok">SYSID-01</span>
         <span class="pitch-chip pitch-chip-ok">DATA-PIPE-01</span>
         <span class="pitch-chip pitch-chip-ok">DRIFT-01</span>
-        <span class="pitch-chip pitch-chip-dim">PHARMA-01 &#8594;</span>
-        <span class="pitch-chip pitch-chip-dim">FINRISK-01 &#8594;</span>
+        <span class="pitch-chip pitch-chip-dim" title="Roadmap — planned claim">PHARMA-01 &#8594;</span>
+        <span class="pitch-chip pitch-chip-dim" title="Roadmap — planned claim">FINRISK-01 &#8594;</span>
       </div>
     </div>
 
@@ -2008,13 +2021,14 @@ a.soon-chip{border-bottom:none!important}
 <div class="div"></div>
 <div class="w"><section class="sec" id="verticals">
   <div class="stag rv">Use Cases</div>
-  <h2 class="rv d1" style="--h2d:7.2s" data-glitch="Five verticals. One protocol."><span class="hw">Five verticals.</span><br><span class="hc">One protocol.</span></h2>
+  <h2 class="rv d1" style="--h2d:7.2s" data-glitch="Six verticals. One protocol."><span class="hw">Six verticals.</span><br><span class="hc">One protocol.</span></h2>
   <div class="ucg rv d2">
     <div class="uc"><div class="ucn">01</div><div class="uc-tag">ML / AI</div><h3>Benchmark Certification</h3><p>Any ML accuracy claim packaged into a tamper-evident bundle. Reviewers verify offline &#8212; no model access, no environment, no GPU.</p></div>
     <div class="uc"><div class="ucn">02</div><div class="uc-tag">Pharma / Biotech</div><h3>Regulatory Submission</h3><p>ADMET predictions, PK/PD simulation outputs &#8212; packaged with full provenance. FDA 21 CFR Part 11 compatible audit trail.</p></div>
     <div class="uc"><div class="ucn">03</div><div class="uc-tag">Carbon Markets</div><h3>ESG Model Auditing</h3><p>Carbon sequestration and deforestation models become independently auditable. Corporate buyers verify without proprietary model access.</p></div>
     <div class="uc"><div class="ucn">04</div><div class="uc-tag">Financial Services</div><h3>Risk Model Validation</h3><p>VaR, credit scoring, stress test outputs packaged for Basel III/IV model risk management.</p></div>
     <div class="uc"><div class="ucn">05</div><div class="uc-tag">Materials / Engineering</div><h3>Calibration Handoff</h3><p>Young&#8217;s modulus, thermal conductivity &#8212; delivered with machine-verifiable proof. Drift detection against verified baselines included.</p></div>
+    <div class="uc"><div class="ucn">06</div><div class="uc-tag">Digital Twin / FEM</div><h3>FEM Output Verification</h3><p>ANSYS, FEniCS, OpenFOAM displacement and stress outputs &#8212; verified against physical reference with rel_err &#8804; 0.02. Machine-readable proof for engineering certification.</p></div>
   </div>
 </section></div>
 
@@ -2078,6 +2092,13 @@ a.soon-chip{border-bottom:none!important}
       <div class="cmp-col mg"><span class="cyes">&#10003;</span></div>
       <div class="cmp-col"><span class="cpart">partial</span></div>
       <div class="cmp-col"><span class="cpart">partial</span></div>
+      <div class="cmp-col"><span class="cno">&#10007;</span></div>
+    </div>
+    <div class="cmp-row">
+      <div class="cmp-feat">FEM / simulation output verification (Digital Twin)</div>
+      <div class="cmp-col mg"><span class="cyes">&#10003;</span></div>
+      <div class="cmp-col"><span class="cno">&#10007;</span></div>
+      <div class="cmp-col"><span class="cno">&#10007;</span></div>
       <div class="cmp-col"><span class="cno">&#10007;</span></div>
     </div>
   </div>
@@ -2231,6 +2252,15 @@ a.soon-chip{border-bottom:none!important}
       <div class="faq-q">What does "patent pending" mean for open source users?</div>
       <div class="faq-a">The code is MIT licensed &#8212; free to use, modify, and deploy. The provisional patent (USPTO #63/996,819) covers the protocol innovations. Commercial licensing options are available for organizations that want to build products on the protocol. Open source use is unrestricted.</div>
     </div>
+
+  <div class="faq-item">
+    <button class="faq-q rv" aria-expanded="false" aria-controls="faq-a6">
+      Does this replace experiment tracking tools like MLflow or DVC?
+    </button>
+    <div class="faq-a" id="faq-a6" role="region">
+      <p>No &#8212; MetaGenesis Core is complementary to MLflow and DVC, not a replacement. Experiment tracking tools record what you ran and when. MetaGenesis Core answers a different question: can any third party verify the result independently, offline, without access to your environment? The two layers work together: MLflow tracks the experiment, MetaGenesis Core packages the result as a verifiable evidence artifact for external reviewers, auditors, and regulators.</p>
+    </div>
+  </div>
 
   </div>
 </section></div>
@@ -2391,6 +2421,7 @@ a.soon-chip{border-bottom:none!important}
         <button class="vrf-claim-btn" data-claim="mtr">MTR-1<span class="vrf-claim-sub">Young's modulus</span></button>
         <button class="vrf-claim-btn" data-claim="data">DATA-PIPE-01<span class="vrf-claim-sub">Data pipeline</span></button>
         <button class="vrf-claim-btn" data-claim="drift">DRIFT-01<span class="vrf-claim-sub">Drift monitor</span></button>
+        <button class="vrf-claim-btn" data-claim="dtfem">DT-FEM-01<span class="vrf-claim-sub">FEM displacement</span></button>
       </div>
     </div>
 
@@ -2446,6 +2477,18 @@ a.soon-chip{border-bottom:none!important}
             <input class="vrf-input" id="drift-current" type="number" step="0.01" value="103.2" placeholder="103.2">
           </div>
           <div class="vrf-threshold">threshold: |current − baseline| / baseline ≤ 0.05 (5%)</div>
+        </div>
+
+        <div class="vrf-input-group" data-claim="dtfem">
+          <div class="vrf-field">
+            <label class="vrf-label" for="dtfem-simulated">simulated_displacement <span class="vrf-unit">mm</span></label>
+            <input class="vrf-input" id="dtfem-simulated" type="number" step="0.001" value="2.450" placeholder="2.450">
+          </div>
+          <div class="vrf-field">
+            <label class="vrf-label" for="dtfem-reference">reference_displacement <span class="vrf-unit">mm (physical)</span></label>
+            <input class="vrf-input" id="dtfem-reference" type="number" step="0.001" value="2.500" placeholder="2.500">
+          </div>
+          <div class="vrf-threshold">threshold: |simulated − reference| / reference ≤ 0.02</div>
         </div>
 
         <button class="vrf-run-btn" id="vrf-run">
@@ -2967,6 +3010,12 @@ a.soon-chip{border-bottom:none!important}
         var dr=bl>0?Math.abs(cu-bl)/bl:1;
         pass=dr<=0.05;
         reason=pass?'drift '+(dr*100).toFixed(2)+'% ≤ 5.00%':'drift '+(dr*100).toFixed(2)+'% > 5.00% — calibration drift detected';
+      } else if(currentClaim==='dtfem'){
+        var sim=parseFloat(document.getElementById('dtfem-simulated')?document.getElementById('dtfem-simulated').value:0)||0;
+        var ref=parseFloat(document.getElementById('dtfem-reference')?document.getElementById('dtfem-reference').value:0)||0;
+        var fe=ref>0?Math.abs(sim-ref)/ref:1;
+        pass=fe<=0.02;
+        reason=pass?'rel_err '+fe.toFixed(5)+' ≤ 0.02 — FEM output verified':'rel_err '+fe.toFixed(5)+' > 0.02 — FEM displacement exceeds threshold';
       }
 
       var seq=[
@@ -2977,7 +3026,7 @@ a.soon-chip{border-bottom:none!important}
         [1400,'ok','✓ semantic layer: job_snapshot present'],
         [1750,'ok','✓ canary_mode flag: correct'],
         [2100,'info','→ Running threshold check...'],
-        [2400,'muted','  claim: '+(currentClaim==='ml'?'ML_BENCH-01':currentClaim==='mtr'?'MTR-1':currentClaim==='data'?'DATA-PIPE-01':'DRIFT-01')],
+        [2400,'muted','  claim: '+(currentClaim==='ml'?'ML_BENCH-01':currentClaim==='mtr'?'MTR-1':currentClaim==='data'?'DATA-PIPE-01':currentClaim==='drift'?'DRIFT-01':'DT-FEM-01')],
         [2700,'muted','  '+reason],
       ];
       var chain=Promise.resolve();
