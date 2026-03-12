@@ -5,7 +5,7 @@
 [![Steward Audit](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml/badge.svg)](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Patent Pending](https://img.shields.io/badge/Patent-Pending%20%2363%2F996%2C819-orange.svg)](ppa/README_PPA.md)
-[![Tests](https://img.shields.io/badge/Tests-91%20passing-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-107%20passing-brightgreen.svg)](tests/)
 [![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.1-blueviolet.svg)](docs/PROTOCOL.md)
 
 🌐 **Site:** https://metagenesis-core.dev  
@@ -140,7 +140,7 @@ Evidence: backend/progress/runner.py :: run_job(canary_mode=True/False)
 
 ---
 
-## 7 active verification claims
+## 8 active verification claims
 
 | Claim | Domain | Threshold | Implementation |
 |---|---|---|---|
@@ -151,6 +151,7 @@ Evidence: backend/progress/runner.py :: run_job(canary_mode=True/False)
 | DATA-PIPE-01 | Data Pipelines | `schema pass · range pass` | `backend/progress/datapipe1_quality_certificate.py` |
 | DRIFT-01 | Drift Monitoring | `drift_threshold 5.0%` | `backend/progress/drift_monitor.py` |
 | ML_BENCH-01 | ML Accuracy | `\|actual − claimed\| ≤ 0.02` | `backend/progress/mlbench1_accuracy_certificate.py` |
+| DT-FEM-01 | Digital Twin / FEM | `rel_err ≤ 0.02` | `backend/progress/dtfem1_displacement_verification.py` |
 
 ---
 
@@ -185,14 +186,14 @@ python scripts/steward_audit.py
 # → STEWARD AUDIT: PASS
 
   python -m pytest tests/ -q
-  # → 91 passed
+  # → 107 passed
 
 grep -r "tamper-proof|GPT-5|19x|VacuumGenesis" docs/ scripts/ backend/ tests/
 # → (empty — no forbidden claims)
 ```
 
-**Canonical state:** v0.1.0-ppa-filing → commit c2d9920  
-**Active claims:** MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01  
+**Canonical state:** v0.1.0 → PR #28 merged 2026-03-12  
+**Active claims:** MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01, DT-FEM-01  
 **Known limitations:** documented in `reports/known_faults.yaml`
 
 ---

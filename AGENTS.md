@@ -13,7 +13,7 @@ the rules of this repository. Read this before making any change.
 3. README.md             ← architecture, claims, quickstart
 4. llms.txt              ← AI-optimized summary of entire repo
 5. reports/canonical_state.md    ← verified claim list
-6. reports/scientific_claim_index.md  ← all 7 claims with thresholds
+6. reports/scientific_claim_index.md  ← all 8 claims with thresholds
 7. reports/known_faults.yaml     ← known limitations, do not overclaim
 8. docs/PROTOCOL.md      ← full protocol specification
 ```
@@ -119,6 +119,7 @@ python -m pytest tests/ -q → all passed
 | DATA-PIPE-01 | backend/progress/datapipe1_quality_certificate.py | tests/data/ |
 | DRIFT-01 | backend/progress/drift_monitor.py | tests/steward/ |
 | ML_BENCH-01 | backend/progress/mlbench1_accuracy_certificate.py | tests/ml/ |
+| DT-FEM-01 | backend/progress/dtfem1_displacement_verification.py | tests/digital_twin/ |
 
 ---
 
