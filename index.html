@@ -2267,7 +2267,7 @@ a.soon-chip{border-bottom:none!important}
 <div class="w"><section class="sec" id="segments">
   <div class="stag rv">For Your Industry</div>
   <h2 class="rv d1" style="--h2d:11.2s" data-glitch="Built for your world. Speak your language.">Built for <span class="hc">your world.</span><br>Speak your language.</h2>
-  <p class="sdesc rv d2">One protocol. Four industries. Find your use case.</p>
+  <p class="sdesc rv d2">One protocol. Five industries. Find your use case.</p>
 
   <div class="seg-wrap rv d3">
     <div class="seg-tabs" role="tablist">
@@ -2286,6 +2286,10 @@ a.soon-chip{border-bottom:none!important}
       <button class="seg-tab" data-seg="research" role="tab" aria-selected="false">
         <span class="seg-tab-num">04</span>
         <span class="seg-tab-label">Research</span>
+      </button>
+      <button class="seg-tab" data-seg="femdt" role="tab" aria-selected="false">
+        <span class="seg-tab-num">05</span>
+        <span class="seg-tab-label">Digital Twin / FEM</span>
       </button>
     </div>
 
@@ -2402,6 +2406,33 @@ a.soon-chip{border-bottom:none!important}
       </div>
 
     </div>
+      <div class="seg-panel" data-seg="femdt">
+        <div class="seg-pain">
+          <span class="seg-pain-label">The problem</span>
+          <p>Your ANSYS, FEniCS, or OpenFOAM simulation produces displacement results. Your engineering client needs machine-verifiable proof that the output matches physical reference data — not a PDF report, not a screenshot. A certificate any auditor can check offline.</p>
+        </div>
+        <div class="seg-scenario">
+          <span class="seg-scenario-label">Your scenario</span>
+          <div class="seg-flow">
+            <div class="seg-step"><span class="seg-step-n">1</span><span>Your FEM solver runs → DT-FEM-01 verifies output against physical reference → bundle contains displacement result + SHA-256 fingerprint + semantic proof</span></div>
+            <div class="seg-step"><span class="seg-step-n">2</span><span>Client runs <code>mg.py verify --pack bundle.zip</code> on their machine</span></div>
+            <div class="seg-step"><span class="seg-step-n">3</span><span>They see <span class="seg-pass">PASS</span> — rel_err ≤ 0.02 verified. No solver access. No environment. No trust required.</span></div>
+          </div>
+        </div>
+        <div class="seg-claims-row">
+          <span class="seg-claims-label">Relevant claims</span>
+          <div class="seg-claim-chips">
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtfem1_displacement_verification.py" target="_blank"><span class="seg-chip active-chip">DT-FEM-01 — FEM displacement verification</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mtr1_calibration.py" target="_blank"><span class="seg-chip active-chip">MTR-1 — Young's modulus anchor</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="seg-chip active-chip">DRIFT-01 — baseline drift monitor</span></a>
+          </div>
+        </div>
+        <div class="seg-cta-row">
+          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtfem1_displacement_verification.py" class="seg-btn-secondary">View DT-FEM-01 on GitHub →</a>
+          <a href="#pilot" class="seg-btn-primary">Request Free Pilot →</a>
+        </div>
+      </div>
+
   </div>
 </section></div>
 
@@ -2535,8 +2566,35 @@ a.soon-chip{border-bottom:none!important}
             <option value="pharma">Pharma / Biotech — regulatory submission or calibration</option>
             <option value="finance">Financial / Risk — model validation or audit trail</option>
             <option value="research">Research — reproducibility or peer review</option>
+            <option value="femdt">Digital Twin / FEM — simulation output verification</option>
             <option value="other">Other — describe below</option>
           </select>
+        </div>
+        <div class="pilot-domain-hint" id="pf-domain-hint" style="display:none">
+          <div class="pdh-inner" id="pdh-ml-ai" style="display:none">
+            <span class="pdh-claim">ML_BENCH-01</span>
+            <span class="pdh-text">Your model claims 94% accuracy. Your client wants proof they can verify in 60 seconds — no model access, no GPU. We package your result into a tamper-evident bundle. <code>mg.py verify --pack bundle.zip → PASS</code></span>
+          </div>
+          <div class="pdh-inner" id="pdh-pharma" style="display:none">
+            <span class="pdh-claim">DATA-PIPE-01 · MTR series</span>
+            <span class="pdh-text">FDA 21 CFR Part 11 requires electronic records with audit trails. We package your ADMET predictions or calibration outputs into a verifiable bundle any regulator can check offline — no proprietary model access required.</span>
+          </div>
+          <div class="pdh-inner" id="pdh-finance" style="display:none">
+            <span class="pdh-claim">ML_BENCH-01 · DATA-PIPE-01</span>
+            <span class="pdh-text">Basel III/IV SR 11-7 requires independent model validation. We package your VaR or credit scoring outputs into a verifiable evidence bundle — your model validator gets proof without touching your proprietary code.</span>
+          </div>
+          <div class="pdh-inner" id="pdh-research" style="display:none">
+            <span class="pdh-claim">MTR-1/2/3 · SYSID-01 · ML_BENCH-01</span>
+            <span class="pdh-text">Your reviewer can't reproduce your simulation without your exact environment. We package your result into a bundle they verify in 60 seconds on their laptop — no environment, no GPU, no trust required.</span>
+          </div>
+          <div class="pdh-inner" id="pdh-femdt" style="display:none">
+            <span class="pdh-claim">DT-FEM-01 · MTR-1 · DRIFT-01</span>
+            <span class="pdh-text">Your ANSYS, FEniCS, or OpenFOAM output needs machine-verifiable proof against a physical reference. We package your displacement result as a tamper-evident bundle — rel_err ≤ 0.02 certified, verifiable offline by any engineering auditor.</span>
+          </div>
+          <div class="pdh-inner" id="pdh-other" style="display:none">
+            <span class="pdh-claim">Custom claim</span>
+            <span class="pdh-text">Any computational output can be verified. Describe your result below — we'll assess which claim domain fits and build a bundle for it. If your domain isn't covered yet, we'll tell you honestly.</span>
+          </div>
         </div>
         <div class="pilot-field">
           <label class="pilot-label" for="pf-desc">Describe your use case <span class="pilot-optional">— what result do you want to verify?</span></label>
@@ -3506,6 +3564,45 @@ h2:nth-of-type(3n)   .hw { animation-delay: 1.3s !important; }
   .phys-step-n{padding:20px 0}
 }
 
+/* ── Pilot domain hint ── */
+.pilot-domain-hint{
+  margin:12px 0 4px;
+  animation:pdhIn .25s ease;
+}
+@keyframes pdhIn{
+  from{opacity:0;transform:translateY(-6px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.pdh-inner{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  background:rgba(0,229,255,.06);
+  border:1px solid rgba(0,229,255,.18);
+  border-radius:8px;
+  padding:12px 16px;
+}
+.pdh-claim{
+  font-family:var(--fm);
+  font-size:11px;
+  color:var(--c);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.pdh-text{
+  font-size:13px;
+  color:var(--txt2);
+  line-height:1.55;
+}
+.pdh-text code{
+  font-family:var(--fm);
+  font-size:11px;
+  color:var(--ok);
+  background:rgba(0,255,153,.08);
+  padding:2px 6px;
+  border-radius:4px;
+}
+
 </style>
 
 <script>
@@ -3526,6 +3623,40 @@ h2:nth-of-type(3n)   .hw { animation-delay: 1.3s !important; }
   });
   document.querySelectorAll('h2').forEach(function(h){
     mo.observe(h, {attributes:true, attributeFilter:['class']});
+  });
+})();
+
+/* ── Pilot domain hint ── */
+(function(){
+  var sel = document.getElementById('pf-segment');
+  var hint = document.getElementById('pf-domain-hint');
+  var map = {
+    'ml-ai':   'pdh-ml-ai',
+    'pharma':  'pdh-pharma',
+    'finance': 'pdh-finance',
+    'research':'pdh-research',
+    'femdt':   'pdh-femdt',
+    'other':   'pdh-other'
+  };
+  if(!sel || !hint) return;
+  sel.addEventListener('change', function(){
+    var val = sel.value;
+    // Hide all inners
+    Object.values(map).forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) el.style.display = 'none';
+    });
+    if(val && map[val]){
+      hint.style.display = 'block';
+      // Re-trigger animation
+      hint.style.animation = 'none';
+      hint.offsetHeight; // reflow
+      hint.style.animation = '';
+      var target = document.getElementById(map[val]);
+      if(target) target.style.display = 'flex';
+    } else {
+      hint.style.display = 'none';
+    }
   });
 })();
 </script>
