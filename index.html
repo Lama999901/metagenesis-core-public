@@ -1858,6 +1858,80 @@ a.soon-chip{border-bottom:none!important}
 </section></div>
 
 <div class="div"></div>
+<div class="w"><section class="sec" id="demo-physics">
+  <div class="stag rv">Under the Hood — Real Example</div>
+  <h2 class="rv d1" style="--h2d:3.6s" data-glitch="Real physics. Real data. Real proof."><span class="hc" data-t="Real physics.">Real physics.</span><br>Real data. <span class="hg">Real proof.</span></h2>
+  <p class="sdesc rv d2">The open demo isn't synthetic. It runs a real physics calibration against a real dataset — then packages everything into a verifiable bundle. Here's exactly what happens, step by step.</p>
+  <div class="phys-flow rv d3">
+    <div class="phys-step">
+      <div class="phys-step-n">01</div>
+      <div class="phys-step-body">
+        <div class="phys-step-label">Real dataset — Al6061 aluminium alloy</div>
+        <div class="phys-step-code"><span class="phys-cm">strain,stress</span><span class="phys-cm">0.000040 &rarr; 2,861,142 Pa</span><span class="phys-cm">0.000081 &rarr; 5,722,285 Pa</span><span class="phys-cm">0.000122 &rarr; 8,583,428 Pa</span><span class="phys-dim">... 49 data points, elastic region only</span></div>
+        <div class="phys-step-note">Fingerprinted with SHA-256 at packaging time &mdash; cannot be substituted after the fact.</div>
+      </div>
+    </div>
+    <div class="phys-arrow">&darr;</div>
+    <div class="phys-step">
+      <div class="phys-step-n">02</div>
+      <div class="phys-step-body">
+        <div class="phys-step-label">Physical law applied &mdash; Hooke's Law</div>
+        <div class="phys-eq"><span class="phys-eq-lhs">stress</span><span class="phys-eq-op">=</span><span class="phys-eq-rhs"><span class="phys-eq-E">E</span> &times; strain</span></div>
+        <div class="phys-step-code"><span class="phys-dim"># OLS through origin &mdash; standard calibration</span><span class="phys-cm">E = &Sigma;(strain &times; stress) / &Sigma;(strain&sup2;)</span></div>
+        <div class="phys-step-note">No exotic dependencies. Pure stdlib Python. Reproducible on any machine.</div>
+      </div>
+    </div>
+    <div class="phys-arrow">&darr;</div>
+    <div class="phys-step">
+      <div class="phys-step-n">03</div>
+      <div class="phys-step-body">
+        <div class="phys-step-label">Calibration result vs. physical reality</div>
+        <div class="phys-result-grid">
+          <div class="phys-result-row"><span class="phys-result-label">E_estimated</span><span class="phys-result-val cy">70.12 GPa</span></div>
+          <div class="phys-result-row"><span class="phys-result-label">E_true (Al6061)</span><span class="phys-result-val">&sim;70 GPa</span></div>
+          <div class="phys-result-row"><span class="phys-result-label">relative_error</span><span class="phys-result-val ok">0.0017 &mdash; within 1%</span></div>
+          <div class="phys-result-row"><span class="phys-result-label">threshold (MTR-1)</span><span class="phys-result-val">rel_err &le; 0.01</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="phys-arrow">&darr;</div>
+    <div class="phys-step">
+      <div class="phys-step-n">04</div>
+      <div class="phys-step-body">
+        <div class="phys-step-label">Packaged into a tamper-evident bundle</div>
+        <div class="phys-step-code"><span class="phys-cm">mg.py pack build --output bundle/ --include-evidence</span><span class="phys-dim"># SHA-256 every file &rarr; root_hash</span><span class="phys-dim"># job_snapshot &rarr; semantic anchor</span><span class="phys-dim"># canary + normal runs &rarr; dual-mode proof</span></div>
+      </div>
+    </div>
+    <div class="phys-arrow">&darr;</div>
+    <div class="phys-step phys-step-final">
+      <div class="phys-step-n phys-n-pass">05</div>
+      <div class="phys-step-body">
+        <div class="phys-step-label">Third-party verifies &mdash; offline, one command</div>
+        <div class="phys-step-code"><span class="phys-cm">python scripts/mg.py verify --pack bundle/</span></div>
+        <div class="phys-outcome phys-outcome-pass">
+          <div class="phys-outcome-header"><span class="phys-outcome-badge ok">&check; PASS</span><span class="phys-outcome-title">All checks passed</span></div>
+          <div class="phys-outcome-checks">
+            <div class="phys-check ok">&check; <span>SHA-256 root_hash matches &mdash; no file modified</span></div>
+            <div class="phys-check ok">&check; <span>job_snapshot present &mdash; evidence not stripped</span></div>
+            <div class="phys-check ok">&check; <span>payload.kind = mtr1_youngs_modulus_calibration</span></div>
+            <div class="phys-check ok">&check; <span>rel_error = 0.0017 &le; 0.01 &mdash; threshold met</span></div>
+            <div class="phys-check ok">&check; <span>canary_mode flag consistent</span></div>
+          </div>
+        </div>
+        <div class="phys-fail-block">
+          <div class="phys-fail-header">What FAIL looks like &mdash; and what each message means</div>
+          <div class="phys-fail-row"><div class="phys-fail-msg">FAIL: job_snapshot missing in run artifact</div><div class="phys-fail-why">&rarr; Core evidence was removed after packaging. The run cannot be traced to its computation.</div></div>
+          <div class="phys-fail-row"><div class="phys-fail-msg">FAIL: payload.kind does not match registered claim</div><div class="phys-fail-why">&rarr; The claim type was changed. The bundle describes a different computation than declared.</div></div>
+          <div class="phys-fail-row"><div class="phys-fail-msg">FAIL: file hash mismatch &mdash; test_results.csv</div><div class="phys-fail-why">&rarr; A file was modified after the manifest was sealed. Integrity broken at that file.</div></div>
+          <div class="phys-fail-row"><div class="phys-fail-msg">FAIL: canary_mode flag inconsistent</div><div class="phys-fail-why">&rarr; Normal and canary execution metadata do not match. Provenance chain broken.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="note-block rv d5">Full pipeline: <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mtr1_calibration.py" target="_blank"><code>backend/progress/mtr1_calibration.py</code></a> &nbsp;&middot;&nbsp; Dataset: <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/demos/open_data_demo_01/data/strain_stress_open.csv" target="_blank"><code>demos/.../strain_stress_open.csv</code></a> &nbsp;&middot;&nbsp; V&amp;V threshold: <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/scientific_claim_index.md" target="_blank"><code>MTR-1 rel_err &le; 0.01</code></a></div>
+</section></div>
+
+<div class="div"></div>
 <div class="w"><section class="sec">
   <div class="stats rv">
     <div class="stat"><div class="stn"><span id="cn1">7</span></div><div class="stl">Active Claims</div><div class="std">Across 5 domains: materials, ML/AI, system ID, data pipelines, drift monitoring</div></div>
@@ -3327,6 +3401,59 @@ h2:nth-of-type(3n)   .hw { animation-delay: 1.3s !important; }
    Precision glitch-scan: text always readable
    Subtle scan line + occasional digit-glitch
    ════════════════════════════════════════ */
+
+/* ══ PHYSICS DEMO SECTION ══ */
+.phys-flow{display:flex;flex-direction:column;gap:0;border:1px solid var(--ln);overflow:hidden}
+.phys-step{display:grid;grid-template-columns:72px 1fr;border-bottom:1px solid var(--ln);transition:background .2s}
+.phys-step:last-child{border-bottom:none}
+.phys-step:hover{background:rgba(0,229,255,.025)}
+.phys-step-final{background:rgba(0,255,153,.025)}
+.phys-step-n{display:flex;align-items:flex-start;justify-content:center;padding:32px 0 32px;font-family:var(--fd);font-size:13px;font-weight:700;color:var(--txt3);border-right:1px solid var(--ln)}
+.phys-n-pass{color:var(--ok)}
+.phys-step-body{padding:32px 40px;display:flex;flex-direction:column;gap:14px}
+.phys-step-label{font-family:var(--fm);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--c);opacity:.8}
+.phys-step-code{background:var(--ink2);border:1px solid var(--ln);padding:16px 20px;display:flex;flex-direction:column;gap:4px;font-family:var(--fm);font-size:12px}
+.phys-cm{color:var(--txt);letter-spacing:.02em}
+.phys-dim{color:var(--txt3)}
+.phys-step-note{font-size:12px;color:var(--txt3);font-style:italic;line-height:1.6}
+.phys-arrow{display:flex;align-items:center;justify-content:center;height:32px;font-family:var(--fm);font-size:16px;color:rgba(0,229,255,.3);background:var(--ink1);border-left:1px solid var(--ln);border-right:1px solid var(--ln)}
+.phys-eq{display:flex;align-items:baseline;gap:16px;padding:18px 20px;background:var(--ink2);border:1px solid rgba(0,229,255,.18);font-family:var(--fm);font-size:15px}
+.phys-eq-lhs{color:var(--txt2)}
+.phys-eq-op{color:var(--txt3)}
+.phys-eq-rhs{color:var(--txt2)}
+.phys-eq-E{color:var(--c);font-weight:700;font-size:18px}
+.phys-result-grid{display:flex;flex-direction:column;gap:0;border:1px solid var(--ln);overflow:hidden}
+.phys-result-row{display:grid;grid-template-columns:180px 1fr;border-bottom:1px solid var(--ln);padding:10px 16px;align-items:center}
+.phys-result-row:last-child{border-bottom:none}
+.phys-result-label{font-family:var(--fm);font-size:11px;color:var(--txt3);letter-spacing:.04em}
+.phys-result-val{font-family:var(--fm);font-size:12px;color:var(--txt2)}
+.phys-result-val.ok{color:var(--ok);font-weight:600}
+.phys-result-val.cy{color:var(--c);font-weight:600}
+.phys-outcome{margin-top:4px;border:1px solid;padding:20px 24px}
+.phys-outcome-pass{border-color:rgba(0,255,153,.3);background:rgba(0,255,153,.04)}
+.phys-outcome-header{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.phys-outcome-badge{font-family:var(--fd);font-size:12px;font-weight:700;letter-spacing:.08em;padding:4px 14px;border:1px solid}
+.phys-outcome-badge.ok{color:var(--ok);border-color:rgba(0,255,153,.4);background:rgba(0,255,153,.08)}
+.phys-outcome-title{font-size:13px;color:var(--txt2);font-weight:300}
+.phys-outcome-checks{display:flex;flex-direction:column;gap:6px}
+.phys-check{display:flex;align-items:flex-start;gap:10px;font-family:var(--fm);font-size:12px}
+.phys-check.ok{color:var(--ok)}
+.phys-check.ok span{color:var(--txt2)}
+.phys-fail-block{margin-top:20px;border:1px solid rgba(255,64,96,.2);background:rgba(255,64,96,.03);overflow:hidden}
+.phys-fail-header{font-family:var(--fm);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--err);padding:12px 20px;border-bottom:1px solid rgba(255,64,96,.15);opacity:.8}
+.phys-fail-row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid rgba(255,64,96,.1);padding:12px 20px;gap:20px;align-items:flex-start}
+.phys-fail-row:last-child{border-bottom:none}
+.phys-fail-msg{font-family:var(--fm);font-size:11px;color:var(--err);opacity:.9;line-height:1.5}
+.phys-fail-why{font-size:12px;color:var(--txt2);font-weight:300;line-height:1.6}
+@media(max-width:900px){
+  .phys-step{grid-template-columns:48px 1fr}
+  .phys-fail-row{grid-template-columns:1fr}
+  .phys-result-row{grid-template-columns:140px 1fr}
+}
+@media(max-width:600px){
+  .phys-step-body{padding:20px 18px}
+  .phys-step-n{padding:20px 0}
+}
 
 </style>
 
