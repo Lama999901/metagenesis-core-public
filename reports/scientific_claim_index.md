@@ -153,4 +153,64 @@ metrics, drift monitoring against approved baseline.
 
 ---
 
+## DT-FEM-01
+
+| Field | Value |
+|-------|--------|
+| **claim_id** | DT-FEM-01 |
+| **domain** | Digital Twin / FEM Verification |
+| **job_kind** | `dtfem1_displacement_verification` |
+| **reproduction** | `python -m pytest tests/digital_twin/test_dtfem01_displacement_verification.py -v` |
+| **evidence_fields** | Result lives under `job_snapshot.result`. Contains `mtr_phase` (DT-FEM-01), `inputs` (seed, reference_value, rel_err_threshold, noise_scale, quantity, units), `result` (fem_value, reference_value, rel_err, rel_err_threshold, pass, quantity, units, method, algorithm_version). Real data mode adds: per_row list, max_rel_err, n_points, dataset fingerprint. |
+| **V&V thresholds** | `rel_err <= 0.02` (2%). For real data mode: `max_rel_err <= rel_err_threshold`. `result.pass` must be True for certificate to be valid. |
+| **notes (canary vs normal)** | Same as all other claims: job runs in normal or canary mode via `run_job(..., canary_mode=...)`; evidence artifacts produced for both; canary marked in artifact `canary_mode: true`. |
+
+### Purpose
+
+Any FEM or simulation solver (ANSYS, FEniCS, OpenFOAM, COMSOL, custom)
+produces a computed physical value. DT-FEM-01 packages that computed value
+alongside the physical reference measurement (lab result, known constant)
+into a tamper-evident evidence bundle. A third party verifies:
+`mg.py verify --pack bundle.zip` → PASS or FAIL — offline, without access
+to the FEM solver, model, or compute environment.
+
+This is the universal verification layer for digital twin calibration.
+The verified result becomes a trusted anchor for DRIFT-01 monitoring:
+as the twin evolves, drift against the anchor is quantified and
+correction requirements are signalled automatically.
+
+Supports two modes:
+- **Synthetic mode** (default): deterministic FEM/reference pair from seed.
+  Same seed → same result always. Used for baseline certification.
+- **Real data mode**: CSV with `fem_value`/`measured_value`/`quantity` columns.
+  SHA-256 fingerprinted. Used for certifying actual FEM solver outputs.
+
+### V&V Thresholds (summary)
+
+| Parameter | Value |
+|-----------|-------|
+| rel_err_threshold (default) | 0.02 (2% relative error) |
+| pass condition | `rel_err <= rel_err_threshold` |
+| real data pass condition | `max_rel_err <= rel_err_threshold` |
+| adversarial test | noise_scale=0.5 → FAIL (rel_err >> 0.02) |
+
+### Use case examples
+
+**Structural engineering:** FEM predicts max displacement 12.3 mm under
+load. Lab measures 12.1 mm. rel_err = 1.6% < 2% → PASS. Bundle sent to
+client contains: FEM output, reference measurement, error, threshold —
+independently verifiable with one command.
+
+**Thermal simulation:** CFD predicts junction temperature 85.2°C.
+Thermocouple reads 84.0°C. rel_err = 1.4% < 2% → PASS. Bundle is the
+evidence for regulatory submission — no model access required.
+
+**Digital twin calibration loop:** MTR-1 verifies E=70 GPa (anchor).
+FEM runs with this property. DT-FEM-01 verifies FEM displacement output.
+DRIFT-01 monitors drift as real-world measurements accumulate.
+Each step is independently verifiable — the full calibration chain
+is tamper-evident.
+
+---
+
 *Index authority: MetaGenesis Core / SCI-01 v0.2. Append new claims as sections.*
