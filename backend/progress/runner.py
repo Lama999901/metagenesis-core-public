@@ -196,6 +196,7 @@ class ProgressRunner:
         from backend.progress.datapipe1_quality_certificate import JOB_KIND as DATAPIPE1_KIND
         from backend.progress.drift_monitor import JOB_KIND as DRIFT01_KIND
         from backend.progress.mlbench1_accuracy_certificate import JOB_KIND as MLBENCH1_KIND
+        from backend.progress.dtfem1_displacement_verification import JOB_KIND as DTFEM1_KIND
 
         if payload.get("kind") == MTR1_KIND:
             p = payload
@@ -289,9 +290,24 @@ class ProgressRunner:
                 kwargs["dataset_relpath"] = str(p["dataset_relpath"]).strip()
             return run_mlbench1(**kwargs)
 
+        from backend.progress.dtfem1_displacement_verification import JOB_KIND as DTFEM1_KIND, run_certificate as run_dtfem1
+        if payload.get("kind") == DTFEM1_KIND:
+            p = payload
+            kwargs = dict(
+                seed=int(p.get("seed", 42)),
+                reference_value=float(p.get("reference_value", 1.0)),
+                rel_err_threshold=float(p.get("rel_err_threshold", 0.02)),
+                noise_scale=float(p.get("noise_scale", 0.005)),
+                quantity=str(p.get("quantity", "displacement_mm")),
+                units=str(p.get("units", "mm")),
+            )
+            if p.get("dataset_relpath") is not None:
+                kwargs["dataset_relpath"] = str(p["dataset_relpath"]).strip()
+            return run_dtfem1(**kwargs)
+
         registered = [
             MTR1_KIND, MTR2_KIND, MTR3_KIND,
-            SYSID1_KIND, DATAPIPE1_KIND, DRIFT01_KIND, MLBENCH1_KIND,
+            SYSID1_KIND, DATAPIPE1_KIND, DRIFT01_KIND, MLBENCH1_KIND, DTFEM1_KIND,
         ]
         raise ValueError(
             f"Unknown job kind: '{payload.get('kind')}'. "
