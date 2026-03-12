@@ -30,7 +30,8 @@ The recipient runs `mg.py verify --pack bundle.zip` and gets PASS or FAIL.
 **Who this is for:**
 - ML teams publishing benchmark results for peer review
 - Research teams submitting computational evidence to journals
-- Engineering teams handing off simulation results to clients
+- Engineering and simulation teams handing off FEM/CFD results to clients
+- Digital twin providers certifying calibration accuracy to customers
 - Any team needing third-party verifiable proof of a computational claim
 
 **Price:** $299 per bundle.
@@ -93,6 +94,17 @@ bundle gives carbon project developers credible, auditable evidence.
 **Financial services:** Basel III/IV model risk management requires
 documented validation of risk model outputs. Verifiable bundles provide
 an audit-ready evidence trail without exposing proprietary model IP.
+
+**Engineering / Digital twin:** Simulation-based design — FEM, CFD,
+molecular dynamics, thermal modeling — produces calibrated physical
+claims that clients, regulators, and partner teams must trust. A
+MetaGenesis bundle packages the simulation output alongside the physical
+reference measurement: rel_err, threshold, provenance chain. Clients
+verify offline with one command. The verified calibration result becomes
+a trusted anchor for continuous drift monitoring as the twin evolves.
+Target teams: aerospace and automotive simulation, materials science labs,
+medical device manufacturers requiring FDA/CE simulation evidence,
+industrial digital twin providers.
 
 ---
 
