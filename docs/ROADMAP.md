@@ -6,6 +6,12 @@ All items are subject to change based on community feedback and priorities.
 **Current version:** 0.1.0-ppa-filing
 **Protocol:** MetaGenesis Verification Protocol (MVP) v0.1
 
+**Core principle:** MetaGenesis Core verifies that computational results
+agree with physical reality — not just that numbers weren't changed.
+Where physical constants exist (E = 70 GPa, thermal conductivity values,
+measured reference data), the verification chain is anchored to them.
+This is traceability to physical measurement, not threshold compliance.
+
 ---
 
 ## Done (v0.1 → v0.3)
