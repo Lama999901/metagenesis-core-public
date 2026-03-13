@@ -27,9 +27,37 @@ No GPU. No access to your code or environment. No trust required.
 
 ---
 
+## Two pillars — not one
+
+Most verification tools answer one question: *was this number changed after it was produced?*
+
+MetaGenesis Core answers a harder question: **is this number traceable to physical reality?**
+
+The difference matters.
+
+**Pillar 1 — Tamper-evident provenance**
+SHA-256 integrity + semantic verification ensures the bundle hasn't been modified after generation. Any tamper attempt — including SHA-256 recomputation — is detected.
+
+**Pillar 2 — Physical anchor traceability**
+The verification chain is grounded in physical constants — not arbitrary thresholds. MTR-1's anchor is E = 70 GPa for aluminum: a value measured independently in thousands of laboratories worldwide. When MetaGenesis Core verifies `rel_err ≤ 1%` against this anchor, it is asserting that the computation **agrees with physical reality** — not merely that a number falls within an internally chosen range.
+
+The full chain:
+```
+Physical reality:  E = 70 GPa  (measured, not assumed)
+        ↓
+MTR-1:    model → rel_err ≤ 1% vs. physical constant → PASS
+        ↓
+DT-FEM-01: FEM solver output verified against MTR-1 anchor → rel_err ≤ 2% → PASS
+        ↓
+DRIFT-01:  ongoing deviation from anchor → drift ≤ 5% → PASS
+```
+Any third party verifies the entire chain with one command. No FEM solver. No simulation environment. No trust.
+
+---
+
 ## The problem in one sentence
 
-Every ML team, lab, and pipeline produces claims every day. There is **no standard way** to verify them independently — a reviewer must either re-run your entire environment, or trust the number you reported.
+Every ML team, lab, and pipeline produces computational claims every day. There is **no standard way** to verify them independently — a reviewer must either re-run your entire environment, or trust the number you reported.
 
 ---
 
