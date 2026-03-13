@@ -1903,6 +1903,55 @@ a.soon-chip{border-bottom:none!important}
       <p>And where a physical constant exists &#8212; E&nbsp;=&nbsp;70&nbsp;GPa for aluminum, measured independently in thousands of labs worldwide &#8212; the verification chain is anchored to <strong>physical reality</strong>, not an internally chosen threshold. This is traceability, not compliance.</p>
     </div>
   </div>
+  <!-- PHYSICAL ANCHOR CHAIN VISUALIZATION -->
+  <div class="anchor-chain rv d2">
+    <div class="anchor-chain-header">
+      <div class="anchor-chain-label">Physical Anchor Principle</div>
+      <div class="anchor-chain-desc">Most verification tools answer: <em style="color:var(--txt2)">&#8220;was this number changed?&#8221;</em> MetaGenesis Core answers a harder question: <strong>&#8220;does this number agree with physical reality?&#8221;</strong> Where a physical constant exists, the chain is anchored to measured reality &#8212; not an internally chosen threshold.</div>
+    </div>
+    <div class="anchor-steps">
+      <div class="anchor-step anchor-root">
+        <div class="anchor-step-top">
+          <span class="anchor-badge-pill">&#9875;&nbsp;PHYSICAL ANCHOR</span>
+        </div>
+        <div class="anchor-step-val">E&nbsp;=&nbsp;70&nbsp;GPa</div>
+        <div class="anchor-step-name">Aluminum Young&#8217;s Modulus</div>
+        <div class="anchor-step-desc">Measured independently in thousands of laboratories worldwide. Not assumed &#8212; measured.</div>
+      </div>
+      <div class="anchor-arrow">&#8594;</div>
+      <div class="anchor-step">
+        <div class="anchor-step-top">
+          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mtr1_calibration.py" target="_blank" class="anchor-claim-id">MTR-1</a>
+          <span class="anchor-verdict-ok">PASS</span>
+        </div>
+        <div class="anchor-step-val">rel_err &#8804; 1%</div>
+        <div class="anchor-step-name">Materials Science</div>
+        <div class="anchor-step-desc">Computational model verified against physical constant</div>
+      </div>
+      <div class="anchor-arrow">&#8594;</div>
+      <div class="anchor-step">
+        <div class="anchor-step-top">
+          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtfem1_displacement_verification.py" target="_blank" class="anchor-claim-id">DT-FEM-01</a>
+          <span class="anchor-verdict-ok">PASS</span>
+        </div>
+        <div class="anchor-step-val">rel_err &#8804; 2%</div>
+        <div class="anchor-step-name">Digital Twin / FEM</div>
+        <div class="anchor-step-desc">FEM solver output verified against MTR-1 anchor</div>
+      </div>
+      <div class="anchor-arrow">&#8594;</div>
+      <div class="anchor-step">
+        <div class="anchor-step-top">
+          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank" class="anchor-claim-id">DRIFT-01</a>
+          <span class="anchor-verdict-ok">PASS</span>
+        </div>
+        <div class="anchor-step-val">drift &#8804; 5%</div>
+        <div class="anchor-step-name">Drift Monitoring</div>
+        <div class="anchor-step-desc">Ongoing deviation from physical anchor monitored</div>
+      </div>
+    </div>
+    <div class="anchor-verify"><span class="anchor-verify-prompt">$</span> python scripts/mg.py verify --pack bundle.zip &nbsp;&#8594;&nbsp; <span class="anchor-verify-pass">PASS</span> &nbsp;&mdash;&nbsp; <span class="anchor-verify-note">entire chain verified offline in 60 seconds. No model access. No trust.</span></div>
+  </div>
+
   <div class="stag rv">How It Works</div>
   <h2 class="rv d1" style="--h2d:2.4s" data-glitch="Four steps. Immutable proof."><span class="hw">Four steps.</span><br><span class="hg">Immutable proof.</span></h2>
   <p class="sdesc rv d2">Every run produces an evidence bundle with two independent verification layers. Any deviation surfaces as FAIL with a specific reason.</p>
@@ -2069,7 +2118,7 @@ a.soon-chip{border-bottom:none!important}
   <h2 class="rv d1" style="--h2d:4.8s" data-glitch="Eight claims. All bidirectionally enforced."><span class="hc">Eight</span> claims.<br>All bidirectionally <span class="hg">enforced.</span></h2>
   <p class="sdesc rv d2">Every claim has an implementation, runner dispatch, threshold, and tests. Enforced on every PR &#8212; not by human review.</p>
   <div class="claimsgrid rv d3">
-    <div class="claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mtr1_calibration.py" target="_blank"><span class="claimid">MTR-1</span></a></div><div class="claimdomain">Materials Science</div><div class="claimname">Young&#8217;s Modulus Calibration</div><div class="claimth"><span>relative_error</span> &#8804; 0.01</div></div>
+    <div class="claim claim-anchor"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mtr1_calibration.py" target="_blank"><span class="claimid">MTR-1</span></a><span class="claimid-badge anchor-sm">&#9875; ANCHOR</span></div><div class="claimdomain">Materials Science</div><div class="claimname">Young&#8217;s Modulus Calibration</div><div class="claimth"><span>relative_error</span> &#8804; 0.01 &nbsp;&middot;&nbsp; anchored to <span style="color:var(--ok);font-weight:600">E&nbsp;=&nbsp;70&nbsp;GPa</span></div></div>
     <div class="claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mtr2_thermal_conductivity.py" target="_blank"><span class="claimid">MTR-2</span></a></div><div class="claimdomain">Materials Science</div><div class="claimname">Thermal Paste Conductivity Calibration</div><div class="claimth"><span>relative_error</span> &#8804; 0.02</div></div>
     <div class="claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mtr3_thermal_multilayer.py" target="_blank"><span class="claimid">MTR-3</span></a></div><div class="claimdomain">Materials Science</div><div class="claimname">Multilayer Thermal Contact Calibration</div><div class="claimth"><span>rel_err_k</span> &#8804; 0.03 &#183; <span>rel_err_r</span> &#8804; 0.05</div></div>
     <div class="claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/sysid1_arx_calibration.py" target="_blank"><span class="claimid">SYSID-01</span></a></div><div class="claimdomain">System Identification</div><div class="claimname">ARX Model Calibration</div><div class="claimth"><span>rel_err_a</span> &#8804; 0.03 &#183; <span>rel_err_b</span> &#8804; 0.03</div></div>
@@ -2203,6 +2252,13 @@ a.soon-chip{border-bottom:none!important}
     </div>
     <div class="cmp-row">
       <div class="cmp-feat">FEM / simulation output verification (Digital Twin)</div>
+      <div class="cmp-col mg"><span class="cyes">&#10003;</span></div>
+      <div class="cmp-col"><span class="cno">&#10007;</span></div>
+      <div class="cmp-col"><span class="cno">&#10007;</span></div>
+      <div class="cmp-col"><span class="cno">&#10007;</span></div>
+    </div>
+    <div class="cmp-row">
+      <div class="cmp-feat"><strong style="color:var(--ok)">&#9875; Physical anchor traceability</strong> &#8212; verification grounded in measured physical constants (E&nbsp;=&nbsp;70&nbsp;GPa), not arbitrary thresholds. Traceability to reality, not compliance.</div>
       <div class="cmp-col mg"><span class="cyes">&#10003;</span></div>
       <div class="cmp-col"><span class="cno">&#10007;</span></div>
       <div class="cmp-col"><span class="cno">&#10007;</span></div>
@@ -3865,6 +3921,40 @@ a.pp-claim-link:hover{color:#fff}
   padding:2px 6px;
   border-radius:4px;
 }
+
+/* ── PHYSICAL ANCHOR CHAIN ── */
+.anchor-chain{border:1px solid rgba(0,255,153,.2);background:rgba(0,255,153,.03);padding:44px 48px;margin-bottom:64px;position:relative;overflow:hidden}
+.anchor-chain::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--ok),transparent);opacity:.5}
+.anchor-chain-header{margin-bottom:36px}
+.anchor-chain-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--ok);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.anchor-chain-label::before{content:'';width:20px;height:1px;background:var(--ok)}
+.anchor-chain-desc{font-family:var(--fb);font-size:clamp(15px,1.3vw,18px);color:rgba(238,247,251,.78);line-height:1.72;font-weight:300;max-width:680px}
+.anchor-chain-desc strong{color:var(--ok);font-weight:500}
+.anchor-steps{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:center;gap:0;overflow-x:auto;padding-bottom:4px}
+.anchor-step{border:1px solid var(--ln2);background:var(--ink);padding:24px 28px;display:flex;flex-direction:column;gap:8px;position:relative;transition:background .2s;height:100%}
+.anchor-step:hover{background:rgba(0,255,153,.04)}
+.anchor-root{border-color:rgba(0,255,153,.35);background:rgba(0,255,153,.05)}
+.anchor-root:hover{background:rgba(0,255,153,.08)}
+.anchor-step-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px}
+.anchor-badge-pill{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ok);border:1px solid rgba(0,255,153,.35);background:rgba(0,255,153,.08);padding:3px 10px;white-space:nowrap}
+.anchor-claim-id{font-family:var(--fd);font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--c);text-decoration:none;border-bottom:1px solid rgba(0,229,255,.3)}
+.anchor-claim-id:hover{color:#fff}
+.anchor-verdict-ok{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--ok)}
+.anchor-step-val{font-family:var(--fm);font-size:14px;color:var(--txt);font-weight:500;letter-spacing:.02em}
+.anchor-root .anchor-step-val{font-size:20px;font-weight:700;color:var(--ok);font-family:var(--fd);letter-spacing:-.02em}
+.anchor-step-name{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3)}
+.anchor-step-desc{font-size:12px;color:var(--txt3);line-height:1.55;font-weight:300}
+.anchor-arrow{display:flex;align-items:center;justify-content:center;padding:0 20px;font-size:22px;color:rgba(0,255,153,.3);flex-shrink:0}
+.anchor-verify{margin-top:28px;padding:14px 20px;background:var(--ink2);border:1px solid var(--ln);font-family:var(--fm);font-size:12px;color:var(--txt2)}
+.anchor-verify-prompt{color:var(--c);margin-right:6px}
+.anchor-verify-pass{color:var(--ok);font-weight:700}
+.anchor-verify-note{color:var(--txt3)}
+/* MTR-1 claim-anchor badge */
+.claimid-badge.anchor-sm{font-size:8px;letter-spacing:.1em;padding:2px 7px;margin-left:8px;color:var(--ok);border:1px solid rgba(0,255,153,.3);background:rgba(0,255,153,.05);vertical-align:middle;text-transform:uppercase}
+.claim.claim-anchor{background:rgba(0,255,153,.03)!important}
+.claim.claim-anchor::before{background:linear-gradient(90deg,transparent,var(--ok),transparent)!important;transform:scaleX(1)!important;opacity:.4}
+@media(max-width:1100px){.anchor-steps{grid-template-columns:1fr;justify-items:stretch}.anchor-arrow{padding:10px 0;font-size:18px;transform:none}.anchor-step{min-width:0}}
+@media(max-width:768px){.anchor-chain{padding:28px 20px;margin-bottom:40px}.anchor-chain-desc{font-size:15px}}
 
 </style>
 
