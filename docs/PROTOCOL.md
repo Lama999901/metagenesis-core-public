@@ -20,12 +20,23 @@ There is no standard for what "independently verifiable" means for a
 computational result. Every team invents its own provenance approach —
 or does nothing.
 
+The deeper problem: even when provenance exists, it proves only that a
+number was produced consistently — not that it is grounded in physical
+reality. A result that agrees with a physically measured constant (E = 70
+GPa for aluminum, measured independently in thousands of labs) carries
+fundamentally different epistemic weight than a result that merely passes
+an internally chosen threshold.
+
+MVP addresses both: tamper-evident provenance AND traceability to physical
+anchors where they exist.
+
 MVP defines a minimal, concrete standard:
 
 - What a verifiable bundle must contain
 - What a compliant verifier must check
 - What PASS and FAIL mean precisely
 - What the verifier cannot be deceived by
+- How computational claims chain back to physical measurements
 
 ---
 
