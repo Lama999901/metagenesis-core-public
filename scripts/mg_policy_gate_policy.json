@@ -12,7 +12,6 @@
     "reports/canonical_state.md",
     "reports/scientific_claim_index.md",
     "demos/open_data_demo_01/evidence_index.json",
-    "system_manifest.json",
     "scripts/steward_audit.py"
   ],
   "allow_globs": [

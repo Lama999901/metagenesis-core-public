@@ -13,7 +13,29 @@ infrastructure built or integrated into their existing workflows.
 Your computational result — ML accuracy, calibration output, risk model
 output, regulatory submission — becomes independently verifiable by any
 third party with one command. No model access required. No environment
-required. Tamper-evident evidence.
+required.
+
+But MetaGenesis Core goes further than tamper-evident provenance.
+
+**The physical anchor principle:** where a physical constant exists
+(Young's modulus, thermal conductivity, measured reference values),
+the verification chain is grounded in it — not in an internally chosen
+threshold. When MTR-1 verifies `rel_err ≤ 1%` against E = 70 GPa for
+aluminum, it is verifying agreement with physical reality as measured
+independently in thousands of laboratories. The chain:
+
+```
+Physical reality (E = 70 GPa, measured)
+        ↓
+Calibrated model  →  rel_err ≤ 1%  →  PASS
+        ↓
+FEM solver output →  rel_err ≤ 2%  →  PASS
+        ↓
+Drift monitoring  →  drift ≤ 5%   →  PASS
+```
+
+Any auditor verifies the entire chain offline in 60 seconds.
+No model access. No simulation environment. No trust.
 
 ---
 
