@@ -118,16 +118,39 @@ thermal conductivity, contact resistance) are packaged into verifiable
 bundles. Engineering teams hand off simulation results to clients and
 regulators with independent verification proof.
 
-Active claims: MTR-1 (Young's modulus), MTR-2 (thermal paste conductivity),
-MTR-3 (multilayer thermal contact), DRIFT-01 (drift monitoring).
+**The physical anchor principle.** MTR-1's anchor — E = 70 GPa for
+aluminum — is not a threshold invented by the protocol. It is a physical
+constant measured independently in thousands of laboratories worldwide.
+When MetaGenesis Core verifies rel_err ≤ 1% against this anchor, it is
+verifying that the computation agrees with physical reality, not merely
+that a number falls within an arbitrary range.
 
+This is the key distinction: traceability to physical measurement,
+not threshold compliance.
+
+The full chain is independently verifiable:
 ```
-MTR-1 verified:  E = 70 GPa  →  trusted anchor
-Client receives: mg.py verify --pack mtr1_bundle.zip → PASS
+Physical reality:  E = 70 GPa  (measured, not assumed)
+        ↓
+MTR-1:   computational model → rel_err ≤ 1% vs. physical constant → PASS
+        ↓
+DT-FEM-01: FEM solver output verified against MTR-1 anchor → rel_err ≤ 2% → PASS
+        ↓
+DRIFT-01:  ongoing deviation from anchor → drift ≤ 5% → PASS
 ```
+
+Any third party verifies the entire chain with one command:
+```
+mg.py verify --pack mtr1_bundle.zip → PASS
+```
+
+Active claims: MTR-1 (Young's modulus), MTR-2 (thermal paste conductivity),
+MTR-3 (multilayer thermal contact), DT-FEM-01 (FEM displacement vs. anchor),
+DRIFT-01 (drift monitoring).
 
 **Who needs this:** Materials science labs, aerospace and automotive
-simulation teams, component qualification for safety-critical applications.
+simulation teams, AI materials prediction companies needing manufacturing
+partner trust, component qualification for safety-critical applications.
 
 ---
 
