@@ -25,7 +25,7 @@
 | steward_audit | PASS |
 | CI | GREEN |
 | Active claims | 8: MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01, DT-FEM-01 |
-| Last PR merged | #31 fix/site-audit-8-changes — 6 verticals, DT-FEM-01 verifier tab, mobile CSS |
+| Last PR merged | #47 feat/step-chain-verification — Step Chain Verification, 107→113 tests, all docs synced |
 | Site counters | 8 claims / 113 tests — CORRECT on live site |
 | Stripe | buy.stripe.com/14AcN57qH19R1qN3QQ6Na00 — active at $299 |
 | known_faults entries | 2: ENV_001 (test env) + SCOPE_001 (physical anchor scope) |
