@@ -2,7 +2,7 @@
 
 > Read this file first if you are an AI agent starting a new session.
 > This is the authoritative snapshot of what has been done and what is next.
-> Updated: 2026-03-13
+> Updated: 2026-03-14
 
 ---
 
@@ -17,16 +17,16 @@
 
 ---
 
-## Verified state (2026-03-12)
+## Verified state (2026-03-14)
 
 | Parameter | Value |
 |---|---|
-| Tests | 107 passing |
+| Tests | 113 passing |
 | steward_audit | PASS |
 | CI | GREEN |
 | Active claims | 8: MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01, DT-FEM-01 |
 | Last PR merged | #31 fix/site-audit-8-changes — 6 verticals, DT-FEM-01 verifier tab, mobile CSS |
-| Site counters | 8 claims / 107 tests — CORRECT on live site |
+| Site counters | 8 claims / 113 tests — CORRECT on live site |
 | Stripe | buy.stripe.com/14AcN57qH19R1qN3QQ6Na00 — active at $299 |
 | known_faults entries | 2: ENV_001 (test env) + SCOPE_001 (physical anchor scope) |
 | HN post | https://news.ycombinator.com/item?id=47335416 — live, 9 points, 4 comments |
@@ -60,7 +60,7 @@
 | 2026-03-08 | Outreach: Peter Coveney (UCL), Arvind Narayanan (Princeton) |
 | 2026-03-09 | DRIFT-01 + ML_BENCH-01 added → 7 claims, 91 tests |
 | 2026-03-10 | steward_audit.py CI-sealed; runner.py duplicates removed |
-| 2026-03-11 | DT-FEM-01 added → 8 claims, 107 tests. Outreach: Jeffrey Ip (Confident AI), Elena Samuylova (Evidently AI) |
+| 2026-03-11 | DT-FEM-01 added → 8 claims, 107 tests. (post-filing) Outreach: Jeffrey Ip (Confident AI), Elena Samuylova (Evidently AI) |
 | 2026-03-12 | PR #26 (physics demo section) merged. PR #31 (site audit: 6 verticals, DT-FEM-01 verifier, mobile CSS) merged. Show HN email sent to Tom (moderator). Tom replied: ready to front page when Yehor is online. Reply sent: available after 17:00 PST. Outreach: Jonah Cool (Anthropic Head of Life Sciences). |
 | 2026-03-13 | HN post live: id=47335416, 9 points. Physical Anchor principle introduced and documented. SCOPE_001 added to known_faults.yaml (physical anchor applies ONLY to MTR/FEM/DRIFT — not ML/pharma/finance). Site: hero reframe, anchor chain dark physics style, 2 new crisis rows, precise anchor framing. Answered itsthecourier on HN (semantic layer + physical anchor). measurablefunc: "art project" comment — needs reply. |
 
@@ -184,7 +184,7 @@ Key questions and responses are prepared. Principles:
 
 ```bash
 python scripts/steward_audit.py          # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q               # → 107 passed
+python -m pytest tests/ -q               # → 113 passed
 python demos/open_data_demo_01/run_demo.py  # → PASS PASS
 grep -r "tamper-proof|GPT-5|19x|VacuumGenesis" docs/ scripts/ backend/ tests/
 # → empty
@@ -192,5 +192,7 @@ grep -r "tamper-proof|GPT-5|19x|VacuumGenesis" docs/ scripts/ backend/ tests/
 
 ---
 
-*Updated: 2026-03-13 | Maintained by: Yehor Bazhynov*
-*Next update: after HN activity resolves or new claim added*
+| 2026-03-14 | Step Chain Verification added to ML_BENCH-01 → 113 tests. GitHub Release v0.1.0 published. NLnet Commons Fund (€30K, 2026-04-14c) + NLnet Open Call (€30K, 2026-04-14d) + Emergent Ventures ($15-25K) submitted. All docs synced to 113 tests. |
+
+*Updated: 2026-03-14 | Maintained by: Yehor Bazhynov*
+*Next update: after first paying customer or grant decision*
