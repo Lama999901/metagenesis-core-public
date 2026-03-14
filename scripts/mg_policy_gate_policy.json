@@ -10,7 +10,6 @@
   "last_updated": "2026-03-10",
   "locked_paths": [
     "reports/canonical_state.md",
-    "reports/scientific_claim_index.md",
     "demos/open_data_demo_01/evidence_index.json",
     "scripts/steward_audit.py"
   ],

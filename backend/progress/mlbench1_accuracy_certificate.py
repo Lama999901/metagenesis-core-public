@@ -120,8 +120,38 @@ def _compute_metrics(y_true: List[int], y_pred: List[int]) -> Dict[str, float]:
 
 
 # ---------------------------------------------------------------------------
+# Execution trace (Step Chain Verification — PPA #63/996,819)
+# ---------------------------------------------------------------------------
+
+
+def _hash_step(step_name: str, step_data: dict, prev_hash: str) -> str:
+    """
+    Hash a single execution step chained to the previous step hash.
+    Creates a cryptographic chain: each step commits to the previous step.
+    Tampering with any intermediate step breaks all subsequent hashes.
+
+    Args:
+        step_name: Human-readable step identifier
+        step_data: Deterministic dict of step inputs/outputs
+        prev_hash: SHA-256 hash of previous step (or "genesis" for first step)
+
+    Returns:
+        SHA-256 hex digest of this step in the chain
+    """
+    import hashlib
+    import json as _json
+    content = _json.dumps(
+        {"step": step_name, "data": step_data, "prev_hash": prev_hash},
+        sort_keys=True,
+        separators=(",", ":"),
+    )
+    return hashlib.sha256(content.encode("utf-8")).hexdigest()
+
+
+# ---------------------------------------------------------------------------
 # Main entry point
 # ---------------------------------------------------------------------------
+
 
 def run_certificate(
     seed: int = 42,
@@ -224,6 +254,48 @@ def run_certificate(
     abs_error = abs(actual_accuracy - claimed_accuracy)
     passed = abs_error <= accuracy_tolerance
 
+    # --- Step Chain Verification (PPA #63/996,819) ---
+    prev = "genesis"
+    trace = []
+
+    prev = _hash_step("init_params", {
+        "seed": seed,
+        "claimed_accuracy": claimed_accuracy,
+        "accuracy_tolerance": accuracy_tolerance,
+        "n_samples": n_samples,
+        "n_features": n_features,
+        "noise_scale": noise_scale,
+    }, prev)
+    trace.append({"step": 1, "name": "init_params", "hash": prev})
+
+    prev = _hash_step("generate_dataset", {
+        "seed": seed,
+        "n_samples": n_samples,
+        "n_features": n_features,
+        "effective_accuracy": round(effective_accuracy, 6),
+    }, prev)
+    trace.append({"step": 2, "name": "generate_dataset", "hash": prev,
+                  "output": {"n_samples": len(y_true)}})
+
+    prev = _hash_step("compute_metrics", {
+        "n_samples": metrics["n_samples"],
+        "actual_accuracy": metrics["accuracy"],
+    }, prev)
+    trace.append({"step": 3, "name": "compute_metrics", "hash": prev,
+                  "output": {"accuracy": metrics["accuracy"],
+                             "f1": metrics["f1"]}})
+
+    prev = _hash_step("threshold_check", {
+        "abs_error": round(abs_error, 6),
+        "tolerance": accuracy_tolerance,
+        "passed": passed,
+    }, prev)
+    trace.append({"step": 4, "name": "threshold_check", "hash": prev,
+                  "output": {"pass": passed}})
+
+    trace_root_hash = prev
+    # --------------------------------------------------
+
     return {
         "mtr_phase": "ML_BENCH-01",
         "algorithm_version": ALGORITHM_VERSION,
@@ -248,5 +320,7 @@ def run_certificate(
             "f1": metrics["f1"],
             "n_samples": metrics["n_samples"],
         },
+        "execution_trace": trace,
+        "trace_root_hash": trace_root_hash,
         "status": "SUCCEEDED",
     }
