@@ -83,7 +83,7 @@ scientific claims. Digital twin calibration is the highest-value
 application: every step from physical measurement to simulation output
 to drift monitoring becomes independently verifiable.
 
-**DT-FEM-01** is the first claim in this path (merged, 107 tests PASS).
+**DT-FEM-01** is the first claim in this path (merged, 113 tests PASS).
 
 Next claims in the digital twin path:
 
