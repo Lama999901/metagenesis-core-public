@@ -5,7 +5,7 @@
 [![Steward Audit](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml/badge.svg)](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Patent Pending](https://img.shields.io/badge/Patent-Pending%20%2363%2F996%2C819-orange.svg)](ppa/README_PPA.md)
-[![Tests](https://img.shields.io/badge/Tests-107%20passing-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-113%20passing-brightgreen.svg)](tests/)
 [![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.1-blueviolet.svg)](docs/PROTOCOL.md)
 
 🌐 **Site:** https://metagenesis-core.dev  
@@ -214,7 +214,7 @@ python scripts/steward_audit.py
 # → STEWARD AUDIT: PASS
 
   python -m pytest tests/ -q
-  # → 107 passed
+  # → 113 passed
 
 grep -r "tamper-proof|GPT-5|19x|VacuumGenesis" docs/ scripts/ backend/ tests/
 # → (empty — no forbidden claims)
