@@ -2,7 +2,7 @@
 
 > Read this file first if you are an AI agent starting a new session.
 > This is the authoritative snapshot of what has been done and what is next.
-> Updated: 2026-03-12
+> Updated: 2026-03-13
 
 ---
 
@@ -28,6 +28,8 @@
 | Last PR merged | #31 fix/site-audit-8-changes — 6 verticals, DT-FEM-01 verifier tab, mobile CSS |
 | Site counters | 8 claims / 107 tests — CORRECT on live site |
 | Stripe | buy.stripe.com/14AcN57qH19R1qN3QQ6Na00 — active at $299 |
+| known_faults entries | 2: ENV_001 (test env) + SCOPE_001 (physical anchor scope) |
+| HN post | https://news.ycombinator.com/item?id=47335416 — live, 9 points, 4 comments |
 
 ---
 
@@ -60,21 +62,20 @@
 | 2026-03-10 | steward_audit.py CI-sealed; runner.py duplicates removed |
 | 2026-03-11 | DT-FEM-01 added → 8 claims, 107 tests. Outreach: Jeffrey Ip (Confident AI), Elena Samuylova (Evidently AI) |
 | 2026-03-12 | PR #26 (physics demo section) merged. PR #31 (site audit: 6 verticals, DT-FEM-01 verifier, mobile CSS) merged. Show HN email sent to Tom (moderator). Tom replied: ready to front page when Yehor is online. Reply sent: available after 17:00 PST. Outreach: Jonah Cool (Anthropic Head of Life Sciences). |
+| 2026-03-13 | HN post live: id=47335416, 9 points. Physical Anchor principle introduced and documented. SCOPE_001 added to known_faults.yaml (physical anchor applies ONLY to MTR/FEM/DRIFT — not ML/pharma/finance). Site: hero reframe, anchor chain dark physics style, 2 new crisis rows, precise anchor framing. Answered itsthecourier on HN (semantic layer + physical anchor). measurablefunc: "art project" comment — needs reply. |
 
 ---
 
 ## What is next (priority order)
 
-- [ ] **TONIGHT 17:00 PST** — email Tom (hn@ycombinator.com): "ready now" → HN front page
-- [ ] Monitor HN thread, respond to comments actively (answers prepared)
-- [ ] Show HN: post text ready — 8 claims, 107 tests — update if needed
-- [ ] Commit + push index.html changes (91→107, DT-FEM-01 in pitch+terminal)
+- [ ] **URGENT** — reply to measurablefunc on HN ("art project" comment): "What would change your mind? Genuine question. The adversarial test is public and runnable in 5 minutes: git clone → python demos/open_data_demo_01/run_demo.py. If output isn't PASS/PASS, I want to know. If the protocol design is flawed, I want to know where specifically."
+- [ ] Push index.html local changes → PR → merge: `git checkout -b feat/anchor-precise-site && git add index.html && git push origin feat/anchor-precise-site`
+- [ ] Tom (hn@ycombinator.com) — draft ready in Gmail thread 19cde51ceca19970 — send at 09:00 PST
 - [ ] Follow-up: Elena Samuylova (sent without subject 2026-03-11)
 - [ ] Find Emanuele Bosoni email (EPFL) and send outreach
 - [ ] Anand Kannappan (Patronus AI) — patronus.ai/contact
+- [ ] Twitter/X tweet — bypass attack hook, tag @karpathy @sayaboringthing @ylecun
 - [ ] Post to MLOps Community Slack #tools-and-frameworks
-- [ ] Post to r/MachineLearning [P] post
-- [ ] Create GitHub Release v0.1.0 (tag exists: v0.1.0-ppa-filing)
 - [ ] Patent attorney for non-provisional review before 2027-03-05 (~$3K–8K)
 
 ---
@@ -94,6 +95,25 @@ git push origin fix/your-description
 ```
 
 **Main branch is protected** — direct push blocked, PR required.
+
+---
+
+## Physical Anchor Principle (introduced 2026-03-13)
+
+Two distinct concepts — do not conflate:
+
+| Concept | Question answered | Applies to |
+|---|---|---|
+| Tamper-evident provenance | "Was the bundle modified?" | ALL 8 claims |
+| Physical anchor | "Does the number agree with physical reality?" | MTR-1/2/3, DT-FEM-01, DRIFT-01 ONLY |
+
+**Chain:** E = 70 GPa (aluminium, measured in thousands of labs worldwide, NOT a chosen threshold)
+→ MTR-1: model vs physical constant, rel_err ≤ 1% → PASS
+→ DT-FEM-01: FEM solver vs MTR-1 anchor, rel_err ≤ 2% → PASS
+→ DRIFT-01: ongoing deviation from anchor ≤ 5% → PASS
+
+ML_BENCH-01, DATA-PIPE-01, SYSID-01 — thresholds are chosen conventions, NOT physical constants.
+This distinction is documented in `reports/known_faults.yaml` :: SCOPE_001.
 
 ---
 
@@ -172,5 +192,5 @@ grep -r "tamper-proof|GPT-5|19x|VacuumGenesis" docs/ scripts/ backend/ tests/
 
 ---
 
-*Updated: 2026-03-12 | Maintained by: Yehor Bazhynov*
-*Next update: after HN front page session or new claim added*
+*Updated: 2026-03-13 | Maintained by: Yehor Bazhynov*
+*Next update: after HN activity resolves or new claim added*

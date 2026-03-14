@@ -80,15 +80,31 @@ git commit -m "type: description"
 git push origin fix/your-branch-name
 # then open PR on GitHub
 
-## Current state (2026-03-12)
+## Physical Anchor Principle (introduced 2026-03-13)
+
+Two distinct concepts — never conflate:
+- Tamper-evident provenance: "was the bundle modified?" → ALL 8 claims
+- Physical anchor: "does the number agree with physical reality?" → MTR-1/2/3, DT-FEM-01, DRIFT-01 ONLY
+
+E = 70 GPa for aluminium is a physical constant measured in thousands of labs worldwide.
+NOT a chosen threshold. MTR-1 verifies rel_err ≤ 1% vs this constant.
+DT-FEM-01 verifies FEM output vs MTR-1 anchor. DRIFT-01 monitors deviation ≤ 5%.
+
+ML_BENCH-01, DATA-PIPE-01, SYSID-01 use chosen convention thresholds — tamper-evident only.
+Scope boundary documented in reports/known_faults.yaml :: SCOPE_001.
+
+## Current state (2026-03-13)
 
 - Tests: 107 passing
 - steward_audit: PASS
-- Last PR merged: #28 (feat/physics-demo-section) — counters 8/107, DT-FEM-01 card
+- known_faults: 2 entries (ENV_001 + SCOPE_001)
+- Last PR merged: #31 fix/site-audit-8-changes
 - Site: metagenesis-core.dev — deployed on Vercel, auto-deploys from main
+- HN post live: https://news.ycombinator.com/item?id=47335416 — 9 points, 4 comments
 - PPA filed: 2026-03-05 — non-provisional deadline 2027-03-05
 - Stripe: configured at $299/license
 - Outreach sent: Tongqi Wen (ElaTBot, Mar 5), Giovanni Pizzi (PSI/AiiDA, Mar 7),
   Brian Nosek (UVA, Mar 7), Peter Coveney (UCL, Mar 8),
   Arvind Narayanan (Princeton, Mar 8), Jeffrey Ip (Confident AI, Mar 11),
-  Elena Samuylova (Evidently AI, Mar 11)
+  Elena Samuylova (Evidently AI, Mar 11 — no subject, follow-up needed),
+  Jonah Cool (Anthropic Life Sciences, Mar 12)
