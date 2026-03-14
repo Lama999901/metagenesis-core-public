@@ -16,9 +16,9 @@
 
 | Claim | Added | Status | Tests |
 |---|---|---|---|
-| DRIFT-01 | Post 2026-03-05 | Active, 107 tests PASS | tests/steward/test_drift01_* |
-| ML_BENCH-01 | Post 2026-03-05 | Active, 107 tests PASS | tests/ml/test_mlbench01_* |
-| DT-FEM-01 | 2026-03-11 | Active, 107 tests PASS | tests/digital_twin/test_dtfem01_* |
+| DRIFT-01 | Post 2026-03-05 | Active, 113 tests PASS | tests/steward/test_drift01_* |
+| ML_BENCH-01 | Post 2026-03-05 | Active, 113 tests PASS | tests/ml/test_mlbench01_* |
+| DT-FEM-01 | 2026-03-11 | Active, 113 tests PASS | tests/digital_twin/test_dtfem01_* |
 
 All three claims use the same 4 patentable innovations filed in PPA
 #63/996,819. They are domain-specific applications of the
@@ -111,7 +111,7 @@ python scripts/steward_audit.py
 # → STEWARD AUDIT: PASS
 
 python -m pytest tests/ -q
-# → 107 passed
+# → 113 passed
 
 grep -r "tamper-proof\|GPT-5\|19x\|VacuumGenesis" docs/ scripts/ backend/
 # → empty
