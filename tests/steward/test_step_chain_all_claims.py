@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 """
-STEP_CHAIN_ALL: Step Chain Verification for all 8 claims.
+STEP_CHAIN_ALL: Step Chain Verification for all 14 claims.
 
 Tests that every claim produces:
   - execution_trace: list of 4 steps with valid hashes
   - trace_root_hash: SHA-256 of final step == last step hash
 
-28 tests (4 per claim × 7 new claims).
-ML_BENCH-01 already covered in test_mlbench01_accuracy_certificate.py
+28 tests total (ML_BENCH-01 covered in test_mlbench01_accuracy_certificate.py)
 """
 import sys
 from pathlib import Path

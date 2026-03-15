@@ -18,6 +18,7 @@
     "scripts/**",
     "tests/**",
     ".github/workflows/**",
+    ".github/FUNDING.yml",
     "docs/**",
     "reports/*.md",
     "reports/*.txt",
