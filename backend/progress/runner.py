@@ -341,10 +341,77 @@ class ProgressRunner:
                 kwargs["anchor_claim_id"] = str(p.get("anchor_claim_id", "ML_BENCH-01"))
             return run_mlbench3(**kwargs)
 
+        from backend.progress.pharma1_admet_certificate import JOB_KIND as PHARMA1_KIND, run_certificate as run_pharma1
+        if payload.get("kind") == PHARMA1_KIND:
+            p = payload
+            kwargs = dict(
+                seed=int(p.get("seed", 42)),
+                property_name=str(p.get("property_name", "solubility")),
+                claimed_value=float(p.get("claimed_value", -3.5)),
+                tolerance=float(p.get("tolerance", 0.5)),
+                noise_scale=float(p.get("noise_scale", 0.2)),
+                compound_id=str(p.get("compound_id", "COMPOUND-001")),
+            )
+            if p.get("anchor_hash"):
+                kwargs["anchor_hash"] = str(p["anchor_hash"])
+                kwargs["anchor_claim_id"] = str(p.get("anchor_claim_id", "DATA-PIPE-01"))
+            return run_pharma1(**kwargs)
+
+        from backend.progress.finrisk1_var_certificate import JOB_KIND as FINRISK1_KIND, run_certificate as run_finrisk1
+        if payload.get("kind") == FINRISK1_KIND:
+            p = payload
+            kwargs = dict(
+                seed=int(p.get("seed", 42)),
+                claimed_var=float(p.get("claimed_var", 0.02)),
+                var_tolerance=float(p.get("var_tolerance", 0.005)),
+                confidence_level=float(p.get("confidence_level", 0.99)),
+                n_obs=int(p.get("n_obs", 1000)),
+                mu=float(p.get("mu", 0.0)),
+                sigma=float(p.get("sigma", 0.01)),
+                portfolio_id=str(p.get("portfolio_id", "PORTFOLIO-001")),
+            )
+            if p.get("anchor_hash"):
+                kwargs["anchor_hash"] = str(p["anchor_hash"])
+                kwargs["anchor_claim_id"] = str(p.get("anchor_claim_id", "DATA-PIPE-01"))
+            return run_finrisk1(**kwargs)
+
+        from backend.progress.dtsensor1_iot_certificate import JOB_KIND as DTSENSOR1_KIND, run_certificate as run_dtsensor1
+        if payload.get("kind") == DTSENSOR1_KIND:
+            p = payload
+            kwargs = dict(
+                seed=int(p.get("seed", 42)),
+                sensor_type=str(p.get("sensor_type", "temperature_celsius")),
+                n_readings=int(p.get("n_readings", 100)),
+                anomaly_rate=float(p.get("anomaly_rate", 0.0)),
+                device_id=str(p.get("device_id", "SENSOR-001")),
+            )
+            if p.get("anchor_hash"):
+                kwargs["anchor_hash"] = str(p["anchor_hash"])
+                kwargs["anchor_claim_id"] = str(p.get("anchor_claim_id", "MTR-1"))
+            return run_dtsensor1(**kwargs)
+
+        from backend.progress.dtcalib1_convergence_certificate import JOB_KIND as DTCALIB1_KIND, run_certificate as run_dtcalib1
+        if payload.get("kind") == DTCALIB1_KIND:
+            p = payload
+            kwargs = dict(
+                seed=int(p.get("seed", 42)),
+                n_iterations=int(p.get("n_iterations", 10)),
+                initial_drift_pct=float(p.get("initial_drift_pct", 20.0)),
+                convergence_rate=float(p.get("convergence_rate", 0.4)),
+                convergence_threshold=float(p.get("convergence_threshold", 2.0)),
+                noise_scale=float(p.get("noise_scale", 0.1)),
+                twin_id=str(p.get("twin_id", "TWIN-001")),
+            )
+            if p.get("anchor_hash"):
+                kwargs["anchor_hash"] = str(p["anchor_hash"])
+                kwargs["anchor_claim_id"] = str(p.get("anchor_claim_id", "DRIFT-01"))
+            return run_dtcalib1(**kwargs)
+
         registered = [
             MTR1_KIND, MTR2_KIND, MTR3_KIND,
             SYSID1_KIND, DATAPIPE1_KIND, DRIFT01_KIND,
             MLBENCH1_KIND, DTFEM1_KIND, MLBENCH2_KIND, MLBENCH3_KIND,
+            PHARMA1_KIND, FINRISK1_KIND, DTSENSOR1_KIND, DTCALIB1_KIND,
         ]
         raise ValueError(
             f"Unknown job kind: '{payload.get('kind')}'. "
