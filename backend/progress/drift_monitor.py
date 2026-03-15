@@ -90,6 +90,25 @@ def run_drift_monitor(
         drift_threshold_pct=float(drift_threshold_pct),
     )
 
+    # --- Step Chain Verification ---
+    def _hash_step(step_name, step_data, prev_hash):
+        import hashlib, json as _j
+        content = _j.dumps({"step": step_name, "data": step_data, "prev_hash": prev_hash}, sort_keys=True, separators=(",", ":"))
+        return hashlib.sha256(content.encode("utf-8")).hexdigest()
+
+    _prev = _hash_step("init_params", {"anchor_value": float(anchor_value), "current_value": float(current_value), "anchor_claim_id": str(anchor_claim_id), "drift_threshold_pct": float(drift_threshold_pct)}, "genesis")
+    _trace = [{"step": 1, "name": "init_params", "hash": _prev}]
+    _drift_pct = drift_result.get("drift_pct", 0.0)
+    _prev = _hash_step("compute_drift", {"drift_pct": round(_drift_pct, 8)}, _prev)
+    _trace.append({"step": 2, "name": "compute_drift", "hash": _prev, "output": {"drift_pct": round(_drift_pct, 8)}})
+    _drift_detected = drift_result.get("drift_detected", False)
+    _prev = _hash_step("compare_threshold", {"drift_pct": round(_drift_pct, 8), "threshold": float(drift_threshold_pct), "drift_detected": _drift_detected}, _prev)
+    _trace.append({"step": 3, "name": "compare_threshold", "hash": _prev, "output": {"drift_detected": _drift_detected}})
+    _correction = drift_result.get("correction_required", _drift_detected)
+    _prev = _hash_step("threshold_check", {"drift_detected": _drift_detected, "correction_required": _correction}, _prev)
+    _trace.append({"step": 4, "name": "threshold_check", "hash": _prev, "output": {"correction_required": _correction}})
+    _trace_root_hash = _prev
+    # --- End Step Chain ---
     return {
         "mtr_phase": "DRIFT-01",
         "algorithm_version": ALGORITHM_VERSION,
@@ -103,4 +122,6 @@ def run_drift_monitor(
         },
         "result": drift_result,
         "status": "SUCCEEDED",
+        "execution_trace": _trace,
+        "trace_root_hash": _trace_root_hash,
     }
