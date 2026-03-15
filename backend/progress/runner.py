@@ -305,9 +305,28 @@ class ProgressRunner:
                 kwargs["dataset_relpath"] = str(p["dataset_relpath"]).strip()
             return run_dtfem1(**kwargs)
 
+        from backend.progress.mlbench2_regression_certificate import JOB_KIND as MLBENCH2_KIND, run_certificate as run_mlbench2
+        if payload.get("kind") == MLBENCH2_KIND:
+            p = payload
+            kwargs = dict(
+                seed=int(p.get("seed", 42)),
+                claimed_rmse=float(p.get("claimed_rmse", 0.10)),
+                rmse_tolerance=float(p.get("rmse_tolerance", 0.02)),
+                n_samples=int(p.get("n_samples", 1000)),
+                n_features=int(p.get("n_features", 10)),
+                noise_scale=float(p.get("noise_scale", 0.10)),
+            )
+            if p.get("dataset_relpath") is not None:
+                kwargs["dataset_relpath"] = str(p["dataset_relpath"]).strip()
+            if p.get("anchor_hash") is not None:
+                kwargs["anchor_hash"] = str(p["anchor_hash"])
+                kwargs["anchor_claim_id"] = str(p.get("anchor_claim_id", "ML_BENCH-01"))
+            return run_mlbench2(**kwargs)
+
         registered = [
             MTR1_KIND, MTR2_KIND, MTR3_KIND,
-            SYSID1_KIND, DATAPIPE1_KIND, DRIFT01_KIND, MLBENCH1_KIND, DTFEM1_KIND,
+            SYSID1_KIND, DATAPIPE1_KIND, DRIFT01_KIND,
+            MLBENCH1_KIND, DTFEM1_KIND, MLBENCH2_KIND,
         ]
         raise ValueError(
             f"Unknown job kind: '{payload.get('kind')}'. "
