@@ -49,9 +49,22 @@ demos/open_data_demo_01/VERIFY_REPORT.json
 demos/open_data_demo_01/progress_runs/
 demos/open_data_demo_01/ledger_snapshots/
 
+# Temp fix/debug scripts (never commit these)
+fix_*.py
+debug_*.py
+full_audit.py
+final_sweep.py
+check_runner.py
+diagnose.py
+show_compare.py
 write_operations_file.py
 write_ops.py
 
 # Claude Project Knowledge (internal — not for public repo)
 CLAUDE_PROJECT_MASTER*.md
 EVOLUTION_LOG.md
+NEXT_CHAT_HANDOFF.md
+TRANSFER_PROMPT*.md
+METAGENESIS_FULL_AUDIT*.md
+METAGENESIS_OPERATIONS.md
+AUDIT_PROTOCOL.md
