@@ -39,7 +39,11 @@ So: the computational claim (MTR-1) was run on real open data, and the resulting
 ## What this proves
 
 - You can **reproduce** the claim (MTR-1) on an open dataset with a single command.
-- The pack is **tamper-evident**: if someone changes a file and recomputes the manifest so that hash checks pass, the **semantic** check still fails (e.g. payload.kind vs evidence_index, canary_mode, required keys). So hash recomputation alone is not enough to fake a valid pack.
+- The pack is **tamper-evident** across three independent layers:
+  - **Layer 1 (SHA-256 integrity):** any file change breaks the manifest root_hash.
+  - **Layer 2 (semantic):** stripping job_snapshot and recomputing all hashes still fails — semantic check catches it.
+  - **Layer 3 (Step Chain):** execution_trace + trace_root_hash commit to the exact computation sequence. Changing any input breaks trace_root_hash.
+- The run_artifact.json contains `execution_trace` (4 steps) and `trace_root_hash` — inspect it with any JSON viewer.
 
 ---
 
