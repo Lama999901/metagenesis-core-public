@@ -137,7 +137,7 @@ Evidence: scripts/steward_audit.py :: _claim_coverage_bidirectional()
 
 ### 2 — Tamper-Evident Bundle with Semantic Verification Layer
 
-Two independent verification layers. Layer 2 (semantic) catches attacks that survive layer 1 (SHA-256 recomputation). **Proven by adversarial test.**
+Three independent verification layers. Layer 2 (semantic) catches attacks that survive layer 1 (SHA-256 recomputation). Layer 3 (Step Chain) catches execution-order tampering. **Each proven by adversarial tests.**
 
 ```
 Evidence: scripts/mg.py :: _verify_pack() + _verify_semantic()
