@@ -51,3 +51,7 @@ demos/open_data_demo_01/ledger_snapshots/
 
 write_operations_file.py
 write_ops.py
+
+# Claude Project Knowledge (internal — not for public repo)
+CLAUDE_PROJECT_MASTER*.md
+EVOLUTION_LOG.md
