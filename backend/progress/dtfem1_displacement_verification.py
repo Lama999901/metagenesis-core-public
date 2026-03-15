@@ -14,7 +14,7 @@ Supports:
   - Real data mode: CSV with columns fem_value, measured_value, quantity
 
 No heavy deps. Stdlib only.
-# Part of MetaGenesis Core verification pipeline (MVP v0.1)
+# Part of MetaGenesis Core verification pipeline (MVP v0.2)
 """
 
 import csv
