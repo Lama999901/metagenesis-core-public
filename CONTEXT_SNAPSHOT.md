@@ -26,8 +26,8 @@
 | steward_audit | PASS |
 | CI | GREEN |
 | Active claims | 8: MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01, DT-FEM-01 |
-| Last PR merged | #47 feat/step-chain-verification + cert03 step-chain-verify — Step Chain + 107→113→118 tests |
-| Site counters | 8 claims / 113 tests — CORRECT on live site |
+| Last PR merged | cert03 + mg.py Step Chain verify + README + site sync — **118 tests, 3 layers, all files synced** |
+| Site counters | 8 claims / 118 tests / 3 layers — CORRECT on live site |
 | known_faults entries | 2: ENV_001 (test env) + SCOPE_001 (physical anchor scope) |
 | HN post | https://news.ycombinator.com/item?id=47335416 — 9 points, 4 comments |
 | GitHub Release | v0.1.0 — published at /releases/tag/v0.1.0 |
