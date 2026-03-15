@@ -13,7 +13,7 @@
     "step_chain_verification",
     "cross_claim_cryptographic_chain"
   ],
-  "test_count": 157,
+  "test_count": 172,
   "steward_audit": "PASS",
   "ppa_filed": "2026-03-05",
   "ppa_number": "63/996,819",
