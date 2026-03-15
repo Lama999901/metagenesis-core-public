@@ -3,7 +3,7 @@
 MTR-2 Thermal Paste Conductivity Calibration - OLS through origin.
 
 Model: ΔT = (L/(k*A)) * Q. Estimate slope s_hat; k_hat = L / (A * s_hat).
-No heavy deps (stdlib only). Part of MetaGenesis Core verification pipeline (MVP v0.1)
+No heavy deps (stdlib only). Part of MetaGenesis Core verification pipeline (MVP v0.2)
 """
 
 import random

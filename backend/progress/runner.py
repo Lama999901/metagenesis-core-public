@@ -3,7 +3,7 @@
 Progress Engine Runner - Job Execution with Ledger Integration
 
 Purpose: Execute jobs and emit ledger entries for traceability
-# Part of MetaGenesis Core verification pipeline (MVP v0.1)
+# Part of MetaGenesis Core verification pipeline (MVP v0.2)
 Implementation: In-process runner with deterministic ledger events
 """
 
