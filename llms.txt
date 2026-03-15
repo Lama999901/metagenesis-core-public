@@ -123,7 +123,11 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 - reports/known_faults.yaml — known limitations (SCOPE_001 + ENV_001)
 - backend/progress/runner.py — job dispatch (14 claims)
 - scripts/steward_audit.py — governance enforcement (SEALED)
-- scripts/mg.py — pack build + verify (3 layers + verify-chain CLI)
+- scripts/steward_dossier.py — generates per-claim dossier .md files from claim index
+- scripts/steward_submission_pack.py — builds submission pack with evidence bundles
+- scripts/mg.py — pack build + verify (3 layers) + verify-chain CLI
+  verify-chain: python scripts/mg.py verify-chain bundle1/ bundle2/ bundle3/
+- scripts/deep_verify.py — 10-test proof-not-trust verification script
 - demos/open_data_demo_01/run_demo.py — working end-to-end demo
 
 ## Git workflow
