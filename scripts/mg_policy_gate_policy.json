@@ -9,6 +9,7 @@
   "version": "1.0.0",
   "last_updated": "2026-03-10",
   "locked_paths": [
+    "reports/canonical_state.md",
     "demos/open_data_demo_01/evidence_index.json",
     "scripts/steward_audit.py"
   ],
@@ -43,7 +44,8 @@
     "*.md",
     "*.txt",
     "*.json",
-    "index.html"
+    "index.html",
+    "CITATION.cff"
   ],
   "_notes": {
     "locked_paths_purpose": "HARD BLOCK any modifications to sealed evidence artifacts",
