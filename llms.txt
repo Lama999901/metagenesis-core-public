@@ -68,7 +68,7 @@ detection, policy-gate immutable anchors, dual-mode canary pipeline
 ## How to verify everything works
 
 python scripts/steward_audit.py                              # PASS
-python -m pytest tests/steward tests/materials tests/ml tests/systems tests/data tests/digital_twin -q  # all passed (147)
+python -m pytest tests/steward tests/materials tests/ml tests/systems tests/data tests/digital_twin -q  # all passed (153)
 python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 
 ## Git workflow (current — direct clone, no zip)
@@ -98,8 +98,9 @@ Scope boundary documented in reports/known_faults.yaml :: SCOPE_001.
 
 ## Current state (2026-03-14)
 
-- Tests: 118 passing
+- Tests: 153 passing
 - Verification layers: 3 (integrity + semantic + step chain)
+- Cross-Claim Chain: MTR-1 → DT-FEM-01 → DRIFT-01 cryptographically linked via anchor_hash
 - steward_audit: PASS
 - known_faults: 2 entries (ENV_001 + SCOPE_001)
 - Last PR merged: test_cert03 + mg.py Step Chain verify (113→118 tests, 3 verification layers)
