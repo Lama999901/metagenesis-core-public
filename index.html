@@ -2108,6 +2108,7 @@ a.soon-chip{border-bottom:none!important}
             <div class="phys-check ok">&check; <span>SHA-256 root_hash matches &mdash; no file modified</span></div>
             <div class="phys-check ok">&check; <span>job_snapshot present &mdash; evidence not stripped</span></div>
             <div class="phys-check ok">&check; <span>payload.kind = mtr1_youngs_modulus_calibration</span></div>
+            <div class="phys-check ok">&check; <span>trace_root_hash == final step hash &mdash; execution chain intact</span></div>
             <div class="phys-check ok">&check; <span>rel_error = 0.0017 &le; 0.01 &mdash; threshold met</span></div>
             <div class="phys-check ok">&check; <span>canary_mode flag consistent</span></div>
           </div>
@@ -2117,6 +2118,7 @@ a.soon-chip{border-bottom:none!important}
           <div class="phys-fail-row"><div class="phys-fail-msg">FAIL: job_snapshot missing in run artifact</div><div class="phys-fail-why">&rarr; Core evidence was removed after packaging. The run cannot be traced to its computation.</div></div>
           <div class="phys-fail-row"><div class="phys-fail-msg">FAIL: payload.kind does not match registered claim</div><div class="phys-fail-why">&rarr; The claim type was changed. The bundle describes a different computation than declared.</div></div>
           <div class="phys-fail-row"><div class="phys-fail-msg">FAIL: file hash mismatch &mdash; test_results.csv</div><div class="phys-fail-why">&rarr; A file was modified after the manifest was sealed. Integrity broken at that file.</div></div>
+          <div class="phys-fail-row"><div class="phys-fail-msg">FAIL: Step Chain broken &mdash; trace_root_hash mismatch</div><div class="phys-fail-why">&rarr; An execution step was modified or reordered. The cryptographic chain over computation sequence is invalid.</div></div>
           <div class="phys-fail-row"><div class="phys-fail-msg">FAIL: canary_mode flag inconsistent</div><div class="phys-fail-why">&rarr; Normal and canary execution metadata do not match. Provenance chain broken.</div></div>
         </div>
       </div>
@@ -2421,7 +2423,7 @@ a.soon-chip{border-bottom:none!important}
 
     <div class="faq-item">
       <div class="faq-q">Can a sophisticated attacker fake a passing bundle?</div>
-      <div class="faq-a">A sufficiently sophisticated adversary with full codebase access could potentially construct a passing fake bundle. MetaGenesis is tamper-evident — not a guarantee against all threat models. The semantic layer catches attacks that survive SHA-256 recomputation &#8212; proven by <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/tests/steward/test_cert02_pack_includes_evidence_and_semantic_verify.py" target="_blank"><code>test_cert02</code></a>. Known limitations are in <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/known_faults.yaml" target="_blank"><code>reports/known_faults.yaml</code></a>.</div>
+      <div class="faq-a">A sufficiently sophisticated adversary with full codebase access could potentially construct a passing fake bundle. MetaGenesis is tamper-evident — not a guarantee against all threat models. The semantic layer catches attacks that survive SHA-256 recomputation — proven by <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/tests/steward/test_cert02_pack_includes_evidence_and_semantic_verify.py" target="_blank"><code>test_cert02</code></a>. The Step Chain layer catches execution-order tampering — proven by <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/tests/steward/test_cert03_step_chain_verify.py" target="_blank"><code>test_cert03</code></a>. Known limitations are in <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/known_faults.yaml" target="_blank"><code>reports/known_faults.yaml</code></a>.</div>
     </div>
 
     <div class="faq-item">
@@ -3264,7 +3266,8 @@ a.soon-chip{border-bottom:none!important}
         [700,'ok','✓ integrity layer: SHA-256 root_hash match'],
         [1050,'ok','✓ evidence_index: claim mapping verified'],
         [1400,'ok','✓ semantic layer: job_snapshot present'],
-        [1750,'ok','✓ canary_mode flag: correct'],
+        [1750,'ok','✓ step chain: trace_root_hash == final step hash'],
+        [2050,'ok','✓ canary_mode flag: correct'],
         [2100,'info','→ Running threshold check...'],
         [2400,'muted','  claim: '+(currentClaim==='ml'?'ML_BENCH-01':currentClaim==='mtr'?'MTR-1':currentClaim==='data'?'DATA-PIPE-01':currentClaim==='drift'?'DRIFT-01':'DT-FEM-01')],
         [2700,'muted','  '+reason],
