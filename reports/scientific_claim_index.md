@@ -138,6 +138,46 @@ threshold signals that simulation correction is required.
 | **reproduction** | `python -m pytest tests/ml/test_mlbench03_timeseries_certificate.py -v` |
 | **V&V thresholds** | `abs(actual_mape - claimed_mape) <= mape_tolerance` (default 0.02). `result.pass` must be True. |
 
+## PHARMA-01
+
+| Field | Value |
+|-------|--------|
+| **claim_id** | PHARMA-01 |
+| **domain** | Pharma / ADMET — Prediction Certificate |
+| **job_kind** | `pharma1_admet_certificate` |
+| **reproduction** | `python -m pytest tests/ml/test_pharma01_admet_certificate.py -v` |
+| **V&V thresholds** | `abs(predicted_value - claimed_value) <= tolerance`. `result.pass` must be True. FDA 21 CFR Part 11 compatible. |
+
+## FINRISK-01
+
+| Field | Value |
+|-------|--------|
+| **claim_id** | FINRISK-01 |
+| **domain** | Financial Risk — VaR Model Certificate |
+| **job_kind** | `finrisk1_var_certificate` |
+| **reproduction** | `python -m pytest tests/ml/test_finrisk01_var_certificate.py -v` |
+| **V&V thresholds** | `abs(actual_var - claimed_var) <= var_tolerance`. `result.pass` must be True. Basel III/IV alignment. |
+
+## DT-SENSOR-01
+
+| Field | Value |
+|-------|--------|
+| **claim_id** | DT-SENSOR-01 |
+| **domain** | Digital Twin — IoT Sensor Data Integrity |
+| **job_kind** | `dtsensor1_iot_certificate` |
+| **reproduction** | `python -m pytest tests/digital_twin/test_dtsensor01_iot_certificate.py -v` |
+| **V&V thresholds** | Schema, range, temporal validation; no issues. `result.pass` must be True. |
+
+## DT-CALIB-LOOP-01
+
+| Field | Value |
+|-------|--------|
+| **claim_id** | DT-CALIB-LOOP-01 |
+| **domain** | Digital Twin — Calibration Convergence |
+| **job_kind** | `dtcalib1_convergence_certificate` |
+| **reproduction** | `python -m pytest tests/digital_twin/test_dtcalib1_convergence_certificate.py -v` |
+| **V&V thresholds** | Drift monotonically decreasing; final drift_pct <= convergence_threshold. `result.pass` must be True. |
+
 ### Purpose
 
 Any ML model that claims a specific accuracy can have that claim packaged into
