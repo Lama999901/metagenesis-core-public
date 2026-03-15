@@ -22,11 +22,11 @@
 
 | Parameter | Value |
 |---|---|
-| Tests | **113 passing** |
+| Tests | **118 passing** |
 | steward_audit | PASS |
 | CI | GREEN |
 | Active claims | 8: MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01, DT-FEM-01 |
-| Last PR merged | #47 feat/step-chain-verification — Step Chain + 107→113 tests + all docs synced |
+| Last PR merged | #47 feat/step-chain-verification + cert03 step-chain-verify — Step Chain + 107→113→118 tests |
 | Site counters | 8 claims / 113 tests — CORRECT on live site |
 | known_faults entries | 2: ENV_001 (test env) + SCOPE_001 (physical anchor scope) |
 | HN post | https://news.ycombinator.com/item?id=47335416 — 9 points, 4 comments |
@@ -83,7 +83,7 @@ Step 4: threshold_check   → trace_root_hash = SHA256(hash_3 + step4_result)
 | 2026-03-11 | DT-FEM-01 added → 8 claims, 107 tests. Outreach: Jeffrey Ip (Confident AI), Elena Samuylova (Evidently AI) |
 | 2026-03-12 | PR #26 (physics demo) merged. PR #31 (6 verticals, DT-FEM-01 verifier, mobile CSS) merged. Show HN live. Outreach: Jonah Cool (Anthropic). |
 | 2026-03-13 | HN: 9 points. Physical Anchor principle + SCOPE_001. Site: hero reframe, anchor chain section. |
-| 2026-03-14 | Step Chain Verification (6 tests) → **107→113 tests**. GitHub Release v0.1.0. NLnet grants submitted (2×€30K). Emergent Ventures ($15-25K). Full doc sync to 113 tests across all files. |
+| 2026-03-14 | Step Chain Verification (6 tests) → 107→113 tests. mg.py verify now validates trace chain. test_cert03 (5 tests) → **118 tests**. GitHub Release v0.1.0. NLnet grants submitted (2×€30K). Emergent Ventures ($15-25K). |
 
 ---
 
@@ -243,7 +243,7 @@ docs/ROADMAP.md
 
 ```bash
 python scripts/steward_audit.py          # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q               # → 113 passed
+python -m pytest tests/ -q               # → 118 passed
 python demos/open_data_demo_01/run_demo.py  # → PASS PASS
 grep -r "tamper-proof|GPT-5|19x|VacuumGenesis" docs/ scripts/ backend/ tests/
 # → empty
