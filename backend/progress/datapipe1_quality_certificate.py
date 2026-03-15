@@ -162,6 +162,23 @@ def run_certificate(
         "parse_error_count": parse_error_count,
     }
 
+    # --- Step Chain Verification ---
+    def _hash_step(step_name, step_data, prev_hash):
+        import hashlib, json as _j
+        content = _j.dumps({"step": step_name, "data": step_data, "prev_hash": prev_hash}, sort_keys=True, separators=(",", ":"))
+        return hashlib.sha256(content.encode("utf-8")).hexdigest()
+
+    _dataset_sha = dataset_info.get("sha256", "") if isinstance(dataset_info, dict) else ""
+    _prev = _hash_step("init_params", {"dataset_relpath": str(dataset_relpath or ""), "required_columns": sorted(req_cols or []), "numeric_columns": sorted(num_cols or [])}, "genesis")
+    _trace = [{"step": 1, "name": "init_params", "hash": _prev}]
+    _prev = _hash_step("load_dataset", {"rows": len(rows), "cols": len(headers), "sha256": _dataset_sha[:16]}, _prev)
+    _trace.append({"step": 2, "name": "load_dataset", "hash": _prev, "output": {"rows": len(rows), "cols": len(headers)}})
+    _prev = _hash_step("run_checks", {"missing_count": missing_count, "parse_error_count": parse_error_count, "issues_count": len(issues)}, _prev)
+    _trace.append({"step": 3, "name": "run_checks", "hash": _prev, "output": {"issues_count": len(issues)}})
+    _prev = _hash_step("threshold_check", {"pass": pass_, "issues_count": len(issues)}, _prev)
+    _trace.append({"step": 4, "name": "threshold_check", "hash": _prev, "output": {"pass": pass_}})
+    _trace_root_hash = _prev
+    # --- End Step Chain ---
     return {
         "domain": "DATA",
         "claim_id": "DATA-PIPE-01",
@@ -181,4 +198,6 @@ def run_certificate(
         },
         "method": METHOD,
         "algorithm_version": ALGORITHM_VERSION,
+        "execution_trace": _trace,
+        "trace_root_hash": _trace_root_hash,
     }
