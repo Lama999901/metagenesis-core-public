@@ -233,8 +233,9 @@ python scripts/steward_audit.py
 python -m pytest tests/ -q
 # → 223 passed
 
-grep -r "tamper-proof|GPT-5|19x|VacuumGenesis" docs/ scripts/ backend/ tests/
-# → (empty)
+# Full proof-not-trust verification (10 tests):
+python scripts/deep_verify.py
+# → ALL 10 TESTS PASSED ✅
 ```
 
 **Active claims:** MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01, DT-FEM-01, ML_BENCH-02, ML_BENCH-03, PHARMA-01, FINRISK-01, DT-SENSOR-01, DT-CALIB-LOOP-01  

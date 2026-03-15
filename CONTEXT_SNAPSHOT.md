@@ -92,9 +92,8 @@ Verify full chain: `python scripts/mg.py verify-chain bundle_mtr1/ bundle_dtfem/
 ```bash
 python scripts/steward_audit.py          # → STEWARD AUDIT: PASS
 python -m pytest tests/ -q               # → 223 passed
+python scripts/deep_verify.py            # → ALL 10 TESTS PASSED ✅
 python demos/open_data_demo_01/run_demo.py  # → PASS PASS
-grep -r "tamper-proof|GPT-5|19x|VacuumGenesis" docs/ scripts/ backend/ tests/
-# → empty
 ```
 
 ---
