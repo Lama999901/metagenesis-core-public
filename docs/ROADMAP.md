@@ -4,7 +4,7 @@ This roadmap reflects planned development directions.
 All items are subject to change based on community feedback and priorities.
 
 **Current version:** 0.2.0
-**Protocol:** MetaGenesis Verification Protocol (MVP) v0.1
+**Protocol:** MetaGenesis Verification Protocol (MVP) v0.2
 
 **Core principle:** MetaGenesis Core verifies that computational results
 agree with physical reality — not just that numbers weren't changed.
@@ -54,7 +54,6 @@ This is traceability to physical measurement, not threshold compliance.
 
 **Developer experience**
 
-- [ ] `mg init` — scaffold a new claim in 60 seconds
 - [ ] GitHub Action for automatic bundle generation on release
 
 ---
@@ -63,8 +62,7 @@ This is traceability to physical measurement, not threshold compliance.
 
 **Pharma / regulatory domain**
 
-- [ ] PHARMA-01 — ADMET prediction certificate
-      (binding affinity, solubility, toxicity score claims)
+- [x] PHARMA-01 — ADMET prediction certificate (✅ live)
 - [ ] PHARMA-02 — PK/PD simulation output certificate
 - [ ] FDA 21 CFR Part 11 alignment documentation
 
@@ -76,7 +74,7 @@ This is traceability to physical measurement, not threshold compliance.
 
 **Financial domain**
 
-- [ ] FINRISK-01 — VaR model output certificate
+- [x] FINRISK-01 — VaR model output certificate (✅ live)
 - [ ] FINRISK-02 — credit scoring model certificate
 - [ ] Basel model risk management documentation
 
@@ -89,14 +87,10 @@ scientific claims. Digital twin calibration is the highest-value
 application: every step from physical measurement to simulation output
 to drift monitoring becomes independently verifiable.
 
-**DT-FEM-01** is the first claim in this path (merged, 113 tests PASS).
+**DT-FEM-01, DT-SENSOR-01, DT-CALIB-LOOP-01** are live (223 tests PASS).
 
 Next claims in the digital twin path:
 
-- [ ] DT-SENSOR-01 — sensor data integrity certificate
-      (schema validation + range check + SHA-256 fingerprint for IoT streams)
-- [ ] DT-CALIB-LOOP-01 — calibration convergence certificate
-      (drift_pct decreasing over N iterations → twin provably approaching reality)
 - [ ] DT-CFD-01 — CFD output vs. physical measurement
       (pressure, velocity, temperature fields — rel_err per quantity)
 - [ ] DT-MODAL-01 — structural modal analysis vs. experimental FRF
