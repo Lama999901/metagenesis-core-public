@@ -41,6 +41,8 @@ htmlcov/
 
 # Local runtime artifacts (do not commit)
 reports/ledger_v1.jsonl
+reports/ledger_snapshots/
+reports/progress_runs/
 
 # Demo generated files (runtime only)
 demos/open_data_demo_01/ledger.jsonl
