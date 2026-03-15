@@ -111,7 +111,7 @@ python scripts/steward_audit.py
 # → STEWARD AUDIT: PASS
 
 python -m pytest tests/ -q
-# → 147 passed
+# → 223 passed
 
 grep -r "tamper-proof\|GPT-5\|19x\|VacuumGenesis" docs/ scripts/ backend/
 # → empty

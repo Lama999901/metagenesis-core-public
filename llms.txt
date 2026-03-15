@@ -130,8 +130,7 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 
 Git repo: C:\Users\999ye\Downloads\metagenesis-core-public
 Push via PR only — main branch is protected.
-Policy gate: canonical_state.md currently UNLOCKED for new claims.
-Re-lock after all Summit PRs merged.
+Policy gate: canonical_state.md LOCKED (normal state).
 
 git checkout -b feat/your-branch-name
 git add <files>
