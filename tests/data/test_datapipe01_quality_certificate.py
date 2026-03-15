@@ -3,7 +3,7 @@
 DATA-PIPE-01 Dataset Quality Certificate - Tests.
 
 Purpose: E2E, quality checks detect bad CSV, reproducibility shape.
-# Part of MetaGenesis Core verification pipeline (MVP v0.1)
+# Part of MetaGenesis Core verification pipeline (MVP v0.2)
 """
 
 import json

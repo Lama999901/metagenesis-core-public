@@ -3,7 +3,7 @@
 DATA-01 Data Integrity Layer.
 
 Deterministic dataset_fingerprint (sha256 over canonicalized bytes).
-No heavy deps (stdlib only). Part of MetaGenesis Core verification pipeline (MVP v0.1)
+No heavy deps (stdlib only). Part of MetaGenesis Core verification pipeline (MVP v0.2)
 """
 
 import csv

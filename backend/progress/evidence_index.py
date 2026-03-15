@@ -3,7 +3,7 @@
 Evidence Index v1 - Read-only index of W6-A5 evidence artifacts.
 
 Purpose: Scan progress_runs and ledger_snapshots; return trace_id -> artifacts metadata.
-# Part of MetaGenesis Core verification pipeline (MVP v0.1)
+# Part of MetaGenesis Core verification pipeline (MVP v0.2)
 """
 
 import json
