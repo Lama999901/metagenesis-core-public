@@ -98,8 +98,27 @@ def run_calibration(
         "method": METHOD,
         "algorithm_version": ALGORITHM_VERSION,
     }
+    # --- Step Chain Verification ---
+    def _hash_step(step_name, step_data, prev_hash):
+        import hashlib, json as _j
+        content = _j.dumps({"step": step_name, "data": step_data, "prev_hash": prev_hash}, sort_keys=True, separators=(",", ":"))
+        return hashlib.sha256(content.encode("utf-8")).hexdigest()
+
+    _prev = _hash_step("init_params", {"seed": seed, "k_true": k_true, "n_points": n_points, "L": L, "A": A, "q_max": q_max, "noise_scale": round(noise_scale, 8)}, "genesis")
+    _trace = [{"step": 1, "name": "init_params", "hash": _prev}]
+    _prev = _hash_step("generate_data", {"n_points": n_points, "noise_scale": round(noise_scale, 8)}, _prev)
+    _trace.append({"step": 2, "name": "generate_data", "hash": _prev, "output": {"n_points": n_points}})
+    _prev = _hash_step("estimate_k", {"k_hat": round(k_hat, 6), "relative_error": round(relative_error, 8)}, _prev)
+    _trace.append({"step": 3, "name": "estimate_k", "hash": _prev, "output": {"relative_error": round(relative_error, 8)}})
+    _passed_sc = relative_error <= 0.02
+    _prev = _hash_step("threshold_check", {"relative_error": round(relative_error, 8), "threshold": 0.02, "passed": _passed_sc}, _prev)
+    _trace.append({"step": 4, "name": "threshold_check", "hash": _prev, "output": {"pass": _passed_sc}})
+    _trace_root_hash = _prev
+    # --- End Step Chain ---
     return {
         "mtr_phase": "MTR-2",
         "inputs": inputs_summary,
         "result": result,
+        "execution_trace": _trace,
+        "trace_root_hash": _trace_root_hash,
     }

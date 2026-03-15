@@ -116,6 +116,18 @@ threshold signals that simulation correction is required.
 | **V&V thresholds** | `abs(actual_accuracy - claimed_accuracy) <= accuracy_tolerance` (default tolerance 0.02). `result.pass` must be True for certificate to be valid. |
 | **notes (canary vs normal)** | Same as all other claims: job runs in normal or canary mode via `run_job(..., canary_mode=...)`; evidence artifacts produced for both; canary marked in artifact `canary_mode: true`. |
 
+## ML_BENCH-02
+
+| Field | Value |
+|-------|--------|
+| **claim_id** | ML_BENCH-02 |
+| **domain** | Machine Learning / AI — Regression |
+| **job_kind** | `mlbench2_regression_certificate` |
+| **reproduction** | `python -m pytest tests/ml/test_mlbench02_regression_certificate.py -v` |
+| **evidence_fields** | `mtr_phase` (ML_BENCH-02), `inputs` (seed, claimed_rmse, rmse_tolerance, n_samples, n_features, noise_scale, mode), `result` (actual_rmse, claimed_rmse, absolute_error, tolerance, pass, mae, r2, n_samples), `execution_trace` (4-step chain), `trace_root_hash`. |
+| **V&V thresholds** | `abs(actual_rmse - claimed_rmse) <= rmse_tolerance` (default 0.02). `result.pass` must be True. |
+| **notes (canary vs normal)** | Same as ML_BENCH-01: runs in normal or canary mode via `run_job(..., canary_mode=...)`; evidence artifacts for both. |
+
 ### Purpose
 
 Any ML model that claims a specific accuracy can have that claim packaged into

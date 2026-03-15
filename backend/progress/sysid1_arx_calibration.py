@@ -124,10 +124,29 @@ def run_calibration(
         "method": METHOD,
         "algorithm_version": ALGORITHM_VERSION,
     }
+    # --- Step Chain Verification ---
+    def _hash_step(step_name, step_data, prev_hash):
+        import hashlib, json as _j
+        content = _j.dumps({"step": step_name, "data": step_data, "prev_hash": prev_hash}, sort_keys=True, separators=(",", ":"))
+        return hashlib.sha256(content.encode("utf-8")).hexdigest()
+
+    _prev = _hash_step("init_params", {"seed": seed, "a_true": a_true, "b_true": b_true, "n_steps": n_steps, "u_max": u_max, "noise_scale": round(noise_scale, 8)}, "genesis")
+    _trace = [{"step": 1, "name": "init_params", "hash": _prev}]
+    _prev = _hash_step("generate_sequence", {"n_steps": n_steps, "u_max": u_max}, _prev)
+    _trace.append({"step": 2, "name": "generate_sequence", "hash": _prev, "output": {"n_steps": n_steps}})
+    _prev = _hash_step("estimate_arx", {"a_hat": round(a_hat, 6), "b_hat": round(b_hat, 6), "rel_err_a": round(rel_err_a, 8), "rel_err_b": round(rel_err_b, 8)}, _prev)
+    _trace.append({"step": 3, "name": "estimate_arx", "hash": _prev, "output": {"rel_err_a": round(rel_err_a, 8), "rel_err_b": round(rel_err_b, 8)}})
+    _passed_sc = rel_err_a <= 0.03 and rel_err_b <= 0.03
+    _prev = _hash_step("threshold_check", {"rel_err_a": round(rel_err_a, 8), "rel_err_b": round(rel_err_b, 8), "threshold": 0.03, "passed": _passed_sc}, _prev)
+    _trace.append({"step": 4, "name": "threshold_check", "hash": _prev, "output": {"pass": _passed_sc}})
+    _trace_root_hash = _prev
+    # --- End Step Chain ---
     return {
         "domain": "SYSID",
         "claim_id": "SYSID-01",
         "mtr_phase": "SYSID-01",
         "inputs": inputs_summary,
         "result": result,
+        "execution_trace": _trace,
+        "trace_root_hash": _trace_root_hash,
     }

@@ -10,9 +10,10 @@
     "tamper_evident_semantic_verification",
     "policy_gate_immutable_anchors",
     "dual_mode_canary_pipeline",
-    "step_chain_verification"
+    "step_chain_verification",
+    "cross_claim_cryptographic_chain"
   ],
-  "test_count": 118,
+  "test_count": 172,
   "steward_audit": "PASS",
   "ppa_filed": "2026-03-05",
   "ppa_number": "63/996,819",
