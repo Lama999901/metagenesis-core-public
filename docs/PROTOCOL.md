@@ -296,6 +296,12 @@ no external dependencies.
    `backend/progress/drift_monitor.py` (anchor_hash)
    Proven: `tests/steward/test_cert03_*` + `tests/steward/test_cross_claim_chain.py`
 
+Verify full chain end-to-end:
+```bash
+python scripts/mg.py verify-chain bundle_mtr1/ bundle_dtfem/ bundle_drift/
+# → CHAIN PASS
+```
+
 ---
 
 *MetaGenesis Verification Protocol v0.2 — 2026-03-14*
