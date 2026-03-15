@@ -323,10 +323,28 @@ class ProgressRunner:
                 kwargs["anchor_claim_id"] = str(p.get("anchor_claim_id", "ML_BENCH-01"))
             return run_mlbench2(**kwargs)
 
+        from backend.progress.mlbench3_timeseries_certificate import JOB_KIND as MLBENCH3_KIND, run_certificate as run_mlbench3
+        if payload.get("kind") == MLBENCH3_KIND:
+            p = payload
+            kwargs = dict(
+                seed=int(p.get("seed", 42)),
+                claimed_mape=float(p.get("claimed_mape", 0.05)),
+                mape_tolerance=float(p.get("mape_tolerance", 0.02)),
+                n_steps=int(p.get("n_steps", 200)),
+                trend=float(p.get("trend", 1.0)),
+                noise_scale=float(p.get("noise_scale", 5.0)),
+            )
+            if p.get("dataset_relpath"):
+                kwargs["dataset_relpath"] = str(p["dataset_relpath"]).strip()
+            if p.get("anchor_hash"):
+                kwargs["anchor_hash"] = str(p["anchor_hash"])
+                kwargs["anchor_claim_id"] = str(p.get("anchor_claim_id", "ML_BENCH-01"))
+            return run_mlbench3(**kwargs)
+
         registered = [
             MTR1_KIND, MTR2_KIND, MTR3_KIND,
             SYSID1_KIND, DATAPIPE1_KIND, DRIFT01_KIND,
-            MLBENCH1_KIND, DTFEM1_KIND, MLBENCH2_KIND,
+            MLBENCH1_KIND, DTFEM1_KIND, MLBENCH2_KIND, MLBENCH3_KIND,
         ]
         raise ValueError(
             f"Unknown job kind: '{payload.get('kind')}'. "
