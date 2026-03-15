@@ -131,7 +131,11 @@ python demos/open_data_demo_01/run_demo.py
 grep -r "tamper-proof\|GPT-5\|19x\|VacuumGenesis\|Infinity Protocol" docs/ scripts/ backend/ tests/
 # → must return empty
 
-All must pass. grep must return empty.
+# Full proof-not-trust (10 tests including bypass attack + Cross-Claim Chain):
+python scripts/deep_verify.py
+# → ALL 10 TESTS PASSED ✅
+
+All must pass.
 
 ---
 
