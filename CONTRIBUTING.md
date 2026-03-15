@@ -4,10 +4,12 @@
 
 Run the acceptance suite to confirm your environment is clean:
 ```bash
-python scripts/steward_audit.py
-python -m pytest tests/ -q
+python scripts/steward_audit.py  # → STEWARD AUDIT: PASS
+python -m pytest tests/ -q       # → 223 passed
 ```
 Both must pass before and after any change.
+
+**Current state:** 14 claims, 223 tests, 3 verification layers.
 
 ## What you can contribute
 

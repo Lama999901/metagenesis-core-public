@@ -124,7 +124,40 @@ def test_adversarial_edge_case():
 
 ---
 
-## Step 6 — Verify everything
+## Step 6 — Add Step Chain
+
+Every claim MUST include a 4-step cryptographic execution trace.
+Add BEFORE the return statement:
+
+```python
+    def _hash_step(step_name, step_data, prev_hash):
+        import hashlib, json as _j
+        content = _j.dumps({"step": step_name, "data": step_data, "prev_hash": prev_hash}, sort_keys=True, separators=(",", ":"))
+        return hashlib.sha256(content.encode("utf-8")).hexdigest()
+
+    _prev = _hash_step("init_params", {"your": "inputs", "anchor_hash": anchor_hash or "none"}, "genesis")
+    _trace = [{"step": 1, "name": "init_params", "hash": _prev}]
+    _prev = _hash_step("compute", {"your": "computation_outputs"}, _prev)
+    _trace.append({"step": 2, "name": "compute", "hash": _prev})
+    _prev = _hash_step("metrics", {"your": "metrics"}, _prev)
+    _trace.append({"step": 3, "name": "metrics", "hash": _prev})
+    _prev = _hash_step("threshold_check", {"passed": passed}, _prev)
+    _trace.append({"step": 4, "name": "threshold_check", "hash": _prev, "output": {"pass": passed}})
+    trace_root_hash = _prev
+```
+
+Add to return dict:
+```python
+    return {
+        ...
+        "execution_trace": _trace,
+        "trace_root_hash": trace_root_hash,
+    }
+```
+
+Optionally support Cross-Claim Chain by adding `anchor_hash: Optional[str] = None` to function signature.
+
+## Step 7 — Verify everything
 
 Run in order — all must pass:
 
@@ -133,11 +166,11 @@ python scripts/steward_audit.py
 # Must output: STEWARD AUDIT: PASS
 # Must show YOUR-CLAIM-01 in both lists
 
-python -m pytest tests/steward/test_<your_claim_lower>.py -v
+python -m pytest tests/<domain>/test_<your_claim_lower>.py -v
 # All tests passed
 
-  python -m pytest tests/ -q
-  # All passed (previous count + your new tests)
+python -m pytest tests/ -q
+# All passed (previous count + your new tests)
 
 python demos/open_data_demo_01/run_demo.py
 # PASS PASS
@@ -145,27 +178,38 @@ python demos/open_data_demo_01/run_demo.py
 
 ---
 
-## Step 7 — Commit
+## Step 8 — Commit
 
 ```bash
+git checkout -b feat/your-claim-01
 git add backend/progress/<your_claim_lower>.py
 git add backend/progress/runner.py
 git add reports/scientific_claim_index.md
 git add reports/canonical_state.md
-git add tests/steward/test_<your_claim_lower>.py
+git add tests/<domain>/test_<your_claim_lower>.py
 git commit -m "feat: YOUR-CLAIM-01 — short description"
-git push
+git push origin feat/your-claim-01
+# Open PR → CI PASS → merge
 ```
 
 ---
 
-## Example: DRIFT-01
+## Reference implementations
 
-The complete example of a correctly implemented claim:
-- Implementation: `backend/progress/drift_monitor.py`
-- Runner dispatch: `backend/progress/runner.py` (search DRIFT01_KIND)
-- Claim index: `reports/scientific_claim_index.md` (DRIFT-01 section)
-- Canonical state: `reports/canonical_state.md` (DRIFT-01 in list)
-- Tests: `tests/steward/test_drift01_calibration_anchor.py` (16 tests)
+Study these before adding your own claim:
 
-Study this before adding your own claim.
+**Simple claim (no physical anchor):**
+- `backend/progress/mlbench2_regression_certificate.py` — regression (RMSE, MAE, R²)
+- `tests/ml/test_mlbench02_regression_certificate.py`
+
+**Physical anchor claim:**
+- `backend/progress/mtr1_calibration.py` — Young's modulus vs E=70GPa
+- `tests/materials/test_mtr1_*.py`
+
+**Cross-Claim Chain (anchor_hash support):**
+- `backend/progress/dtfem1_displacement_verification.py` — FEM vs MTR-1 anchor
+- `tests/steward/test_cross_claim_chain.py`
+
+**Domain-specific (pharma/finance):**
+- `backend/progress/pharma1_admet_certificate.py`
+- `backend/progress/finrisk1_var_certificate.py`
