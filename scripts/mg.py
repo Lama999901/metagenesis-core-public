@@ -233,7 +233,137 @@ def _verify_semantic(pack_dir: Path, evidence_index_path: Path) -> tuple[bool, s
                     msg = (f"Run artifact {run_rel} trace_root_hash does not match "
                            f"final execution_trace step hash — Step Chain broken")
                     return False, msg, [msg]
+            # --- anchor_hash format validation ---
+            # If anchor_hash present in inputs, verify it is valid 64-char hex.
+            # This ensures Cross-Claim Chain references are well-formed.
+            # Does NOT verify the upstream bundle (that requires verify-chain CLI).
+            if isinstance(inputs, dict):
+                ah = inputs.get("anchor_hash")
+                if ah is not None:
+                    if not (isinstance(ah, str) and len(ah) == 64
+                            and all(c in "0123456789abcdef" for c in ah)):
+                        msg = (f"Run artifact {run_rel} inputs.anchor_hash "
+                               f"must be valid 64-char lowercase hex or None")
+                        return False, msg, [msg]
     return True, "PASS", []
+
+
+def _verify_chain(packs: list) -> tuple[bool, str, dict]:
+    """
+    Verify a Cross-Claim Chain: sequence of bundles where each bundle's
+    anchor_hash must match the previous bundle's trace_root_hash.
+
+    Args:
+        packs: list of Path objects — ordered upstream to downstream
+               e.g. [mtr1_bundle, dtfem_bundle, drift_bundle]
+
+    Returns: (ok, message, report)
+    """
+    report = {
+        "version": "v1",
+        "chain_length": len(packs),
+        "links": [],
+        "errors": [],
+    }
+
+    if len(packs) < 2:
+        msg = "verify-chain requires at least 2 bundles"
+        report["errors"].append(msg)
+        return False, msg, report
+
+    # Verify each bundle individually first
+    prev_trace_root_hash = None
+    prev_pack_name = None
+
+    for i, pack_dir in enumerate(packs):
+        pack_dir = Path(pack_dir)
+        ok, msg, pack_report = _verify_pack(pack_dir)
+        link = {
+            "pack": str(pack_dir.name),
+            "position": i,
+            "individual_verify": "pass" if ok else "fail",
+            "trace_root_hash": None,
+            "anchor_hash": None,
+            "chain_link": "skip" if i == 0 else None,
+        }
+
+        if not ok:
+            link["error"] = msg
+            report["links"].append(link)
+            report["errors"].append(f"Bundle {pack_dir.name}: {msg}")
+            return False, f"Bundle {pack_dir.name} failed individual verification: {msg}", report
+
+        # Extract trace_root_hash and anchor_hash from this bundle
+        evidence_index_path = pack_dir / "evidence_index.json"
+        if not evidence_index_path.exists():
+            msg = f"Bundle {pack_dir.name}: evidence_index.json not found"
+            report["errors"].append(msg)
+            return False, msg, report
+
+        index = json.loads(evidence_index_path.read_text(encoding="utf-8"))
+        bundle_trace_root = None
+        bundle_anchor_hash = None
+
+        for claim_id, entry in index.items():
+            normal = entry.get("normal", {})
+            run_rel = normal.get("run_relpath", "")
+            if not run_rel:
+                continue
+            run_path = pack_dir / run_rel
+            if not run_path.exists():
+                continue
+            art = json.loads(run_path.read_text(encoding="utf-8"))
+            snap = art.get("job_snapshot", {})
+            domain = snap.get("result", {})
+            bundle_trace_root = domain.get("trace_root_hash")
+            bundle_anchor_hash = domain.get("inputs", {}).get("anchor_hash")
+            break  # use first claim found
+
+        link["trace_root_hash"] = bundle_trace_root
+        link["anchor_hash"] = bundle_anchor_hash
+
+        # Verify chain link: this bundle's anchor_hash must match previous trace_root_hash
+        if i > 0 and prev_trace_root_hash is not None:
+            if bundle_anchor_hash is None:
+                msg = (f"Bundle {pack_dir.name} has no anchor_hash — "
+                       f"cannot verify chain link from {prev_pack_name}")
+                link["chain_link"] = "fail"
+                link["error"] = msg
+                report["links"].append(link)
+                report["errors"].append(msg)
+                return False, msg, report
+
+            if bundle_anchor_hash != prev_trace_root_hash:
+                msg = (f"Chain broken between {prev_pack_name} and {pack_dir.name}: "
+                       f"anchor_hash does not match upstream trace_root_hash")
+                link["chain_link"] = "fail"
+                link["error"] = msg
+                report["links"].append(link)
+                report["errors"].append(msg)
+                return False, f"CHAIN BROKEN: {msg}", report
+
+            link["chain_link"] = "pass"
+
+        report["links"].append(link)
+        prev_trace_root_hash = bundle_trace_root
+        prev_pack_name = pack_dir.name
+
+    return True, "CHAIN PASS", report
+
+
+def cmd_verify_chain(args) -> int:
+    """Verify a Cross-Claim Chain of bundles."""
+    packs = args.packs
+    ok, msg, report = _verify_chain(packs)
+    if args.json:
+        out = Path(args.json)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(report, indent=2), encoding="utf-8")
+    print(msg)
+    if not ok:
+        for err in report.get("errors", []):
+            print(f"  → {err}")
+    return 0 if ok else 1
 
 
 def cmd_pack_verify(args) -> int:
@@ -310,6 +440,13 @@ def main():
         return 0 if ok else 1
 
     verify_top.set_defaults(func=_verify_pack_cmd)
+
+    verify_chain = sub.add_parser("verify-chain")
+    verify_chain.add_argument("packs", nargs="+", type=Path,
+                              help="Ordered list of bundle paths (upstream first)")
+    verify_chain.add_argument("--json", "-j", type=Path, default=None,
+                              help="Write machine-readable JSON report to path")
+    verify_chain.set_defaults(func=cmd_verify_chain)
 
     bench = sub.add_parser("bench")
     bench_sub = bench.add_subparsers(dest="command", required=True)
