@@ -3,7 +3,7 @@
 This roadmap reflects planned development directions.
 All items are subject to change based on community feedback and priorities.
 
-**Current version:** 0.1.0-ppa-filing
+**Current version:** 0.2.0
 **Protocol:** MetaGenesis Verification Protocol (MVP) v0.1
 
 **Core principle:** MetaGenesis Core verifies that computational results
@@ -22,10 +22,20 @@ This is traceability to physical measurement, not threshold compliance.
 - [x] Dual-mode canary pipeline
 - [x] 8 active claims: MTR-1/2/3, SYSID-01, DATA-PIPE-01, DRIFT-01,
       ML_BENCH-01, DT-FEM-01
-- [x] Protocol specification (docs/PROTOCOL.md)
-- [x] Use case documentation for 6 verticals (incl. digital twin)
-- [x] DT-FEM-01 — FEM output vs. physical reference verification
-      (rel_err ≤ 0.02, synthetic + real CSV modes)
+- [x] Protocol specification (docs/PROTOCOL.md v0.2)
+- [x] Architecture documentation (docs/ARCHITECTURE.md v0.2)
+- [x] Step Chain Verification in ALL 14 claims (4-step execution trace)
+- [x] Cross-Claim Cryptographic Chain (MTR-1 → DT-FEM-01 → DRIFT-01)
+- [x] anchor_hash validation in mg.py verify
+- [x] verify-chain CLI command
+- [x] ML_BENCH-02 — regression certificate (RMSE, MAE, R²)
+- [x] ML_BENCH-03 — time-series forecast certificate (MAPE)
+- [x] PHARMA-01 — ADMET prediction certificate (FDA 21 CFR Part 11)
+- [x] FINRISK-01 — VaR model certificate (Basel III/IV)
+- [x] DT-SENSOR-01 — IoT sensor data integrity certificate
+- [x] DT-CALIB-LOOP-01 — calibration convergence certificate
+- [x] 223 adversarial tests, steward_audit PASS
+- [x] GitHub Sponsors configured
 
 ---
 
@@ -33,18 +43,14 @@ This is traceability to physical measurement, not threshold compliance.
 
 **ML domain expansion**
 
-- [ ] ML_BENCH-02 — multi-class classification certificate
-      (F1 macro, per-class precision/recall, confusion matrix)
-- [ ] ML_BENCH-03 — regression model certificate
-      (RMSE, MAE, R² against claimed values)
-- [ ] ML_BENCH-04 — time-series forecast certificate
-      (MAPE, horizon-specific accuracy claims)
+- [ ] ML_BENCH-04 — multi-class classification (F1 macro, per-class precision/recall)
+- [ ] ML_BENCH-05 — LLM evaluation certificate (BLEU, ROUGE, perplexity)
 
 **CLI and tooling**
 
 - [ ] `mg.py pack build --auto` — auto-detect claim type from result structure
-- [ ] `mg.py verify --report json` — machine-readable verification output
 - [ ] Bundle signing with asymmetric keys (verifier can confirm bundle origin)
+- [ ] `mg init` — scaffold new claim in 60 seconds
 
 **Developer experience**
 
