@@ -14,7 +14,10 @@ A governance + evidence + verification pipeline. An open protocol.
 ## What this repo does
 
 1. Wraps any computational result in a tamper-evident evidence bundle
-2. Verifies bundles offline with integrity + semantic layers
+2. Verifies bundles offline with 3 independent layers:
+   - Layer 1: SHA-256 integrity (file modification)
+   - Layer 2: Semantic (evidence stripped, hashes recomputed — still caught)
+   - Layer 3: Step Chain (execution inputs changed — trace_root_hash breaks)
 3. Enforces governance: every claim has implementation, every implementation has claim
 4. Detects drift against verified calibration anchors
 
@@ -95,12 +98,13 @@ Scope boundary documented in reports/known_faults.yaml :: SCOPE_001.
 
 ## Current state (2026-03-14)
 
-- Tests: 113 passing
+- Tests: 118 passing
+- Verification layers: 3 (integrity + semantic + step chain)
 - steward_audit: PASS
 - known_faults: 2 entries (ENV_001 + SCOPE_001)
-- Last PR merged: #47 feat/step-chain-verification (113 tests, Step Chain Verification added to ML_BENCH-01)
+- Last PR merged: test_cert03 + mg.py Step Chain verify (113→118 tests, 3 verification layers)
 - Site: metagenesis-core.dev — deployed on Vercel, auto-deploys from main
-- HN post live: https://news.ycombinator.com/item?id=47335416 — 9 points, 4 comments
+- HN post live: https://news.ycombinator.com/item?id=47335416 — 9 points, comments active
 - PPA filed: 2026-03-05 — non-provisional deadline 2027-03-05
 - Stripe: configured at $299/license
 - Outreach sent: Tongqi Wen (ElaTBot, Mar 5), Giovanni Pizzi (PSI/AiiDA, Mar 7),
