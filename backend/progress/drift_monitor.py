@@ -62,6 +62,8 @@ def run_drift_monitor(
     anchor_claim_id: str = "MTR-1",
     anchor_units: str = "Pa",
     drift_threshold_pct: float = DEFAULT_DRIFT_THRESHOLD_PCT,
+    anchor_hash: Optional[str] = None,
+    anchor_claim_id_for_chain: str = "DT-FEM-01",
 ) -> Dict[str, Any]:
     """
     Run DRIFT-01 drift monitoring job.
@@ -96,7 +98,7 @@ def run_drift_monitor(
         content = _j.dumps({"step": step_name, "data": step_data, "prev_hash": prev_hash}, sort_keys=True, separators=(",", ":"))
         return hashlib.sha256(content.encode("utf-8")).hexdigest()
 
-    _prev = _hash_step("init_params", {"anchor_value": float(anchor_value), "current_value": float(current_value), "anchor_claim_id": str(anchor_claim_id), "drift_threshold_pct": float(drift_threshold_pct)}, "genesis")
+    _prev = _hash_step("init_params", {"anchor_value": float(anchor_value), "current_value": float(current_value), "anchor_claim_id": str(anchor_claim_id), "drift_threshold_pct": float(drift_threshold_pct), "anchor_hash": anchor_hash or "none"}, "genesis")
     _trace = [{"step": 1, "name": "init_params", "hash": _prev}]
     _drift_pct = drift_result.get("drift_pct", 0.0)
     _prev = _hash_step("compute_drift", {"drift_pct": round(_drift_pct, 8)}, _prev)
@@ -119,6 +121,8 @@ def run_drift_monitor(
             "anchor_units": anchor_units,
             "current_value": current_value,
             "drift_threshold_pct": drift_threshold_pct,
+            "anchor_hash": anchor_hash,
+            "anchor_claim_id_for_chain": anchor_claim_id_for_chain if anchor_hash is not None else None,
         },
         "result": drift_result,
         "status": "SUCCEEDED",

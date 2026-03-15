@@ -83,6 +83,8 @@ def run_certificate(
     quantity: str = "displacement_mm",
     units: str = "mm",
     dataset_relpath: Optional[str] = None,
+    anchor_hash: Optional[str] = None,
+    anchor_claim_id: str = "MTR-1",
 ) -> Dict[str, Any]:
     """
     Run DT-FEM-01 verification certificate.
@@ -181,7 +183,7 @@ def run_certificate(
         content = _j.dumps({"step": step_name, "data": step_data, "prev_hash": prev_hash}, sort_keys=True, separators=(",", ":"))
         return hashlib.sha256(content.encode("utf-8")).hexdigest()
 
-    _prev = _hash_step("init_params", {"seed": seed, "reference_value": reference_value, "rel_err_threshold": rel_err_threshold, "noise_scale": noise_scale, "quantity": quantity, "units": units}, "genesis")
+    _prev = _hash_step("init_params", {"seed": seed, "reference_value": reference_value, "rel_err_threshold": rel_err_threshold, "noise_scale": noise_scale, "quantity": quantity, "units": units, "anchor_hash": anchor_hash or "none"}, "genesis")
     _trace = [{"step": 1, "name": "init_params", "hash": _prev}]
     _prev = _hash_step("generate_fem_pair", {"fem_value": round(fem_value, 8), "ref_value": round(ref_value, 8)}, _prev)
     _trace.append({"step": 2, "name": "generate_fem_pair", "hash": _prev, "output": {"fem_value": round(fem_value, 8)}})
@@ -202,6 +204,8 @@ def run_certificate(
             "noise_scale": noise_scale,
             "quantity": quantity,
             "units": units,
+            "anchor_hash": anchor_hash,
+            "anchor_claim_id": anchor_claim_id if anchor_hash is not None else None,
         },
         "result": {
             "fem_value": fem_value,
