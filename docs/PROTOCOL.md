@@ -1,4 +1,4 @@
-# MetaGenesis Verification Protocol (MVP) v0.1
+# MetaGenesis Verification Protocol (MVP) v0.2
 
 ## What this is
 
@@ -9,44 +9,131 @@ A bundle created by any MVP-compliant implementation can be verified by
 any MVP-compliant verifier — offline, without network access, without
 trusting the bundle creator, without access to the original environment.
 
+This is not experiment tracking. It is not logging. It is not monitoring.
+
+It answers one question no existing tool answers:
+
+> Can any third party verify this computational result independently —
+> without access to the original model, data, or environment?
+
+MVP answers: yes. In 60 seconds. Offline. With three independent verification
+layers, each proven by an adversarial test.
+
 ---
 
-## Problem this solves
+## The problem this solves
 
-Computational results are increasingly central to scientific publications,
-regulatory submissions, commercial agreements, and AI product claims.
+Computational results are central to scientific publications, regulatory
+submissions, commercial agreements, and AI product claims. There is no
+standard for what "independently verifiable" means for a computational result.
 
-There is no standard for what "independently verifiable" means for a
-computational result. Every team invents its own provenance approach —
-or does nothing.
+The deeper problem: even when provenance exists, it proves only that a number
+was produced consistently — not that it is grounded in physical reality. A
+result that agrees with a physically measured constant (E = 70 GPa for aluminum,
+measured independently in thousands of laboratories worldwide) carries
+fundamentally different epistemic weight than a result that merely passes an
+internally chosen threshold.
 
-The deeper problem: even when provenance exists, it proves only that a
-number was produced consistently — not that it is grounded in physical
-reality. A result that agrees with a physically measured constant (E = 70
-GPa for aluminum, measured independently in thousands of labs) carries
-fundamentally different epistemic weight than a result that merely passes
-an internally chosen threshold.
+MVP addresses both:
 
-MVP addresses both: tamper-evident provenance AND traceability to physical
-anchors where they exist.
+1. **Tamper-evident provenance** — the bundle wasn't modified after generation
+2. **Physical anchor traceability** — the computation agrees with physical reality
+3. **Execution integrity** — the computation was performed in the claimed sequence
 
-MVP defines a minimal, concrete standard:
+---
 
-- What a verifiable bundle must contain
-- What a compliant verifier must check
-- What PASS and FAIL mean precisely
-- What the verifier cannot be deceived by
-- How computational claims chain back to physical measurements
+## Three verification layers
+
+Each layer catches attacks that the previous layers miss.
+
+### Layer 1 — Integrity (SHA-256)
+
+Detects: any file modified after bundle generation.
+How: SHA-256 hash of every file + root_hash over all hashes.
+Bypassed by: removing evidence and recomputing hashes.
+
+### Layer 2 — Semantic
+
+Detects: evidence stripped, hashes recomputed (integrity says PASS, semantic says FAIL).
+How: independently verifies required keys (`job_snapshot`, `payload.kind`, `canary_mode`).
+Bypassed by: submitting a structurally valid artifact with modified computation inputs.
+
+Proven by adversarial test:
+```
+tests/steward/test_cert02_pack_includes_evidence_and_semantic_verify.py
+::test_semantic_negative_missing_job_snapshot_fails_verify
+```
+
+### Layer 3 — Step Chain
+
+Detects: computation inputs changed, steps reordered, steps skipped
+         (layers 1 and 2 both say PASS, step chain says FAIL).
+How: cryptographic hash chain over the execution sequence.
+
+```
+step 1: init_params       → hash_1 = SHA256(step1_data + "genesis")
+step 2: compute           → hash_2 = SHA256(step2_data + hash_1)
+step 3: metrics           → hash_3 = SHA256(step3_data + hash_2)
+step 4: threshold_check   → trace_root_hash = SHA256(step4_data + hash_3)
+```
+
+`trace_root_hash` commits to the entire execution sequence. Change any input,
+skip any step, reorder any step — `trace_root_hash` breaks.
+
+Not blockchain. No network. No tokens. Same concept as git commits.
+Works offline. No external dependencies.
+
+Proven by adversarial test:
+```
+tests/steward/test_cert03_step_chain_verify.py
+::TestStepChainVerification::test_tampered_trace_root_hash_fails
+```
+
+All three layers run on every `mg.py verify --pack bundle.zip`.
+
+---
+
+## Physical Anchor Chain (Cross-Claim Cryptographic Chain)
+
+For physical domains, individual claim verification is extended to
+end-to-end chain verification.
+
+Each claim's `trace_root_hash` can be embedded as `anchor_hash` in the
+next claim's Step Chain. This cryptographically links the entire chain
+from physical measurement to simulation output to drift monitoring:
+
+```
+Physical reality:  E = 70 GPa  (aluminum — measured in thousands of labs)
+        ↓
+MTR-1   trace_root_hash: "abc..."  (calibration against physical constant)
+        ↓  anchor_hash="abc..." baked into DT-FEM-01 Step 1
+DT-FEM-01  trace_root_hash: "def..."  (FEM output vs physical reference)
+        ↓  anchor_hash="def..." baked into DRIFT-01 Step 1
+DRIFT-01   trace_root_hash: "ghi..."  (drift against verified anchor)
+```
+
+DRIFT-01's `trace_root_hash` now cryptographically commits to the entire
+chain from physical measurement to current simulation state.
+
+Tampering any link breaks all downstream hashes.
+Any third party verifies the full chain offline with one command.
+
+Proven by:
+```
+tests/steward/test_cross_claim_chain.py
+::TestCrossClaimChain::test_full_chain_is_cryptographically_linked
+::TestCrossClaimChain::test_tampered_anchor_hash_changes_chain
+```
 
 ---
 
 ## Bundle structure
 
-An MVP-compliant bundle is a directory (or ZIP archive) with this structure:
+An MVP-compliant bundle is a directory (or ZIP archive):
 
 ```
 bundle/
-  pack_manifest.json        ← integrity layer
+  pack_manifest.json        ← Layer 1: SHA-256 integrity manifest
   evidence_index.json       ← claim mapping
   claims/
     dossier_<CLAIM_ID>.md   ← human-readable claim summary
@@ -62,56 +149,31 @@ bundle/
 
 ---
 
-## pack_manifest.json
-
-The integrity manifest. Contains SHA-256 hashes of every file in the bundle,
-plus a root_hash computed over all file hashes.
-
-```json
-{
-  "version": "1.0",
-  "root_hash": "<sha256 of all file hashes concatenated>",
-  "files": {
-    "evidence/MTR-1/normal/run_artifact.json": "<sha256>",
-    "evidence_index.json": "<sha256>"
-  }
-}
-```
-
-**Integrity check:** recompute all file hashes and root_hash, compare to manifest.
-Any mismatch → FAIL.
-
----
-
 ## run_artifact.json
 
 The evidence artifact produced by a single job run. Must contain:
 
 ```json
 {
-  "w6_phase": "W6-A5",
-  "kind": "success",
-  "job_id": "<uuid>",
   "trace_id": "<uuid>",
   "canary_mode": false,
   "job_snapshot": {
-    "job_id": "...",
     "payload": { "kind": "<job_kind>" },
-    "result": { "mtr_phase": "<CLAIM_ID>", ... },
-    "status": "SUCCEEDED"
-  },
-  "ledger_action": "job_completed",
-  "persisted_at": "<iso8601>"
+    "result": {
+      "mtr_phase": "<CLAIM_ID>",
+      "inputs": { ... },
+      "result": { "pass": true, ... },
+      "execution_trace": [
+        {"step": 1, "name": "init_params", "hash": "<sha256>"},
+        {"step": 2, "name": "compute",     "hash": "<sha256>"},
+        {"step": 3, "name": "metrics",     "hash": "<sha256>"},
+        {"step": 4, "name": "threshold_check", "hash": "<sha256>"}
+      ],
+      "trace_root_hash": "<sha256 of final step>"
+    }
+  }
 }
 ```
-
-**Semantic invariants a verifier must check:**
-
-1. `job_snapshot` key must be present (not null, not empty)
-2. `job_snapshot.payload.kind` must match the claim's registered `job_kind`
-3. `canary_mode` must be `false` for authoritative evidence, `true` for canary
-4. `ledger_action` must be `job_completed` (authoritative) or `job_completed_canary` (canary)
-5. `job_snapshot.result.mtr_phase` must be present
 
 ---
 
@@ -120,45 +182,27 @@ The evidence artifact produced by a single job run. Must contain:
 ```
 INPUT: bundle path
 
-STEP 1 — Integrity check
+STEP 1 — Integrity (Layer 1)
   Load pack_manifest.json
-  For each file in manifest:
-    Compute SHA-256 of file content
-    Compare to manifest hash
-    If mismatch → FAIL("integrity: <file> hash mismatch")
-  Recompute root_hash
-  Compare to manifest root_hash
-  If mismatch → FAIL("integrity: root_hash mismatch")
+  For each file: compute SHA-256, compare to manifest
+  Recompute root_hash, compare to manifest
+  Any mismatch → FAIL("integrity: ...")
 
-STEP 2 — Semantic check (runs even if integrity passes)
+STEP 2 — Semantic (Layer 2)
   For each claim in evidence_index:
-    Load evidence/<CLAIM_ID>/normal/run_artifact.json
-    Check job_snapshot present → if missing → FAIL("semantic: job_snapshot missing")
-    Check payload.kind matches registered job_kind → if wrong → FAIL("semantic: kind mismatch")
-    Check canary_mode == false → if true → FAIL("semantic: canary artifact used as authoritative")
-    Check ledger_action == "job_completed" → if wrong → FAIL("semantic: wrong ledger action")
+    Check job_snapshot present → FAIL if missing
+    Check payload.kind matches job_kind → FAIL if wrong
+    Check canary_mode == false → FAIL if wrong
+    Check mtr_phase present in result → FAIL if missing
+
+STEP 3 — Step Chain (Layer 3)
+  If execution_trace present in result:
+    Verify each step hash is valid 64-char lowercase hex
+    Verify trace_root_hash == execution_trace[-1]["hash"]
+    Any mismatch → FAIL("Step Chain broken — ...")
 
 OUTPUT: PASS or FAIL with specific reason
 ```
-
----
-
-## Why the semantic check exists
-
-The integrity layer (SHA-256) is necessary but not sufficient.
-
-**The bypass attack:**
-An adversary can:
-1. Remove `job_snapshot` from `run_artifact.json`
-2. Recompute all SHA-256 hashes to match the modified file
-3. Produce a bundle where integrity = PASS
-
-Without the semantic layer, this attack succeeds silently.
-With the semantic layer: integrity = PASS, semantic = FAIL.
-
-This attack is proven and caught:
-`tests/steward/test_cert02_pack_includes_evidence_and_semantic_verify.py`
-`::test_semantic_negative_missing_job_snapshot_fails_verify`
 
 ---
 
@@ -175,53 +219,84 @@ claim_index job_kinds
 canonical_state current_claims_list
 ```
 
-Checked automatically by `python scripts/steward_audit.py` on every PR.
+Enforced automatically by `python scripts/steward_audit.py` on every PR.
+Not by human review. Not periodically. On every merge.
 
 ---
 
-## Claim lifecycle (how to add a domain)
+## Claim lifecycle
 
 To extend MVP to a new computational domain:
 
-1. Implement: `backend/progress/<claim_id>.py` with `JOB_KIND` constant and `run_*()` function
+1. Implement: `backend/progress/<claim_id>.py` — `JOB_KIND` constant, `run_*()` function,
+   4-step Step Chain producing `execution_trace` + `trace_root_hash`
 2. Dispatch: add dispatch block in `runner._execute_job_logic()`
 3. Register: add claim section in `reports/scientific_claim_index.md`
-4. Anchor: add claim_id to `reports/canonical_state.md` current_claims_list
-5. Test: write tests in `tests/<domain>/` covering pass, fail, and adversarial cases
+4. Anchor: add claim_id to `reports/canonical_state.md`
+5. Test: pass / fail / adversarial / determinism / Step Chain integrity
 6. Verify: `python scripts/steward_audit.py` → PASS
 
 ---
 
-## Current domains
+## Active claims and domains
 
-| Domain | Claim IDs | Status |
-|--------|-----------|--------|
-| Materials science | MTR-1, MTR-2, MTR-3 | Active |
-| System identification | SYSID-01 | Active |
-| Data pipelines | DATA-PIPE-01 | Active |
-| Drift monitoring | DRIFT-01 | Active |
-| ML benchmarking | ML_BENCH-01 | Active |
+| Claim | Domain | Threshold | Physical Anchor |
+|-------|--------|-----------|-----------------|
+| MTR-1 | Materials — Young's Modulus | `rel_err ≤ 0.01` | E = 70 GPa (aluminum) |
+| MTR-2 | Materials — Thermal Conductivity | `rel_err ≤ 0.02` | Physical constant |
+| MTR-3 | Materials — Multilayer Contact | `rel_err_k ≤ 0.03` | Physical constant |
+| SYSID-01 | System Identification | `rel_err_a/b ≤ 0.03` | — |
+| DATA-PIPE-01 | Data Pipelines | schema pass · range pass | — |
+| DRIFT-01 | Drift Monitoring | `drift ≤ 5.0%` | MTR-1 anchor |
+| ML_BENCH-01 | ML Benchmarking | `\|Δacc\| ≤ 0.02` | — |
+| DT-FEM-01 | Digital Twin / FEM | `rel_err ≤ 0.02` | MTR-1 anchor |
+
+Physical anchor applies to: MTR-1/2/3, DT-FEM-01, DRIFT-01.
+Tamper-evident provenance only: ML_BENCH-01, DATA-PIPE-01, SYSID-01.
+Documented in `reports/known_faults.yaml` :: SCOPE_001.
 
 ---
 
 ## Language policy
 
-This protocol uses precise language about what it guarantees:
+**Use:** "tamper-evident under trusted verifier assumptions"
 
-**Use:** "tamper-evident under trusted verifier assumptions and semantic invariants"
+**Never use:** "tamper-proof", "impossible to forge", "unforgeable", "blockchain"
 
-**Never use:** claims of perfect or unfalsifiable security (e.g. impossible to forge, 100% secure). Prefer "tamper-evident" over absolute integrity wording.
+The protocol is tamper-evident — modifications are detectable under the
+described threat model. A sufficiently sophisticated adversary with full
+codebase access could construct a passing fake bundle. Known limitations
+are in `reports/known_faults.yaml`.
 
-The distinction is material. Tamper-evident means modifications are detectable
-by the verification layer under the threat model described above. It does not
-mean a sufficiently sophisticated adversary with full codebase access cannot
-construct a passing fake bundle. Limitations are in `reports/known_faults.yaml`.
+Step Chain is a cryptographic hash chain — same concept as git commits or
+Merkle trees. It is not a blockchain. It requires no network, no consensus,
+no external dependencies.
 
 ---
 
-## Patent
+## 5 patentable innovations (USPTO PPA #63/996,819)
 
-USPTO PPA #63/996,819, filed 2026-03-05, inventor Yehor Bazhynov.
-4 patentable innovations implement this protocol:
-bidirectional claim coverage, semantic tamper detection,
-policy-gate immutable anchors, dual-mode canary pipeline.
+1. **Governance-Enforced Bidirectional Claim Coverage**
+   `scripts/steward_audit.py :: _claim_coverage_bidirectional()`
+
+2. **Tamper-Evident Bundle with Semantic Verification Layer**
+   `scripts/mg.py :: _verify_pack() + _verify_semantic()`
+   Proven: `tests/steward/test_cert02_*`
+
+3. **Policy-Gate Immutable Evidence Anchors**
+   `scripts/mg_policy_gate_policy.json` (locked_paths)
+   `.github/workflows/mg_policy_gate.yml`
+
+4. **Dual-Mode Canary Execution Pipeline**
+   `backend/progress/runner.py :: run_job(canary_mode=True/False)`
+
+5. **Step Chain + Cross-Claim Cryptographic Chain**
+   `backend/progress/mlbench1_accuracy_certificate.py :: _hash_step()`
+   `backend/progress/dtfem1_displacement_verification.py` (anchor_hash)
+   `backend/progress/drift_monitor.py` (anchor_hash)
+   Proven: `tests/steward/test_cert03_*` + `tests/steward/test_cross_claim_chain.py`
+
+---
+
+*MetaGenesis Verification Protocol v0.2 — 2026-03-14*
+*Inventor: Yehor Bazhynov — USPTO PPA #63/996,819*
