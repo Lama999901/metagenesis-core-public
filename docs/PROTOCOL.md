@@ -304,5 +304,5 @@ python scripts/mg.py verify-chain bundle_mtr1/ bundle_dtfem/ bundle_drift/
 
 ---
 
-*MetaGenesis Verification Protocol v0.2 — 2026-03-14*
+*MetaGenesis Verification Protocol v0.2 — 2026-03-15*
 *Inventor: Yehor Bazhynov — USPTO PPA #63/996,819*
