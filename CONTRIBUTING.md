@@ -12,6 +12,8 @@ All three must pass before and after any change.
 
 **Current state:** 14 claims, 223 tests, 3 verification layers.
 
+**Current state:** 14 claims, 223 tests, 3 verification layers.
+
 ## What you can contribute
 
 - New verified claims (must follow claim lifecycle in reports/scientific_claim_index.md)
