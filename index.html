@@ -1465,7 +1465,7 @@ a.soon-chip{border-bottom:none!important}
       <a href="#protocol" onclick="document.getElementById('megaover').classList.remove('open')">Canary Pipeline<span>Dual-mode execution proof</span></a>
     </div>
     <div class="mo-col">
-      <h3>Claims — 8 active</h3>
+      <h3>Claims — 14 active</h3>
       <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">MTR-1<span>Young's Modulus Calibration</span></a>
       <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">MTR-2<span>Thermal Conductivity</span></a>
       <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">MTR-3<span>Multilayer Contact</span></a>
@@ -2347,7 +2347,7 @@ a.soon-chip{border-bottom:none!important}
       <div class="price-desc">Full protocol, all 14 claims, all verification tools. No limits.</div>
       <ul class="price-list">
         <li>Full MetaGenesis Verification Protocol</li>
-        <li>8 active domain claims</li>
+        <li>14 active domain claims</li>
         <li>223 tests including adversarial proof</li>
         <li>Local deployment, no cloud required</li>
         <li>MIT licensed</li>
@@ -2534,7 +2534,7 @@ a.soon-chip{border-bottom:none!important}
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank"><span class="seg-chip active-chip">DATA-PIPE-01 — data integrity</span></a>
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="seg-chip active-chip">DRIFT-01 — calibration anchor</span></a>
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/scientific_claim_index.md" target="_blank"><span class="seg-chip active-chip">MTR-1/2/3 — calibration certificates</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/ROADMAP.md" target="_blank"><span class="seg-chip soon-chip">PHARMA-01 — ADMET (planned)</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/ROADMAP.md" target="_blank"><span class="seg-chip active-chip">PHARMA-01 — ADMET certificate</span></a>
           </div>
         </div>
         <div class="seg-cta-row">
@@ -2561,7 +2561,7 @@ a.soon-chip{border-bottom:none!important}
           <div class="seg-claim-chips">
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-01 — model accuracy</span></a>
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank"><span class="seg-chip active-chip">DATA-PIPE-01 — pipeline integrity</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/ROADMAP.md" target="_blank"><span class="seg-chip soon-chip">FINRISK-01 — VaR certificate (planned)</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/ROADMAP.md" target="_blank"><span class="seg-chip active-chip">FINRISK-01 — VaR certificate</span></a>
           </div>
         </div>
         <div class="seg-cta-row">
@@ -2840,7 +2840,7 @@ a.soon-chip{border-bottom:none!important}
 </section>
 
 <footer>
-  <div class="fl"><span class="fla">METAGENESIS CORE</span><span class="flb">Open verification protocol &#223; MVP v0.1</span></div>
+  <div class="fl"><span class="fla">METAGENESIS CORE</span><span class="flb">Open verification protocol &#223; MVP v0.2</span></div>
   <div class="flinks">
     <a href="https://github.com/Lama999901/metagenesis-core-public">GitHub</a>
     <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/PROTOCOL.md">Protocol</a>
@@ -3172,7 +3172,7 @@ a.soon-chip{border-bottom:none!important}
   if(tel){var ti=0;setTimeout(function tw(){if(ti<cmd.length){tel.textContent+=cmd[ti++];setTimeout(tw,32+Math.random()*26);}else{if(tcur)tcur.style.display='none';[['l1',300],['l2',800],['l3',1300],['l4',1900],['l5',2400],['l6',3000],['l7',3600],['r1',2200],['r2',3200]].forEach(function(p){setTimeout(function(){var e=document.getElementById(p[0]);if(e)e.style.opacity='1';},p[1]);});}},1400);}
 
   function ct(el,n,d){if(!el)return;d=d||1200;var s=performance.now();(function f(now){var p=Math.min((now-s)/d,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(e*n);if(p<1)requestAnimationFrame(f);else el.textContent=n;})(performance.now());}
-  var done=false;function tryC(){var e=document.getElementById('cn1');if(!e||done)return;if(e.getBoundingClientRect().top<innerHeight*.9){done=true;ct(document.getElementById('cn1'),8);ct(document.getElementById('cn2'),223,1500);ct(document.getElementById('cn3'),3,900);}}
+  var done=false;function tryC(){var e=document.getElementById('cn1');if(!e||done)return;if(e.getBoundingClientRect().top<innerHeight*.9){done=true;ct(document.getElementById('cn1'),14);ct(document.getElementById('cn2'),223,1500);ct(document.getElementById('cn3'),3,900);}}
   window.addEventListener('scroll',tryC,{passive:true});tryC();
 
   var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('vis');});},{threshold:.08});
