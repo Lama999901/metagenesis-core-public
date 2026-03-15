@@ -100,12 +100,25 @@ python demos/open_data_demo_01/run_demo.py  # → PASS PASS
 
 ## What is next
 
-- [ ] Update index.html claims hero badge 8→14, domains 6→7
-- [ ] Re-lock canonical_state.md in policy gate after all Summit PRs merged
-- [ ] GitHub Release v0.2.0
-- [ ] Outreach: Elena Samuylova (resend with subject), Anand Kannappan, Vikram Chatterji
+- [ ] GitHub Release v0.2.0 — tag after all PRs merged
+- [ ] Outreach: Elena Samuylova (resend WITH subject), Anand Kannappan, Vikram Chatterji, Woody Sherman, Jonathan Godwin
 - [ ] Non-provisional patent attorney (deadline 2027-03-05)
 - [ ] First paying customer ($299)
+- [ ] r/MachineLearning post, MLOps Community Slack
+
+## What is done (this session 2026-03-15)
+
+- [x] Step Chain in all 14 claims (execution_trace + trace_root_hash)
+- [x] Cross-Claim Cryptographic Chain (MTR-1 → DT-FEM-01 → DRIFT-01)
+- [x] ML_BENCH-02/03, PHARMA-01, FINRISK-01, DT-SENSOR-01, DT-CALIB-LOOP-01 (6 new claims)
+- [x] deep_verify.py (10-test proof script) in scripts/
+- [x] MVP v0.1 → v0.2 synced in all 22 backend/scripts/tests files
+- [x] All docs audited: ARCHITECTURE, ROADMAP, PROTOCOL, HOW_TO_ADD_CLAIM, USE_CASES
+- [x] system_manifest protocol v0.2
+- [x] known_faults, CLAIMS_DRAFT_v2, USPTO_PPA_TEXT all updated to 223
+- [x] .gitignore temp scripts protected
+- [x] index.html site: 14/223/3/7 all correct
+- [x] canonical_state.md LOCKED in policy gate
 
 ---
 

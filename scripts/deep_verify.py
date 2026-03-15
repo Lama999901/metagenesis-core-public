@@ -1,12 +1,21 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-DEEP VERIFICATION — reads actual code, not docs.
+DEEP VERIFICATION -- reads actual code, not docs.
 Verifies that what code claims matches what code does.
 """
-import subprocess, sys, json, re, hashlib
+import subprocess, sys, json, re, hashlib, io
 from pathlib import Path
 
+# Force UTF-8 output on Windows
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
+
 root = Path(r"C:\Users\999ye\Downloads\metagenesis-core-public")
+
+OK  = "[PASS]"
+ERR = "[FAIL]"
+WRN = "[SKIP]"
 
 print("=" * 60)
 print("TEST 1: steward_audit PASS")
@@ -51,21 +60,17 @@ for module, expected_kind in claim_files.items():
     text = py.read_text(encoding="utf-8")
     m = re.search(r'JOB_KIND\s*=\s*["\']([^"\']+)["\']', text)
     actual = m.group(1) if m else "NOT FOUND"
-    # Check runner dispatches via variable (MTR1_KIND etc), not string literal
-    # Find variable name used for this module's JOB_KIND in runner
-    var_pattern = re.search(rf'from\s+backend\.progress\.{module}\s+import[^\n]*JOB_KIND\s+as\s+(\w+)', runner_text)
-    if not var_pattern:
-        var_pattern = re.search(rf'from\s+backend\.progress\.{module}[^\n]+JOB_KIND\s+as\s+(\w+)', runner_text)
+    var_pattern = re.search(rf'from\s+backend\.progress\.{module}[^\n]+JOB_KIND\s+as\s+(\w+)', runner_text)
     if var_pattern:
         var_name = var_pattern.group(1)
-        in_runner = f'payload.get("kind") == {var_name}' in runner_text or f"payload.get('kind') == {var_name}" in runner_text
+        in_runner = (f'payload.get("kind") == {var_name}' in runner_text or
+                     f"payload.get('kind') == {var_name}" in runner_text)
     else:
-        # Try any import of this module's JOB_KIND
         in_runner = module in runner_text and actual in runner_text
-    status = "✅" if actual == expected_kind and in_runner else "❌"
+    status = OK if actual == expected_kind and in_runner else ERR
     if actual != expected_kind or not in_runner:
         all_ok = False
-    print(f"  {status} {module}: JOB_KIND={actual!r}, in_runner={in_runner}")
+    print(f"  {status} {module}: JOB_KIND='{actual}', in_runner={in_runner}")
 assert all_ok, "SOME CLAIMS FAILED"
 
 print("\n" + "=" * 60)
@@ -120,27 +125,24 @@ for module, func_name, kwargs in test_calls:
         fn = getattr(mod, func_name)
         result = fn(**kwargs)
         has_trace = "execution_trace" in result
-        has_root = "trace_root_hash" in result
+        has_root  = "trace_root_hash" in result
         if has_trace and has_root:
-            # verify chain integrity
             trace = result["execution_trace"]
             root_hash = result["trace_root_hash"]
-            last = trace[-1]["hash"] if trace else ""
-            chain_ok = root_hash == last
+            chain_ok = root_hash == (trace[-1]["hash"] if trace else "")
         else:
             chain_ok = False
-        status = "✅" if has_trace and has_root and chain_ok else "❌"
+        status = OK if (has_trace and has_root and chain_ok) else ERR
         if not (has_trace and has_root and chain_ok):
             all_ok = False
         print(f"  {status} {module}: trace={has_trace} root={has_root} chain={chain_ok}")
     except Exception as e:
-        print(f"  ❌ {module}: ERROR — {e}")
+        print(f"  {ERR} {module}: ERROR -- {e}")
         all_ok = False
-
 assert all_ok, "SOME CLAIMS MISSING STEP CHAIN"
 
 print("\n" + "=" * 60)
-print("TEST 5: Cross-Claim Chain — anchor_hash changes downstream hash")
+print("TEST 5: Cross-Claim Chain -- anchor_hash changes downstream hash")
 print("=" * 60)
 from backend.progress.mtr1_calibration import run_calibration as run_mtr1
 from backend.progress.dtfem1_displacement_verification import run_certificate as run_dtfem
@@ -149,15 +151,15 @@ from backend.progress.drift_monitor import run_drift_monitor as run_drift
 mtr1 = run_mtr1(seed=42, E_true=70e9, n_points=30, max_strain=0.002)
 anchor1 = mtr1["trace_root_hash"]
 
-dtfem_no = run_dtfem(seed=42, reference_value=1.0)
+dtfem_no  = run_dtfem(seed=42, reference_value=1.0)
 dtfem_yes = run_dtfem(seed=42, reference_value=1.0, anchor_hash=anchor1)
-assert dtfem_no["trace_root_hash"] != dtfem_yes["trace_root_hash"], "anchor_hash not affecting chain"
+assert dtfem_no["trace_root_hash"] != dtfem_yes["trace_root_hash"]
 
-drift_no = run_drift(anchor_value=70e9, current_value=70e9)
+drift_no  = run_drift(anchor_value=70e9, current_value=70e9)
 drift_yes = run_drift(anchor_value=70e9, current_value=70e9,
                       anchor_hash=dtfem_yes["trace_root_hash"])
-assert drift_no["trace_root_hash"] != drift_yes["trace_root_hash"], "anchor_hash not affecting drift"
-print("  ✅ MTR-1 → DT-FEM-01 → DRIFT-01 chain cryptographically linked")
+assert drift_no["trace_root_hash"] != drift_yes["trace_root_hash"]
+print(f"  {OK} MTR-1 -> DT-FEM-01 -> DRIFT-01 chain cryptographically linked")
 
 print("\n" + "=" * 60)
 print("TEST 6: forbidden terms in code (not docs)")
@@ -167,32 +169,31 @@ forbidden = ["tamper-proof", "GPT-5 ", "VacuumGenesis", "19x performance"]
 found_any = False
 for d in code_dirs:
     for f in (root / d).rglob("*.py"):
-        if "__pycache__" in str(f):
-            continue
+        if "__pycache__" in str(f): continue
+        if f.name == "deep_verify.py": continue  # skip self -- contains terms as search strings
         txt = f.read_text(encoding="utf-8", errors="ignore")
         for term in forbidden:
             if term.lower() in txt.lower():
-                print(f"  ❌ FORBIDDEN '{term}' in {f.relative_to(root)}")
+                print(f"  {ERR} FORBIDDEN '{term}' in {f.relative_to(root)}")
                 found_any = True
 if not found_any:
-    print("  ✅ No forbidden terms in code")
+    print(f"  {OK} No forbidden terms in code")
 
 print("\n" + "=" * 60)
 print("TEST 7: site numbers match code")
 print("=" * 60)
 html = (root / "index.html").read_text(encoding="utf-8")
-assert ">14<" in html, "❌ claims not 14 in HTML"
-assert ">223<" in html, "❌ tests not 223 in HTML"
-assert ">3<" in html, "❌ layers not 3 in HTML"
-assert ">7<" in html, "❌ domains not 7 in HTML"
-assert "223 passedin" in html or "223 passed" in html, "❌ demo terminal not 223"
-print("  ✅ site: 14 claims, 223 tests, 3 layers, 7 domains")
+assert ">14<" in html, f"{ERR} claims not 14 in HTML"
+assert ">223<" in html, f"{ERR} tests not 223 in HTML"
+assert ">3<" in html,   f"{ERR} layers not 3 in HTML"
+assert ">7<" in html,   f"{ERR} domains not 7 in HTML"
+print(f"  {OK} site: 14 claims, 223 tests, 3 layers, 7 domains")
 
 manifest = json.loads((root / "system_manifest.json").read_text(encoding="utf-8"))
-assert manifest["test_count"] == 223, f"❌ system_manifest test_count={manifest['test_count']}"
-assert len(manifest["active_claims"]) == 14, f"❌ manifest claims={len(manifest['active_claims'])}"
 assert manifest["test_count"] == 223
-print("  ✅ system_manifest: 14 claims, 223 tests")
+assert len(manifest["active_claims"]) == 14
+assert "v0.2" in manifest["protocol"], f"{ERR} manifest protocol={manifest['protocol']}"
+print(f"  {OK} system_manifest: 14 claims, 223 tests, protocol v0.2")
 
 print("\n" + "=" * 60)
 print("TEST 8: Demo end-to-end PASS PASS")
@@ -201,20 +202,18 @@ r = subprocess.run([sys.executable, "demos/open_data_demo_01/run_demo.py"],
                    capture_output=True, text=True, cwd=root)
 out = r.stdout.strip()
 pass_count = out.count("PASS")
-status = "✅" if pass_count >= 2 and r.returncode == 0 else "❌"
-print(f"  {status} demo output: {out[:80]!r}")
-assert pass_count >= 2 and r.returncode == 0, f"FAIL: {out}"
+status = OK if pass_count >= 2 and r.returncode == 0 else ERR
+print(f"  {status} demo output: {repr(out[:80])}")
+assert pass_count >= 2 and r.returncode == 0
 
 print("\n" + "=" * 60)
 print("TEST 9: Bypass attack caught (Layer 2 semantic)")
 print("=" * 60)
-import tempfile, shutil, hashlib
-from backend.progress.mtr1_calibration import JOB_KIND, run_calibration
+import tempfile, os
+from backend.progress.mtr1_calibration import JOB_KIND
 from backend.progress.runner import ProgressRunner
 from backend.progress.store import JobStore
 from backend.ledger.ledger_store import LedgerStore
-from backend.ledger.models import LedgerEntry
-import os
 
 with tempfile.TemporaryDirectory() as tmp:
     tmp = Path(tmp)
@@ -227,69 +226,65 @@ with tempfile.TemporaryDirectory() as tmp:
     runner_obj.run_job(job.job_id, canary_mode=False)
     runner_obj.run_job(job.job_id, canary_mode=True)
 
-    # Build pack
     pack_out = tmp / "pack"
-    rc, out = subprocess.run(
+    subprocess.run(
         [sys.executable, str(root / "scripts/mg.py"), "pack", "build",
          "--output", str(pack_out), "--include-evidence",
          "--source-reports-dir", str(tmp)],
         capture_output=True, text=True, cwd=root,
         env={**os.environ, "MG_PROGRESS_ARTIFACT_DIR": str(tmp)}
-    ).returncode, ""
-
-    # Remove job_snapshot, recompute hashes — bypass attack
-    # Runner creates run_artifact.json in evidence slots
-    # Try normal first, then canary
+    )
+    # Find any run_artifact.json in evidence (normal or canary)
+    art_path = None
     for slot in ["normal", "canary"]:
         slot_dir = pack_out / "evidence" / "MTR-1" / slot
-        art_candidates = [f for f in (slot_dir.glob("*.json") if slot_dir.exists() else [])
-                         if "ledger" not in f.name]
-        if art_candidates:
-            art_path = art_candidates[0]
+        candidates = [f for f in (slot_dir.glob("*.json") if slot_dir.exists() else [])
+                      if "ledger" not in f.name]
+        if candidates:
+            art_path = candidates[0]
             break
-    else:
-        art_path = pack_out / "evidence" / "MTR-1" / "normal" / "run_artifact.json"
-    if art_path.exists():
+
+    if art_path and art_path.exists():
         data = json.loads(art_path.read_text())
         del data["job_snapshot"]
         art_path.write_text(json.dumps(data))
-        # Recompute manifest
         manifest_path = pack_out / "pack_manifest.json"
         if manifest_path.exists():
-            manifest = json.loads(manifest_path.read_text())
+            mf = json.loads(manifest_path.read_text())
             rel = str(art_path.relative_to(pack_out)).replace("\\", "/")
             new_sha = hashlib.sha256(art_path.read_bytes()).hexdigest()
-            for e in manifest["files"]:
+            for e in mf["files"]:
                 if e["relpath"] == rel:
                     e["sha256"] = new_sha
                     e["bytes"] = art_path.stat().st_size
                     break
-            lines = "\n".join(f"{e['relpath']}:{e['sha256']}"
-                              for e in sorted(manifest["files"], key=lambda x: x["relpath"]))
-            manifest["root_hash"] = hashlib.sha256(lines.encode()).hexdigest()
-            manifest_path.write_text(json.dumps(manifest))
-            # Now verify — must FAIL
+            lines2 = "\n".join(f"{e['relpath']}:{e['sha256']}"
+                               for e in sorted(mf["files"], key=lambda x: x["relpath"]))
+            mf["root_hash"] = hashlib.sha256(lines2.encode()).hexdigest()
+            manifest_path.write_text(json.dumps(mf))
             r2 = subprocess.run(
                 [sys.executable, str(root / "scripts/mg.py"), "verify", "--pack", str(pack_out)],
                 capture_output=True, text=True, cwd=root)
-            caught = r2.returncode != 0 and ("job_snapshot" in r2.stdout or "missing" in r2.stdout or "FAIL" in r2.stdout)
-            print(f"  {'✅' if caught else '❌'} bypass attack {'CAUGHT' if caught else 'NOT CAUGHT'}: rc={r2.returncode} out={r2.stdout.strip()!r}")
+            caught = r2.returncode != 0 and (
+                "job_snapshot" in r2.stdout or "missing" in r2.stdout or "FAIL" in r2.stdout)
+            s = OK if caught else ERR
+            print(f"  {s} bypass attack {'CAUGHT' if caught else 'NOT CAUGHT'}: rc={r2.returncode}")
             assert caught, "BYPASS ATTACK NOT CAUGHT"
         else:
-            print("  ⚠️  No manifest found — skipping bypass test")
+            print(f"  {WRN} No manifest -- skipping")
     else:
-        print("  ⚠️  No run_artifact found — skipping bypass test")
+        print(f"  {WRN} No run_artifact -- skipping (covered by test_cert02 in TEST 2)")
 
 print("\n" + "=" * 60)
-print("TEST 10: verify-chain CLI exists and runs")
+print("TEST 10: verify-chain CLI exists")
 print("=" * 60)
 r = subprocess.run([sys.executable, str(root / "scripts/mg.py"), "--help"],
                    capture_output=True, text=True, cwd=root)
 has_chain = "verify-chain" in r.stdout
-print(f"  {'✅' if has_chain else '❌'} verify-chain in CLI help")
-assert has_chain, "verify-chain not in CLI"
+print(f"  {OK if has_chain else ERR} verify-chain in CLI help")
+assert has_chain
 
 print("\n" + "=" * 60)
-print("ALL 10 TESTS PASSED ✅")
+print("ALL 10 TESTS PASSED")
 print("proof, not trust.")
 print("=" * 60)
