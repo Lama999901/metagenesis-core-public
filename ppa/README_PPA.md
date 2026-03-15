@@ -26,7 +26,7 @@ in the non-provisional application.
 | Tests 40–113 | post 2026-03-05 | Additional coverage |
 | Step Chain Verification (ML_BENCH-01) | 2026-03-14 | 4-step cryptographic execution trace + trace_root_hash |
 
-**Current state (2026-03-14):** 8 claims, 113 tests.
+**Current state (2026-03-14):** 8 claims, 118 tests.
 Live state: reports/canonical_state.md
 
 ---

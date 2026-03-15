@@ -65,7 +65,7 @@ detection, policy-gate immutable anchors, dual-mode canary pipeline
 ## How to verify everything works
 
 python scripts/steward_audit.py                              # PASS
-python -m pytest tests/steward tests/materials tests/ml tests/systems tests/data tests/digital_twin -q  # all passed (113)
+python -m pytest tests/steward tests/materials tests/ml tests/systems tests/data tests/digital_twin -q  # all passed (118)
 python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 
 ## Git workflow (current — direct clone, no zip)
