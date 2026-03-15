@@ -9,19 +9,30 @@ contains what it claims to contain and has not been modified.
 
 Specifically:
 
-**Integrity layer** (SHA-256 + root_hash)
+**Layer 1 — Integrity** (SHA-256 + root_hash)
 Detects any modification to files in the bundle after the
 manifest was generated. If a file changes, the hash fails.
 
-**Semantic layer**
+**Layer 2 — Semantic**
 Detects removal or modification of required evidence content
 even when an adversary recomputes all integrity hashes.
 An attacker who removes job_snapshot and recomputes all
 SHA-256 hashes still fails semantic verification.
+Proven: `tests/steward/test_cert02_*::test_semantic_negative_missing_job_snapshot_fails_verify`
 
-This is proven by an adversarial test that ships with the repo:
-`tests/steward/test_cert02_pack_includes_evidence_and_semantic_verify.py`
-`::test_semantic_negative_missing_job_snapshot_fails_verify`
+**Layer 3 — Step Chain**
+Detects computation inputs changed or steps reordered, even when
+layers 1 and 2 both pass. Every execution produces a 4-step
+cryptographic hash chain. trace_root_hash commits to the entire
+execution sequence. Tampering any step breaks the chain.
+Proven: `tests/steward/test_cert03_step_chain_verify.py::test_tampered_trace_root_hash_fails`
+
+**Cross-Claim Cryptographic Chain**
+For physical domains (MTR-1 → DT-FEM-01 → DRIFT-01), each claim's
+trace_root_hash is embedded as anchor_hash in the next claim's Step Chain.
+The full chain from physical measurement to simulation output is
+cryptographically verifiable end-to-end.
+Proven: `tests/steward/test_cross_claim_chain.py::test_full_chain_is_cryptographically_linked`
 
 ## What this system does NOT guarantee
 

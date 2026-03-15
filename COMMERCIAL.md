@@ -1,7 +1,7 @@
 # Commercial
 
 MetaGenesis Core is open source under the MIT license.
-The verification protocol (4 innovations) is patent-pending.
+The verification protocol (5 innovations) is patent-pending.
 
 Commercial services are available for teams that need verification
 infrastructure built or integrated into their existing workflows.
@@ -155,5 +155,6 @@ USPTO Provisional Patent Application #63/996,819
 Filed: 2026-03-05 · Inventor: Yehor Bazhynov
 
 The verification protocol — bidirectional claim coverage, semantic tamper
-detection, policy-gate immutable anchors, dual-mode canary pipeline — is
-patent-pending. The open source code is available under MIT.
+detection, policy-gate immutable anchors, dual-mode canary pipeline,
+Step Chain + Cross-Claim Cryptographic Chain — is patent-pending.
+The open source code is available under MIT.

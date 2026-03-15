@@ -137,9 +137,14 @@ All must pass. grep must return empty.
 
 ## Architecture in one paragraph
 
-Job runs via runner.run_job() → produces run_artifact.json + ledger_snapshot.jsonl
-→ evidence_index maps artifacts to claims → steward_submission_pack bundles everything
-→ mg.py verify checks integrity (SHA-256) then semantic invariants (job_snapshot present,
-canary_mode correct, payload.kind matches) → PASS or FAIL.
+Job runs via runner.run_job() → produces run_artifact.json (with execution_trace + trace_root_hash)
++ ledger_snapshot.jsonl → evidence_index maps artifacts to claims → steward_submission_pack bundles
+everything → mg.py verify runs three independent layers:
+  Layer 1: SHA-256 integrity (file modification)
+  Layer 2: semantic (job_snapshot present, canary_mode correct, payload.kind matches)
+  Layer 3: step chain (trace_root_hash == final execution step hash)
+→ PASS or FAIL with specific layer and reason.
+For physical domains: anchor_hash embeds upstream trace_root_hash into downstream Step Chain
+(MTR-1 → DT-FEM-01 → DRIFT-01 cryptographically linked end-to-end).
 Steward_audit enforces bidirectional coverage: runner kinds == claim_index kinds == canonical_state.
-Protocol specification: docs/PROTOCOL.md.
+Protocol specification: docs/PROTOCOL.md. Architecture: docs/ARCHITECTURE.md.
