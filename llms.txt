@@ -14,7 +14,10 @@ A governance + evidence + verification pipeline. An open protocol.
 ## What this repo does
 
 1. Wraps any computational result in a tamper-evident evidence bundle
-2. Verifies bundles offline with integrity + semantic layers
+2. Verifies bundles offline with 3 independent layers:
+   - Layer 1: SHA-256 integrity (file modification)
+   - Layer 2: Semantic (evidence stripped, hashes recomputed — still caught)
+   - Layer 3: Step Chain (execution inputs changed — trace_root_hash breaks)
 3. Enforces governance: every claim has implementation, every implementation has claim
 4. Detects drift against verified calibration anchors
 
@@ -65,7 +68,7 @@ detection, policy-gate immutable anchors, dual-mode canary pipeline
 ## How to verify everything works
 
 python scripts/steward_audit.py                              # PASS
-python -m pytest tests/steward tests/materials tests/ml tests/systems tests/data tests/digital_twin -q  # all passed (107)
+python -m pytest tests/steward tests/materials tests/ml tests/systems tests/data tests/digital_twin -q  # all passed (118)
 python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 
 ## Git workflow (current — direct clone, no zip)
@@ -80,15 +83,32 @@ git commit -m "type: description"
 git push origin fix/your-branch-name
 # then open PR on GitHub
 
-## Current state (2026-03-12)
+## Physical Anchor Principle (introduced 2026-03-13)
 
-- Tests: 107 passing
+Two distinct concepts — never conflate:
+- Tamper-evident provenance: "was the bundle modified?" → ALL 8 claims
+- Physical anchor: "does the number agree with physical reality?" → MTR-1/2/3, DT-FEM-01, DRIFT-01 ONLY
+
+E = 70 GPa for aluminium is a physical constant measured in thousands of labs worldwide.
+NOT a chosen threshold. MTR-1 verifies rel_err ≤ 1% vs this constant.
+DT-FEM-01 verifies FEM output vs MTR-1 anchor. DRIFT-01 monitors deviation ≤ 5%.
+
+ML_BENCH-01, DATA-PIPE-01, SYSID-01 use chosen convention thresholds — tamper-evident only.
+Scope boundary documented in reports/known_faults.yaml :: SCOPE_001.
+
+## Current state (2026-03-14)
+
+- Tests: 118 passing
+- Verification layers: 3 (integrity + semantic + step chain)
 - steward_audit: PASS
-- Last PR merged: #28 (feat/physics-demo-section) — counters 8/107, DT-FEM-01 card
+- known_faults: 2 entries (ENV_001 + SCOPE_001)
+- Last PR merged: test_cert03 + mg.py Step Chain verify (113→118 tests, 3 verification layers)
 - Site: metagenesis-core.dev — deployed on Vercel, auto-deploys from main
+- HN post live: https://news.ycombinator.com/item?id=47335416 — 9 points, comments active
 - PPA filed: 2026-03-05 — non-provisional deadline 2027-03-05
 - Stripe: configured at $299/license
 - Outreach sent: Tongqi Wen (ElaTBot, Mar 5), Giovanni Pizzi (PSI/AiiDA, Mar 7),
   Brian Nosek (UVA, Mar 7), Peter Coveney (UCL, Mar 8),
   Arvind Narayanan (Princeton, Mar 8), Jeffrey Ip (Confident AI, Mar 11),
-  Elena Samuylova (Evidently AI, Mar 11)
+  Elena Samuylova (Evidently AI, Mar 11 — no subject, follow-up needed),
+  Jonah Cool (Anthropic Life Sciences, Mar 12)
