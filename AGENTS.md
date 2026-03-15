@@ -104,7 +104,8 @@ test mtr_phase key present, test determinism (same seed → same result)
 
 Step 6 — Verify:
 python scripts/steward_audit.py → STEWARD AUDIT: PASS
-python -m pytest tests/ -q → all passed
+python -m pytest tests/ -q → 223 passed
+python scripts/deep_verify.py → ALL 10 TESTS PASSED
 
 ---
 
@@ -120,6 +121,12 @@ python -m pytest tests/ -q → all passed
 | DRIFT-01 | backend/progress/drift_monitor.py | tests/steward/ |
 | ML_BENCH-01 | backend/progress/mlbench1_accuracy_certificate.py | tests/ml/ |
 | DT-FEM-01 | backend/progress/dtfem1_displacement_verification.py | tests/digital_twin/ |
+| ML_BENCH-02 | backend/progress/mlbench2_regression_certificate.py | tests/ml/ |
+| ML_BENCH-03 | backend/progress/mlbench3_timeseries_certificate.py | tests/ml/ |
+| PHARMA-01 | backend/progress/pharma1_admet_certificate.py | tests/ml/ |
+| FINRISK-01 | backend/progress/finrisk1_var_certificate.py | tests/ml/ |
+| DT-SENSOR-01 | backend/progress/dtsensor1_iot_certificate.py | tests/digital_twin/ |
+| DT-CALIB-LOOP-01 | backend/progress/dtcalib1_convergence_certificate.py | tests/digital_twin/ |
 
 ---
 
