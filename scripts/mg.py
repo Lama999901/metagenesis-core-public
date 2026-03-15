@@ -201,6 +201,38 @@ def _verify_semantic(pack_dir: Path, evidence_index_path: Path) -> tuple[bool, s
                 if not (0 <= s <= 1):
                     msg = f"Run artifact {run_rel} uncertainty: stability_score must be in [0,1]"
                     return False, msg, [msg]
+            # --- Step Chain Verification (PPA #63/996,819) ---
+            # If execution_trace is present, verify structural integrity:
+            # trace_root_hash must equal the hash stored in the final chain step.
+            # The manifest SHA-256 ensures the artifact file was not modified;
+            # this check ensures the hash chain itself is internally consistent.
+            execution_trace = domain.get("execution_trace")
+            claimed_root = domain.get("trace_root_hash")
+            if execution_trace is not None or claimed_root is not None:
+                if execution_trace is None:
+                    msg = (f"Run artifact {run_rel} has trace_root_hash "
+                           f"but missing execution_trace")
+                    return False, msg, [msg]
+                if claimed_root is None:
+                    msg = (f"Run artifact {run_rel} has execution_trace "
+                           f"but missing trace_root_hash")
+                    return False, msg, [msg]
+                if not isinstance(execution_trace, list) or len(execution_trace) == 0:
+                    msg = (f"Run artifact {run_rel} execution_trace "
+                           f"must be a non-empty list")
+                    return False, msg, [msg]
+                for step in execution_trace:
+                    h = step.get("hash", "")
+                    if not (isinstance(h, str) and len(h) == 64
+                            and all(c in "0123456789abcdef" for c in h)):
+                        msg = (f"Run artifact {run_rel} execution_trace "
+                               f"step {step.get('step')} has invalid hash")
+                        return False, msg, [msg]
+                last_hash = execution_trace[-1].get("hash", "")
+                if claimed_root != last_hash:
+                    msg = (f"Run artifact {run_rel} trace_root_hash does not match "
+                           f"final execution_trace step hash — Step Chain broken")
+                    return False, msg, [msg]
     return True, "PASS", []
 
 
