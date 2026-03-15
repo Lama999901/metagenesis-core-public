@@ -12,7 +12,7 @@
     "dual_mode_canary_pipeline",
     "step_chain_verification"
   ],
-  "test_count": 118,
+  "test_count": 147,
   "steward_audit": "PASS",
   "ppa_filed": "2026-03-05",
   "ppa_number": "63/996,819",

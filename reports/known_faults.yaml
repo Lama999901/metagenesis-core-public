@@ -1,14 +1,14 @@
 ---
 # Known Faults Registry
 # Authority: MetaGenesis Core / STEW-01
-# Last updated: 2026-03-14 (steward_audit PASS, 118 tests PASS)
+# Last updated: 2026-03-14 (steward_audit PASS, 147 tests PASS)
 
 known_faults:
   - fault_id: "ENV_001"
     category: "TEST_ENVIRONMENT"
     severity: "EXPECTED"
     description: >
-      All 118 tests pass in the reference environment (Python 3.11+, stdlib only).
+      All 147 tests pass in the reference environment (Python 3.11+, stdlib only).
       No database dependencies. No external services. No network required.
       Local environment deviations may require matching Python version.
     affected_claims: []
@@ -44,4 +44,4 @@ audit_metadata:
   critical_faults: 0
   expected_faults: 2
   system_impact: "NONE — no external dependencies, stdlib only"
-  ci_impact: "NONE — 118 tests pass, steward_audit PASS"
+  ci_impact: "NONE — 147 tests pass, steward_audit PASS"

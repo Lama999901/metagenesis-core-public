@@ -175,6 +175,22 @@ def run_certificate(
     rel_err = compute_rel_err(fem_value, ref_value)
     passed = rel_err <= rel_err_threshold
 
+    # --- Step Chain Verification ---
+    def _hash_step(step_name, step_data, prev_hash):
+        import hashlib, json as _j
+        content = _j.dumps({"step": step_name, "data": step_data, "prev_hash": prev_hash}, sort_keys=True, separators=(",", ":"))
+        return hashlib.sha256(content.encode("utf-8")).hexdigest()
+
+    _prev = _hash_step("init_params", {"seed": seed, "reference_value": reference_value, "rel_err_threshold": rel_err_threshold, "noise_scale": noise_scale, "quantity": quantity, "units": units}, "genesis")
+    _trace = [{"step": 1, "name": "init_params", "hash": _prev}]
+    _prev = _hash_step("generate_fem_pair", {"fem_value": round(fem_value, 8), "ref_value": round(ref_value, 8)}, _prev)
+    _trace.append({"step": 2, "name": "generate_fem_pair", "hash": _prev, "output": {"fem_value": round(fem_value, 8)}})
+    _prev = _hash_step("compute_rel_err", {"rel_err": round(rel_err, 8)}, _prev)
+    _trace.append({"step": 3, "name": "compute_rel_err", "hash": _prev, "output": {"rel_err": round(rel_err, 8)}})
+    _prev = _hash_step("threshold_check", {"rel_err": round(rel_err, 8), "threshold": rel_err_threshold, "passed": passed}, _prev)
+    _trace.append({"step": 4, "name": "threshold_check", "hash": _prev, "output": {"pass": passed}})
+    _trace_root_hash = _prev
+    # --- End Step Chain ---
     return {
         "mtr_phase": "DT-FEM-01",
         "algorithm_version": ALGORITHM_VERSION,
@@ -198,4 +214,6 @@ def run_certificate(
             "method": METHOD,
             "algorithm_version": ALGORITHM_VERSION,
         },
+        "execution_trace": _trace,
+        "trace_root_hash": _trace_root_hash,
     }
