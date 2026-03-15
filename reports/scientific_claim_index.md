@@ -128,6 +128,16 @@ threshold signals that simulation correction is required.
 | **V&V thresholds** | `abs(actual_rmse - claimed_rmse) <= rmse_tolerance` (default 0.02). `result.pass` must be True. |
 | **notes (canary vs normal)** | Same as ML_BENCH-01: runs in normal or canary mode via `run_job(..., canary_mode=...)`; evidence artifacts for both. |
 
+## ML_BENCH-03
+
+| Field | Value |
+|-------|--------|
+| **claim_id** | ML_BENCH-03 |
+| **domain** | Machine Learning / AI — Time-Series Forecasting |
+| **job_kind** | `mlbench3_timeseries_certificate` |
+| **reproduction** | `python -m pytest tests/ml/test_mlbench03_timeseries_certificate.py -v` |
+| **V&V thresholds** | `abs(actual_mape - claimed_mape) <= mape_tolerance` (default 0.02). `result.pass` must be True. |
+
 ### Purpose
 
 Any ML model that claims a specific accuracy can have that claim packaged into

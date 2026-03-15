@@ -79,7 +79,7 @@ p, li, .cmp-feat, .faq-a, .faq-a p,
 }
 /* ══ CURSOR SYSTEM ══ */
 :root{--cc:#00e5ff;--cc2:rgba(0,229,255,.55)}
-body.cur-hover{--cc:#00ff99;--cc2:rgba(0,255,172,.55)}
+body.cur-hover{--cc:#00ff99;--cc2:rgba(0,255,183,.55)}
 /* Center diamond */
 #cur{position:fixed;pointer-events:none;z-index:9999;
   width:5px;height:5px;
@@ -150,8 +150,8 @@ nav::before{content:'';position:absolute;inset:0;background:rgba(3,6,13,.92);bac
 .hline{display:block;overflow:hidden}
 .hspan{display:block;font-family:var(--fd);font-size:clamp(76px,10.8vw,184px);font-weight:900;line-height:.88;letter-spacing:-.04em}
 /* ── PROOF: верификационная развёртка сверху вниз ── */
-.word-proof .hspan{color:#00ff99;position:relative;overflow:hidden;animation:proofglow 4s 3s ease-in-out infinite;text-shadow:0 0 60px rgba(0,255,172,.35),0 0 120px rgba(0,255,172,.15)}
-.word-proof .hspan::after{content:'';position:absolute;left:-3%;width:106%;top:-5%;height:2px;background:linear-gradient(90deg,transparent,rgba(0,255,172,.85) 25%,rgba(0,255,172,1) 50%,rgba(0,255,172,.85) 75%,transparent);box-shadow:0 0 12px rgba(0,255,172,.6),0 0 28px rgba(0,255,172,.25);animation:proofscan 3.8s 1.6s ease-in-out infinite;pointer-events:none}
+.word-proof .hspan{color:#00ff99;position:relative;overflow:hidden;animation:proofglow 4s 3s ease-in-out infinite;text-shadow:0 0 60px rgba(0,255,183,.35),0 0 120px rgba(0,255,183,.15)}
+.word-proof .hspan::after{content:'';position:absolute;left:-3%;width:106%;top:-5%;height:2px;background:linear-gradient(90deg,transparent,rgba(0,255,183,.85) 25%,rgba(0,255,183,1) 50%,rgba(0,255,183,.85) 75%,transparent);box-shadow:0 0 12px rgba(0,255,183,.6),0 0 28px rgba(0,255,183,.25);animation:proofscan 3.8s 1.6s ease-in-out infinite;pointer-events:none}
 @keyframes proofscan{0%{top:-5%;opacity:0}7%{opacity:1}78%{top:110%;opacity:.7}88%,100%{top:110%;opacity:0}}
 /* ── NOT: цветной глитч-дублирование ── */
 .word-not   .hspan{color:rgba(0,229,255,.82);position:relative;animation:notglow 5s 2s ease-in-out infinite;text-shadow:0 0 50px rgba(0,229,255,.28),0 0 100px rgba(0,229,255,.10)}
@@ -161,7 +161,7 @@ nav::before{content:'';position:absolute;inset:0;background:rgba(3,6,13,.92);bac
 @keyframes gl2{0%,91%,100%{opacity:0;transform:none}92%{opacity:.78;transform:translateX(5px) skewX(1.5deg)}94%{opacity:.78;transform:translateX(-2.5px)}95.5%{opacity:0}}
 /* ── TRUST: перечёркивание ── */
 .word-trust .hspan{color:rgba(255,50,80,.42);position:relative;text-shadow:0 0 60px rgba(255,50,80,.25),0 0 120px rgba(255,50,80,.10)}
-@keyframes proofglow{0%,100%{text-shadow:0 0 40px rgba(0,255,172,.15),0 0 80px rgba(0,255,172,.07)}50%{text-shadow:0 0 80px rgba(0,255,172,.5),0 0 200px rgba(0,255,172,.2)}}
+@keyframes proofglow{0%,100%{text-shadow:0 0 40px rgba(0,255,183,.15),0 0 80px rgba(0,255,183,.07)}50%{text-shadow:0 0 80px rgba(0,255,183,.5),0 0 200px rgba(0,255,183,.2)}}
 @keyframes notglow{0%,100%{text-shadow:0 0 50px rgba(0,229,255,.20),0 0 100px rgba(0,229,255,.08)}50%{text-shadow:0 0 80px rgba(0,229,255,.45),0 0 160px rgba(0,229,255,.18)}}
 .word-trust .hspan::after{content:'';position:absolute;top:50%;left:-1%;width:0;height:3px;background:linear-gradient(90deg,transparent 0%,rgba(255,50,80,.5) 5%,rgba(255,50,80,.65) 50%,rgba(255,50,80,.5) 95%,transparent 100%);box-shadow:0 0 12px rgba(255,50,80,.35),0 0 30px rgba(255,50,80,.15);transform:translateY(-50%);animation:strike .48s cubic-bezier(.77,0,.18,1) 1.4s forwards}
 @keyframes strike{from{width:0;opacity:0}3%{opacity:1}to{width:102%;opacity:1}}
@@ -199,7 +199,7 @@ body.mg-ready .word-trust .hspan{animation:slidein .85s .31s cubic-bezier(.16,1,
 .btn-g{font-family:var(--fd);font-size:11px;font-weight:700;padding:16px 32px;background:transparent;color:var(--txt3);border:1px solid var(--ln2);cursor:pointer;text-decoration:none;letter-spacing:.06em;text-transform:uppercase;display:inline-block;transition:all .2s}
 .btn-g:hover{border-color:var(--c3);color:var(--txt);transform:translateY(-3px)}
 .btn-green{font-family:var(--fd);font-size:11px;font-weight:700;padding:16px 32px;background:#00ff99;color:#000;border:none;cursor:pointer;text-decoration:none;letter-spacing:.06em;text-transform:uppercase;display:inline-block;transition:transform .2s,box-shadow .2s;position:relative}
-.btn-green:hover{transform:translateY(-3px);box-shadow:0 12px 48px rgba(0,255,172,.5)}
+.btn-green:hover{transform:translateY(-3px);box-shadow:0 12px 48px rgba(0,255,183,.5)}
 .hero-pitch{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:rgba(238,247,251,.42);margin-bottom:20px;display:flex;align-items:center;gap:8px;font-family:var(--fm);flex-wrap:wrap;row-gap:6px}
 .hero-pitch span{color:var(--ok);font-weight:600}
 .hero-pitch .hp-arr{color:rgba(238,247,251,.2)}
@@ -291,7 +291,7 @@ h2 .hr::after{
   top:52%;
   height:2.5px;
   background:linear-gradient(90deg,transparent 0%,#00ff99 12%,#00ff99 88%,transparent 100%);
-  box-shadow:0 0 10px rgba(0,255,172,.9),0 0 28px rgba(0,255,172,.4);
+  box-shadow:0 0 10px rgba(0,255,183,.9),0 0 28px rgba(0,255,183,.4);
   transform-origin:left center;
   animation:hr-strike 5.5s ease-in-out infinite;
   pointer-events:none;
@@ -354,17 +354,17 @@ h2.vis .hg::after{
   position:absolute; left:-3%; width:106%; top:-5%; height:3px;
   background:linear-gradient(90deg,
     transparent,
-    rgba(0,255,172,.85) 25%,
-    rgba(0,255,172,1)   50%,
-    rgba(0,255,172,.85) 75%,
+    rgba(0,255,183,.85) 25%,
+    rgba(0,255,183,1)   50%,
+    rgba(0,255,183,.85) 75%,
     transparent);
-  box-shadow:0 0 14px rgba(0,255,172,.7), 0 0 32px rgba(0,255,172,.32);
+  box-shadow:0 0 14px rgba(0,255,183,.7), 0 0 32px rgba(0,255,183,.32);
   animation:span-proofscan 3.8s ease-in-out infinite;
   pointer-events:none;
 }
 @keyframes hg-glow{
-  0%,100%{text-shadow:0 0 40px rgba(0,255,172,.15),0 0 80px rgba(0,255,172,.07)}
-  50%{text-shadow:0 0 80px rgba(0,255,172,.55),0 0 200px rgba(0,255,172,.22)}
+  0%,100%{text-shadow:0 0 40px rgba(0,255,183,.15),0 0 80px rgba(0,255,183,.07)}
+  50%{text-shadow:0 0 80px rgba(0,255,183,.55),0 0 200px rgba(0,255,183,.22)}
 }
 @keyframes span-proofscan{
   0%{top:-5%;opacity:0}
@@ -535,7 +535,7 @@ h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
 .claim:hover{background:rgba(0,229,255,.03)}.claim:hover::before{transform:scaleX(1)}
 .claim.new-claim{background:rgba(0,229,255,.04)}.claim.new-claim::before{transform:scaleX(1);opacity:.7}
 .claimid{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--c)}
-.claimid-badge{font-size:8px;letter-spacing:.12em;padding:2px 7px;margin-left:10px;color:var(--ok);border:1px solid rgba(0,255,172,.3);background:rgba(0,255,172,.05);vertical-align:middle;text-transform:uppercase}
+.claimid-badge{font-size:8px;letter-spacing:.12em;padding:2px 7px;margin-left:10px;color:var(--ok);border:1px solid rgba(0,255,183,.3);background:rgba(0,255,183,.05);vertical-align:middle;text-transform:uppercase}
 .claimdomain{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3)}
 .claimname{font-size:14px;color:var(--txt);font-weight:400;line-height:1.4}
 .claimth{font-size:11px;color:var(--txt3);font-family:var(--fm);padding:8px 12px;background:var(--ink2);border:1px solid var(--ln);margin-top:4px}
@@ -551,7 +551,7 @@ h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
 .gov{border:1px solid var(--ln2);overflow:hidden}
 .govh{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:var(--ink2);border-bottom:1px solid var(--ln)}
 .govhl{font-size:12px;color:var(--txt3)}
-.govbadge{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ok);border:1px solid rgba(0,255,172,.3);background:rgba(0,255,172,.08);padding:4px 12px}
+.govbadge{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ok);border:1px solid rgba(0,255,183,.3);background:rgba(0,255,183,.08);padding:4px 12px}
 .govb{padding:24px;display:flex;flex-direction:column;gap:10px}
 .govb>div{font-size:12px;line-height:1.7}
 .tdm{color:var(--txt3)}.tok{color:var(--ok)}
@@ -620,8 +620,8 @@ h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
 .fn-proof .fn-span::after{
   content:'';
   position:absolute;left:-3%;width:106%;top:-5%;height:2px;
-  background:linear-gradient(90deg,transparent,rgba(0,255,172,.85) 25%,rgba(0,255,172,1) 50%,rgba(0,255,172,.85) 75%,transparent);
-  box-shadow:0 0 12px rgba(0,255,172,.6),0 0 28px rgba(0,255,172,.25);
+  background:linear-gradient(90deg,transparent,rgba(0,255,183,.85) 25%,rgba(0,255,183,1) 50%,rgba(0,255,183,.85) 75%,transparent);
+  box-shadow:0 0 12px rgba(0,255,183,.6),0 0 28px rgba(0,255,183,.25);
   animation:proofscan 3.8s 1.6s ease-in-out infinite;
   pointer-events:none;
 }
@@ -664,7 +664,7 @@ h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
   top:52%;left:-1%;
   width:0;height:3px;
   background:linear-gradient(90deg,transparent 0%,#00ff99 5%,#00ff99 95%,transparent 100%);
-  box-shadow:0 0 12px rgba(0,255,172,.9),0 0 32px rgba(0,255,172,.5);
+  box-shadow:0 0 12px rgba(0,255,183,.9),0 0 32px rgba(0,255,183,.5);
   transform:translateY(-50%);
   animation:fn-strike .65s cubic-bezier(.77,0,.18,1) 1.4s forwards;
 }
@@ -720,7 +720,7 @@ a[href*=".py"]:hover{border-bottom-color:var(--c);opacity:.82}
 /* Test files → green (overrides .py) */
 a[href*="/tests/"]{
   color:var(--ok);
-  border-bottom:1px solid rgba(0,255,172,.25);
+  border-bottom:1px solid rgba(0,255,183,.25);
 }
 a[href*="/tests/"]:hover{border-bottom-color:var(--ok)}
 /* JSON → amber */
@@ -763,10 +763,10 @@ a[href*="/demos/"]:hover{border-bottom-color:#5dd8d8}
 .ptitle a:hover{background:rgba(0,229,255,.12)!important;border-color:rgba(0,229,255,.45)!important}
 .ptitle a[href*=".json"]:hover{background:rgba(255,179,71,.12)!important;border-color:#ffb347!important}
 /* Governance heading link */
-.govhl a{font-family:var(--fm);color:var(--ok);border-bottom:1px solid rgba(0,255,172,.25)}
+.govhl a{font-family:var(--fm);color:var(--ok);border-bottom:1px solid rgba(0,255,183,.25)}
 .govhl a:hover{border-bottom-color:var(--ok)}
 /* note-block inline file link */
-.note-block a{color:var(--ok);border-bottom:1px solid rgba(0,255,172,.25)}
+.note-block a{color:var(--ok);border-bottom:1px solid rgba(0,255,183,.25)}
 .note-block a code{color:inherit!important}
 .note-block a:hover{border-bottom-color:var(--ok)}
 /* FAQ prose links */
@@ -895,13 +895,13 @@ p,li,.cmp-feat,.faq-a,.faq-a p,.uc p,.ppc p,.reg p,.reg li,
 /* Hover state — locked on */
 body.cur-hover #cur-dot{
   background:var(--ok);
-  box-shadow:0 0 10px var(--ok),0 0 22px rgba(0,255,172,.35);
+  box-shadow:0 0 10px var(--ok),0 0 22px rgba(0,255,183,.35);
   transform:translate(-50%,-50%) scale(1.6);
 }
 body.cur-hover #cur-ring{
   width:42px;height:42px;
-  border-color:rgba(0,255,172,.75);
-  box-shadow:0 0 16px rgba(0,255,172,.18);
+  border-color:rgba(0,255,183,.75);
+  box-shadow:0 0 16px rgba(0,255,183,.18);
   opacity:1;
 }
 body.cur-hover #cur-ring::before{
@@ -916,8 +916,8 @@ body.cur-hover #cur-ring::after{
 body.cur-click #cur-ring{
   width:18px;height:18px;
   opacity:1;
-  border-color:rgba(0,255,172,1);
-  box-shadow:0 0 28px rgba(0,255,172,.55);
+  border-color:rgba(0,255,183,1);
+  box-shadow:0 0 28px rgba(0,255,183,.55);
 }
 /* Err hover — red targets */
 body.cur-err #cur-dot{background:var(--err);box-shadow:0 0 10px var(--err)}
@@ -1183,7 +1183,7 @@ a.soon-chip{border-bottom:none!important}
 .vrf-line.err{color:var(--err)}
 .vrf-line.info{color:var(--c)}
 .vrf-line.muted{color:var(--txt3);font-size:11px}
-.vrf-result-pass{margin-top:12px;padding:14px 18px;border:1px solid rgba(0,255,172,.3);background:rgba(0,255,172,.06);color:var(--ok);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.vrf-result-pass{margin-top:12px;padding:14px 18px;border:1px solid rgba(0,255,183,.3);background:rgba(0,255,183,.06);color:var(--ok);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
 .vrf-result-fail{margin-top:12px;padding:14px 18px;border:1px solid rgba(255,64,96,.3);background:rgba(255,64,96,.06);color:var(--err);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
 @media(max-width:900px){.vrf-body{grid-template-columns:1fr}.vrf-claim-btns{width:100%;flex-wrap:wrap}.vrf-claim-btn{min-width:calc(50% - 1px)}}
 @media(max-width:600px){.vrf-selector{padding:20px}.vrf-inputs{padding:24px}.vrf-term-body{min-height:240px}}
@@ -1328,7 +1328,7 @@ a.soon-chip{border-bottom:none!important}
 }
 /* steps */
 .origin-steps{display:flex;flex-direction:column;gap:0;position:relative}
-.origin-steps::before{content:'';position:absolute;left:13px;top:14px;bottom:80px;width:1px;background:linear-gradient(rgba(255,64,96,.35) 0%,rgba(255,64,96,.15) 65%,rgba(0,255,172,.6) 100%);z-index:0}
+.origin-steps::before{content:'';position:absolute;left:13px;top:14px;bottom:80px;width:1px;background:linear-gradient(rgba(255,64,96,.35) 0%,rgba(255,64,96,.15) 65%,rgba(0,255,183,.6) 100%);z-index:0}
 .origin-step{display:flex;align-items:flex-start;gap:16px;padding:18px 0;border-bottom:1px solid var(--ln);opacity:0;transform:translateX(-14px);transition:opacity .5s ease,transform .5s ease;position:relative;z-index:1}
 .origin-step.on{opacity:1;transform:none}
 /* steps 01-03 — failed attempts */
@@ -1341,7 +1341,7 @@ a.soon-chip{border-bottom:none!important}
 /* step 04 — THE solution */
 .origin-step.active{border:1px solid rgba(0,229,255,.2)!important;border-bottom:1px solid rgba(0,229,255,.2)!important;background:rgba(0,229,255,.04);padding:18px 16px;margin-top:10px;position:relative}
 .origin-step.active::before{content:'→ SOLUTION';position:absolute;top:-10px;left:16px;font-size:9px;letter-spacing:.18em;color:var(--ok);background:var(--ink1);padding:0 8px}
-.origin-step.active .origin-step-n{border-color:var(--ok)!important;color:var(--ok)!important;background:rgba(0,255,172,.08)!important;box-shadow:0 0 16px rgba(0,255,172,.25)}
+.origin-step.active .origin-step-n{border-color:var(--ok)!important;color:var(--ok)!important;background:rgba(0,255,183,.08)!important;box-shadow:0 0 16px rgba(0,255,183,.25)}
 .origin-step.active .origin-step-txt{color:var(--txt)!important;font-size:14px!important;text-decoration:none!important}
 .origin-step-n{flex-shrink:0;width:28px;height:28px;border:1px solid var(--ln2);display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:10px;color:var(--txt3);margin-top:2px;transition:all .4s ease}
 .origin-step-txt{font-size:13px;color:var(--txt3);line-height:1.65;font-weight:300;transition:all .4s ease}
@@ -1353,7 +1353,7 @@ a.soon-chip{border-bottom:none!important}
 .pitch-grid{display:grid;grid-template-columns:1fr 48px 1fr;gap:0;border:1px solid var(--ln);overflow:hidden;background:var(--ink)}
 .pitch-col{padding:48px 44px;display:flex;flex-direction:column;gap:20px}
 .pitch-col-left{border-right:none;background:rgba(255,64,96,.03)}
-.pitch-col-right{background:rgba(0,255,172,.03)}
+.pitch-col-right{background:rgba(0,255,183,.03)}
 .pitch-arrow{display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--txt3);background:var(--ink2);border-left:1px solid var(--ln);border-right:1px solid var(--ln)}
 .pitch-origin-tag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--err);display:flex;align-items:center;gap:10px}
 .pitch-origin-tag::before{content:'';width:16px;height:1px;background:var(--err)}
@@ -1363,7 +1363,7 @@ a.soon-chip{border-bottom:none!important}
 .pitch-body{font-size:14px;color:var(--txt2);line-height:1.8;font-weight:300;max-width:420px}
 .pitch-claims{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
 .pitch-chip{font-family:var(--fm);font-size:10px;letter-spacing:.08em;padding:5px 12px;border:1px solid rgba(255,64,96,.28);color:rgba(255,64,96,.7);background:rgba(255,64,96,.05)}
-.pitch-chip-ok{border-color:rgba(0,255,172,.3);color:var(--ok);background:rgba(0,255,172,.06)}
+.pitch-chip-ok{border-color:rgba(0,255,183,.3);color:var(--ok);background:rgba(0,255,183,.06)}
 .pitch-chip-dim{border-color:var(--ln2);color:var(--txt3);background:transparent;font-style:italic}
 .pitch-banner{display:flex;align-items:center;gap:28px;margin-top:2px;padding:20px 28px;border:1px solid var(--ln2);background:linear-gradient(90deg,rgba(0,229,255,.04),rgba(0,229,255,.01));border-top:none}
 .pitch-banner-label{font-family:var(--fd);font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--c);flex-shrink:0}
@@ -1495,7 +1495,7 @@ a.soon-chip{border-bottom:none!important}
       <h3>Tools</h3>
       <a href="#verifier" onclick="document.getElementById('megaover').classList.remove('open')">Live Verifier<span>Test 5 claims in browser</span></a>
       <a href="#faq" onclick="document.getElementById('megaover').classList.remove('open')">FAQ<span>Technical Q&A</span></a>
-      <a href="https://github.com/Lama999901/metagenesis-core-public" target="_blank">GitHub Repo<span>MIT · 172 tests · AUDIT PASS</span></a>
+      <a href="https://github.com/Lama999901/metagenesis-core-public" target="_blank">GitHub Repo<span>MIT · 183 tests · AUDIT PASS</span></a>
       <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/mg.py" target="_blank">mg.py source<span>Core verification script</span></a>
     </div>
     <div class="mo-col">
@@ -1568,7 +1568,7 @@ a.soon-chip{border-bottom:none!important}
     <div class="hmtag">Verification Protocol &nbsp;&#183;&nbsp; #63/996,819</div>
     <div class="hmpat">
       <span><span class="hv">8</span> active claims</span><span class="sep">|</span>
-      <span><span class="hv">172</span> tests</span><span class="sep">|</span>
+      <span><span class="hv">183</span> tests</span><span class="sep">|</span>
       <span class="hv">PASS</span><span class="sep">|</span>
       <span>patent pending</span>
     </div>
@@ -1612,7 +1612,7 @@ a.soon-chip{border-bottom:none!important}
           <span class="hbproof-lbl">Claims</span>
         </div>
         <div class="hbproof-badge">
-          <span class="hbproof-val cy">172</span>
+          <span class="hbproof-val cy">183</span>
           <span class="hbproof-lbl">Tests</span>
         </div>
         <div class="hbproof-badge">
@@ -1638,14 +1638,14 @@ a.soon-chip{border-bottom:none!important}
 
 <div class="ticker"><div class="ttrack">
   <div class="ti"><span class="tn">8</span><span class="tl">Active Claims</span></div>
-  <div class="ti"><span class="tn">172</span><span class="tl">Tests Passing</span></div>
+  <div class="ti"><span class="tn">183</span><span class="tl">Tests Passing</span></div>
   <div class="ti"><span class="tn">3</span><span class="tl">Verification Layers</span></div>
   <div class="ti"><span class="tn">6</span><span class="tl">Domains</span></div>
   <div class="ti"><span class="tn">0</span><span class="tl">Trust Required</span></div>
   <div class="ti"><span class="tn" style="font-size:14px">PASS</span><span class="tl">steward_audit</span></div>
   <div class="ti"><span class="tn" style="font-size:14px">MIT</span><span class="tl">License</span></div>
   <div class="ti"><span class="tn">8</span><span class="tl">Active Claims</span></div>
-  <div class="ti"><span class="tn">172</span><span class="tl">Tests Passing</span></div>
+  <div class="ti"><span class="tn">183</span><span class="tl">Tests Passing</span></div>
   <div class="ti"><span class="tn">3</span><span class="tl">Verification Layers</span></div>
   <div class="ti"><span class="tn">6</span><span class="tl">Domains</span></div>
   <div class="ti"><span class="tn">0</span><span class="tl">Trust Required</span></div>
@@ -1812,7 +1812,7 @@ a.soon-chip{border-bottom:none!important}
         <div class="ccl-problem">Simulation outputs unanchored &#8212; no proof of agreement with measured physical reality</div>
         <div class="ccl-arrow">&#8594;</div>
         <div class="ccl-solution">
-          <span class="ccl-badge" style="background:rgba(0,255,172,.15);border-color:rgba(0,255,172,.45)">&#9875; ANCHORED</span>
+          <span class="ccl-badge" style="background:rgba(0,255,183,.15);border-color:rgba(0,255,183,.45)">&#9875; ANCHORED</span>
           <span class="ccl-claim">MTR-1 &#8594; DT-FEM-01 &#8594; DRIFT-01</span>
           <a class="ccl-path" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mtr1_calibration.py" target="_blank">mtr1_calibration.py</a>
           <span class="ccl-threshold">E&nbsp;=&nbsp;70&nbsp;GPa measured &middot; chain verifiable offline</span>
@@ -1842,7 +1842,7 @@ a.soon-chip{border-bottom:none!important}
           <p>For 4–5 years I followed AI as it grew — weak models, early agents, inconsistent results. I kept watching, kept learning.</p>
           <p>Then the last year: deep focus. <strong>Hundreds of iterations across 42 development phases.</strong> Solo, after hours. That’s when I found the problem — and the solution.</p>
           <p>Meanwhile the problem was everywhere: ML teams publishing benchmark numbers nobody could verify. Labs reporting results nobody could reproduce. Pipelines producing outputs nobody could audit. It just didn’t have a name yet.</p>
-          <p>One tool finally fit the way I think. Two weeks — working protocol, USPTO patent application filed, this site live. Now: 172 passing tests, 8 verified claims — including Step Chain Verification, a cryptographic 4-step execution trace added to ML_BENCH-01.</p>
+          <p>One tool finally fit the way I think. Two weeks — working protocol, USPTO patent application filed, this site live. Now: 183 passing tests, 8 verified claims — including Step Chain Verification, a cryptographic 4-step execution trace added to ML_BENCH-01.</p>
           <p>That’s not a story about me being special. It’s a story about what’s possible right now, for anyone willing to stay with it.</p>
         </div>
         <div class="founder-name">Yehor Bazhynov &mdash; Inventor, Patent&nbsp;#63/996,819</div>
@@ -2002,7 +2002,7 @@ a.soon-chip{border-bottom:none!important}
         <div class="tline" id="l5"><span class="tok">&#10003; PASS</span><span class="tdm" style="margin-left:8px">semantic invariants verified</span></div>
         <div class="tline" id="l5b"><span class="tok">&#10003; PASS</span><span class="tdm" style="margin-left:8px">step chain: trace_root_hash verified</span></div>
         <div class="tline" id="l6" style="margin-top:16px"><span class="tprompt">$ </span><span class="tcmd">python -m pytest tests/ -q</span></div>
-        <div class="tline" id="l7"><span class="tok">172 passed</span><span class="tdm" style="margin-left:8px">in 2.70s</span></div>
+        <div class="tline" id="l7"><span class="tok">183 passed</span><span class="tdm" style="margin-left:8px">in 2.70s</span></div>
       </div>
       <div>
         <div class="tres" id="r1">
@@ -2132,7 +2132,7 @@ a.soon-chip{border-bottom:none!important}
 <div class="w"><section class="sec">
   <div class="stats rv">
     <div class="stat"><div class="stn"><span id="cn1">8</span></div><div class="stl">Active Claims</div><div class="std">Across 6 domains: materials, ML/AI, system ID, data pipelines, drift monitoring, digital twin</div></div>
-    <div class="stat"><div class="stn"><span id="cn2">172</span></div><div class="stl">Tests Passing</div><div class="std">Including adversarial tamper detection, Step Chain Verification (4-step execution trace), determinism checks, and boundary conditions</div></div>
+    <div class="stat"><div class="stn"><span id="cn2">183</span></div><div class="stl">Tests Passing</div><div class="std">Including adversarial tamper detection, Step Chain Verification (4-step execution trace), determinism checks, and boundary conditions</div></div>
     <div class="stat"><div class="stn"><span id="cn3">3</span></div><div class="stl">Verification Layers</div><div class="std">SHA-256 integrity + semantic invariants + Step Chain execution trace. Each layer catches attacks the others miss.</div></div>
     <div class="stat"><div class="stn">0<span style="font-size:40px"> req.</span></div><div class="stl">Trust Required</div><div class="std">No GPU, no internet, no code access. Verify on any machine with Python.</div></div>
   </div>
@@ -2348,7 +2348,7 @@ a.soon-chip{border-bottom:none!important}
       <ul class="price-list">
         <li>Full MetaGenesis Verification Protocol</li>
         <li>8 active domain claims</li>
-        <li>172 tests including adversarial proof</li>
+        <li>183 tests including adversarial proof</li>
         <li>Local deployment, no cloud required</li>
         <li>MIT licensed</li>
       </ul>
@@ -3172,7 +3172,7 @@ a.soon-chip{border-bottom:none!important}
   if(tel){var ti=0;setTimeout(function tw(){if(ti<cmd.length){tel.textContent+=cmd[ti++];setTimeout(tw,32+Math.random()*26);}else{if(tcur)tcur.style.display='none';[['l1',300],['l2',800],['l3',1300],['l4',1900],['l5',2400],['l6',3000],['l7',3600],['r1',2200],['r2',3200]].forEach(function(p){setTimeout(function(){var e=document.getElementById(p[0]);if(e)e.style.opacity='1';},p[1]);});}},1400);}
 
   function ct(el,n,d){if(!el)return;d=d||1200;var s=performance.now();(function f(now){var p=Math.min((now-s)/d,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(e*n);if(p<1)requestAnimationFrame(f);else el.textContent=n;})(performance.now());}
-  var done=false;function tryC(){var e=document.getElementById('cn1');if(!e||done)return;if(e.getBoundingClientRect().top<innerHeight*.9){done=true;ct(document.getElementById('cn1'),8);ct(document.getElementById('cn2'),172,1500);ct(document.getElementById('cn3'),3,900);}}
+  var done=false;function tryC(){var e=document.getElementById('cn1');if(!e||done)return;if(e.getBoundingClientRect().top<innerHeight*.9){done=true;ct(document.getElementById('cn1'),8);ct(document.getElementById('cn2'),183,1500);ct(document.getElementById('cn3'),3,900);}}
   window.addEventListener('scroll',tryC,{passive:true});tryC();
 
   var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('vis');});},{threshold:.08});
@@ -3334,13 +3334,13 @@ if(false){/* ══════════════════════�
 
   /* — rings config — */
   var RINGS=[
-    {r:0.08,spd:0.0006,col:'0,255,172',  lw:1.5,gap:0.18,dash:0},     /* inner green */
+    {r:0.08,spd:0.0006,col:'0,255,183',  lw:1.5,gap:0.18,dash:0},     /* inner green */
     {r:0.14,spd:-0.0004,col:'0,229,255', lw:1.0,gap:0.28,dash:0},    /* cyan */
-    {r:0.22,spd:0.0003,col:'0,255,172',  lw:0.7,gap:0.40,dash:1},    /* green dashed */
+    {r:0.22,spd:0.0003,col:'0,255,183',  lw:0.7,gap:0.40,dash:1},    /* green dashed */
     {r:0.30,spd:-0.0005,col:'0,229,255', lw:1.2,gap:0.22,dash:0},    /* cyan */
-    {r:0.38,spd:0.0002,col:'0,255,172',  lw:0.5,gap:0.55,dash:1},    /* green thin */
+    {r:0.38,spd:0.0002,col:'0,255,183',  lw:0.5,gap:0.55,dash:1},    /* green thin */
     {r:0.46,spd:-0.0003,col:'0,229,255', lw:0.8,gap:0.35,dash:0},
-    {r:0.56,spd:0.00015,col:'0,255,172', lw:0.5,gap:0.60,dash:1},
+    {r:0.56,spd:0.00015,col:'0,255,183', lw:0.5,gap:0.60,dash:1},
     {r:0.66,spd:-0.0002,col:'0,229,255', lw:0.4,gap:0.65,dash:1},
   ];
   RINGS.forEach(function(r){r.rot=Math.random()*Math.PI*2;});
@@ -3348,7 +3348,7 @@ if(false){/* ══════════════════════�
   /* — expanding pulse rings — */
   var pulses=[];
   function spawnPulse(){
-    pulses.push({r:0,alpha:0.7,col:Math.random()<0.6?'0,255,172':'0,229,255'});
+    pulses.push({r:0,alpha:0.7,col:Math.random()<0.6?'0,255,183':'0,229,255'});
     setTimeout(spawnPulse, 1800+Math.random()*2400);
   }
   spawnPulse();
@@ -3363,7 +3363,7 @@ if(false){/* ══════════════════════�
       orb:0.28+Math.random()*0.28,
       size:1.0+Math.random()*1.4,
       alpha:0.18+Math.random()*0.32,
-      col:Math.random()<0.6?'0,255,172':'0,229,255'
+      col:Math.random()<0.6?'0,255,183':'0,229,255'
     });
   }
 
@@ -3733,10 +3733,10 @@ h2:nth-of-type(3n)   .hw { animation-delay: 1.3s !important; }
 .phys-result-val.ok{color:var(--ok);font-weight:600}
 .phys-result-val.cy{color:var(--c);font-weight:600}
 .phys-outcome{margin-top:4px;border:1px solid;padding:20px 24px}
-.phys-outcome-pass{border-color:rgba(0,255,172,.3);background:rgba(0,255,172,.04)}
+.phys-outcome-pass{border-color:rgba(0,255,183,.3);background:rgba(0,255,183,.04)}
 .phys-outcome-header{display:flex;align-items:center;gap:14px;margin-bottom:16px}
 .phys-outcome-badge{font-family:var(--fd);font-size:12px;font-weight:700;letter-spacing:.08em;padding:4px 14px;border:1px solid}
-.phys-outcome-badge.ok{color:var(--ok);border-color:rgba(0,255,172,.4);background:rgba(0,255,172,.08)}
+.phys-outcome-badge.ok{color:var(--ok);border-color:rgba(0,255,183,.4);background:rgba(0,255,183,.08)}
 .phys-outcome-title{font-size:13px;color:var(--txt2);font-weight:300}
 .phys-outcome-checks{display:flex;flex-direction:column;gap:6px}
 .phys-check{display:flex;align-items:flex-start;gap:10px;font-family:var(--fm);font-size:12px}
@@ -3876,9 +3876,9 @@ a.pp-claim-link:hover{color:#fff}
   gap:8px;
 }
 .ccl-badge{
-  background:rgba(0,255,172,.12);
+  background:rgba(0,255,183,.12);
   color:var(--ok);
-  border:1px solid rgba(0,255,172,.3);
+  border:1px solid rgba(0,255,183,.3);
   border-radius:4px;
   font-family:var(--fm);
   font-size:10px;
@@ -3950,15 +3950,15 @@ a.pp-claim-link:hover{color:#fff}
   font-family:var(--fm);
   font-size:11px;
   color:var(--ok);
-  background:rgba(0,255,172,.08);
+  background:rgba(0,255,183,.08);
   padding:2px 6px;
   border-radius:4px;
 }
 
 /* ── PHYSICAL ANCHOR CHAIN ── */
-.anchor-chain{border:1px solid rgba(0,255,172,.22);background:rgba(3,8,20,.96);padding:48px 52px;margin-bottom:64px;position:relative;overflow:hidden;box-shadow:0 0 60px rgba(0,255,172,.04) inset,0 0 0 1px rgba(0,255,172,.06)}
-.anchor-chain::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(0,255,172,.7) 30%,rgba(0,255,172,1) 50%,rgba(0,255,172,.7) 70%,transparent 100%)}
-.anchor-chain::after{content:'';position:absolute;inset:8px;border:1px solid rgba(0,255,172,.06);pointer-events:none}
+.anchor-chain{border:1px solid rgba(0,255,183,.22);background:rgba(3,8,20,.96);padding:48px 52px;margin-bottom:64px;position:relative;overflow:hidden;box-shadow:0 0 60px rgba(0,255,183,.04) inset,0 0 0 1px rgba(0,255,183,.06)}
+.anchor-chain::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(0,255,183,.7) 30%,rgba(0,255,183,1) 50%,rgba(0,255,183,.7) 70%,transparent 100%)}
+.anchor-chain::after{content:'';position:absolute;inset:8px;border:1px solid rgba(0,255,183,.06);pointer-events:none}
 .anchor-chain-header{margin-bottom:36px;position:relative;z-index:1}
 .anchor-chain-label{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ok);margin-bottom:16px;display:flex;align-items:center;gap:12px;opacity:.9}
 .anchor-chain-label::before{content:'';width:24px;height:1px;background:var(--ok)}
@@ -3967,31 +3967,31 @@ a.pp-claim-link:hover{color:#fff}
 .anchor-chain-desc em{color:rgba(238,247,251,.52);font-style:italic}
 .anchor-steps{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:stretch;gap:0;position:relative;z-index:1}
 .anchor-step{border:1px solid rgba(238,247,251,.08);background:rgba(7,14,30,.9);padding:24px 24px 20px;display:flex;flex-direction:column;gap:10px;position:relative;transition:background .25s,border-color .25s}
-.anchor-step::before,.anchor-step::after{content:'';position:absolute;width:8px;height:8px;border-color:rgba(0,255,172,.25);border-style:solid}
+.anchor-step::before,.anchor-step::after{content:'';position:absolute;width:8px;height:8px;border-color:rgba(0,255,183,.25);border-style:solid}
 .anchor-step::before{top:4px;left:4px;border-width:1px 0 0 1px}
 .anchor-step::after{bottom:4px;right:4px;border-width:0 1px 1px 0}
-.anchor-step:hover{background:rgba(0,255,172,.04);border-color:rgba(0,255,172,.2)}
-.anchor-root{border-color:rgba(0,255,172,.32);background:rgba(0,255,172,.05);box-shadow:0 0 40px rgba(0,255,172,.06) inset}
-.anchor-root::before{border-color:rgba(0,255,172,.55)}
-.anchor-root::after{border-color:rgba(0,255,172,.55)}
-.anchor-root:hover{background:rgba(0,255,172,.08);border-color:rgba(0,255,172,.45)}
+.anchor-step:hover{background:rgba(0,255,183,.04);border-color:rgba(0,255,183,.2)}
+.anchor-root{border-color:rgba(0,255,183,.32);background:rgba(0,255,183,.05);box-shadow:0 0 40px rgba(0,255,183,.06) inset}
+.anchor-root::before{border-color:rgba(0,255,183,.55)}
+.anchor-root::after{border-color:rgba(0,255,183,.55)}
+.anchor-root:hover{background:rgba(0,255,183,.08);border-color:rgba(0,255,183,.45)}
 .anchor-step-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:2px}
-.anchor-badge-pill{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--ok);border:1px solid rgba(0,255,172,.4);background:rgba(0,255,172,.10);padding:3px 10px;white-space:nowrap}
+.anchor-badge-pill{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--ok);border:1px solid rgba(0,255,183,.4);background:rgba(0,255,183,.10);padding:3px 10px;white-space:nowrap}
 .anchor-claim-id{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--c);text-decoration:none;border-bottom:1px solid rgba(0,229,255,.28);transition:color .18s,border-color .18s}
 .anchor-claim-id:hover{color:#fff;border-bottom-color:var(--c)}
 .anchor-verdict-ok{font-family:var(--fm);font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--ok);opacity:.9}
 .anchor-step-val{font-family:var(--fm);font-size:13px;color:rgba(238,247,251,.9);font-weight:500;letter-spacing:.03em}
-.anchor-root .anchor-step-val{font-size:22px;font-weight:900;color:var(--ok);font-family:var(--fd);letter-spacing:-.02em;text-shadow:0 0 20px rgba(0,255,172,.35)}
+.anchor-root .anchor-step-val{font-size:22px;font-weight:900;color:var(--ok);font-family:var(--fd);letter-spacing:-.02em;text-shadow:0 0 20px rgba(0,255,183,.35)}
 .anchor-step-name{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(238,247,251,.35)}
 .anchor-step-desc{font-size:12px;color:rgba(238,247,251,.42);line-height:1.58;font-weight:300;font-family:var(--fb)}
-.anchor-arrow{display:flex;align-items:center;justify-content:center;padding:0 16px;font-family:var(--fm);font-size:18px;color:rgba(0,255,172,.25);flex-shrink:0;position:relative}
-.anchor-arrow::after{content:'';position:absolute;top:50%;left:50%;width:1px;height:60%;background:rgba(0,255,172,.1);transform:translate(-50%,-50%)}
-.anchor-verify{margin-top:28px;padding:16px 22px;background:rgba(4,8,26,.95);border:1px solid rgba(238,247,251,.07);border-left:2px solid rgba(0,255,172,.4);font-family:var(--fm);font-size:12px;color:var(--txt2);position:relative;z-index:1}
+.anchor-arrow{display:flex;align-items:center;justify-content:center;padding:0 16px;font-family:var(--fm);font-size:18px;color:rgba(0,255,183,.25);flex-shrink:0;position:relative}
+.anchor-arrow::after{content:'';position:absolute;top:50%;left:50%;width:1px;height:60%;background:rgba(0,255,183,.1);transform:translate(-50%,-50%)}
+.anchor-verify{margin-top:28px;padding:16px 22px;background:rgba(4,8,26,.95);border:1px solid rgba(238,247,251,.07);border-left:2px solid rgba(0,255,183,.4);font-family:var(--fm);font-size:12px;color:var(--txt2);position:relative;z-index:1}
 .anchor-verify-prompt{color:var(--c);margin-right:6px;opacity:.7}
 .anchor-verify-pass{color:var(--ok);font-weight:700;letter-spacing:.06em}
 .anchor-verify-note{color:rgba(238,247,251,.38);font-size:11px}
-.claimid-badge.anchor-sm{font-size:8px;letter-spacing:.1em;padding:2px 7px;margin-left:8px;color:var(--ok);border:1px solid rgba(0,255,172,.3);background:rgba(0,255,172,.05);vertical-align:middle;text-transform:uppercase}
-.claim.claim-anchor{background:rgba(0,255,172,.03)!important}
+.claimid-badge.anchor-sm{font-size:8px;letter-spacing:.1em;padding:2px 7px;margin-left:8px;color:var(--ok);border:1px solid rgba(0,255,183,.3);background:rgba(0,255,183,.05);vertical-align:middle;text-transform:uppercase}
+.claim.claim-anchor{background:rgba(0,255,183,.03)!important}
 .claim.claim-anchor::before{background:linear-gradient(90deg,transparent,var(--ok),transparent)!important;transform:scaleX(1)!important;opacity:.4}
 @media(max-width:1100px){.anchor-chain{padding:32px 24px}.anchor-steps{grid-template-columns:1fr;justify-items:stretch}.anchor-arrow{padding:8px 0;font-size:16px}.anchor-arrow::after{display:none}.anchor-step{min-width:0}}
 @media(max-width:768px){.anchor-chain{padding:24px 20px;margin-bottom:40px}.anchor-chain-desc{font-size:15px}.anchor-root .anchor-step-val{font-size:18px}}
