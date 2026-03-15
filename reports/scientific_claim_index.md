@@ -112,7 +112,7 @@ threshold signals that simulation correction is required.
 | **domain** | Machine Learning / AI Benchmarking |
 | **job_kind** | `mlbench1_accuracy_certificate` |
 | **reproduction** | `python -m pytest tests/ml/test_mlbench01_accuracy_certificate.py -v` |
-| **evidence_fields** | Result lives under `job_snapshot.result`. Contains `mtr_phase` (ML_BENCH-01), `inputs` (seed, claimed_accuracy, accuracy_tolerance, n_samples, n_features, noise_scale, mode), `result` (actual_accuracy, claimed_accuracy, absolute_error, tolerance, pass, precision, recall, f1, n_samples). |
+| **evidence_fields** | Result lives under `job_snapshot.result`. Contains `mtr_phase` (ML_BENCH-01), `inputs` (seed, claimed_accuracy, accuracy_tolerance, n_samples, n_features, noise_scale, mode), `result` (actual_accuracy, claimed_accuracy, absolute_error, tolerance, pass, precision, recall, f1, n_samples), `execution_trace` (4-step cryptographic chain: init_params → generate_dataset → compute_metrics → threshold_check; each step hashes previous step), `trace_root_hash` (SHA-256 of full chain — tampering any step invalidates root hash). |
 | **V&V thresholds** | `abs(actual_accuracy - claimed_accuracy) <= accuracy_tolerance` (default tolerance 0.02). `result.pass` must be True for certificate to be valid. |
 | **notes (canary vs normal)** | Same as all other claims: job runs in normal or canary mode via `run_job(..., canary_mode=...)`; evidence artifacts produced for both; canary marked in artifact `canary_mode: true`. |
 

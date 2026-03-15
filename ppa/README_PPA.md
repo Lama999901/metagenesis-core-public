@@ -23,9 +23,10 @@ in the non-provisional application.
 | DRIFT-01 claim | post 2026-03-05 | To include in non-provisional |
 | ML_BENCH-01 claim | post 2026-03-05 | To include in non-provisional |
 | DT-FEM-01 claim | 2026-03-11 | To include in non-provisional |
-| Tests 40–107 | post 2026-03-05 | Additional coverage |
+| Tests 40–113 | post 2026-03-05 | Additional coverage |
+| Step Chain Verification (ML_BENCH-01) | 2026-03-14 | 4-step cryptographic execution trace + trace_root_hash |
 
-**Current state (2026-03-12):** 8 claims, 107 tests.
+**Current state (2026-03-14):** 8 claims, 118 tests.
 Live state: reports/canonical_state.md
 
 ---
@@ -139,7 +140,7 @@ reports/scientific_claim_index.md
 reports/canonical_state.md
   → Authoritative project state snapshot
   → current_claims_list: MTR-1, MTR-2, MTR-3, SYSID-01,
-                          DATA-PIPE-01, DRIFT-01, ML_BENCH-01
+                          DATA-PIPE-01, DRIFT-01, ML_BENCH-01, DT-FEM-01
 ```
 
 ---

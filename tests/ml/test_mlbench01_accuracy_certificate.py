@@ -171,3 +171,52 @@ class TestRunCertificate:
         tol = result["result"]["tolerance"]
         # The pass flag must be consistent with the reported error
         assert result["result"]["pass"] == (err <= tol)
+
+
+class TestExecutionTraceChain:
+    """Step Chain Verification tests — PPA #63/996,819."""
+
+    def test_trace_present_in_result(self):
+        """execution_trace and trace_root_hash must be in synthetic mode result."""
+        result = run_certificate(seed=42, claimed_accuracy=0.90, n_samples=500)
+        assert "execution_trace" in result
+        assert "trace_root_hash" in result
+
+    def test_trace_has_four_steps(self):
+        """Trace must have exactly 4 steps in order."""
+        result = run_certificate(seed=42, claimed_accuracy=0.90, n_samples=500)
+        trace = result["execution_trace"]
+        assert len(trace) == 4
+        names = [s["name"] for s in trace]
+        assert names == [
+            "init_params", "generate_dataset",
+            "compute_metrics", "threshold_check"
+        ]
+
+    def test_trace_hashes_are_valid_hex64(self):
+        """Every step hash must be a 64-char lowercase hex string."""
+        result = run_certificate(seed=42, claimed_accuracy=0.90, n_samples=500)
+        for step in result["execution_trace"]:
+            h = step["hash"]
+            assert isinstance(h, str)
+            assert len(h) == 64
+            assert all(c in "0123456789abcdef" for c in h)
+
+    def test_trace_is_deterministic(self):
+        """Same seed → identical trace every time."""
+        r1 = run_certificate(seed=42, claimed_accuracy=0.90, n_samples=500)
+        r2 = run_certificate(seed=42, claimed_accuracy=0.90, n_samples=500)
+        assert r1["execution_trace"] == r2["execution_trace"]
+        assert r1["trace_root_hash"] == r2["trace_root_hash"]
+
+    def test_trace_changes_with_different_seed(self):
+        """Different seed → different trace root hash."""
+        r1 = run_certificate(seed=42, claimed_accuracy=0.90, n_samples=500)
+        r2 = run_certificate(seed=99, claimed_accuracy=0.90, n_samples=500)
+        assert r1["trace_root_hash"] != r2["trace_root_hash"]
+
+    def test_trace_root_hash_equals_last_step_hash(self):
+        """trace_root_hash must equal the hash of the final step."""
+        result = run_certificate(seed=42, claimed_accuracy=0.90, n_samples=500)
+        last_hash = result["execution_trace"][-1]["hash"]
+        assert result["trace_root_hash"] == last_hash
