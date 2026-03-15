@@ -28,10 +28,10 @@ known_faults:
       models, the protocol provides tamper-evident provenance only — not physical anchoring.
       Thresholds in these domains (e.g. |Δaccuracy| ≤ 0.02) are chosen conventions,
       not physical constants. This is intentional and not a defect.
-    affected_claims: ["ML_BENCH-01", "DATA-PIPE-01", "SYSID-01"]
+    affected_claims: ["ML_BENCH-01", "ML_BENCH-02", "ML_BENCH-03", "DATA-PIPE-01", "SYSID-01", "PHARMA-01", "FINRISK-01", "DT-SENSOR-01"]
     status: "FAULT_EXPECTED"
     ticket_ref: "https://github.com/Lama999901/metagenesis-core-public/issues"
-    mitigation: "Use physical anchor chain (MTR-1 -> DT-FEM-01 -> DRIFT-01) for domains requiring traceability to physical reality."
+    mitigation: "Use physical anchor chain (MTR-1 -> DT-FEM-01 -> DRIFT-01 -> DT-CALIB-LOOP-01) for domains requiring traceability to physical reality."
 
 fault_classification:
   FAULT_EXPECTED: "Known issue that does not impact system operation"
