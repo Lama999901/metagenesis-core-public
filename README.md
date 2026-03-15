@@ -27,16 +27,44 @@ No GPU. No access to your code or environment. No trust required.
 
 ---
 
-## Two pillars — not one
+## Three verification layers + two pillars
 
 Most verification tools answer one question: *was this number changed after it was produced?*
 
-MetaGenesis Core answers a harder question: **is this number traceable to physical reality?**
+MetaGenesis Core answers a harder question: **is this number traceable to physical reality — and was the computation itself executed correctly?**
 
-The difference matters.
+### Three independent verification layers
+
+Each layer catches attacks the previous layer misses:
+
+```
+Layer 1 — SHA-256 integrity
+  Catches: file modified after packaging
+  Proof:   pack_manifest.json root_hash
+
+Layer 2 — Semantic
+  Catches: evidence stripped, hashes recomputed (SHA-256 says PASS, semantic says FAIL)
+  Proof:   test_cert02 :: test_semantic_negative_missing_job_snapshot_fails_verify
+
+Layer 3 — Step Chain
+  Catches: computation inputs changed, steps reordered (layers 1+2 say PASS, step chain says FAIL)
+  Proof:   test_cert03 :: test_tampered_trace_root_hash_fails
+```
+
+The Step Chain is a cryptographic hash chain over computation steps — same idea as git commits:
+```
+init_params       → hash_1
+hash_1 + dataset  → hash_2
+hash_2 + metrics  → hash_3
+hash_3 + verdict  → trace_root_hash
+```
+Change anything — seed, sample count, step order — `trace_root_hash` breaks.
+Not blockchain. No network. No tokens. Works offline.
+
+### Two pillars
 
 **Pillar 1 — Tamper-evident provenance**
-SHA-256 integrity + semantic verification ensures the bundle hasn't been modified after generation. Any tamper attempt — including SHA-256 recomputation — is detected.
+Three-layer verification ensures the bundle and computation haven't been modified. Any tamper attempt — including SHA-256 recomputation or execution step substitution — is detected.
 
 **Pillar 2 — Physical anchor traceability**
 The verification chain is grounded in physical constants — not arbitrary thresholds. MTR-1's anchor is E = 70 GPa for aluminum: a value measured independently in thousands of laboratories worldwide. When MetaGenesis Core verifies `rel_err ≤ 1%` against this anchor, it is asserting that the computation **agrees with physical reality** — not merely that a number falls within an internally chosen range.
@@ -85,6 +113,27 @@ tests/steward/test_cert02_pack_includes_evidence_and_semantic_verify.py
 ::test_semantic_negative_missing_job_snapshot_fails_verify
 ```
 
+**The Step Chain attack — Layer 3:**
+
+```
+1. Modify computation inputs (different seed, different sample count)
+2. Recompute all SHA-256 hashes — integrity layer passes
+3. job_snapshot is present — semantic layer passes
+4. trace_root_hash doesn't match final step hash — Step Chain FAIL
+```
+
+```
+Integrity check:     PASS  ← attack survives
+Semantic check:      PASS  ← attack survives
+Step Chain check:    FAIL  ← execution sequence broken — caught
+```
+
+Caught by:
+```
+tests/steward/test_cert03_step_chain_verify.py
+::TestStepChainVerification::test_tampered_trace_root_hash_fails
+```
+
 ---
 
 ## Try it in 5 minutes
@@ -118,8 +167,10 @@ No API keys. No network. Works on any machine with Python 3.11+.
 3. mg.py pack build
    Bundles artifacts + SHA-256 manifest + root_hash into submission pack
 
-4. mg.py verify
-   Integrity check (SHA-256) + semantic check (job_snapshot, canary flag, kind)
+4. mg.py verify — three independent layers:
+   Layer 1 — integrity:    SHA-256 root_hash over all bundle files
+   Layer 2 — semantic:     job_snapshot present, payload.kind correct, canary_mode consistent
+   Layer 3 — step chain:   trace_root_hash == final execution step hash (tampering any step breaks the chain)
    → PASS or FAIL with specific reason
 ```
 
@@ -178,7 +229,7 @@ Evidence: backend/progress/runner.py :: run_job(canary_mode=True/False)
 | SYSID-01 | System Identification — ARX | `rel_err_a ≤ 0.03, rel_err_b ≤ 0.03` | `backend/progress/sysid1_arx_calibration.py` |
 | DATA-PIPE-01 | Data Pipelines | `schema pass · range pass` | `backend/progress/datapipe1_quality_certificate.py` |
 | DRIFT-01 | Drift Monitoring | `drift_threshold 5.0%` | `backend/progress/drift_monitor.py` |
-| ML_BENCH-01 | ML Accuracy | `\|actual − claimed\| ≤ 0.02` | `backend/progress/mlbench1_accuracy_certificate.py` |
+| ML_BENCH-01 | ML Accuracy + Step Chain | `\|actual − claimed\| ≤ 0.02` + `trace_root_hash` | `backend/progress/mlbench1_accuracy_certificate.py` |
 | DT-FEM-01 | Digital Twin / FEM | `rel_err ≤ 0.02` | `backend/progress/dtfem1_displacement_verification.py` |
 
 ---
@@ -214,7 +265,7 @@ python scripts/steward_audit.py
 # → STEWARD AUDIT: PASS
 
   python -m pytest tests/ -q
-  # → 113 passed
+  # → 118 passed
 
 grep -r "tamper-proof|GPT-5|19x|VacuumGenesis" docs/ scripts/ backend/ tests/
 # → (empty — no forbidden claims)
