@@ -92,13 +92,13 @@ Enforced by: python scripts/steward_audit.py → must output STEWARD AUDIT: PASS
 ## How to verify everything works
 
 python scripts/steward_audit.py                              # PASS
-python -m pytest tests/ -q                                   # 223 passed
+python -m pytest tests/ -q                                   # 270 passed
 python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 
 ## Current state (2026-03-15)
 
 - Claims: 14
-- Tests: 223 passing
+- Tests: 270 passing
 - Verification layers: 3 (integrity + semantic + step chain)
 - Domains: 7 (materials, sysid, data, ml, digital_twin, pharma_biotech, financial_risk)
 - Cross-Claim Chain: MTR-1 → DT-FEM-01 → DRIFT-01 cryptographically linked via anchor_hash
