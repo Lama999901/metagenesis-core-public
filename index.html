@@ -1047,19 +1047,19 @@ a.soon-chip{border-bottom:none!important}
 .sec-dark::after{
   content:'';
   position:absolute;
-  inset:-40px -80px;
+  inset:-80px -160px;
   background:radial-gradient(
-    ellipse 90% 80% at 50% 50%,
-    rgba(3,6,18,.96) 0%,
-    rgba(3,6,18,.90) 30%,
-    rgba(3,6,18,.75) 55%,
-    rgba(3,6,18,.40) 75%,
-    transparent 100%
+    ellipse 60% 55% at 50% 50%,
+    rgba(3,6,18,.95) 0%,
+    rgba(3,6,18,.85) 25%,
+    rgba(3,6,18,.60) 45%,
+    rgba(3,6,18,.25) 65%,
+    transparent 80%
   );
   pointer-events:none;
   z-index:-1;
 }
-.regrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln)}
+.regrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln);border-radius:4px;overflow:hidden}
 .reg{background:rgba(5,10,26,.92);padding:44px 40px;display:flex;flex-direction:column;gap:14px;transition:background .2s;position:relative;overflow:hidden}
 .reg::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;transition:opacity .3s;opacity:0}
 .reg:first-child::before{background:linear-gradient(90deg,transparent,rgba(0,229,255,.6),transparent)}
@@ -1294,7 +1294,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 .origin{position:relative;z-index:10;background:rgba(5,9,22,0.72);border-top:1px solid var(--ln);border-bottom:1px solid var(--ln)}
 .origin-inner{max-width:1100px;margin:0 auto;padding:100px 52px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;position:relative;z-index:1}
 /* dark text-area panel inside origin */
-.origin-inner::before{content:'';position:absolute;inset:-30px -60px;background:radial-gradient(ellipse 92% 104% at 50% 50%,rgba(4,8,26,.95) 0%,rgba(4,8,26,.80) 40%,rgba(4,8,26,.40) 70%,transparent 100%);pointer-events:none;z-index:-1}
+.origin-inner::before{content:'';position:absolute;inset:-80px -140px;background:radial-gradient(ellipse 65% 60% at 50% 50%,rgba(4,8,26,.95) 0%,rgba(4,8,26,.80) 30%,rgba(4,8,26,.50) 50%,rgba(4,8,26,.20) 68%,transparent 85%);pointer-events:none;z-index:-1}
 .origin-quote{position:relative;padding-left:28px;padding-top:8px}
 .origin-quote::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(var(--c),transparent)}
 .origin-q{font-family:var(--fs);font-size:clamp(22px,2.8vw,36px);font-style:italic;color:var(--txt);line-height:1.55;margin-bottom:28px}
@@ -2049,8 +2049,8 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
     <div class="anchor-verify"><span class="anchor-verify-prompt">$</span> python scripts/mg.py verify --pack bundle.zip &nbsp;&#8594;&nbsp; <span class="anchor-verify-pass">PASS</span> &nbsp;&mdash;&nbsp; <span class="anchor-verify-note">entire chain verified offline in 60 seconds. No model access. No trust.</span></div>
   </div>
 
-  <div class="stag rv">How It Works</div>
-  <h2 class="rv d1" style="--h2d:2.4s" data-glitch="Four steps. Immutable proof."><span class="hw">Four steps.</span><br><span class="hg">Immutable proof.</span></h2>
+  <div class="stag rv">Open Protocol</div>
+  <h2 class="rv d1" style="--h2d:2.4s" data-glitch="Not a tool. A standard."><span class="hw">Not a tool.</span><br><span class="hc">A standard.</span></h2>
   <p class="sdesc rv d2">Every run produces an evidence bundle with three independent verification layers. Any deviation surfaces as FAIL with a specific reason.</p>
   <div class="pipe rv d3">
     <div class="prow active"><div class="pnum">01</div><div class="ptitle"><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/runner.py" target="_blank">runner.run_job()</a></div><div class="pdesc">Executes computation &#8594; produces <code><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/progress_runs/job_job_00edaf2c78974ef7_trace_trace_174f334f00324a6b_success.json" target="_blank" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(0,229,255,.3)">run_artifact.json</a></code> + <code><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/ledger_snapshots/trace_trace_174f334f00324a6b.jsonl" target="_blank" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(255,179,71,.3)">ledger_snapshot.jsonl</a></code></div><div class="pstat ok">&#8594; artifact</div></div>
@@ -3754,6 +3754,7 @@ h2:nth-of-type(3n)   .hw { animation-delay: 1.3s !important; }
   border:1px solid rgba(0,255,223,.18);
   background:rgba(0,255,223,.03);
   position:relative;
+  border-radius:3px;
 }
 .proof-strip::before{
   content:'';
