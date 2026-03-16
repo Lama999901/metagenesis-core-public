@@ -1092,6 +1092,10 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 .price-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;flex:1}
 .price-list li{font-size:12px;color:var(--txt2);padding-left:18px;position:relative;line-height:1.5}
 .price-list li::before{content:'\2192';position:absolute;left:0;color:var(--c);font-size:11px}
+.price-pay-options{display:flex;flex-direction:column;gap:8px;margin-top:auto}
+.price-pay-note{font-family:var(--fm);font-size:10px;letter-spacing:.06em;color:var(--txt3);text-align:center;padding-top:2px}
+.price-pay-note::before{content:'⎯⎯  ';opacity:.4}
+.price-pay-note::after{content:'  ⎯⎯';opacity:.4}
 .price-btn-primary,.price-btn-secondary{display:inline-block;padding:14px 24px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;font-family:var(--fd);font-weight:700;text-align:center;transition:all .2s;margin-top:8px}
 .price-btn-primary{background:var(--c);color:#000}
 .price-btn-primary:hover{background:#fff}
@@ -1601,8 +1605,8 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         </div>
       </div>
       <div class="hbtns">
-        <a href="https://buy.stripe.com/14AcN57qH19R1qN3QQ6Na00" class="btn-green">BUY BUNDLE &#8212; $299 &#8594;</a>
-        <a href="#pilot" class="btn-c">FREE PILOT</a>
+        <a href="#pilot" class="btn-green">FREE PILOT &#8594;</a>
+        <a href="mailto:yehor@metagenesis-core.dev?subject=MetaGenesis%20Core%20%E2%80%94%20Verification%20Bundle&body=Hi%20Yehor%2C%0A%0AI%27d%20like%20to%20get%20a%20verification%20bundle%20for%20my%20use%20case%3A%0A%0A" class="btn-c">GET BUNDLE &#8212; $299 &#8594;</a>
         <a href="https://github.com/Lama999901/metagenesis-core-public" class="btn-g">GITHUB &#8594;</a>
       </div>
     </div>
@@ -2496,7 +2500,10 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         <li>Patent-pending protocol (USPTO #63/996,819)</li>
         <li>Delivered within 48 hours</li>
       </ul>
-      <a href="https://buy.stripe.com/14AcN57qH19R1qN3QQ6Na00" class="price-btn-primary" id="stripe-buy-btn">Buy Bundle — $299 &#8594;</a>
+      <div class="price-pay-options">
+        <a href="mailto:yehor@metagenesis-core.dev?subject=MetaGenesis%20Core%20%E2%80%94%20Verification%20Bundle%20%24299&body=Hi%20Yehor%2C%0A%0AUse%20case%3A%20%5Bdescribe%20your%20claim%20type%5D%0APreferred%20payment%3A%20%5BBank%20transfer%20%2F%20Crypto%20%2F%20Invoice%5D%0A" class="price-btn-primary">Order Bundle — $299 &#8594;</a>
+        <div class="price-pay-note">Bank transfer &middot; Crypto (BTC&nbsp;/&nbsp;ETH&nbsp;/&nbsp;USDC) &middot; Invoice &mdash; reply by email</div>
+      </div>
     </div>
 
     <div class="price-tier">
