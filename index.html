@@ -1878,46 +1878,69 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 
 <section class="origin" id="origin">
   <div class="origin-inner">
+
     <div class="origin-quote rv d1">
       <p class="origin-q">
-        "Why make expensive lab experiments when you can simulate first, correct, then verify?
-        But nobody trusted the simulation result — there was
-        <em>no way to prove it was real.</em>
-        That's why MetaGenesis Core exists."
+        &ldquo;I couldn&rsquo;t prove my simulation result was real.
+        Not to anyone. Not even to myself.
+        So I built the thing that could.
+        <em>That&rsquo;s the whole story.</em>&rdquo;
       </p>
-      <p class="origin-who">Yehor Bazhynov — Inventor, Patent #63/996,819</p>
+      <p class="origin-who">Yehor Bazhynov &mdash; Inventor, USPTO #63/996,819</p>
+
       <div class="founder-block">
-        <div class="founder-label">About the founder</div>
+        <div class="founder-label">The founder</div>
         <div class="founder-body">
-          <p>No degree. No background in software or science. Odd jobs — wherever the work was, for whatever it paid.</p>
-          <p>For years I wanted something different. I just didn’t have the tools.</p>
-          <p>For 4–5 years I followed AI as it grew — weak models, early agents, inconsistent results. I kept watching, kept learning.</p>
-          <p>Then the last year: deep focus. <strong>Hundreds of iterations across 42 development phases.</strong> Solo, after hours. That’s when I found the problem — and the solution.</p>
-          <p>Meanwhile the problem was everywhere: ML teams publishing benchmark numbers nobody could verify. Labs reporting results nobody could reproduce. Pipelines producing outputs nobody could audit. It just didn’t have a name yet.</p>
-          <p>One tool finally fit the way I think. Two weeks — working protocol, USPTO patent application filed, this site live. Now: 223 passing tests, 14 verified claims — including Step Chain Verification, a cryptographic 4-step execution trace added to ML_BENCH-01.</p>
-          <p>That’s not a story about me being special. It’s a story about what’s possible right now, for anyone willing to stay with it.</p>
+          <p>No degree. No background in software or science. Odd jobs wherever the work was.</p>
+          <p>For 4&ndash;5 years I watched AI grow from weak prototypes into tools that could solve real problems. I kept learning. Kept building small things. Kept hitting the same wall: <strong>results nobody could verify.</strong></p>
+          <p>Then one year of complete focus. 42 development phases. Hundreds of iterations. Solo, after hours, no funding, no team. I wasn&rsquo;t trying to build a company &mdash; I was trying to solve one specific problem that kept bothering me.</p>
+          <p>The problem had a name by then: the verification gap. ML teams publishing benchmark numbers nobody could audit. Simulations producing outputs nobody could trace. Regulatory submissions built on PDF trust. <strong>The entire field was running on unverifiable numbers.</strong></p>
+          <p>Two weeks after the protocol finally worked: <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/ppa/README_PPA.md" target="_blank" style="color:var(--c);text-decoration:none;border-bottom:1px solid rgba(0,229,255,.3)">USPTO provisional patent filed</a>, this site live, <a href="https://github.com/Lama999901/metagenesis-core-public/actions" target="_blank" style="color:var(--ok);text-decoration:none;border-bottom:1px solid rgba(0,255,223,.3)">223 passing tests</a>. Not because I planned it that way &mdash; because once the right abstraction clicked, everything else followed.</p>
+          <p class="origin-final">This is not a story about being special.<br>It&rsquo;s a story about staying with a problem long enough to find the right question.</p>
         </div>
-        <div class="founder-name">Yehor Bazhynov &mdash; Inventor, Patent&nbsp;#63/996,819</div>
+        <div class="founder-name">Yehor Bazhynov &mdash; Inventor &mdash; <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/ppa/README_PPA.md" target="_blank" style="color:var(--c);text-decoration:none;border-bottom:1px solid rgba(0,229,255,.3)">Patent #63/996,819</a></div>
+      </div>
+
+      <div class="origin-stats">
+        <div class="origin-stat-item">
+          <div class="osi-num">5</div>
+          <div class="osi-label">patent innovations</div>
+        </div>
+        <div class="origin-stat-item">
+          <div class="osi-num">223</div>
+          <div class="osi-label">passing tests</div>
+        </div>
+        <div class="origin-stat-item">
+          <div class="osi-num">14</div>
+          <div class="osi-label">verified claims</div>
+        </div>
+        <div class="origin-stat-item">
+          <div class="osi-num">1</div>
+          <div class="osi-label">inventor, solo</div>
+        </div>
       </div>
     </div>
+
     <div class="origin-steps rv d2">
+      <div class="origin-steps-label">How it happened</div>
       <div class="origin-step">
         <div class="origin-step-n">01</div>
-        <div class="origin-step-txt">Wanted to simulate a materials experiment — cheaper than a real lab</div>
+        <div class="origin-step-txt">Ran a materials simulation. Got a result. Realized <strong>no third party could verify it was real</strong> without rebuilding the entire environment from scratch.</div>
       </div>
       <div class="origin-step">
         <div class="origin-step-n">02</div>
-        <div class="origin-step-txt">Got results. But <strong>no one could verify</strong> them — no proof the computation was real</div>
+        <div class="origin-step-txt">Tried every existing approach: SHA-256, preregistration, Docker, manual logs. <strong>None produced a verifiable artifact.</strong> They logged the process. They didn&rsquo;t prove the result.</div>
       </div>
       <div class="origin-step">
         <div class="origin-step-n">03</div>
-        <div class="origin-step-txt">Tried SHA-256 hashing, preregistration, manual logs — <strong>all insufficient</strong></div>
+        <div class="origin-step-txt">Found the missing abstraction: not better logging &mdash; a <strong>tamper-evident evidence bundle</strong>. Any third party, offline, 60 seconds, one command: <code style="font-family:var(--fm);font-size:11px;color:var(--c);background:rgba(0,229,255,.07);padding:2px 6px">mg.py verify &rarr; PASS</code></div>
       </div>
       <div class="origin-step active">
         <div class="origin-step-n">04</div>
-        <div class="origin-step-txt">Built <strong>MetaGenesis Core</strong> — tamper-evident bundles, semantic verification, adversarial proof</div>
+        <div class="origin-step-txt">Built it. Filed the patent. Shipped it. <strong>MetaGenesis Core:</strong> bidirectional governance, semantic bypass attack caught (<a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/tests/steward/test_cert02_pack_includes_evidence_and_semantic_verify.py" target="_blank" style="color:var(--ok);text-decoration:none;border-bottom:1px solid rgba(0,255,223,.3)">test_cert02 PASS</a>), Cross-Claim chain E=70GPa&rarr;MTR-1&rarr;DT-FEM-01&rarr;DRIFT-01 (<a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/tests/steward/test_cross_claim_chain.py" target="_blank" style="color:var(--ok);text-decoration:none;border-bottom:1px solid rgba(0,255,223,.3)">proved</a>).</div>
       </div>
     </div>
+
   </div>
 </section>
 <div class="div"></div>
@@ -3770,6 +3793,18 @@ a.proof-strip-item:hover{border-color:rgba(0,255,223,.4);background:rgba(0,255,2
 .psi-label strong{color:var(--ok);font-weight:700}
 @media(max-width:768px){.proof-strip-items{flex-direction:column}.proof-strip{padding:20px 16px}}
 
+
+/* ════════════════════════════════════════
+   ORIGIN STATS + EXTRAS
+════════════════════════════════════════ */
+.origin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln);margin-top:40px}
+.origin-stat-item{background:var(--ink2);padding:20px 16px;text-align:center}
+.osi-num{font-family:var(--fd);font-size:clamp(28px,3vw,40px);font-weight:900;color:var(--c);line-height:1;letter-spacing:-.03em}
+.osi-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-top:6px}
+p.origin-final{color:rgba(238,247,251,.85);font-style:italic;margin-top:20px;padding-top:20px;border-top:1px solid var(--ln);font-size:15px;line-height:1.7}
+.origin-steps-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--c);margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.origin-steps-label::before{content:'';width:20px;height:1px;background:var(--c)}
+@media(max-width:900px){.origin-stats{grid-template-columns:repeat(2,1fr)}}
 /* ── Agent top banner ── */
 #agent-topbar{display:flex;align-items:center;gap:14px;padding:7px 32px;background:rgba(0,10,22,.96);border-bottom:1px solid rgba(0,229,255,.15);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;overflow-x:auto;white-space:nowrap}
 .atb-label{color:var(--c);font-weight:500;letter-spacing:.15em;font-size:9px;text-transform:uppercase}
