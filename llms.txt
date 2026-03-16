@@ -107,10 +107,15 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 - Site: metagenesis-core.dev — deployed on Vercel, auto-deploys from main
 - HN post live: https://news.ycombinator.com/item?id=47335416
 - PPA filed: 2026-03-05 — non-provisional deadline 2027-03-05
-- Stripe: $299/license — https://buy.stripe.com/14AcN57qH19R1qN3QQ6Na00
-- Outreach sent: Tongqi Wen, Giovanni Pizzi, Brian Nosek, Peter Coveney,
-  Arvind Narayanan, Jeffrey Ip, Elena Samuylova (no subject — resend needed),
-  Jonah Cool (Anthropic)
+- Payment: $299/bundle — bank transfer / crypto (BTC/ETH/USDC) / invoice — yehor@metagenesis-core.dev
+- GitHub Release: v0.2.0 — https://github.com/Lama999901/metagenesis-core-public/releases/tag/v0.2.0
+- Outreach sent: Tongqi Wen, Giovanni Pizzi, Brian Nosek (follow-up), Peter Coveney (follow-up),
+  Arvind Narayanan (follow-up), Jeffrey Ip, Elena Samuylova (resent with subject),
+  Anand Kannappan, Vikram Chatterji, Woody Sherman, Jonathan Godwin,
+  Joelle Pineau, Stella Biderman, Koustuv Sinha, Victoria Stodden,
+  ailab@princeton.edu (MLRC), Papers With Code, Sayash Kapoor (sayashk@princeton.edu),
+  Jonah Cool (follow-up + Zoho + OSS program), Anthropic OSS program (form submitted),
+  Anthropic Partner Network (contact sales form submitted)
 
 ## Key files
 

@@ -14,7 +14,7 @@
 - **Repo:** https://github.com/Lama999901/metagenesis-core-public
 - **Site:** https://metagenesis-core.dev (Vercel, auto-deploys from main)
 - **Email:** yehor@metagenesis-core.dev
-- **Stripe:** https://buy.stripe.com/14AcN57qH19R1qN3QQ6Na00 — $299/license
+- **Payment:** $299/bundle — bank transfer / crypto (BTC/ETH/USDC) / invoice — reply to yehor@metagenesis-core.dev
 
 ---
 
@@ -33,7 +33,7 @@
 | Site counters | 14 claims / 223 tests / 3 layers |
 | known_faults entries | 2: ENV_001 (test env) + SCOPE_001 (physical anchor scope) |
 | HN post | https://news.ycombinator.com/item?id=47335416 — active |
-| GitHub Release | v0.1.0 — published at /releases/tag/v0.1.0 |
+| GitHub Release | v0.2.0 — published at /releases/tag/v0.2.0 |
 
 ---
 
@@ -100,11 +100,14 @@ python demos/open_data_demo_01/run_demo.py  # → PASS PASS
 
 ## What is next
 
-- [ ] GitHub Release v0.2.0 — tag after all PRs merged
-- [ ] Outreach: Elena Samuylova (resend WITH subject), Anand Kannappan, Vikram Chatterji, Woody Sherman, Jonathan Godwin
+- [ ] Merge PR #98 (fix/site-full-update-v02) if not yet merged
 - [ ] Non-provisional patent attorney (deadline 2027-03-05)
-- [ ] First paying customer ($299)
+- [ ] First paying customer ($299 via email)
 - [ ] r/MachineLearning post, MLOps Community Slack
+- [ ] GitHub Sponsors setup
+- [ ] NLnet NGI0 application (deadline 2026-04-01)
+- [ ] YC S26 application (deadline 2026-05-04)
+- [ ] CDL Vancouver late entry (admissions@creativedestructionlab.com)
 
 ## What is done (this session 2026-03-15)
 
@@ -134,14 +137,23 @@ python demos/open_data_demo_01/run_demo.py  # → PASS PASS
 | Jeffrey Ip (Confident AI) | jeffreyip@confident-ai.com | Sent 2026-03-11 |
 | Elena Samuylova (Evidently AI) | founders@evidentlyai.com | Sent 2026-03-11 — NO SUBJECT — resend needed |
 | Jonah Cool (Anthropic) | jonah@anthropic.com | Sent 2026-03-12 |
-| Anand Kannappan (Patronus AI) | anand@patronus.ai | PENDING |
-| Vikram Chatterji (Galileo AI) | vikram@galileo.ai | PENDING |
-| Woody Sherman (PsiThera) | woody.sherman@psithera.com | PENDING |
-| Jonathan Godwin (Orbital) | jonathan@orbitalmaterials.com | PENDING — verify email |
+| Anand Kannappan (Patronus AI) | anand@patronus.ai | Sent 2026-03-15 |
+| Vikram Chatterji (Galileo AI) | vikram@galileo.ai | Sent 2026-03-15 |
+| Woody Sherman (PsiThera) | woody.sherman@psithera.com | Sent 2026-03-15 |
+| Jonathan Godwin (Orbital) | jonathan@orbitalmaterials.com | Sent 2026-03-15 |
+| Joelle Pineau (McGill) | jpineau@cs.mcgill.ca | Sent 2026-03-15 |
+| Stella Biderman (EleutherAI) | stella@eleuther.ai | Sent 2026-03-15 |
+| Koustuv Sinha (Meta FAIR) | koustuv.sinha@gmail.com | Sent 2026-03-15 |
+| Victoria Stodden (USC) | stodden@usc.edu | Sent 2026-03-15 |
+| Sayash Kapoor (Princeton) | sayashk@princeton.edu | Sent 2026-03-15 |
+| MLRC Princeton | ailab@princeton.edu | Sent 2026-03-15 |
+| Papers With Code | hello@paperswithcode.com | Sent 2026-03-15 |
+| Anthropic OSS Program | form submitted | 2026-03-15 |
+| Anthropic Partner Network | contact sales form | 2026-03-15 |
 
 *All outreach from yehor@metagenesis-core.dev (Zoho), NOT Gmail.*
 
 ---
 
-*Updated: 2026-03-15 | Maintained by: Yehor Bazhynov*
-*Next update: after first paying customer or new claim*
+*Updated: 2026-03-16 | Maintained by: Yehor Bazhynov*
+*Next update: after first paying customer or Anthropic response*
