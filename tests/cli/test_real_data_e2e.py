@@ -51,7 +51,7 @@ def _run_job(payload: dict) -> dict:
 
     job = runner.create_job(payload=payload)
     completed = runner.run_job(job.job_id, canary_mode=False)
-    assert completed.status.value == "succeeded", f"Job failed: {completed.error}"
+    assert completed.status == JobStatus.SUCCEEDED, f"Job failed: {completed.error}"
     return completed.result
 
 
