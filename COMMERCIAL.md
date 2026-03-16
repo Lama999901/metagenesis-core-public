@@ -57,6 +57,8 @@ The recipient runs `mg.py verify --pack bundle.zip` and gets PASS or FAIL.
 - Any team needing third-party verifiable proof of a computational claim
 
 **Price:** $299 per bundle.
+Payment by bank transfer, crypto (BTC / ETH / USDC), or invoice.
+Email yehor@metagenesis-core.dev to order.
 
 ---
 
@@ -75,6 +77,7 @@ After that, every run produces a bundle you can share with anyone.
 - Organizations preparing for regulatory submission of computational evidence
 
 **Price:** $2,000–5,000 per project.
+Payment by bank transfer, crypto, or invoice.
 
 ---
 
