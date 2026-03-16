@@ -844,86 +844,57 @@ p,li,.cmp-feat,.faq-a,.faq-a p,.uc p,.ppc p,.reg p,.reg li,
 /* Site-map overlay links — keep as-is, no file styling */
 .mo-col a{border-bottom:none}
 /* ════════════════════════════════════════
-   CUSTOM CURSOR — verification reticle
+   CURSOR — precision crosshair, no lag
 ════════════════════════════════════════ */
 *{cursor:none!important}
-#cur-dot,#cur-ring{
+#mg-cur{
   position:fixed;top:0;left:0;
   pointer-events:none;
   z-index:99999;
-  border-radius:50%;
+  width:0;height:0;
   will-change:transform;
 }
-#cur-dot{
-  width:5px;height:5px;
-  background:var(--c);
-  box-shadow:0 0 6px var(--c);
-  transform:translate(-50%,-50%);
-  transition:background .18s,box-shadow .18s,transform .1s;
-}
-#cur-ring{
-  width:28px;height:28px;
-  border:1.5px solid rgba(0,229,255,.55);
-  box-shadow:0 0 0 0 rgba(0,229,255,0);
-  transform:translate(-50%,-50%);
-  transition:width .22s cubic-bezier(.16,1,.3,1),
-             height .22s cubic-bezier(.16,1,.3,1),
-             border-color .22s,
-             box-shadow .22s,
-             opacity .22s;
-  opacity:.7;
-}
-/* 4 corner tick marks on the ring */
-#cur-ring::before,#cur-ring::after{
+#mg-cur::before{
   content:'';
   position:absolute;
+  width:4px;height:4px;
   background:var(--c);
-  transition:background .22s;
+  border-radius:50%;
+  box-shadow:0 0 6px var(--c);
+  transform:translate(-50%,-50%);
+  transition:background .15s,box-shadow .15s,transform .1s;
 }
-#cur-ring::before{
-  top:-1px;left:50%;
-  width:1px;height:5px;
-  transform:translateX(-50%);
-  box-shadow:0 calc(28px - 3px) 0 var(--c);
+#mg-cur::after{
+  content:'';
+  position:absolute;
+  width:18px;height:18px;
+  transform:translate(-50%,-50%);
+  background:
+    linear-gradient(var(--c),var(--c)) center/1px 100% no-repeat,
+    linear-gradient(var(--c),var(--c)) center/100% 1px no-repeat;
+  opacity:.45;
+  transition:opacity .15s,width .15s,height .15s,background .15s;
 }
-#cur-ring::after{
-  left:-1px;top:50%;
-  height:1px;width:5px;
-  transform:translateY(-50%);
-  box-shadow:calc(28px - 3px) 0 0 var(--c);
-}
-/* Hover state — locked on */
-body.cur-hover #cur-dot{
+body.cur-hover #mg-cur::before{
   background:var(--ok);
-  box-shadow:0 0 10px var(--ok),0 0 22px rgba(0,255,223,.35);
+  box-shadow:0 0 8px var(--ok),0 0 18px rgba(0,255,223,.3);
   transform:translate(-50%,-50%) scale(1.6);
 }
-body.cur-hover #cur-ring{
-  width:42px;height:42px;
-  border-color:rgba(0,255,223,.75);
-  box-shadow:0 0 16px rgba(0,255,223,.18);
-  opacity:1;
+body.cur-hover #mg-cur::after{
+  background:
+    linear-gradient(var(--ok),var(--ok)) center/1px 100% no-repeat,
+    linear-gradient(var(--ok),var(--ok)) center/100% 1px no-repeat;
+  opacity:.8;width:20px;height:20px;
 }
-body.cur-hover #cur-ring::before{
-  background:var(--ok);
-  box-shadow:0 calc(42px - 3px) 0 var(--ok);
+body.cur-err #mg-cur::before{background:var(--err);box-shadow:0 0 8px var(--err)}
+body.cur-err #mg-cur::after{
+  background:
+    linear-gradient(var(--err),var(--err)) center/1px 100% no-repeat,
+    linear-gradient(var(--err),var(--err)) center/100% 1px no-repeat;
+  opacity:.65;
 }
-body.cur-hover #cur-ring::after{
-  background:var(--ok);
-  box-shadow:calc(42px - 3px) 0 0 var(--ok);
-}
-/* Click flash */
-body.cur-click #cur-ring{
-  width:18px;height:18px;
-  opacity:1;
-  border-color:rgba(0,255,223,1);
-  box-shadow:0 0 28px rgba(0,255,223,.55);
-}
-/* Err hover — red targets */
-body.cur-err #cur-dot{background:var(--err);box-shadow:0 0 10px var(--err)}
-body.cur-err #cur-ring{border-color:rgba(255,64,96,.7);box-shadow:0 0 14px rgba(255,64,96,.2)}
-body.cur-err #cur-ring::before{background:var(--err);box-shadow:0 calc(28px - 3px) 0 var(--err)}
-body.cur-err #cur-ring::after{background:var(--err);box-shadow:calc(28px - 3px) 0 0 var(--err)}
+body.cur-click #mg-cur::before{transform:translate(-50%,-50%) scale(.35);box-shadow:0 0 14px var(--c)}
+@media(max-width:768px){#mg-cur{display:none}*{cursor:auto!important}}
 /* Segment chip links */
 .seg-chip{cursor:pointer}
 a.seg-chip{text-decoration:none;display:inline-block}
@@ -1410,10 +1381,8 @@ a.soon-chip{border-bottom:none!important}
 </style>
 </head>
 <body>
-<!-- verification reticle cursor -->
-<div id="cur-dot"></div>
-<div id="cur-ring"></div>
-<div id="ripple"></div>
+<!-- cursor -->
+<div id="mg-cur"></div>
 <canvas id="bg"></canvas>
 <div class="scanlines"></div>
 
@@ -2131,7 +2100,7 @@ a.soon-chip{border-bottom:none!important}
 <div class="div"></div>
 <div class="w"><section class="sec">
   <div class="stats rv">
-    <div class="stat"><div class="stn"><span id="cn1">14</span></div><div class="stl">Active Claims</div><div class="std">Across 6 domains: materials, ML/AI, system ID, data pipelines, drift monitoring, digital twin</div></div>
+    <div class="stat"><div class="stn"><span id="cn1">14</span></div><div class="stl">Active Claims</div><div class="std">Across 7 domains: materials, ML/AI, system ID, data pipelines, digital twin, pharma/biotech, financial risk</div></div>
     <div class="stat"><div class="stn"><span id="cn2">223</span></div><div class="stl">Tests Passing</div><div class="std">Including adversarial tamper detection, Step Chain Verification (4-step execution trace), determinism checks, and boundary conditions</div></div>
     <div class="stat"><div class="stn"><span id="cn3">3</span></div><div class="stl">Verification Layers</div><div class="std">SHA-256 integrity + semantic invariants + Step Chain execution trace. Each layer catches attacks the others miss.</div></div>
     <div class="stat"><div class="stn">0<span style="font-size:40px"> req.</span></div><div class="stl">Trust Required</div><div class="std">No GPU, no internet, no code access. Verify on any machine with Python.</div></div>
@@ -2141,7 +2110,7 @@ a.soon-chip{border-bottom:none!important}
 <div class="div"></div>
 <div class="w"><section class="sec" id="claims">
   <div class="stag rv">Verified Claims</div>
-  <h2 class="rv d1" style="--h2d:4.8s" data-glitch="Eight claims. All bidirectionally enforced."><span class="hc">Eight</span> claims.<br>All bidirectionally <span class="hg">enforced.</span></h2>
+  <h2 class="rv d1" style="--h2d:4.8s" data-glitch="Fourteen claims. All bidirectionally enforced."><span class="hc">Fourteen</span> claims.<br>All bidirectionally <span class="hg">enforced.</span></h2>
   <p class="sdesc rv d2">Every claim has an implementation, runner dispatch, threshold, and tests. Enforced on every PR &#8212; not by human review.</p>
   <div class="claimsgrid rv d3">
     <div class="claim claim-anchor"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mtr1_calibration.py" target="_blank"><span class="claimid">MTR-1</span></a><span class="claimid-badge anchor-sm">&#9875; ANCHOR</span></div><div class="claimdomain">Materials Science</div><div class="claimname">Young&#8217;s Modulus Calibration</div><div class="claimth"><span>relative_error</span> &#8804; 0.01 &nbsp;&middot;&nbsp; anchored to <span style="color:var(--ok);font-weight:600">E&nbsp;=&nbsp;70&nbsp;GPa</span></div></div>
@@ -2151,7 +2120,13 @@ a.soon-chip{border-bottom:none!important}
     <div class="claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank"><span class="claimid">DATA-PIPE-01</span></a></div><div class="claimdomain">Data Pipelines</div><div class="claimname">Data Pipeline Quality Certificate</div><div class="claimth"><span>schema</span> pass &#223; <span>range</span> pass</div></div>
     <div class="claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="claimid">DRIFT-01</span></a></div><div class="claimdomain">Drift Monitoring</div><div class="claimname">Calibration Anchor &amp; Drift Monitor</div><div class="claimth"><span>drift_threshold</span> 5.0%</div></div>
     <div class="claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank"><span class="claimid">ML_BENCH-01</span></a></div><div class="claimdomain">ML / AI Benchmarking</div><div class="claimname">ML Model Accuracy Certificate</div><div class="claimth">|<span>actual</span> &#8722; <span>claimed</span>| &#8804; 0.02</div></div>
-    <div class="claim new-claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtfem1_displacement_verification.py" target="_blank"><span class="claimid">DT-FEM-01</span></a><span class="claimid-badge">NEW</span></div><div class="claimdomain">Digital Twin / FEM</div><div class="claimname">FEM Displacement Verification</div><div class="claimth"><span>rel_err</span> &#8804; 0.02</div></div>
+    <div class="claim claim-anchor"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtfem1_displacement_verification.py" target="_blank"><span class="claimid">DT-FEM-01</span></a><span class="claimid-badge anchor-sm">&#9875; ANCHOR</span></div><div class="claimdomain">Digital Twin / FEM</div><div class="claimname">FEM Displacement Verification</div><div class="claimth"><span>rel_err</span> &#8804; 0.02 &nbsp;&middot;&nbsp; anchored to <span style="color:var(--ok);font-weight:600">MTR-1</span></div></div>
+    <div class="claim new-claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench2_regression_certificate.py" target="_blank"><span class="claimid">ML_BENCH-02</span></a></div><div class="claimdomain">ML / AI &#8212; Regression</div><div class="claimname">ML Regression Certificate</div><div class="claimth">|<span>actual_rmse</span> &#8722; <span>claimed_rmse</span>| &#8804; 0.02</div></div>
+    <div class="claim new-claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench3_timeseries_certificate.py" target="_blank"><span class="claimid">ML_BENCH-03</span></a></div><div class="claimdomain">ML / AI &#8212; Time-Series</div><div class="claimname">ML Time-Series Forecasting Certificate</div><div class="claimth">|<span>actual_mape</span> &#8722; <span>claimed_mape</span>| &#8804; 0.02</div></div>
+    <div class="claim new-claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/pharma1_admet_certificate.py" target="_blank"><span class="claimid">PHARMA-01</span></a></div><div class="claimdomain">Pharma / Biotech &#8212; ADMET</div><div class="claimname">ADMET Prediction Certificate</div><div class="claimth">|<span>predicted</span> &#8722; <span>claimed</span>| &#8804; tol &nbsp;&middot;&nbsp; FDA 21 CFR Part 11</div></div>
+    <div class="claim new-claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/finrisk1_var_certificate.py" target="_blank"><span class="claimid">FINRISK-01</span></a></div><div class="claimdomain">Financial Risk &#8212; VaR</div><div class="claimname">Value-at-Risk Model Certificate</div><div class="claimth">|<span>actual_var</span> &#8722; <span>claimed_var</span>| &#8804; tol &nbsp;&middot;&nbsp; Basel III/IV</div></div>
+    <div class="claim new-claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtsensor1_iot_certificate.py" target="_blank"><span class="claimid">DT-SENSOR-01</span></a></div><div class="claimdomain">Digital Twin &#8212; IoT Sensor</div><div class="claimname">IoT Sensor Data Integrity Certificate</div><div class="claimth"><span>schema</span> pass &#223; <span>range</span> pass &#223; <span>temporal</span> pass</div></div>
+    <div class="claim new-claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtcalib1_convergence_certificate.py" target="_blank"><span class="claimid">DT-CALIB-LOOP-01</span></a></div><div class="claimdomain">Digital Twin &#8212; Calibration</div><div class="claimname">Calibration Convergence Certificate</div><div class="claimth"><span>drift_pct</span> monotone &#8595; &#223; final &#8804; threshold &nbsp;&middot;&nbsp; DRIFT-01 anchor</div></div>
   </div>
 </section></div>
 
@@ -2163,8 +2138,8 @@ a.soon-chip{border-bottom:none!important}
   <div class="gov rv d3">
     <div class="govh"><span class="govhl">$ python <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/steward_audit.py" target="_blank">scripts/steward_audit.py</a></span><span class="govbadge">STEWARD AUDIT: PASS</span></div>
     <div class="govb">
-      <div><span class="tdm">canonical_state: </span><span class="tok">['MTR-1','MTR-2','MTR-3','SYSID-01','DATA-PIPE-01','DRIFT-01','ML_BENCH-01','DT-FEM-01']</span></div>
-      <div><span class="tdm">claim_index:     </span><span class="tok">['MTR-1','MTR-2','MTR-3','DATA-PIPE-01','SYSID-01','DRIFT-01','ML_BENCH-01','DT-FEM-01']</span></div>
+      <div><span class="tdm">canonical_state: </span><span class="tok">['MTR-1','MTR-2','MTR-3','SYSID-01','DATA-PIPE-01','DRIFT-01','ML_BENCH-01','DT-FEM-01',<br>'ML_BENCH-02','ML_BENCH-03','PHARMA-01','FINRISK-01','DT-SENSOR-01','DT-CALIB-LOOP-01']</span></div>
+      <div><span class="tdm">claim_index:     </span><span class="tok">14 claims &#8212; all bidirectionally verified &#8212; steward_audit PASS</span></div>
       <div><span class="tdm">coverage check:  </span><span class="tok">all job_kinds dispatched &#8212; runner kinds in claim index</span></div>
       <div><span class="tdm">canonical sync:  </span><span class="tok">PASS &#8212; bidirectional coverage verified</span></div>
     </div>
@@ -3571,73 +3546,30 @@ if(false){/* ══════════════════════�
 </script>
 <script>
 /* ════════════════════════════════════════
-   VERIFICATION RETICLE CURSOR
-   dot = exact mouse pos
-   ring = lerp follow (lag = 0.12)
-   states: idle | hover-ok | hover-err | click
+   CURSOR — direct follow, no lerp
 ════════════════════════════════════════ */
 (function(){
-  var dot=document.getElementById('cur-dot');
-  var ring=document.getElementById('cur-ring');
-  if(!dot||!ring)return;
-
-  var mx=window.innerWidth/2,my=window.innerHeight/2;
-  var rx=mx,ry=my;
-  var LAG=0.11;          /* ring lerp speed (lower = more lag) */
-  var raf=null;
+  var cur=document.getElementById('mg-cur');
+  if(!cur)return;
   var body=document.body;
-
-  /* — mouse tracking */
-  document.addEventListener('mousemove',function(e){
-    mx=e.clientX; my=e.clientY;
-    dot.style.transform='translate('+mx+'px,'+my+'px) translate(-50%,-50%)';
-  },{ passive:true });
-
-  /* — hover detection: green for links/buttons, red for .err/.warn elements */
   var ERR_SEL='.err,.warn,[data-err],a[href*=".yaml"],a[href*="known_faults"]';
-  var OK_SEL='a,button,.cta,.btn,.seg-chip';
-
+  var OK_SEL='a,button,.cta,.btn,.seg-chip,.price-btn-primary,.price-btn-secondary,.vrf-run-btn,.pilot-submit';
+  document.addEventListener('mousemove',function(e){
+    cur.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)';
+  },{passive:true});
   document.addEventListener('mouseover',function(e){
     var t=e.target;
-    if(t.closest(ERR_SEL)){
-      body.classList.remove('cur-hover');
-      body.classList.add('cur-err');
-    } else if(t.closest(OK_SEL)){
-      body.classList.remove('cur-err');
-      body.classList.add('cur-hover');
-    }
+    if(t.closest(ERR_SEL)){body.classList.remove('cur-hover');body.classList.add('cur-err');}
+    else if(t.closest(OK_SEL)){body.classList.remove('cur-err');body.classList.add('cur-hover');}
   });
   document.addEventListener('mouseout',function(e){
     var t=e.relatedTarget;
-    if(!t||(!t.closest(OK_SEL)&&!t.closest(ERR_SEL))){
-      body.classList.remove('cur-hover','cur-err');
-    }
+    if(!t||(!t.closest(OK_SEL)&&!t.closest(ERR_SEL))){body.classList.remove('cur-hover','cur-err');}
   });
-
-  /* — click flash */
-  document.addEventListener('mousedown',function(){
-    body.classList.add('cur-click');
-  });
-  document.addEventListener('mouseup',function(){
-    body.classList.remove('cur-click');
-  });
-
-  /* — hide when leaving window */
-  document.addEventListener('mouseleave',function(){
-    dot.style.opacity='0'; ring.style.opacity='0';
-  });
-  document.addEventListener('mouseenter',function(){
-    dot.style.opacity=''; ring.style.opacity='';
-  });
-
-  /* ── RAF lerp loop ── */
-  function loop(){
-    rx+=(mx-rx)*LAG;
-    ry+=(my-ry)*LAG;
-    ring.style.transform='translate('+rx.toFixed(2)+'px,'+ry.toFixed(2)+'px) translate(-50%,-50%)';
-    requestAnimationFrame(loop);
-  }
-  loop();
+  document.addEventListener('mousedown',function(){body.classList.add('cur-click');});
+  document.addEventListener('mouseup',function(){body.classList.remove('cur-click');});
+  document.addEventListener('mouseleave',function(){cur.style.opacity='0';});
+  document.addEventListener('mouseenter',function(){cur.style.opacity='';});
 })();
 </script>
 
