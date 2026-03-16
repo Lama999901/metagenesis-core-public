@@ -1630,53 +1630,98 @@ a.soon-chip{border-bottom:none!important}
 
 <div class="div"></div>
 <div class="w"><section class="sec">
-  <div class="stag rv">The Problem</div>
-  <h2 class="rv d1" style="--h2d:0s" data-glitch="AI makes claims. Nobody can verify.">AI makes claims.<br><span class="hr">Nobody can verify.</span></h2>
-  <p class="sdesc rv d2">Every ML team claims state-of-the-art results. Every simulation produces numbers. Every pipeline outputs certificates. There is no standard way to check any of it independently.</p>
+  <div class="stag rv">The Verification Gap</div>
+  <h2 class="rv d1" style="--h2d:0s" data-glitch="The entire field runs on unverifiable numbers.">The entire field runs on<br><span class="hr">unverifiable numbers.</span></h2>
+  <p class="sdesc rv d2">ML benchmarks. Simulation outputs. Regulatory submissions. Financial model results. <strong>None of them produce a verifiable artifact</strong> — a third party cannot confirm the claimed number without re-running everything from scratch. There has never been a standard for computational proof. Until now.</p>
+
   <div class="pp rv d3">
 
     <div class="ppc ppc-x">
-      <span class="ppchip x">Without MetaGenesis</span>
-      <h3>Trust the number.<br>Or re-run everything.</h3>
-      <p>A reviewer cannot verify a reported ML accuracy, FEM displacement result, or pipeline certificate without the original model, solver, training data, and compute environment. The only options are blind trust or full reproduction. Neither is acceptable for audit, regulatory submission, or third-party client review.</p>
+      <span class="ppchip x">The mechanism of the problem</span>
+      <h3>A number in a report.<br>Zero verifiable proof.</h3>
+      <p>When any computational result is produced — an ML accuracy score, a FEM displacement, a VaR estimate, an ADMET prediction — <strong>no verifiable artifact is generated</strong>. The result exists as a number in a PDF, a log file, or a dashboard. A reviewer who wants to verify it faces one choice: rebuild the entire environment, data, and compute from scratch. That is not verification. That is reproduction — and most reviewers never attempt it.</p>
       <div class="pp-rows">
         <div class="pp-row">
-          <span class="pp-domain">ML accuracy: 94%</span>
-          <span class="pp-verdict pp-verdict-x">no third-party proof</span>
+          <span class="pp-domain">ML accuracy: 94.3%</span>
+          <span class="pp-verdict pp-verdict-x">no verifiable artifact</span>
         </div>
         <div class="pp-row">
           <span class="pp-domain">FEM displacement: rel_err 0.8%</span>
-          <span class="pp-verdict pp-verdict-x">no third-party proof</span>
+          <span class="pp-verdict pp-verdict-x">no verifiable artifact</span>
         </div>
         <div class="pp-row">
-          <span class="pp-domain">Pipeline: schema PASS</span>
-          <span class="pp-verdict pp-verdict-x">no third-party proof</span>
+          <span class="pp-domain">VaR model output: 2.3%</span>
+          <span class="pp-verdict pp-verdict-x">no verifiable artifact</span>
+        </div>
+        <div class="pp-row">
+          <span class="pp-domain">ADMET prediction: logP 2.1</span>
+          <span class="pp-verdict pp-verdict-x">no verifiable artifact</span>
+        </div>
+        <div class="pp-row">
+          <span class="pp-domain">Calibration: E = 70 GPa &plusmn; 0.7%</span>
+          <span class="pp-verdict pp-verdict-x">no verifiable artifact</span>
         </div>
       </div>
     </div>
 
     <div class="ppc ppc-v">
-      <span class="ppchip v">With MetaGenesis</span>
-      <h3>One command.<br>PASS or FAIL.</h3>
-      <p>Any computational result is packaged into a tamper-evident evidence bundle with three independent verification layers — cryptographic integrity, semantic invariants, and Step Chain execution trace. A third party runs one command and gets an unambiguous verdict offline, without access to your model or environment.</p>
+      <span class="ppchip v">MetaGenesis Core — the standard</span>
+      <h3>One command.<br>Cryptographic proof.</h3>
+      <p>Every computation produces a <strong>tamper-evident evidence bundle</strong>: SHA-256 integrity, semantic invariant verification, and a Step Chain execution trace across 4 cryptographic steps. Any third party verifies offline with one command — no model access, no environment, no trust. This is not logging. This is <strong>machine-verifiable proof</strong>.</p>
       <div class="pp-rows">
         <div class="pp-row">
           <a class="pp-domain pp-claim-link" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank">ML_BENCH-01</a>
           <span class="pp-verdict pp-verdict-v">&Delta;accuracy &le; 0.02 &middot; PASS</span>
         </div>
         <div class="pp-row">
-          <a class="pp-domain pp-claim-link" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtfem1_displacement_verification.py" target="_blank">DT-FEM-01</a>
-          <span class="pp-verdict pp-verdict-v">rel_err &le; 0.02 &middot; PASS</span>
+          <a class="pp-domain pp-claim-link" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/finrisk1_var_certificate.py" target="_blank">FINRISK-01</a>
+          <span class="pp-verdict pp-verdict-v">&Delta;VaR &le; tol &middot; PASS</span>
         </div>
         <div class="pp-row">
-          <a class="pp-domain pp-claim-link" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank">DATA-PIPE-01</a>
-          <span class="pp-verdict pp-verdict-v">schema &middot; range &middot; PASS</span>
+          <a class="pp-domain pp-claim-link" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/pharma1_admet_certificate.py" target="_blank">PHARMA-01</a>
+          <span class="pp-verdict pp-verdict-v">&Delta;prop &le; tol &middot; PASS</span>
+        </div>
+        <div class="pp-row">
+          <a class="pp-domain pp-claim-link" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mtr1_calibration.py" target="_blank">MTR-1</a>
+          <span class="pp-verdict pp-verdict-v">rel_err &le; 0.01 &middot; PASS &middot; &#9875; E=70GPa</span>
+        </div>
+        <div class="pp-row">
+          <a class="pp-domain pp-claim-link" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtfem1_displacement_verification.py" target="_blank">DT-FEM-01</a>
+          <span class="pp-verdict pp-verdict-v">rel_err &le; 0.02 &middot; PASS &middot; &#9875; anchored</span>
         </div>
       </div>
-      <div class="pp-cmd"><span class="pp-cmd-prompt">$</span> mg.py verify --pack bundle.zip <span class="pp-cmd-pass">&rarr; PASS</span></div>
+      <div class="pp-cmd"><span class="pp-cmd-prompt">$</span> python scripts/mg.py verify --pack bundle.zip <span class="pp-cmd-pass">&rarr; PASS</span></div>
     </div>
 
   </div>
+
+  <!-- PROOF STRIP -->
+  <div class="proof-strip rv d4">
+    <div class="proof-strip-label">Verified by code, not by claim:</div>
+    <div class="proof-strip-items">
+      <a class="proof-strip-item" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/tests/steward/test_cert02_pack_includes_evidence_and_semantic_verify.py" target="_blank">
+        <span class="psi-badge ok">PASS</span>
+        <span class="psi-label">test_cert02 &#8212; semantic bypass attack <strong>caught</strong></span>
+      </a>
+      <a class="proof-strip-item" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/tests/steward/test_cert03_step_chain_verify.py" target="_blank">
+        <span class="psi-badge ok">PASS</span>
+        <span class="psi-label">test_cert03 &#8212; Step Chain tamper <strong>caught</strong></span>
+      </a>
+      <a class="proof-strip-item" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/tests/steward/test_cross_claim_chain.py" target="_blank">
+        <span class="psi-badge ok">PASS</span>
+        <span class="psi-label">test_cross_claim_chain &#8212; E=70GPa &#8594; MTR-1 &#8594; DT-FEM-01 &#8594; DRIFT-01</span>
+      </a>
+      <a class="proof-strip-item" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/deep_verify.py" target="_blank">
+        <span class="psi-badge ok">10/10</span>
+        <span class="psi-label">deep_verify.py &#8212; all proof tests <strong>passed</strong></span>
+      </a>
+      <a class="proof-strip-item" href="https://github.com/Lama999901/metagenesis-core-public/actions" target="_blank">
+        <span class="psi-badge ok">GREEN</span>
+        <span class="psi-label">223 tests &#8212; CI passing on every PR</span>
+      </a>
+    </div>
+  </div>
+
 </section></div>
 
 <div class="div"></div>
@@ -3611,6 +3656,54 @@ h2 .hw::after { display: none !important; content: none !important; }
 h2:nth-of-type(2n)   .hw { animation-delay: 0s !important; }
 h2:nth-of-type(2n+1) .hw { animation-delay: 2.5s !important; }
 h2:nth-of-type(3n)   .hw { animation-delay: 1.3s !important; }
+
+/* ════════════════════════════════════════
+   PROOF STRIP
+════════════════════════════════════════ */
+.proof-strip{
+  margin-top:48px;
+  padding:28px 36px;
+  border:1px solid rgba(0,255,223,.18);
+  background:rgba(0,255,223,.03);
+  position:relative;
+}
+.proof-strip::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(0,255,223,.6) 30%,rgba(0,255,223,.8) 50%,rgba(0,255,223,.6) 70%,transparent);
+}
+.proof-strip-label{
+  font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ok);margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;
+}
+.proof-strip-label::before{content:'';width:20px;height:1px;background:var(--ok)}
+.proof-strip-items{
+  display:flex;flex-wrap:wrap;gap:10px;
+}
+a.proof-strip-item{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 16px;
+  background:rgba(0,0,0,.3);
+  border:1px solid rgba(0,255,223,.12);
+  text-decoration:none;
+  transition:border-color .2s,background .2s;
+  flex:1;min-width:240px;
+}
+a.proof-strip-item:hover{border-color:rgba(0,255,223,.4);background:rgba(0,255,223,.06)}
+.psi-badge{
+  font-family:var(--fd);font-size:10px;font-weight:900;letter-spacing:.08em;
+  padding:3px 10px;flex-shrink:0;
+  border:1px solid;
+}
+.psi-badge.ok{color:var(--ok);border-color:rgba(0,255,223,.4);background:rgba(0,255,223,.08)}
+.psi-label{
+  font-family:var(--fm);font-size:11px;color:rgba(238,247,251,.55);
+  line-height:1.4;
+}
+.psi-label strong{color:var(--ok);font-weight:700}
+@media(max-width:768px){.proof-strip-items{flex-direction:column}.proof-strip{padding:20px 16px}}
 
 /* ── Agent top banner ── */
 #agent-topbar{display:flex;align-items:center;gap:14px;padding:7px 32px;background:rgba(0,10,22,.96);border-bottom:1px solid rgba(0,229,255,.15);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;overflow-x:auto;white-space:nowrap}
