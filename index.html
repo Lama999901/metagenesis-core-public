@@ -1443,6 +1443,12 @@ a.soon-chip{border-bottom:none!important}
       <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">DRIFT-01<span>Drift Monitor</span></a>
       <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">ML_BENCH-01<span>ML Accuracy Certificate</span></a>
       <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">DT-FEM-01<span>Digital Twin FEM Verification</span></a>
+      <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">ML_BENCH-02<span>ML Regression Certificate</span></a>
+      <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">ML_BENCH-03<span>ML Time-Series Certificate</span></a>
+      <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">PHARMA-01<span>ADMET Prediction Certificate</span></a>
+      <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">FINRISK-01<span>VaR Model Certificate</span></a>
+      <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">DT-SENSOR-01<span>IoT Sensor Integrity</span></a>
+      <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">DT-CALIB-LOOP-01<span>Calibration Convergence</span></a>
     </div>
     <div class="mo-col">
       <h3>For You</h3>
@@ -2150,7 +2156,7 @@ a.soon-chip{border-bottom:none!important}
 <div class="w"><section class="sec">
   <div class="stag rv">Open Protocol</div>
   <h2 class="rv d1" style="--h2d:6.4s" data-glitch="Not a tool. A standard."><span class="hw">Not a tool.</span><br><span class="hgrad-cy">A standard.</span></h2>
-  <p class="sdesc rv d2">MetaGenesis Verification Protocol (MVP) v0.1 &#8212; open spec for packaging computational claims into independently verifiable evidence bundles.</p>
+  <p class="sdesc rv d2">MetaGenesis Verification Protocol (MVP) v0.2 &#8212; open spec for packaging computational claims into independently verifiable evidence bundles.</p>
   <div class="proto rv d3">
     <div class="protoc">
       <h3>What MVP defines</h3>
@@ -2286,7 +2292,7 @@ a.soon-chip{border-bottom:none!important}
       <div class="reg-scope">High-Risk AI Systems</div>
       <h3>Technical documentation &amp; logging</h3>
       <p>Article 12 requires logging of AI system operations to enable post-market monitoring. MetaGenesis bundles provide immutable, independently auditable evidence records without disclosing proprietary model internals.</p>
-      <div class="reg-claim">Relevant claim: ML_BENCH-01 · DATA-PIPE-01</div>
+      <div class="reg-claim">Relevant claim: ML_BENCH-01 · ML_BENCH-02 · ML_BENCH-03 · DATA-PIPE-01</div>
     </div>
 
     <div class="reg">
@@ -2294,7 +2300,7 @@ a.soon-chip{border-bottom:none!important}
       <div class="reg-scope">Pharma &amp; Medical Devices</div>
       <h3>Electronic records &amp; audit trails</h3>
       <p>Computational submissions to FDA require electronic records with integrity controls. MetaGenesis evidence bundles provide SHA-256 + semantic integrity verification compatible with existing data integrity requirements.</p>
-      <div class="reg-claim">Relevant claim: DATA-PIPE-01 · DRIFT-01 · MTR series</div>
+      <div class="reg-claim">Relevant claim: PHARMA-01 · DATA-PIPE-01 · DRIFT-01 · MTR series</div>
     </div>
 
     <div class="reg">
@@ -2302,7 +2308,7 @@ a.soon-chip{border-bottom:none!important}
       <div class="reg-scope">Financial Risk Models</div>
       <h3>Model risk management</h3>
       <p>SR 11-7 guidance requires independent validation of risk model outputs. MetaGenesis bundles give model validators verifiable evidence without requiring access to proprietary model code or data.</p>
-      <div class="reg-claim">Relevant claim: ML_BENCH-01 · DATA-PIPE-01</div>
+      <div class="reg-claim">Relevant claim: FINRISK-01 · ML_BENCH-01 · DATA-PIPE-01</div>
     </div>
 
   </div>
@@ -2479,7 +2485,9 @@ a.soon-chip{border-bottom:none!important}
         <div class="seg-claims-row">
           <span class="seg-claims-label">Relevant claims</span>
           <div class="seg-claim-chips">
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-01 — accuracy certificate</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-01 — classification accuracy</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench2_regression_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-02 — regression RMSE</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench3_timeseries_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-03 — time-series MAPE</span></a>
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank"><span class="seg-chip active-chip">DATA-PIPE-01 — pipeline quality</span></a>
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="seg-chip active-chip">DRIFT-01 — model drift monitor</span></a>
           </div>
@@ -2565,6 +2573,8 @@ a.soon-chip{border-bottom:none!important}
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/sysid1_arx_calibration.py" target="_blank"><span class="seg-chip active-chip">SYSID-01 — system identification</span></a>
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-01 — ML results</span></a>
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="seg-chip active-chip">DRIFT-01 — baseline comparison</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench2_regression_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-02 — regression certificate</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench3_timeseries_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-03 — time-series certificate</span></a>
           </div>
         </div>
         <div class="seg-cta-row">
@@ -2593,6 +2603,8 @@ a.soon-chip{border-bottom:none!important}
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtfem1_displacement_verification.py" target="_blank"><span class="seg-chip active-chip">DT-FEM-01 — FEM displacement verification</span></a>
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mtr1_calibration.py" target="_blank"><span class="seg-chip active-chip">MTR-1 — Young's modulus anchor</span></a>
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="seg-chip active-chip">DRIFT-01 — baseline drift monitor</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtsensor1_iot_certificate.py" target="_blank"><span class="seg-chip active-chip">DT-SENSOR-01 — IoT sensor integrity</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtcalib1_convergence_certificate.py" target="_blank"><span class="seg-chip active-chip">DT-CALIB-LOOP-01 — calibration convergence</span></a>
           </div>
         </div>
         <div class="seg-cta-row">
