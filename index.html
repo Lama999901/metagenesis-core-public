@@ -1040,14 +1040,46 @@ a.soon-chip{border-bottom:none!important}
 .cno{color:var(--err);font-size:16px}
 .cpart{color:var(--txt3);font-size:10px;letter-spacing:.06em}
 /* mobile compare table — handled by FIX 5 above */
+/* sec-dark — усиленный backdrop для pitch и regulatory */
+.sec-dark{
+  position:relative;
+}
+.sec-dark::after{
+  content:'';
+  position:absolute;
+  inset:-40px -80px;
+  background:radial-gradient(
+    ellipse 90% 80% at 50% 50%,
+    rgba(3,6,18,.96) 0%,
+    rgba(3,6,18,.90) 30%,
+    rgba(3,6,18,.75) 55%,
+    rgba(3,6,18,.40) 75%,
+    transparent 100%
+  );
+  pointer-events:none;
+  z-index:-1;
+}
 .regrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln)}
-.reg{background:rgba(7,12,31,.85);padding:40px 36px;display:flex;flex-direction:column;gap:14px;transition:background .2s}
-.reg:hover{background:var(--ink1)}
+.reg{background:rgba(5,10,26,.92);padding:44px 40px;display:flex;flex-direction:column;gap:14px;transition:background .2s;position:relative;overflow:hidden}
+.reg::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;transition:opacity .3s;opacity:0}
+.reg:first-child::before{background:linear-gradient(90deg,transparent,rgba(0,229,255,.6),transparent)}
+.reg:nth-child(2)::before{background:linear-gradient(90deg,transparent,rgba(255,100,100,.5),transparent)}
+.reg:last-child::before{background:linear-gradient(90deg,transparent,rgba(255,180,70,.5),transparent)}
+.reg:hover{background:rgba(7,14,34,.98)}
+.reg:hover::before{opacity:1}
+.reg-header-row{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .reg-badge{display:inline-block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--c);border:1px solid var(--c3);background:var(--c2);padding:4px 12px;width:fit-content}
+.reg-deadline{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,200,100,.7);font-family:var(--fm)}
 .reg-scope{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3)}
 .reg h3{font-family:var(--fd);font-size:16px;font-weight:700;letter-spacing:-.01em;line-height:1.3}
-.reg p{font-size:13px;color:var(--txt2);line-height:1.75;font-weight:300}
+.reg p{font-size:13px;color:var(--txt2);line-height:1.82;font-weight:300}
+.reg p strong{color:var(--txt);font-weight:500}
 .reg-claim{font-size:10px;letter-spacing:.08em;color:var(--txt3);padding-top:12px;border-top:1px solid var(--ln);margin-top:auto}
+.reg-claim-block{margin-top:auto;padding-top:16px;border-top:1px solid var(--ln)}
+.reg-claim-title{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);margin-bottom:10px}
+.reg-claim-chips{display:flex;flex-wrap:wrap;gap:6px}
+a.reg-chip{font-family:var(--fm);font-size:10px;letter-spacing:.06em;color:var(--c);border:1px solid rgba(0,229,255,.2);background:rgba(0,229,255,.04);padding:3px 10px;text-decoration:none;transition:border-color .18s,background .18s;border-radius:2px}
+a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 .reg-note{font-size:11px;color:var(--txt3);margin-top:20px;padding:14px 20px;border:1px solid var(--ln);background:var(--ink2);line-height:1.6}
 @media(max-width:900px){.regrid{grid-template-columns:1fr}}
 .pricegrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln)}
@@ -1629,7 +1661,7 @@ a.soon-chip{border-bottom:none!important}
 </div></div>
 
 <div class="div"></div>
-<div class="w"><section class="sec">
+<div class="w"><section class="sec sec-dark">
   <div class="stag rv">The Verification Gap</div>
   <h2 class="rv d1" style="--h2d:0s" data-glitch="The entire field runs on unverifiable numbers.">The entire field runs on<br><span class="hr">unverifiable numbers.</span></h2>
   <p class="sdesc rv d2">ML benchmarks. Simulation outputs. Regulatory submissions. Financial model results. <strong>None of them produce a verifiable artifact</strong> — a third party cannot confirm the claimed number without re-running everything from scratch. There has never been a standard for computational proof. Until now.</p>
@@ -2326,38 +2358,71 @@ a.soon-chip{border-bottom:none!important}
 </section></div>
 
 <div class="div"></div>
-<div class="w"><section class="sec" id="regulatory">
+<div class="w"><section class="sec sec-dark" id="regulatory">
   <div class="stag rv">Regulatory Alignment</div>
-  <h2 class="rv d1" style="--h2d:8.8s" data-glitch="Three frameworks. One protocol."><span class="hw">Three frameworks.</span><br><span class="hc">One protocol.</span></h2>
-  <p class="sdesc rv d2">MetaGenesis bundles are designed to satisfy independent auditability requirements across the three major regulatory contexts for computational evidence.</p>
+  <h2 class="rv d1" style="--h2d:8.8s" data-glitch="Three deadlines. One protocol."><span class="hw">Three deadlines.</span><br><span class="hc">One protocol.</span></h2>
+  <p class="sdesc rv d2">Three major frameworks — EU AI Act, FDA 21 CFR Part 11, Basel III/IV — all require the same thing: <strong>independently auditable computational evidence</strong>. MetaGenesis bundles satisfy that requirement with a single offline-verifiable artifact.</p>
+
   <div class="regrid rv d3">
 
     <div class="reg">
-      <div class="reg-badge">EU AI Act</div>
-      <div class="reg-scope">High-Risk AI Systems</div>
-      <h3>Technical documentation &amp; logging</h3>
-      <p>Article 12 requires logging of AI system operations to enable post-market monitoring. MetaGenesis bundles provide immutable, independently auditable evidence records without disclosing proprietary model internals.</p>
-      <div class="reg-claim">Relevant claim: ML_BENCH-01 · ML_BENCH-02 · ML_BENCH-03 · DATA-PIPE-01</div>
+      <div class="reg-header-row">
+        <div class="reg-badge">EU AI Act</div>
+        <div class="reg-deadline">&#9888; Aug 2, 2026</div>
+      </div>
+      <div class="reg-scope">High-Risk AI Systems &mdash; Article 12 + Annex IV</div>
+      <h3>Technical documentation &amp; post-market logging</h3>
+      <p>Article 12 mandates logging of AI system operations enabling post-market monitoring. Annex IV requires technical documentation proving the system functions as intended. MetaGenesis bundles provide <strong>immutable, offline-verifiable evidence records</strong> without exposing proprietary model internals to regulators.</p>
+      <div class="reg-claim-block">
+        <div class="reg-claim-title">Satisfies via:</div>
+        <div class="reg-claim-chips">
+          <a class="reg-chip" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank">ML_BENCH-01</a>
+          <a class="reg-chip" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench2_regression_certificate.py" target="_blank">ML_BENCH-02</a>
+          <a class="reg-chip" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench3_timeseries_certificate.py" target="_blank">ML_BENCH-03</a>
+          <a class="reg-chip" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank">DATA-PIPE-01</a>
+        </div>
+      </div>
     </div>
 
     <div class="reg">
-      <div class="reg-badge">FDA 21 CFR Part 11</div>
-      <div class="reg-scope">Pharma &amp; Medical Devices</div>
-      <h3>Electronic records &amp; audit trails</h3>
-      <p>Computational submissions to FDA require electronic records with integrity controls. MetaGenesis evidence bundles provide SHA-256 + semantic integrity verification compatible with existing data integrity requirements.</p>
-      <div class="reg-claim">Relevant claim: PHARMA-01 · DATA-PIPE-01 · DRIFT-01 · MTR series</div>
+      <div class="reg-header-row">
+        <div class="reg-badge" style="border-color:rgba(255,100,100,.4);color:#ff8888;background:rgba(255,100,100,.05)">FDA 21 CFR Part 11</div>
+        <div class="reg-deadline">&#9888; Q2 2026 final guidance</div>
+      </div>
+      <div class="reg-scope">Pharma &amp; Medical Devices &mdash; AI/ML-based software</div>
+      <h3>Electronic records &amp; reproducible audit trails</h3>
+      <p>FDA draft guidance (Jan 2025) establishes a <strong>7-step credibility framework</strong> for AI in drug development. Computational claims in IND filings require documentation that a regulator can verify without re-running the model. MetaGenesis provides exactly that: a self-contained bundle, verifiable offline in 60 seconds.</p>
+      <div class="reg-claim-block">
+        <div class="reg-claim-title">Satisfies via:</div>
+        <div class="reg-claim-chips">
+          <a class="reg-chip" style="border-color:rgba(255,100,100,.4);color:#ff8888" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/pharma1_admet_certificate.py" target="_blank">PHARMA-01</a>
+          <a class="reg-chip" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank">DATA-PIPE-01</a>
+          <a class="reg-chip" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank">DRIFT-01</a>
+          <a class="reg-chip" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/scientific_claim_index.md" target="_blank">MTR-1/2/3</a>
+        </div>
+      </div>
     </div>
 
     <div class="reg">
-      <div class="reg-badge">Basel III / IV</div>
-      <div class="reg-scope">Financial Risk Models</div>
-      <h3>Model risk management</h3>
-      <p>SR 11-7 guidance requires independent validation of risk model outputs. MetaGenesis bundles give model validators verifiable evidence without requiring access to proprietary model code or data.</p>
-      <div class="reg-claim">Relevant claim: FINRISK-01 · ML_BENCH-01 · DATA-PIPE-01</div>
+      <div class="reg-header-row">
+        <div class="reg-badge" style="border-color:rgba(255,180,70,.4);color:#ffb84d;background:rgba(255,180,70,.05)">Basel III / IV</div>
+        <div class="reg-deadline">&#9888; SR 11-7 active now</div>
+      </div>
+      <div class="reg-scope">Financial Risk Models &mdash; Model Risk Management</div>
+      <h3>Independent model validation without source access</h3>
+      <p>SR 11-7 requires <strong>independent validation</strong> of risk model outputs by a party that did not build the model. Today that means handing over model code or paying for a full re-run. MetaGenesis bundles give validators verifiable evidence of exactly what the model produced &mdash; without touching proprietary code or data.</p>
+      <div class="reg-claim-block">
+        <div class="reg-claim-title">Satisfies via:</div>
+        <div class="reg-claim-chips">
+          <a class="reg-chip" style="border-color:rgba(255,180,70,.4);color:#ffb84d" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/finrisk1_var_certificate.py" target="_blank">FINRISK-01</a>
+          <a class="reg-chip" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank">ML_BENCH-01</a>
+          <a class="reg-chip" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank">DATA-PIPE-01</a>
+        </div>
+      </div>
     </div>
 
   </div>
-  <p class="reg-note rv d4">MetaGenesis Core does not constitute legal or regulatory compliance advice. It provides technical infrastructure that supports compliance workflows.</p>
+  <p class="reg-note rv d4">MetaGenesis Core does not constitute legal or regulatory compliance advice. It provides technical infrastructure that supports compliance documentation workflows.</p>
 </section></div>
 
 <div class="div"></div>
@@ -2483,7 +2548,7 @@ a.soon-chip{border-bottom:none!important}
 </section></div>
 
 <div class="div"></div>
-<div class="w"><section class="sec" id="segments">
+<div class="w"><section class="sec sec-dark" id="segments">
   <div class="stag rv">For Your Industry</div>
   <h2 class="rv d1" style="--h2d:11.2s" data-glitch="Built for your world. Speak your language.">Built for <span class="hc">your world.</span><br>Speak your language.</h2>
   <p class="sdesc rv d2">One protocol. Five industries. Find your use case.</p>
