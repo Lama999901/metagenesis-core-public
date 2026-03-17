@@ -33,6 +33,7 @@ in the non-provisional application.
 | DT-SENSOR-01 (IoT) | 2026-03-15 | Sensor data integrity |
 | DT-CALIB-LOOP-01 (convergence) | 2026-03-15 | Calibration convergence |
 | anchor_hash validation in verifier | 2026-03-15 | mg.py verify-chain CLI |
+| Innovation #6: Bundle Signing (HMAC-SHA256) | 2026-03-17 | mg_sign.py — closes unauthorized bundle creation attack |
 
 **Current state (2026-03-17):** 14 claims, 282 tests.
 Live state: reports/canonical_state.md

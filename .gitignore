@@ -39,6 +39,11 @@ htmlcov/
 # Jupyter
 .ipynb_checkpoints
 
+# Signing keys (NEVER commit private keys)
+signing_key*.json
+*.signing_key.json
+private_key*.json
+
 # Local runtime artifacts (do not commit)
 reports/ledger_v1.jsonl
 reports/ledger_snapshots/
