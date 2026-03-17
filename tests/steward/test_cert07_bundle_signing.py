@@ -27,7 +27,7 @@ HMAC-SHA256 — same concept as JWT signing but for evidence bundles.
 """
 
 import hashlib
-import hmac
+import hmac  # noqa: F401
 import json
 import sys
 from pathlib import Path
@@ -57,7 +57,7 @@ def _make_signed_bundle(tmp_path: Path) -> tuple[Path, dict]:
     Returns (bundle_dir, key_data).
     """
     bundle = tmp_path / "bundle"
-    bundle.mkdir()
+    bundle.mkdir(parents=True, exist_ok=True)
 
     # Minimal evidence file
     evidence_file = bundle / "evidence.json"
@@ -175,11 +175,31 @@ class TestBundleSigning:
         assert ok_before is True, "Bundle should be valid before attack"
 
         # ATTACK: modify evidence file AFTER signing
+        # Sophisticated attacker ALSO rebuilds pack_manifest.json to cover tracks
+        # (naive attacker who only changes the file is caught by Layer 1)
         evidence_file = bundle / "evidence.json"
         tampered = {"claim": "ML_BENCH-01", "result": "PASS", "accuracy": 0.99}
         evidence_file.write_text(json.dumps(tampered), encoding="utf-8")
 
-        # Note: we do NOT update pack_manifest.json (attacker might try to)
+        # Attacker rebuilds pack_manifest.json root_hash (same as Layer 1 bypass)
+        # This would fool Layer 1 — but Layer 4 catches it because
+        # signed_root_hash (from signing time) no longer matches current root_hash
+        new_sha = hashlib.sha256(evidence_file.read_bytes()).hexdigest()
+        manifest_path = bundle / "pack_manifest.json"
+        mf = json.loads(manifest_path.read_text(encoding="utf-8"))
+        for entry in mf["files"]:
+            if entry["relpath"] == "evidence.json":
+                entry["sha256"] = new_sha
+                entry["bytes"] = evidence_file.stat().st_size
+                break
+        lines = "\n".join(
+            f"{e['relpath']}:{e['sha256']}"
+            for e in sorted(mf["files"], key=lambda x: x["relpath"])
+        )
+        mf["root_hash"] = hashlib.sha256(lines.encode("utf-8")).hexdigest()
+        manifest_path.write_text(json.dumps(mf, indent=2), encoding="utf-8")
+        # Now root_hash in manifest has changed — signed_root_hash no longer matches
+
         ok_after, msg = verify_bundle_signature(bundle, key_path=key_file)
         assert ok_after is False, "Bundle modification was NOT detected by signing"
         assert "modified after signing" in msg or "root_hash" in msg
