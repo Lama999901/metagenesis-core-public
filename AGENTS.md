@@ -104,7 +104,7 @@ test mtr_phase key present, test determinism (same seed → same result)
 
 Step 6 — Verify:
 python scripts/steward_audit.py → STEWARD AUDIT: PASS
-python -m pytest tests/ -q → 270 passed
+python -m pytest tests/ -q → 282 passed
 python scripts/deep_verify.py → ALL 10 TESTS PASSED
 
 ---
