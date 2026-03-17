@@ -1,0 +1,64 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git checkout -b:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push origin:*)",
+      "Bash(git status:*)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "Bash(git pull:*)",
+      "Bash(python -m pytest:*)",
+      "Bash(python scripts/steward_audit.py:*)",
+      "Bash(python scripts/deep_verify.py:*)",
+      "Bash(python scripts/mg.py:*)",
+      "Bash(python scripts/mg_sign.py:*)",
+      "Bash(python demos/:*)",
+      "Bash(date:*)",
+      "Bash(echo:*)",
+      "Bash(cat:*)",
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
+      "Bash(grep:*)",
+      "Bash(wc:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)"
+    ],
+    "deny": [
+      "Write(scripts/steward_audit.py)",
+      "Write(scripts/mg_policy_gate_policy.json)",
+      "Write(ppa/CLAIMS_DRAFT.md)",
+      "Write(reports/canonical_state.md)",
+      "Write(demos/open_data_demo_01/evidence_index.json)",
+      "Write(.github/workflows/total_audit_guard.yml)",
+      "Write(.github/workflows/mg_policy_gate.yml)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/gsd-check-update.js"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/gsd-context-monitor.js"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "node .claude/hooks/gsd-statusline.js"
+  }
+}
