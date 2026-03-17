@@ -96,7 +96,7 @@ Same concept as git commits (each commits to its parent).
 Implemented in stdlib only. Works offline.
 
 Implementation: `backend/progress/mlbench1_accuracy_certificate.py :: _hash_step()`
-(same pattern in all 8 claims)
+(same pattern in all 14 claims)
 
 ---
 
@@ -219,8 +219,14 @@ Semantic verifier checks canary_mode flag consistency per bundle slot.
 | DRIFT-01 | drift_monitor.py | Drift | ✓ | MTR-1 anchor |
 | ML_BENCH-01 | mlbench1_accuracy_certificate.py | ML/AI | ✓ | — |
 | DT-FEM-01 | dtfem1_displacement_verification.py | Digital Twin | ✓ | MTR-1 anchor |
+| ML_BENCH-02 | mlbench2_regression_certificate.py | ML/AI | ✓ | — |
+| ML_BENCH-03 | mlbench3_timeseries_certificate.py | ML/AI | ✓ | — |
+| PHARMA-01 | pharma1_admet_certificate.py | Pharma | ✓ | — |
+| FINRISK-01 | finrisk1_var_certificate.py | Finance | ✓ | — |
+| DT-SENSOR-01 | dtsensor1_iot_certificate.py | Digital Twin | ✓ | — |
+| DT-CALIB-LOOP-01 | dtcalib1_convergence_certificate.py | Digital Twin | ✓ | DRIFT-01 anchor |
 
-All 8 claims have Step Chain (execution_trace + trace_root_hash).
+All 14 claims have Step Chain (execution_trace + trace_root_hash).
 DT-FEM-01 and DRIFT-01 support anchor_hash for Cross-Claim Chain.
 
 ---
@@ -232,14 +238,16 @@ DT-FEM-01 and DRIFT-01 support anchor_hash for Cross-Claim Chain.
 | `test_cert01_pack_manifest_verify.py` | Integrity layer: SHA-256 + root_hash |
 | `test_cert02_*` | Semantic layer: bypass attack caught |
 | `test_cert03_step_chain_verify.py` | Step Chain layer: tamper detection in verifier |
-| `test_step_chain_all_claims.py` | Step Chain present and valid in all 8 claims |
+| `test_step_chain_all_claims.py` | Step Chain present and valid in all 14 claims |
 | `test_cross_claim_chain.py` | Cross-Claim Chain: anchor_hash links MTR-1→DT-FEM-01→DRIFT-01 |
 | `test_stew01-07_*` | Governance: bidirectional coverage, steward audit |
 | `test_drift01_*` | DRIFT-01 calibration anchor |
 | Domain tests | Pass/fail/adversarial per claim |
+| `test_cert05_adversarial_gauntlet.py` | 5 attacks: Strip+Recompute, Single-Bit, Cross-Domain, Canary Laundering, Chain Reversal |
+| `test_cert06_real_world_scenarios.py` | 5 real-world proofs: honest team, cherry-picker, physical anchor, audit trail, reproducibility crisis |
 
-153 tests total. steward_audit PASS.
+282 tests total. steward_audit PASS.
 
 ---
 
-*Architecture v0.2 — 2026-03-14 — MetaGenesis Core*
+*Architecture v0.2 — 2026-03-17 — MetaGenesis Core*

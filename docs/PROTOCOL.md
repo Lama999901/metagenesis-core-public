@@ -248,11 +248,17 @@ To extend MVP to a new computational domain:
 | SYSID-01 | System Identification | `rel_err_a/b ≤ 0.03` | — |
 | DATA-PIPE-01 | Data Pipelines | schema pass · range pass | — |
 | DRIFT-01 | Drift Monitoring | `drift ≤ 5.0%` | MTR-1 anchor |
-| ML_BENCH-01 | ML Benchmarking | `\|Δacc\| ≤ 0.02` | — |
+| ML_BENCH-01 | ML — Classification | `\|Δacc\| ≤ 0.02` | — |
 | DT-FEM-01 | Digital Twin / FEM | `rel_err ≤ 0.02` | MTR-1 anchor |
+| ML_BENCH-02 | ML — Regression | `\|ΔRMSE\| ≤ 0.02` | — |
+| ML_BENCH-03 | ML — Time-Series | `\|ΔMAPE\| ≤ 0.02` | — |
+| PHARMA-01 | Pharma — ADMET | `\|Δprop\| ≤ tolerance` | — |
+| FINRISK-01 | Finance — VaR | `\|ΔVaR\| ≤ tolerance` | — |
+| DT-SENSOR-01 | IoT — Sensor Integrity | schema + range + temporal | — |
+| DT-CALIB-LOOP-01 | Digital Twin — Convergence | drift_pct decreasing | DRIFT-01 anchor |
 
-Physical anchor applies to: MTR-1/2/3, DT-FEM-01, DRIFT-01.
-Tamper-evident provenance only: ML_BENCH-01, DATA-PIPE-01, SYSID-01.
+Physical anchor applies to: MTR-1/2/3, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP-01.
+Tamper-evident provenance: all 14 claims (SCOPE_001).
 Documented in `reports/known_faults.yaml` :: SCOPE_001.
 
 ---
@@ -296,7 +302,13 @@ no external dependencies.
    `backend/progress/drift_monitor.py` (anchor_hash)
    Proven: `tests/steward/test_cert03_*` + `tests/steward/test_cross_claim_chain.py`
 
+Verify full chain end-to-end:
+```bash
+python scripts/mg.py verify-chain bundle_mtr1/ bundle_dtfem/ bundle_drift/
+# → CHAIN PASS
+```
+
 ---
 
-*MetaGenesis Verification Protocol v0.2 — 2026-03-14*
+*MetaGenesis Verification Protocol v0.2 — 2026-03-17*
 *Inventor: Yehor Bazhynov — USPTO PPA #63/996,819*

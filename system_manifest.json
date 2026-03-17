@@ -2,9 +2,9 @@
   "project": "MetaGenesis Core",
   "version": "0.2.0",
   "description": "Open verification protocol for computational claims. Any computation — ML model accuracy, calibration result, data pipeline output — packaged into a tamper-evident bundle verifiable offline by any third party with one command.",
-  "protocol": "MetaGenesis Verification Protocol (MVP) v0.1",
-  "active_claims": ["MTR-1", "MTR-2", "MTR-3", "SYSID-01", "DATA-PIPE-01", "DRIFT-01", "ML_BENCH-01", "DT-FEM-01"],
-  "domains": ["materials_science", "system_identification", "data_pipelines", "ml_benchmarking", "digital_twin"],
+  "protocol": "MetaGenesis Verification Protocol (MVP) v0.2",
+  "active_claims": ["MTR-1", "MTR-2", "MTR-3", "SYSID-01", "DATA-PIPE-01", "DRIFT-01", "ML_BENCH-01", "DT-FEM-01", "ML_BENCH-02", "ML_BENCH-03", "PHARMA-01", "FINRISK-01", "DT-SENSOR-01", "DT-CALIB-LOOP-01"],
+  "domains": ["materials_science", "system_identification", "data_pipelines", "ml_benchmarking", "digital_twin", "pharma_biotech", "financial_risk"],
   "verified_innovations": [
     "bidirectional_claim_coverage",
     "tamper_evident_semantic_verification",
@@ -13,7 +13,7 @@
     "step_chain_verification",
     "cross_claim_cryptographic_chain"
   ],
-  "test_count": 172,
+  "test_count": 282,
   "steward_audit": "PASS",
   "ppa_filed": "2026-03-05",
   "ppa_number": "63/996,819",

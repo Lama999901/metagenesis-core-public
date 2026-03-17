@@ -3,7 +3,7 @@
 Ledger Entry Models - Minimal Traceability Schema (Pure Stdlib)
 
 Purpose: Dataclass models for append-only ledger entries
-# Part of MetaGenesis Core verification pipeline (MVP v0.1)
+# Part of MetaGenesis Core verification pipeline (MVP v0.2)
 Implementation: Pure Python stdlib (no external dependencies)
 """
 

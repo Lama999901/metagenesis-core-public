@@ -3,7 +3,7 @@
 UQ-01 Deterministic Bootstrap Uncertainty Engine v1.
 
 Seeded bootstrap OLS-through-origin. No heavy deps (stdlib only).
-# Part of MetaGenesis Core verification pipeline (MVP v0.1)
+# Part of MetaGenesis Core verification pipeline (MVP v0.2)
 """
 
 import random

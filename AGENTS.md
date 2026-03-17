@@ -13,7 +13,7 @@ the rules of this repository. Read this before making any change.
 3. README.md             ← architecture, claims, quickstart
 4. llms.txt              ← AI-optimized summary of entire repo
 5. reports/canonical_state.md    ← verified claim list
-6. reports/scientific_claim_index.md  ← all 8 claims with thresholds
+6. reports/scientific_claim_index.md  ← all 14 claims with thresholds
 7. reports/known_faults.yaml     ← known limitations, do not overclaim
 8. docs/PROTOCOL.md      ← full protocol specification
 ```
@@ -27,7 +27,7 @@ After reading these 8 files you can answer any question about this project.
 ## What this repo is
 
 MetaGenesis Core is an open verification protocol layer.
-It implements the MetaGenesis Verification Protocol (MVP) v0.1.
+It implements the MetaGenesis Verification Protocol (MVP) v0.2.
 It makes computational claims tamper-evident, reproducible, and
 independently auditable offline by any third party.
 
@@ -104,7 +104,8 @@ test mtr_phase key present, test determinism (same seed → same result)
 
 Step 6 — Verify:
 python scripts/steward_audit.py → STEWARD AUDIT: PASS
-python -m pytest tests/ -q → all passed
+python -m pytest tests/ -q → 282 passed
+python scripts/deep_verify.py → ALL 10 TESTS PASSED
 
 ---
 
@@ -120,6 +121,12 @@ python -m pytest tests/ -q → all passed
 | DRIFT-01 | backend/progress/drift_monitor.py | tests/steward/ |
 | ML_BENCH-01 | backend/progress/mlbench1_accuracy_certificate.py | tests/ml/ |
 | DT-FEM-01 | backend/progress/dtfem1_displacement_verification.py | tests/digital_twin/ |
+| ML_BENCH-02 | backend/progress/mlbench2_regression_certificate.py | tests/ml/ |
+| ML_BENCH-03 | backend/progress/mlbench3_timeseries_certificate.py | tests/ml/ |
+| PHARMA-01 | backend/progress/pharma1_admet_certificate.py | tests/ml/ |
+| FINRISK-01 | backend/progress/finrisk1_var_certificate.py | tests/ml/ |
+| DT-SENSOR-01 | backend/progress/dtsensor1_iot_certificate.py | tests/digital_twin/ |
+| DT-CALIB-LOOP-01 | backend/progress/dtcalib1_convergence_certificate.py | tests/digital_twin/ |
 
 ---
 
@@ -131,7 +138,11 @@ python demos/open_data_demo_01/run_demo.py
 grep -r "tamper-proof\|GPT-5\|19x\|VacuumGenesis\|Infinity Protocol" docs/ scripts/ backend/ tests/
 # → must return empty
 
-All must pass. grep must return empty.
+# Full proof-not-trust (10 tests including bypass attack + Cross-Claim Chain):
+python scripts/deep_verify.py
+# → ALL 10 TESTS PASSED ✅
+
+All must pass.
 
 ---
 

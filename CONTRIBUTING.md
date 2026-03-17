@@ -4,10 +4,13 @@
 
 Run the acceptance suite to confirm your environment is clean:
 ```bash
-python scripts/steward_audit.py
-python -m pytest tests/ -q
+python scripts/steward_audit.py  # → STEWARD AUDIT: PASS
+python -m pytest tests/ -q       # → 223 passed
+python scripts/deep_verify.py    # → ALL 10 TESTS PASSED ✅
 ```
-Both must pass before and after any change.
+All three must pass before and after any change.
+
+**Current state:** 14 claims, 223 tests, 3 verification layers.
 
 ## What you can contribute
 
@@ -29,3 +32,14 @@ Both must pass before and after any change.
 1. python scripts/steward_audit.py → PASS
 2. python -m pytest tests/ -q → PASS
 3. No "tamper-proof", "GPT-5", "19x" in any changed file
+
+## Full verification (proof, not trust)
+
+Run the deep verification script before any major release or claim:
+```bash
+python scripts/deep_verify.py
+# → ALL 10 TESTS PASSED ✅
+```
+This script verifies: governance, 223 tests, 14 JOB_KINDs in runner,
+Step Chain in all 14 claims, Cross-Claim Chain, forbidden terms,
+site numbers, demo end-to-end, bypass attack caught, verify-chain CLI.

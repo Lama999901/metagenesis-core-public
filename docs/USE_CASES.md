@@ -201,6 +201,38 @@ physical claims.
 
 ---
 
+## 6. Pharma / Biotech — ADMET prediction and regulatory submissions
+
+**The problem:** Computational ADMET predictions (solubility, permeability, toxicity, binding affinity, bioavailability) are central to drug discovery but have no standard verifiable format. FDA's 2025 AI/ML guidance and EU AI Act require documented, auditable computational evidence.
+
+**What MetaGenesis Core does:** Package any ADMET prediction as a tamper-evident evidence bundle with FDA 21 CFR Part 11 alignment note. Any reviewer — internal auditor, FDA inspector, partner lab — verifies offline.
+
+**Relevant claim:** PHARMA-01 — 5 properties: solubility (logS), permeability (logP), toxicity_score, binding_affinity (pIC50), bioavailability_score.
+
+**Price:** $299 per bundle. Trivial against nine-figure drug development budgets.
+
+---
+
+## 7. Finance / Risk — Model validation and Basel compliance
+
+**The problem:** VaR models and credit scoring models require independent validation under Basel III/IV. Model Risk Management (SR 11-7) mandates documented, reproducible validation evidence. Existing tools produce reports — not machine-verifiable evidence.
+
+**What MetaGenesis Core does:** Package VaR model output with confidence level, observation count, and portfolio ID into a tamper-evident bundle. Any validator verifies the claim offline without accessing the model.
+
+**Relevant claim:** FINRISK-01 — historical VaR at specified confidence level (default 99%).
+
+---
+
+## 8. IoT / Digital Twin — Sensor data integrity
+
+**The problem:** IoT sensor streams feeding digital twins are vulnerable to data corruption, out-of-range values, and timestamp anomalies. There is no standard way to certify that a sensor data stream was valid at the time of ingestion.
+
+**What MetaGenesis Core does:** Package sensor stream validation (schema + range + temporal consistency) with SHA-256 fingerprint into an evidence bundle. Downstream consumers verify data integrity without re-running the pipeline.
+
+**Relevant claim:** DT-SENSOR-01 — 5 sensor types: temperature, pressure, displacement, strain, voltage.
+
+---
+
 ## Common pattern across all domains
 
 The verification workflow is identical regardless of domain:
