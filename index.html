@@ -1865,6 +1865,17 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
       </div>
 
       <div class="ccl-row">
+        <div class="ccl-problem">Evidence tampering &#8212; attacker removes evidence, rebuilds SHA-256, submits as valid</div>
+        <div class="ccl-arrow">&#8594;</div>
+        <div class="ccl-solution">
+          <span class="ccl-badge" style="background:rgba(255,64,96,.12);border-color:rgba(255,64,96,.45)">&#9888; CAUGHT</span>
+          <span class="ccl-claim">CERT-05 &middot; 5 attack scenarios</span>
+          <a class="ccl-path" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/tests/steward/test_cert05_adversarial_gauntlet.py" target="_blank">tests/steward/test_cert05_adversarial_gauntlet.py</a>
+          <span class="ccl-threshold">Strip &amp; Recompute &middot; Single-Bit &middot; Cross-Domain &middot; Canary Laundering &middot; Chain Reversal</span>
+        </div>
+      </div>
+
+      <div class="ccl-row">
         <div class="ccl-problem">Simulation outputs unanchored &#8212; no proof of agreement with measured physical reality</div>
         <div class="ccl-arrow">&#8594;</div>
         <div class="ccl-solution">
@@ -4202,6 +4213,7 @@ a.pp-claim-link:hover{color:#fff}
 </script>
 </body>
 </html>
+
 
 
 
