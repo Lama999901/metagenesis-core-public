@@ -34,7 +34,9 @@ This is traceability to physical measurement, not threshold compliance.
 - [x] FINRISK-01 — VaR model certificate (Basel III/IV)
 - [x] DT-SENSOR-01 — IoT sensor data integrity certificate
 - [x] DT-CALIB-LOOP-01 — calibration convergence certificate
-- [x] 223 adversarial tests, steward_audit PASS
+- [x] 282 adversarial tests, steward_audit PASS
+- [x] CERT-05 Adversarial Gauntlet (5 attack scenarios documented and caught)
+- [x] CERT-06 Real-World Scenarios (5 proof stories end-to-end)
 - [x] GitHub Sponsors configured
 
 ---
