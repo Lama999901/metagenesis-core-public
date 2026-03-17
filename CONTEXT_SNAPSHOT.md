@@ -2,7 +2,7 @@
 
 > Read this file first if you are an AI agent starting a new session.
 > This is the authoritative snapshot of what has been done and what is next.
-> Updated: 2026-03-15
+> Updated: 2026-03-17
 
 ---
 
@@ -14,26 +14,23 @@
 - **Repo:** https://github.com/Lama999901/metagenesis-core-public
 - **Site:** https://metagenesis-core.dev (Vercel, auto-deploys from main)
 - **Email:** yehor@metagenesis-core.dev
-- **Payment:** $299/bundle — bank transfer / crypto (BTC/ETH/USDC) / invoice — reply to yehor@metagenesis-core.dev
+- **Payment:** $299/bundle — bank transfer / crypto (BTC/ETH/USDC) / invoice
 
 ---
 
-## Verified state (2026-03-15)
+## Verified state (2026-03-17)
 
 | Parameter | Value |
 |---|---|
-| Tests | **223 passing** |
+| Tests | **282 passing** |
 | steward_audit | PASS |
 | CI | GREEN |
-| Active claims | **14**: MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01, DT-FEM-01, ML_BENCH-02, ML_BENCH-03, PHARMA-01, FINRISK-01, DT-SENSOR-01, DT-CALIB-LOOP-01 |
+| Active claims | **14** |
 | Verification layers | 3 (integrity + semantic + step chain) |
 | Innovations | 5 + Cross-Claim Chain |
-| Domains | 7: materials, sysid, data, ml, digital_twin, pharma_biotech, financial_risk |
-| Last PR merged | Summit 5-8: PHARMA-01 + FINRISK-01 + DT-SENSOR-01 + DT-CALIB-LOOP-01 — **14 claims, 223 tests** |
-| Site counters | 14 claims / 223 tests / 3 layers |
-| known_faults entries | 2: ENV_001 (test env) + SCOPE_001 (physical anchor scope) |
-| HN post | https://news.ycombinator.com/item?id=47335416 — active |
-| GitHub Release | v0.2.0 — published at /releases/tag/v0.2.0 |
+| Domains | 7 |
+| GitHub Release | v0.2.0 |
+| Adversarial tests | CERT-05 (5 attacks) + CERT-06 (5 scenarios) |
 
 ---
 
@@ -41,119 +38,118 @@
 
 | Claim | Domain | Threshold | Physical Anchor |
 |-------|--------|-----------|-----------------|
-| MTR-1 | Materials — Young's Modulus | `rel_err ≤ 0.01` | E = 70 GPa (aluminum) |
-| MTR-2 | Materials — Thermal Conductivity | `rel_err ≤ 0.02` | Physical constant |
-| MTR-3 | Materials — Multilayer Contact | `rel_err_k ≤ 0.03` | Physical constant |
+| MTR-1 | Materials — Young's Modulus | `rel_err ≤ 0.01` | E = 70 GPa ⚓ |
+| MTR-2 | Materials — Thermal Conductivity | `rel_err ≤ 0.02` | Physical constant ⚓ |
+| MTR-3 | Materials — Multilayer Contact | `rel_err_k ≤ 0.03` | Physical constant ⚓ |
 | SYSID-01 | System Identification | `rel_err_a/b ≤ 0.03` | — |
 | DATA-PIPE-01 | Data Pipelines | schema + range pass | — |
-| DRIFT-01 | Drift Monitoring | `drift ≤ 5.0%` | MTR-1 anchor |
-| ML_BENCH-01 | ML — Classification Accuracy | `\|Δacc\| ≤ 0.02` + Step Chain | — |
-| DT-FEM-01 | Digital Twin / FEM | `rel_err ≤ 0.02` | MTR-1 anchor |
-| ML_BENCH-02 | ML — Regression (RMSE, MAE, R²) | `\|ΔRMSE\| ≤ 0.02` | — |
-| ML_BENCH-03 | ML — Time-Series (MAPE) | `\|ΔMAPE\| ≤ 0.02` | — |
-| PHARMA-01 | Pharma — ADMET (5 properties) | `\|Δprop\| ≤ tolerance` | — (FDA 21 CFR Part 11) |
-| FINRISK-01 | Finance — VaR (Basel III/IV) | `\|ΔVaR\| ≤ tolerance` | — |
+| DRIFT-01 | Drift Monitoring | `drift ≤ 5.0%` | MTR-1 anchor ⚓ |
+| ML_BENCH-01 | ML — Classification | `\|Δacc\| ≤ 0.02` + Step Chain | — |
+| DT-FEM-01 | Digital Twin / FEM | `rel_err ≤ 0.02` | MTR-1 anchor ⚓ |
+| ML_BENCH-02 | ML — Regression | `\|ΔRMSE\| ≤ 0.02` | — |
+| ML_BENCH-03 | ML — Time-Series | `\|ΔMAPE\| ≤ 0.02` | — |
+| PHARMA-01 | Pharma — ADMET | `\|Δprop\| ≤ tolerance` | — |
+| FINRISK-01 | Finance — VaR | `\|ΔVaR\| ≤ tolerance` | — |
 | DT-SENSOR-01 | IoT — Sensor Integrity | schema + range + temporal | — |
-| DT-CALIB-LOOP-01 | Digital Twin — Convergence | `drift_pct decreasing + final ≤ threshold` | DRIFT-01 anchor |
+| DT-CALIB-LOOP-01 | Digital Twin — Convergence | `drift_pct decreasing` | DRIFT-01 anchor ⚓ |
 
-Physical anchor applies to: MTR-1/2/3, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP-01.
-Documented in `reports/known_faults.yaml` :: SCOPE_001.
+Physical anchor scope (SCOPE_001): MTR-1/2/3, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP-01 only.
+
+---
+
+## Adversarial proof suite (new 2026-03-17)
+
+**CERT-05 — Adversarial Gauntlet** (`tests/steward/test_cert05_adversarial_gauntlet.py`)
+
+| Attack | What adversary does | Layer that catches |
+|--------|--------------------|--------------------|
+| Strip & Recompute | Remove evidence, rebuild all SHA-256 hashes | Layer 2 (semantic) |
+| Single-Bit Manipulation | Change accuracy 0.94→0.95 (1%) | Layer 3 (step chain) |
+| Cross-Domain Substitution | Submit ML bundle for PHARMA claim | Layer 2 (job_kind) |
+| Canary Laundering | Submit non-authoritative run as authoritative | Layer 2 (canary_mode) |
+| Anchor Chain Reversal | Skip DT-FEM-01, connect MTR-1→DRIFT-01 | Layer 3 (hash mismatch) |
+
+**CERT-06 — Real-World Scenarios** (`tests/steward/test_cert06_real_world_scenarios.py`)
+- Honest Team Verification, Cherry-Picker Caught, Physical Anchor Chain,
+  Real Client Data Audit, Reproducibility Crisis Resolution
 
 ---
 
 ## 5 patentable innovations
 
-1. **Governance-Enforced Bidirectional Claim Coverage** → `steward_audit.py :: _claim_coverage_bidirectional()`
-2. **Tamper-Evident Bundle + Semantic Verification** → `mg.py :: _verify_pack() + _verify_semantic()`
-3. **Policy-Gate Immutable Evidence Anchors** → `mg_policy_gate_policy.json` (locked_paths)
-4. **Dual-Mode Canary Execution Pipeline** → `runner.py :: run_job(canary_mode=True/False)`
-5. **Step Chain + Cross-Claim Cryptographic Chain** → all 14 claims + anchor_hash MTR-1→DT-FEM-01→DRIFT-01
+1. **Bidirectional Claim Coverage** → `steward_audit.py :: _claim_coverage_bidirectional()`
+2. **Tamper-Evident Bundle + Semantic Layer** → `mg.py :: _verify_pack() + _verify_semantic()`
+3. **Policy-Gate Immutable Anchors** → `mg_policy_gate_policy.json`
+4. **Dual-Mode Canary Pipeline** → `runner.py :: run_job(canary_mode=True/False)`
+5. **Step Chain + Cross-Claim Chain** → all 14 claims + anchor_hash MTR-1→DT-FEM-01→DRIFT-01
 
 ---
 
-## Cross-Claim Chain (Physical Anchor Chain)
-
-```
-E = 70 GPa (physical reality — measured in thousands of labs)
-    ↓  MTR-1 calibrates against this
-MTR-1  trace_root_hash: "abc..."
-    ↓  anchor_hash="abc..." baked into DT-FEM-01 Step 1
-DT-FEM-01  trace_root_hash: "def..."
-    ↓  anchor_hash="def..." baked into DRIFT-01 Step 1
-DRIFT-01   trace_root_hash: "ghi..."
-```
-
-Verify full chain: `python scripts/mg.py verify-chain bundle_mtr1/ bundle_dtfem/ bundle_drift/`
-
----
-
-## How to verify everything works
+## How to verify
 
 ```bash
 python scripts/steward_audit.py          # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q               # → 223 passed
-python scripts/deep_verify.py            # → ALL 10 TESTS PASSED ✅
+python -m pytest tests/ -q               # → 282 passed
+python scripts/deep_verify.py            # → ALL 10 TESTS PASSED
 python demos/open_data_demo_01/run_demo.py  # → PASS PASS
+
+# Run adversarial gauntlet
+python -m pytest tests/steward/test_cert05_adversarial_gauntlet.py -v
+python -m pytest tests/steward/test_cert06_real_world_scenarios.py -v
 ```
 
 ---
 
 ## What is next
 
-- [ ] Merge PR #98 (fix/site-full-update-v02) if not yet merged
+- [ ] system_manifest.json test_count → verify 282 after CI
+- [ ] Site crisis section → add adversarial attacks (Attack 1–5)
 - [ ] Non-provisional patent attorney (deadline 2027-03-05)
 - [ ] First paying customer ($299 via email)
 - [ ] r/MachineLearning post, MLOps Community Slack
 - [ ] GitHub Sponsors setup
-- [ ] NLnet NGI0 application (deadline 2026-04-01)
-- [ ] YC S26 application (deadline 2026-05-04)
-- [ ] CDL Vancouver late entry (admissions@creativedestructionlab.com)
-
-## What is done (this session 2026-03-15)
-
-- [x] Step Chain in all 14 claims (execution_trace + trace_root_hash)
-- [x] Cross-Claim Cryptographic Chain (MTR-1 → DT-FEM-01 → DRIFT-01)
-- [x] ML_BENCH-02/03, PHARMA-01, FINRISK-01, DT-SENSOR-01, DT-CALIB-LOOP-01 (6 new claims)
-- [x] deep_verify.py (10-test proof script) in scripts/
-- [x] MVP v0.1 → v0.2 synced in all 22 backend/scripts/tests files
-- [x] All docs audited: ARCHITECTURE, ROADMAP, PROTOCOL, HOW_TO_ADD_CLAIM, USE_CASES
-- [x] system_manifest protocol v0.2
-- [x] known_faults, CLAIMS_DRAFT_v2, USPTO_PPA_TEXT all updated to 223
-- [x] .gitignore temp scripts protected
-- [x] index.html site: 14/223/3/7 all correct
-- [x] canonical_state.md LOCKED in policy gate
+- [ ] NLnet NGI0 (deadline 2026-04-01)
+- [ ] YC S26 (deadline 2026-05-04)
+- [ ] Follow-up all 21 outreach with CERT-05 gauntlet link
 
 ---
 
-## Outreach tracker
+## Outreach tracker (21 sent + 8 new wave-2 drafts)
 
 | Name | Email | Status |
 |------|-------|--------|
-| Tongqi Wen (ElaTBot) | tongqwen@gmail.com | Sent 2026-03-05 |
-| Giovanni Pizzi (PSI/AiiDA) | giovanni.pizzi@psi.ch | Sent 2026-03-07 |
-| Brian Nosek (UVA/COS) | ban2b@virginia.edu | Sent 2026-03-07 |
-| Peter Coveney (UCL) | p.v.coveney@ucl.ac.uk | Sent 2026-03-08 |
-| Arvind Narayanan (Princeton) | arvindn@cs.princeton.edu | Sent 2026-03-08 |
+| Tongqi Wen | tongqwen@gmail.com | Sent 2026-03-05 |
+| Giovanni Pizzi | giovanni.pizzi@psi.ch | Sent 2026-03-07 |
+| Brian Nosek | ban2b@virginia.edu | Sent + follow-up |
+| Peter Coveney | p.v.coveney@ucl.ac.uk | Sent + follow-up |
+| Arvind Narayanan | arvindn@cs.princeton.edu | Sent + follow-up |
 | Jeffrey Ip (Confident AI) | jeffreyip@confident-ai.com | Sent 2026-03-11 |
-| Elena Samuylova (Evidently AI) | founders@evidentlyai.com | Sent 2026-03-11 — NO SUBJECT — resend needed |
-| Jonah Cool (Anthropic) | jonah@anthropic.com | Sent 2026-03-12 |
-| Anand Kannappan (Patronus AI) | anand@patronus.ai | Sent 2026-03-15 |
-| Vikram Chatterji (Galileo AI) | vikram@galileo.ai | Sent 2026-03-15 |
-| Woody Sherman (PsiThera) | woody.sherman@psithera.com | Sent 2026-03-15 |
-| Jonathan Godwin (Orbital) | jonathan@orbitalmaterials.com | Sent 2026-03-15 |
-| Joelle Pineau (McGill) | jpineau@cs.mcgill.ca | Sent 2026-03-15 |
-| Stella Biderman (EleutherAI) | stella@eleuther.ai | Sent 2026-03-15 |
-| Koustuv Sinha (Meta FAIR) | koustuv.sinha@gmail.com | Sent 2026-03-15 |
-| Victoria Stodden (USC) | stodden@usc.edu | Sent 2026-03-15 |
-| Sayash Kapoor (Princeton) | sayashk@princeton.edu | Sent 2026-03-15 |
-| MLRC Princeton | ailab@princeton.edu | Sent 2026-03-15 |
-| Papers With Code | hello@paperswithcode.com | Sent 2026-03-15 |
-| Anthropic OSS Program | form submitted | 2026-03-15 |
-| Anthropic Partner Network | contact sales form | 2026-03-15 |
+| Elena Samuylova | founders@evidentlyai.com | Sent 2026-03-16 |
+| Jonah Cool (Anthropic) | jonah@anthropic.com | Sent + follow-up |
+| Anand Kannappan (Patronus AI) | anand@patronus.ai | Sent 2026-03-16 |
+| Vikram Chatterji (Galileo AI) | vikram@galileo.ai | Sent 2026-03-16 |
+| Woody Sherman (PsiThera) | woody.sherman@psithera.com | Sent 2026-03-16 |
+| Jonathan Godwin (Orbital) | jonathan@orbitalmaterials.com | Sent 2026-03-16 |
+| Joelle Pineau (McGill) | jpineau@cs.mcgill.ca | Sent 2026-03-16 |
+| Stella Biderman (EleutherAI) | stella@eleuther.ai | Sent 2026-03-16 |
+| Koustuv Sinha (Meta FAIR) | koustuv.sinha@gmail.com | Sent 2026-03-16 |
+| Victoria Stodden (USC) | stodden@usc.edu | Sent 2026-03-16 |
+| Sayash Kapoor (Princeton) | sayashk@princeton.edu | Sent 2026-03-16 |
+| MLRC Princeton | ailab@princeton.edu | Sent 2026-03-16 |
+| Papers With Code | hello@paperswithcode.com | Sent 2026-03-16 |
+| Anthropic OSS Program | form | Submitted 2026-03-16 |
+| Anthropic Partner Network | contact sales | Submitted 2026-03-16 |
+| François Chollet | chollet@google.com | Draft (wave-2) |
+| LMArena | support@lmarena.ai | Draft (wave-2) |
+| Percy Liang (HELM) | pliang@cs.stanford.edu | Draft (wave-2) |
+| Colin White (LiveBench) | colinarwhite@gmail.com | Draft (wave-2) |
+| EU AI Office | ai-office@ec.europa.eu | Draft (wave-2) |
+| FDA Digital Health | digital.health@fda.hhs.gov | Draft (wave-2) |
+| Sebastian Raschka | mail@sebastianraschka.com | Draft (wave-2) |
+| Weights & Biases | support@wandb.com | Draft (wave-2) |
 
 *All outreach from yehor@metagenesis-core.dev (Zoho), NOT Gmail.*
 
 ---
 
-*Updated: 2026-03-16 | Maintained by: Yehor Bazhynov*
-*Next update: after first paying customer or Anthropic response*
+*Updated: 2026-03-17 | Next update: first response or first client*
