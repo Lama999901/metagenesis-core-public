@@ -63,10 +63,20 @@ write_operations_file.py
 write_ops.py
 
 # Claude Project Knowledge (internal — not for public repo)
+# These files are Claude session context, not public protocol docs
 CLAUDE_PROJECT_MASTER*.md
 EVOLUTION_LOG.md
 NEXT_CHAT_HANDOFF.md
+NEXT_CHAT_PRIMER.md
 TRANSFER_PROMPT*.md
 METAGENESIS_FULL_AUDIT*.md
 METAGENESIS_OPERATIONS.md
 AUDIT_PROTOCOL.md
+AUDIT_PROTOCOL_v*.md
+DECISION_LOG.md
+PROJECT_AUDIT_*.md
+DEBUG_*.py
+debug_*.py
+check_*.py
+final_sweep.py
+phase_registry.json

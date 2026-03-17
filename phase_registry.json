@@ -1,6 +1,0 @@
-{
-  "note": "Phase registry is maintained in reports/phase_registry_v0_1.md",
-  "active_phases": ["verification_core"],
-  "locked_phase": 42,
-  "see": "reports/phase_registry_v0_1.md"
-}
