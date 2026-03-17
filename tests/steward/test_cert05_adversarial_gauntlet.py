@@ -173,23 +173,35 @@ class TestAdversarialGauntlet:
         js = JobStore()
         ls = LedgerStore(file_path=str(source_dir / "ledger.jsonl"))
         runner = ProgressRunner(job_store=js, ledger_store=ls)
-        payload = {"kind": JOB_KIND, "seed": 42, "E_true": 70e9,
-                   "n_points": 30, "max_strain": 0.002}
+        # Use same payload format as test_cert02 (proven to work with pack builder)
+        payload = {
+            "kind": JOB_KIND,
+            "dataset_relpath": "tests/fixtures/data01/al6061_stress_strain_sample.csv",
+            "elastic_strain_max": 0.002,
+            "uq_samples": 50,
+            "uq_seed": 42,
+        }
         job = runner.create_job(payload=payload)
         runner.run_job(job.job_id, canary_mode=False)
         runner.run_job(job.job_id, canary_mode=True)
 
-        subprocess.run([sys.executable, str(_ROOT / "scripts/mg.py"),
-                        "pack", "build", "--output", str(pack_out),
-                        "--include-evidence",
-                        "--source-reports-dir", str(source_dir)],
-                       capture_output=True, text=True, cwd=str(_ROOT),
-                       env={**os.environ,
-                            "MG_PROGRESS_ARTIFACT_DIR": str(source_dir)})
+        pack_result = subprocess.run(
+            [sys.executable, str(_ROOT / "scripts/mg.py"),
+             "pack", "build", "--output", str(pack_out),
+             "--include-evidence",
+             "--source-reports-dir", str(source_dir)],
+            capture_output=True, text=True, cwd=str(_ROOT),
+            env={**os.environ, "MG_PROGRESS_ARTIFACT_DIR": str(source_dir)}
+        )
 
         # Find run_artifact in pack
         art_path = pack_out / "evidence" / "MTR-1" / "normal" / "run_artifact.json"
-        assert art_path.exists(), "Pack build failed — no run_artifact"
+        assert art_path.exists(), (
+            f"Pack build failed — no run_artifact.\n"
+            f"rc={pack_result.returncode}\n"
+            f"stdout={pack_result.stdout[:500]}\n"
+            f"stderr={pack_result.stderr[:500]}"
+        )
 
         # ATTACK: strip job_snapshot, rebuild hashes
         data = json.loads(art_path.read_text())
