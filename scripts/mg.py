@@ -473,6 +473,55 @@ def main():
     claim_run.add_argument("--mode", choices=("normal", "canary", "both"), default="both")
     claim_run.set_defaults(func=cmd_claim_run_mtr1)
 
+    # --- sign subcommand (Innovation #6) ---
+    sign_cmd = sub.add_parser("sign", help="Bundle signing (Innovation #6)")
+    sign_sub = sign_cmd.add_subparsers(dest="command", required=True)
+
+    sign_keygen = sign_sub.add_parser("keygen", help="Generate signing key")
+    sign_keygen.add_argument("--out", "-o", required=True, help="Output key file (.json)")
+
+    sign_bundle_cmd = sign_sub.add_parser("bundle", help="Sign a bundle")
+    sign_bundle_cmd.add_argument("--pack", "-p", required=True, help="Bundle directory")
+    sign_bundle_cmd.add_argument("--key", "-k", required=True, help="Signing key file")
+
+    sign_verify_cmd = sign_sub.add_parser("verify", help="Verify bundle signature")
+    sign_verify_cmd.add_argument("--pack", "-p", required=True, help="Bundle directory")
+    sign_verify_cmd.add_argument("--key", "-k", default=None, help="Signing key (full HMAC)")
+    sign_verify_cmd.add_argument("--fingerprint", "-f", default=None, help="Key fingerprint only")
+
+    def _cmd_sign_keygen(a):
+        from scripts.mg_sign import generate_key
+        import json as _j
+        key = generate_key()
+        Path(a.out).write_text(_j.dumps(key, indent=2), encoding="utf-8")
+        print(f"Signing key: {a.out}")
+        print(f"Fingerprint: {key['fingerprint']}")
+        print("KEEP KEY SECRET. Share only the fingerprint.")
+        return 0
+
+    def _cmd_sign_bundle(a):
+        from scripts.mg_sign import sign_bundle
+        import json as _j
+        sig = sign_bundle(Path(a.pack), Path(a.key))
+        print(f"SIGNED")
+        print(f"  root_hash:       {sig['signed_root_hash']}")
+        print(f"  key_fingerprint: {sig['key_fingerprint']}")
+        return 0
+
+    def _cmd_sign_verify(a):
+        from scripts.mg_sign import verify_bundle_signature
+        ok, msg = verify_bundle_signature(
+            Path(a.pack),
+            key_path=Path(a.key) if a.key else None,
+            expected_fingerprint=getattr(a, 'fingerprint', None),
+        )
+        print(msg)
+        return 0 if ok else 1
+
+    sign_keygen.set_defaults(func=_cmd_sign_keygen)
+    sign_bundle_cmd.set_defaults(func=_cmd_sign_bundle)
+    sign_verify_cmd.set_defaults(func=_cmd_sign_verify)
+
     args = ap.parse_args()
     return args.func(args)
 
