@@ -2,7 +2,10 @@
 # Inventor: Yehor Bazhynov
 # Filing type: Pro Se Provisional Patent Application (PPA)
 # Date prepared: 2026-03-04
-# Authority: steward_audit.py PASS + test_cert02 PASS + 91 tests PASS
+# Authority: steward_audit.py PASS + test_cert02 PASS + 223 tests PASS
+# Amendment note (2026-03-15): Step Chain in all 14 claims, Cross-Claim Chain,
+#   6 new claims (ML_BENCH-02/03, PHARMA-01, FINRISK-01, DT-SENSOR-01, DT-CALIB-LOOP-01)
+#   verify-chain CLI, anchor_hash validation. 223 tests total.
 # Amendment note (2026-03-09): locked_paths populated — 5 sealed paths active
 # Amendment note (2026-03-10): locked_paths updated — scripts/mg_policy_gate_policy.json
 #   removed from locked_paths (self_seal_removed: operational deadlock prevention).
@@ -332,6 +335,6 @@ Not applicable.
 ---
 
 *Prepared by: Yehor Bazhynov (Inventor, Pro Se)*
-*Based on: verified codebase, steward_audit PASS 2026-03-03,*
-*test_cert02 adversarial tamper PASS, 91 tests PASS*
+*Based on: verified codebase, steward_audit PASS 2026-03-15,*
+*test_cert02 adversarial tamper PASS, 223 tests PASS, 14 active claims*
 *No invented features. Every section traceable to passing tests.*

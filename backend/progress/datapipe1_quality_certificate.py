@@ -4,7 +4,7 @@ DATA-PIPE-01 Dataset Quality Certificate.
 
 Deterministic dataset integrity + quality checks. Fingerprint, schema, ranges.
 Stdlib only. No network. No heavy deps.
-# Part of MetaGenesis Core verification pipeline (MVP v0.1)
+# Part of MetaGenesis Core verification pipeline (MVP v0.2)
 """
 
 import csv

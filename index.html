@@ -79,7 +79,7 @@ p, li, .cmp-feat, .faq-a, .faq-a p,
 }
 /* ══ CURSOR SYSTEM ══ */
 :root{--cc:#00e5ff;--cc2:rgba(0,229,255,.55)}
-body.cur-hover{--cc:#00ff99;--cc2:rgba(0,255,172,.55)}
+body.cur-hover{--cc:#00ff99;--cc2:rgba(0,255,223,.55)}
 /* Center diamond */
 #cur{position:fixed;pointer-events:none;z-index:9999;
   width:5px;height:5px;
@@ -150,8 +150,8 @@ nav::before{content:'';position:absolute;inset:0;background:rgba(3,6,13,.92);bac
 .hline{display:block;overflow:hidden}
 .hspan{display:block;font-family:var(--fd);font-size:clamp(76px,10.8vw,184px);font-weight:900;line-height:.88;letter-spacing:-.04em}
 /* ── PROOF: верификационная развёртка сверху вниз ── */
-.word-proof .hspan{color:#00ff99;position:relative;overflow:hidden;animation:proofglow 4s 3s ease-in-out infinite;text-shadow:0 0 60px rgba(0,255,172,.35),0 0 120px rgba(0,255,172,.15)}
-.word-proof .hspan::after{content:'';position:absolute;left:-3%;width:106%;top:-5%;height:2px;background:linear-gradient(90deg,transparent,rgba(0,255,172,.85) 25%,rgba(0,255,172,1) 50%,rgba(0,255,172,.85) 75%,transparent);box-shadow:0 0 12px rgba(0,255,172,.6),0 0 28px rgba(0,255,172,.25);animation:proofscan 3.8s 1.6s ease-in-out infinite;pointer-events:none}
+.word-proof .hspan{color:#00ff99;position:relative;overflow:hidden;animation:proofglow 4s 3s ease-in-out infinite;text-shadow:0 0 60px rgba(0,255,223,.35),0 0 120px rgba(0,255,223,.15)}
+.word-proof .hspan::after{content:'';position:absolute;left:-3%;width:106%;top:-5%;height:2px;background:linear-gradient(90deg,transparent,rgba(0,255,223,.85) 25%,rgba(0,255,223,1) 50%,rgba(0,255,223,.85) 75%,transparent);box-shadow:0 0 12px rgba(0,255,223,.6),0 0 28px rgba(0,255,223,.25);animation:proofscan 3.8s 1.6s ease-in-out infinite;pointer-events:none}
 @keyframes proofscan{0%{top:-5%;opacity:0}7%{opacity:1}78%{top:110%;opacity:.7}88%,100%{top:110%;opacity:0}}
 /* ── NOT: цветной глитч-дублирование ── */
 .word-not   .hspan{color:rgba(0,229,255,.82);position:relative;animation:notglow 5s 2s ease-in-out infinite;text-shadow:0 0 50px rgba(0,229,255,.28),0 0 100px rgba(0,229,255,.10)}
@@ -161,7 +161,7 @@ nav::before{content:'';position:absolute;inset:0;background:rgba(3,6,13,.92);bac
 @keyframes gl2{0%,91%,100%{opacity:0;transform:none}92%{opacity:.78;transform:translateX(5px) skewX(1.5deg)}94%{opacity:.78;transform:translateX(-2.5px)}95.5%{opacity:0}}
 /* ── TRUST: перечёркивание ── */
 .word-trust .hspan{color:rgba(255,50,80,.42);position:relative;text-shadow:0 0 60px rgba(255,50,80,.25),0 0 120px rgba(255,50,80,.10)}
-@keyframes proofglow{0%,100%{text-shadow:0 0 40px rgba(0,255,172,.15),0 0 80px rgba(0,255,172,.07)}50%{text-shadow:0 0 80px rgba(0,255,172,.5),0 0 200px rgba(0,255,172,.2)}}
+@keyframes proofglow{0%,100%{text-shadow:0 0 40px rgba(0,255,223,.15),0 0 80px rgba(0,255,223,.07)}50%{text-shadow:0 0 80px rgba(0,255,223,.5),0 0 200px rgba(0,255,223,.2)}}
 @keyframes notglow{0%,100%{text-shadow:0 0 50px rgba(0,229,255,.20),0 0 100px rgba(0,229,255,.08)}50%{text-shadow:0 0 80px rgba(0,229,255,.45),0 0 160px rgba(0,229,255,.18)}}
 .word-trust .hspan::after{content:'';position:absolute;top:50%;left:-1%;width:0;height:3px;background:linear-gradient(90deg,transparent 0%,rgba(255,50,80,.5) 5%,rgba(255,50,80,.65) 50%,rgba(255,50,80,.5) 95%,transparent 100%);box-shadow:0 0 12px rgba(255,50,80,.35),0 0 30px rgba(255,50,80,.15);transform:translateY(-50%);animation:strike .48s cubic-bezier(.77,0,.18,1) 1.4s forwards}
 @keyframes strike{from{width:0;opacity:0}3%{opacity:1}to{width:102%;opacity:1}}
@@ -199,7 +199,7 @@ body.mg-ready .word-trust .hspan{animation:slidein .85s .31s cubic-bezier(.16,1,
 .btn-g{font-family:var(--fd);font-size:11px;font-weight:700;padding:16px 32px;background:transparent;color:var(--txt3);border:1px solid var(--ln2);cursor:pointer;text-decoration:none;letter-spacing:.06em;text-transform:uppercase;display:inline-block;transition:all .2s}
 .btn-g:hover{border-color:var(--c3);color:var(--txt);transform:translateY(-3px)}
 .btn-green{font-family:var(--fd);font-size:11px;font-weight:700;padding:16px 32px;background:#00ff99;color:#000;border:none;cursor:pointer;text-decoration:none;letter-spacing:.06em;text-transform:uppercase;display:inline-block;transition:transform .2s,box-shadow .2s;position:relative}
-.btn-green:hover{transform:translateY(-3px);box-shadow:0 12px 48px rgba(0,255,172,.5)}
+.btn-green:hover{transform:translateY(-3px);box-shadow:0 12px 48px rgba(0,255,223,.5)}
 .hero-pitch{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:rgba(238,247,251,.42);margin-bottom:20px;display:flex;align-items:center;gap:8px;font-family:var(--fm);flex-wrap:wrap;row-gap:6px}
 .hero-pitch span{color:var(--ok);font-weight:600}
 .hero-pitch .hp-arr{color:rgba(238,247,251,.2)}
@@ -291,7 +291,7 @@ h2 .hr::after{
   top:52%;
   height:2.5px;
   background:linear-gradient(90deg,transparent 0%,#00ff99 12%,#00ff99 88%,transparent 100%);
-  box-shadow:0 0 10px rgba(0,255,172,.9),0 0 28px rgba(0,255,172,.4);
+  box-shadow:0 0 10px rgba(0,255,223,.9),0 0 28px rgba(0,255,223,.4);
   transform-origin:left center;
   animation:hr-strike 5.5s ease-in-out infinite;
   pointer-events:none;
@@ -354,17 +354,17 @@ h2.vis .hg::after{
   position:absolute; left:-3%; width:106%; top:-5%; height:3px;
   background:linear-gradient(90deg,
     transparent,
-    rgba(0,255,172,.85) 25%,
-    rgba(0,255,172,1)   50%,
-    rgba(0,255,172,.85) 75%,
+    rgba(0,255,223,.85) 25%,
+    rgba(0,255,223,1)   50%,
+    rgba(0,255,223,.85) 75%,
     transparent);
-  box-shadow:0 0 14px rgba(0,255,172,.7), 0 0 32px rgba(0,255,172,.32);
+  box-shadow:0 0 14px rgba(0,255,223,.7), 0 0 32px rgba(0,255,223,.32);
   animation:span-proofscan 3.8s ease-in-out infinite;
   pointer-events:none;
 }
 @keyframes hg-glow{
-  0%,100%{text-shadow:0 0 40px rgba(0,255,172,.15),0 0 80px rgba(0,255,172,.07)}
-  50%{text-shadow:0 0 80px rgba(0,255,172,.55),0 0 200px rgba(0,255,172,.22)}
+  0%,100%{text-shadow:0 0 40px rgba(0,255,223,.15),0 0 80px rgba(0,255,223,.07)}
+  50%{text-shadow:0 0 80px rgba(0,255,223,.55),0 0 200px rgba(0,255,223,.22)}
 }
 @keyframes span-proofscan{
   0%{top:-5%;opacity:0}
@@ -535,7 +535,7 @@ h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
 .claim:hover{background:rgba(0,229,255,.03)}.claim:hover::before{transform:scaleX(1)}
 .claim.new-claim{background:rgba(0,229,255,.04)}.claim.new-claim::before{transform:scaleX(1);opacity:.7}
 .claimid{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--c)}
-.claimid-badge{font-size:8px;letter-spacing:.12em;padding:2px 7px;margin-left:10px;color:var(--ok);border:1px solid rgba(0,255,172,.3);background:rgba(0,255,172,.05);vertical-align:middle;text-transform:uppercase}
+.claimid-badge{font-size:8px;letter-spacing:.12em;padding:2px 7px;margin-left:10px;color:var(--ok);border:1px solid rgba(0,255,223,.3);background:rgba(0,255,223,.05);vertical-align:middle;text-transform:uppercase}
 .claimdomain{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3)}
 .claimname{font-size:14px;color:var(--txt);font-weight:400;line-height:1.4}
 .claimth{font-size:11px;color:var(--txt3);font-family:var(--fm);padding:8px 12px;background:var(--ink2);border:1px solid var(--ln);margin-top:4px}
@@ -551,7 +551,7 @@ h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
 .gov{border:1px solid var(--ln2);overflow:hidden}
 .govh{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:var(--ink2);border-bottom:1px solid var(--ln)}
 .govhl{font-size:12px;color:var(--txt3)}
-.govbadge{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ok);border:1px solid rgba(0,255,172,.3);background:rgba(0,255,172,.08);padding:4px 12px}
+.govbadge{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ok);border:1px solid rgba(0,255,223,.3);background:rgba(0,255,223,.08);padding:4px 12px}
 .govb{padding:24px;display:flex;flex-direction:column;gap:10px}
 .govb>div{font-size:12px;line-height:1.7}
 .tdm{color:var(--txt3)}.tok{color:var(--ok)}
@@ -620,8 +620,8 @@ h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
 .fn-proof .fn-span::after{
   content:'';
   position:absolute;left:-3%;width:106%;top:-5%;height:2px;
-  background:linear-gradient(90deg,transparent,rgba(0,255,172,.85) 25%,rgba(0,255,172,1) 50%,rgba(0,255,172,.85) 75%,transparent);
-  box-shadow:0 0 12px rgba(0,255,172,.6),0 0 28px rgba(0,255,172,.25);
+  background:linear-gradient(90deg,transparent,rgba(0,255,223,.85) 25%,rgba(0,255,223,1) 50%,rgba(0,255,223,.85) 75%,transparent);
+  box-shadow:0 0 12px rgba(0,255,223,.6),0 0 28px rgba(0,255,223,.25);
   animation:proofscan 3.8s 1.6s ease-in-out infinite;
   pointer-events:none;
 }
@@ -664,7 +664,7 @@ h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
   top:52%;left:-1%;
   width:0;height:3px;
   background:linear-gradient(90deg,transparent 0%,#00ff99 5%,#00ff99 95%,transparent 100%);
-  box-shadow:0 0 12px rgba(0,255,172,.9),0 0 32px rgba(0,255,172,.5);
+  box-shadow:0 0 12px rgba(0,255,223,.9),0 0 32px rgba(0,255,223,.5);
   transform:translateY(-50%);
   animation:fn-strike .65s cubic-bezier(.77,0,.18,1) 1.4s forwards;
 }
@@ -720,7 +720,7 @@ a[href*=".py"]:hover{border-bottom-color:var(--c);opacity:.82}
 /* Test files → green (overrides .py) */
 a[href*="/tests/"]{
   color:var(--ok);
-  border-bottom:1px solid rgba(0,255,172,.25);
+  border-bottom:1px solid rgba(0,255,223,.25);
 }
 a[href*="/tests/"]:hover{border-bottom-color:var(--ok)}
 /* JSON → amber */
@@ -763,10 +763,10 @@ a[href*="/demos/"]:hover{border-bottom-color:#5dd8d8}
 .ptitle a:hover{background:rgba(0,229,255,.12)!important;border-color:rgba(0,229,255,.45)!important}
 .ptitle a[href*=".json"]:hover{background:rgba(255,179,71,.12)!important;border-color:#ffb347!important}
 /* Governance heading link */
-.govhl a{font-family:var(--fm);color:var(--ok);border-bottom:1px solid rgba(0,255,172,.25)}
+.govhl a{font-family:var(--fm);color:var(--ok);border-bottom:1px solid rgba(0,255,223,.25)}
 .govhl a:hover{border-bottom-color:var(--ok)}
 /* note-block inline file link */
-.note-block a{color:var(--ok);border-bottom:1px solid rgba(0,255,172,.25)}
+.note-block a{color:var(--ok);border-bottom:1px solid rgba(0,255,223,.25)}
 .note-block a code{color:inherit!important}
 .note-block a:hover{border-bottom-color:var(--ok)}
 /* FAQ prose links */
@@ -844,86 +844,57 @@ p,li,.cmp-feat,.faq-a,.faq-a p,.uc p,.ppc p,.reg p,.reg li,
 /* Site-map overlay links — keep as-is, no file styling */
 .mo-col a{border-bottom:none}
 /* ════════════════════════════════════════
-   CUSTOM CURSOR — verification reticle
+   CURSOR — precision crosshair, no lag
 ════════════════════════════════════════ */
 *{cursor:none!important}
-#cur-dot,#cur-ring{
+#mg-cur{
   position:fixed;top:0;left:0;
   pointer-events:none;
   z-index:99999;
-  border-radius:50%;
+  width:0;height:0;
   will-change:transform;
 }
-#cur-dot{
-  width:5px;height:5px;
-  background:var(--c);
-  box-shadow:0 0 6px var(--c);
-  transform:translate(-50%,-50%);
-  transition:background .18s,box-shadow .18s,transform .1s;
-}
-#cur-ring{
-  width:28px;height:28px;
-  border:1.5px solid rgba(0,229,255,.55);
-  box-shadow:0 0 0 0 rgba(0,229,255,0);
-  transform:translate(-50%,-50%);
-  transition:width .22s cubic-bezier(.16,1,.3,1),
-             height .22s cubic-bezier(.16,1,.3,1),
-             border-color .22s,
-             box-shadow .22s,
-             opacity .22s;
-  opacity:.7;
-}
-/* 4 corner tick marks on the ring */
-#cur-ring::before,#cur-ring::after{
+#mg-cur::before{
   content:'';
   position:absolute;
+  width:4px;height:4px;
   background:var(--c);
-  transition:background .22s;
+  border-radius:50%;
+  box-shadow:0 0 6px var(--c);
+  transform:translate(-50%,-50%);
+  transition:background .15s,box-shadow .15s,transform .1s;
 }
-#cur-ring::before{
-  top:-1px;left:50%;
-  width:1px;height:5px;
-  transform:translateX(-50%);
-  box-shadow:0 calc(28px - 3px) 0 var(--c);
+#mg-cur::after{
+  content:'';
+  position:absolute;
+  width:18px;height:18px;
+  transform:translate(-50%,-50%);
+  background:
+    linear-gradient(var(--c),var(--c)) center/1px 100% no-repeat,
+    linear-gradient(var(--c),var(--c)) center/100% 1px no-repeat;
+  opacity:.45;
+  transition:opacity .15s,width .15s,height .15s,background .15s;
 }
-#cur-ring::after{
-  left:-1px;top:50%;
-  height:1px;width:5px;
-  transform:translateY(-50%);
-  box-shadow:calc(28px - 3px) 0 0 var(--c);
-}
-/* Hover state — locked on */
-body.cur-hover #cur-dot{
+body.cur-hover #mg-cur::before{
   background:var(--ok);
-  box-shadow:0 0 10px var(--ok),0 0 22px rgba(0,255,172,.35);
+  box-shadow:0 0 8px var(--ok),0 0 18px rgba(0,255,223,.3);
   transform:translate(-50%,-50%) scale(1.6);
 }
-body.cur-hover #cur-ring{
-  width:42px;height:42px;
-  border-color:rgba(0,255,172,.75);
-  box-shadow:0 0 16px rgba(0,255,172,.18);
-  opacity:1;
+body.cur-hover #mg-cur::after{
+  background:
+    linear-gradient(var(--ok),var(--ok)) center/1px 100% no-repeat,
+    linear-gradient(var(--ok),var(--ok)) center/100% 1px no-repeat;
+  opacity:.8;width:20px;height:20px;
 }
-body.cur-hover #cur-ring::before{
-  background:var(--ok);
-  box-shadow:0 calc(42px - 3px) 0 var(--ok);
+body.cur-err #mg-cur::before{background:var(--err);box-shadow:0 0 8px var(--err)}
+body.cur-err #mg-cur::after{
+  background:
+    linear-gradient(var(--err),var(--err)) center/1px 100% no-repeat,
+    linear-gradient(var(--err),var(--err)) center/100% 1px no-repeat;
+  opacity:.65;
 }
-body.cur-hover #cur-ring::after{
-  background:var(--ok);
-  box-shadow:calc(42px - 3px) 0 0 var(--ok);
-}
-/* Click flash */
-body.cur-click #cur-ring{
-  width:18px;height:18px;
-  opacity:1;
-  border-color:rgba(0,255,172,1);
-  box-shadow:0 0 28px rgba(0,255,172,.55);
-}
-/* Err hover — red targets */
-body.cur-err #cur-dot{background:var(--err);box-shadow:0 0 10px var(--err)}
-body.cur-err #cur-ring{border-color:rgba(255,64,96,.7);box-shadow:0 0 14px rgba(255,64,96,.2)}
-body.cur-err #cur-ring::before{background:var(--err);box-shadow:0 calc(28px - 3px) 0 var(--err)}
-body.cur-err #cur-ring::after{background:var(--err);box-shadow:calc(28px - 3px) 0 0 var(--err)}
+body.cur-click #mg-cur::before{transform:translate(-50%,-50%) scale(.35);box-shadow:0 0 14px var(--c)}
+@media(max-width:768px){#mg-cur{display:none}*{cursor:auto!important}}
 /* Segment chip links */
 .seg-chip{cursor:pointer}
 a.seg-chip{text-decoration:none;display:inline-block}
@@ -1069,14 +1040,46 @@ a.soon-chip{border-bottom:none!important}
 .cno{color:var(--err);font-size:16px}
 .cpart{color:var(--txt3);font-size:10px;letter-spacing:.06em}
 /* mobile compare table — handled by FIX 5 above */
-.regrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln)}
-.reg{background:rgba(7,12,31,.85);padding:40px 36px;display:flex;flex-direction:column;gap:14px;transition:background .2s}
-.reg:hover{background:var(--ink1)}
+/* sec-dark — усиленный backdrop для pitch и regulatory */
+.sec-dark{
+  position:relative;
+}
+.sec-dark::after{
+  content:'';
+  position:absolute;
+  inset:-80px -160px;
+  background:radial-gradient(
+    ellipse 60% 55% at 50% 50%,
+    rgba(3,6,18,.95) 0%,
+    rgba(3,6,18,.85) 25%,
+    rgba(3,6,18,.60) 45%,
+    rgba(3,6,18,.25) 65%,
+    transparent 80%
+  );
+  pointer-events:none;
+  z-index:-1;
+}
+.regrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln);border-radius:4px;overflow:hidden}
+.reg{background:rgba(5,10,26,.92);padding:44px 40px;display:flex;flex-direction:column;gap:14px;transition:background .2s;position:relative;overflow:hidden}
+.reg::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;transition:opacity .3s;opacity:0}
+.reg:first-child::before{background:linear-gradient(90deg,transparent,rgba(0,229,255,.6),transparent)}
+.reg:nth-child(2)::before{background:linear-gradient(90deg,transparent,rgba(255,100,100,.5),transparent)}
+.reg:last-child::before{background:linear-gradient(90deg,transparent,rgba(255,180,70,.5),transparent)}
+.reg:hover{background:rgba(7,14,34,.98)}
+.reg:hover::before{opacity:1}
+.reg-header-row{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .reg-badge{display:inline-block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--c);border:1px solid var(--c3);background:var(--c2);padding:4px 12px;width:fit-content}
+.reg-deadline{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,200,100,.7);font-family:var(--fm)}
 .reg-scope{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3)}
 .reg h3{font-family:var(--fd);font-size:16px;font-weight:700;letter-spacing:-.01em;line-height:1.3}
-.reg p{font-size:13px;color:var(--txt2);line-height:1.75;font-weight:300}
+.reg p{font-size:13px;color:var(--txt2);line-height:1.82;font-weight:300}
+.reg p strong{color:var(--txt);font-weight:500}
 .reg-claim{font-size:10px;letter-spacing:.08em;color:var(--txt3);padding-top:12px;border-top:1px solid var(--ln);margin-top:auto}
+.reg-claim-block{margin-top:auto;padding-top:16px;border-top:1px solid var(--ln)}
+.reg-claim-title{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);margin-bottom:10px}
+.reg-claim-chips{display:flex;flex-wrap:wrap;gap:6px}
+a.reg-chip{font-family:var(--fm);font-size:10px;letter-spacing:.06em;color:var(--c);border:1px solid rgba(0,229,255,.2);background:rgba(0,229,255,.04);padding:3px 10px;text-decoration:none;transition:border-color .18s,background .18s;border-radius:2px}
+a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 .reg-note{font-size:11px;color:var(--txt3);margin-top:20px;padding:14px 20px;border:1px solid var(--ln);background:var(--ink2);line-height:1.6}
 @media(max-width:900px){.regrid{grid-template-columns:1fr}}
 .pricegrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln)}
@@ -1089,6 +1092,10 @@ a.soon-chip{border-bottom:none!important}
 .price-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;flex:1}
 .price-list li{font-size:12px;color:var(--txt2);padding-left:18px;position:relative;line-height:1.5}
 .price-list li::before{content:'\2192';position:absolute;left:0;color:var(--c);font-size:11px}
+.price-pay-options{display:flex;flex-direction:column;gap:8px;margin-top:auto}
+.price-pay-note{font-family:var(--fm);font-size:10px;letter-spacing:.06em;color:var(--txt3);text-align:center;padding-top:2px}
+.price-pay-note::before{content:'⎯⎯  ';opacity:.4}
+.price-pay-note::after{content:'  ⎯⎯';opacity:.4}
 .price-btn-primary,.price-btn-secondary{display:inline-block;padding:14px 24px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;font-family:var(--fd);font-weight:700;text-align:center;transition:all .2s;margin-top:8px}
 .price-btn-primary{background:var(--c);color:#000}
 .price-btn-primary:hover{background:#fff}
@@ -1183,7 +1190,7 @@ a.soon-chip{border-bottom:none!important}
 .vrf-line.err{color:var(--err)}
 .vrf-line.info{color:var(--c)}
 .vrf-line.muted{color:var(--txt3);font-size:11px}
-.vrf-result-pass{margin-top:12px;padding:14px 18px;border:1px solid rgba(0,255,172,.3);background:rgba(0,255,172,.06);color:var(--ok);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.vrf-result-pass{margin-top:12px;padding:14px 18px;border:1px solid rgba(0,255,223,.3);background:rgba(0,255,223,.06);color:var(--ok);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
 .vrf-result-fail{margin-top:12px;padding:14px 18px;border:1px solid rgba(255,64,96,.3);background:rgba(255,64,96,.06);color:var(--err);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
 @media(max-width:900px){.vrf-body{grid-template-columns:1fr}.vrf-claim-btns{width:100%;flex-wrap:wrap}.vrf-claim-btn{min-width:calc(50% - 1px)}}
 @media(max-width:600px){.vrf-selector{padding:20px}.vrf-inputs{padding:24px}.vrf-term-body{min-height:240px}}
@@ -1291,7 +1298,7 @@ a.soon-chip{border-bottom:none!important}
 .origin{position:relative;z-index:10;background:rgba(5,9,22,0.72);border-top:1px solid var(--ln);border-bottom:1px solid var(--ln)}
 .origin-inner{max-width:1100px;margin:0 auto;padding:100px 52px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;position:relative;z-index:1}
 /* dark text-area panel inside origin */
-.origin-inner::before{content:'';position:absolute;inset:-30px -60px;background:radial-gradient(ellipse 92% 104% at 50% 50%,rgba(4,8,26,.95) 0%,rgba(4,8,26,.80) 40%,rgba(4,8,26,.40) 70%,transparent 100%);pointer-events:none;z-index:-1}
+.origin-inner::before{content:'';position:absolute;inset:-80px -140px;background:radial-gradient(ellipse 65% 60% at 50% 50%,rgba(4,8,26,.95) 0%,rgba(4,8,26,.80) 30%,rgba(4,8,26,.50) 50%,rgba(4,8,26,.20) 68%,transparent 85%);pointer-events:none;z-index:-1}
 .origin-quote{position:relative;padding-left:28px;padding-top:8px}
 .origin-quote::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(var(--c),transparent)}
 .origin-q{font-family:var(--fs);font-size:clamp(22px,2.8vw,36px);font-style:italic;color:var(--txt);line-height:1.55;margin-bottom:28px}
@@ -1328,7 +1335,7 @@ a.soon-chip{border-bottom:none!important}
 }
 /* steps */
 .origin-steps{display:flex;flex-direction:column;gap:0;position:relative}
-.origin-steps::before{content:'';position:absolute;left:13px;top:14px;bottom:80px;width:1px;background:linear-gradient(rgba(255,64,96,.35) 0%,rgba(255,64,96,.15) 65%,rgba(0,255,172,.6) 100%);z-index:0}
+.origin-steps::before{content:'';position:absolute;left:13px;top:14px;bottom:80px;width:1px;background:linear-gradient(rgba(255,64,96,.35) 0%,rgba(255,64,96,.15) 65%,rgba(0,255,223,.6) 100%);z-index:0}
 .origin-step{display:flex;align-items:flex-start;gap:16px;padding:18px 0;border-bottom:1px solid var(--ln);opacity:0;transform:translateX(-14px);transition:opacity .5s ease,transform .5s ease;position:relative;z-index:1}
 .origin-step.on{opacity:1;transform:none}
 /* steps 01-03 — failed attempts */
@@ -1341,7 +1348,7 @@ a.soon-chip{border-bottom:none!important}
 /* step 04 — THE solution */
 .origin-step.active{border:1px solid rgba(0,229,255,.2)!important;border-bottom:1px solid rgba(0,229,255,.2)!important;background:rgba(0,229,255,.04);padding:18px 16px;margin-top:10px;position:relative}
 .origin-step.active::before{content:'→ SOLUTION';position:absolute;top:-10px;left:16px;font-size:9px;letter-spacing:.18em;color:var(--ok);background:var(--ink1);padding:0 8px}
-.origin-step.active .origin-step-n{border-color:var(--ok)!important;color:var(--ok)!important;background:rgba(0,255,172,.08)!important;box-shadow:0 0 16px rgba(0,255,172,.25)}
+.origin-step.active .origin-step-n{border-color:var(--ok)!important;color:var(--ok)!important;background:rgba(0,255,223,.08)!important;box-shadow:0 0 16px rgba(0,255,223,.25)}
 .origin-step.active .origin-step-txt{color:var(--txt)!important;font-size:14px!important;text-decoration:none!important}
 .origin-step-n{flex-shrink:0;width:28px;height:28px;border:1px solid var(--ln2);display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:10px;color:var(--txt3);margin-top:2px;transition:all .4s ease}
 .origin-step-txt{font-size:13px;color:var(--txt3);line-height:1.65;font-weight:300;transition:all .4s ease}
@@ -1353,7 +1360,7 @@ a.soon-chip{border-bottom:none!important}
 .pitch-grid{display:grid;grid-template-columns:1fr 48px 1fr;gap:0;border:1px solid var(--ln);overflow:hidden;background:var(--ink)}
 .pitch-col{padding:48px 44px;display:flex;flex-direction:column;gap:20px}
 .pitch-col-left{border-right:none;background:rgba(255,64,96,.03)}
-.pitch-col-right{background:rgba(0,255,172,.03)}
+.pitch-col-right{background:rgba(0,255,223,.03)}
 .pitch-arrow{display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--txt3);background:var(--ink2);border-left:1px solid var(--ln);border-right:1px solid var(--ln)}
 .pitch-origin-tag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--err);display:flex;align-items:center;gap:10px}
 .pitch-origin-tag::before{content:'';width:16px;height:1px;background:var(--err)}
@@ -1363,7 +1370,7 @@ a.soon-chip{border-bottom:none!important}
 .pitch-body{font-size:14px;color:var(--txt2);line-height:1.8;font-weight:300;max-width:420px}
 .pitch-claims{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
 .pitch-chip{font-family:var(--fm);font-size:10px;letter-spacing:.08em;padding:5px 12px;border:1px solid rgba(255,64,96,.28);color:rgba(255,64,96,.7);background:rgba(255,64,96,.05)}
-.pitch-chip-ok{border-color:rgba(0,255,172,.3);color:var(--ok);background:rgba(0,255,172,.06)}
+.pitch-chip-ok{border-color:rgba(0,255,223,.3);color:var(--ok);background:rgba(0,255,223,.06)}
 .pitch-chip-dim{border-color:var(--ln2);color:var(--txt3);background:transparent;font-style:italic}
 .pitch-banner{display:flex;align-items:center;gap:28px;margin-top:2px;padding:20px 28px;border:1px solid var(--ln2);background:linear-gradient(90deg,rgba(0,229,255,.04),rgba(0,229,255,.01));border-top:none}
 .pitch-banner-label{font-family:var(--fd);font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--c);flex-shrink:0}
@@ -1410,10 +1417,8 @@ a.soon-chip{border-bottom:none!important}
 </style>
 </head>
 <body>
-<!-- verification reticle cursor -->
-<div id="cur-dot"></div>
-<div id="cur-ring"></div>
-<div id="ripple"></div>
+<!-- cursor -->
+<div id="mg-cur"></div>
 <canvas id="bg"></canvas>
 <div class="scanlines"></div>
 
@@ -1465,7 +1470,7 @@ a.soon-chip{border-bottom:none!important}
       <a href="#protocol" onclick="document.getElementById('megaover').classList.remove('open')">Canary Pipeline<span>Dual-mode execution proof</span></a>
     </div>
     <div class="mo-col">
-      <h3>Claims — 8 active</h3>
+      <h3>Claims — 14 active</h3>
       <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">MTR-1<span>Young's Modulus Calibration</span></a>
       <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">MTR-2<span>Thermal Conductivity</span></a>
       <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">MTR-3<span>Multilayer Contact</span></a>
@@ -1474,6 +1479,12 @@ a.soon-chip{border-bottom:none!important}
       <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">DRIFT-01<span>Drift Monitor</span></a>
       <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">ML_BENCH-01<span>ML Accuracy Certificate</span></a>
       <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">DT-FEM-01<span>Digital Twin FEM Verification</span></a>
+      <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">ML_BENCH-02<span>ML Regression Certificate</span></a>
+      <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">ML_BENCH-03<span>ML Time-Series Certificate</span></a>
+      <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">PHARMA-01<span>ADMET Prediction Certificate</span></a>
+      <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">FINRISK-01<span>VaR Model Certificate</span></a>
+      <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">DT-SENSOR-01<span>IoT Sensor Integrity</span></a>
+      <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">DT-CALIB-LOOP-01<span>Calibration Convergence</span></a>
     </div>
     <div class="mo-col">
       <h3>For You</h3>
@@ -1495,7 +1506,7 @@ a.soon-chip{border-bottom:none!important}
       <h3>Tools</h3>
       <a href="#verifier" onclick="document.getElementById('megaover').classList.remove('open')">Live Verifier<span>Test 5 claims in browser</span></a>
       <a href="#faq" onclick="document.getElementById('megaover').classList.remove('open')">FAQ<span>Technical Q&A</span></a>
-      <a href="https://github.com/Lama999901/metagenesis-core-public" target="_blank">GitHub Repo<span>MIT · 172 tests · AUDIT PASS</span></a>
+      <a href="https://github.com/Lama999901/metagenesis-core-public" target="_blank">GitHub Repo<span>MIT · 282 tests · AUDIT PASS</span></a>
       <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/mg.py" target="_blank">mg.py source<span>Core verification script</span></a>
     </div>
     <div class="mo-col">
@@ -1503,7 +1514,7 @@ a.soon-chip{border-bottom:none!important}
       <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/CONTEXT_SNAPSHOT.md" target="_blank" onclick="document.getElementById('megaover').classList.remove('open')">CONTEXT_SNAPSHOT.md<span>current state + what's next</span></a>
       <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/AGENTS.md" target="_blank" onclick="document.getElementById('megaover').classList.remove('open')">AGENTS.md<span>rules + protected files</span></a>
       <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/llms.txt" target="_blank" onclick="document.getElementById('megaover').classList.remove('open')">llms.txt<span>AI-optimized repo summary</span></a>
-      <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/canonical_state.md" target="_blank" onclick="document.getElementById('megaover').classList.remove('open')">canonical_state.md<span>8 verified claims</span></a>
+      <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/canonical_state.md" target="_blank" onclick="document.getElementById('megaover').classList.remove('open')">canonical_state.md<span>14 verified claims</span></a>
       <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/known_faults.yaml" target="_blank" onclick="document.getElementById('megaover').classList.remove('open')">known_faults.yaml<span>known limitations</span></a>
     </div>
     <div class="mo-col">
@@ -1565,10 +1576,10 @@ a.soon-chip{border-bottom:none!important}
 
 <section class="hero">
   <div class="hero-meta">
-    <div class="hmtag">Verification Protocol &nbsp;&#183;&nbsp; #63/996,819</div>
+    <div class="hmtag">Verification Protocol &nbsp;&#223;&nbsp; <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/ppa/README_PPA.md" target="_blank" style="color:var(--c);text-decoration:none;border-bottom:1px solid rgba(0,229,255,.3)">#63/996,819</a></div>
     <div class="hmpat">
-      <span><span class="hv">8</span> active claims</span><span class="sep">|</span>
-      <span><span class="hv">172</span> tests</span><span class="sep">|</span>
+      <span><span class="hv">14</span> active claims</span><span class="sep">|</span>
+      <span><span class="hv">282</span> tests</span><span class="sep">|</span>
       <span class="hv">PASS</span><span class="sep">|</span>
       <span>patent pending</span>
     </div>
@@ -1594,8 +1605,8 @@ a.soon-chip{border-bottom:none!important}
         </div>
       </div>
       <div class="hbtns">
-        <a href="https://buy.stripe.com/14AcN57qH19R1qN3QQ6Na00" class="btn-green">BUY BUNDLE &#8212; $299 &#8594;</a>
-        <a href="#pilot" class="btn-c">FREE PILOT</a>
+        <a href="#pilot" class="btn-green">FREE PILOT &#8594;</a>
+        <a href="mailto:yehor@metagenesis-core.dev?subject=MetaGenesis%20Core%20%E2%80%94%20Verification%20Bundle&body=Hi%20Yehor%2C%0A%0AI%27d%20like%20to%20get%20a%20verification%20bundle%20for%20my%20use%20case%3A%0A%0A" class="btn-c">GET BUNDLE &#8212; $299 &#8594;</a>
         <a href="https://github.com/Lama999901/metagenesis-core-public" class="btn-g">GITHUB &#8594;</a>
       </div>
     </div>
@@ -1608,11 +1619,11 @@ a.soon-chip{border-bottom:none!important}
       </div>
       <div class="hbproof-badges">
         <div class="hbproof-badge">
-          <span class="hbproof-val ok">8</span>
+          <span class="hbproof-val ok">14</span>
           <span class="hbproof-lbl">Claims</span>
         </div>
         <div class="hbproof-badge">
-          <span class="hbproof-val cy">172</span>
+          <span class="hbproof-val cy">282</span>
           <span class="hbproof-lbl">Tests</span>
         </div>
         <div class="hbproof-badge">
@@ -1628,8 +1639,8 @@ a.soon-chip{border-bottom:none!important}
 
     <!-- meta row -->
     <div class="hbottom-meta">
-      <span class="hbmeta-left">Patent Pending &nbsp;&#183;&nbsp; #63/996,819 &nbsp;&#183;&nbsp; Inventor: Yehor Bazhynov</span>
-      <span class="hbmeta-right"><span class="hbmeta-dot"></span>AUDIT: PASS &nbsp;&#183;&nbsp; <a href="https://github.com/Lama999901/metagenesis-core-public" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(238,247,251,.15)">github.com/Lama999901</a></span>
+      <span class="hbmeta-left">Patent Pending &nbsp;&#223;&nbsp; #63/996,819 &nbsp;&#223;&nbsp; Inventor: Yehor Bazhynov</span>
+      <span class="hbmeta-right"><span class="hbmeta-dot"></span>AUDIT: PASS &nbsp;&#223;&nbsp; <a href="https://github.com/Lama999901/metagenesis-core-public" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(238,247,251,.15)">github.com/Lama999901</a></span>
     </div>
 
   </div>
@@ -1637,71 +1648,116 @@ a.soon-chip{border-bottom:none!important}
 </section>
 
 <div class="ticker"><div class="ttrack">
-  <div class="ti"><span class="tn">8</span><span class="tl">Active Claims</span></div>
-  <div class="ti"><span class="tn">172</span><span class="tl">Tests Passing</span></div>
+  <div class="ti"><span class="tn">14</span><span class="tl">Active Claims</span></div>
+  <div class="ti"><span class="tn">282</span><span class="tl">Tests Passing</span></div>
   <div class="ti"><span class="tn">3</span><span class="tl">Verification Layers</span></div>
-  <div class="ti"><span class="tn">6</span><span class="tl">Domains</span></div>
+  <div class="ti"><span class="tn">7</span><span class="tl">Domains</span></div>
   <div class="ti"><span class="tn">0</span><span class="tl">Trust Required</span></div>
   <div class="ti"><span class="tn" style="font-size:14px">PASS</span><span class="tl">steward_audit</span></div>
   <div class="ti"><span class="tn" style="font-size:14px">MIT</span><span class="tl">License</span></div>
-  <div class="ti"><span class="tn">8</span><span class="tl">Active Claims</span></div>
-  <div class="ti"><span class="tn">172</span><span class="tl">Tests Passing</span></div>
+  <div class="ti"><span class="tn">14</span><span class="tl">Active Claims</span></div>
+  <div class="ti"><span class="tn">282</span><span class="tl">Tests Passing</span></div>
   <div class="ti"><span class="tn">3</span><span class="tl">Verification Layers</span></div>
-  <div class="ti"><span class="tn">6</span><span class="tl">Domains</span></div>
+  <div class="ti"><span class="tn">7</span><span class="tl">Domains</span></div>
   <div class="ti"><span class="tn">0</span><span class="tl">Trust Required</span></div>
   <div class="ti"><span class="tn" style="font-size:14px">PASS</span><span class="tl">steward_audit</span></div>
   <div class="ti"><span class="tn" style="font-size:14px">MIT</span><span class="tl">License</span></div>
 </div></div>
 
 <div class="div"></div>
-<div class="w"><section class="sec">
-  <div class="stag rv">The Problem</div>
-  <h2 class="rv d1" style="--h2d:0s" data-glitch="AI makes claims. Nobody can verify.">AI makes claims.<br><span class="hr">Nobody can verify.</span></h2>
-  <p class="sdesc rv d2">Every ML team claims state-of-the-art results. Every simulation produces numbers. Every pipeline outputs certificates. There is no standard way to check any of it independently.</p>
+<div class="w"><section class="sec sec-dark">
+  <div class="stag rv">The Verification Gap</div>
+  <h2 class="rv d1" style="--h2d:0s" data-glitch="The entire field runs on unverifiable numbers.">The entire field runs on<br><span class="hr">unverifiable numbers.</span></h2>
+  <p class="sdesc rv d2">ML benchmarks. Simulation outputs. Regulatory submissions. Financial model results. <strong>None of them produce a verifiable artifact</strong> — a third party cannot confirm the claimed number without re-running everything from scratch. There has never been a standard for computational proof. Until now.</p>
+
   <div class="pp rv d3">
 
     <div class="ppc ppc-x">
-      <span class="ppchip x">Without MetaGenesis</span>
-      <h3>Trust the number.<br>Or re-run everything.</h3>
-      <p>A reviewer cannot verify a reported ML accuracy, FEM displacement result, or pipeline certificate without the original model, solver, training data, and compute environment. The only options are blind trust or full reproduction. Neither is acceptable for audit, regulatory submission, or third-party client review.</p>
+      <span class="ppchip x">The mechanism of the problem</span>
+      <h3>A number in a report.<br>Zero verifiable proof.</h3>
+      <p>When any computational result is produced — an ML accuracy score, a FEM displacement, a VaR estimate, an ADMET prediction — <strong>no verifiable artifact is generated</strong>. The result exists as a number in a PDF, a log file, or a dashboard. A reviewer who wants to verify it faces one choice: rebuild the entire environment, data, and compute from scratch. That is not verification. That is reproduction — and most reviewers never attempt it.</p>
       <div class="pp-rows">
         <div class="pp-row">
-          <span class="pp-domain">ML accuracy: 94%</span>
-          <span class="pp-verdict pp-verdict-x">no third-party proof</span>
+          <span class="pp-domain">ML accuracy: 94.3%</span>
+          <span class="pp-verdict pp-verdict-x">no verifiable artifact</span>
         </div>
         <div class="pp-row">
           <span class="pp-domain">FEM displacement: rel_err 0.8%</span>
-          <span class="pp-verdict pp-verdict-x">no third-party proof</span>
+          <span class="pp-verdict pp-verdict-x">no verifiable artifact</span>
         </div>
         <div class="pp-row">
-          <span class="pp-domain">Pipeline: schema PASS</span>
-          <span class="pp-verdict pp-verdict-x">no third-party proof</span>
+          <span class="pp-domain">VaR model output: 2.3%</span>
+          <span class="pp-verdict pp-verdict-x">no verifiable artifact</span>
+        </div>
+        <div class="pp-row">
+          <span class="pp-domain">ADMET prediction: logP 2.1</span>
+          <span class="pp-verdict pp-verdict-x">no verifiable artifact</span>
+        </div>
+        <div class="pp-row">
+          <span class="pp-domain">Calibration: E = 70 GPa &plusmn; 0.7%</span>
+          <span class="pp-verdict pp-verdict-x">no verifiable artifact</span>
         </div>
       </div>
     </div>
 
     <div class="ppc ppc-v">
-      <span class="ppchip v">With MetaGenesis</span>
-      <h3>One command.<br>PASS or FAIL.</h3>
-      <p>Any computational result is packaged into a tamper-evident evidence bundle with three independent verification layers — cryptographic integrity, semantic invariants, and Step Chain execution trace. A third party runs one command and gets an unambiguous verdict offline, without access to your model or environment.</p>
+      <span class="ppchip v">MetaGenesis Core — the standard</span>
+      <h3>One command.<br>Cryptographic proof.</h3>
+      <p>Every computation produces a <strong>tamper-evident evidence bundle</strong>: SHA-256 integrity, semantic invariant verification, and a Step Chain execution trace across 4 cryptographic steps. Any third party verifies offline with one command — no model access, no environment, no trust. This is not logging. This is <strong>machine-verifiable proof</strong>.</p>
       <div class="pp-rows">
         <div class="pp-row">
           <a class="pp-domain pp-claim-link" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank">ML_BENCH-01</a>
           <span class="pp-verdict pp-verdict-v">&Delta;accuracy &le; 0.02 &middot; PASS</span>
         </div>
         <div class="pp-row">
-          <a class="pp-domain pp-claim-link" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtfem1_displacement_verification.py" target="_blank">DT-FEM-01</a>
-          <span class="pp-verdict pp-verdict-v">rel_err &le; 0.02 &middot; PASS</span>
+          <a class="pp-domain pp-claim-link" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/finrisk1_var_certificate.py" target="_blank">FINRISK-01</a>
+          <span class="pp-verdict pp-verdict-v">&Delta;VaR &le; tol &middot; PASS</span>
         </div>
         <div class="pp-row">
-          <a class="pp-domain pp-claim-link" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank">DATA-PIPE-01</a>
-          <span class="pp-verdict pp-verdict-v">schema &middot; range &middot; PASS</span>
+          <a class="pp-domain pp-claim-link" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/pharma1_admet_certificate.py" target="_blank">PHARMA-01</a>
+          <span class="pp-verdict pp-verdict-v">&Delta;prop &le; tol &middot; PASS</span>
+        </div>
+        <div class="pp-row">
+          <a class="pp-domain pp-claim-link" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mtr1_calibration.py" target="_blank">MTR-1</a>
+          <span class="pp-verdict pp-verdict-v">rel_err &le; 0.01 &middot; PASS &middot; &#9875; E=70GPa</span>
+        </div>
+        <div class="pp-row">
+          <a class="pp-domain pp-claim-link" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtfem1_displacement_verification.py" target="_blank">DT-FEM-01</a>
+          <span class="pp-verdict pp-verdict-v">rel_err &le; 0.02 &middot; PASS &middot; &#9875; anchored</span>
         </div>
       </div>
-      <div class="pp-cmd"><span class="pp-cmd-prompt">$</span> mg.py verify --pack bundle.zip <span class="pp-cmd-pass">&rarr; PASS</span></div>
+      <div class="pp-cmd"><span class="pp-cmd-prompt">$</span> python scripts/mg.py verify --pack bundle.zip <span class="pp-cmd-pass">&rarr; PASS</span></div>
     </div>
 
   </div>
+
+  <!-- PROOF STRIP -->
+  <div class="proof-strip rv d4">
+    <div class="proof-strip-label">Verified by code, not by claim:</div>
+    <div class="proof-strip-items">
+      <a class="proof-strip-item" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/tests/steward/test_cert02_pack_includes_evidence_and_semantic_verify.py" target="_blank">
+        <span class="psi-badge ok">PASS</span>
+        <span class="psi-label">test_cert02 &#8212; semantic bypass attack <strong>caught</strong></span>
+      </a>
+      <a class="proof-strip-item" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/tests/steward/test_cert03_step_chain_verify.py" target="_blank">
+        <span class="psi-badge ok">PASS</span>
+        <span class="psi-label">test_cert03 &#8212; Step Chain tamper <strong>caught</strong></span>
+      </a>
+      <a class="proof-strip-item" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/tests/steward/test_cross_claim_chain.py" target="_blank">
+        <span class="psi-badge ok">PASS</span>
+        <span class="psi-label">test_cross_claim_chain &#8212; E=70GPa &#8594; MTR-1 &#8594; DT-FEM-01 &#8594; DRIFT-01</span>
+      </a>
+      <a class="proof-strip-item" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/deep_verify.py" target="_blank">
+        <span class="psi-badge ok">10/10</span>
+        <span class="psi-label">deep_verify.py &#8212; all proof tests <strong>passed</strong></span>
+      </a>
+      <a class="proof-strip-item" href="https://github.com/Lama999901/metagenesis-core-public/actions" target="_blank">
+        <span class="psi-badge ok">GREEN</span>
+        <span class="psi-label">270 tests &#8212; CI passing on every PR</span>
+      </a>
+    </div>
+  </div>
+
 </section></div>
 
 <div class="div"></div>
@@ -1791,7 +1847,7 @@ a.soon-chip{border-bottom:none!important}
         <div class="ccl-arrow">→</div>
         <div class="ccl-solution">
           <span class="ccl-badge">CLOSED</span>
-          <span class="ccl-claim">All 8 claims</span>
+          <span class="ccl-claim">All 14 claims</span>
           <a class="ccl-path" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/mg.py" target="_blank">mg.py verify --pack bundle.zip → PASS</a>
           <span class="ccl-threshold">offline &middot; no model access &middot; 60 seconds</span>
         </div>
@@ -1802,9 +1858,20 @@ a.soon-chip{border-bottom:none!important}
         <div class="ccl-arrow">&#8594;</div>
         <div class="ccl-solution">
           <span class="ccl-badge">CLOSED</span>
-          <span class="ccl-claim">ML_BENCH-01 &#183; Physical Anchor</span>
+          <span class="ccl-claim">ML_BENCH-01 &#223; Physical Anchor</span>
           <a class="ccl-path" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank">mlbench1_accuracy_certificate.py</a>
           <span class="ccl-threshold">cryptographic provenance &middot; physical anchor &middot; verifiable at submission</span>
+        </div>
+      </div>
+
+      <div class="ccl-row">
+        <div class="ccl-problem">Evidence tampering &#8212; attacker removes evidence, rebuilds SHA-256, submits as valid</div>
+        <div class="ccl-arrow">&#8594;</div>
+        <div class="ccl-solution">
+          <span class="ccl-badge" style="background:rgba(255,64,96,.12);border-color:rgba(255,64,96,.45)">&#9888; CAUGHT</span>
+          <span class="ccl-claim">CERT-05 &middot; 5 attack scenarios</span>
+          <a class="ccl-path" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/tests/steward/test_cert05_adversarial_gauntlet.py" target="_blank">tests/steward/test_cert05_adversarial_gauntlet.py</a>
+          <span class="ccl-threshold">Strip &amp; Recompute &middot; Single-Bit &middot; Cross-Domain &middot; Canary Laundering &middot; Chain Reversal</span>
         </div>
       </div>
 
@@ -1812,7 +1879,7 @@ a.soon-chip{border-bottom:none!important}
         <div class="ccl-problem">Simulation outputs unanchored &#8212; no proof of agreement with measured physical reality</div>
         <div class="ccl-arrow">&#8594;</div>
         <div class="ccl-solution">
-          <span class="ccl-badge" style="background:rgba(0,255,172,.15);border-color:rgba(0,255,172,.45)">&#9875; ANCHORED</span>
+          <span class="ccl-badge" style="background:rgba(0,255,223,.15);border-color:rgba(0,255,223,.45)">&#9875; ANCHORED</span>
           <span class="ccl-claim">MTR-1 &#8594; DT-FEM-01 &#8594; DRIFT-01</span>
           <a class="ccl-path" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mtr1_calibration.py" target="_blank">mtr1_calibration.py</a>
           <span class="ccl-threshold">E&nbsp;=&nbsp;70&nbsp;GPa measured &middot; chain verifiable offline</span>
@@ -1826,46 +1893,69 @@ a.soon-chip{border-bottom:none!important}
 
 <section class="origin" id="origin">
   <div class="origin-inner">
+
     <div class="origin-quote rv d1">
       <p class="origin-q">
-        "Why make expensive lab experiments when you can simulate first, correct, then verify?
-        But nobody trusted the simulation result — there was
-        <em>no way to prove it was real.</em>
-        That's why MetaGenesis Core exists."
+        &ldquo;I couldn&rsquo;t prove my simulation result was real.
+        Not to anyone. Not even to myself.
+        So I built the thing that could.
+        <em>That&rsquo;s the whole story.</em>&rdquo;
       </p>
-      <p class="origin-who">Yehor Bazhynov — Inventor, Patent #63/996,819</p>
+      <p class="origin-who">Yehor Bazhynov &mdash; Inventor, USPTO #63/996,819</p>
+
       <div class="founder-block">
-        <div class="founder-label">About the founder</div>
+        <div class="founder-label">The founder</div>
         <div class="founder-body">
-          <p>No degree. No background in software or science. Odd jobs — wherever the work was, for whatever it paid.</p>
-          <p>For years I wanted something different. I just didn’t have the tools.</p>
-          <p>For 4–5 years I followed AI as it grew — weak models, early agents, inconsistent results. I kept watching, kept learning.</p>
-          <p>Then the last year: deep focus. <strong>Hundreds of iterations across 42 development phases.</strong> Solo, after hours. That’s when I found the problem — and the solution.</p>
-          <p>Meanwhile the problem was everywhere: ML teams publishing benchmark numbers nobody could verify. Labs reporting results nobody could reproduce. Pipelines producing outputs nobody could audit. It just didn’t have a name yet.</p>
-          <p>One tool finally fit the way I think. Two weeks — working protocol, USPTO patent application filed, this site live. Now: 172 passing tests, 8 verified claims — including Step Chain Verification, a cryptographic 4-step execution trace added to ML_BENCH-01.</p>
-          <p>That’s not a story about me being special. It’s a story about what’s possible right now, for anyone willing to stay with it.</p>
+          <p>No degree. No background in software or science. Odd jobs wherever the work was.</p>
+          <p>For 4&ndash;5 years I watched AI grow from weak prototypes into tools that could solve real problems. I kept learning. Kept building small things. Kept hitting the same wall: <strong>results nobody could verify.</strong></p>
+          <p>Then one year of complete focus. 42 development phases. Hundreds of iterations. Solo, after hours, no funding, no team. I wasn&rsquo;t trying to build a company &mdash; I was trying to solve one specific problem that kept bothering me.</p>
+          <p>The problem had a name by then: the verification gap. ML teams publishing benchmark numbers nobody could audit. Simulations producing outputs nobody could trace. Regulatory submissions built on PDF trust. <strong>The entire field was running on unverifiable numbers.</strong></p>
+          <p>Two weeks after the protocol finally worked: <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/ppa/README_PPA.md" target="_blank" style="color:var(--c);text-decoration:none;border-bottom:1px solid rgba(0,229,255,.3)">USPTO provisional patent filed</a>, this site live, <a href="https://github.com/Lama999901/metagenesis-core-public/actions" target="_blank" style="color:var(--ok);text-decoration:none;border-bottom:1px solid rgba(0,255,223,.3)">282 passing tests</a>. Not because I planned it that way &mdash; because once the right abstraction clicked, everything else followed.</p>
+          <p class="origin-final">This is not a story about being special.<br>It&rsquo;s a story about staying with a problem long enough to find the right question.</p>
         </div>
-        <div class="founder-name">Yehor Bazhynov &mdash; Inventor, Patent&nbsp;#63/996,819</div>
+        <div class="founder-name">Yehor Bazhynov &mdash; Inventor &mdash; <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/ppa/README_PPA.md" target="_blank" style="color:var(--c);text-decoration:none;border-bottom:1px solid rgba(0,229,255,.3)">Patent #63/996,819</a></div>
+      </div>
+
+      <div class="origin-stats">
+        <div class="origin-stat-item">
+          <div class="osi-num">5</div>
+          <div class="osi-label">patent innovations</div>
+        </div>
+        <div class="origin-stat-item">
+          <div class="osi-num">282</div>
+          <div class="osi-label">passing tests</div>
+        </div>
+        <div class="origin-stat-item">
+          <div class="osi-num">14</div>
+          <div class="osi-label">verified claims</div>
+        </div>
+        <div class="origin-stat-item">
+          <div class="osi-num">1</div>
+          <div class="osi-label">inventor, solo</div>
+        </div>
       </div>
     </div>
+
     <div class="origin-steps rv d2">
+      <div class="origin-steps-label">How it happened</div>
       <div class="origin-step">
         <div class="origin-step-n">01</div>
-        <div class="origin-step-txt">Wanted to simulate a materials experiment — cheaper than a real lab</div>
+        <div class="origin-step-txt">Ran a materials simulation. Got a result. Realized <strong>no third party could verify it was real</strong> without rebuilding the entire environment from scratch.</div>
       </div>
       <div class="origin-step">
         <div class="origin-step-n">02</div>
-        <div class="origin-step-txt">Got results. But <strong>no one could verify</strong> them — no proof the computation was real</div>
+        <div class="origin-step-txt">Tried every existing approach: SHA-256, preregistration, Docker, manual logs. <strong>None produced a verifiable artifact.</strong> They logged the process. They didn&rsquo;t prove the result.</div>
       </div>
       <div class="origin-step">
         <div class="origin-step-n">03</div>
-        <div class="origin-step-txt">Tried SHA-256 hashing, preregistration, manual logs — <strong>all insufficient</strong></div>
+        <div class="origin-step-txt">Found the missing abstraction: not better logging &mdash; a <strong>tamper-evident evidence bundle</strong>. Any third party, offline, 60 seconds, one command: <code style="font-family:var(--fm);font-size:11px;color:var(--c);background:rgba(0,229,255,.07);padding:2px 6px">mg.py verify &rarr; PASS</code></div>
       </div>
       <div class="origin-step active">
         <div class="origin-step-n">04</div>
-        <div class="origin-step-txt">Built <strong>MetaGenesis Core</strong> — tamper-evident bundles, semantic verification, adversarial proof</div>
+        <div class="origin-step-txt">Built it. Filed the patent. Shipped it. <strong>MetaGenesis Core:</strong> bidirectional governance, semantic bypass attack caught (<a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/tests/steward/test_cert02_pack_includes_evidence_and_semantic_verify.py" target="_blank" style="color:var(--ok);text-decoration:none;border-bottom:1px solid rgba(0,255,223,.3)">test_cert02 PASS</a>), Cross-Claim chain E=70GPa&rarr;MTR-1&rarr;DT-FEM-01&rarr;DRIFT-01 (<a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/tests/steward/test_cross_claim_chain.py" target="_blank" style="color:var(--ok);text-decoration:none;border-bottom:1px solid rgba(0,255,223,.3)">proved</a>).</div>
       </div>
     </div>
+
   </div>
 </section>
 <div class="div"></div>
@@ -1900,8 +1990,8 @@ a.soon-chip{border-bottom:none!important}
         <span class="pitch-chip pitch-chip-ok">DATA-PIPE-01</span>
         <span class="pitch-chip pitch-chip-ok">DRIFT-01</span>
         <span class="pitch-chip pitch-chip-ok">DT-FEM-01</span>
-        <span class="pitch-chip pitch-chip-dim" title="Roadmap — planned claim">PHARMA-01 &#8594;</span>
-        <span class="pitch-chip pitch-chip-dim" title="Roadmap — planned claim">FINRISK-01 &#8594;</span>
+        <span class="pitch-chip pitch-chip-ok">PHARMA-01</span>
+        <span class="pitch-chip pitch-chip-ok">FINRISK-01</span>
       </div>
     </div>
 
@@ -1974,8 +2064,8 @@ a.soon-chip{border-bottom:none!important}
     <div class="anchor-verify"><span class="anchor-verify-prompt">$</span> python scripts/mg.py verify --pack bundle.zip &nbsp;&#8594;&nbsp; <span class="anchor-verify-pass">PASS</span> &nbsp;&mdash;&nbsp; <span class="anchor-verify-note">entire chain verified offline in 60 seconds. No model access. No trust.</span></div>
   </div>
 
-  <div class="stag rv">How It Works</div>
-  <h2 class="rv d1" style="--h2d:2.4s" data-glitch="Four steps. Immutable proof."><span class="hw">Four steps.</span><br><span class="hg">Immutable proof.</span></h2>
+  <div class="stag rv">Open Protocol</div>
+  <h2 class="rv d1" style="--h2d:2.4s" data-glitch="Not a tool. A standard."><span class="hw">Not a tool.</span><br><span class="hc">A standard.</span></h2>
   <p class="sdesc rv d2">Every run produces an evidence bundle with three independent verification layers. Any deviation surfaces as FAIL with a specific reason.</p>
   <div class="pipe rv d3">
     <div class="prow active"><div class="pnum">01</div><div class="ptitle"><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/runner.py" target="_blank">runner.run_job()</a></div><div class="pdesc">Executes computation &#8594; produces <code><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/progress_runs/job_job_00edaf2c78974ef7_trace_trace_174f334f00324a6b_success.json" target="_blank" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(0,229,255,.3)">run_artifact.json</a></code> + <code><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/ledger_snapshots/trace_trace_174f334f00324a6b.jsonl" target="_blank" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(255,179,71,.3)">ledger_snapshot.jsonl</a></code></div><div class="pstat ok">&#8594; artifact</div></div>
@@ -2002,7 +2092,7 @@ a.soon-chip{border-bottom:none!important}
         <div class="tline" id="l5"><span class="tok">&#10003; PASS</span><span class="tdm" style="margin-left:8px">semantic invariants verified</span></div>
         <div class="tline" id="l5b"><span class="tok">&#10003; PASS</span><span class="tdm" style="margin-left:8px">step chain: trace_root_hash verified</span></div>
         <div class="tline" id="l6" style="margin-top:16px"><span class="tprompt">$ </span><span class="tcmd">python -m pytest tests/ -q</span></div>
-        <div class="tline" id="l7"><span class="tok">172 passed</span><span class="tdm" style="margin-left:8px">in 2.70s</span></div>
+        <div class="tline" id="l7"><span class="tok">282 passed</span><span class="tdm" style="margin-left:8px">in 4.67s</span></div>
       </div>
       <div>
         <div class="tres" id="r1">
@@ -2131,8 +2221,8 @@ a.soon-chip{border-bottom:none!important}
 <div class="div"></div>
 <div class="w"><section class="sec">
   <div class="stats rv">
-    <div class="stat"><div class="stn"><span id="cn1">8</span></div><div class="stl">Active Claims</div><div class="std">Across 6 domains: materials, ML/AI, system ID, data pipelines, drift monitoring, digital twin</div></div>
-    <div class="stat"><div class="stn"><span id="cn2">172</span></div><div class="stl">Tests Passing</div><div class="std">Including adversarial tamper detection, Step Chain Verification (4-step execution trace), determinism checks, and boundary conditions</div></div>
+    <div class="stat"><div class="stn"><span id="cn1">14</span></div><div class="stl">Active Claims</div><div class="std">Across 7 domains: materials, ML/AI, system ID, data pipelines, digital twin, pharma/biotech, financial risk</div></div>
+    <div class="stat"><div class="stn"><span id="cn2">282</span></div><div class="stl">Tests Passing</div><div class="std">Including adversarial tamper detection, Step Chain Verification (4-step execution trace), determinism checks, and boundary conditions</div></div>
     <div class="stat"><div class="stn"><span id="cn3">3</span></div><div class="stl">Verification Layers</div><div class="std">SHA-256 integrity + semantic invariants + Step Chain execution trace. Each layer catches attacks the others miss.</div></div>
     <div class="stat"><div class="stn">0<span style="font-size:40px"> req.</span></div><div class="stl">Trust Required</div><div class="std">No GPU, no internet, no code access. Verify on any machine with Python.</div></div>
   </div>
@@ -2141,17 +2231,23 @@ a.soon-chip{border-bottom:none!important}
 <div class="div"></div>
 <div class="w"><section class="sec" id="claims">
   <div class="stag rv">Verified Claims</div>
-  <h2 class="rv d1" style="--h2d:4.8s" data-glitch="Eight claims. All bidirectionally enforced."><span class="hc">Eight</span> claims.<br>All bidirectionally <span class="hg">enforced.</span></h2>
+  <h2 class="rv d1" style="--h2d:4.8s" data-glitch="Fourteen claims. All bidirectionally enforced."><span class="hc">Fourteen</span> claims.<br>All bidirectionally <span class="hg">enforced.</span></h2>
   <p class="sdesc rv d2">Every claim has an implementation, runner dispatch, threshold, and tests. Enforced on every PR &#8212; not by human review.</p>
   <div class="claimsgrid rv d3">
     <div class="claim claim-anchor"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mtr1_calibration.py" target="_blank"><span class="claimid">MTR-1</span></a><span class="claimid-badge anchor-sm">&#9875; ANCHOR</span></div><div class="claimdomain">Materials Science</div><div class="claimname">Young&#8217;s Modulus Calibration</div><div class="claimth"><span>relative_error</span> &#8804; 0.01 &nbsp;&middot;&nbsp; anchored to <span style="color:var(--ok);font-weight:600">E&nbsp;=&nbsp;70&nbsp;GPa</span></div></div>
     <div class="claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mtr2_thermal_conductivity.py" target="_blank"><span class="claimid">MTR-2</span></a></div><div class="claimdomain">Materials Science</div><div class="claimname">Thermal Paste Conductivity Calibration</div><div class="claimth"><span>relative_error</span> &#8804; 0.02</div></div>
-    <div class="claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mtr3_thermal_multilayer.py" target="_blank"><span class="claimid">MTR-3</span></a></div><div class="claimdomain">Materials Science</div><div class="claimname">Multilayer Thermal Contact Calibration</div><div class="claimth"><span>rel_err_k</span> &#8804; 0.03 &#183; <span>rel_err_r</span> &#8804; 0.05</div></div>
-    <div class="claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/sysid1_arx_calibration.py" target="_blank"><span class="claimid">SYSID-01</span></a></div><div class="claimdomain">System Identification</div><div class="claimname">ARX Model Calibration</div><div class="claimth"><span>rel_err_a</span> &#8804; 0.03 &#183; <span>rel_err_b</span> &#8804; 0.03</div></div>
-    <div class="claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank"><span class="claimid">DATA-PIPE-01</span></a></div><div class="claimdomain">Data Pipelines</div><div class="claimname">Data Pipeline Quality Certificate</div><div class="claimth"><span>schema</span> pass &#183; <span>range</span> pass</div></div>
+    <div class="claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mtr3_thermal_multilayer.py" target="_blank"><span class="claimid">MTR-3</span></a></div><div class="claimdomain">Materials Science</div><div class="claimname">Multilayer Thermal Contact Calibration</div><div class="claimth"><span>rel_err_k</span> &#8804; 0.03 &#223; <span>rel_err_r</span> &#8804; 0.05</div></div>
+    <div class="claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/sysid1_arx_calibration.py" target="_blank"><span class="claimid">SYSID-01</span></a></div><div class="claimdomain">System Identification</div><div class="claimname">ARX Model Calibration</div><div class="claimth"><span>rel_err_a</span> &#8804; 0.03 &#223; <span>rel_err_b</span> &#8804; 0.03</div></div>
+    <div class="claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank"><span class="claimid">DATA-PIPE-01</span></a></div><div class="claimdomain">Data Pipelines</div><div class="claimname">Data Pipeline Quality Certificate</div><div class="claimth"><span>schema</span> pass &#223; <span>range</span> pass</div></div>
     <div class="claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="claimid">DRIFT-01</span></a></div><div class="claimdomain">Drift Monitoring</div><div class="claimname">Calibration Anchor &amp; Drift Monitor</div><div class="claimth"><span>drift_threshold</span> 5.0%</div></div>
     <div class="claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank"><span class="claimid">ML_BENCH-01</span></a></div><div class="claimdomain">ML / AI Benchmarking</div><div class="claimname">ML Model Accuracy Certificate</div><div class="claimth">|<span>actual</span> &#8722; <span>claimed</span>| &#8804; 0.02</div></div>
-    <div class="claim new-claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtfem1_displacement_verification.py" target="_blank"><span class="claimid">DT-FEM-01</span></a><span class="claimid-badge">NEW</span></div><div class="claimdomain">Digital Twin / FEM</div><div class="claimname">FEM Displacement Verification</div><div class="claimth"><span>rel_err</span> &#8804; 0.02</div></div>
+    <div class="claim claim-anchor"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtfem1_displacement_verification.py" target="_blank"><span class="claimid">DT-FEM-01</span></a><span class="claimid-badge anchor-sm">&#9875; ANCHOR</span></div><div class="claimdomain">Digital Twin / FEM</div><div class="claimname">FEM Displacement Verification</div><div class="claimth"><span>rel_err</span> &#8804; 0.02 &nbsp;&middot;&nbsp; anchored to <span style="color:var(--ok);font-weight:600">MTR-1</span></div></div>
+    <div class="claim new-claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench2_regression_certificate.py" target="_blank"><span class="claimid">ML_BENCH-02</span></a></div><div class="claimdomain">ML / AI &#8212; Regression</div><div class="claimname">ML Regression Certificate</div><div class="claimth">|<span>actual_rmse</span> &#8722; <span>claimed_rmse</span>| &#8804; 0.02</div></div>
+    <div class="claim new-claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench3_timeseries_certificate.py" target="_blank"><span class="claimid">ML_BENCH-03</span></a></div><div class="claimdomain">ML / AI &#8212; Time-Series</div><div class="claimname">ML Time-Series Forecasting Certificate</div><div class="claimth">|<span>actual_mape</span> &#8722; <span>claimed_mape</span>| &#8804; 0.02</div></div>
+    <div class="claim new-claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/pharma1_admet_certificate.py" target="_blank"><span class="claimid">PHARMA-01</span></a></div><div class="claimdomain">Pharma / Biotech &#8212; ADMET</div><div class="claimname">ADMET Prediction Certificate</div><div class="claimth">|<span>predicted</span> &#8722; <span>claimed</span>| &#8804; tol &nbsp;&middot;&nbsp; FDA 21 CFR Part 11</div></div>
+    <div class="claim new-claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/finrisk1_var_certificate.py" target="_blank"><span class="claimid">FINRISK-01</span></a></div><div class="claimdomain">Financial Risk &#8212; VaR</div><div class="claimname">Value-at-Risk Model Certificate</div><div class="claimth">|<span>actual_var</span> &#8722; <span>claimed_var</span>| &#8804; tol &nbsp;&middot;&nbsp; Basel III/IV</div></div>
+    <div class="claim new-claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtsensor1_iot_certificate.py" target="_blank"><span class="claimid">DT-SENSOR-01</span></a></div><div class="claimdomain">Digital Twin &#8212; IoT Sensor</div><div class="claimname">IoT Sensor Data Integrity Certificate</div><div class="claimth"><span>schema</span> pass &#223; <span>range</span> pass &#223; <span>temporal</span> pass</div></div>
+    <div class="claim new-claim"><div><a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtcalib1_convergence_certificate.py" target="_blank"><span class="claimid">DT-CALIB-LOOP-01</span></a></div><div class="claimdomain">Digital Twin &#8212; Calibration</div><div class="claimname">Calibration Convergence Certificate</div><div class="claimth"><span>drift_pct</span> monotone &#8595; &#223; final &#8804; threshold &nbsp;&middot;&nbsp; DRIFT-01 anchor</div></div>
   </div>
 </section></div>
 
@@ -2163,8 +2259,8 @@ a.soon-chip{border-bottom:none!important}
   <div class="gov rv d3">
     <div class="govh"><span class="govhl">$ python <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/steward_audit.py" target="_blank">scripts/steward_audit.py</a></span><span class="govbadge">STEWARD AUDIT: PASS</span></div>
     <div class="govb">
-      <div><span class="tdm">canonical_state: </span><span class="tok">['MTR-1','MTR-2','MTR-3','SYSID-01','DATA-PIPE-01','DRIFT-01','ML_BENCH-01','DT-FEM-01']</span></div>
-      <div><span class="tdm">claim_index:     </span><span class="tok">['MTR-1','MTR-2','MTR-3','DATA-PIPE-01','SYSID-01','DRIFT-01','ML_BENCH-01','DT-FEM-01']</span></div>
+      <div><span class="tdm">canonical_state: </span><span class="tok">['MTR-1','MTR-2','MTR-3','SYSID-01','DATA-PIPE-01','DRIFT-01','ML_BENCH-01','DT-FEM-01',<br>'ML_BENCH-02','ML_BENCH-03','PHARMA-01','FINRISK-01','DT-SENSOR-01','DT-CALIB-LOOP-01']</span></div>
+      <div><span class="tdm">claim_index:     </span><span class="tok">14 claims &#8212; all bidirectionally verified &#8212; steward_audit PASS</span></div>
       <div><span class="tdm">coverage check:  </span><span class="tok">all job_kinds dispatched &#8212; runner kinds in claim index</span></div>
       <div><span class="tdm">canonical sync:  </span><span class="tok">PASS &#8212; bidirectional coverage verified</span></div>
     </div>
@@ -2175,7 +2271,7 @@ a.soon-chip{border-bottom:none!important}
 <div class="w"><section class="sec">
   <div class="stag rv">Open Protocol</div>
   <h2 class="rv d1" style="--h2d:6.4s" data-glitch="Not a tool. A standard."><span class="hw">Not a tool.</span><br><span class="hgrad-cy">A standard.</span></h2>
-  <p class="sdesc rv d2">MetaGenesis Verification Protocol (MVP) v0.1 &#8212; open spec for packaging computational claims into independently verifiable evidence bundles.</p>
+  <p class="sdesc rv d2">MetaGenesis Verification Protocol (MVP) v0.2 &#8212; open spec for packaging computational claims into independently verifiable evidence bundles.</p>
   <div class="proto rv d3">
     <div class="protoc">
       <h3>What MVP defines</h3>
@@ -2235,7 +2331,7 @@ a.soon-chip{border-bottom:none!important}
       <div class="cmp-col"><span class="cno">&#10007;</span></div>
     </div>
     <div class="cmp-row">
-      <div class="cmp-feat">Semantic tamper detection (beyond SHA-256)</div>
+      <div class="cmp-feat">Semantic tamper detection (beyond SHA-256) &#8212; <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/tests/steward/test_cert02_pack_includes_evidence_and_semantic_verify.py" target="_blank">test_cert02</a> + <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/tests/steward/test_cert01_pack_manifest_verify.py" target="_blank">test_cert01</a></div>
       <div class="cmp-col mg"><span class="cyes">&#10003;</span></div>
       <div class="cmp-col"><span class="cno">&#10007;</span></div>
       <div class="cmp-col"><span class="cno">&#10007;</span></div>
@@ -2248,7 +2344,7 @@ a.soon-chip{border-bottom:none!important}
       <div class="cmp-col"><span class="cno">&#10007;</span></div>
     </div>
     <div class="cmp-row">
-      <div class="cmp-feat">Governance-enforced bidirectional claim coverage</div>
+      <div class="cmp-feat">Governance-enforced bidirectional claim coverage &#8212; <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/steward_audit.py" target="_blank">steward_audit.py</a></div>
       <div class="cmp-col mg"><span class="cyes">&#10003;</span></div>
       <div class="cmp-col"><span class="cno">&#10007;</span></div>
       <div class="cmp-col"><span class="cno">&#10007;</span></div>
@@ -2262,7 +2358,7 @@ a.soon-chip{border-bottom:none!important}
       <div class="cmp-col"><span class="cno">&#10007;</span></div>
     </div>
     <div class="cmp-row">
-      <div class="cmp-feat">Dual-mode canary pipeline (health vs authority)</div>
+      <div class="cmp-feat">Dual-mode canary pipeline (health vs authority) &#8212; <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/runner.py" target="_blank">runner.py</a></div>
       <div class="cmp-col mg"><span class="cyes">&#10003;</span></div>
       <div class="cmp-col"><span class="cno">&#10007;</span></div>
       <div class="cmp-col"><span class="cno">&#10007;</span></div>
@@ -2290,7 +2386,7 @@ a.soon-chip{border-bottom:none!important}
       <div class="cmp-col"><span class="cno">&#10007;</span></div>
     </div>
     <div class="cmp-row">
-      <div class="cmp-feat"><strong style="color:var(--ok)">&#9875; Physical anchor traceability</strong> &#8212; verification grounded in measured physical constants (E&nbsp;=&nbsp;70&nbsp;GPa), not arbitrary thresholds. Traceability to reality, not compliance.</div>
+      <div class="cmp-feat"><strong style="color:var(--ok)">&#9875; Physical anchor traceability</strong> &#8212; verification grounded in measured physical constants (E&nbsp;=&nbsp;70&nbsp;GPa). <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/tests/steward/test_cross_claim_chain.py" target="_blank">test_cross_claim_chain</a> + <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/deep_verify.py" target="_blank">deep_verify.py</a></div>
       <div class="cmp-col mg"><span class="cyes">&#10003;</span></div>
       <div class="cmp-col"><span class="cno">&#10007;</span></div>
       <div class="cmp-col"><span class="cno">&#10007;</span></div>
@@ -2300,38 +2396,71 @@ a.soon-chip{border-bottom:none!important}
 </section></div>
 
 <div class="div"></div>
-<div class="w"><section class="sec" id="regulatory">
+<div class="w"><section class="sec sec-dark" id="regulatory">
   <div class="stag rv">Regulatory Alignment</div>
-  <h2 class="rv d1" style="--h2d:8.8s" data-glitch="Three frameworks. One protocol."><span class="hw">Three frameworks.</span><br><span class="hc">One protocol.</span></h2>
-  <p class="sdesc rv d2">MetaGenesis bundles are designed to satisfy independent auditability requirements across the three major regulatory contexts for computational evidence.</p>
+  <h2 class="rv d1" style="--h2d:8.8s" data-glitch="Three deadlines. One protocol."><span class="hw">Three deadlines.</span><br><span class="hc">One protocol.</span></h2>
+  <p class="sdesc rv d2">Three major frameworks — EU AI Act, FDA 21 CFR Part 11, Basel III/IV — all require the same thing: <strong>independently auditable computational evidence</strong>. MetaGenesis bundles satisfy that requirement with a single offline-verifiable artifact.</p>
+
   <div class="regrid rv d3">
 
     <div class="reg">
-      <div class="reg-badge">EU AI Act</div>
-      <div class="reg-scope">High-Risk AI Systems</div>
-      <h3>Technical documentation &amp; logging</h3>
-      <p>Article 12 requires logging of AI system operations to enable post-market monitoring. MetaGenesis bundles provide immutable, independently auditable evidence records without disclosing proprietary model internals.</p>
-      <div class="reg-claim">Relevant claim: ML_BENCH-01 · DATA-PIPE-01</div>
+      <div class="reg-header-row">
+        <div class="reg-badge">EU AI Act</div>
+        <div class="reg-deadline">&#9888; Aug 2, 2026</div>
+      </div>
+      <div class="reg-scope">High-Risk AI Systems &mdash; Article 12 + Annex IV</div>
+      <h3>Technical documentation &amp; post-market logging</h3>
+      <p>Article 12 mandates logging of AI system operations enabling post-market monitoring. Annex IV requires technical documentation proving the system functions as intended. MetaGenesis bundles provide <strong>immutable, offline-verifiable evidence records</strong> without exposing proprietary model internals to regulators.</p>
+      <div class="reg-claim-block">
+        <div class="reg-claim-title">Satisfies via:</div>
+        <div class="reg-claim-chips">
+          <a class="reg-chip" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank">ML_BENCH-01</a>
+          <a class="reg-chip" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench2_regression_certificate.py" target="_blank">ML_BENCH-02</a>
+          <a class="reg-chip" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench3_timeseries_certificate.py" target="_blank">ML_BENCH-03</a>
+          <a class="reg-chip" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank">DATA-PIPE-01</a>
+        </div>
+      </div>
     </div>
 
     <div class="reg">
-      <div class="reg-badge">FDA 21 CFR Part 11</div>
-      <div class="reg-scope">Pharma &amp; Medical Devices</div>
-      <h3>Electronic records &amp; audit trails</h3>
-      <p>Computational submissions to FDA require electronic records with integrity controls. MetaGenesis evidence bundles provide SHA-256 + semantic integrity verification compatible with existing data integrity requirements.</p>
-      <div class="reg-claim">Relevant claim: DATA-PIPE-01 · DRIFT-01 · MTR series</div>
+      <div class="reg-header-row">
+        <div class="reg-badge" style="border-color:rgba(255,100,100,.4);color:#ff8888;background:rgba(255,100,100,.05)">FDA 21 CFR Part 11</div>
+        <div class="reg-deadline">&#9888; Q2 2026 final guidance</div>
+      </div>
+      <div class="reg-scope">Pharma &amp; Medical Devices &mdash; AI/ML-based software</div>
+      <h3>Electronic records &amp; reproducible audit trails</h3>
+      <p>FDA draft guidance (Jan 2025) establishes a <strong>7-step credibility framework</strong> for AI in drug development. Computational claims in IND filings require documentation that a regulator can verify without re-running the model. MetaGenesis provides exactly that: a self-contained bundle, verifiable offline in 60 seconds.</p>
+      <div class="reg-claim-block">
+        <div class="reg-claim-title">Satisfies via:</div>
+        <div class="reg-claim-chips">
+          <a class="reg-chip" style="border-color:rgba(255,100,100,.4);color:#ff8888" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/pharma1_admet_certificate.py" target="_blank">PHARMA-01</a>
+          <a class="reg-chip" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank">DATA-PIPE-01</a>
+          <a class="reg-chip" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank">DRIFT-01</a>
+          <a class="reg-chip" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/scientific_claim_index.md" target="_blank">MTR-1/2/3</a>
+        </div>
+      </div>
     </div>
 
     <div class="reg">
-      <div class="reg-badge">Basel III / IV</div>
-      <div class="reg-scope">Financial Risk Models</div>
-      <h3>Model risk management</h3>
-      <p>SR 11-7 guidance requires independent validation of risk model outputs. MetaGenesis bundles give model validators verifiable evidence without requiring access to proprietary model code or data.</p>
-      <div class="reg-claim">Relevant claim: ML_BENCH-01 · DATA-PIPE-01</div>
+      <div class="reg-header-row">
+        <div class="reg-badge" style="border-color:rgba(255,180,70,.4);color:#ffb84d;background:rgba(255,180,70,.05)">Basel III / IV</div>
+        <div class="reg-deadline">&#9888; SR 11-7 active now</div>
+      </div>
+      <div class="reg-scope">Financial Risk Models &mdash; Model Risk Management</div>
+      <h3>Independent model validation without source access</h3>
+      <p>SR 11-7 requires <strong>independent validation</strong> of risk model outputs by a party that did not build the model. Today that means handing over model code or paying for a full re-run. MetaGenesis bundles give validators verifiable evidence of exactly what the model produced &mdash; without touching proprietary code or data.</p>
+      <div class="reg-claim-block">
+        <div class="reg-claim-title">Satisfies via:</div>
+        <div class="reg-claim-chips">
+          <a class="reg-chip" style="border-color:rgba(255,180,70,.4);color:#ffb84d" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/finrisk1_var_certificate.py" target="_blank">FINRISK-01</a>
+          <a class="reg-chip" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank">ML_BENCH-01</a>
+          <a class="reg-chip" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank">DATA-PIPE-01</a>
+        </div>
+      </div>
     </div>
 
   </div>
-  <p class="reg-note rv d4">MetaGenesis Core does not constitute legal or regulatory compliance advice. It provides technical infrastructure that supports compliance workflows.</p>
+  <p class="reg-note rv d4">MetaGenesis Core does not constitute legal or regulatory compliance advice. It provides technical infrastructure that supports compliance documentation workflows.</p>
 </section></div>
 
 <div class="div"></div>
@@ -2344,11 +2473,11 @@ a.soon-chip{border-bottom:none!important}
     <div class="price-tier">
       <div class="price-name">Open Source</div>
       <div class="price-amount">Free</div>
-      <div class="price-desc">Full protocol, all 8 claims, all verification tools. No limits.</div>
+      <div class="price-desc">Full protocol, all 14 claims, all verification tools. No limits.</div>
       <ul class="price-list">
         <li>Full MetaGenesis Verification Protocol</li>
-        <li>8 active domain claims</li>
-        <li>172 tests including adversarial proof</li>
+        <li>14 active domain claims</li>
+        <li>282 tests including adversarial proof</li>
         <li>Local deployment, no cloud required</li>
         <li>MIT licensed</li>
       </ul>
@@ -2382,7 +2511,10 @@ a.soon-chip{border-bottom:none!important}
         <li>Patent-pending protocol (USPTO #63/996,819)</li>
         <li>Delivered within 48 hours</li>
       </ul>
-      <a href="https://buy.stripe.com/14AcN57qH19R1qN3QQ6Na00" class="price-btn-primary" id="stripe-buy-btn">Buy Bundle — $299 &#8594;</a>
+      <div class="price-pay-options">
+        <a href="mailto:yehor@metagenesis-core.dev?subject=MetaGenesis%20Core%20%E2%80%94%20Verification%20Bundle%20%24299&body=Hi%20Yehor%2C%0A%0AUse%20case%3A%20%5Bdescribe%20your%20claim%20type%5D%0APreferred%20payment%3A%20%5BBank%20transfer%20%2F%20Crypto%20%2F%20Invoice%5D%0A" class="price-btn-primary">Order Bundle — $299 &#8594;</a>
+        <div class="price-pay-note">Bank transfer &middot; Crypto (BTC&nbsp;/&nbsp;ETH&nbsp;/&nbsp;USDC) &middot; Invoice &mdash; reply by email</div>
+      </div>
     </div>
 
     <div class="price-tier">
@@ -2408,7 +2540,7 @@ a.soon-chip{border-bottom:none!important}
       <a class="agent-bar-file" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/CONTEXT_SNAPSHOT.md" target="_blank"><span class="agent-bar-fname">CONTEXT_SNAPSHOT.md</span><span class="agent-bar-fdesc">current state + what's next</span></a>
       <a class="agent-bar-file" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/AGENTS.md" target="_blank"><span class="agent-bar-fname">AGENTS.md</span><span class="agent-bar-fdesc">rules + protected files</span></a>
       <a class="agent-bar-file" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/llms.txt" target="_blank"><span class="agent-bar-fname">llms.txt</span><span class="agent-bar-fdesc">AI-optimized repo summary</span></a>
-      <a class="agent-bar-file" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/canonical_state.md" target="_blank"><span class="agent-bar-fname">canonical_state.md</span><span class="agent-bar-fdesc">8 verified claims</span></a>
+      <a class="agent-bar-file" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/canonical_state.md" target="_blank"><span class="agent-bar-fname">canonical_state.md</span><span class="agent-bar-fdesc">14 verified claims</span></a>
       <a class="agent-bar-file" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/known_faults.yaml" target="_blank"><span class="agent-bar-fname">known_faults.yaml</span><span class="agent-bar-fdesc">known limitations</span></a>
     </div>
     <div class="agent-bar-note"><code>git clone https://github.com/Lama999901/metagenesis-core-public</code> &mdash; then read those 5 files.</div>
@@ -2457,7 +2589,7 @@ a.soon-chip{border-bottom:none!important}
 </section></div>
 
 <div class="div"></div>
-<div class="w"><section class="sec" id="segments">
+<div class="w"><section class="sec sec-dark" id="segments">
   <div class="stag rv">For Your Industry</div>
   <h2 class="rv d1" style="--h2d:11.2s" data-glitch="Built for your world. Speak your language.">Built for <span class="hc">your world.</span><br>Speak your language.</h2>
   <p class="sdesc rv d2">One protocol. Five industries. Find your use case.</p>
@@ -2504,7 +2636,9 @@ a.soon-chip{border-bottom:none!important}
         <div class="seg-claims-row">
           <span class="seg-claims-label">Relevant claims</span>
           <div class="seg-claim-chips">
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-01 — accuracy certificate</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-01 — classification accuracy</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench2_regression_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-02 — regression RMSE</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench3_timeseries_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-03 — time-series MAPE</span></a>
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank"><span class="seg-chip active-chip">DATA-PIPE-01 — pipeline quality</span></a>
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="seg-chip active-chip">DRIFT-01 — model drift monitor</span></a>
           </div>
@@ -2534,7 +2668,7 @@ a.soon-chip{border-bottom:none!important}
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank"><span class="seg-chip active-chip">DATA-PIPE-01 — data integrity</span></a>
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="seg-chip active-chip">DRIFT-01 — calibration anchor</span></a>
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/scientific_claim_index.md" target="_blank"><span class="seg-chip active-chip">MTR-1/2/3 — calibration certificates</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/ROADMAP.md" target="_blank"><span class="seg-chip soon-chip">PHARMA-01 — ADMET (planned)</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/ROADMAP.md" target="_blank"><span class="seg-chip active-chip">PHARMA-01 — ADMET certificate</span></a>
           </div>
         </div>
         <div class="seg-cta-row">
@@ -2561,7 +2695,7 @@ a.soon-chip{border-bottom:none!important}
           <div class="seg-claim-chips">
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-01 — model accuracy</span></a>
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank"><span class="seg-chip active-chip">DATA-PIPE-01 — pipeline integrity</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/ROADMAP.md" target="_blank"><span class="seg-chip soon-chip">FINRISK-01 — VaR certificate (planned)</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/ROADMAP.md" target="_blank"><span class="seg-chip active-chip">FINRISK-01 — VaR certificate</span></a>
           </div>
         </div>
         <div class="seg-cta-row">
@@ -2590,6 +2724,8 @@ a.soon-chip{border-bottom:none!important}
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/sysid1_arx_calibration.py" target="_blank"><span class="seg-chip active-chip">SYSID-01 — system identification</span></a>
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-01 — ML results</span></a>
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="seg-chip active-chip">DRIFT-01 — baseline comparison</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench2_regression_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-02 — regression certificate</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench3_timeseries_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-03 — time-series certificate</span></a>
           </div>
         </div>
         <div class="seg-cta-row">
@@ -2618,6 +2754,8 @@ a.soon-chip{border-bottom:none!important}
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtfem1_displacement_verification.py" target="_blank"><span class="seg-chip active-chip">DT-FEM-01 — FEM displacement verification</span></a>
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mtr1_calibration.py" target="_blank"><span class="seg-chip active-chip">MTR-1 — Young's modulus anchor</span></a>
             <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="seg-chip active-chip">DRIFT-01 — baseline drift monitor</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtsensor1_iot_certificate.py" target="_blank"><span class="seg-chip active-chip">DT-SENSOR-01 — IoT sensor integrity</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtcalib1_convergence_certificate.py" target="_blank"><span class="seg-chip active-chip">DT-CALIB-LOOP-01 — calibration convergence</span></a>
           </div>
         </div>
         <div class="seg-cta-row">
@@ -2840,12 +2978,14 @@ a.soon-chip{border-bottom:none!important}
 </section>
 
 <footer>
-  <div class="fl"><span class="fla">METAGENESIS CORE</span><span class="flb">Open verification protocol &#183; MVP v0.1</span></div>
+  <div class="fl"><span class="fla">METAGENESIS CORE</span><span class="flb">Open verification protocol &#223; MVP v0.2</span></div>
   <div class="flinks">
     <a href="https://github.com/Lama999901/metagenesis-core-public">GitHub</a>
     <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/PROTOCOL.md">Protocol</a>
+    <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/ARCHITECTURE.md">Architecture</a>
     <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/COMMERCIAL.md">Commercial</a>
     <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/SECURITY.md">Security</a>
+    <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/ppa/README_PPA.md">Patent PPA</a>
     <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/AGENTS.md">For Agents</a>
     <a href="/cdn-cgi/l/email-protection#19607c71766b59747c6d787e7c777c6a706a347a766b7c377d7c6f">Contact</a>
   </div>
@@ -3172,7 +3312,7 @@ a.soon-chip{border-bottom:none!important}
   if(tel){var ti=0;setTimeout(function tw(){if(ti<cmd.length){tel.textContent+=cmd[ti++];setTimeout(tw,32+Math.random()*26);}else{if(tcur)tcur.style.display='none';[['l1',300],['l2',800],['l3',1300],['l4',1900],['l5',2400],['l6',3000],['l7',3600],['r1',2200],['r2',3200]].forEach(function(p){setTimeout(function(){var e=document.getElementById(p[0]);if(e)e.style.opacity='1';},p[1]);});}},1400);}
 
   function ct(el,n,d){if(!el)return;d=d||1200;var s=performance.now();(function f(now){var p=Math.min((now-s)/d,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(e*n);if(p<1)requestAnimationFrame(f);else el.textContent=n;})(performance.now());}
-  var done=false;function tryC(){var e=document.getElementById('cn1');if(!e||done)return;if(e.getBoundingClientRect().top<innerHeight*.9){done=true;ct(document.getElementById('cn1'),8);ct(document.getElementById('cn2'),172,1500);ct(document.getElementById('cn3'),3,900);}}
+  var done=false;function tryC(){var e=document.getElementById('cn1');if(!e||done)return;if(e.getBoundingClientRect().top<innerHeight*.9){done=true;ct(document.getElementById('cn1'),14);ct(document.getElementById('cn2'),282,1500);ct(document.getElementById('cn3'),3,900);}}
   window.addEventListener('scroll',tryC,{passive:true});tryC();
 
   var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('vis');});},{threshold:.08});
@@ -3334,13 +3474,13 @@ if(false){/* ══════════════════════�
 
   /* — rings config — */
   var RINGS=[
-    {r:0.08,spd:0.0006,col:'0,255,172',  lw:1.5,gap:0.18,dash:0},     /* inner green */
+    {r:0.08,spd:0.0006,col:'0,255,223',  lw:1.5,gap:0.18,dash:0},     /* inner green */
     {r:0.14,spd:-0.0004,col:'0,229,255', lw:1.0,gap:0.28,dash:0},    /* cyan */
-    {r:0.22,spd:0.0003,col:'0,255,172',  lw:0.7,gap:0.40,dash:1},    /* green dashed */
+    {r:0.22,spd:0.0003,col:'0,255,223',  lw:0.7,gap:0.40,dash:1},    /* green dashed */
     {r:0.30,spd:-0.0005,col:'0,229,255', lw:1.2,gap:0.22,dash:0},    /* cyan */
-    {r:0.38,spd:0.0002,col:'0,255,172',  lw:0.5,gap:0.55,dash:1},    /* green thin */
+    {r:0.38,spd:0.0002,col:'0,255,223',  lw:0.5,gap:0.55,dash:1},    /* green thin */
     {r:0.46,spd:-0.0003,col:'0,229,255', lw:0.8,gap:0.35,dash:0},
-    {r:0.56,spd:0.00015,col:'0,255,172', lw:0.5,gap:0.60,dash:1},
+    {r:0.56,spd:0.00015,col:'0,255,223', lw:0.5,gap:0.60,dash:1},
     {r:0.66,spd:-0.0002,col:'0,229,255', lw:0.4,gap:0.65,dash:1},
   ];
   RINGS.forEach(function(r){r.rot=Math.random()*Math.PI*2;});
@@ -3348,7 +3488,7 @@ if(false){/* ══════════════════════�
   /* — expanding pulse rings — */
   var pulses=[];
   function spawnPulse(){
-    pulses.push({r:0,alpha:0.7,col:Math.random()<0.6?'0,255,172':'0,229,255'});
+    pulses.push({r:0,alpha:0.7,col:Math.random()<0.6?'0,255,223':'0,229,255'});
     setTimeout(spawnPulse, 1800+Math.random()*2400);
   }
   spawnPulse();
@@ -3363,7 +3503,7 @@ if(false){/* ══════════════════════�
       orb:0.28+Math.random()*0.28,
       size:1.0+Math.random()*1.4,
       alpha:0.18+Math.random()*0.32,
-      col:Math.random()<0.6?'0,255,172':'0,229,255'
+      col:Math.random()<0.6?'0,255,223':'0,229,255'
     });
   }
 
@@ -3571,73 +3711,30 @@ if(false){/* ══════════════════════�
 </script>
 <script>
 /* ════════════════════════════════════════
-   VERIFICATION RETICLE CURSOR
-   dot = exact mouse pos
-   ring = lerp follow (lag = 0.12)
-   states: idle | hover-ok | hover-err | click
+   CURSOR — direct follow, no lerp
 ════════════════════════════════════════ */
 (function(){
-  var dot=document.getElementById('cur-dot');
-  var ring=document.getElementById('cur-ring');
-  if(!dot||!ring)return;
-
-  var mx=window.innerWidth/2,my=window.innerHeight/2;
-  var rx=mx,ry=my;
-  var LAG=0.11;          /* ring lerp speed (lower = more lag) */
-  var raf=null;
+  var cur=document.getElementById('mg-cur');
+  if(!cur)return;
   var body=document.body;
-
-  /* — mouse tracking */
-  document.addEventListener('mousemove',function(e){
-    mx=e.clientX; my=e.clientY;
-    dot.style.transform='translate('+mx+'px,'+my+'px) translate(-50%,-50%)';
-  },{ passive:true });
-
-  /* — hover detection: green for links/buttons, red for .err/.warn elements */
   var ERR_SEL='.err,.warn,[data-err],a[href*=".yaml"],a[href*="known_faults"]';
-  var OK_SEL='a,button,.cta,.btn,.seg-chip';
-
+  var OK_SEL='a,button,.cta,.btn,.seg-chip,.price-btn-primary,.price-btn-secondary,.vrf-run-btn,.pilot-submit';
+  document.addEventListener('mousemove',function(e){
+    cur.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)';
+  },{passive:true});
   document.addEventListener('mouseover',function(e){
     var t=e.target;
-    if(t.closest(ERR_SEL)){
-      body.classList.remove('cur-hover');
-      body.classList.add('cur-err');
-    } else if(t.closest(OK_SEL)){
-      body.classList.remove('cur-err');
-      body.classList.add('cur-hover');
-    }
+    if(t.closest(ERR_SEL)){body.classList.remove('cur-hover');body.classList.add('cur-err');}
+    else if(t.closest(OK_SEL)){body.classList.remove('cur-err');body.classList.add('cur-hover');}
   });
   document.addEventListener('mouseout',function(e){
     var t=e.relatedTarget;
-    if(!t||(!t.closest(OK_SEL)&&!t.closest(ERR_SEL))){
-      body.classList.remove('cur-hover','cur-err');
-    }
+    if(!t||(!t.closest(OK_SEL)&&!t.closest(ERR_SEL))){body.classList.remove('cur-hover','cur-err');}
   });
-
-  /* — click flash */
-  document.addEventListener('mousedown',function(){
-    body.classList.add('cur-click');
-  });
-  document.addEventListener('mouseup',function(){
-    body.classList.remove('cur-click');
-  });
-
-  /* — hide when leaving window */
-  document.addEventListener('mouseleave',function(){
-    dot.style.opacity='0'; ring.style.opacity='0';
-  });
-  document.addEventListener('mouseenter',function(){
-    dot.style.opacity=''; ring.style.opacity='';
-  });
-
-  /* ── RAF lerp loop ── */
-  function loop(){
-    rx+=(mx-rx)*LAG;
-    ry+=(my-ry)*LAG;
-    ring.style.transform='translate('+rx.toFixed(2)+'px,'+ry.toFixed(2)+'px) translate(-50%,-50%)';
-    requestAnimationFrame(loop);
-  }
-  loop();
+  document.addEventListener('mousedown',function(){body.classList.add('cur-click');});
+  document.addEventListener('mouseup',function(){body.classList.remove('cur-click');});
+  document.addEventListener('mouseleave',function(){cur.style.opacity='0';});
+  document.addEventListener('mouseenter',function(){cur.style.opacity='';});
 })();
 </script>
 
@@ -3666,6 +3763,67 @@ h2:nth-of-type(2n)   .hw { animation-delay: 0s !important; }
 h2:nth-of-type(2n+1) .hw { animation-delay: 2.5s !important; }
 h2:nth-of-type(3n)   .hw { animation-delay: 1.3s !important; }
 
+/* ════════════════════════════════════════
+   PROOF STRIP
+════════════════════════════════════════ */
+.proof-strip{
+  margin-top:48px;
+  padding:28px 36px;
+  border:1px solid rgba(0,255,223,.18);
+  background:rgba(0,255,223,.03);
+  position:relative;
+  border-radius:3px;
+}
+.proof-strip::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(0,255,223,.6) 30%,rgba(0,255,223,.8) 50%,rgba(0,255,223,.6) 70%,transparent);
+}
+.proof-strip-label{
+  font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ok);margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;
+}
+.proof-strip-label::before{content:'';width:20px;height:1px;background:var(--ok)}
+.proof-strip-items{
+  display:flex;flex-wrap:wrap;gap:10px;
+}
+a.proof-strip-item{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 16px;
+  background:rgba(0,0,0,.3);
+  border:1px solid rgba(0,255,223,.12);
+  text-decoration:none;
+  transition:border-color .2s,background .2s;
+  flex:1;min-width:240px;
+}
+a.proof-strip-item:hover{border-color:rgba(0,255,223,.4);background:rgba(0,255,223,.06)}
+.psi-badge{
+  font-family:var(--fd);font-size:10px;font-weight:900;letter-spacing:.08em;
+  padding:3px 10px;flex-shrink:0;
+  border:1px solid;
+}
+.psi-badge.ok{color:var(--ok);border-color:rgba(0,255,223,.4);background:rgba(0,255,223,.08)}
+.psi-label{
+  font-family:var(--fm);font-size:11px;color:rgba(238,247,251,.55);
+  line-height:1.4;
+}
+.psi-label strong{color:var(--ok);font-weight:700}
+@media(max-width:768px){.proof-strip-items{flex-direction:column}.proof-strip{padding:20px 16px}}
+
+
+/* ════════════════════════════════════════
+   ORIGIN STATS + EXTRAS
+════════════════════════════════════════ */
+.origin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln);margin-top:40px}
+.origin-stat-item{background:var(--ink2);padding:20px 16px;text-align:center}
+.osi-num{font-family:var(--fd);font-size:clamp(28px,3vw,40px);font-weight:900;color:var(--c);line-height:1;letter-spacing:-.03em}
+.osi-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-top:6px}
+p.origin-final{color:rgba(238,247,251,.85);font-style:italic;margin-top:20px;padding-top:20px;border-top:1px solid var(--ln);font-size:15px;line-height:1.7}
+.origin-steps-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--c);margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.origin-steps-label::before{content:'';width:20px;height:1px;background:var(--c)}
+@media(max-width:900px){.origin-stats{grid-template-columns:repeat(2,1fr)}}
 /* ── Agent top banner ── */
 #agent-topbar{display:flex;align-items:center;gap:14px;padding:7px 32px;background:rgba(0,10,22,.96);border-bottom:1px solid rgba(0,229,255,.15);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;overflow-x:auto;white-space:nowrap}
 .atb-label{color:var(--c);font-weight:500;letter-spacing:.15em;font-size:9px;text-transform:uppercase}
@@ -3733,10 +3891,10 @@ h2:nth-of-type(3n)   .hw { animation-delay: 1.3s !important; }
 .phys-result-val.ok{color:var(--ok);font-weight:600}
 .phys-result-val.cy{color:var(--c);font-weight:600}
 .phys-outcome{margin-top:4px;border:1px solid;padding:20px 24px}
-.phys-outcome-pass{border-color:rgba(0,255,172,.3);background:rgba(0,255,172,.04)}
+.phys-outcome-pass{border-color:rgba(0,255,223,.3);background:rgba(0,255,223,.04)}
 .phys-outcome-header{display:flex;align-items:center;gap:14px;margin-bottom:16px}
 .phys-outcome-badge{font-family:var(--fd);font-size:12px;font-weight:700;letter-spacing:.08em;padding:4px 14px;border:1px solid}
-.phys-outcome-badge.ok{color:var(--ok);border-color:rgba(0,255,172,.4);background:rgba(0,255,172,.08)}
+.phys-outcome-badge.ok{color:var(--ok);border-color:rgba(0,255,223,.4);background:rgba(0,255,223,.08)}
 .phys-outcome-title{font-size:13px;color:var(--txt2);font-weight:300}
 .phys-outcome-checks{display:flex;flex-direction:column;gap:6px}
 .phys-check{display:flex;align-items:flex-start;gap:10px;font-family:var(--fm);font-size:12px}
@@ -3876,9 +4034,9 @@ a.pp-claim-link:hover{color:#fff}
   gap:8px;
 }
 .ccl-badge{
-  background:rgba(0,255,172,.12);
+  background:rgba(0,255,223,.12);
   color:var(--ok);
-  border:1px solid rgba(0,255,172,.3);
+  border:1px solid rgba(0,255,223,.3);
   border-radius:4px;
   font-family:var(--fm);
   font-size:10px;
@@ -3950,15 +4108,15 @@ a.pp-claim-link:hover{color:#fff}
   font-family:var(--fm);
   font-size:11px;
   color:var(--ok);
-  background:rgba(0,255,172,.08);
+  background:rgba(0,255,223,.08);
   padding:2px 6px;
   border-radius:4px;
 }
 
 /* ── PHYSICAL ANCHOR CHAIN ── */
-.anchor-chain{border:1px solid rgba(0,255,172,.22);background:rgba(3,8,20,.96);padding:48px 52px;margin-bottom:64px;position:relative;overflow:hidden;box-shadow:0 0 60px rgba(0,255,172,.04) inset,0 0 0 1px rgba(0,255,172,.06)}
-.anchor-chain::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(0,255,172,.7) 30%,rgba(0,255,172,1) 50%,rgba(0,255,172,.7) 70%,transparent 100%)}
-.anchor-chain::after{content:'';position:absolute;inset:8px;border:1px solid rgba(0,255,172,.06);pointer-events:none}
+.anchor-chain{border:1px solid rgba(0,255,223,.22);background:rgba(3,8,20,.96);padding:48px 52px;margin-bottom:64px;position:relative;overflow:hidden;box-shadow:0 0 60px rgba(0,255,223,.04) inset,0 0 0 1px rgba(0,255,223,.06)}
+.anchor-chain::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(0,255,223,.7) 30%,rgba(0,255,223,1) 50%,rgba(0,255,223,.7) 70%,transparent 100%)}
+.anchor-chain::after{content:'';position:absolute;inset:8px;border:1px solid rgba(0,255,223,.06);pointer-events:none}
 .anchor-chain-header{margin-bottom:36px;position:relative;z-index:1}
 .anchor-chain-label{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ok);margin-bottom:16px;display:flex;align-items:center;gap:12px;opacity:.9}
 .anchor-chain-label::before{content:'';width:24px;height:1px;background:var(--ok)}
@@ -3967,31 +4125,31 @@ a.pp-claim-link:hover{color:#fff}
 .anchor-chain-desc em{color:rgba(238,247,251,.52);font-style:italic}
 .anchor-steps{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:stretch;gap:0;position:relative;z-index:1}
 .anchor-step{border:1px solid rgba(238,247,251,.08);background:rgba(7,14,30,.9);padding:24px 24px 20px;display:flex;flex-direction:column;gap:10px;position:relative;transition:background .25s,border-color .25s}
-.anchor-step::before,.anchor-step::after{content:'';position:absolute;width:8px;height:8px;border-color:rgba(0,255,172,.25);border-style:solid}
+.anchor-step::before,.anchor-step::after{content:'';position:absolute;width:8px;height:8px;border-color:rgba(0,255,223,.25);border-style:solid}
 .anchor-step::before{top:4px;left:4px;border-width:1px 0 0 1px}
 .anchor-step::after{bottom:4px;right:4px;border-width:0 1px 1px 0}
-.anchor-step:hover{background:rgba(0,255,172,.04);border-color:rgba(0,255,172,.2)}
-.anchor-root{border-color:rgba(0,255,172,.32);background:rgba(0,255,172,.05);box-shadow:0 0 40px rgba(0,255,172,.06) inset}
-.anchor-root::before{border-color:rgba(0,255,172,.55)}
-.anchor-root::after{border-color:rgba(0,255,172,.55)}
-.anchor-root:hover{background:rgba(0,255,172,.08);border-color:rgba(0,255,172,.45)}
+.anchor-step:hover{background:rgba(0,255,223,.04);border-color:rgba(0,255,223,.2)}
+.anchor-root{border-color:rgba(0,255,223,.32);background:rgba(0,255,223,.05);box-shadow:0 0 40px rgba(0,255,223,.06) inset}
+.anchor-root::before{border-color:rgba(0,255,223,.55)}
+.anchor-root::after{border-color:rgba(0,255,223,.55)}
+.anchor-root:hover{background:rgba(0,255,223,.08);border-color:rgba(0,255,223,.45)}
 .anchor-step-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:2px}
-.anchor-badge-pill{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--ok);border:1px solid rgba(0,255,172,.4);background:rgba(0,255,172,.10);padding:3px 10px;white-space:nowrap}
+.anchor-badge-pill{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--ok);border:1px solid rgba(0,255,223,.4);background:rgba(0,255,223,.10);padding:3px 10px;white-space:nowrap}
 .anchor-claim-id{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--c);text-decoration:none;border-bottom:1px solid rgba(0,229,255,.28);transition:color .18s,border-color .18s}
 .anchor-claim-id:hover{color:#fff;border-bottom-color:var(--c)}
 .anchor-verdict-ok{font-family:var(--fm);font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--ok);opacity:.9}
 .anchor-step-val{font-family:var(--fm);font-size:13px;color:rgba(238,247,251,.9);font-weight:500;letter-spacing:.03em}
-.anchor-root .anchor-step-val{font-size:22px;font-weight:900;color:var(--ok);font-family:var(--fd);letter-spacing:-.02em;text-shadow:0 0 20px rgba(0,255,172,.35)}
+.anchor-root .anchor-step-val{font-size:22px;font-weight:900;color:var(--ok);font-family:var(--fd);letter-spacing:-.02em;text-shadow:0 0 20px rgba(0,255,223,.35)}
 .anchor-step-name{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(238,247,251,.35)}
 .anchor-step-desc{font-size:12px;color:rgba(238,247,251,.42);line-height:1.58;font-weight:300;font-family:var(--fb)}
-.anchor-arrow{display:flex;align-items:center;justify-content:center;padding:0 16px;font-family:var(--fm);font-size:18px;color:rgba(0,255,172,.25);flex-shrink:0;position:relative}
-.anchor-arrow::after{content:'';position:absolute;top:50%;left:50%;width:1px;height:60%;background:rgba(0,255,172,.1);transform:translate(-50%,-50%)}
-.anchor-verify{margin-top:28px;padding:16px 22px;background:rgba(4,8,26,.95);border:1px solid rgba(238,247,251,.07);border-left:2px solid rgba(0,255,172,.4);font-family:var(--fm);font-size:12px;color:var(--txt2);position:relative;z-index:1}
+.anchor-arrow{display:flex;align-items:center;justify-content:center;padding:0 16px;font-family:var(--fm);font-size:18px;color:rgba(0,255,223,.25);flex-shrink:0;position:relative}
+.anchor-arrow::after{content:'';position:absolute;top:50%;left:50%;width:1px;height:60%;background:rgba(0,255,223,.1);transform:translate(-50%,-50%)}
+.anchor-verify{margin-top:28px;padding:16px 22px;background:rgba(4,8,26,.95);border:1px solid rgba(238,247,251,.07);border-left:2px solid rgba(0,255,223,.4);font-family:var(--fm);font-size:12px;color:var(--txt2);position:relative;z-index:1}
 .anchor-verify-prompt{color:var(--c);margin-right:6px;opacity:.7}
 .anchor-verify-pass{color:var(--ok);font-weight:700;letter-spacing:.06em}
 .anchor-verify-note{color:rgba(238,247,251,.38);font-size:11px}
-.claimid-badge.anchor-sm{font-size:8px;letter-spacing:.1em;padding:2px 7px;margin-left:8px;color:var(--ok);border:1px solid rgba(0,255,172,.3);background:rgba(0,255,172,.05);vertical-align:middle;text-transform:uppercase}
-.claim.claim-anchor{background:rgba(0,255,172,.03)!important}
+.claimid-badge.anchor-sm{font-size:8px;letter-spacing:.1em;padding:2px 7px;margin-left:8px;color:var(--ok);border:1px solid rgba(0,255,223,.3);background:rgba(0,255,223,.05);vertical-align:middle;text-transform:uppercase}
+.claim.claim-anchor{background:rgba(0,255,223,.03)!important}
 .claim.claim-anchor::before{background:linear-gradient(90deg,transparent,var(--ok),transparent)!important;transform:scaleX(1)!important;opacity:.4}
 @media(max-width:1100px){.anchor-chain{padding:32px 24px}.anchor-steps{grid-template-columns:1fr;justify-items:stretch}.anchor-arrow{padding:8px 0;font-size:16px}.anchor-arrow::after{display:none}.anchor-step{min-width:0}}
 @media(max-width:768px){.anchor-chain{padding:24px 20px;margin-bottom:40px}.anchor-chain-desc{font-size:15px}.anchor-root .anchor-step-val{font-size:18px}}
@@ -4055,3 +4213,7 @@ a.pp-claim-link:hover{color:#fff}
 </script>
 </body>
 </html>
+
+
+
+

@@ -1,20 +1,20 @@
 ---
 # Known Faults Registry
 # Authority: MetaGenesis Core / STEW-01
-# Last updated: 2026-03-14 (steward_audit PASS, 153 tests PASS)
+# Last updated: 2026-03-17 (steward_audit PASS, 282 tests PASS)
 
 known_faults:
   - fault_id: "ENV_001"
     category: "TEST_ENVIRONMENT"
     severity: "EXPECTED"
     description: >
-      All 153 tests pass in the reference environment (Python 3.11+, stdlib only).
+      All 282 tests pass in the reference environment (Python 3.11+, stdlib only).
       No database dependencies. No external services. No network required.
       Local environment deviations may require matching Python version.
     affected_claims: []
     status: "FAULT_EXPECTED"
     ticket_ref: "https://github.com/Lama999901/metagenesis-core-public/issues"
-    mitigation: "Run: python -m pytest tests/steward tests/materials tests/ml tests/systems tests/data tests/digital_twin -q"
+    mitigation: "Run: python -m pytest tests/ -q  # → 282 passed"
 
   - fault_id: "SCOPE_001"
     category: "PROTOCOL_SCOPE"
@@ -28,10 +28,10 @@ known_faults:
       models, the protocol provides tamper-evident provenance only — not physical anchoring.
       Thresholds in these domains (e.g. |Δaccuracy| ≤ 0.02) are chosen conventions,
       not physical constants. This is intentional and not a defect.
-    affected_claims: ["ML_BENCH-01", "DATA-PIPE-01", "SYSID-01"]
+    affected_claims: ["ML_BENCH-01", "ML_BENCH-02", "ML_BENCH-03", "DATA-PIPE-01", "SYSID-01", "PHARMA-01", "FINRISK-01", "DT-SENSOR-01"]
     status: "FAULT_EXPECTED"
     ticket_ref: "https://github.com/Lama999901/metagenesis-core-public/issues"
-    mitigation: "Use physical anchor chain (MTR-1 -> DT-FEM-01 -> DRIFT-01) for domains requiring traceability to physical reality."
+    mitigation: "Use physical anchor chain (MTR-1 -> DT-FEM-01 -> DRIFT-01 -> DT-CALIB-LOOP-01) for domains requiring traceability to physical reality."
 
 fault_classification:
   FAULT_EXPECTED: "Known issue that does not impact system operation"
@@ -39,9 +39,9 @@ fault_classification:
   FAULT_CRITICAL: "Issue requiring immediate attention"
 
 audit_metadata:
-  generated: "2026-03-08"
+  generated: "2026-03-15"
   total_faults: 2
   critical_faults: 0
   expected_faults: 2
   system_impact: "NONE — no external dependencies, stdlib only"
-  ci_impact: "NONE — 153 tests pass, steward_audit PASS"
+  ci_impact: "NONE — 282 tests pass, steward_audit PASS"

@@ -5,7 +5,7 @@ MetaGenesis Policy Gate
 Enforces repository access policies to protect locked phases and critical artifacts.
 Pure Python stdlib implementation for maximum portability.
 
-# Part of MetaGenesis Core verification pipeline (MVP v0.1)
+# Part of MetaGenesis Core verification pipeline (MVP v0.2)
 Purpose: Prevent unauthorized modifications to locked phases
 """
 

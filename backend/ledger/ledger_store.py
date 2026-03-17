@@ -3,7 +3,7 @@
 Ledger Store - Append-Only JSONL Storage (Pure Stdlib)
 
 Purpose: Persistent storage for ledger entries with deterministic writes
-# Part of MetaGenesis Core verification pipeline (MVP v0.1)
+# Part of MetaGenesis Core verification pipeline (MVP v0.2)
 Storage Format: JSON Lines (one entry per line)
 Implementation: Pure Python stdlib with portable file locking
 """

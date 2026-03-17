@@ -3,7 +3,7 @@
 Progress Engine Store - In-Memory Job Storage
 
 Purpose: Simple in-memory job store for v1 (no persistence)
-# Part of MetaGenesis Core verification pipeline (MVP v0.1)
+# Part of MetaGenesis Core verification pipeline (MVP v0.2)
 Implementation: Dict + list for deterministic ordering
 """
 

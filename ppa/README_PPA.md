@@ -23,10 +23,19 @@ in the non-provisional application.
 | DRIFT-01 claim | post 2026-03-05 | To include in non-provisional |
 | ML_BENCH-01 claim | post 2026-03-05 | To include in non-provisional |
 | DT-FEM-01 claim | 2026-03-11 | To include in non-provisional |
-| Tests 40–113 | post 2026-03-05 | Additional coverage |
-| Step Chain Verification (ML_BENCH-01) | 2026-03-14 | 4-step cryptographic execution trace + trace_root_hash |
+| Tests 40–282 | post 2026-03-05 | Additional coverage (incl. CERT-05 gauntlet + CERT-06 scenarios) |
+| Step Chain Verification (all 14 claims) | 2026-03-14 | 4-step cryptographic execution trace + trace_root_hash |
+| Cross-Claim Cryptographic Chain | 2026-03-15 | anchor_hash MTR-1→DT-FEM-01→DRIFT-01 |
+| ML_BENCH-02 (regression) | 2026-03-15 | RMSE, MAE, R² |
+| ML_BENCH-03 (time-series) | 2026-03-15 | MAPE |
+| PHARMA-01 (ADMET) | 2026-03-15 | FDA 21 CFR Part 11 alignment |
+| FINRISK-01 (VaR) | 2026-03-15 | Basel III/IV alignment |
+| DT-SENSOR-01 (IoT) | 2026-03-15 | Sensor data integrity |
+| DT-CALIB-LOOP-01 (convergence) | 2026-03-15 | Calibration convergence |
+| anchor_hash validation in verifier | 2026-03-15 | mg.py verify-chain CLI |
+| Innovation #6: Bundle Signing (HMAC-SHA256) | 2026-03-17 | mg_sign.py — closes unauthorized bundle creation attack |
 
-**Current state (2026-03-14):** 8 claims, 147 tests.
+**Current state (2026-03-17):** 14 claims, 282 tests.
 Live state: reports/canonical_state.md
 
 ---
@@ -140,7 +149,9 @@ reports/scientific_claim_index.md
 reports/canonical_state.md
   → Authoritative project state snapshot
   → current_claims_list: MTR-1, MTR-2, MTR-3, SYSID-01,
-                          DATA-PIPE-01, DRIFT-01, ML_BENCH-01, DT-FEM-01
+                          DATA-PIPE-01, DRIFT-01, ML_BENCH-01, DT-FEM-01,
+                          ML_BENCH-02, ML_BENCH-03, PHARMA-01, FINRISK-01,
+                          DT-SENSOR-01, DT-CALIB-LOOP-01
 ```
 
 ---

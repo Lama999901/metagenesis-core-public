@@ -4,7 +4,7 @@ SYSID-01 ARX Calibration - Deterministic system identification.
 
 Purpose: Estimate (a, b) in y[t+1] = a*y[t] + b*u[t] from synthetic time-series.
 Cross-domain claim for portability. Stdlib only, no numpy.
-# Part of MetaGenesis Core verification pipeline (MVP v0.1)
+# Part of MetaGenesis Core verification pipeline (MVP v0.2)
 """
 
 import random
