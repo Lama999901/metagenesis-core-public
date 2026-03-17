@@ -1,7 +1,7 @@
 # MetaGenesis Core
 
 Open verification protocol for computational claims.
-Implements the MetaGenesis Verification Protocol (MVP) v0.2.
+Implements the MetaGenesis Verification Protocol (MVP) v0.3.
 
 Any computational result — ML accuracy, calibration output, FEM simulation,
 ADMET prediction, VaR estimate, IoT sensor stream — can be packaged into a
@@ -108,7 +108,7 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 - HN post live: https://news.ycombinator.com/item?id=47335416
 - PPA filed: 2026-03-05 — non-provisional deadline 2027-03-05
 - Payment: $299/bundle — bank transfer / crypto (BTC/ETH/USDC) / invoice — yehor@metagenesis-core.dev
-- GitHub Release: v0.2.0 — https://github.com/Lama999901/metagenesis-core-public/releases/tag/v0.2.0
+- GitHub Release: v0.3.0 — https://github.com/Lama999901/metagenesis-core-public/releases/tag/v0.3.0
 - Outreach sent: Tongqi Wen, Giovanni Pizzi, Brian Nosek (follow-up), Peter Coveney (follow-up),
   Arvind Narayanan (follow-up), Jeffrey Ip, Elena Samuylova (resent with subject),
   Anand Kannappan, Vikram Chatterji, Woody Sherman, Jonathan Godwin,
