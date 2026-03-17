@@ -23,7 +23,7 @@ in the non-provisional application.
 | DRIFT-01 claim | post 2026-03-05 | To include in non-provisional |
 | ML_BENCH-01 claim | post 2026-03-05 | To include in non-provisional |
 | DT-FEM-01 claim | 2026-03-11 | To include in non-provisional |
-| Tests 40–113 | post 2026-03-05 | Additional coverage |
+| Tests 40–282 | post 2026-03-05 | Additional coverage (incl. CERT-05 gauntlet + CERT-06 scenarios) |
 | Step Chain Verification (all 14 claims) | 2026-03-14 | 4-step cryptographic execution trace + trace_root_hash |
 | Cross-Claim Cryptographic Chain | 2026-03-15 | anchor_hash MTR-1→DT-FEM-01→DRIFT-01 |
 | ML_BENCH-02 (regression) | 2026-03-15 | RMSE, MAE, R² |
@@ -34,7 +34,7 @@ in the non-provisional application.
 | DT-CALIB-LOOP-01 (convergence) | 2026-03-15 | Calibration convergence |
 | anchor_hash validation in verifier | 2026-03-15 | mg.py verify-chain CLI |
 
-**Current state (2026-03-15):** 14 claims, 223 tests.
+**Current state (2026-03-17):** 14 claims, 282 tests.
 Live state: reports/canonical_state.md
 
 ---
