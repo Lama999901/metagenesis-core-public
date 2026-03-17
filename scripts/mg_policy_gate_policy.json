@@ -45,6 +45,7 @@
     "*.md",
     "*.txt",
     "*.json",
+    "*.bib",
     "index.html",
     "CITATION.cff"
   ],
