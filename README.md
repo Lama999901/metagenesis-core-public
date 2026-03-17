@@ -111,6 +111,23 @@ Proven: `tests/steward/test_cert02_*::test_semantic_negative_missing_job_snapsho
 ```
 Proven: `tests/steward/test_cert03_step_chain_verify.py::test_tampered_trace_root_hash_fails`
 
+**Adversarial Gauntlet — 5 attack classes, all caught (CERT-05):**
+
+| Attack | What adversary does | Layer that catches |
+|--------|--------------------|-----------------|
+| Strip & Recompute | Remove evidence, rebuild all SHA-256 | Layer 2 (semantic) |
+| Single-Bit Manipulation | Change accuracy 0.94→0.95 (1%) | Layer 3 (step chain) |
+| Cross-Domain Substitution | Submit ML bundle for PHARMA claim | Layer 2 (job_kind) |
+| Canary Laundering | Non-authoritative run as authoritative | Layer 2 (canary_mode) |
+| Anchor Chain Reversal | Skip DT-FEM-01, connect MTR-1→DRIFT-01 | Layer 3 (hash mismatch) |
+
+```bash
+python -m pytest tests/steward/test_cert05_adversarial_gauntlet.py -v
+# → 6 passed (5 attacks + 1 summary proof)
+```
+
+The summary test explicitly proves all three layers are necessary — no single layer catches all attacks.
+
 ---
 
 ## Try it in 5 minutes
