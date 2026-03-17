@@ -13,10 +13,13 @@ Usage:
     python scripts/mg_ed25519.py test      # Same as above
 """
 
+import argparse
 import hashlib
 import hmac as _hmac
+import json
 import secrets
 import sys
+from pathlib import Path
 
 # ---- Ed25519 Constants (RFC 8032 Section 5.1) ----
 
@@ -371,9 +374,70 @@ def run_self_test():
     return all_pass
 
 
+# ---- Key File Management ----
+
+def generate_key_files(out_path):
+    """
+    Generate Ed25519 key pair and write to disk as two JSON files.
+
+    Produces:
+      - out_path: private key file (private_key_hex + public_key_hex + fingerprint)
+      - out_path with .pub.json suffix: public key file (public_key_hex + fingerprint only)
+
+    Args:
+        out_path: Path to private key output file (e.g., key.json)
+
+    Returns:
+        dict with private key data (version, private_key_hex, public_key_hex, fingerprint, note)
+    """
+    out_path = Path(out_path)
+    private_seed, public_key = generate_keypair()
+    fingerprint = hashlib.sha256(public_key).hexdigest()
+
+    key_data = {
+        "version": KEY_VERSION,
+        "private_key_hex": private_seed.hex(),
+        "public_key_hex": public_key.hex(),
+        "fingerprint": fingerprint,
+        "note": "KEEP THIS FILE SECRET. Share the .pub.json with auditors.",
+    }
+
+    pub_data = {
+        "version": KEY_VERSION,
+        "public_key_hex": public_key.hex(),
+        "fingerprint": fingerprint,
+        "note": "Public key for Ed25519 signature verification. Safe to share.",
+    }
+
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(key_data, indent=2), encoding="utf-8")
+
+    # Companion public key file: key.json -> key.pub.json
+    stem = out_path.stem  # "key" from "key.json"
+    pub_path = out_path.parent / f"{stem}.pub.json"
+    pub_path.write_text(json.dumps(pub_data, indent=2), encoding="utf-8")
+
+    return key_data
+
+
 # ---- CLI ----
 
-def main():
+def cmd_keygen(args):
+    """CLI handler for keygen subcommand."""
+    out_path = Path(args.out)
+    key_data = generate_key_files(out_path)
+    stem = out_path.stem
+    pub_path = out_path.parent / f"{stem}.pub.json"
+    print("Ed25519 key pair generated:")
+    print(f"  Private key: {out_path}")
+    print(f"  Public key:  {pub_path}")
+    print(f"  Fingerprint: {key_data['fingerprint']}")
+    print(f"KEEP {out_path} SECRET. Share {pub_path} with auditors.")
+    return 0
+
+
+def cmd_test(_args):
+    """CLI handler for test subcommand."""
     print("Ed25519 Self-Test (RFC 8032 Section 7.1)")
     if run_self_test():
         print("\nALL 5 VECTORS PASSED")
@@ -381,6 +445,30 @@ def main():
     else:
         print("\nSELF-TEST FAILED")
         return 1
+
+
+def main():
+    ap = argparse.ArgumentParser(
+        description="MetaGenesis Core -- Ed25519 Signing (RFC 8032 Section 5.1)"
+    )
+    sub = ap.add_subparsers(dest="command")
+
+    # keygen
+    kg = sub.add_parser("keygen", help="Generate a new Ed25519 key pair")
+    kg.add_argument("--out", "-o", required=True, help="Output key file path (.json)")
+    kg.set_defaults(func=cmd_keygen)
+
+    # test
+    t = sub.add_parser("test", help="Run RFC 8032 self-test vectors")
+    t.set_defaults(func=cmd_test)
+
+    args = ap.parse_args()
+
+    # Default to self-test if no subcommand (backward compatibility)
+    if args.command is None:
+        return cmd_test(args)
+
+    return args.func(args)
 
 
 if __name__ == "__main__":

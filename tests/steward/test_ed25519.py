@@ -2,12 +2,18 @@
 Ed25519 correctness tests -- RFC 8032 Section 7.1 test vectors.
 
 Tests key derivation, signing, and verification against all 5 official
-test vectors. Also tests rejection of invalid signatures.
+test vectors. Also tests rejection of invalid signatures and key file
+generation.
 """
+
+import hashlib
+import json
 
 import pytest
 
-from scripts.mg_ed25519 import sign, verify, generate_keypair, run_self_test
+from scripts.mg_ed25519 import (
+    sign, verify, generate_keypair, run_self_test, generate_key_files,
+)
 
 
 # All 5 RFC 8032 Section 7.1 test vectors
@@ -165,3 +171,66 @@ class TestEd25519SelfTest:
     def test_self_test_passes(self):
         """run_self_test() returns True when all vectors pass."""
         assert run_self_test() is True
+
+
+class TestEd25519Keygen:
+    """Key file generation tests."""
+
+    def test_keygen_produces_two_files(self, tmp_path):
+        """generate_key_files creates both private and public key files."""
+        key_path = tmp_path / "test_key.json"
+        generate_key_files(key_path)
+        assert key_path.exists()
+        pub_path = tmp_path / "test_key.pub.json"
+        assert pub_path.exists()
+
+    def test_private_key_file_format(self, tmp_path):
+        """Private key file has correct structure and field lengths."""
+        key_path = tmp_path / "test_key.json"
+        generate_key_files(key_path)
+        data = json.loads(key_path.read_text())
+        assert data["version"] == "ed25519-v1"
+        assert "private_key_hex" in data
+        assert "public_key_hex" in data
+        assert "fingerprint" in data
+        assert len(data["private_key_hex"]) == 64  # 32 bytes hex
+        assert len(data["public_key_hex"]) == 64
+
+    def test_public_key_file_has_no_private_key(self, tmp_path):
+        """Public key file contains no private key material."""
+        key_path = tmp_path / "test_key.json"
+        generate_key_files(key_path)
+        pub_path = tmp_path / "test_key.pub.json"
+        pub_data = json.loads(pub_path.read_text())
+        assert pub_data["version"] == "ed25519-v1"
+        assert "public_key_hex" in pub_data
+        assert "private_key_hex" not in pub_data
+        assert "fingerprint" in pub_data
+
+    def test_fingerprint_is_sha256_of_public_key(self, tmp_path):
+        """Fingerprint is SHA-256 of the raw public key bytes."""
+        key_path = tmp_path / "test_key.json"
+        generate_key_files(key_path)
+        data = json.loads(key_path.read_text())
+        expected = hashlib.sha256(bytes.fromhex(data["public_key_hex"])).hexdigest()
+        assert data["fingerprint"] == expected
+
+    def test_fingerprint_matches_between_files(self, tmp_path):
+        """Fingerprint and public key match between private and public files."""
+        key_path = tmp_path / "test_key.json"
+        generate_key_files(key_path)
+        priv_data = json.loads(key_path.read_text())
+        pub_data = json.loads((tmp_path / "test_key.pub.json").read_text())
+        assert priv_data["fingerprint"] == pub_data["fingerprint"]
+        assert priv_data["public_key_hex"] == pub_data["public_key_hex"]
+
+    def test_generated_key_roundtrip_sign_verify(self, tmp_path):
+        """Generated keys produce valid signatures (sign + verify round-trip)."""
+        key_path = tmp_path / "test_key.json"
+        generate_key_files(key_path)
+        data = json.loads(key_path.read_text())
+        private_seed = bytes.fromhex(data["private_key_hex"])
+        public_key = bytes.fromhex(data["public_key_hex"])
+        message = b"test message for round-trip"
+        sig = sign(private_seed, message)
+        assert verify(public_key, message, sig)
