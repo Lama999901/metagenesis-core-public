@@ -1,4 +1,6 @@
-# MetaGenesis Core
+python3 -c "
+with open('/mnt/user-data/outputs/llms.txt', 'r') as f: c = f.read()
+" 
 
 Open verification protocol for computational claims.
 Implements the MetaGenesis Verification Protocol (MVP) v0.3.

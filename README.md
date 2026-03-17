@@ -248,7 +248,7 @@ python scripts/steward_audit.py
 # → STEWARD AUDIT: PASS
 
 python -m pytest tests/ -q
-# → 282 passed
+# → 295 passed
 
 # Full proof-not-trust verification (10 tests):
 python scripts/deep_verify.py
@@ -310,7 +310,7 @@ Commercial licensing available for organizations building on the protocol.
 Read these files in order:
 
 ```
-1. CONTEXT_SNAPSHOT.md          ← current state, 14 claims, 282 tests
+1. CONTEXT_SNAPSHOT.md          ← current state, 14 claims, 295 tests
 2. AGENTS.md                    ← hard rules, forbidden terms, protected files
 3. llms.txt                     ← AI-optimized repo summary
 4. reports/canonical_state.md   ← authoritative claims list
