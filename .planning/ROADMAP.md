@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 1: Ed25519 Foundation** - Pure-Python Ed25519 implementation validated against RFC 8032 test vectors
 - [x] **Phase 2: Signing Upgrade** - Ed25519 integrated into bundle signing with HMAC backward compatibility (completed 2026-03-18)
 - [ ] **Phase 3: Temporal Commitment** - NIST Beacon integration and Layer 5 independent verification
-- [ ] **Phase 4: Adversarial Proofs and Polish** - Expanded proof suite, deep_verify tests 11-13, documentation updates
+- [x] **Phase 4: Adversarial Proofs and Polish** - Expanded proof suite, deep_verify tests 11-13, documentation updates (completed 2026-03-18)
 
 ## Phase Details
 
@@ -76,7 +76,7 @@ Plans:
   3. CERT-10 test gauntlet proves temporal attack scenarios (replay, future-date, beacon forge) are caught
   4. 5-layer independence proof demonstrates each layer catches attacks the others miss
   5. All counters across index.html, README.md, AGENTS.md, llms.txt, system_manifest.json, and CONTEXT_SNAPSHOT.md reflect the new test count, layer count, and innovation count
-**Plans:** 2/3 plans executed
+**Plans:** 3/3 plans complete
 
 Plans:
 - [ ] 04-01-PLAN.md -- CERT-09 Ed25519 attack gauntlet + CERT-10 temporal attack gauntlet (CERT-05, CERT-06)
@@ -93,7 +93,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 | 1. Ed25519 Foundation | 2/2 | Complete | 2026-03-17 |
 | 2. Signing Upgrade | 2/2 | Complete   | 2026-03-18 |
 | 3. Temporal Commitment | 1/2 | In Progress|  |
-| 4. Adversarial Proofs and Polish | 2/3 | In Progress|  |
+| 4. Adversarial Proofs and Polish | 3/3 | Complete   | 2026-03-18 |
 
 ---
 *Roadmap created: 2026-03-16*

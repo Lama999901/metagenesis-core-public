@@ -36,10 +36,10 @@
 
 ### Documentation & Counters
 
-- [ ] **DOCS-01**: All counter updates across index.html (11+ places), README.md, AGENTS.md, llms.txt, system_manifest.json, CONTEXT_SNAPSHOT.md
-- [ ] **DOCS-02**: system_manifest.json protocol version bump
-- [ ] **DOCS-03**: reports/scientific_claim_index.md updated with new capabilities
-- [ ] **DOCS-04**: paper.md references updated to cite implemented innovations
+- [x] **DOCS-01**: All counter updates across index.html (11+ places), README.md, AGENTS.md, llms.txt, system_manifest.json, CONTEXT_SNAPSHOT.md
+- [x] **DOCS-02**: system_manifest.json protocol version bump
+- [x] **DOCS-03**: reports/scientific_claim_index.md updated with new capabilities
+- [x] **DOCS-04**: paper.md references updated to cite implemented innovations
 
 ## v2 Requirements
 
@@ -92,10 +92,10 @@
 | CERT-04 | Phase 4 | Complete |
 | CERT-05 | Phase 4 | Complete |
 | CERT-06 | Phase 4 | Complete |
-| DOCS-01 | Phase 4 | Pending |
-| DOCS-02 | Phase 4 | Pending |
-| DOCS-03 | Phase 4 | Pending |
-| DOCS-04 | Phase 4 | Pending |
+| DOCS-01 | Phase 4 | Complete |
+| DOCS-02 | Phase 4 | Complete |
+| DOCS-03 | Phase 4 | Complete |
+| DOCS-04 | Phase 4 | Complete |
 
 **Coverage:**
 - v1 requirements: 24 total
