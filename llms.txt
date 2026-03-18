@@ -3,7 +3,7 @@ with open('/mnt/user-data/outputs/llms.txt', 'r') as f: c = f.read()
 " 
 
 Open verification protocol for computational claims.
-Implements the MetaGenesis Verification Protocol (MVP) v0.4.
+Implements the MetaGenesis Verification Protocol (MVP) v0.5.
 
 Any computational result — ML accuracy, calibration output, FEM simulation,
 ADMET prediction, VaR estimate, IoT sensor stream — can be packaged into a
@@ -98,13 +98,13 @@ Enforced by: python scripts/steward_audit.py → must output STEWARD AUDIT: PASS
 ## How to verify everything works
 
 python scripts/steward_audit.py                              # PASS
-python -m pytest tests/ -q                                   # 389 passed
+python -m pytest tests/ -q                                   # 511 passed
 python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 
 ## Current state (2026-03-15)
 
 - Claims: 14
-- Tests: 389 passing
+- Tests: 511 passing
 - Verification layers: 5 (integrity + semantic + step chain + bundle signing + temporal commitment)
 - Domains: 7 (materials, sysid, data, ml, digital_twin, pharma_biotech, financial_risk)
 - Cross-Claim Chain: MTR-1 → DT-FEM-01 → DRIFT-01 cryptographically linked via anchor_hash
@@ -114,7 +114,7 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 - HN post live: https://news.ycombinator.com/item?id=47335416
 - PPA filed: 2026-03-05 — non-provisional deadline 2027-03-05
 - Payment: $299/bundle — bank transfer / crypto (BTC/ETH/USDC) / invoice — yehor@metagenesis-core.dev
-- GitHub Release: v0.3.0 — https://github.com/Lama999901/metagenesis-core-public/releases/tag/v0.3.0
+- GitHub Release: v0.5.0 — https://github.com/Lama999901/metagenesis-core-public/releases/tag/v0.5.0
 - Outreach sent: Tongqi Wen, Giovanni Pizzi, Brian Nosek (follow-up), Peter Coveney (follow-up),
   Arvind Narayanan (follow-up), Jeffrey Ip, Elena Samuylova (resent with subject),
   Anand Kannappan, Vikram Chatterji, Woody Sherman, Jonathan Godwin,
