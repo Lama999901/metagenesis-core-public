@@ -31,8 +31,8 @@
 - [ ] **CERT-02**: deep_verify Test 12 — cross-environment reproducibility proof
 - [ ] **CERT-03**: deep_verify Test 13 — temporal commitment verification proof
 - [ ] **CERT-04**: 5-layer independence proof — each layer catches attacks the others miss
-- [ ] **CERT-05**: CERT-09 signing attack gauntlet (Ed25519-specific attack scenarios)
-- [ ] **CERT-06**: CERT-10 temporal attack gauntlet (replay, future-date, beacon forge attacks)
+- [x] **CERT-05**: CERT-09 signing attack gauntlet (Ed25519-specific attack scenarios)
+- [x] **CERT-06**: CERT-10 temporal attack gauntlet (replay, future-date, beacon forge attacks)
 
 ### Documentation & Counters
 
@@ -90,8 +90,8 @@
 | CERT-02 | Phase 4 | Pending |
 | CERT-03 | Phase 4 | Pending |
 | CERT-04 | Phase 4 | Pending |
-| CERT-05 | Phase 4 | Pending |
-| CERT-06 | Phase 4 | Pending |
+| CERT-05 | Phase 4 | Complete |
+| CERT-06 | Phase 4 | Complete |
 | DOCS-01 | Phase 4 | Pending |
 | DOCS-02 | Phase 4 | Pending |
 | DOCS-03 | Phase 4 | Pending |

@@ -76,12 +76,12 @@ Plans:
   3. CERT-10 test gauntlet proves temporal attack scenarios (replay, future-date, beacon forge) are caught
   4. 5-layer independence proof demonstrates each layer catches attacks the others miss
   5. All counters across index.html, README.md, AGENTS.md, llms.txt, system_manifest.json, and CONTEXT_SNAPSHOT.md reflect the new test count, layer count, and innovation count
-**Plans**: TBD
+**Plans:** 3 plans
 
 Plans:
-- [ ] 04-01: TBD
-- [ ] 04-02: TBD
-- [ ] 04-03: TBD
+- [ ] 04-01-PLAN.md -- CERT-09 Ed25519 attack gauntlet + CERT-10 temporal attack gauntlet (CERT-05, CERT-06)
+- [ ] 04-02-PLAN.md -- deep_verify Tests 11-13 + 5-layer independence proof (CERT-01, CERT-02, CERT-03, CERT-04)
+- [ ] 04-03-PLAN.md -- Documentation counter updates, system_manifest version bump, paper.md + scientific_claim_index.md (DOCS-01, DOCS-02, DOCS-03, DOCS-04)
 
 ## Progress
 
