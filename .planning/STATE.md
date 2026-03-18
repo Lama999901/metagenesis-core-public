@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v0.5
 milestone_name: milestone
 status: executing
-stopped_at: Completed 06-01-PLAN.md
-last_updated: "2026-03-18T05:28:00Z"
-last_activity: 2026-03-18 -- Completed 06-01 semantic edge case hardening
+stopped_at: Completed 06-02-PLAN.md
+last_updated: "2026-03-18T05:36:31Z"
+last_activity: 2026-03-18 -- Completed 06-02 cross-claim chain and rollback attack
 progress:
   total_phases: 4
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 5
-  completed_plans: 4
-  percent: 80
+  completed_plans: 5
+  percent: 100
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-03-17)
 ## Current Position
 
 Phase: 6 of 8 (Layer Hardening)
-Plan: 1 of 2 in current phase (COMPLETE)
-Status: executing
-Last activity: 2026-03-18 -- Completed 06-01 semantic edge case hardening
+Plan: 2 of 2 in current phase (COMPLETE)
+Status: phase-complete
+Last activity: 2026-03-18 -- Completed 06-02 cross-claim chain and rollback attack
 
-Progress: [████████░░] 80%
+Progress: [█████████░] 90%
 
 ## Performance Metrics
 
@@ -50,6 +50,7 @@ Progress: [████████░░] 80%
 - Trend: Stable
 
 *Updated after each plan completion*
+| Phase 06 P02 | 6min | 2 tasks | 6 files |
 | Phase 06 P01 | 3min | 2 tasks | 2 files |
 | Phase 05 P03 | 4min | 2 tasks | 2 files |
 | Phase 05 P01 | 5min | 2 tasks | 1 files |
@@ -76,6 +77,8 @@ Recent decisions affecting current work:
 - [06-01]: Extra fields in domain result pass verification but are logged as warnings (forward-compatible)
 - [06-01]: Threshold validation covers rel_err_threshold, convergence_threshold, drift_threshold_pct
 - [06-01]: _EXPECTED_DOMAIN_KEYS defined at module level in mg.py for maintainability
+- [06-02]: protocol_version uses integer format (1) instead of string ("v1.0")
+- [06-02]: Protocol version check placed after manifest structure validation, before integrity checks
 
 ### Pending Todos
 
@@ -88,6 +91,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-18T05:28:00Z
-Stopped at: Completed 06-01-PLAN.md
+Last session: 2026-03-18T05:36:31Z
+Stopped at: Completed 06-02-PLAN.md
 Resume file: .planning/phases/06-layer-hardening/06-CONTEXT.md
