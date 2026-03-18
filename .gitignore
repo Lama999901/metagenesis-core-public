@@ -46,6 +46,7 @@ htmlcov/
 signing_key*.json
 *.signing_key.json
 private_key*.json
+test_mg_sign_hmac.json
 
 # Local runtime artifacts (do not commit)
 reports/ledger_v1.jsonl
@@ -61,6 +62,7 @@ demos/open_data_demo_01/ledger_snapshots/
 
 # Temp fix/debug scripts (never commit these)
 fix_*.py
+fix_*.ps1
 debug_*.py
 full_audit.py
 final_sweep.py
