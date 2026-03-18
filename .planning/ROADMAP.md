@@ -32,7 +32,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 5: Foundation** - Step chain structural tests for all 14 claims, runner error paths, governance meta-tests (2026-03-18)
 - [x] **Phase 6: Layer Hardening** - Semantic edge cases, cross-claim cascade failures, manifest rollback attack (2026-03-18)
 - [x] **Phase 7: Flagship Proofs** - CERT-11 coordinated multi-vector attack, CERT-12 encoding attacks (completed 2026-03-18)
-- [ ] **Phase 8: Counter Updates** - All documentation counters reflect final test count
+- [x] **Phase 8: Counter Updates** - All documentation counters reflect final test count (completed 2026-03-18)
 
 ## Phase Details
 
@@ -106,7 +106,7 @@ Phases execute in numeric order: 5 -> 6 -> 7 -> 8
 | 5. Foundation | 3/3 | Complete | 2026-03-18 |
 | 6. Layer Hardening | 2/2 | Complete | 2026-03-18 |
 | 7. Flagship Proofs | 2/2 | Complete   | 2026-03-18 |
-| 8. Counter Updates | 1/2 | In Progress|  |
+| 8. Counter Updates | 2/2 | Complete   | 2026-03-18 |
 
 ---
 *Roadmap created: 2026-03-17*

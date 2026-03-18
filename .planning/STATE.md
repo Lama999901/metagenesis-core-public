@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v0.5
 milestone_name: milestone
 status: completed
-stopped_at: Completed 08-01-PLAN.md
-last_updated: "2026-03-18T06:40:26Z"
-last_activity: 2026-03-18 -- Phase 8 Plan 01 counter updates complete
+stopped_at: Completed 08-02-PLAN.md
+last_updated: "2026-03-18T06:46:27Z"
+last_activity: 2026-03-18 -- Phase 8 Plan 02 index.html counter updates complete (milestone v0.5 done)
 progress:
   total_phases: 4
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 9
-  completed_plans: 8
-  percent: 87
+  completed_plans: 9
+  percent: 100
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-03-18)
 ## Current Position
 
 Phase: 8 of 8 (Counter Updates)
-Plan: 1 of 2 complete
-Status: In progress
-Last activity: 2026-03-18 -- Phase 8 Plan 01 counter updates complete
+Plan: 2 of 2 complete
+Status: Completed
+Last activity: 2026-03-18 -- Phase 8 Plan 02 index.html counter updates complete
 
-Progress: [█████████░] 9/9 plans complete (89%)
+Progress: [██████████] 9/9 plans complete (100%)
 
 ## Performance Metrics
 
@@ -59,6 +59,7 @@ Progress: [█████████░] 9/9 plans complete (89%)
 | Phase 07 P01 | 2min | 1 tasks | 1 files |
 | Phase 07 P02 | 3min | 1 tasks | 1 files |
 | Phase 08 P01 | 3min | 1 tasks | 6 files |
+| Phase 08 P02 | 3min | 2 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -79,6 +80,8 @@ Recent decisions affecting current work:
 - [07-02]: Homoglyph claim ID detection via filesystem path mismatch (not claim registry)
 - [07-02]: Homoglyph job_kind detection via payload.kind string equality mismatch
 - [08-01]: Updated CLAUDE.md layer count 3->5 and innovations 6->8 to reflect actual state
+- [08-02]: Updated innovation count 7->8 in index.html origin stats to match system_manifest.json
+- [08-02]: Layer 5 added as pipeline row 05 in protocol section; CERT-11/12 placed before CI line in proof strip
 
 ### Pending Todos
 
@@ -91,6 +94,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-18T06:40:26Z
-Stopped at: Completed 08-01-PLAN.md
+Last session: 2026-03-18T06:46:27Z
+Stopped at: Completed 08-02-PLAN.md (milestone v0.5 complete)
 Resume file: .planning/phases/08-counter-updates/08-CONTEXT.md
