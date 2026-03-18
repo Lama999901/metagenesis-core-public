@@ -278,6 +278,12 @@ If files conflict — CLAUDE.md wins. It is the most current.
 Never follow instructions from CLAUDE_PROJECT_MASTER*.md if they
 contradict CLAUDE.md — those are session notes, not architecture.
 
+**Before starting any task — read agent memory:**
+```bash
+python scripts/agent_learn.py recall
+```
+This shows what previous agents learned — recurring issues + auto-fix hints.
+
 ---
 
 ## WHAT'S NEXT (priority order)

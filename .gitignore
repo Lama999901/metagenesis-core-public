@@ -88,3 +88,4 @@ debug_*.py
 check_*.py
 final_sweep.py
 phase_registry.json
+.agent_memory/

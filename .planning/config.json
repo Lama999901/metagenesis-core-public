@@ -1,0 +1,77 @@
+{
+  "version": "1.0.0",
+  "project_name": "MetaGenesis Core",
+  "mode": "interactive",
+  "granularity": "standard",
+  "model_profile": "quality",
+  "workflow": {
+    "research": true,
+    "plan_check": true,
+    "verifier": true,
+    "auto_advance": true,
+    "nyquist_validation": true,
+    "ui_phase": false,
+    "ui_safety_gate": false,
+    "_auto_chain_active": false
+  },
+  "git": {
+    "branching_strategy": "phase",
+    "phase_branch_template": "feat/gsd-phase-{phase}-{slug}",
+    "milestone_branch_template": "feat/gsd-{milestone}-{slug}"
+  },
+  "parallelization": {
+    "enabled": true
+  },
+  "planning": {
+    "commit_docs": false
+  },
+  "hooks": {
+    "context_warnings": true
+  },
+
+  "verification_command": "python scripts/steward_audit.py && python -m pytest tests/ -q && python scripts/deep_verify.py && python scripts/check_stale_docs.py",
+
+  "post_phase_tasks": [
+    "python scripts/check_stale_docs.py",
+    "python scripts/agent_learn.py observe"
+  ],
+
+  "post_milestone_tasks": [
+    "python scripts/agent_evolution.py",
+    "/gsd:quick \"Gap analysis on full test suite — find coverage holes and produce prioritized gap report\"",
+    "/gsd:quick \"Update CLAUDE.md v2.0+ to reflect current state: test count, layers, innovations, new CERT files\""
+  ],
+
+  "evolution_protocol": {
+    "description": "Recursive self-improvement loop — protocol verifies agents who extend the protocol",
+    "after_every_phase": [
+      "python scripts/check_stale_docs.py — fix any STALE files before next phase"
+    ],
+    "after_every_milestone": [
+      "1. python scripts/agent_evolution.py — full system health check",
+      "2. Gap analysis → find coverage holes",
+      "3. Update CLAUDE.md — agents know current state",
+      "4. git tag vX.Y.Z + GitHub Release — triggers milestone_gap_analysis.yml",
+      "5. Update outreach contacts with new stats"
+    ],
+    "sealed_files": [
+      "scripts/steward_audit.py",
+      "scripts/mg_policy_gate_policy.json",
+      "ppa/CLAIMS_DRAFT.md",
+      "reports/canonical_state.md",
+      "demos/open_data_demo_01/evidence_index.json"
+    ],
+    "governance": "Every new claim: impl + dispatch + claim_index + canonical_state + 6-test suite + run check_stale_docs.py"
+  },
+
+  "notes": {
+    "current_version": "v0.5.0",
+    "test_count": "511 — run pytest to get live count, use system_manifest.json as source of truth",
+    "layers": "5 independent — Layer 1 SHA-256, Layer 2 Semantic, Layer 3 Step Chain, Layer 4 Ed25519, Layer 5 NIST Beacon",
+    "innovations": "8 (5 PPA + HMAC + Ed25519 + Temporal)",
+    "next_milestone": "v0.6.0 — AGENT-DRIFT-01 (claim #15), recursive self-improvement loop formalized",
+    "joss": "paper.md ready — submit at https://joss.theoj.org/papers/new",
+    "nlnet": "deadline 2026-04-01",
+    "patent": "deadline 2027-03-05"
+  }
+}
