@@ -1,100 +1,112 @@
-# Roadmap: MetaGenesis Core v0.4.0 Protocol Hardening
+# Roadmap: MetaGenesis Core v0.5.0 Coverage Hardening
 
 ## Overview
 
-This milestone hardens the MetaGenesis verification protocol from 4 layers to 5, upgrading bundle signing from HMAC to Ed25519 (with backward compatibility), adding temporal commitment via NIST Beacon (Innovation #7), and proving all new capabilities through expanded adversarial proof suites. The work flows in strict dependency order: Ed25519 must be proven correct before integration, signing must be finalized before temporal data embeds in bundles, and adversarial proofs test everything built in prior phases.
+This milestone closes all 10 test coverage gaps identified in the v0.4.0 gap analysis, bringing the test suite from 391 to 450+ tests. The work flows in strict dependency order: step chain structural tests and error paths first (foundation for all subsequent testing), then semantic edge cases and cascade failures (characterize individual layers), then flagship adversarial proofs CERT-11 and CERT-12 (synthesize all prior work into coordinated attack gauntlets), and finally counter updates (require final test count). Phase numbering continues from v0.4.0 which ended at Phase 4.
+
+## Milestones
+
+- **v0.4.0 Protocol Hardening** - Phases 1-4 (shipped 2026-03-18)
+- **v0.5.0 Coverage Hardening** - Phases 5-8 (in progress)
 
 ## Phases
 
 **Phase Numbering:**
 - Integer phases (1, 2, 3): Planned milestone work
-- Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
+- Decimal phases (5.1, 5.2): Urgent insertions (marked with INSERTED)
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Ed25519 Foundation** - Pure-Python Ed25519 implementation validated against RFC 8032 test vectors
-- [x] **Phase 2: Signing Upgrade** - Ed25519 integrated into bundle signing with HMAC backward compatibility (completed 2026-03-18)
-- [ ] **Phase 3: Temporal Commitment** - NIST Beacon integration and Layer 5 independent verification
-- [x] **Phase 4: Adversarial Proofs and Polish** - Expanded proof suite, deep_verify tests 11-13, documentation updates (completed 2026-03-18)
+<details>
+<summary>v0.4.0 Protocol Hardening (Phases 1-4) - SHIPPED 2026-03-18</summary>
+
+- [x] **Phase 1: Ed25519 Foundation** - Pure-Python Ed25519 validated against RFC 8032
+- [x] **Phase 2: Signing Upgrade** - Ed25519 bundle signing with HMAC backward compatibility
+- [x] **Phase 3: Temporal Commitment** - NIST Beacon Layer 5 with offline graceful degradation
+- [x] **Phase 4: Adversarial Proofs and Polish** - CERT-09, CERT-10, deep_verify 11-13, counter updates
+
+</details>
+
+### v0.5.0 Coverage Hardening
+
+- [ ] **Phase 5: Foundation** - Step chain structural tests for all 14 claims, runner error paths, governance meta-tests
+- [ ] **Phase 6: Layer Hardening** - Semantic edge cases, cross-claim cascade failures, manifest rollback attack
+- [ ] **Phase 7: Flagship Proofs** - CERT-11 coordinated multi-vector attack, CERT-12 encoding attacks
+- [ ] **Phase 8: Counter Updates** - All documentation counters reflect final test count
 
 ## Phase Details
 
-### Phase 1: Ed25519 Foundation
-**Goal**: Users can generate Ed25519 key pairs and the implementation passes all RFC 8032 test vectors, proving cryptographic correctness before any integration
-**Depends on**: Nothing (first phase)
-**Requirements**: SIGN-01, SIGN-02, SIGN-05
+### Phase 5: Foundation
+**Goal**: Every claim has verified step chain structure, every runner error path is tested, and governance drift detection is active for all subsequent phases
+**Depends on**: Phase 4 (v0.4.0 complete, 391 tests baseline)
+**Requirements**: CHAIN-01, CHAIN-02, CHAIN-03, CHAIN-04, ERR-01, ERR-02, ERR-03, GOV-01, GOV-02, GOV-03
 **Success Criteria** (what must be TRUE):
-  1. Running `python scripts/mg_ed25519.py` test vectors produces PASS for all RFC 8032 vectors
-  2. User can generate an Ed25519 key pair via CLI and receives a private key file and a public key file
-  3. Public key can be exported as a standalone file suitable for sharing with third-party auditors
-  4. All 295 existing tests continue to pass (no regressions from new module)
-**Plans:** 2 plans
+  1. Running pytest on step chain tests shows all 14 claims pass structural assertions (genesis hash, hash linkage, 4-step count, root hash equality)
+  2. Step chain verifier rejects a trace with misordered steps (1,3,2,4), duplicate step numbers, or extra steps beyond 4
+  3. Runner produces a clear error message when given an unknown JOB_KIND, and does not crash on None/empty/wrong-type input or mid-computation exceptions
+  4. Governance meta-tests detect when scientific_claim_index.md, known_faults.yaml, or documentation counters drift from actual code state
+  5. All 391 existing tests continue to pass (zero regressions)
+**Plans**: 3 plans
 
 Plans:
-- [ ] 01-01-PLAN.md -- Ed25519 core implementation with RFC 8032 test vector TDD (SIGN-01)
-- [ ] 01-02-PLAN.md -- Key generation CLI and public key export (SIGN-02, SIGN-05)
+- [ ] 05-01: Step chain structural tests for 7 missing claims (CHAIN-01)
+- [ ] 05-02: Step chain ordering, duplicate, and extra-step rejection tests (CHAIN-02, CHAIN-03, CHAIN-04)
+- [ ] 05-03: Runner error paths and governance meta-tests (ERR-01, ERR-02, ERR-03, GOV-01, GOV-02, GOV-03)
 
-### Phase 2: Signing Upgrade
-**Goal**: Users can sign bundles with Ed25519 and verify them, while all existing HMAC-signed bundles continue to verify without modification
-**Depends on**: Phase 1
-**Requirements**: SIGN-03, SIGN-04, SIGN-06, SIGN-07, SIGN-08
+### Phase 6: Layer Hardening
+**Goal**: Layer 2 semantic verification is hardened against edge cases, cross-claim cascade failures propagate correctly through the full anchor chain, and manifest rollback attacks are rejected
+**Depends on**: Phase 5
+**Requirements**: SEM-01, SEM-02, SEM-03, CASCADE-01, CASCADE-02, CASCADE-03, ADV-07
 **Success Criteria** (what must be TRUE):
-  1. User can sign a bundle with an Ed25519 private key via CLI and the bundle contains a verifiable Ed25519 signature
-  2. User can verify an Ed25519-signed bundle using the corresponding public key and gets PASS/FAIL
-  3. Existing HMAC-signed bundles from v0.3.0 verify successfully without any modification
-  4. Verifier auto-detects signing algorithm from key file version field (hmac-sha256-v1 vs ed25519-v1)
-  5. A bundle self-declaring one algorithm while the verifier holds a key of a different type is rejected (downgrade attack prevention)
-**Plans:** 2/2 plans complete
+  1. Layer 2 rejects evidence bundles with partial fields, extra unexpected fields, and semantically meaningless values (empty strings, zero values where physical quantities are expected)
+  2. Cross-claim test covers the full anchor chain MTR-1 to DRIFT-01 to DT-CALIB-LOOP-01, and a failed upstream claim propagates failure through every downstream hop
+  3. Cross-claim chain detects a tampered anchor hash at any position in the chain
+  4. Verifier rejects a bundle with a rolled-back manifest protocol_version
+**Plans**: TBD
 
 Plans:
-- [ ] 02-01-PLAN.md -- Dual-algorithm dispatch in mg_sign.py with Ed25519 signing tests (SIGN-03, SIGN-04, SIGN-06, SIGN-07, SIGN-08)
-- [ ] 02-02-PLAN.md -- CLI keygen update for mg.py and mg_sign.py with full regression gate (SIGN-03, SIGN-06)
+- [ ] 06-01: Layer 2 semantic edge case tests (SEM-01, SEM-02, SEM-03)
+- [ ] 06-02: Cross-claim cascade failure and manifest rollback tests (CASCADE-01, CASCADE-02, CASCADE-03, ADV-07)
 
-### Phase 3: Temporal Commitment
-**Goal**: Users can embed a temporal commitment (proving WHEN a bundle was signed) as an independent Layer 5 that works offline and degrades gracefully
-**Depends on**: Phase 2
-**Requirements**: TEMP-01, TEMP-02, TEMP-03, TEMP-04, TEMP-05, TEMP-06
+### Phase 7: Flagship Proofs
+**Goal**: CERT-11 proves the 5-layer independence thesis under coordinated multi-vector attack, and CERT-12 proves encoding attacks (BOM, null bytes, homoglyphs, truncated JSON) are caught
+**Depends on**: Phase 6
+**Requirements**: ADV-01, ADV-02, ADV-03, ADV-04, ADV-05, ADV-06
 **Success Criteria** (what must be TRUE):
-  1. Signing a bundle with network access captures a NIST Beacon pulse and embeds a temporal commitment in the bundle
-  2. Signing a bundle without network access completes successfully with temporal field set to "not available"
-  3. Verifying a bundle with temporal data checks the cryptographic binding (SHA-256 of root_hash + beacon_value + timestamp) independently of Layers 1-4
-  4. Temporal verification works fully offline -- checks embedded data structure, never makes network calls during verify
-  5. Pre-commitment hash scheme allows proving a bundle existed before the beacon pulse it references
-**Plans:** 1/2 plans executed
+  1. CERT-11 proves an attacker who rebuilds Layer 1 and fakes Layer 2 is caught specifically by Layer 2 (not trivially by Layer 1)
+  2. CERT-11 proves an attacker who bypasses Layers 1+2 and forges Layer 3 is caught specifically by Layer 3
+  3. CERT-11 proves a stolen signing key with tampered evidence is caught by Layers 1-3, and a coordinated 3-layer bypass still fails at remaining layers
+  4. CERT-12 proves BOM-prefixed files, null bytes, truncated JSON, and Unicode homoglyphs are detected or handled safely
+**Plans**: TBD
 
 Plans:
-- [ ] 03-01-PLAN.md -- TDD: mg_temporal.py core module with NIST Beacon fetch, pre-commitment, binding, verification (TEMP-01, TEMP-02, TEMP-03, TEMP-04, TEMP-05, TEMP-06)
-- [ ] 03-02-PLAN.md -- CLI integration: mg_sign.py auto-temporal + temporal subcommand + mg.py Layer 5 verify (TEMP-01, TEMP-03, TEMP-04, TEMP-05)
+- [ ] 07-01: CERT-11 coordinated multi-vector attack gauntlet (ADV-01, ADV-02, ADV-03, ADV-04)
+- [ ] 07-02: CERT-12 encoding and partial corruption attacks (ADV-05, ADV-06)
 
-### Phase 4: Adversarial Proofs and Polish
-**Goal**: All new capabilities are proven through adversarial tests, deep_verify expands to 13 tests, and all documentation counters reflect v0.4.0 state
-**Depends on**: Phase 3
-**Requirements**: CERT-01, CERT-02, CERT-03, CERT-04, CERT-05, CERT-06, DOCS-01, DOCS-02, DOCS-03, DOCS-04
+### Phase 8: Counter Updates
+**Goal**: All documentation and site files reflect the final v0.5.0 test count, maintaining counter consistency across the project
+**Depends on**: Phase 7
+**Requirements**: DOCS-01
 **Success Criteria** (what must be TRUE):
-  1. deep_verify.py runs 13 tests (up from 10) and all pass, including Test 11 (signing integrity), Test 12 (reproducibility), Test 13 (temporal commitment)
-  2. CERT-09 test gauntlet proves Ed25519-specific attack scenarios are caught
-  3. CERT-10 test gauntlet proves temporal attack scenarios (replay, future-date, beacon forge) are caught
-  4. 5-layer independence proof demonstrates each layer catches attacks the others miss
-  5. All counters across index.html, README.md, AGENTS.md, llms.txt, system_manifest.json, and CONTEXT_SNAPSHOT.md reflect the new test count, layer count, and innovation count
-**Plans:** 3/3 plans complete
+  1. Running pytest reports the final test count and all counters in index.html (11 places), README.md, AGENTS.md, llms.txt, system_manifest.json, and CONTEXT_SNAPSHOT.md match that count
+  2. Governance meta-tests from Phase 5 pass with the updated counters (no drift detected)
+**Plans**: TBD
 
 Plans:
-- [ ] 04-01-PLAN.md -- CERT-09 Ed25519 attack gauntlet + CERT-10 temporal attack gauntlet (CERT-05, CERT-06)
-- [ ] 04-02-PLAN.md -- deep_verify Tests 11-13 + 5-layer independence proof (CERT-01, CERT-02, CERT-03, CERT-04)
-- [ ] 04-03-PLAN.md -- Documentation counter updates, system_manifest version bump, paper.md + scientific_claim_index.md (DOCS-01, DOCS-02, DOCS-03, DOCS-04)
+- [ ] 08-01: Documentation counter updates across all files (DOCS-01)
 
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 -> 2 -> 3 -> 4
+Phases execute in numeric order: 5 -> 6 -> 7 -> 8
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Ed25519 Foundation | 2/2 | Complete | 2026-03-17 |
-| 2. Signing Upgrade | 2/2 | Complete   | 2026-03-18 |
-| 3. Temporal Commitment | 1/2 | In Progress|  |
-| 4. Adversarial Proofs and Polish | 3/3 | Complete   | 2026-03-18 |
+| 5. Foundation | 1/3 | In Progress|  |
+| 6. Layer Hardening | 0/2 | Not started | - |
+| 7. Flagship Proofs | 0/2 | Not started | - |
+| 8. Counter Updates | 0/1 | Not started | - |
 
 ---
-*Roadmap created: 2026-03-16*
-*Last updated: 2026-03-18*
+*Roadmap created: 2026-03-17*
+*Last updated: 2026-03-17*
