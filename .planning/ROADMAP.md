@@ -60,7 +60,7 @@ Plans:
   3. Verifying a bundle with temporal data checks the cryptographic binding (SHA-256 of root_hash + beacon_value + timestamp) independently of Layers 1-4
   4. Temporal verification works fully offline -- checks embedded data structure, never makes network calls during verify
   5. Pre-commitment hash scheme allows proving a bundle existed before the beacon pulse it references
-**Plans:** 2 plans
+**Plans:** 1/2 plans executed
 
 Plans:
 - [ ] 03-01-PLAN.md -- TDD: mg_temporal.py core module with NIST Beacon fetch, pre-commitment, binding, verification (TEMP-01, TEMP-02, TEMP-03, TEMP-04, TEMP-05, TEMP-06)
@@ -92,7 +92,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 |-------|----------------|--------|-----------|
 | 1. Ed25519 Foundation | 2/2 | Complete | 2026-03-17 |
 | 2. Signing Upgrade | 2/2 | Complete   | 2026-03-18 |
-| 3. Temporal Commitment | 0/2 | Not started | - |
+| 3. Temporal Commitment | 1/2 | In Progress|  |
 | 4. Adversarial Proofs and Polish | 0/3 | Not started | - |
 
 ---

@@ -18,12 +18,12 @@
 
 ### Temporal Commitment
 
-- [ ] **TEMP-01**: NIST Beacon pulse capture at bundle sign time via urllib.request
-- [ ] **TEMP-02**: Cryptographic binding — SHA-256(root_hash + beacon_value + beacon_timestamp)
-- [ ] **TEMP-03**: Graceful degradation — temporal layer returns "not available" when beacon unreachable
-- [ ] **TEMP-04**: Layer 5 independent verification — checks temporal commitment without depending on Layers 1-4
-- [ ] **TEMP-05**: Offline verification of temporal data — checks embedded structure, no network calls
-- [ ] **TEMP-06**: Pre-commitment hash scheme — prove bundle existed before beacon pulse (two-phase commitment)
+- [x] **TEMP-01**: NIST Beacon pulse capture at bundle sign time via urllib.request
+- [x] **TEMP-02**: Cryptographic binding — SHA-256(root_hash + beacon_value + beacon_timestamp)
+- [x] **TEMP-03**: Graceful degradation — temporal layer returns "not available" when beacon unreachable
+- [x] **TEMP-04**: Layer 5 independent verification — checks temporal commitment without depending on Layers 1-4
+- [x] **TEMP-05**: Offline verification of temporal data — checks embedded structure, no network calls
+- [x] **TEMP-06**: Pre-commitment hash scheme — prove bundle existed before beacon pulse (two-phase commitment)
 
 ### Adversarial Proofs
 
@@ -80,12 +80,12 @@
 | SIGN-06 | Phase 2 | Complete |
 | SIGN-07 | Phase 2 | Complete |
 | SIGN-08 | Phase 2 | Complete |
-| TEMP-01 | Phase 3 | Pending |
-| TEMP-02 | Phase 3 | Pending |
-| TEMP-03 | Phase 3 | Pending |
-| TEMP-04 | Phase 3 | Pending |
-| TEMP-05 | Phase 3 | Pending |
-| TEMP-06 | Phase 3 | Pending |
+| TEMP-01 | Phase 3 | Complete |
+| TEMP-02 | Phase 3 | Complete |
+| TEMP-03 | Phase 3 | Complete |
+| TEMP-04 | Phase 3 | Complete |
+| TEMP-05 | Phase 3 | Complete |
+| TEMP-06 | Phase 3 | Complete |
 | CERT-01 | Phase 4 | Pending |
 | CERT-02 | Phase 4 | Pending |
 | CERT-03 | Phase 4 | Pending |
