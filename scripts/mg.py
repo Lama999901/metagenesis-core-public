@@ -14,6 +14,8 @@ import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
 
 
 def _run(cmd: list[str], passthrough: bool = True) -> int:
@@ -52,6 +54,7 @@ def _verify_pack(pack_dir: Path) -> tuple[bool, str, dict]:
         "pack_root_hash": "",
         "manifest_ok": False,
         "semantic_ok": None,
+        "temporal_ok": None,
         "checks": [],
         "errors": [],
     }
@@ -121,6 +124,24 @@ def _verify_pack(pack_dir: Path) -> tuple[bool, str, dict]:
     else:
         report["semantic_ok"] = None
         report["checks"].append({"name": "semantic_evidence", "status": "skip"})
+
+    # Layer 5: Temporal commitment (independent of Layers 1-3)
+    try:
+        from scripts.mg_temporal import verify_temporal_commitment
+        tc_ok, tc_msg = verify_temporal_commitment(pack_dir)
+        report["temporal_ok"] = tc_ok
+        if tc_ok:
+            report["checks"].append({"name": "temporal_commitment", "status": "pass", "details": tc_msg})
+        else:
+            report["checks"].append({"name": "temporal_commitment", "status": "fail", "details": tc_msg})
+            report["errors"].append(tc_msg)
+            return False, tc_msg, report
+    except ImportError:
+        report["temporal_ok"] = None
+        report["checks"].append({"name": "temporal_commitment", "status": "skip", "details": "mg_temporal not available"})
+    except Exception as e:
+        report["temporal_ok"] = None
+        report["checks"].append({"name": "temporal_commitment", "status": "skip", "details": str(e)})
 
     return True, "PASS", report
 
@@ -479,6 +500,8 @@ def main():
 
     sign_keygen = sign_sub.add_parser("keygen", help="Generate signing key")
     sign_keygen.add_argument("--out", "-o", required=True, help="Output key file (.json)")
+    sign_keygen.add_argument("--type", "-t", choices=["ed25519", "hmac"],
+                             default="ed25519", help="Key type (default: ed25519)")
 
     sign_bundle_cmd = sign_sub.add_parser("bundle", help="Sign a bundle")
     sign_bundle_cmd.add_argument("--pack", "-p", required=True, help="Bundle directory")
@@ -490,13 +513,25 @@ def main():
     sign_verify_cmd.add_argument("--fingerprint", "-f", default=None, help="Key fingerprint only")
 
     def _cmd_sign_keygen(a):
-        from scripts.mg_sign import generate_key
-        import json as _j
-        key = generate_key()
-        Path(a.out).write_text(_j.dumps(key, indent=2), encoding="utf-8")
-        print(f"Signing key: {a.out}")
-        print(f"Fingerprint: {key['fingerprint']}")
-        print("KEEP KEY SECRET. Share only the fingerprint.")
+        key_type = getattr(a, 'type', 'ed25519')
+        if key_type == 'ed25519':
+            from scripts.mg_ed25519 import generate_key_files
+            key_data = generate_key_files(Path(a.out))
+            stem = Path(a.out).stem
+            pub_path = Path(a.out).parent / f"{stem}.pub.json"
+            print(f"Ed25519 signing key: {a.out}")
+            print(f"Public key:          {pub_path}")
+            print(f"Fingerprint:         {key_data['fingerprint']}")
+            print(f"KEEP {a.out} SECRET. Share {pub_path} with auditors.")
+        else:
+            from scripts.mg_sign import generate_key
+            import json as _j
+            key = generate_key()
+            Path(a.out).parent.mkdir(parents=True, exist_ok=True)
+            Path(a.out).write_text(_j.dumps(key, indent=2), encoding="utf-8")
+            print(f"HMAC signing key: {a.out}")
+            print(f"Fingerprint:      {key['fingerprint']}")
+            print("KEEP KEY SECRET. Share only the fingerprint.")
         return 0
 
     def _cmd_sign_bundle(a):

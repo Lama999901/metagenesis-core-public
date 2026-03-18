@@ -32,7 +32,7 @@ python scripts/mg.py verify --pack bundle.zip
 # → PASS  or  FAIL: <specific reason and layer>
 ```
 
-The protocol implements three independent verification layers, each proven
+The protocol implements five independent verification layers, each proven
 by dedicated adversarial tests:
 
 - **Layer 1 — SHA-256 integrity**: detects any file modified after bundle generation
@@ -40,6 +40,10 @@ by dedicated adversarial tests:
   (Layer 1 passes; Layer 2 catches it)
 - **Layer 3 — Step Chain**: detects computation inputs changed or steps reordered
   (Layers 1 and 2 pass; Layer 3 catches it)
+- **Layer 4 — Bundle Signing**: detects unauthorized bundle creator via HMAC-SHA256
+  or Ed25519 asymmetric signatures (Layers 1–3 pass; Layer 4 catches it)
+- **Layer 5 — Temporal Commitment**: detects backdated bundles via NIST Randomness
+  Beacon 2.0 pre-commitment scheme (Layers 1–4 pass; Layer 5 catches it)
 
 For physical domains, individual claim verification extends to a
 **Cross-Claim Cryptographic Chain** — a verifiable provenance path from
@@ -50,7 +54,7 @@ tampering any link invalidates all downstream hashes.
 
 The protocol ships with 14 active verification claims across 7 domains
 (materials science, ML/AI, system identification, data pipelines, digital
-twin, pharma/biotech, and financial risk), 295 adversarial tests, and
+twin, pharma/biotech, and financial risk), 389 adversarial tests, and
 governance enforcement that prevents any registered claim from existing
 without a corresponding implementation — and vice versa.
 
@@ -105,7 +109,16 @@ by Layer 3 (Step Chain). This is implemented and proven in
 
 The full adversarial proof suite (CERT-05) documents five distinct attack
 scenarios, each caught by a different layer, with a composite test
-explicitly proving all three layers are necessary [@bazhynov2026cert05].
+explicitly proving all three integrity layers are necessary [@bazhynov2026cert05].
+Two additional layers — bundle signing (Layer 4, Innovation #6) and temporal
+commitment (Layer 5, Innovation #7) — extend the protocol to answer WHO
+created a bundle and WHEN it was signed. Layer 4 supports dual-algorithm
+signing: HMAC-SHA256 for shared-secret workflows and Ed25519 for third-party
+auditor verification with asymmetric keys. Layer 5 uses a NIST Randomness
+Beacon 2.0 pre-commitment scheme: `SHA-256(root_hash)` is computed before
+the beacon value is fetched, preventing backdating. The 5-layer independence
+proof (`tests/steward/test_cert_5layer_independence.py`) demonstrates that
+each layer catches attacks the other four miss.
 
 # Technical Design
 
