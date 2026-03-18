@@ -124,6 +124,14 @@ CONTENT_CHECKS = {
         "banned": ["389 adversarial", "17 March 2026"],
         "required": ["511 adversarial", "18 March 2026"],
     },
+    "reports/known_faults.yaml": {
+        "banned": ["282 tests", "295 passed", "295 tests"],
+        "required": ["511 tests", "511 passed"],
+    },
+    "CLAUDE.md": {
+        "banned": ["10-test proof", "12 counters"],
+        "required": ["13-test proof", "8 innovations"],
+    },
 }
 
 
