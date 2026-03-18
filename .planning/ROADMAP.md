@@ -102,7 +102,7 @@ Phases execute in numeric order: 5 -> 6 -> 7 -> 8
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 5. Foundation | 0/3 | Not started | - |
+| 5. Foundation | 1/3 | In Progress|  |
 | 6. Layer Hardening | 0/2 | Not started | - |
 | 7. Flagship Proofs | 0/2 | Not started | - |
 | 8. Counter Updates | 0/1 | Not started | - |

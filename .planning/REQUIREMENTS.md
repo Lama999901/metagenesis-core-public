@@ -1,101 +1,97 @@
-# Requirements: MetaGenesis Core v0.4.0
+# Requirements: MetaGenesis Core v0.5.0
 
 **Defined:** 2026-03-17
 **Core Value:** Every verification claim must be independently auditable offline with cryptographic proof of integrity, provenance, and temporal commitment.
 
 ## v1 Requirements
 
-### Ed25519 Signing
+### Step Chain Coverage
 
-- [ ] **SIGN-01**: Pure-Python Ed25519 implementation based on RFC 8032 with test vector validation
-- [x] **SIGN-02**: Ed25519 key pair generation (private key + public key) via CLI command
-- [x] **SIGN-03**: Bundle signing with Ed25519 private key produces verifiable signature
-- [x] **SIGN-04**: Signature verification with Ed25519 public key confirms bundle authenticity
-- [x] **SIGN-05**: Public key export for third-party auditors (standalone file)
-- [x] **SIGN-06**: Dual-algorithm auto-detection from key file version field (hmac-sha256-v1 vs ed25519-v1)
-- [x] **SIGN-07**: Existing HMAC-signed bundles continue to verify without modification
-- [x] **SIGN-08**: Downgrade attack prevention — verifier's key type is authoritative, not bundle's self-declared version
-
-### Temporal Commitment
-
-- [x] **TEMP-01**: NIST Beacon pulse capture at bundle sign time via urllib.request
-- [x] **TEMP-02**: Cryptographic binding — SHA-256(root_hash + beacon_value + beacon_timestamp)
-- [x] **TEMP-03**: Graceful degradation — temporal layer returns "not available" when beacon unreachable
-- [x] **TEMP-04**: Layer 5 independent verification — checks temporal commitment without depending on Layers 1-4
-- [x] **TEMP-05**: Offline verification of temporal data — checks embedded structure, no network calls
-- [x] **TEMP-06**: Pre-commitment hash scheme — prove bundle existed before beacon pulse (two-phase commitment)
+- [ ] **CHAIN-01**: All 14 claims have dedicated structural step chain tests (genesis hash, hash linkage, root hash equality)
+- [x] **CHAIN-02**: Step chain verifier rejects traces with wrong step ordering (1,3,2,4)
+- [x] **CHAIN-03**: Step chain verifier rejects traces with duplicate step numbers
+- [x] **CHAIN-04**: Step chain verifier rejects traces with extra steps beyond 4
 
 ### Adversarial Proofs
 
-- [x] **CERT-01**: deep_verify Test 11 — bundle signing integrity proof
-- [x] **CERT-02**: deep_verify Test 12 — cross-environment reproducibility proof
-- [x] **CERT-03**: deep_verify Test 13 — temporal commitment verification proof
-- [x] **CERT-04**: 5-layer independence proof — each layer catches attacks the others miss
-- [x] **CERT-05**: CERT-09 signing attack gauntlet (Ed25519-specific attack scenarios)
-- [x] **CERT-06**: CERT-10 temporal attack gauntlet (replay, future-date, beacon forge attacks)
+- [ ] **ADV-01**: CERT-11 proves attacker who rebuilds Layer 1 + fakes Layer 2 is caught by Layer 2
+- [ ] **ADV-02**: CERT-11 proves attacker who rebuilds Layers 1+2 + forges Layer 3 is caught by Layer 3
+- [ ] **ADV-03**: CERT-11 proves stolen signing key with tampered evidence is caught by Layers 1-3
+- [ ] **ADV-04**: CERT-11 proves coordinated 3-layer bypass still fails at remaining layers
+- [ ] **ADV-05**: CERT-12 proves BOM-prefixed files are detected or handled safely
+- [ ] **ADV-06**: CERT-12 proves null bytes / truncated JSON / Unicode homoglyphs are caught
+- [ ] **ADV-07**: Manifest version rollback (old protocol_version) is rejected by verifier
+
+### Layer Hardening
+
+- [ ] **SEM-01**: Layer 2 rejects partial evidence (some fields present, some missing)
+- [ ] **SEM-02**: Layer 2 handles extra unexpected fields without false acceptance
+- [ ] **SEM-03**: Layer 2 rejects semantically meaningless values (empty strings, zero values)
+- [ ] **CASCADE-01**: Cross-claim test covers full anchor chain MTR-1→DRIFT-01→DT-CALIB-LOOP-01
+- [ ] **CASCADE-02**: Failed upstream claim (MTR-1) propagates correctly through entire anchor chain
+- [ ] **CASCADE-03**: Cross-claim chain detects tampered anchor hash at any hop
+
+### Error Paths & Governance
+
+- [ ] **ERR-01**: Runner rejects unknown JOB_KIND with clear error
+- [ ] **ERR-02**: Runner handles mid-computation exceptions gracefully
+- [ ] **ERR-03**: Runner handles None/empty/wrong-type input data
+- [ ] **GOV-01**: Meta-test detects drift between scientific_claim_index.md and actual claim implementations
+- [ ] **GOV-02**: Meta-test detects drift between known_faults.yaml and current code state
+- [ ] **GOV-03**: Meta-test validates counter consistency across documentation files
 
 ### Documentation & Counters
 
-- [x] **DOCS-01**: All counter updates across index.html (11+ places), README.md, AGENTS.md, llms.txt, system_manifest.json, CONTEXT_SNAPSHOT.md
-- [x] **DOCS-02**: system_manifest.json protocol version bump
-- [x] **DOCS-03**: reports/scientific_claim_index.md updated with new capabilities
-- [x] **DOCS-04**: paper.md references updated to cite implemented innovations
+- [ ] **DOCS-01**: All counter updates across index.html, README.md, AGENTS.md, llms.txt, system_manifest.json, CONTEXT_SNAPSHOT.md reflect new test count
 
 ## v2 Requirements
 
-### Advanced Temporal
+### Advanced Coverage
 
-- **TEMP-V2-01**: Cross-claim temporal chain (temporal DAG linking multiple claims)
-- **TEMP-V2-02**: RFC 3161 TSA integration as alternative temporal authority
-- **TEMP-V2-03**: Temporal chain explorer CLI command
-
-### Advanced Signing
-
-- **SIGN-V2-01**: Multi-party signing (multiple signers on one bundle)
-- **SIGN-V2-02**: Key rotation with signature chain continuity
-- **SIGN-V2-03**: Hardware security module (HSM) integration
+- **COV-V2-01**: Race condition tests for concurrent pack/sign operations (TOCTOU)
+- **COV-V2-02**: Key lifecycle tests (expired keys, key rotation, invalid curve points)
+- **COV-V2-03**: Property-based testing for step chain invariants (hypothesis library)
+- **COV-V2-04**: Temporal commitment edge cases (clock skew, impossible beacon values)
 
 ## Out of Scope
 
 | Feature | Reason |
 |---------|--------|
-| New claim domains (15+) | This milestone is protocol hardening only, not claim expansion |
-| Blockchain integration | Contradicts banned terms; NIST Beacon is the temporal authority |
-| Real-time beacon dependency | Offline-first principle — beacon is optional for verification |
-| Removing HMAC signing | Backward compatibility required for existing v0.3.0 bundles |
-| Modifying steward_audit.py | Sealed, CI-locked governance file |
-| Major mg.py rewrites | Core verifier — minimal, surgical changes only |
-| Third-party dependencies | stdlib-only constraint for all new code |
-| Cross-claim temporal chain | High complexity, deferred to v0.5.0 per research |
+| Production code changes | Tests-only milestone — no changes to scripts/, backend/, core modules unless required for testability |
+| Race condition tests (TOCTOU) | Concurrent pack/sign is not a realistic attack vector for single-user CLI |
+| Key lifecycle tests | Key metadata does not currently include expiry; deferred to v0.6.0 |
+| Property-based testing | Would require hypothesis library, violating stdlib-only constraint |
+| Fuzz testing | Excessive for deterministic protocol; targeted encoding attacks (CERT-12) suffice |
+| New claim domains | Not adding claims 15+, this is coverage hardening only |
 
 ## Traceability
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| SIGN-01 | Phase 1 | Pending |
-| SIGN-02 | Phase 1 | Complete |
-| SIGN-03 | Phase 2 | Complete |
-| SIGN-04 | Phase 2 | Complete |
-| SIGN-05 | Phase 1 | Complete |
-| SIGN-06 | Phase 2 | Complete |
-| SIGN-07 | Phase 2 | Complete |
-| SIGN-08 | Phase 2 | Complete |
-| TEMP-01 | Phase 3 | Complete |
-| TEMP-02 | Phase 3 | Complete |
-| TEMP-03 | Phase 3 | Complete |
-| TEMP-04 | Phase 3 | Complete |
-| TEMP-05 | Phase 3 | Complete |
-| TEMP-06 | Phase 3 | Complete |
-| CERT-01 | Phase 4 | Complete |
-| CERT-02 | Phase 4 | Complete |
-| CERT-03 | Phase 4 | Complete |
-| CERT-04 | Phase 4 | Complete |
-| CERT-05 | Phase 4 | Complete |
-| CERT-06 | Phase 4 | Complete |
-| DOCS-01 | Phase 4 | Complete |
-| DOCS-02 | Phase 4 | Complete |
-| DOCS-03 | Phase 4 | Complete |
-| DOCS-04 | Phase 4 | Complete |
+| CHAIN-01 | Phase 5 | Pending |
+| CHAIN-02 | Phase 5 | Complete |
+| CHAIN-03 | Phase 5 | Complete |
+| CHAIN-04 | Phase 5 | Complete |
+| ADV-01 | Phase 7 | Pending |
+| ADV-02 | Phase 7 | Pending |
+| ADV-03 | Phase 7 | Pending |
+| ADV-04 | Phase 7 | Pending |
+| ADV-05 | Phase 7 | Pending |
+| ADV-06 | Phase 7 | Pending |
+| ADV-07 | Phase 6 | Pending |
+| SEM-01 | Phase 6 | Pending |
+| SEM-02 | Phase 6 | Pending |
+| SEM-03 | Phase 6 | Pending |
+| CASCADE-01 | Phase 6 | Pending |
+| CASCADE-02 | Phase 6 | Pending |
+| CASCADE-03 | Phase 6 | Pending |
+| ERR-01 | Phase 5 | Pending |
+| ERR-02 | Phase 5 | Pending |
+| ERR-03 | Phase 5 | Pending |
+| GOV-01 | Phase 5 | Pending |
+| GOV-02 | Phase 5 | Pending |
+| GOV-03 | Phase 5 | Pending |
+| DOCS-01 | Phase 8 | Pending |
 
 **Coverage:**
 - v1 requirements: 24 total
@@ -104,4 +100,4 @@
 
 ---
 *Requirements defined: 2026-03-17*
-*Last updated: 2026-03-16 after roadmap creation*
+*Last updated: 2026-03-17 after roadmap creation*
