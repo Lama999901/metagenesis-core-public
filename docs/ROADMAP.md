@@ -3,8 +3,8 @@
 This roadmap reflects planned development directions.
 All items are subject to change based on community feedback and priorities.
 
-**Current version:** 0.2.0
-**Protocol:** MetaGenesis Verification Protocol (MVP) v0.2
+**Current version:** 0.5.0
+**Protocol:** MetaGenesis Verification Protocol (MVP) v0.5
 
 **Core principle:** MetaGenesis Core verifies that computational results
 agree with physical reality — not just that numbers weren't changed.
@@ -34,7 +34,15 @@ This is traceability to physical measurement, not threshold compliance.
 - [x] FINRISK-01 — VaR model certificate (Basel III/IV)
 - [x] DT-SENSOR-01 — IoT sensor data integrity certificate
 - [x] DT-CALIB-LOOP-01 — calibration convergence certificate
-- [x] 282 adversarial tests, steward_audit PASS
+- [x] 511 adversarial tests, steward_audit PASS
+- [x] CERT-07 Bundle Signing (HMAC + Ed25519)
+- [x] CERT-08 Reproducibility as cryptographic property
+- [x] CERT-09 Ed25519 attacks
+- [x] CERT-10 Temporal attacks
+- [x] CERT-11 5-layer independence proof (coordinated multi-vector)
+- [x] CERT-12 Encoding attacks (BOM, null bytes, homoglyphs)
+- [x] Agent Evolution System (agent_learn.py + agent_evolution.py)
+- [x] JOSS paper (paper.md ready for submission)
 - [x] CERT-05 Adversarial Gauntlet (5 attack scenarios documented and caught)
 - [x] CERT-06 Real-World Scenarios (5 proof stories end-to-end)
 - [x] GitHub Sponsors configured
@@ -89,7 +97,7 @@ scientific claims. Digital twin calibration is the highest-value
 application: every step from physical measurement to simulation output
 to drift monitoring becomes independently verifiable.
 
-**DT-FEM-01, DT-SENSOR-01, DT-CALIB-LOOP-01** are live (223 tests PASS).
+**DT-FEM-01, DT-SENSOR-01, DT-CALIB-LOOP-01** are live (511 tests PASS).
 
 Next claims in the digital twin path:
 

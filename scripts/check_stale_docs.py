@@ -194,7 +194,7 @@ def check_stale_docs(strict=False):
         print("\n  ✅ All critical documentation is current.")
 
     print("═" * 60 + "\n")
-    return len(stale) == 0
+    return all_clean
 
 
 if __name__ == "__main__":
