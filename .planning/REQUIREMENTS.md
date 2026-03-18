@@ -27,10 +27,10 @@
 
 ### Adversarial Proofs
 
-- [ ] **CERT-01**: deep_verify Test 11 — bundle signing integrity proof
-- [ ] **CERT-02**: deep_verify Test 12 — cross-environment reproducibility proof
-- [ ] **CERT-03**: deep_verify Test 13 — temporal commitment verification proof
-- [ ] **CERT-04**: 5-layer independence proof — each layer catches attacks the others miss
+- [x] **CERT-01**: deep_verify Test 11 — bundle signing integrity proof
+- [x] **CERT-02**: deep_verify Test 12 — cross-environment reproducibility proof
+- [x] **CERT-03**: deep_verify Test 13 — temporal commitment verification proof
+- [x] **CERT-04**: 5-layer independence proof — each layer catches attacks the others miss
 - [x] **CERT-05**: CERT-09 signing attack gauntlet (Ed25519-specific attack scenarios)
 - [x] **CERT-06**: CERT-10 temporal attack gauntlet (replay, future-date, beacon forge attacks)
 
@@ -86,10 +86,10 @@
 | TEMP-04 | Phase 3 | Complete |
 | TEMP-05 | Phase 3 | Complete |
 | TEMP-06 | Phase 3 | Complete |
-| CERT-01 | Phase 4 | Pending |
-| CERT-02 | Phase 4 | Pending |
-| CERT-03 | Phase 4 | Pending |
-| CERT-04 | Phase 4 | Pending |
+| CERT-01 | Phase 4 | Complete |
+| CERT-02 | Phase 4 | Complete |
+| CERT-03 | Phase 4 | Complete |
+| CERT-04 | Phase 4 | Complete |
 | CERT-05 | Phase 4 | Complete |
 | CERT-06 | Phase 4 | Complete |
 | DOCS-01 | Phase 4 | Pending |

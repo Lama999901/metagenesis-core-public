@@ -76,7 +76,7 @@ Plans:
   3. CERT-10 test gauntlet proves temporal attack scenarios (replay, future-date, beacon forge) are caught
   4. 5-layer independence proof demonstrates each layer catches attacks the others miss
   5. All counters across index.html, README.md, AGENTS.md, llms.txt, system_manifest.json, and CONTEXT_SNAPSHOT.md reflect the new test count, layer count, and innovation count
-**Plans:** 3 plans
+**Plans:** 2/3 plans executed
 
 Plans:
 - [ ] 04-01-PLAN.md -- CERT-09 Ed25519 attack gauntlet + CERT-10 temporal attack gauntlet (CERT-05, CERT-06)
@@ -93,7 +93,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 | 1. Ed25519 Foundation | 2/2 | Complete | 2026-03-17 |
 | 2. Signing Upgrade | 2/2 | Complete   | 2026-03-18 |
 | 3. Temporal Commitment | 1/2 | In Progress|  |
-| 4. Adversarial Proofs and Polish | 0/3 | Not started | - |
+| 4. Adversarial Proofs and Polish | 2/3 | In Progress|  |
 
 ---
 *Roadmap created: 2026-03-16*
