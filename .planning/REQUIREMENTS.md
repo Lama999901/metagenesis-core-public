@@ -14,12 +14,12 @@
 
 ### Adversarial Proofs
 
-- [ ] **ADV-01**: CERT-11 proves attacker who rebuilds Layer 1 + fakes Layer 2 is caught by Layer 2
-- [ ] **ADV-02**: CERT-11 proves attacker who rebuilds Layers 1+2 + forges Layer 3 is caught by Layer 3
-- [ ] **ADV-03**: CERT-11 proves stolen signing key with tampered evidence is caught by Layers 1-3
-- [ ] **ADV-04**: CERT-11 proves coordinated 3-layer bypass still fails at remaining layers
-- [ ] **ADV-05**: CERT-12 proves BOM-prefixed files are detected or handled safely
-- [ ] **ADV-06**: CERT-12 proves null bytes / truncated JSON / Unicode homoglyphs are caught
+- [x] **ADV-01**: CERT-11 proves attacker who rebuilds Layer 1 + fakes Layer 2 is caught by Layer 2
+- [x] **ADV-02**: CERT-11 proves attacker who rebuilds Layers 1+2 + forges Layer 3 is caught by Layer 3
+- [x] **ADV-03**: CERT-11 proves stolen signing key with tampered evidence is caught by Layers 1-3
+- [x] **ADV-04**: CERT-11 proves coordinated 3-layer bypass still fails at remaining layers
+- [x] **ADV-05**: CERT-12 proves BOM-prefixed files are detected or handled safely
+- [x] **ADV-06**: CERT-12 proves null bytes / truncated JSON / Unicode homoglyphs are caught
 - [x] **ADV-07**: Manifest version rollback (old protocol_version) is rejected by verifier
 
 ### Layer Hardening
@@ -72,12 +72,12 @@
 | CHAIN-02 | Phase 5 | Complete |
 | CHAIN-03 | Phase 5 | Complete |
 | CHAIN-04 | Phase 5 | Complete |
-| ADV-01 | Phase 7 | Pending |
-| ADV-02 | Phase 7 | Pending |
-| ADV-03 | Phase 7 | Pending |
-| ADV-04 | Phase 7 | Pending |
-| ADV-05 | Phase 7 | Pending |
-| ADV-06 | Phase 7 | Pending |
+| ADV-01 | Phase 7 | Complete |
+| ADV-02 | Phase 7 | Complete |
+| ADV-03 | Phase 7 | Complete |
+| ADV-04 | Phase 7 | Complete |
+| ADV-05 | Phase 7 | Complete |
+| ADV-06 | Phase 7 | Complete |
 | ADV-07 | Phase 6 | Complete |
 | SEM-01 | Phase 6 | Complete |
 | SEM-02 | Phase 6 | Complete |

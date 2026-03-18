@@ -29,9 +29,9 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 ### v0.5.0 Coverage Hardening
 
-- [ ] **Phase 5: Foundation** - Step chain structural tests for all 14 claims, runner error paths, governance meta-tests
-- [ ] **Phase 6: Layer Hardening** - Semantic edge cases, cross-claim cascade failures, manifest rollback attack
-- [ ] **Phase 7: Flagship Proofs** - CERT-11 coordinated multi-vector attack, CERT-12 encoding attacks
+- [x] **Phase 5: Foundation** - Step chain structural tests for all 14 claims, runner error paths, governance meta-tests (2026-03-18)
+- [x] **Phase 6: Layer Hardening** - Semantic edge cases, cross-claim cascade failures, manifest rollback attack (2026-03-18)
+- [x] **Phase 7: Flagship Proofs** - CERT-11 coordinated multi-vector attack, CERT-12 encoding attacks (completed 2026-03-18)
 - [ ] **Phase 8: Counter Updates** - All documentation counters reflect final test count
 
 ## Phase Details
@@ -49,9 +49,9 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 3 plans
 
 Plans:
-- [ ] 05-01: Step chain structural tests for 7 missing claims (CHAIN-01)
-- [ ] 05-02: Step chain ordering, duplicate, and extra-step rejection tests (CHAIN-02, CHAIN-03, CHAIN-04)
-- [ ] 05-03: Runner error paths and governance meta-tests (ERR-01, ERR-02, ERR-03, GOV-01, GOV-02, GOV-03)
+- [x] 05-01: Step chain structural tests for 7 missing claims (CHAIN-01)
+- [x] 05-02: Step chain ordering, duplicate, and extra-step rejection tests (CHAIN-02, CHAIN-03, CHAIN-04)
+- [x] 05-03: Runner error paths and governance meta-tests (ERR-01, ERR-02, ERR-03, GOV-01, GOV-02, GOV-03)
 
 ### Phase 6: Layer Hardening
 **Goal**: Layer 2 semantic verification is hardened against edge cases, cross-claim cascade failures propagate correctly through the full anchor chain, and manifest rollback attacks are rejected
@@ -65,8 +65,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 06-01: Layer 2 semantic edge case tests (SEM-01, SEM-02, SEM-03)
-- [ ] 06-02: Cross-claim cascade failure and manifest rollback tests (CASCADE-01, CASCADE-02, CASCADE-03, ADV-07)
+- [x] 06-01: Layer 2 semantic edge case tests (SEM-01, SEM-02, SEM-03)
+- [x] 06-02: Cross-claim cascade failure and manifest rollback tests (CASCADE-01, CASCADE-02, CASCADE-03, ADV-07)
 
 ### Phase 7: Flagship Proofs
 **Goal**: CERT-11 proves the 5-layer independence thesis under coordinated multi-vector attack, and CERT-12 proves encoding attacks (BOM, null bytes, homoglyphs, truncated JSON) are caught
@@ -102,11 +102,11 @@ Phases execute in numeric order: 5 -> 6 -> 7 -> 8
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 5. Foundation | 1/3 | In Progress|  |
-| 6. Layer Hardening | 0/2 | Not started | - |
-| 7. Flagship Proofs | 0/2 | Not started | - |
+| 5. Foundation | 3/3 | Complete | 2026-03-18 |
+| 6. Layer Hardening | 2/2 | Complete | 2026-03-18 |
+| 7. Flagship Proofs | 2/2 | Complete   | 2026-03-18 |
 | 8. Counter Updates | 0/1 | Not started | - |
 
 ---
 *Roadmap created: 2026-03-17*
-*Last updated: 2026-03-17*
+*Last updated: 2026-03-18*
