@@ -15,7 +15,7 @@ auditable offline. One command: `python scripts/mg.py verify --pack bundle.zip �
 **Repo:** https://github.com/Lama999901/metagenesis-core-public
 **Release:** v0.5.0 LIVE | **JOSS paper:** paper.md in main
 **Ed25519:** scripts/mg_ed25519.py DONE | **Temporal:** scripts/mg_temporal.py DONE
-**CERT-09:** Ed25519 attacks | **CERT-10:** temporal attacks | **deep_verify:** 13 tests
+**CERT-09:** Ed25519 attacks | **CERT-10:** temporal attacks | **CERT-11:** coordinated multi-vector | **CERT-12:** encoding attacks | **deep_verify:** 13 tests
 
 ---
 
@@ -256,6 +256,10 @@ test_cert05 → 5 attacks gauntlet (PROVES 3 layers necessary)
 test_cert06 → 5 real-world scenarios
 test_cert07 → 13 bundle signing tests
 test_cert08 → 10 reproducibility proofs
+test_cert09 → Ed25519 signing attack proofs
+test_cert10 → Temporal commitment attack proofs
+test_cert11 → Coordinated multi-vector attack gauntlet
+test_cert12 → Encoding and partial corruption attacks
 ```
 
 ---
@@ -279,8 +283,8 @@ contradict CLAUDE.md — those are session notes, not architecture.
 ## WHAT'S NEXT (priority order)
 
 ```
-1. v0.5.0 — Coverage Hardening (in progress)
-   Phase 5 ✅ Phase 6 ✅ Phase 7 ▶ Phase 8 ⏳
+1. v0.5.0 — Coverage Hardening (COMPLETE)
+   Phase 5 ✅ Phase 6 ✅ Phase 7 ✅ Phase 8 ✅
 2. Submit JOSS paper (paper.md ready)
 3. First paying customer ($299)
 4. NLnet NGI0 grant (deadline 2026-04-01)
@@ -344,4 +348,4 @@ git log --since='7 days ago' --name-only --pretty=format: | sort -u
 
 ---
 
-*CLAUDE.md v1.2 — 2026-03-18 — MetaGenesis Core v0.5.0*
+*CLAUDE.md v1.3 — 2026-03-17 — MetaGenesis Core v0.5.0 LIVE*
