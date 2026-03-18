@@ -14,8 +14,15 @@ Usage:
 import subprocess
 import sys
 import json
+import io
 from pathlib import Path
 from datetime import datetime
+
+# Fix Windows cp1252 encoding
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+if sys.stderr.encoding != 'utf-8':
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
