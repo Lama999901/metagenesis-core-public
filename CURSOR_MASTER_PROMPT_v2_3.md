@@ -8,25 +8,26 @@
 
 ```
 CONTEXT: MetaGenesis Core — verification protocol layer for computational claims.
-PPA #63/996,819. Repo: https://github.com/Lama999901/metagenesis-core-public
+v0.5.0 | 14 claims | 511 tests | 5 layers | 8 innovations
+  PPA #63/996,819. Repo: https://github.com/Lama999901/metagenesis-core-public
 
 NEVER TOUCH these files under any circumstances:
-  - scripts/steward_audit.py         ← SEALED (CI-locked)
-  - scripts/mg.py
-  - scripts/mg_policy_gate_policy.json
-  - tests/steward/test_cert02_pack_includes_evidence_and_semantic_verify.py
-  - ppa/CLAIMS_DRAFT.md
+- scripts/steward_audit.py         ← SEALED (CI-locked)
+- scripts/mg.py
+- scripts/mg_policy_gate_policy.json
+- tests/steward/test_cert02_pack_includes_evidence_and_semantic_verify.py
+- ppa/CLAIMS_DRAFT.md
   - .github/workflows/ (add only, never delete)
 
 BANNED TERMS — never write these anywhere:
-  "tamper-proof" / "GPT-5" / "19x performance" / "VacuumGenesisEngine"
-  "unforgeable" / "100% test success" / "500+ modules" / "Infinity Protocol"
-  "blockchain" (use: "cryptographic hash chain" / "Step Chain Verification")
+"tamper-proof" / "GPT-5" / "19x performance" / "VacuumGenesisEngine"
+"unforgeable" / "100% test success" / "500+ modules" / "Infinity Protocol"
+"blockchain" (use: "cryptographic hash chain" / "Step Chain Verification")
   Instead use: "tamper-evident under trusted verifier assumptions"
 
 CURRENT STATE:
-  14 claims / 271 tests / 3 verification layers / MVP v0.2
-  steward_audit: PASS / deep_verify: ALL 10 TESTS PASSED
+14 claims / 511 tests / 5 verification layers / MVP v0.5
+  steward_audit: PASS / deep_verify: ALL 13 TESTS PASSED
 ```
 
 ---
