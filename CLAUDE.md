@@ -1,7 +1,7 @@
 # MetaGenesis Core — Context for AI Agents (GSD)
 
 > Loaded automatically by all GSD agents via CLAUDE.md.
-> Last updated: 2026-03-17 | v0.3.0 | 14 claims | 295 tests
+> Last updated: 2026-03-18 | v0.5.0 LIVE | 14 claims | 511 tests
 
 ---
 
@@ -13,7 +13,9 @@ auditable offline. One command: `python scripts/mg.py verify --pack bundle.zip �
 
 **Inventor:** Yehor Bazhynov | **PPA:** USPTO #63/996,819
 **Repo:** https://github.com/Lama999901/metagenesis-core-public
-**Release:** v0.3.0 LIVE | **JOSS paper:** paper.md in main
+**Release:** v0.5.0 LIVE | **JOSS paper:** paper.md in main
+**Ed25519:** scripts/mg_ed25519.py DONE | **Temporal:** scripts/mg_temporal.py DONE
+**CERT-09:** Ed25519 attacks | **CERT-10:** temporal attacks | **deep_verify:** 13 tests
 
 ---
 
@@ -39,7 +41,7 @@ scripts/mg.py                                    ← core verifier, modify caref
 "blockchain"        → "cryptographic hash chain"
 "unforgeable"       → don't use
 "GPT-5"             → doesn't exist
-"100% test success" → "295 tests PASS"
+"100% test success" → "511 tests PASS"
 ```
 
 ---
@@ -47,12 +49,19 @@ scripts/mg.py                                    ← core verifier, modify caref
 ## ✅ VERIFICATION GATES — RUN BEFORE EVERY COMMIT
 
 ```bash
-python scripts/steward_audit.py   # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q        # → 295 passed
-python scripts/deep_verify.py     # → ALL 10 TESTS PASSED
+python scripts/steward_audit.py      # → STEWARD AUDIT: PASS
+python -m pytest tests/ -q           # → 511 passed
+python scripts/deep_verify.py        # → ALL 13 TESTS PASSED
+python scripts/check_stale_docs.py   # → All critical documentation is current
 ```
 
 **If ANY gate fails — STOP. Fix before committing.**
+
+**Stale doc check logic:**
+- Compares each critical file against last merge commit into main
+- If code it tracks changed but file wasn't updated → STALE
+- Fix: update the stale file to reflect current state
+- Run with --strict to fail CI (currently warn-only)
 
 ---
 
@@ -73,10 +82,10 @@ git push origin feat/description
 
 ```
 Claims:     14 active (all have 4-step Step Chain)
-Tests:      295 passing
-Layers:     3 verification + Layer 4 (bundle signing)
-Innovations: 6 (5 USPTO PPA + 1 post-PPA HMAC signing)
-Release:    v0.3.0
+Tests:      511 passing
+Layers:     5 verification (integrity + semantic + step chain + signing + temporal)
+Innovations: 8 (5 PPA + HMAC + Ed25519 + Temporal)
+Release:    v0.5.0
 ```
 
 ---
@@ -151,13 +160,14 @@ return {
 
 ---
 
-## 4-LAYER VERIFICATION
+## 5-LAYER VERIFICATION
 
 ```
 Layer 1 — SHA-256 integrity    pack_manifest.json           catches: file modified
 Layer 2 — Semantic             _verify_semantic() in mg.py  catches: evidence stripped
 Layer 3 — Step Chain           execution_trace + hash       catches: inputs changed
 Layer 4 — Bundle Signing       scripts/mg_sign.py           catches: unauthorized creator
+Layer 5 — Temporal Commitment  scripts/mg_temporal.py       catches: backdated bundle (NIST Beacon)
 ```
 
 **Key insight:** Layers are INDEPENDENT.
@@ -230,7 +240,7 @@ reports/scientific_claim_index.md  ← claim registry
 reports/canonical_state.md  ← authoritative list (LOCKED)
 reports/known_faults.yaml   ← known limitations (SCOPE_001)
 paper.md + paper.bib        ← JOSS paper
-index.html                  ← site (14/295/3/7 counters in 11+ places)
+index.html                  ← site (14/511/5/12 counters in 11+ places)
 CONTEXT_SNAPSHOT.md         ← live state for AI agents
 ```
 
@@ -269,14 +279,69 @@ contradict CLAUDE.md — those are session notes, not architecture.
 ## WHAT'S NEXT (priority order)
 
 ```
-1. Submit JOSS paper: https://joss.theoj.org/papers/new
-2. Innovation #7: Temporal Commitment (NIST Beacon)
-3. deep_verify TEST 11+12 (signing + reproducibility)
-4. First paying customer ($299)
-5. Ed25519 upgrade from HMAC
-6. NLnet NGI0 grant (deadline 2026-04-01)
+1. v0.5.0 — Coverage Hardening (in progress)
+   Phase 5 ✅ Phase 6 ✅ Phase 7 ▶ Phase 8 ⏳
+2. Submit JOSS paper (paper.md ready)
+3. First paying customer ($299)
+4. NLnet NGI0 grant (deadline 2026-04-01)
+5. Patent attorney (deadline 2027-03-05)
 ```
+
+## FUTURE EVOLUTION — v0.6.0 IDEAS
+
+### AGENT-DRIFT-01 — Agent Quality Monitor
+Claim #15 — мониторит дрейф качества GSD агентов:
+```python
+# Baseline (Phase 1):
+baseline = {
+  "tests_per_phase": 47,
+  "pass_rate": 1.0,
+  "regressions": 0,
+  "verifier_iterations": 1.2
+}
+# Drift threshold: 20%
+# Если агент пишет меньше тестов / больше итераций
+# → correction_required = True
+# → GSD запускает research phase заново
+```
+Это первый протокол где AI агенты мониторят свой
+собственный дрейф через тот же механизм который расширяют.
+
+### STALE FILE CHECKER (добавить в Phase 8)
+После обновления счётчиков агент должен проверить:
+```bash
+# Файлы которые не менялись давно vs текущее состояние:
+git log --since='7 days ago' --name-only --pretty=format: | sort -u
+# Сравнить с критическими файлами:
+# CONTEXT_SNAPSHOT.md, AGENTS.md, llms.txt, ppa/README_PPA.md
+# Если файл не в списке → проверить актуальность → обновить
+```
+Это закрывает проблему "документация отстаёт от кода".
+
+### RECURSIVE SELF-IMPROVEMENT LOOP (v0.6.0)
+```
+1. После каждого milestone:
+   /gsd:quick "Gap analysis on test suite"
+   → агент находит дыры
+   → планирует закрытие
+   → protocol верифицирует
+
+2. После каждого release:
+   /gsd:quick "Update CLAUDE.md to reflect current state"
+   → агент обновляет свой мозг
+   → следующий агент умнее
+
+3. AGENT-DRIFT-01 мониторит:
+   → качество агентской работы не деградирует
+   → система самодиагностируется
+```
+
+### WHY THIS MATTERS FOR JOSS/PATENT
+Рекурсивная самоверификация через архитектуру =
+доказательство domain-agnostic applicability.
+Логи существуют. Тесты существуют.
+Любой reviewer может воспроизвести.
 
 ---
 
-*CLAUDE.md v1.1 — 2026-03-17 — MetaGenesis Core v0.3.0*
+*CLAUDE.md v1.2 — 2026-03-18 — MetaGenesis Core v0.5.0*

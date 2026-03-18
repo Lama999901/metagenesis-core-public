@@ -27,7 +27,7 @@ After reading these 8 files you can answer any question about this project.
 ## What this repo is
 
 MetaGenesis Core is an open verification protocol layer.
-It implements the MetaGenesis Verification Protocol (MVP) v0.4.
+It implements the MetaGenesis Verification Protocol (MVP) v0.5.
 It makes computational claims tamper-evident, reproducible, and
 independently auditable offline by any third party.
 
@@ -104,7 +104,7 @@ test mtr_phase key present, test determinism (same seed → same result)
 
 Step 6 — Verify:
 python scripts/steward_audit.py → STEWARD AUDIT: PASS
-python -m pytest tests/ -q → 389 passed
+python -m pytest tests/ -q → 511 passed
 python scripts/deep_verify.py → ALL 13 TESTS PASSED
 
 ---

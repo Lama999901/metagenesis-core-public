@@ -80,8 +80,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 07-01: CERT-11 coordinated multi-vector attack gauntlet (ADV-01, ADV-02, ADV-03, ADV-04)
-- [ ] 07-02: CERT-12 encoding and partial corruption attacks (ADV-05, ADV-06)
+- [x] 07-01: CERT-11 coordinated multi-vector attack gauntlet (ADV-01, ADV-02, ADV-03, ADV-04)
+- [x] 07-02: CERT-12 encoding and partial corruption attacks (ADV-05, ADV-06)
 
 ### Phase 8: Counter Updates
 **Goal**: All documentation and site files reflect the final v0.5.0 test count, maintaining counter consistency across the project
@@ -93,7 +93,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 08-01: Documentation counter updates across all files (DOCS-01)
+- [ ] 08-01-PLAN.md -- Counter and version propagation across documentation files (DOCS-01)
+- [ ] 08-02-PLAN.md -- index.html content overhaul: counters, Layer 5, CERT-11/12, feature matrix (DOCS-01)
 
 ## Progress
 
@@ -105,7 +106,7 @@ Phases execute in numeric order: 5 -> 6 -> 7 -> 8
 | 5. Foundation | 3/3 | Complete | 2026-03-18 |
 | 6. Layer Hardening | 2/2 | Complete | 2026-03-18 |
 | 7. Flagship Proofs | 2/2 | Complete   | 2026-03-18 |
-| 8. Counter Updates | 0/1 | Not started | - |
+| 8. Counter Updates | 0/2 | Not started | - |
 
 ---
 *Roadmap created: 2026-03-17*
