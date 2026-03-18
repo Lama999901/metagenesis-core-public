@@ -39,6 +39,9 @@ htmlcov/
 # Jupyter
 .ipynb_checkpoints
 
+# GSD planning state (local only)
+.planning/
+
 # Signing keys (NEVER commit private keys)
 signing_key*.json
 *.signing_key.json

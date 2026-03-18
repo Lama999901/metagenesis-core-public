@@ -146,3 +146,204 @@ class TestCert02PackIncludesEvidenceAndSemanticVerify:
         vrc, vout = _verify_pack(pack_out)
         assert vrc != 0, f"mg verify must FAIL on semantic violation: {vout}"
         assert "job_snapshot" in vout or "missing required key" in vout
+
+
+# ---------------------------------------------------------------------------
+# Semantic Edge Case Tests (SEM-01, SEM-02, SEM-03)
+# ---------------------------------------------------------------------------
+
+from scripts.mg import _verify_semantic  # noqa: E402
+
+_VALID_HASH = "a" * 64
+_SEM_JOB_KIND = "dtfem1_displacement_verification"
+
+
+def _make_sem_pack(tmp_path, claim_id="DT-FEM-01",
+                   job_kind="dtfem1_displacement_verification",
+                   mtr_phase="DT-FEM-01", trace_root_hash="d" * 64,
+                   execution_trace=None, extra_result_fields=None,
+                   extra_input_fields=None, result_overrides=None,
+                   evidence_index_overrides=None):
+    """Build minimal pack with customizable domain result fields for semantic tests."""
+    pack_dir = tmp_path / "pack"
+    pack_dir.mkdir(exist_ok=True)
+    ev_dir = pack_dir / "evidence" / claim_id / "normal"
+    ev_dir.mkdir(parents=True, exist_ok=True)
+
+    if execution_trace is None:
+        execution_trace = [
+            {"step": 1, "name": "init_params", "hash": "a" * 64},
+            {"step": 2, "name": "generate_fem_pair", "hash": "b" * 64},
+            {"step": 3, "name": "compute_rel_err", "hash": "c" * 64},
+            {"step": 4, "name": "threshold_check", "hash": "d" * 64},
+        ]
+
+    inputs = {
+        "seed": 42,
+        "reference_value": 1.0,
+        "rel_err_threshold": 0.02,
+        "noise_scale": 0.005,
+        "quantity": "displacement_mm",
+        "units": "mm",
+    }
+    if extra_input_fields:
+        inputs.update(extra_input_fields)
+
+    result_block = {
+        "fem_value": 1.001, "reference_value": 1.0,
+        "rel_err": 0.001, "rel_err_threshold": 0.02,
+        "pass": True, "quantity": "displacement_mm",
+        "units": "mm", "method": "fem_vs_reference_rel_err",
+        "algorithm_version": "v1",
+    }
+    if result_overrides:
+        result_block.update(result_overrides)
+
+    domain_result = {
+        "mtr_phase": mtr_phase,
+        "inputs": inputs,
+        "result": result_block,
+        "execution_trace": execution_trace,
+        "trace_root_hash": trace_root_hash,
+    }
+    if extra_result_fields:
+        domain_result.update(extra_result_fields)
+
+    run_artifact = {
+        "w6_phase": "W6-A5", "kind": "success",
+        "job_id": "job-test-sem", "trace_id": "trace-test-sem",
+        "canary_mode": False,
+        "job_snapshot": {
+            "job_id": "job-test-sem", "status": "SUCCEEDED",
+            "payload": {"kind": job_kind},
+            "result": domain_result,
+        },
+        "ledger_action": "job_completed", "persisted_at": "2026-03-18T00:00:00Z",
+    }
+
+    (ev_dir / "run_artifact.json").write_text(
+        json.dumps(run_artifact), encoding="utf-8")
+    (ev_dir / "ledger_snapshot.jsonl").write_text(
+        json.dumps({"trace_id": "trace-test-sem", "action": "job_completed",
+                     "actor": "scheduler_v1", "meta": {"canary_mode": False}}) + "\n",
+        encoding="utf-8")
+
+    evidence_index = {
+        claim_id: {
+            "job_kind": job_kind,
+            "normal": {
+                "run_relpath": f"evidence/{claim_id}/normal/run_artifact.json",
+                "ledger_relpath": f"evidence/{claim_id}/normal/ledger_snapshot.jsonl",
+            },
+        }
+    }
+    if evidence_index_overrides:
+        evidence_index[claim_id].update(evidence_index_overrides)
+
+    index_path = pack_dir / "evidence_index.json"
+    index_path.write_text(json.dumps(evidence_index), encoding="utf-8")
+    return pack_dir, index_path
+
+
+class TestSemanticPartialFields:
+    """SEM-01: Partial fields -- null values in required fields."""
+
+    def test_a_null_mtr_phase_rejected(self, tmp_path):
+        """domain result has mtr_phase=None -> FAIL."""
+        pack_dir, index_path = _make_sem_pack(tmp_path, mtr_phase=None)
+        ok, msg, errors = _verify_semantic(pack_dir, index_path)
+        assert ok is False, f"Expected FAIL for null mtr_phase, got PASS: {msg}"
+        assert "mtr_phase" in msg
+
+    def test_b_null_trace_root_hash_rejected(self, tmp_path):
+        """domain has trace_root_hash=None but execution_trace present -> FAIL."""
+        pack_dir, index_path = _make_sem_pack(tmp_path, trace_root_hash=None)
+        ok, msg, errors = _verify_semantic(pack_dir, index_path)
+        assert ok is False, f"Expected FAIL for null trace_root_hash with trace: {msg}"
+
+    def test_c_missing_execution_trace_with_null_root(self, tmp_path):
+        """both execution_trace=None and trace_root_hash=None -> PASS (backward compatible)."""
+        # Build a normal pack, then patch both fields to None
+        pack_dir, index_path = _make_sem_pack(tmp_path)
+        run_path = pack_dir / "evidence" / "DT-FEM-01" / "normal" / "run_artifact.json"
+        art = json.loads(run_path.read_text(encoding="utf-8"))
+        del art["job_snapshot"]["result"]["execution_trace"]
+        del art["job_snapshot"]["result"]["trace_root_hash"]
+        run_path.write_text(json.dumps(art), encoding="utf-8")
+        ok, msg, errors = _verify_semantic(pack_dir, index_path)
+        assert ok is True, f"Expected PASS for both absent (backward compat), got: {msg}"
+
+    def test_d_partial_step_hash_null(self, tmp_path):
+        """execution_trace step has hash=None -> FAIL with 'invalid hash'."""
+        trace = [
+            {"step": 1, "name": "init_params", "hash": "a" * 64},
+            {"step": 2, "name": "generate_fem_pair", "hash": None},
+            {"step": 3, "name": "compute_rel_err", "hash": "c" * 64},
+            {"step": 4, "name": "threshold_check", "hash": "d" * 64},
+        ]
+        pack_dir, index_path = _make_sem_pack(tmp_path, execution_trace=trace)
+        ok, msg, errors = _verify_semantic(pack_dir, index_path)
+        assert ok is False, f"Expected FAIL for null step hash, got: {msg}"
+        assert "invalid hash" in msg.lower()
+
+
+class TestSemanticExtraFields:
+    """SEM-02: Extra unexpected fields -- forward compatible but logged."""
+
+    def test_a_extra_fields_in_result_passes(self, tmp_path):
+        """domain result has extra key 'bonus_field' -> PASS (forward compatible)."""
+        pack_dir, index_path = _make_sem_pack(
+            tmp_path, extra_result_fields={"bonus_field": "surprise"})
+        ok, msg, errors = _verify_semantic(pack_dir, index_path)
+        assert ok is True, f"Expected PASS for extra fields, got: {msg}"
+
+    def test_b_extra_fields_in_inputs_passes(self, tmp_path):
+        """inputs has extra key 'debug_mode' -> PASS."""
+        pack_dir, index_path = _make_sem_pack(
+            tmp_path, extra_input_fields={"debug_mode": True})
+        ok, msg, errors = _verify_semantic(pack_dir, index_path)
+        assert ok is True, f"Expected PASS for extra input fields, got: {msg}"
+
+    def test_c_extra_fields_logged_in_report(self, tmp_path):
+        """extra fields in domain result -> ok=True AND warnings list mentions the field."""
+        pack_dir, index_path = _make_sem_pack(
+            tmp_path, extra_result_fields={"bonus_field": "surprise"})
+        ok, msg, warnings = _verify_semantic(pack_dir, index_path)
+        assert ok is True, f"Expected PASS, got: {msg}"
+        assert "PASS" in msg
+        assert any("bonus_field" in w for w in warnings), \
+            f"Extra fields must be logged in warnings, got: {warnings}"
+
+
+class TestSemanticMeaninglessValues:
+    """SEM-03: Semantically meaningless values -- empty strings, zero/negative thresholds."""
+
+    def test_a_empty_mtr_phase_rejected(self, tmp_path):
+        """mtr_phase='' -> FAIL."""
+        pack_dir, index_path = _make_sem_pack(tmp_path, mtr_phase="")
+        ok, msg, errors = _verify_semantic(pack_dir, index_path)
+        assert ok is False, f"Expected FAIL for empty mtr_phase, got: {msg}"
+        assert "mtr_phase" in msg
+
+    def test_b_zero_threshold_rejected(self, tmp_path):
+        """result has rel_err_threshold=0 -> FAIL."""
+        pack_dir, index_path = _make_sem_pack(
+            tmp_path, result_overrides={"rel_err_threshold": 0})
+        ok, msg, errors = _verify_semantic(pack_dir, index_path)
+        assert ok is False, f"Expected FAIL for zero threshold, got: {msg}"
+        assert "zero" in msg.lower() or "threshold" in msg.lower()
+
+    def test_c_negative_threshold_rejected(self, tmp_path):
+        """result has rel_err_threshold=-0.01 -> FAIL."""
+        pack_dir, index_path = _make_sem_pack(
+            tmp_path, result_overrides={"rel_err_threshold": -0.01})
+        ok, msg, errors = _verify_semantic(pack_dir, index_path)
+        assert ok is False, f"Expected FAIL for negative threshold, got: {msg}"
+        assert "negative" in msg.lower() or "threshold" in msg.lower()
+
+    def test_d_empty_job_kind_in_evidence_index_rejected(self, tmp_path):
+        """evidence_index has job_kind='' -> FAIL."""
+        pack_dir, index_path = _make_sem_pack(
+            tmp_path, job_kind="")
+        ok, msg, errors = _verify_semantic(pack_dir, index_path)
+        assert ok is False, f"Expected FAIL for empty job_kind, got: {msg}"

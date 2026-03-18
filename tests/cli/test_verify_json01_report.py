@@ -86,7 +86,7 @@ def _recompute_manifest(pack_dir: Path) -> None:
     root_hash = hashlib.sha256(lines.encode("utf-8")).hexdigest()
     manifest = {
         "pack_version": "1",
-        "protocol_version": "v1.0",
+        "protocol_version": 1,
         "files": files_list,
         "root_hash": root_hash,
     }
