@@ -3,30 +3,15 @@ gsd_state_version: 1.0
 milestone: v0.5
 milestone_name: milestone
 status: executing
-stopped_at: Completed 05-01-PLAN.md
-last_updated: "2026-03-18T04:21:35.857Z"
-last_activity: 2026-03-18 -- Completed 05-03 runner error paths and governance meta-tests
+stopped_at: Completed 06-01-PLAN.md
+last_updated: "2026-03-18T05:28:00Z"
+last_activity: 2026-03-18 -- Completed 06-01 semantic edge case hardening
 progress:
   total_phases: 4
   completed_phases: 1
-  total_plans: 3
-  completed_plans: 3
----
-
----
-gsd_state_version: 1.0
-milestone: v0.5
-milestone_name: milestone
-status: executing
-stopped_at: Completed 05-03-PLAN.md
-last_updated: "2026-03-18T04:21:03Z"
-last_activity: 2026-03-18 -- Completed 05-03 runner error paths and governance meta-tests
-progress:
-  total_phases: 4
-  completed_phases: 1
-  total_plans: 3
-  completed_plans: 3
-  percent: 100
+  total_plans: 5
+  completed_plans: 4
+  percent: 80
 ---
 
 # Project State
@@ -36,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-17)
 
 **Core value:** Every verification claim must be independently auditable offline with cryptographic proof of integrity, provenance, and temporal commitment.
-**Current focus:** Phase 5 - Foundation (step chain structural, runner error paths, governance meta-tests)
+**Current focus:** Phase 6 - Layer Hardening (semantic edge cases, step chain hardening)
 
 ## Current Position
 
-Phase: 5 of 8 (Foundation)
-Plan: 3 of 3 in current phase (COMPLETE)
-Status: phase complete
-Last activity: 2026-03-18 -- Completed 05-03 runner error paths and governance meta-tests
+Phase: 6 of 8 (Layer Hardening)
+Plan: 1 of 2 in current phase (COMPLETE)
+Status: executing
+Last activity: 2026-03-18 -- Completed 06-01 semantic edge case hardening
 
-Progress: [██████████] 100%
+Progress: [████████░░] 80%
 
 ## Performance Metrics
 
@@ -65,6 +50,7 @@ Progress: [██████████] 100%
 - Trend: Stable
 
 *Updated after each plan completion*
+| Phase 06 P01 | 3min | 2 tasks | 2 files |
 | Phase 05 P03 | 4min | 2 tasks | 2 files |
 | Phase 05 P01 | 5min | 2 tasks | 1 files |
 
@@ -87,6 +73,9 @@ Recent decisions affecting current work:
 - [Research]: CERT-11 must assert WHICH layer caught the attack, not just that detection occurred
 - [Research]: Governance meta-tests must use relational assertions (set equality), not hardcoded counts
 - [Phase 05-01]: Used structural verification for genesis_hash on all 14 claims (result inputs differ from internal hash data)
+- [06-01]: Extra fields in domain result pass verification but are logged as warnings (forward-compatible)
+- [06-01]: Threshold validation covers rel_err_threshold, convergence_threshold, drift_threshold_pct
+- [06-01]: _EXPECTED_DOMAIN_KEYS defined at module level in mg.py for maintainability
 
 ### Pending Todos
 
@@ -99,6 +88,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-18T04:21:35.854Z
-Stopped at: Completed 05-01-PLAN.md
-Resume file: None
+Last session: 2026-03-18T05:28:00Z
+Stopped at: Completed 06-01-PLAN.md
+Resume file: .planning/phases/06-layer-hardening/06-CONTEXT.md
