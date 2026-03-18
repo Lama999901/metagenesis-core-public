@@ -34,8 +34,12 @@ in the non-provisional application.
 | DT-CALIB-LOOP-01 (convergence) | 2026-03-15 | Calibration convergence |
 | anchor_hash validation in verifier | 2026-03-15 | mg.py verify-chain CLI |
 | Innovation #6: Bundle Signing (HMAC-SHA256) | 2026-03-17 | mg_sign.py — closes unauthorized bundle creation attack |
+| Innovation #7: Ed25519 Asymmetric Signing | 2026-03-18 | mg_ed25519.py — pure Python RFC 8032, asymmetric key verification |
+| Innovation #8: Temporal Commitment (NIST Beacon) | 2026-03-18 | mg_temporal.py — Layer 5, proves WHEN bundle was signed |
+| 5-Layer Independence Proof (CERT-11/12) | 2026-03-18 | test_cert11 + test_cert12 — each layer catches attacks others miss |
+| Agent Evolution System | 2026-03-18 | agent_learn.py + agent_evolution.py + check_stale_docs.py |
 
-**Current state (2026-03-17):** 14 claims, 282 tests.
+**Current state (2026-03-18):** 14 claims, 511 tests, 5 layers, 8 innovations.
 Live state: reports/canonical_state.md
 
 ---
