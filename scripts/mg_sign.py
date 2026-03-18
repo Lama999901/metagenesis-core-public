@@ -67,6 +67,21 @@ KEY_VERSION = "hmac-sha256-v1"
 
 
 # ---------------------------------------------------------------------------
+# Algorithm detection
+# ---------------------------------------------------------------------------
+
+def _detect_algorithm(key_data: dict) -> str:
+    """Detect signing algorithm from key file version field."""
+    version = key_data.get("version", "")
+    if version == "hmac-sha256-v1":
+        return "hmac"
+    elif version == "ed25519-v1":
+        return "ed25519"
+    else:
+        raise ValueError(f"Unknown key version: {version!r}")
+
+
+# ---------------------------------------------------------------------------
 # Key management
 # ---------------------------------------------------------------------------
 
@@ -91,13 +106,20 @@ def generate_key() -> dict:
 
 
 def load_key(key_path: Path) -> dict:
-    """Load signing key from JSON file."""
+    """Load signing key from JSON file. Supports HMAC and Ed25519 formats."""
     try:
         data = json.loads(Path(key_path).read_text(encoding="utf-8"))
     except (json.JSONDecodeError, OSError) as e:
         raise ValueError(f"Cannot load key from {key_path}: {e}")
-    if "key_hex" not in data:
-        raise ValueError(f"Key file missing 'key_hex' field: {key_path}")
+    version = data.get("version", "")
+    if version == "hmac-sha256-v1":
+        if "key_hex" not in data:
+            raise ValueError(f"HMAC key file missing 'key_hex': {key_path}")
+    elif version == "ed25519-v1":
+        if "public_key_hex" not in data:
+            raise ValueError(f"Ed25519 key file missing 'public_key_hex': {key_path}")
+    else:
+        raise ValueError(f"Unknown key version {version!r} in {key_path}")
     return data
 
 
@@ -122,6 +144,15 @@ def _compute_signature(root_hash: str, key_hex: str) -> str:
     key_bytes = bytes.fromhex(key_hex)
     message = root_hash.encode("utf-8")
     return hmac.new(key_bytes, message, hashlib.sha256).hexdigest()
+
+
+def _compute_ed25519_signature(root_hash: str, key_data: dict) -> str:
+    """Compute Ed25519 signature over root_hash."""
+    from scripts.mg_ed25519 import sign as ed25519_sign
+    private_seed = bytes.fromhex(key_data["private_key_hex"])
+    message = root_hash.encode("utf-8")
+    sig_bytes = ed25519_sign(private_seed, message)
+    return sig_bytes.hex()
 
 
 def sign_bundle(pack_dir: Path, key_path: Path) -> dict:
@@ -155,11 +186,26 @@ def sign_bundle(pack_dir: Path, key_path: Path) -> dict:
         )
 
     key_data = load_key(key_path)
-    signature = _compute_signature(root_hash, key_data["key_hex"])
+    algo = _detect_algorithm(key_data)
+
+    if algo == "hmac":
+        signature = _compute_signature(root_hash, key_data["key_hex"])
+        sig_version = SIGNATURE_VERSION  # "hmac-sha256-v1"
+    elif algo == "ed25519":
+        if "private_key_hex" not in key_data:
+            raise ValueError(
+                "Ed25519 signing requires a private key file "
+                "(not a public-only .pub.json)"
+            )
+        signature = _compute_ed25519_signature(root_hash, key_data)
+        sig_version = "ed25519-v1"
+    else:
+        raise ValueError(f"Unsupported algorithm: {algo}")
+
     fingerprint = key_data["fingerprint"]
 
     sig_dict = {
-        "version": SIGNATURE_VERSION,
+        "version": sig_version,
         "signed_root_hash": root_hash,
         "signature": signature,
         "key_fingerprint": fingerprint,
@@ -232,9 +278,26 @@ def verify_bundle_signature(
             f"  current_root_hash: {current_root_hash}"
         )
 
-    # --- Check 3: HMAC verification (if key provided) ---
+    # --- Check 3: Cryptographic verification (if key provided) ---
     if key_path is not None:
         key_data = load_key(key_path)
+
+        # Downgrade attack prevention (SIGN-08)
+        key_algo = _detect_algorithm(key_data)
+        sig_version = sig_data["version"]
+        expected_algo_map = {"hmac-sha256-v1": "hmac", "ed25519-v1": "ed25519"}
+        sig_algo = expected_algo_map.get(sig_version)
+
+        if sig_algo is None:
+            return False, f"Unknown signature algorithm: {sig_version!r}"
+
+        if key_algo != sig_algo:
+            return False, (
+                f"SIGNATURE INVALID: algorithm mismatch.\n"
+                f"  bundle signed with: {sig_version}\n"
+                f"  verifier key type:  {key_data['version']}\n"
+                f"  This may indicate a downgrade attack."
+            )
 
         # Verify key fingerprint matches
         if key_data["fingerprint"] != sig_data["key_fingerprint"]:
@@ -244,15 +307,26 @@ def verify_bundle_signature(
                 f"  provided key fingerprint:               {key_data['fingerprint']}"
             )
 
-        # Verify HMAC
-        expected_sig = _compute_signature(
-            sig_data["signed_root_hash"], key_data["key_hex"]
-        )
-        if not hmac.compare_digest(sig_data["signature"], expected_sig):
-            return False, (
-                "SIGNATURE INVALID: HMAC verification failed.\n"
-                "The signature does not match the bundle content + key."
+        # Algorithm-dispatched verification
+        if key_algo == "hmac":
+            expected_sig = _compute_signature(
+                sig_data["signed_root_hash"], key_data["key_hex"]
             )
+            if not hmac.compare_digest(sig_data["signature"], expected_sig):
+                return False, (
+                    "SIGNATURE INVALID: HMAC verification failed.\n"
+                    "The signature does not match the bundle content + key."
+                )
+        elif key_algo == "ed25519":
+            from scripts.mg_ed25519 import verify as ed25519_verify
+            pub_key = bytes.fromhex(key_data["public_key_hex"])
+            msg = sig_data["signed_root_hash"].encode("utf-8")
+            sig_bytes = bytes.fromhex(sig_data["signature"])
+            if not ed25519_verify(pub_key, msg, sig_bytes):
+                return False, (
+                    "SIGNATURE INVALID: Ed25519 verification failed.\n"
+                    "The signature does not match the bundle content + public key."
+                )
 
         return True, (
             f"SIGNATURE VALID\n"
