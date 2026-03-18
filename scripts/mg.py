@@ -146,8 +146,15 @@ def _verify_pack(pack_dir: Path) -> tuple[bool, str, dict]:
     return True, "PASS", report
 
 
+_EXPECTED_DOMAIN_KEYS = {
+    "mtr_phase", "inputs", "result", "execution_trace",
+    "trace_root_hash", "anchor_hash", "anchor_claim_id",
+}
+
+
 def _verify_semantic(pack_dir: Path, evidence_index_path: Path) -> tuple[bool, str, list]:
     """Semantic verification of evidence bundles. Returns (ok, message, errors_list)."""
+    warnings: list[str] = []
     try:
         index = json.loads(evidence_index_path.read_text(encoding="utf-8"))
     except (json.JSONDecodeError, OSError) as e:
@@ -193,6 +200,12 @@ def _verify_semantic(pack_dir: Path, evidence_index_path: Path) -> tuple[bool, s
             if "mtr_phase" not in domain:
                 msg = f"Run artifact {run_rel} job_snapshot.result must contain mtr_phase"
                 return False, msg, [msg]
+            if domain.get("mtr_phase") is None or domain["mtr_phase"] == "":
+                msg = f"Run artifact {run_rel} mtr_phase must be a non-empty string"
+                return False, msg, [msg]
+            if not job_kind:
+                msg = f"evidence_index[{claim_id}] job_kind must be a non-empty string"
+                return False, msg, [msg]
             payload = snap.get("payload", {})
             if payload.get("kind") != job_kind:
                 msg = f"Run artifact {run_rel} payload.kind does not match evidence_index job_kind"
@@ -209,6 +222,16 @@ def _verify_semantic(pack_dir: Path, evidence_index_path: Path) -> tuple[bool, s
                     msg = f"Run artifact {run_rel} inputs.dataset.sha256 must be 64 hex chars"
                     return False, msg, [msg]
             result_block = domain.get("result", {})
+            # Reject zero/negative thresholds for physical quantities
+            for thresh_key in ("rel_err_threshold", "convergence_threshold",
+                               "drift_threshold_pct"):
+                thresh_val = (result_block.get(thresh_key)
+                              if isinstance(result_block, dict) else None)
+                if thresh_val is not None:
+                    if thresh_val <= 0:
+                        msg = (f"Run artifact {run_rel} {thresh_key} must be "
+                               f"positive, got {thresh_val}")
+                        return False, msg, [msg]
             uq = result_block.get("uncertainty") if isinstance(result_block, dict) else None
             if uq is not None and isinstance(uq, dict):
                 for k in ("ci_low", "ci_high", "stability_score"):
@@ -276,7 +299,13 @@ def _verify_semantic(pack_dir: Path, evidence_index_path: Path) -> tuple[bool, s
                         msg = (f"Run artifact {run_rel} inputs.anchor_hash "
                                f"must be valid 64-char lowercase hex or None")
                         return False, msg, [msg]
-    return True, "PASS", []
+            # --- Extra field warnings (forward-compatible) ---
+            extra_keys = set(domain.keys()) - _EXPECTED_DOMAIN_KEYS
+            if extra_keys:
+                for ek in sorted(extra_keys):
+                    warnings.append(
+                        f"Run artifact {run_rel} unexpected field: {ek}")
+    return True, "PASS", warnings
 
 
 def _verify_chain(packs: list) -> tuple[bool, str, dict]:
