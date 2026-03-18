@@ -365,13 +365,25 @@ def verify_bundle_signature(
 # ---------------------------------------------------------------------------
 
 def cmd_keygen(args):
-    key = generate_key()
-    out_path = Path(args.out)
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(json.dumps(key, indent=2), encoding="utf-8")
-    print(f"Signing key generated: {out_path}")
-    print(f"Public fingerprint:    {key['fingerprint']}")
-    print(f"KEEP {out_path} SECRET — share only the fingerprint.")
+    key_type = getattr(args, 'type', 'hmac')
+    if key_type == 'ed25519':
+        from scripts.mg_ed25519 import generate_key_files
+        out_path = Path(args.out)
+        key_data = generate_key_files(out_path)
+        stem = out_path.stem
+        pub_path = out_path.parent / f"{stem}.pub.json"
+        print(f"Ed25519 signing key: {out_path}")
+        print(f"Public key:          {pub_path}")
+        print(f"Fingerprint:         {key_data['fingerprint']}")
+        print(f"KEEP {out_path} SECRET. Share {pub_path} with auditors.")
+    else:
+        key = generate_key()
+        out_path = Path(args.out)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(json.dumps(key, indent=2), encoding="utf-8")
+        print(f"Signing key generated: {out_path}")
+        print(f"Public fingerprint:    {key['fingerprint']}")
+        print(f"KEEP {out_path} SECRET — share only the fingerprint.")
     return 0
 
 
@@ -409,6 +421,8 @@ def main():
     # keygen
     kg = sub.add_parser("keygen", help="Generate a new signing key pair")
     kg.add_argument("--out", "-o", required=True, help="Output key file path (.json)")
+    kg.add_argument("--type", "-t", choices=["hmac", "ed25519"],
+                    default="hmac", help="Key type (default: hmac)")
     kg.set_defaults(func=cmd_keygen)
 
     # sign
