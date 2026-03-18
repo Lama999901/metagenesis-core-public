@@ -139,6 +139,7 @@ def check_stale_docs(strict=False):
     stale = []
     current = []
     ok_no_change_needed = []
+    all_clean = True  # set default before git checks
 
     for doc_file, meta in CRITICAL_FILES.items():
         doc_path = Path(doc_file)
