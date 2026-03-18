@@ -62,7 +62,7 @@ Plans:
   2. Cross-claim test covers the full anchor chain MTR-1 to DRIFT-01 to DT-CALIB-LOOP-01, and a failed upstream claim propagates failure through every downstream hop
   3. Cross-claim chain detects a tampered anchor hash at any position in the chain
   4. Verifier rejects a bundle with a rolled-back manifest protocol_version
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
 - [ ] 06-01: Layer 2 semantic edge case tests (SEM-01, SEM-02, SEM-03)
@@ -77,7 +77,7 @@ Plans:
   2. CERT-11 proves an attacker who bypasses Layers 1+2 and forges Layer 3 is caught specifically by Layer 3
   3. CERT-11 proves a stolen signing key with tampered evidence is caught by Layers 1-3, and a coordinated 3-layer bypass still fails at remaining layers
   4. CERT-12 proves BOM-prefixed files, null bytes, truncated JSON, and Unicode homoglyphs are detected or handled safely
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
 - [ ] 07-01: CERT-11 coordinated multi-vector attack gauntlet (ADV-01, ADV-02, ADV-03, ADV-04)
@@ -90,7 +90,7 @@ Plans:
 **Success Criteria** (what must be TRUE):
   1. Running pytest reports the final test count and all counters in index.html (11 places), README.md, AGENTS.md, llms.txt, system_manifest.json, and CONTEXT_SNAPSHOT.md match that count
   2. Governance meta-tests from Phase 5 pass with the updated counters (no drift detected)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
 - [ ] 08-01: Documentation counter updates across all files (DOCS-01)
