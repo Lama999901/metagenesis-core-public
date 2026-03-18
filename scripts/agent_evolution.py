@@ -251,6 +251,30 @@ def check_claude_md(actual_count):
         return True
 
 
+# ── 9. Watchlist Coverage ────────────────────────────────────────────────────
+def check_watchlist():
+    section("WATCHLIST COVERAGE")
+    out, code = run("python scripts/auto_watchlist_scan.py")
+    import re
+    m = re.search(r"(\d+)/(\d+) files watched \((\d+) unwatched\)", out)
+    if m:
+        watched, total, unwatched = int(m.group(1)), int(m.group(2)), int(m.group(3))
+        info(f"{watched}/{total} files watched ({unwatched} unwatched)")
+        if unwatched == 0:
+            ok("All doc files are in watchlists")
+        else:
+            warn(f"{unwatched} files not in any watchlist")
+        # Advisory -- not a hard failure, just a warning
+        return True
+    else:
+        if code == 0:
+            ok("Watchlist scan completed")
+            return True
+        else:
+            err("Watchlist scan failed")
+            return False
+
+
 # ── Main ─────────────────────────────────────────────────────────────────────
 def main():
     strict = "--strict" in sys.argv
@@ -274,6 +298,7 @@ def main():
     gaps                 = run_gap_analysis(count)
     results["gaps"]      = len(gaps) == 0
     results["claude_md"] = check_claude_md(count)
+    results["watchlist"] = check_watchlist()
 
     # ── Summary ──
     section("SUMMARY")
