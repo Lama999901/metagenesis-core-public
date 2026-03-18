@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v0.5
 milestone_name: milestone
-status: executing
-stopped_at: Completed 07-02-PLAN.md
-last_updated: "2026-03-18T06:01:27Z"
-last_activity: 2026-03-18 -- Phase 7 Plan 02 CERT-12 encoding attacks complete
+status: completed
+stopped_at: Completed quick task 260317-vsv (CLAUDE.md update)
+last_updated: "2026-03-18T06:58:10.927Z"
+last_activity: 2026-03-18 -- Phase 8 Plan 02 index.html counter updates complete
 progress:
   total_phases: 4
-  completed_phases: 3
-  total_plans: 8
-  completed_plans: 8
-  percent: 87
+  completed_phases: 4
+  total_plans: 9
+  completed_plans: 9
+  percent: 100
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-18)
 
 **Core value:** Every verification claim must be independently auditable offline with cryptographic proof of integrity, provenance, and temporal commitment.
-**Current focus:** Phase 7 - Flagship Proofs (CERT-11 coordinated attack, CERT-12 encoding attacks)
+**Current focus:** Phase 8 - Counter Updates (documentation counter propagation)
 
 ## Current Position
 
-Phase: 7 of 8 (Flagship Proofs)
+Phase: 8 of 8 (Counter Updates)
 Plan: 2 of 2 complete
-Status: Phase 7 complete
-Last activity: 2026-03-18 -- Phase 7 Plan 02 CERT-12 encoding attacks complete
+Status: Completed
+Last activity: 2026-03-18 -- Phase 8 Plan 02 index.html counter updates complete
 
-Progress: [█████████░] 8/8 plans complete (87%)
+Progress: [██████████] 9/9 plans complete (100%)
 
 ## Performance Metrics
 
@@ -58,6 +58,8 @@ Progress: [█████████░] 8/8 plans complete (87%)
 | Phase 05 P01 | 5min | 2 tasks | 1 files |
 | Phase 07 P01 | 2min | 1 tasks | 1 files |
 | Phase 07 P02 | 3min | 1 tasks | 1 files |
+| Phase 08 P01 | 3min | 1 tasks | 6 files |
+| Phase 08 P02 | 3min | 2 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -77,6 +79,9 @@ Recent decisions affecting current work:
 - [Phase 07]: ADV-04 split into 3 sub-scenarios (L4 catch, L5 catch, independence summary)
 - [07-02]: Homoglyph claim ID detection via filesystem path mismatch (not claim registry)
 - [07-02]: Homoglyph job_kind detection via payload.kind string equality mismatch
+- [08-01]: Updated CLAUDE.md layer count 3->5 and innovations 6->8 to reflect actual state
+- [08-02]: Updated innovation count 7->8 in index.html origin stats to match system_manifest.json
+- [08-02]: Layer 5 added as pipeline row 05 in protocol section; CERT-11/12 placed before CI line in proof strip
 
 ### Pending Todos
 
@@ -89,6 +94,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-18T06:01:27Z
-Stopped at: Completed 07-02-PLAN.md
-Resume file: .planning/phases/07-flagship-proofs/07-02-SUMMARY.md
+Last session: 2026-03-18T06:58:10.924Z
+Stopped at: Completed quick task 260317-vsv (CLAUDE.md update)
+Resume file: None

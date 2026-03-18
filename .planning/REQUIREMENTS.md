@@ -42,7 +42,7 @@
 
 ### Documentation & Counters
 
-- [ ] **DOCS-01**: All counter updates across index.html, README.md, AGENTS.md, llms.txt, system_manifest.json, CONTEXT_SNAPSHOT.md reflect new test count
+- [x] **DOCS-01**: All counter updates across index.html, README.md, AGENTS.md, llms.txt, system_manifest.json, CONTEXT_SNAPSHOT.md reflect new test count
 
 ## v2 Requirements
 
@@ -91,7 +91,7 @@
 | GOV-01 | Phase 5 | Complete |
 | GOV-02 | Phase 5 | Complete |
 | GOV-03 | Phase 5 | Complete |
-| DOCS-01 | Phase 8 | Pending |
+| DOCS-01 | Phase 8 | Complete |
 
 **Coverage:**
 - v1 requirements: 24 total
