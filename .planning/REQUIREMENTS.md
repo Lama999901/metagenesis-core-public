@@ -7,7 +7,7 @@
 
 ### Step Chain Coverage
 
-- [ ] **CHAIN-01**: All 14 claims have dedicated structural step chain tests (genesis hash, hash linkage, root hash equality)
+- [x] **CHAIN-01**: All 14 claims have dedicated structural step chain tests (genesis hash, hash linkage, root hash equality)
 - [x] **CHAIN-02**: Step chain verifier rejects traces with wrong step ordering (1,3,2,4)
 - [x] **CHAIN-03**: Step chain verifier rejects traces with duplicate step numbers
 - [x] **CHAIN-04**: Step chain verifier rejects traces with extra steps beyond 4
@@ -33,12 +33,12 @@
 
 ### Error Paths & Governance
 
-- [ ] **ERR-01**: Runner rejects unknown JOB_KIND with clear error
-- [ ] **ERR-02**: Runner handles mid-computation exceptions gracefully
-- [ ] **ERR-03**: Runner handles None/empty/wrong-type input data
-- [ ] **GOV-01**: Meta-test detects drift between scientific_claim_index.md and actual claim implementations
-- [ ] **GOV-02**: Meta-test detects drift between known_faults.yaml and current code state
-- [ ] **GOV-03**: Meta-test validates counter consistency across documentation files
+- [x] **ERR-01**: Runner rejects unknown JOB_KIND with clear error
+- [x] **ERR-02**: Runner handles mid-computation exceptions gracefully
+- [x] **ERR-03**: Runner handles None/empty/wrong-type input data
+- [x] **GOV-01**: Meta-test detects drift between scientific_claim_index.md and actual claim implementations
+- [x] **GOV-02**: Meta-test detects drift between known_faults.yaml and current code state
+- [x] **GOV-03**: Meta-test validates counter consistency across documentation files
 
 ### Documentation & Counters
 
@@ -68,7 +68,7 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CHAIN-01 | Phase 5 | Pending |
+| CHAIN-01 | Phase 5 | Complete |
 | CHAIN-02 | Phase 5 | Complete |
 | CHAIN-03 | Phase 5 | Complete |
 | CHAIN-04 | Phase 5 | Complete |
@@ -85,12 +85,12 @@
 | CASCADE-01 | Phase 6 | Pending |
 | CASCADE-02 | Phase 6 | Pending |
 | CASCADE-03 | Phase 6 | Pending |
-| ERR-01 | Phase 5 | Pending |
-| ERR-02 | Phase 5 | Pending |
-| ERR-03 | Phase 5 | Pending |
-| GOV-01 | Phase 5 | Pending |
-| GOV-02 | Phase 5 | Pending |
-| GOV-03 | Phase 5 | Pending |
+| ERR-01 | Phase 5 | Complete |
+| ERR-02 | Phase 5 | Complete |
+| ERR-03 | Phase 5 | Complete |
+| GOV-01 | Phase 5 | Complete |
+| GOV-02 | Phase 5 | Complete |
+| GOV-03 | Phase 5 | Complete |
 | DOCS-01 | Phase 8 | Pending |
 
 **Coverage:**

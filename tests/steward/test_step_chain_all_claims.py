@@ -6,7 +6,8 @@ Tests that every claim produces:
   - execution_trace: list of 4 steps with valid hashes
   - trace_root_hash: SHA-256 of final step == last step hash
 
-28 tests total (ML_BENCH-01 covered in test_mlbench01_accuracy_certificate.py)
+84 tests total (14 claims x 6 tests each: trace_present, trace_four_steps,
+trace_deterministic, trace_changes_with_input, genesis_hash, inter_step_linkage)
 """
 import sys
 from pathlib import Path
