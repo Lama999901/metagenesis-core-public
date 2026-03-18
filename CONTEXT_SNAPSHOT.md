@@ -2,7 +2,7 @@
 
 > Read this file first if you are an AI agent starting a new session.
 > This is the authoritative snapshot of what has been done and what is next.
-> Updated: 2026-03-17
+> Updated: 2026-03-18
 
 ---
 
@@ -27,10 +27,10 @@
 | CI | GREEN |
 | Active claims | **14** |
 | Verification layers | 5 (integrity + semantic + step chain + bundle signing + temporal commitment) |
-| Innovations | 7 (5 PPA + bundle signing + temporal commitment) |
+| Innovations | 8 (5 PPA + HMAC signing + Ed25519 signing + temporal commitment) |
 | Domains | 7 |
 | GitHub Release | v0.5.0 |
-| Adversarial tests | CERT-05 (5 attacks) + CERT-06 (5 scenarios) |
+| Adversarial tests | CERT-05 (5 attacks) + CERT-06 (5 scenarios) + CERT-07 (signing) + CERT-08 (reproducibility) + CERT-09 (Ed25519 attacks) + CERT-10 (temporal attacks) + CERT-11 (coordinated multi-vector) + CERT-12 (encoding attacks) |
 
 ---
 
@@ -75,7 +75,7 @@ Physical anchor scope (SCOPE_001): MTR-1/2/3, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP
 
 ---
 
-## 7 innovations
+## 8 innovations
 
 1. **Bidirectional Claim Coverage** → `steward_audit.py :: _claim_coverage_bidirectional()`
 2. **Tamper-Evident Bundle + Semantic Layer** → `mg.py :: _verify_pack() + _verify_semantic()`
@@ -84,6 +84,7 @@ Physical anchor scope (SCOPE_001): MTR-1/2/3, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP
 5. **Step Chain + Cross-Claim Chain** → all 14 claims + anchor_hash MTR-1→DT-FEM-01→DRIFT-01
 6. **Bundle Signing (HMAC-SHA256 + Ed25519)** → `mg_sign.py` + `mg_ed25519.py` [test_cert07 + test_cert09]
 7. **Temporal Commitment (NIST Beacon)** → `mg_temporal.py` [test_temporal + test_cert10]
+8. **5-Layer Independence (CERT-11 coordinated + CERT-12 encoding)** → test_cert11 + test_cert12 [proves each layer catches attacks others miss]
 
 ---
 
@@ -154,4 +155,4 @@ python -m pytest tests/steward/test_cert06_real_world_scenarios.py -v
 
 ---
 
-*Updated: 2026-03-17 | Next update: first response or first client*
+*Updated: 2026-03-18 | Next update: first response or first client*
