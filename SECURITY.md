@@ -27,6 +27,23 @@ cryptographic hash chain. trace_root_hash commits to the entire
 execution sequence. Tampering any step breaks the chain.
 Proven: `tests/steward/test_cert03_step_chain_verify.py::test_tampered_trace_root_hash_fails`
 
+**Layer 4 — Bundle Signing (HMAC-SHA256 + Ed25519)**
+Detects unauthorized bundle creator even when layers 1–3 all pass.
+Dual-algorithm: HMAC-SHA256 for shared-secret workflows, Ed25519
+for asymmetric third-party auditor verification.
+Proven: `tests/steward/test_cert07_bundle_signing.py` + `tests/steward/test_cert09_ed25519_attacks.py`
+
+**Layer 5 — Temporal Commitment (NIST Randomness Beacon)**
+Detects backdated bundles — proves WHEN a bundle was signed.
+Pre-commitment scheme: SHA-256(root_hash) committed before beacon
+value fetched, binding = SHA-256(pre_commitment + beacon_value).
+Proven: `tests/steward/test_cert10_temporal_attacks.py`
+
+**5-Layer Independence**
+CERT-11 proves each layer catches attacks the other four miss.
+CERT-12 proves encoding attack resistance (BOM, null bytes, homoglyphs).
+Proven: `tests/steward/test_cert11_*` + `tests/steward/test_cert12_*`
+
 **Cross-Claim Cryptographic Chain**
 For physical domains (MTR-1 → DT-FEM-01 → DRIFT-01), each claim's
 trace_root_hash is embedded as anchor_hash in the next claim's Step Chain.

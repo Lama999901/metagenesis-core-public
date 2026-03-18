@@ -127,8 +127,8 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 ## Key files
 
 - README.md — problem, solution, quickstart
-- docs/PROTOCOL.md — MVP v0.2 protocol specification (3 layers + Cross-Claim Chain)
-- docs/ARCHITECTURE.md — v0.2 architecture diagrams
+- docs/PROTOCOL.md — v0.5 protocol specification (5 layers + Cross-Claim Chain)
+- docs/ARCHITECTURE.md — v0.5 architecture diagrams
 - docs/ROADMAP.md — planned expansion
 - reports/scientific_claim_index.md — all 14 claims with thresholds
 - reports/canonical_state.md — authoritative claims list
