@@ -162,7 +162,7 @@ def _make_full_5layer_bundle(tmp_path, name="bundle"):
         for e in sorted(files_list, key=lambda x: x["relpath"])
     )
     root_hash = hashlib.sha256(lines_str.encode("utf-8")).hexdigest()
-    manifest = {"version": "v1", "files": files_list, "root_hash": root_hash}
+    manifest = {"version": "v1", "protocol_version": 1, "files": files_list, "root_hash": root_hash}
     (bundle / "pack_manifest.json").write_text(
         json.dumps(manifest, indent=2), encoding="utf-8"
     )
@@ -203,7 +203,7 @@ def _rebuild_manifest(bundle):
         for e in sorted(files_list, key=lambda x: x["relpath"])
     )
     root_hash = hashlib.sha256(lines_str.encode("utf-8")).hexdigest()
-    manifest = {"version": "v1", "files": files_list, "root_hash": root_hash}
+    manifest = {"version": "v1", "protocol_version": 1, "files": files_list, "root_hash": root_hash}
     (bundle / "pack_manifest.json").write_text(
         json.dumps(manifest, indent=2), encoding="utf-8"
     )

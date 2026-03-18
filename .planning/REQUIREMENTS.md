@@ -20,16 +20,16 @@
 - [ ] **ADV-04**: CERT-11 proves coordinated 3-layer bypass still fails at remaining layers
 - [ ] **ADV-05**: CERT-12 proves BOM-prefixed files are detected or handled safely
 - [ ] **ADV-06**: CERT-12 proves null bytes / truncated JSON / Unicode homoglyphs are caught
-- [ ] **ADV-07**: Manifest version rollback (old protocol_version) is rejected by verifier
+- [x] **ADV-07**: Manifest version rollback (old protocol_version) is rejected by verifier
 
 ### Layer Hardening
 
-- [ ] **SEM-01**: Layer 2 rejects partial evidence (some fields present, some missing)
-- [ ] **SEM-02**: Layer 2 handles extra unexpected fields without false acceptance
-- [ ] **SEM-03**: Layer 2 rejects semantically meaningless values (empty strings, zero values)
-- [ ] **CASCADE-01**: Cross-claim test covers full anchor chain MTR-1→DRIFT-01→DT-CALIB-LOOP-01
-- [ ] **CASCADE-02**: Failed upstream claim (MTR-1) propagates correctly through entire anchor chain
-- [ ] **CASCADE-03**: Cross-claim chain detects tampered anchor hash at any hop
+- [x] **SEM-01**: Layer 2 rejects partial evidence (some fields present, some missing)
+- [x] **SEM-02**: Layer 2 handles extra unexpected fields without false acceptance
+- [x] **SEM-03**: Layer 2 rejects semantically meaningless values (empty strings, zero values)
+- [x] **CASCADE-01**: Cross-claim test covers full anchor chain MTR-1→DRIFT-01→DT-CALIB-LOOP-01
+- [x] **CASCADE-02**: Failed upstream claim (MTR-1) propagates correctly through entire anchor chain
+- [x] **CASCADE-03**: Cross-claim chain detects tampered anchor hash at any hop
 
 ### Error Paths & Governance
 
@@ -78,13 +78,13 @@
 | ADV-04 | Phase 7 | Pending |
 | ADV-05 | Phase 7 | Pending |
 | ADV-06 | Phase 7 | Pending |
-| ADV-07 | Phase 6 | Pending |
-| SEM-01 | Phase 6 | Pending |
-| SEM-02 | Phase 6 | Pending |
-| SEM-03 | Phase 6 | Pending |
-| CASCADE-01 | Phase 6 | Pending |
-| CASCADE-02 | Phase 6 | Pending |
-| CASCADE-03 | Phase 6 | Pending |
+| ADV-07 | Phase 6 | Complete |
+| SEM-01 | Phase 6 | Complete |
+| SEM-02 | Phase 6 | Complete |
+| SEM-03 | Phase 6 | Complete |
+| CASCADE-01 | Phase 6 | Complete |
+| CASCADE-02 | Phase 6 | Complete |
+| CASCADE-03 | Phase 6 | Complete |
 | ERR-01 | Phase 5 | Complete |
 | ERR-02 | Phase 5 | Complete |
 | ERR-03 | Phase 5 | Complete |
