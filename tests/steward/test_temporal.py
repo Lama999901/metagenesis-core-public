@@ -162,39 +162,43 @@ class TestCreateTemporalCommitment:
         """TEMP-06: Pre-commitment hash computed before beacon fetch."""
         call_order = []
 
+        from scripts import mg_temporal as _mt
+
+        # Track hashlib.sha256 calls within mg_temporal
         original_sha256 = hashlib.sha256
 
-        def tracking_sha256(data=b""):
+        def tracking_sha256(data=b"", **kwargs):
             call_order.append("sha256")
-            return original_sha256(data)
+            return original_sha256(data, **kwargs)
 
-        def tracking_urlopen(req, timeout=None):
-            call_order.append("urlopen")
-            body = json.dumps(MOCK_BEACON_PULSE).encode("utf-8")
-            return io.BytesIO(body)
+        monkeypatch.setattr(_mt.hashlib, "sha256", tracking_sha256)
 
-        monkeypatch.setattr("urllib.request.urlopen", tracking_urlopen)
-
-        # We need to track that sha256 is called before urlopen.
-        # Use a side effect on _fetch_beacon_pulse to record ordering.
-        from scripts import mg_temporal
-        original_fetch = mg_temporal._fetch_beacon_pulse
+        # Track _fetch_beacon_pulse calls
+        original_fetch = _mt._fetch_beacon_pulse
 
         def tracked_fetch(*args, **kwargs):
             call_order.append("fetch_beacon")
-            return original_fetch(*args, **kwargs)
+            # Provide mock beacon so result is valid
+            return {
+                "outputValue": MOCK_BEACON_PULSE["pulse"]["outputValue"],
+                "timeStamp": MOCK_BEACON_PULSE["pulse"]["timeStamp"],
+                "uri": MOCK_BEACON_PULSE["pulse"]["uri"],
+            }
 
-        monkeypatch.setattr(mg_temporal, "_fetch_beacon_pulse", tracked_fetch)
+        monkeypatch.setattr(_mt, "_fetch_beacon_pulse", tracked_fetch)
 
-        result = create_temporal_commitment(MOCK_ROOT_HASH)
+        result = _mt.create_temporal_commitment(MOCK_ROOT_HASH)
 
         # The pre_commitment_hash should be computed (sha256 call) before
         # _fetch_beacon_pulse is called
         assert "fetch_beacon" in call_order
-        # Find first fetch_beacon index
+        assert "sha256" in call_order
+        sha256_idx = call_order.index("sha256")
         fetch_idx = call_order.index("fetch_beacon")
-        # There should be activity before the fetch
-        assert fetch_idx > 0, "Pre-commitment hash must be computed before beacon fetch"
+        assert sha256_idx < fetch_idx, (
+            f"Pre-commitment hash (sha256 at {sha256_idx}) must be computed "
+            f"before beacon fetch (at {fetch_idx}). Order: {call_order}"
+        )
 
         # Verify the result is still valid
         expected_pre = hashlib.sha256(MOCK_ROOT_HASH.encode("utf-8")).hexdigest()
