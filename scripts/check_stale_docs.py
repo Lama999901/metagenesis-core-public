@@ -132,6 +132,14 @@ CONTENT_CHECKS = {
         "banned": ["10-test proof", "12 counters"],
         "required": ["13-test proof", "8 innovations"],
     },
+    "UPDATE_PROTOCOL.md": {
+        "banned": ["ALL 10 PASSED", "ALL 10 TESTS PASSED", "v1.0 — 2026-03-16"],
+        "required": ["ALL 13 PASSED", "v1.1"],
+    },
+    "CURSOR_MASTER_PROMPT_v2_3.md": {
+        "banned": ["271 tests", "295 tests", "3 verification layers", "MVP v0.2", "ALL 10 TESTS"],
+        "required": ["511 tests", "5 verification layers", "MVP v0.5", "ALL 13 TESTS"],
+    },
 }
 
 
