@@ -13,7 +13,7 @@ This milestone hardens the MetaGenesis verification protocol from 4 layers to 5,
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [ ] **Phase 1: Ed25519 Foundation** - Pure-Python Ed25519 implementation validated against RFC 8032 test vectors
-- [ ] **Phase 2: Signing Upgrade** - Ed25519 integrated into bundle signing with HMAC backward compatibility
+- [x] **Phase 2: Signing Upgrade** - Ed25519 integrated into bundle signing with HMAC backward compatibility (completed 2026-03-18)
 - [ ] **Phase 3: Temporal Commitment** - NIST Beacon integration and Layer 5 independent verification
 - [ ] **Phase 4: Adversarial Proofs and Polish** - Expanded proof suite, deep_verify tests 11-13, documentation updates
 
@@ -44,7 +44,7 @@ Plans:
   3. Existing HMAC-signed bundles from v0.3.0 verify successfully without any modification
   4. Verifier auto-detects signing algorithm from key file version field (hmac-sha256-v1 vs ed25519-v1)
   5. A bundle self-declaring one algorithm while the verifier holds a key of a different type is rejected (downgrade attack prevention)
-**Plans:** 2 plans
+**Plans:** 2/2 plans complete
 
 Plans:
 - [ ] 02-01-PLAN.md -- Dual-algorithm dispatch in mg_sign.py with Ed25519 signing tests (SIGN-03, SIGN-04, SIGN-06, SIGN-07, SIGN-08)
@@ -60,11 +60,11 @@ Plans:
   3. Verifying a bundle with temporal data checks the cryptographic binding (SHA-256 of root_hash + beacon_value + timestamp) independently of Layers 1-4
   4. Temporal verification works fully offline -- checks embedded data structure, never makes network calls during verify
   5. Pre-commitment hash scheme allows proving a bundle existed before the beacon pulse it references
-**Plans**: TBD
+**Plans:** 2 plans
 
 Plans:
-- [ ] 03-01: TBD
-- [ ] 03-02: TBD
+- [ ] 03-01-PLAN.md -- TDD: mg_temporal.py core module with NIST Beacon fetch, pre-commitment, binding, verification (TEMP-01, TEMP-02, TEMP-03, TEMP-04, TEMP-05, TEMP-06)
+- [ ] 03-02-PLAN.md -- CLI integration: mg_sign.py auto-temporal + temporal subcommand + mg.py Layer 5 verify (TEMP-01, TEMP-03, TEMP-04, TEMP-05)
 
 ### Phase 4: Adversarial Proofs and Polish
 **Goal**: All new capabilities are proven through adversarial tests, deep_verify expands to 13 tests, and all documentation counters reflect v0.4.0 state
@@ -91,10 +91,10 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Ed25519 Foundation | 2/2 | Complete | 2026-03-17 |
-| 2. Signing Upgrade | 0/2 | Planned | - |
+| 2. Signing Upgrade | 2/2 | Complete   | 2026-03-18 |
 | 3. Temporal Commitment | 0/2 | Not started | - |
 | 4. Adversarial Proofs and Polish | 0/3 | Not started | - |
 
 ---
 *Roadmap created: 2026-03-16*
-*Last updated: 2026-03-17*
+*Last updated: 2026-03-18*
