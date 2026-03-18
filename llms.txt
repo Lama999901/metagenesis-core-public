@@ -3,7 +3,7 @@ with open('/mnt/user-data/outputs/llms.txt', 'r') as f: c = f.read()
 " 
 
 Open verification protocol for computational claims.
-Implements the MetaGenesis Verification Protocol (MVP) v0.3.
+Implements the MetaGenesis Verification Protocol (MVP) v0.4.
 
 Any computational result — ML accuracy, calibration output, FEM simulation,
 ADMET prediction, VaR estimate, IoT sensor stream — can be packaged into a
@@ -17,10 +17,12 @@ A governance + evidence + verification protocol. An open standard.
 ## What this repo does
 
 1. Wraps any computational result in a tamper-evident evidence bundle
-2. Verifies bundles offline with 3 independent layers:
+2. Verifies bundles offline with 5 independent layers:
    - Layer 1: SHA-256 integrity (file modification)
    - Layer 2: Semantic (evidence stripped, hashes recomputed — still caught)
    - Layer 3: Step Chain (execution inputs changed — trace_root_hash breaks)
+   - Layer 4: Bundle Signing (HMAC-SHA256 + Ed25519 — unauthorized creator)
+   - Layer 5: Temporal Commitment (NIST Beacon — proves WHEN signed)
 3. Enforces governance: every claim has implementation, every implementation has claim
 4. Detects drift against verified calibration anchors
 5. Cross-Claim Chain: MTR-1 → DT-FEM-01 → DRIFT-01 cryptographically linked end-to-end
@@ -83,25 +85,27 @@ Enforced by: python scripts/steward_audit.py → must output STEWARD AUDIT: PASS
 - steward_audit.py must PASS after every change
 - known_faults.yaml is authoritative — do not contradict it
 
-## 5 patentable innovations (USPTO PPA #63/996,819)
+## 7 innovations (USPTO PPA #63/996,819)
 
 1. Bidirectional claim coverage → steward_audit.py :: _claim_coverage_bidirectional()
 2. Tamper-evident semantic verification → mg.py :: _verify_semantic()  [test_cert02]
 3. Policy-gate immutable anchors → mg_policy_gate_policy.json
 4. Dual-mode canary pipeline → runner.py :: run_job(canary_mode=True/False)
 5. Step Chain + Cross-Claim Chain → all 14 claims + anchor_hash  [test_cert03 + test_cross_claim_chain]
+6. Bundle Signing (HMAC-SHA256 + Ed25519) → mg_sign.py + mg_ed25519.py  [test_cert07 + test_cert09]
+7. Temporal Commitment (NIST Beacon) → mg_temporal.py  [test_temporal + test_cert10]
 
 ## How to verify everything works
 
 python scripts/steward_audit.py                              # PASS
-python -m pytest tests/ -q                                   # 282 passed
+python -m pytest tests/ -q                                   # 389 passed
 python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 
 ## Current state (2026-03-15)
 
 - Claims: 14
-- Tests: 282 passing
-- Verification layers: 3 (integrity + semantic + step chain)
+- Tests: 389 passing
+- Verification layers: 5 (integrity + semantic + step chain + bundle signing + temporal commitment)
 - Domains: 7 (materials, sysid, data, ml, digital_twin, pharma_biotech, financial_risk)
 - Cross-Claim Chain: MTR-1 → DT-FEM-01 → DRIFT-01 cryptographically linked via anchor_hash
 - steward_audit: PASS

@@ -189,16 +189,16 @@ print("TEST 7: site numbers match code")
 print("=" * 60)
 html = (root / "index.html").read_text(encoding="utf-8")
 assert ">14<" in html, f"{ERR} claims not 14 in HTML"
-assert ">3<" in html,   f"{ERR} layers not 3 in HTML"
+assert ">5<" in html,   f"{ERR} layers not 5 in HTML"
 assert ">7<" in html,   f"{ERR} domains not 7 in HTML"
 
 manifest = json.loads((root / "system_manifest.json").read_text(encoding="utf-8"))
 manifest_tests = manifest["test_count"]
 assert len(manifest["active_claims"]) == 14
-assert "v0." in manifest["protocol"], f"{ERR} manifest protocol={manifest['protocol']}"
+assert "v0.4" in manifest["protocol"], f"{ERR} manifest protocol={manifest['protocol']}"
 # Check site shows a test count (dynamic -- exact sync is a counter-update task)
-print(f"  {OK} site: 14 claims, 3 layers, 7 domains")
-print(f"  {OK} system_manifest: 14 claims, {manifest_tests} tests, protocol {manifest['protocol']}")
+print(f"  {OK} site: 14 claims, {manifest_tests} tests, 5 layers, 7 domains")
+print(f"  {OK} system_manifest: 14 claims, {manifest_tests} tests, protocol v0.4")
 
 print("\n" + "=" * 60)
 print("TEST 8: Demo end-to-end PASS PASS")

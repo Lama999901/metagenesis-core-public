@@ -27,7 +27,7 @@ After reading these 8 files you can answer any question about this project.
 ## What this repo is
 
 MetaGenesis Core is an open verification protocol layer.
-It implements the MetaGenesis Verification Protocol (MVP) v0.2.
+It implements the MetaGenesis Verification Protocol (MVP) v0.4.
 It makes computational claims tamper-evident, reproducible, and
 independently auditable offline by any third party.
 
@@ -104,8 +104,8 @@ test mtr_phase key present, test determinism (same seed → same result)
 
 Step 6 — Verify:
 python scripts/steward_audit.py → STEWARD AUDIT: PASS
-python -m pytest tests/ -q → 282 passed
-python scripts/deep_verify.py → ALL 10 TESTS PASSED
+python -m pytest tests/ -q → 389 passed
+python scripts/deep_verify.py → ALL 13 TESTS PASSED
 
 ---
 
@@ -138,9 +138,9 @@ python demos/open_data_demo_01/run_demo.py
 grep -r "tamper-proof\|GPT-5\|19x\|VacuumGenesis\|Infinity Protocol" docs/ scripts/ backend/ tests/
 # → must return empty
 
-# Full proof-not-trust (10 tests including bypass attack + Cross-Claim Chain):
+# Full proof-not-trust (13 tests including bypass attack + Cross-Claim Chain + Ed25519 + Temporal):
 python scripts/deep_verify.py
-# → ALL 10 TESTS PASSED ✅
+# → ALL 13 TESTS PASSED
 
 All must pass.
 
@@ -150,7 +150,7 @@ All must pass.
 
 Job runs via runner.run_job() → produces run_artifact.json (with execution_trace + trace_root_hash)
 + ledger_snapshot.jsonl → evidence_index maps artifacts to claims → steward_submission_pack bundles
-everything → mg.py verify runs three independent layers:
+everything → mg.py verify runs five independent layers:
   Layer 1: SHA-256 integrity (file modification)
   Layer 2: semantic (job_snapshot present, canary_mode correct, payload.kind matches)
   Layer 3: step chain (trace_root_hash == final execution step hash)
