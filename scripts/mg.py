@@ -14,6 +14,10 @@ import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+MINIMUM_PROTOCOL_VERSION = 1
 
 
 def _run(cmd: list[str], passthrough: bool = True) -> int:
@@ -52,6 +56,7 @@ def _verify_pack(pack_dir: Path) -> tuple[bool, str, dict]:
         "pack_root_hash": "",
         "manifest_ok": False,
         "semantic_ok": None,
+        "temporal_ok": None,
         "checks": [],
         "errors": [],
     }
@@ -78,6 +83,26 @@ def _verify_pack(pack_dir: Path) -> tuple[bool, str, dict]:
             return False, f"Manifest missing required key: {key}", report
 
     report["checks"].append({"name": "manifest_structure", "status": "pass"})
+
+    # Protocol version rollback check (ADV-07)
+    pv = manifest.get("protocol_version")
+    if pv is None:
+        msg = "pack_manifest.json missing protocol_version"
+        report["checks"].append({"name": "protocol_version", "status": "fail"})
+        report["errors"].append(msg)
+        return False, msg, report
+    if not isinstance(pv, int):
+        msg = f"pack_manifest.json protocol_version must be integer, got {type(pv).__name__}"
+        report["checks"].append({"name": "protocol_version", "status": "fail"})
+        report["errors"].append(msg)
+        return False, msg, report
+    if pv < MINIMUM_PROTOCOL_VERSION:
+        msg = f"pack_manifest.json protocol_version {pv} < minimum {MINIMUM_PROTOCOL_VERSION}"
+        report["checks"].append({"name": "protocol_version", "status": "fail"})
+        report["errors"].append(msg)
+        return False, msg, report
+    report["checks"].append({"name": "protocol_version", "status": "pass"})
+
     report["pack_root_hash"] = manifest.get("root_hash", "")
 
     for entry in manifest["files"]:
@@ -122,11 +147,36 @@ def _verify_pack(pack_dir: Path) -> tuple[bool, str, dict]:
         report["semantic_ok"] = None
         report["checks"].append({"name": "semantic_evidence", "status": "skip"})
 
+    # Layer 5: Temporal commitment (independent of Layers 1-3)
+    try:
+        from scripts.mg_temporal import verify_temporal_commitment
+        tc_ok, tc_msg = verify_temporal_commitment(pack_dir)
+        report["temporal_ok"] = tc_ok
+        if tc_ok:
+            report["checks"].append({"name": "temporal_commitment", "status": "pass", "details": tc_msg})
+        else:
+            report["checks"].append({"name": "temporal_commitment", "status": "fail", "details": tc_msg})
+            report["errors"].append(tc_msg)
+            return False, tc_msg, report
+    except ImportError:
+        report["temporal_ok"] = None
+        report["checks"].append({"name": "temporal_commitment", "status": "skip", "details": "mg_temporal not available"})
+    except Exception as e:
+        report["temporal_ok"] = None
+        report["checks"].append({"name": "temporal_commitment", "status": "skip", "details": str(e)})
+
     return True, "PASS", report
+
+
+_EXPECTED_DOMAIN_KEYS = {
+    "mtr_phase", "inputs", "result", "execution_trace",
+    "trace_root_hash", "anchor_hash", "anchor_claim_id",
+}
 
 
 def _verify_semantic(pack_dir: Path, evidence_index_path: Path) -> tuple[bool, str, list]:
     """Semantic verification of evidence bundles. Returns (ok, message, errors_list)."""
+    warnings: list[str] = []
     try:
         index = json.loads(evidence_index_path.read_text(encoding="utf-8"))
     except (json.JSONDecodeError, OSError) as e:
@@ -172,6 +222,12 @@ def _verify_semantic(pack_dir: Path, evidence_index_path: Path) -> tuple[bool, s
             if "mtr_phase" not in domain:
                 msg = f"Run artifact {run_rel} job_snapshot.result must contain mtr_phase"
                 return False, msg, [msg]
+            if domain.get("mtr_phase") is None or domain["mtr_phase"] == "":
+                msg = f"Run artifact {run_rel} mtr_phase must be a non-empty string"
+                return False, msg, [msg]
+            if not job_kind:
+                msg = f"evidence_index[{claim_id}] job_kind must be a non-empty string"
+                return False, msg, [msg]
             payload = snap.get("payload", {})
             if payload.get("kind") != job_kind:
                 msg = f"Run artifact {run_rel} payload.kind does not match evidence_index job_kind"
@@ -188,6 +244,16 @@ def _verify_semantic(pack_dir: Path, evidence_index_path: Path) -> tuple[bool, s
                     msg = f"Run artifact {run_rel} inputs.dataset.sha256 must be 64 hex chars"
                     return False, msg, [msg]
             result_block = domain.get("result", {})
+            # Reject zero/negative thresholds for physical quantities
+            for thresh_key in ("rel_err_threshold", "convergence_threshold",
+                               "drift_threshold_pct"):
+                thresh_val = (result_block.get(thresh_key)
+                              if isinstance(result_block, dict) else None)
+                if thresh_val is not None:
+                    if thresh_val <= 0:
+                        msg = (f"Run artifact {run_rel} {thresh_key} must be "
+                               f"positive, got {thresh_val}")
+                        return False, msg, [msg]
             uq = result_block.get("uncertainty") if isinstance(result_block, dict) else None
             if uq is not None and isinstance(uq, dict):
                 for k in ("ci_low", "ci_high", "stability_score"):
@@ -221,6 +287,16 @@ def _verify_semantic(pack_dir: Path, evidence_index_path: Path) -> tuple[bool, s
                     msg = (f"Run artifact {run_rel} execution_trace "
                            f"must be a non-empty list")
                     return False, msg, [msg]
+                # --- Step count and ordering validation ---
+                if len(execution_trace) != 4:
+                    msg = (f"Run artifact {run_rel} execution_trace "
+                           f"must have exactly 4 steps, got {len(execution_trace)}")
+                    return False, msg, [msg]
+                step_numbers = [s.get("step") for s in execution_trace]
+                if step_numbers != [1, 2, 3, 4]:
+                    msg = (f"Run artifact {run_rel} execution_trace "
+                           f"steps must be [1, 2, 3, 4], got {step_numbers}")
+                    return False, msg, [msg]
                 for step in execution_trace:
                     h = step.get("hash", "")
                     if not (isinstance(h, str) and len(h) == 64
@@ -245,7 +321,13 @@ def _verify_semantic(pack_dir: Path, evidence_index_path: Path) -> tuple[bool, s
                         msg = (f"Run artifact {run_rel} inputs.anchor_hash "
                                f"must be valid 64-char lowercase hex or None")
                         return False, msg, [msg]
-    return True, "PASS", []
+            # --- Extra field warnings (forward-compatible) ---
+            extra_keys = set(domain.keys()) - _EXPECTED_DOMAIN_KEYS
+            if extra_keys:
+                for ek in sorted(extra_keys):
+                    warnings.append(
+                        f"Run artifact {run_rel} unexpected field: {ek}")
+    return True, "PASS", warnings
 
 
 def _verify_chain(packs: list) -> tuple[bool, str, dict]:
@@ -472,6 +554,69 @@ def main():
     claim_run.add_argument("--uq-seed", type=int, default=None)
     claim_run.add_argument("--mode", choices=("normal", "canary", "both"), default="both")
     claim_run.set_defaults(func=cmd_claim_run_mtr1)
+
+    # --- sign subcommand (Innovation #6) ---
+    sign_cmd = sub.add_parser("sign", help="Bundle signing (Innovation #6)")
+    sign_sub = sign_cmd.add_subparsers(dest="command", required=True)
+
+    sign_keygen = sign_sub.add_parser("keygen", help="Generate signing key")
+    sign_keygen.add_argument("--out", "-o", required=True, help="Output key file (.json)")
+    sign_keygen.add_argument("--type", "-t", choices=["ed25519", "hmac"],
+                             default="ed25519", help="Key type (default: ed25519)")
+
+    sign_bundle_cmd = sign_sub.add_parser("bundle", help="Sign a bundle")
+    sign_bundle_cmd.add_argument("--pack", "-p", required=True, help="Bundle directory")
+    sign_bundle_cmd.add_argument("--key", "-k", required=True, help="Signing key file")
+
+    sign_verify_cmd = sign_sub.add_parser("verify", help="Verify bundle signature")
+    sign_verify_cmd.add_argument("--pack", "-p", required=True, help="Bundle directory")
+    sign_verify_cmd.add_argument("--key", "-k", default=None, help="Signing key (full HMAC)")
+    sign_verify_cmd.add_argument("--fingerprint", "-f", default=None, help="Key fingerprint only")
+
+    def _cmd_sign_keygen(a):
+        key_type = getattr(a, 'type', 'ed25519')
+        if key_type == 'ed25519':
+            from scripts.mg_ed25519 import generate_key_files
+            key_data = generate_key_files(Path(a.out))
+            stem = Path(a.out).stem
+            pub_path = Path(a.out).parent / f"{stem}.pub.json"
+            print(f"Ed25519 signing key: {a.out}")
+            print(f"Public key:          {pub_path}")
+            print(f"Fingerprint:         {key_data['fingerprint']}")
+            print(f"KEEP {a.out} SECRET. Share {pub_path} with auditors.")
+        else:
+            from scripts.mg_sign import generate_key
+            import json as _j
+            key = generate_key()
+            Path(a.out).parent.mkdir(parents=True, exist_ok=True)
+            Path(a.out).write_text(_j.dumps(key, indent=2), encoding="utf-8")
+            print(f"HMAC signing key: {a.out}")
+            print(f"Fingerprint:      {key['fingerprint']}")
+            print("KEEP KEY SECRET. Share only the fingerprint.")
+        return 0
+
+    def _cmd_sign_bundle(a):
+        from scripts.mg_sign import sign_bundle
+        import json as _j
+        sig = sign_bundle(Path(a.pack), Path(a.key))
+        print(f"SIGNED")
+        print(f"  root_hash:       {sig['signed_root_hash']}")
+        print(f"  key_fingerprint: {sig['key_fingerprint']}")
+        return 0
+
+    def _cmd_sign_verify(a):
+        from scripts.mg_sign import verify_bundle_signature
+        ok, msg = verify_bundle_signature(
+            Path(a.pack),
+            key_path=Path(a.key) if a.key else None,
+            expected_fingerprint=getattr(a, 'fingerprint', None),
+        )
+        print(msg)
+        return 0 if ok else 1
+
+    sign_keygen.set_defaults(func=_cmd_sign_keygen)
+    sign_bundle_cmd.set_defaults(func=_cmd_sign_bundle)
+    sign_verify_cmd.set_defaults(func=_cmd_sign_verify)
 
     args = ap.parse_args()
     return args.func(args)

@@ -1,4 +1,4 @@
-# Scientific Claim Index v0.2
+# Scientific Claim Index v0.4
 
 Documentation-only registry of domain claims so new cases remain uniquely
 structured and submission-ready. No code or policy changes; docs only.
@@ -275,4 +275,63 @@ is tamper-evident.
 
 ---
 
-*Index authority: MetaGenesis Core / SCI-01 v0.2. Append new claims as sections.*
+---
+
+## Protocol Capabilities (v0.4)
+
+### 5-Layer Verification Architecture
+
+The MetaGenesis Verification Protocol implements 5 independent verification layers.
+Each layer catches attacks that the other 4 miss. Independence proven by
+`tests/steward/test_cert_5layer_independence.py`.
+
+| Layer | Name | What it catches | Proof |
+|-------|------|-----------------|-------|
+| 1 | SHA-256 Integrity | File modified after packaging | `pack_manifest.json root_hash` |
+| 2 | Semantic | Evidence stripped, hashes recomputed | `test_cert02` |
+| 3 | Step Chain | Computation inputs changed, steps reordered | `test_cert03` |
+| 4 | Bundle Signing | Unauthorized bundle creator, signature tampering | `test_cert07` + `test_cert09` |
+| 5 | Temporal Commitment | Backdated bundles, timestamp forgery | `test_cert10` |
+
+### Ed25519 Asymmetric Signing (Innovation #6 upgrade)
+
+Bundle signing supports dual algorithms:
+- **HMAC-SHA256**: Shared-secret signing for same-organization workflows
+- **Ed25519**: Asymmetric signing for third-party auditor verification
+
+Ed25519 provides cryptographic proof of WHO created the bundle without sharing
+private key material. Key generation, signing, and verification via `scripts/mg_sign.py`.
+Pure-Python Ed25519 implementation in `scripts/mg_ed25519.py` validated against
+RFC 8032 test vectors.
+
+| Component | File |
+|-----------|------|
+| Ed25519 implementation | `scripts/mg_ed25519.py` |
+| Signing CLI (dual algorithm) | `scripts/mg_sign.py` |
+| Ed25519 attack proofs | `tests/steward/test_cert09_ed25519_attacks.py` |
+| Bundle signing tests | `tests/steward/test_cert07_bundle_signing.py` |
+| Ed25519 unit tests | `tests/steward/test_ed25519.py` |
+
+### Temporal Commitment (Innovation #7, Layer 5)
+
+Cryptographic proof of WHEN a bundle was signed using NIST Randomness Beacon 2.0
+pre-commitment scheme:
+
+1. Compute `pre_commitment = SHA-256(root_hash)` before fetching beacon
+2. Fetch NIST Beacon pulse (random value + timestamp)
+3. Compute `temporal_binding = SHA-256(pre_commitment || beacon_value)`
+4. Store all three values in `temporal_commitment.json`
+
+Verification checks that `temporal_binding` matches recomputed value from
+`pre_commitment` and `beacon_value`. The ordering guarantee (pre-commitment
+before beacon) prevents backdating.
+
+| Component | File |
+|-----------|------|
+| Temporal commitment module | `scripts/mg_temporal.py` |
+| Temporal attack proofs | `tests/steward/test_cert10_temporal_attacks.py` |
+| Temporal unit tests | `tests/steward/test_temporal.py` |
+
+---
+
+*Index authority: MetaGenesis Core / SCI-01 v0.4. Append new claims as sections.*

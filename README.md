@@ -5,8 +5,8 @@
 [![Steward Audit](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml/badge.svg)](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Patent Pending](https://img.shields.io/badge/Patent-Pending%20%2363%2F996%2C819-orange.svg)](ppa/README_PPA.md)
-[![Tests](https://img.shields.io/badge/Tests-282%20passing-brightgreen.svg)](tests/)
-[![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.2-blueviolet.svg)](docs/PROTOCOL.md)
+[![Tests](https://img.shields.io/badge/Tests-511%20passing-brightgreen.svg)](tests/)
+[![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.5-blueviolet.svg)](docs/PROTOCOL.md)
 [![Sponsor](https://img.shields.io/badge/Sponsor-❤️-pink.svg)](https://github.com/sponsors/Lama999901)
 
 🌐 **Site:** https://metagenesis-core.dev  
@@ -28,15 +28,15 @@ No GPU. No access to your code or environment. No trust required. 60 seconds.
 
 ---
 
-## Three verification layers + two pillars
+## Five verification layers + two pillars
 
 Most verification tools answer one question: *was this number changed after it was produced?*
 
 MetaGenesis Core answers a harder question: **is this number traceable to physical reality — and was the computation itself executed correctly?**
 
-### Three independent verification layers
+### Five independent verification layers
 
-Each layer catches attacks the previous layer misses:
+Each layer catches attacks the previous layers miss:
 
 ```
 Layer 1 — SHA-256 integrity
@@ -50,6 +50,14 @@ Layer 2 — Semantic
 Layer 3 — Step Chain
   Catches: computation inputs changed, steps reordered (layers 1+2 say PASS, step chain says FAIL)
   Proof:   test_cert03 :: test_tampered_trace_root_hash_fails
+
+Layer 4 — Bundle Signing (HMAC-SHA256 + Ed25519)
+  Catches: unauthorized bundle creator, signature tampering
+  Proof:   test_cert07 + test_cert09
+
+Layer 5 — Temporal Commitment (NIST Beacon)
+  Catches: backdated bundles, proves WHEN a bundle was signed
+  Proof:   test_cert10
 ```
 
 The Step Chain is a cryptographic hash chain over computation steps — same concept as git commits:
@@ -65,7 +73,7 @@ Not blockchain. No network. No tokens. Works offline.
 ### Two pillars
 
 **Pillar 1 — Tamper-evident provenance**
-Three-layer verification ensures the bundle and computation haven't been modified. Applies to all 14 claims.
+Five-layer verification ensures the bundle and computation haven't been modified. Applies to all 14 claims.
 
 **Pillar 2 — Physical anchor traceability**
 The verification chain is grounded in physical constants — not arbitrary thresholds. MTR-1's anchor is E = 70 GPa for aluminum: measured independently in thousands of laboratories worldwide.
@@ -157,16 +165,18 @@ No API keys. No network. Works on any machine with Python 3.11+.
 3. mg.py pack build
    Bundles artifacts + SHA-256 manifest + root_hash into submission pack
 
-4. mg.py verify — three independent layers:
+4. mg.py verify — five independent layers:
    Layer 1 — integrity:    SHA-256 root_hash over all bundle files
    Layer 2 — semantic:     job_snapshot present, payload.kind correct, canary_mode consistent
    Layer 3 — step chain:   trace_root_hash == final execution step hash
+   Layer 4 — signing:      HMAC-SHA256 or Ed25519 bundle signature verification
+   Layer 5 — temporal:     NIST Beacon pre-commitment proves WHEN signed
    → PASS or FAIL with specific reason and layer
 ```
 
 ---
 
-## 5 patentable innovations (USPTO PPA #63/996,819)
+## 7 innovations (USPTO PPA #63/996,819)
 
 ### 1 — Governance-Enforced Bidirectional Claim Coverage
 Every PR: every registered claim has an implementation, every implementation has a registered claim. Enforced by static analysis — not human review.
@@ -198,6 +208,20 @@ Every claim produces a 4-step cryptographic execution trace. Upstream `trace_roo
 ```
 Evidence: all 14 claims :: execution_trace + trace_root_hash
 Proof:    tests/steward/test_cert03_* + tests/steward/test_cross_claim_chain.py
+```
+
+### 6 — Bundle Signing (HMAC-SHA256 + Ed25519)
+Cryptographic proof of WHO created the bundle. Dual-algorithm support: HMAC-SHA256 for shared-secret scenarios, Ed25519 for third-party auditor verification with asymmetric keys.
+```
+Evidence: scripts/mg_sign.py + scripts/mg_ed25519.py
+Proof:    tests/steward/test_cert07_* + tests/steward/test_cert09_*
+```
+
+### 7 — Temporal Commitment (NIST Randomness Beacon)
+Cryptographic proof of WHEN a bundle was signed. Pre-commitment scheme using NIST Randomness Beacon 2.0: SHA-256(root_hash) committed before beacon value fetched, then bound together.
+```
+Evidence: scripts/mg_temporal.py
+Proof:    tests/steward/test_temporal.py + tests/steward/test_cert10_*
 ```
 
 ---
@@ -248,11 +272,11 @@ python scripts/steward_audit.py
 # → STEWARD AUDIT: PASS
 
 python -m pytest tests/ -q
-# → 282 passed
+# → 511 passed
 
-# Full proof-not-trust verification (10 tests):
+# Full proof-not-trust verification (13 tests):
 python scripts/deep_verify.py
-# → ALL 10 TESTS PASSED ✅
+# → ALL 13 TESTS PASSED
 ```
 
 **Active claims:** MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01, DT-FEM-01, ML_BENCH-02, ML_BENCH-03, PHARMA-01, FINRISK-01, DT-SENSOR-01, DT-CALIB-LOOP-01  
@@ -310,7 +334,7 @@ Commercial licensing available for organizations building on the protocol.
 Read these files in order:
 
 ```
-1. CONTEXT_SNAPSHOT.md          ← current state, 14 claims, 282 tests
+1. CONTEXT_SNAPSHOT.md          ← current state, 14 claims, 511 tests
 2. AGENTS.md                    ← hard rules, forbidden terms, protected files
 3. llms.txt                     ← AI-optimized repo summary
 4. reports/canonical_state.md   ← authoritative claims list
@@ -319,4 +343,4 @@ Read these files in order:
 
 ---
 
-*MetaGenesis Core — MVP v0.2 · Inventor: Yehor Bazhynov · Patent Pending #63/996,819*
+*MetaGenesis Core — MVP v0.5 · Inventor: Yehor Bazhynov · Patent Pending #63/996,819*

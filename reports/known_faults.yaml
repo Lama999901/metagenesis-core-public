@@ -14,7 +14,7 @@ known_faults:
     affected_claims: []
     status: "FAULT_EXPECTED"
     ticket_ref: "https://github.com/Lama999901/metagenesis-core-public/issues"
-    mitigation: "Run: python -m pytest tests/ -q  # → 282 passed"
+    mitigation: "Run: python -m pytest tests/ -q  # → 295 passed"
 
   - fault_id: "SCOPE_001"
     category: "PROTOCOL_SCOPE"
@@ -44,4 +44,4 @@ audit_metadata:
   critical_faults: 0
   expected_faults: 2
   system_impact: "NONE — no external dependencies, stdlib only"
-  ci_impact: "NONE — 282 tests pass, steward_audit PASS"
+  ci_impact: "NONE — 295 tests pass, steward_audit PASS"

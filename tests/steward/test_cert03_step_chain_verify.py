@@ -34,6 +34,7 @@ _VALID_HASH_A = "a" * 64
 _VALID_HASH_B = "b" * 64
 _VALID_HASH_C = "c" * 64
 _VALID_HASH_D = "d" * 64
+_VALID_HASH_E = "e" * 64
 
 _VALID_TRACE = [
     {"step": 1, "name": "init_params",      "hash": _VALID_HASH_A},
@@ -200,3 +201,59 @@ class TestStepChainVerification:
         )
         ok, msg, errors = _verify_semantic(pack_dir, index_path)
         assert ok is True, f"Expected PASS for artifact without trace, got: {msg}"
+
+    def test_wrong_step_order_rejected(self, tmp_path):
+        """Trace with steps (1,3,2,4) must be rejected by _verify_semantic."""
+        misordered = [
+            {"step": 1, "name": "init_params",      "hash": _VALID_HASH_A},
+            {"step": 3, "name": "compute_metrics",  "hash": _VALID_HASH_C},
+            {"step": 2, "name": "generate_dataset", "hash": _VALID_HASH_B},
+            {"step": 4, "name": "threshold_check",  "hash": _VALID_HASH_D},
+        ]
+        pack_dir, index_path = _make_pack(
+            tmp_path, execution_trace=misordered, trace_root_hash=_VALID_HASH_D)
+        ok, msg, errors = _verify_semantic(pack_dir, index_path)
+        assert ok is False
+        assert "steps must be" in msg
+
+    def test_duplicate_step_numbers_rejected(self, tmp_path):
+        """Trace with duplicate step numbers (1,2,2,4) must be rejected."""
+        duped = [
+            {"step": 1, "name": "init_params",      "hash": _VALID_HASH_A},
+            {"step": 2, "name": "generate_dataset", "hash": _VALID_HASH_B},
+            {"step": 2, "name": "compute_metrics",  "hash": _VALID_HASH_C},
+            {"step": 4, "name": "threshold_check",  "hash": _VALID_HASH_D},
+        ]
+        pack_dir, index_path = _make_pack(
+            tmp_path, execution_trace=duped, trace_root_hash=_VALID_HASH_D)
+        ok, msg, errors = _verify_semantic(pack_dir, index_path)
+        assert ok is False
+        assert "steps must be" in msg
+
+    def test_extra_steps_rejected(self, tmp_path):
+        """Trace with 5 steps must be rejected (only 4 allowed)."""
+        extra = [
+            {"step": 1, "name": "init_params",      "hash": _VALID_HASH_A},
+            {"step": 2, "name": "generate_dataset", "hash": _VALID_HASH_B},
+            {"step": 3, "name": "compute_metrics",  "hash": _VALID_HASH_C},
+            {"step": 4, "name": "threshold_check",  "hash": _VALID_HASH_D},
+            {"step": 5, "name": "extra_step",       "hash": _VALID_HASH_E},
+        ]
+        pack_dir, index_path = _make_pack(
+            tmp_path, execution_trace=extra, trace_root_hash=_VALID_HASH_E)
+        ok, msg, errors = _verify_semantic(pack_dir, index_path)
+        assert ok is False
+        assert "must have exactly 4 steps" in msg
+
+    def test_fewer_steps_rejected(self, tmp_path):
+        """Trace with 3 steps must be rejected (exactly 4 required)."""
+        fewer = [
+            {"step": 1, "name": "init_params",      "hash": _VALID_HASH_A},
+            {"step": 2, "name": "generate_dataset", "hash": _VALID_HASH_B},
+            {"step": 3, "name": "compute_metrics",  "hash": _VALID_HASH_C},
+        ]
+        pack_dir, index_path = _make_pack(
+            tmp_path, execution_trace=fewer, trace_root_hash=_VALID_HASH_C)
+        ok, msg, errors = _verify_semantic(pack_dir, index_path)
+        assert ok is False
+        assert "must have exactly 4 steps" in msg
