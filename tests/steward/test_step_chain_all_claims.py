@@ -98,6 +98,24 @@ class TestStepChainMTR1:
         r2 = run_calibration(seed=99, E_true=70e9, n_points=50, max_strain=0.002)
         assert r1["trace_root_hash"] != r2["trace_root_hash"]
 
+    def test_mtr1_genesis_hash(self):
+        """Step 1 hash derives from genesis (structural verification)."""
+        result = self._run_mtr1()
+        trace = result["execution_trace"]
+        assert trace[0]["name"] == "init_params"
+        assert len(trace[0]["hash"]) == 64
+        result2 = self._run_mtr1()
+        assert trace[0]["hash"] == result2["execution_trace"][0]["hash"]
+        from backend.progress.mtr1_calibration import run_calibration
+        r_alt = run_calibration(seed=99, E_true=70e9, n_points=50, max_strain=0.002)
+        assert trace[0]["hash"] != r_alt["execution_trace"][0]["hash"]
+
+    def test_mtr1_inter_step_linkage(self):
+        """All 4 step hashes are distinct (non-trivial chain)."""
+        result = self._run_mtr1()
+        hashes = [s["hash"] for s in result["execution_trace"]]
+        assert len(set(hashes)) == 4, "Step hashes must all be distinct"
+
 
 # ---------------------------------------------------------------------------
 # MTR-2: Thermal Conductivity
@@ -127,6 +145,24 @@ class TestStepChainMTR2:
         r1 = run_calibration(seed=42, k_true=5.0, n_points=50)
         r2 = run_calibration(seed=99, k_true=5.0, n_points=50)
         assert r1["trace_root_hash"] != r2["trace_root_hash"]
+
+    def test_mtr2_genesis_hash(self):
+        """Step 1 hash derives from genesis (structural verification)."""
+        result = self._run_mtr2()
+        trace = result["execution_trace"]
+        assert trace[0]["name"] == "init_params"
+        assert len(trace[0]["hash"]) == 64
+        result2 = self._run_mtr2()
+        assert trace[0]["hash"] == result2["execution_trace"][0]["hash"]
+        from backend.progress.mtr2_thermal_conductivity import run_calibration
+        r_alt = run_calibration(seed=99, k_true=5.0, n_points=50)
+        assert trace[0]["hash"] != r_alt["execution_trace"][0]["hash"]
+
+    def test_mtr2_inter_step_linkage(self):
+        """All 4 step hashes are distinct (non-trivial chain)."""
+        result = self._run_mtr2()
+        hashes = [s["hash"] for s in result["execution_trace"]]
+        assert len(set(hashes)) == 4, "Step hashes must all be distinct"
 
 
 # ---------------------------------------------------------------------------
@@ -158,6 +194,24 @@ class TestStepChainMTR3:
         r2 = run_calibration(seed=99, k_true=5.0, r_contact_true=0.1, n_points=50)
         assert r1["trace_root_hash"] != r2["trace_root_hash"]
 
+    def test_mtr3_genesis_hash(self):
+        """Step 1 hash derives from genesis (structural verification)."""
+        result = self._run_mtr3()
+        trace = result["execution_trace"]
+        assert trace[0]["name"] == "init_params"
+        assert len(trace[0]["hash"]) == 64
+        result2 = self._run_mtr3()
+        assert trace[0]["hash"] == result2["execution_trace"][0]["hash"]
+        from backend.progress.mtr3_thermal_multilayer import run_calibration
+        r_alt = run_calibration(seed=99, k_true=5.0, r_contact_true=0.1, n_points=50)
+        assert trace[0]["hash"] != r_alt["execution_trace"][0]["hash"]
+
+    def test_mtr3_inter_step_linkage(self):
+        """All 4 step hashes are distinct (non-trivial chain)."""
+        result = self._run_mtr3()
+        hashes = [s["hash"] for s in result["execution_trace"]]
+        assert len(set(hashes)) == 4, "Step hashes must all be distinct"
+
 
 # ---------------------------------------------------------------------------
 # SYSID-01: ARX Calibration
@@ -187,6 +241,24 @@ class TestStepChainSYSID01:
         r1 = run_calibration(seed=42, a_true=0.9, b_true=0.5, n_steps=50)
         r2 = run_calibration(seed=99, a_true=0.9, b_true=0.5, n_steps=50)
         assert r1["trace_root_hash"] != r2["trace_root_hash"]
+
+    def test_sysid_genesis_hash(self):
+        """Step 1 hash derives from genesis (structural verification)."""
+        result = self._run_sysid()
+        trace = result["execution_trace"]
+        assert trace[0]["name"] == "init_params"
+        assert len(trace[0]["hash"]) == 64
+        result2 = self._run_sysid()
+        assert trace[0]["hash"] == result2["execution_trace"][0]["hash"]
+        from backend.progress.sysid1_arx_calibration import run_calibration
+        r_alt = run_calibration(seed=99, a_true=0.9, b_true=0.5, n_steps=50)
+        assert trace[0]["hash"] != r_alt["execution_trace"][0]["hash"]
+
+    def test_sysid_inter_step_linkage(self):
+        """All 4 step hashes are distinct (non-trivial chain)."""
+        result = self._run_sysid()
+        hashes = [s["hash"] for s in result["execution_trace"]]
+        assert len(set(hashes)) == 4, "Step hashes must all be distinct"
 
 
 # ---------------------------------------------------------------------------
@@ -219,6 +291,21 @@ class TestStepChainDATAPIPE01:
         result = self._run_datapipe()
         last_hash = result["execution_trace"][-1]["hash"]
         assert result["trace_root_hash"] == last_hash
+
+    def test_datapipe_genesis_hash(self):
+        """Step 1 hash derives from genesis (structural verification)."""
+        result = self._run_datapipe()
+        trace = result["execution_trace"]
+        assert trace[0]["name"] == "init_params"
+        assert len(trace[0]["hash"]) == 64
+        result2 = self._run_datapipe()
+        assert trace[0]["hash"] == result2["execution_trace"][0]["hash"]
+
+    def test_datapipe_inter_step_linkage(self):
+        """All 4 step hashes are distinct (non-trivial chain)."""
+        result = self._run_datapipe()
+        hashes = [s["hash"] for s in result["execution_trace"]]
+        assert len(set(hashes)) == 4, "Step hashes must all be distinct"
 
 
 # ---------------------------------------------------------------------------
@@ -254,6 +341,24 @@ class TestStepChainDRIFT01:
         r2 = run_drift_monitor(anchor_value=70e9, current_value=71e9, drift_threshold_pct=5.0)
         assert r1["trace_root_hash"] != r2["trace_root_hash"]
 
+    def test_drift_genesis_hash(self):
+        """Step 1 hash derives from genesis (structural verification)."""
+        result = self._run_drift()
+        trace = result["execution_trace"]
+        assert trace[0]["name"] == "init_params"
+        assert len(trace[0]["hash"]) == 64
+        result2 = self._run_drift()
+        assert trace[0]["hash"] == result2["execution_trace"][0]["hash"]
+        from backend.progress.drift_monitor import run_drift_monitor
+        r_alt = run_drift_monitor(anchor_value=70e9, current_value=71e9, drift_threshold_pct=5.0)
+        assert trace[0]["hash"] != r_alt["execution_trace"][0]["hash"]
+
+    def test_drift_inter_step_linkage(self):
+        """All 4 step hashes are distinct (non-trivial chain)."""
+        result = self._run_drift()
+        hashes = [s["hash"] for s in result["execution_trace"]]
+        assert len(set(hashes)) == 4, "Step hashes must all be distinct"
+
 
 # ---------------------------------------------------------------------------
 # DT-FEM-01: FEM Verification
@@ -283,6 +388,24 @@ class TestStepChainDTFEM01:
         r1 = run_certificate(seed=42, reference_value=1.0, rel_err_threshold=0.02)
         r2 = run_certificate(seed=99, reference_value=1.0, rel_err_threshold=0.02)
         assert r1["trace_root_hash"] != r2["trace_root_hash"]
+
+    def test_dtfem_genesis_hash(self):
+        """Step 1 hash derives from genesis (structural verification)."""
+        result = self._run_dtfem()
+        trace = result["execution_trace"]
+        assert trace[0]["name"] == "init_params"
+        assert len(trace[0]["hash"]) == 64
+        result2 = self._run_dtfem()
+        assert trace[0]["hash"] == result2["execution_trace"][0]["hash"]
+        from backend.progress.dtfem1_displacement_verification import run_certificate
+        r_alt = run_certificate(seed=99, reference_value=1.0, rel_err_threshold=0.02)
+        assert trace[0]["hash"] != r_alt["execution_trace"][0]["hash"]
+
+    def test_dtfem_inter_step_linkage(self):
+        """All 4 step hashes are distinct (non-trivial chain)."""
+        result = self._run_dtfem()
+        hashes = [s["hash"] for s in result["execution_trace"]]
+        assert len(set(hashes)) == 4, "Step hashes must all be distinct"
 
 
 # ---------------------------------------------------------------------------
