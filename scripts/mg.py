@@ -242,6 +242,16 @@ def _verify_semantic(pack_dir: Path, evidence_index_path: Path) -> tuple[bool, s
                     msg = (f"Run artifact {run_rel} execution_trace "
                            f"must be a non-empty list")
                     return False, msg, [msg]
+                # --- Step count and ordering validation ---
+                if len(execution_trace) != 4:
+                    msg = (f"Run artifact {run_rel} execution_trace "
+                           f"must have exactly 4 steps, got {len(execution_trace)}")
+                    return False, msg, [msg]
+                step_numbers = [s.get("step") for s in execution_trace]
+                if step_numbers != [1, 2, 3, 4]:
+                    msg = (f"Run artifact {run_rel} execution_trace "
+                           f"steps must be [1, 2, 3, 4], got {step_numbers}")
+                    return False, msg, [msg]
                 for step in execution_trace:
                     h = step.get("hash", "")
                     if not (isinstance(h, str) and len(h) == 64
