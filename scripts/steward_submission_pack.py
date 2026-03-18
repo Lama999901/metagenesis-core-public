@@ -222,7 +222,7 @@ def _write_pack_manifest(pack_root: Path) -> None:
 
     manifest = {
         "pack_version": "1",
-        "protocol_version": "v1.0",
+        "protocol_version": 1,
         "files": files_list,
         "root_hash": root_hash,
     }

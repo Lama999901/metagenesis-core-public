@@ -17,6 +17,8 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
+MINIMUM_PROTOCOL_VERSION = 1
+
 
 def _run(cmd: list[str], passthrough: bool = True) -> int:
     result = subprocess.run(
@@ -81,6 +83,26 @@ def _verify_pack(pack_dir: Path) -> tuple[bool, str, dict]:
             return False, f"Manifest missing required key: {key}", report
 
     report["checks"].append({"name": "manifest_structure", "status": "pass"})
+
+    # Protocol version rollback check (ADV-07)
+    pv = manifest.get("protocol_version")
+    if pv is None:
+        msg = "pack_manifest.json missing protocol_version"
+        report["checks"].append({"name": "protocol_version", "status": "fail"})
+        report["errors"].append(msg)
+        return False, msg, report
+    if not isinstance(pv, int):
+        msg = f"pack_manifest.json protocol_version must be integer, got {type(pv).__name__}"
+        report["checks"].append({"name": "protocol_version", "status": "fail"})
+        report["errors"].append(msg)
+        return False, msg, report
+    if pv < MINIMUM_PROTOCOL_VERSION:
+        msg = f"pack_manifest.json protocol_version {pv} < minimum {MINIMUM_PROTOCOL_VERSION}"
+        report["checks"].append({"name": "protocol_version", "status": "fail"})
+        report["errors"].append(msg)
+        return False, msg, report
+    report["checks"].append({"name": "protocol_version", "status": "pass"})
+
     report["pack_root_hash"] = manifest.get("root_hash", "")
 
     for entry in manifest["files"]:
