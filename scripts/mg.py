@@ -54,6 +54,7 @@ def _verify_pack(pack_dir: Path) -> tuple[bool, str, dict]:
         "pack_root_hash": "",
         "manifest_ok": False,
         "semantic_ok": None,
+        "temporal_ok": None,
         "checks": [],
         "errors": [],
     }
@@ -123,6 +124,24 @@ def _verify_pack(pack_dir: Path) -> tuple[bool, str, dict]:
     else:
         report["semantic_ok"] = None
         report["checks"].append({"name": "semantic_evidence", "status": "skip"})
+
+    # Layer 5: Temporal commitment (independent of Layers 1-3)
+    try:
+        from scripts.mg_temporal import verify_temporal_commitment
+        tc_ok, tc_msg = verify_temporal_commitment(pack_dir)
+        report["temporal_ok"] = tc_ok
+        if tc_ok:
+            report["checks"].append({"name": "temporal_commitment", "status": "pass", "details": tc_msg})
+        else:
+            report["checks"].append({"name": "temporal_commitment", "status": "fail", "details": tc_msg})
+            report["errors"].append(tc_msg)
+            return False, tc_msg, report
+    except ImportError:
+        report["temporal_ok"] = None
+        report["checks"].append({"name": "temporal_commitment", "status": "skip", "details": "mg_temporal not available"})
+    except Exception as e:
+        report["temporal_ok"] = None
+        report["checks"].append({"name": "temporal_commitment", "status": "skip", "details": str(e)})
 
     return True, "PASS", report
 
