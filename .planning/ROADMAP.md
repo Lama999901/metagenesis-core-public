@@ -106,7 +106,7 @@ Phases execute in numeric order: 5 -> 6 -> 7 -> 8
 | 5. Foundation | 3/3 | Complete | 2026-03-18 |
 | 6. Layer Hardening | 2/2 | Complete | 2026-03-18 |
 | 7. Flagship Proofs | 2/2 | Complete   | 2026-03-18 |
-| 8. Counter Updates | 0/2 | Not started | - |
+| 8. Counter Updates | 1/2 | In Progress|  |
 
 ---
 *Roadmap created: 2026-03-17*
