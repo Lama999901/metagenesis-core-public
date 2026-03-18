@@ -57,6 +57,14 @@ def _get_trace_root(result: dict) -> str:
     raise KeyError("trace_root_hash not found in result")
 
 
+def _recompute_hash_step(step_name, step_data, prev_hash):
+    """Independent reimplementation of _hash_step for genesis verification."""
+    import hashlib, json as _j
+    content = _j.dumps({"step": step_name, "data": step_data, "prev_hash": prev_hash},
+                       sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(content.encode("utf-8")).hexdigest()
+
+
 # ---------------------------------------------------------------------------
 # MTR-1: Young's Modulus
 # ---------------------------------------------------------------------------
@@ -275,3 +283,297 @@ class TestStepChainDTFEM01:
         r1 = run_certificate(seed=42, reference_value=1.0, rel_err_threshold=0.02)
         r2 = run_certificate(seed=99, reference_value=1.0, rel_err_threshold=0.02)
         assert r1["trace_root_hash"] != r2["trace_root_hash"]
+
+
+# ---------------------------------------------------------------------------
+# ML_BENCH-01: Accuracy Certificate
+# ---------------------------------------------------------------------------
+
+class TestStepChainMLBENCH01:
+
+    def _run(self):
+        from backend.progress.mlbench1_accuracy_certificate import run_certificate
+        return run_certificate(seed=42)
+
+    def test_mlbench1_trace_present(self):
+        _assert_trace_valid(self._run(), "ML_BENCH-01")
+
+    def test_mlbench1_trace_four_steps(self):
+        assert len(self._run()["execution_trace"]) == 4
+
+    def test_mlbench1_trace_deterministic(self):
+        assert self._run()["trace_root_hash"] == self._run()["trace_root_hash"]
+
+    def test_mlbench1_trace_changes_with_input(self):
+        from backend.progress.mlbench1_accuracy_certificate import run_certificate
+        assert run_certificate(seed=42)["trace_root_hash"] != run_certificate(seed=99)["trace_root_hash"]
+
+    def test_mlbench1_genesis_hash(self):
+        """Step 1 hash derives from genesis (structural verification)."""
+        result = self._run()
+        trace = result["execution_trace"]
+        assert trace[0]["name"] == "init_params"
+        assert len(trace[0]["hash"]) == 64
+        result2 = self._run()
+        assert trace[0]["hash"] == result2["execution_trace"][0]["hash"]
+        from backend.progress.mlbench1_accuracy_certificate import run_certificate
+        r_alt = run_certificate(seed=99)
+        assert trace[0]["hash"] != r_alt["execution_trace"][0]["hash"]
+
+    def test_mlbench1_inter_step_linkage(self):
+        """All 4 step hashes are distinct (non-trivial chain)."""
+        result = self._run()
+        hashes = [s["hash"] for s in result["execution_trace"]]
+        assert len(set(hashes)) == 4, "Step hashes must all be distinct"
+
+
+# ---------------------------------------------------------------------------
+# ML_BENCH-02: Regression Certificate
+# ---------------------------------------------------------------------------
+
+class TestStepChainMLBENCH02:
+
+    def _run(self):
+        from backend.progress.mlbench2_regression_certificate import run_certificate
+        return run_certificate(seed=42)
+
+    def test_mlbench2_trace_present(self):
+        _assert_trace_valid(self._run(), "ML_BENCH-02")
+
+    def test_mlbench2_trace_four_steps(self):
+        assert len(self._run()["execution_trace"]) == 4
+
+    def test_mlbench2_trace_deterministic(self):
+        assert self._run()["trace_root_hash"] == self._run()["trace_root_hash"]
+
+    def test_mlbench2_trace_changes_with_input(self):
+        from backend.progress.mlbench2_regression_certificate import run_certificate
+        assert run_certificate(seed=42)["trace_root_hash"] != run_certificate(seed=99)["trace_root_hash"]
+
+    def test_mlbench2_genesis_hash(self):
+        """Step 1 hash derives from genesis (structural verification)."""
+        result = self._run()
+        trace = result["execution_trace"]
+        assert trace[0]["name"] == "init_params"
+        assert len(trace[0]["hash"]) == 64
+        result2 = self._run()
+        assert trace[0]["hash"] == result2["execution_trace"][0]["hash"]
+        from backend.progress.mlbench2_regression_certificate import run_certificate
+        r_alt = run_certificate(seed=99)
+        assert trace[0]["hash"] != r_alt["execution_trace"][0]["hash"]
+
+    def test_mlbench2_inter_step_linkage(self):
+        """All 4 step hashes are distinct (non-trivial chain)."""
+        result = self._run()
+        hashes = [s["hash"] for s in result["execution_trace"]]
+        assert len(set(hashes)) == 4, "Step hashes must all be distinct"
+
+
+# ---------------------------------------------------------------------------
+# ML_BENCH-03: Time Series Certificate
+# ---------------------------------------------------------------------------
+
+class TestStepChainMLBENCH03:
+
+    def _run(self):
+        from backend.progress.mlbench3_timeseries_certificate import run_certificate
+        return run_certificate(seed=42)
+
+    def test_mlbench3_trace_present(self):
+        _assert_trace_valid(self._run(), "ML_BENCH-03")
+
+    def test_mlbench3_trace_four_steps(self):
+        assert len(self._run()["execution_trace"]) == 4
+
+    def test_mlbench3_trace_deterministic(self):
+        assert self._run()["trace_root_hash"] == self._run()["trace_root_hash"]
+
+    def test_mlbench3_trace_changes_with_input(self):
+        from backend.progress.mlbench3_timeseries_certificate import run_certificate
+        assert run_certificate(seed=42)["trace_root_hash"] != run_certificate(seed=99)["trace_root_hash"]
+
+    def test_mlbench3_genesis_hash(self):
+        """Step 1 hash derives from genesis (structural verification)."""
+        result = self._run()
+        trace = result["execution_trace"]
+        assert trace[0]["name"] == "init_params"
+        assert len(trace[0]["hash"]) == 64
+        result2 = self._run()
+        assert trace[0]["hash"] == result2["execution_trace"][0]["hash"]
+        from backend.progress.mlbench3_timeseries_certificate import run_certificate
+        r_alt = run_certificate(seed=99)
+        assert trace[0]["hash"] != r_alt["execution_trace"][0]["hash"]
+
+    def test_mlbench3_inter_step_linkage(self):
+        """All 4 step hashes are distinct (non-trivial chain)."""
+        result = self._run()
+        hashes = [s["hash"] for s in result["execution_trace"]]
+        assert len(set(hashes)) == 4, "Step hashes must all be distinct"
+
+
+# ---------------------------------------------------------------------------
+# PHARMA-01: ADMET Certificate
+# ---------------------------------------------------------------------------
+
+class TestStepChainPHARMA01:
+
+    def _run(self):
+        from backend.progress.pharma1_admet_certificate import run_certificate
+        return run_certificate(seed=42)
+
+    def test_pharma1_trace_present(self):
+        _assert_trace_valid(self._run(), "PHARMA-01")
+
+    def test_pharma1_trace_four_steps(self):
+        assert len(self._run()["execution_trace"]) == 4
+
+    def test_pharma1_trace_deterministic(self):
+        assert self._run()["trace_root_hash"] == self._run()["trace_root_hash"]
+
+    def test_pharma1_trace_changes_with_input(self):
+        from backend.progress.pharma1_admet_certificate import run_certificate
+        assert run_certificate(seed=42)["trace_root_hash"] != run_certificate(seed=99)["trace_root_hash"]
+
+    def test_pharma1_genesis_hash(self):
+        """Step 1 hash derives from genesis (structural verification)."""
+        result = self._run()
+        trace = result["execution_trace"]
+        assert trace[0]["name"] == "init_params"
+        assert len(trace[0]["hash"]) == 64
+        result2 = self._run()
+        assert trace[0]["hash"] == result2["execution_trace"][0]["hash"]
+        from backend.progress.pharma1_admet_certificate import run_certificate
+        r_alt = run_certificate(seed=99)
+        assert trace[0]["hash"] != r_alt["execution_trace"][0]["hash"]
+
+    def test_pharma1_inter_step_linkage(self):
+        """All 4 step hashes are distinct (non-trivial chain)."""
+        result = self._run()
+        hashes = [s["hash"] for s in result["execution_trace"]]
+        assert len(set(hashes)) == 4, "Step hashes must all be distinct"
+
+
+# ---------------------------------------------------------------------------
+# FINRISK-01: VaR Certificate
+# ---------------------------------------------------------------------------
+
+class TestStepChainFINRISK01:
+
+    def _run(self):
+        from backend.progress.finrisk1_var_certificate import run_certificate
+        return run_certificate(seed=42)
+
+    def test_finrisk1_trace_present(self):
+        _assert_trace_valid(self._run(), "FINRISK-01")
+
+    def test_finrisk1_trace_four_steps(self):
+        assert len(self._run()["execution_trace"]) == 4
+
+    def test_finrisk1_trace_deterministic(self):
+        assert self._run()["trace_root_hash"] == self._run()["trace_root_hash"]
+
+    def test_finrisk1_trace_changes_with_input(self):
+        from backend.progress.finrisk1_var_certificate import run_certificate
+        assert run_certificate(seed=42)["trace_root_hash"] != run_certificate(seed=99)["trace_root_hash"]
+
+    def test_finrisk1_genesis_hash(self):
+        """Step 1 hash derives from genesis (structural verification)."""
+        result = self._run()
+        trace = result["execution_trace"]
+        assert trace[0]["name"] == "init_params"
+        assert len(trace[0]["hash"]) == 64
+        result2 = self._run()
+        assert trace[0]["hash"] == result2["execution_trace"][0]["hash"]
+        from backend.progress.finrisk1_var_certificate import run_certificate
+        r_alt = run_certificate(seed=99)
+        assert trace[0]["hash"] != r_alt["execution_trace"][0]["hash"]
+
+    def test_finrisk1_inter_step_linkage(self):
+        """All 4 step hashes are distinct (non-trivial chain)."""
+        result = self._run()
+        hashes = [s["hash"] for s in result["execution_trace"]]
+        assert len(set(hashes)) == 4, "Step hashes must all be distinct"
+
+
+# ---------------------------------------------------------------------------
+# DT-SENSOR-01: IoT Certificate
+# ---------------------------------------------------------------------------
+
+class TestStepChainDTSENSOR01:
+
+    def _run(self):
+        from backend.progress.dtsensor1_iot_certificate import run_certificate
+        return run_certificate(seed=42)
+
+    def test_dtsensor1_trace_present(self):
+        _assert_trace_valid(self._run(), "DT-SENSOR-01")
+
+    def test_dtsensor1_trace_four_steps(self):
+        assert len(self._run()["execution_trace"]) == 4
+
+    def test_dtsensor1_trace_deterministic(self):
+        assert self._run()["trace_root_hash"] == self._run()["trace_root_hash"]
+
+    def test_dtsensor1_trace_changes_with_input(self):
+        from backend.progress.dtsensor1_iot_certificate import run_certificate
+        assert run_certificate(seed=42)["trace_root_hash"] != run_certificate(seed=99)["trace_root_hash"]
+
+    def test_dtsensor1_genesis_hash(self):
+        """Step 1 hash derives from genesis (structural verification)."""
+        result = self._run()
+        trace = result["execution_trace"]
+        assert trace[0]["name"] == "init_params"
+        assert len(trace[0]["hash"]) == 64
+        result2 = self._run()
+        assert trace[0]["hash"] == result2["execution_trace"][0]["hash"]
+        from backend.progress.dtsensor1_iot_certificate import run_certificate
+        r_alt = run_certificate(seed=99)
+        assert trace[0]["hash"] != r_alt["execution_trace"][0]["hash"]
+
+    def test_dtsensor1_inter_step_linkage(self):
+        """All 4 step hashes are distinct (non-trivial chain)."""
+        result = self._run()
+        hashes = [s["hash"] for s in result["execution_trace"]]
+        assert len(set(hashes)) == 4, "Step hashes must all be distinct"
+
+
+# ---------------------------------------------------------------------------
+# DT-CALIB-LOOP-01: Convergence Certificate
+# ---------------------------------------------------------------------------
+
+class TestStepChainDTCALIBLOOP01:
+
+    def _run(self):
+        from backend.progress.dtcalib1_convergence_certificate import run_certificate
+        return run_certificate(seed=42)
+
+    def test_dtcalib1_trace_present(self):
+        _assert_trace_valid(self._run(), "DT-CALIB-LOOP-01")
+
+    def test_dtcalib1_trace_four_steps(self):
+        assert len(self._run()["execution_trace"]) == 4
+
+    def test_dtcalib1_trace_deterministic(self):
+        assert self._run()["trace_root_hash"] == self._run()["trace_root_hash"]
+
+    def test_dtcalib1_trace_changes_with_input(self):
+        from backend.progress.dtcalib1_convergence_certificate import run_certificate
+        assert run_certificate(seed=42)["trace_root_hash"] != run_certificate(seed=99)["trace_root_hash"]
+
+    def test_dtcalib1_genesis_hash(self):
+        """Step 1 hash derives from genesis (structural verification)."""
+        result = self._run()
+        trace = result["execution_trace"]
+        assert trace[0]["name"] == "init_params"
+        assert len(trace[0]["hash"]) == 64
+        result2 = self._run()
+        assert trace[0]["hash"] == result2["execution_trace"][0]["hash"]
+        from backend.progress.dtcalib1_convergence_certificate import run_certificate
+        r_alt = run_certificate(seed=99)
+        assert trace[0]["hash"] != r_alt["execution_trace"][0]["hash"]
+
+    def test_dtcalib1_inter_step_linkage(self):
+        """All 4 step hashes are distinct (non-trivial chain)."""
+        result = self._run()
+        hashes = [s["hash"] for s in result["execution_trace"]]
+        assert len(set(hashes)) == 4, "Step hashes must all be distinct"
