@@ -61,9 +61,27 @@ import secrets
 import sys
 from pathlib import Path
 
+# Allow direct invocation from any directory
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 SIGNATURE_FILE = "bundle_signature.json"
 SIGNATURE_VERSION = "hmac-sha256-v1"
 KEY_VERSION = "hmac-sha256-v1"
+
+
+# ---------------------------------------------------------------------------
+# Algorithm detection
+# ---------------------------------------------------------------------------
+
+def _detect_algorithm(key_data: dict) -> str:
+    """Detect signing algorithm from key file version field."""
+    version = key_data.get("version", "")
+    if version == "hmac-sha256-v1":
+        return "hmac"
+    elif version == "ed25519-v1":
+        return "ed25519"
+    else:
+        raise ValueError(f"Unknown key version: {version!r}")
 
 
 # ---------------------------------------------------------------------------
@@ -91,13 +109,20 @@ def generate_key() -> dict:
 
 
 def load_key(key_path: Path) -> dict:
-    """Load signing key from JSON file."""
+    """Load signing key from JSON file. Supports HMAC and Ed25519 formats."""
     try:
         data = json.loads(Path(key_path).read_text(encoding="utf-8"))
     except (json.JSONDecodeError, OSError) as e:
         raise ValueError(f"Cannot load key from {key_path}: {e}")
-    if "key_hex" not in data:
-        raise ValueError(f"Key file missing 'key_hex' field: {key_path}")
+    version = data.get("version", "")
+    if version == "hmac-sha256-v1":
+        if "key_hex" not in data:
+            raise ValueError(f"HMAC key file missing 'key_hex': {key_path}")
+    elif version == "ed25519-v1":
+        if "public_key_hex" not in data:
+            raise ValueError(f"Ed25519 key file missing 'public_key_hex': {key_path}")
+    else:
+        raise ValueError(f"Unknown key version {version!r} in {key_path}")
     return data
 
 
@@ -122,6 +147,15 @@ def _compute_signature(root_hash: str, key_hex: str) -> str:
     key_bytes = bytes.fromhex(key_hex)
     message = root_hash.encode("utf-8")
     return hmac.new(key_bytes, message, hashlib.sha256).hexdigest()
+
+
+def _compute_ed25519_signature(root_hash: str, key_data: dict) -> str:
+    """Compute Ed25519 signature over root_hash."""
+    from scripts.mg_ed25519 import sign as ed25519_sign
+    private_seed = bytes.fromhex(key_data["private_key_hex"])
+    message = root_hash.encode("utf-8")
+    sig_bytes = ed25519_sign(private_seed, message)
+    return sig_bytes.hex()
 
 
 def sign_bundle(pack_dir: Path, key_path: Path) -> dict:
@@ -155,11 +189,26 @@ def sign_bundle(pack_dir: Path, key_path: Path) -> dict:
         )
 
     key_data = load_key(key_path)
-    signature = _compute_signature(root_hash, key_data["key_hex"])
+    algo = _detect_algorithm(key_data)
+
+    if algo == "hmac":
+        signature = _compute_signature(root_hash, key_data["key_hex"])
+        sig_version = SIGNATURE_VERSION  # "hmac-sha256-v1"
+    elif algo == "ed25519":
+        if "private_key_hex" not in key_data:
+            raise ValueError(
+                "Ed25519 signing requires a private key file "
+                "(not a public-only .pub.json)"
+            )
+        signature = _compute_ed25519_signature(root_hash, key_data)
+        sig_version = "ed25519-v1"
+    else:
+        raise ValueError(f"Unsupported algorithm: {algo}")
+
     fingerprint = key_data["fingerprint"]
 
     sig_dict = {
-        "version": SIGNATURE_VERSION,
+        "version": sig_version,
         "signed_root_hash": root_hash,
         "signature": signature,
         "key_fingerprint": fingerprint,
@@ -232,9 +281,26 @@ def verify_bundle_signature(
             f"  current_root_hash: {current_root_hash}"
         )
 
-    # --- Check 3: HMAC verification (if key provided) ---
+    # --- Check 3: Cryptographic verification (if key provided) ---
     if key_path is not None:
         key_data = load_key(key_path)
+
+        # Downgrade attack prevention (SIGN-08)
+        key_algo = _detect_algorithm(key_data)
+        sig_version = sig_data["version"]
+        expected_algo_map = {"hmac-sha256-v1": "hmac", "ed25519-v1": "ed25519"}
+        sig_algo = expected_algo_map.get(sig_version)
+
+        if sig_algo is None:
+            return False, f"Unknown signature algorithm: {sig_version!r}"
+
+        if key_algo != sig_algo:
+            return False, (
+                f"SIGNATURE INVALID: algorithm mismatch.\n"
+                f"  bundle signed with: {sig_version}\n"
+                f"  verifier key type:  {key_data['version']}\n"
+                f"  This may indicate a downgrade attack."
+            )
 
         # Verify key fingerprint matches
         if key_data["fingerprint"] != sig_data["key_fingerprint"]:
@@ -244,15 +310,26 @@ def verify_bundle_signature(
                 f"  provided key fingerprint:               {key_data['fingerprint']}"
             )
 
-        # Verify HMAC
-        expected_sig = _compute_signature(
-            sig_data["signed_root_hash"], key_data["key_hex"]
-        )
-        if not hmac.compare_digest(sig_data["signature"], expected_sig):
-            return False, (
-                "SIGNATURE INVALID: HMAC verification failed.\n"
-                "The signature does not match the bundle content + key."
+        # Algorithm-dispatched verification
+        if key_algo == "hmac":
+            expected_sig = _compute_signature(
+                sig_data["signed_root_hash"], key_data["key_hex"]
             )
+            if not hmac.compare_digest(sig_data["signature"], expected_sig):
+                return False, (
+                    "SIGNATURE INVALID: HMAC verification failed.\n"
+                    "The signature does not match the bundle content + key."
+                )
+        elif key_algo == "ed25519":
+            from scripts.mg_ed25519 import verify as ed25519_verify
+            pub_key = bytes.fromhex(key_data["public_key_hex"])
+            msg = sig_data["signed_root_hash"].encode("utf-8")
+            sig_bytes = bytes.fromhex(sig_data["signature"])
+            if not ed25519_verify(pub_key, msg, sig_bytes):
+                return False, (
+                    "SIGNATURE INVALID: Ed25519 verification failed.\n"
+                    "The signature does not match the bundle content + public key."
+                )
 
         return True, (
             f"SIGNATURE VALID\n"
@@ -291,13 +368,25 @@ def verify_bundle_signature(
 # ---------------------------------------------------------------------------
 
 def cmd_keygen(args):
-    key = generate_key()
-    out_path = Path(args.out)
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(json.dumps(key, indent=2), encoding="utf-8")
-    print(f"Signing key generated: {out_path}")
-    print(f"Public fingerprint:    {key['fingerprint']}")
-    print(f"KEEP {out_path} SECRET — share only the fingerprint.")
+    key_type = getattr(args, 'type', 'hmac')
+    if key_type == 'ed25519':
+        from scripts.mg_ed25519 import generate_key_files
+        out_path = Path(args.out)
+        key_data = generate_key_files(out_path)
+        stem = out_path.stem
+        pub_path = out_path.parent / f"{stem}.pub.json"
+        print(f"Ed25519 signing key: {out_path}")
+        print(f"Public key:          {pub_path}")
+        print(f"Fingerprint:         {key_data['fingerprint']}")
+        print(f"KEEP {out_path} SECRET. Share {pub_path} with auditors.")
+    else:
+        key = generate_key()
+        out_path = Path(args.out)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(json.dumps(key, indent=2), encoding="utf-8")
+        print(f"Signing key generated: {out_path}")
+        print(f"Public fingerprint:    {key['fingerprint']}")
+        print(f"KEEP {out_path} SECRET — share only the fingerprint.")
     return 0
 
 
@@ -308,10 +397,65 @@ def cmd_sign(args):
         print(f"  root_hash:       {sig['signed_root_hash']}")
         print(f"  key_fingerprint: {sig['key_fingerprint']}")
         print(f"  signature_file:  {Path(args.pack) / SIGNATURE_FILE}")
-        return 0
     except (FileNotFoundError, ValueError) as e:
         print(f"ERROR: {e}", file=sys.stderr)
         return 1
+
+    # Auto-create temporal commitment (Layer 5)
+    try:
+        from scripts.mg_temporal import create_temporal_commitment, write_temporal_commitment
+        temporal = create_temporal_commitment(sig["signed_root_hash"])
+        write_temporal_commitment(Path(args.pack), temporal)
+        if temporal["beacon_status"] == "available":
+            print(f"  temporal:        beacon-backed ({temporal['beacon_timestamp']})")
+        else:
+            print(f"  temporal:        local timestamp only", file=sys.stderr)
+            print(f"WARNING: NIST Beacon unreachable -- temporal commitment using local timestamp only", file=sys.stderr)
+            if getattr(args, 'strict', False):
+                print("ERROR: --strict mode requires beacon availability", file=sys.stderr)
+                return 1
+    except Exception as e:
+        print(f"WARNING: Temporal commitment failed: {e}", file=sys.stderr)
+        if getattr(args, 'strict', False):
+            return 1
+    return 0
+
+
+def cmd_temporal(args):
+    """Create temporal commitment for a signed bundle."""
+    pack_dir = Path(args.pack)
+    manifest_path = pack_dir / "pack_manifest.json"
+    if not manifest_path.exists():
+        print(f"ERROR: pack_manifest.json not found in {pack_dir}", file=sys.stderr)
+        return 1
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        root_hash = manifest.get("root_hash", "")
+        if not root_hash:
+            print("ERROR: pack_manifest.json missing root_hash", file=sys.stderr)
+            return 1
+    except (json.JSONDecodeError, OSError) as e:
+        print(f"ERROR: Cannot read pack_manifest.json: {e}", file=sys.stderr)
+        return 1
+
+    from scripts.mg_temporal import create_temporal_commitment, write_temporal_commitment
+    print(f"Pre-commitment: {hashlib.sha256(root_hash.encode('utf-8')).hexdigest()}")
+    print("Fetching beacon...")
+    temporal = create_temporal_commitment(root_hash)
+    tc_path = write_temporal_commitment(pack_dir, temporal)
+
+    if temporal["beacon_status"] == "available":
+        print(f"Temporal commitment: {temporal['temporal_binding']}")
+        print(f"  beacon_timestamp: {temporal['beacon_timestamp']}")
+        print(f"  file: {tc_path}")
+    else:
+        print(f"WARNING: NIST Beacon unreachable -- temporal commitment using local timestamp only", file=sys.stderr)
+        print(f"  local_timestamp: {temporal['local_timestamp']}")
+        print(f"  file: {tc_path}")
+        if args.strict:
+            print("ERROR: --strict mode requires beacon availability", file=sys.stderr)
+            return 1
+    return 0
 
 
 def cmd_verify(args):
@@ -323,7 +467,19 @@ def cmd_verify(args):
         expected_fingerprint=fingerprint,
     )
     print(msg)
-    return 0 if ok else 1
+    if not ok:
+        return 1
+
+    # Layer 5: Temporal commitment check
+    try:
+        from scripts.mg_temporal import verify_temporal_commitment
+        tc_ok, tc_msg = verify_temporal_commitment(Path(args.pack))
+        print(f"  {tc_msg}")
+        if not tc_ok:
+            return 1
+    except Exception as e:
+        print(f"  Temporal: check failed ({e})")
+    return 0
 
 
 def main():
@@ -335,12 +491,16 @@ def main():
     # keygen
     kg = sub.add_parser("keygen", help="Generate a new signing key pair")
     kg.add_argument("--out", "-o", required=True, help="Output key file path (.json)")
+    kg.add_argument("--type", "-t", choices=["hmac", "ed25519"],
+                    default="hmac", help="Key type (default: hmac)")
     kg.set_defaults(func=cmd_keygen)
 
     # sign
     sg = sub.add_parser("sign", help="Sign a bundle")
     sg.add_argument("--pack", "-p", required=True, help="Bundle directory to sign")
     sg.add_argument("--key", "-k", required=True, help="Signing key file (.json)")
+    sg.add_argument("--strict", action="store_true", default=False,
+                    help="Fail if NIST Beacon is unreachable (for CI pipelines)")
     sg.set_defaults(func=cmd_sign)
 
     # verify
@@ -349,6 +509,13 @@ def main():
     vr.add_argument("--key", "-k", default=None, help="Signing key file (full HMAC verify)")
     vr.add_argument("--fingerprint", "-f", default=None, help="Key fingerprint (presence check)")
     vr.set_defaults(func=cmd_verify)
+
+    # temporal
+    tp = sub.add_parser("temporal", help="Create standalone temporal commitment")
+    tp.add_argument("--pack", "-p", required=True, help="Bundle directory")
+    tp.add_argument("--strict", action="store_true", default=False,
+                    help="Fail if NIST Beacon is unreachable")
+    tp.set_defaults(func=cmd_temporal)
 
     args = ap.parse_args()
     return args.func(args)
