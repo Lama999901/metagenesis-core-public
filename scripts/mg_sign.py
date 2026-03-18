@@ -61,6 +61,9 @@ import secrets
 import sys
 from pathlib import Path
 
+# Allow direct invocation from any directory
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 SIGNATURE_FILE = "bundle_signature.json"
 SIGNATURE_VERSION = "hmac-sha256-v1"
 KEY_VERSION = "hmac-sha256-v1"
@@ -394,10 +397,65 @@ def cmd_sign(args):
         print(f"  root_hash:       {sig['signed_root_hash']}")
         print(f"  key_fingerprint: {sig['key_fingerprint']}")
         print(f"  signature_file:  {Path(args.pack) / SIGNATURE_FILE}")
-        return 0
     except (FileNotFoundError, ValueError) as e:
         print(f"ERROR: {e}", file=sys.stderr)
         return 1
+
+    # Auto-create temporal commitment (Layer 5)
+    try:
+        from scripts.mg_temporal import create_temporal_commitment, write_temporal_commitment
+        temporal = create_temporal_commitment(sig["signed_root_hash"])
+        write_temporal_commitment(Path(args.pack), temporal)
+        if temporal["beacon_status"] == "available":
+            print(f"  temporal:        beacon-backed ({temporal['beacon_timestamp']})")
+        else:
+            print(f"  temporal:        local timestamp only", file=sys.stderr)
+            print(f"WARNING: NIST Beacon unreachable -- temporal commitment using local timestamp only", file=sys.stderr)
+            if getattr(args, 'strict', False):
+                print("ERROR: --strict mode requires beacon availability", file=sys.stderr)
+                return 1
+    except Exception as e:
+        print(f"WARNING: Temporal commitment failed: {e}", file=sys.stderr)
+        if getattr(args, 'strict', False):
+            return 1
+    return 0
+
+
+def cmd_temporal(args):
+    """Create temporal commitment for a signed bundle."""
+    pack_dir = Path(args.pack)
+    manifest_path = pack_dir / "pack_manifest.json"
+    if not manifest_path.exists():
+        print(f"ERROR: pack_manifest.json not found in {pack_dir}", file=sys.stderr)
+        return 1
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        root_hash = manifest.get("root_hash", "")
+        if not root_hash:
+            print("ERROR: pack_manifest.json missing root_hash", file=sys.stderr)
+            return 1
+    except (json.JSONDecodeError, OSError) as e:
+        print(f"ERROR: Cannot read pack_manifest.json: {e}", file=sys.stderr)
+        return 1
+
+    from scripts.mg_temporal import create_temporal_commitment, write_temporal_commitment
+    print(f"Pre-commitment: {hashlib.sha256(root_hash.encode('utf-8')).hexdigest()}")
+    print("Fetching beacon...")
+    temporal = create_temporal_commitment(root_hash)
+    tc_path = write_temporal_commitment(pack_dir, temporal)
+
+    if temporal["beacon_status"] == "available":
+        print(f"Temporal commitment: {temporal['temporal_binding']}")
+        print(f"  beacon_timestamp: {temporal['beacon_timestamp']}")
+        print(f"  file: {tc_path}")
+    else:
+        print(f"WARNING: NIST Beacon unreachable -- temporal commitment using local timestamp only", file=sys.stderr)
+        print(f"  local_timestamp: {temporal['local_timestamp']}")
+        print(f"  file: {tc_path}")
+        if args.strict:
+            print("ERROR: --strict mode requires beacon availability", file=sys.stderr)
+            return 1
+    return 0
 
 
 def cmd_verify(args):
@@ -409,7 +467,19 @@ def cmd_verify(args):
         expected_fingerprint=fingerprint,
     )
     print(msg)
-    return 0 if ok else 1
+    if not ok:
+        return 1
+
+    # Layer 5: Temporal commitment check
+    try:
+        from scripts.mg_temporal import verify_temporal_commitment
+        tc_ok, tc_msg = verify_temporal_commitment(Path(args.pack))
+        print(f"  {tc_msg}")
+        if not tc_ok:
+            return 1
+    except Exception as e:
+        print(f"  Temporal: check failed ({e})")
+    return 0
 
 
 def main():
@@ -429,6 +499,8 @@ def main():
     sg = sub.add_parser("sign", help="Sign a bundle")
     sg.add_argument("--pack", "-p", required=True, help="Bundle directory to sign")
     sg.add_argument("--key", "-k", required=True, help="Signing key file (.json)")
+    sg.add_argument("--strict", action="store_true", default=False,
+                    help="Fail if NIST Beacon is unreachable (for CI pipelines)")
     sg.set_defaults(func=cmd_sign)
 
     # verify
@@ -437,6 +509,13 @@ def main():
     vr.add_argument("--key", "-k", default=None, help="Signing key file (full HMAC verify)")
     vr.add_argument("--fingerprint", "-f", default=None, help="Key fingerprint (presence check)")
     vr.set_defaults(func=cmd_verify)
+
+    # temporal
+    tp = sub.add_parser("temporal", help="Create standalone temporal commitment")
+    tp.add_argument("--pack", "-p", required=True, help="Bundle directory")
+    tp.add_argument("--strict", action="store_true", default=False,
+                    help="Fail if NIST Beacon is unreachable")
+    tp.set_defaults(func=cmd_temporal)
 
     args = ap.parse_args()
     return args.func(args)
