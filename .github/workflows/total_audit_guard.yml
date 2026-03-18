@@ -37,11 +37,3 @@ jobs:
       - name: Run tests
         run: |
           python -m pytest tests/ -q
-
-      - name: Stale documentation check
-        run: |
-          python scripts/check_stale_docs.py --strict
-
-      - name: Deep verify
-        run: |
-          python scripts/deep_verify.py

@@ -41,9 +41,7 @@ Your computation runs
               scripts/mg.py
                 ├── Layer 1: integrity (SHA-256 — detects file changes)
                 ├── Layer 2: semantic  (detects content removal/substitution)
-                ├── Layer 3: step chain (detects execution tampering)
-                ├── Layer 4: signing   (Ed25519/HMAC — unauthorized creator)
-                └── Layer 5: temporal  (NIST Beacon — backdated bundles)
+                └── Layer 3: step chain (detects execution tampering)
                          │
                          ▼
                     PASS or FAIL
@@ -54,7 +52,7 @@ Full protocol spec: [PROTOCOL.md](PROTOCOL.md)
 
 ---
 
-## Five verification layers — why each is necessary
+## Three verification layers — why each is necessary
 
 **The hierarchy of attacks:**
 
@@ -72,19 +70,10 @@ Attack 3: change computation inputs, recompute hashes
 → Layer 1: PASS
 → Layer 2: PASS (job_snapshot still present)
 → Layer 3 (step chain): FAIL — trace_root_hash broken
-
-Attack 4: replay valid bundle from different signer
-→ Layers 1-3: PASS
-→ Layer 4 (signing): FAIL — signature doesn't match key
-
-Attack 5: backdate a freshly-created bundle
-→ Layers 1-4: PASS
-→ Layer 5 (temporal): FAIL — pre-commitment doesn't match beacon
 ```
 
-Each layer catches exactly what the previous layer misses. All five run on
+Each layer catches exactly what the previous layer misses. All three run on
 every `mg.py verify`. Each proven by a dedicated adversarial test.
-CERT-11 formally proves 5-layer independence (each layer catches attacks others miss).
 
 ---
 
@@ -257,8 +246,8 @@ DT-FEM-01 and DRIFT-01 support anchor_hash for Cross-Claim Chain.
 | `test_cert05_adversarial_gauntlet.py` | 5 attacks: Strip+Recompute, Single-Bit, Cross-Domain, Canary Laundering, Chain Reversal |
 | `test_cert06_real_world_scenarios.py` | 5 real-world proofs: honest team, cherry-picker, physical anchor, audit trail, reproducibility crisis |
 
-511 tests total. steward_audit PASS.
+282 tests total. steward_audit PASS.
 
 ---
 
-*Architecture v0.5 — 2026-03-18 — MetaGenesis Core*
+*Architecture v0.2 — 2026-03-17 — MetaGenesis Core*

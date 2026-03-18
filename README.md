@@ -134,7 +134,19 @@ python -m pytest tests/steward/test_cert05_adversarial_gauntlet.py -v
 # → 6 passed (5 attacks + 1 summary proof)
 ```
 
-The summary test explicitly proves all three layers are necessary — no single layer catches all attacks.
+The summary test explicitly proves all five layers are necessary — no single layer catches all attacks.
+
+**Coordinated Multi-Vector Attacks — 5-layer independence proven (CERT-11):**
+Each verification layer catches attacks that the other four miss. Proves all five layers are independently necessary.
+```bash
+python -m pytest tests/steward/test_cert11_coordinated_multi_vector.py -v
+```
+
+**Encoding Attack Resistance (CERT-12):**
+BOM injection, null bytes, homoglyph claim IDs, truncated JSON — all caught.
+```bash
+python -m pytest tests/steward/test_cert12_encoding_attacks.py -v
+```
 
 ---
 
@@ -176,7 +188,7 @@ No API keys. No network. Works on any machine with Python 3.11+.
 
 ---
 
-## 7 innovations (USPTO PPA #63/996,819)
+## 8 innovations (USPTO PPA #63/996,819)
 
 ### 1 — Governance-Enforced Bidirectional Claim Coverage
 Every PR: every registered claim has an implementation, every implementation has a registered claim. Enforced by static analysis — not human review.
@@ -222,6 +234,13 @@ Cryptographic proof of WHEN a bundle was signed. Pre-commitment scheme using NIS
 ```
 Evidence: scripts/mg_temporal.py
 Proof:    tests/steward/test_temporal.py + tests/steward/test_cert10_*
+```
+
+### 8 — 5-Layer Independence Proof (CERT-11 + CERT-12)
+Formal proof that all five verification layers are independently necessary. CERT-11 constructs coordinated multi-vector attacks; CERT-12 tests encoding edge cases (BOM injection, null bytes, homoglyphs, truncated JSON). Each layer catches attacks the other four miss.
+```
+Evidence: tests/steward/test_cert11_* + tests/steward/test_cert12_*
+Proof:    test_cert_5layer_independence
 ```
 
 ---
