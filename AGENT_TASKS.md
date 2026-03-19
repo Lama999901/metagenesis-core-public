@@ -38,3 +38,38 @@ Auto-processed by `scripts/agent_research.py`. First PENDING task gets executed 
 - **Priority:** P3
 - **Output:** docs/INTEGRATION_GUIDE.md
 - **Description:** Draft MLflow/DVC/WandB integration API sketch for docs/INTEGRATION_GUIDE.md.
+
+### TASK-006
+- **Title:** Adversarial tests for SYSID-01 (weakest coverage claim)
+- **Status:** DONE (2026-03-19)
+- **Priority:** P1
+- **Output:** reports/AGENT_REPORT_YYYYMMDD.md
+- **Description:** SYSID-01 was identified as weakest-coverage claim in TASK-001. Write 3 adversarial test scenarios: (1) step chain hash tamper, (2) semantic field stripping, (3) threshold boundary injection. Read sysid1_arx_calibration.py to extract exact thresholds and field names.
+
+### TASK-007
+- **Title:** Map claim dependency graph
+- **Status:** PENDING
+- **Priority:** P2
+- **Output:** reports/AGENT_REPORT_YYYYMMDD.md
+- **Description:** Analyze all 14 claim files in backend/progress/ to build a dependency graph. Find which claims reference other claims (e.g., DRIFT-01 depends on MTR-1, DT-CALIB-LOOP-01 depends on DRIFT-01). Output adjacency list and identify isolated claims with no dependencies.
+
+### TASK-008
+- **Title:** Temporal verification layer audit
+- **Status:** PENDING
+- **Priority:** P2
+- **Output:** reports/AGENT_REPORT_YYYYMMDD.md
+- **Description:** Read scripts/mg_temporal.py and tests/steward/test_cert10*. Audit: (1) which NIST Beacon features are used, (2) what attack vectors CERT-10 covers, (3) propose 2 new temporal attack scenarios not yet tested (e.g., timezone manipulation, leap second edge case).
+
+### TASK-009
+- **Title:** Bundle size optimization analysis
+- **Status:** PENDING
+- **Priority:** P3
+- **Output:** reports/AGENT_REPORT_YYYYMMDD.md
+- **Description:** Analyze a typical pack bundle output. Measure sizes of pack_manifest.json, evidence files, and signature files. Identify which components dominate bundle size. Propose compression or deduplication strategies without breaking SHA-256 integrity verification.
+
+### TASK-010
+- **Title:** Cross-layer attack surface analysis
+- **Status:** PENDING
+- **Priority:** P1
+- **Output:** reports/AGENT_REPORT_YYYYMMDD.md
+- **Description:** For each of the 5 verification layers, enumerate the exact attack vectors tested by CERT-02 through CERT-12. Build a matrix: layers (rows) x CERT tests (columns). Find any layer that has fewer than 2 dedicated attack tests. Propose gap-closing tests.

@@ -53,7 +53,7 @@ def section(title):
 
 # ── 1. Steward Audit ────────────────────────────────────────────────────────
 def check_steward():
-    section("STEWARD AUDIT")
+    section("STEWARD AUDIT — Inquisitorial Inspection")
     out, code = run("python scripts/steward_audit.py")
     if code == 0 and "PASS" in out:
         ok("steward_audit.py → PASS — Inquisition satisfied (STEWARD_PASS)")
@@ -66,7 +66,7 @@ def check_steward():
 
 # ── 2. Pytest ────────────────────────────────────────────────────────────────
 def check_tests():
-    section("TEST SUITE")
+    section("TEST SUITE — Machine Spirit Awakening")
     out, code = run("python -m pytest tests/ -q --tb=no")
     lines = out.splitlines()
     summary = next((l for l in reversed(lines) if "passed" in l), "")
@@ -83,7 +83,7 @@ def check_tests():
 
 # ── 3. Deep Verify ───────────────────────────────────────────────────────────
 def check_deep_verify():
-    section("DEEP VERIFY")
+    section("DEEP VERIFY — Rite of Pure Thought")
     out, code = run("python scripts/deep_verify.py")
     if "ALL" in out and "PASSED" in out:
         last = [l for l in out.splitlines() if "PASSED" in l or "passed" in l]
@@ -97,7 +97,7 @@ def check_deep_verify():
 
 # ── 4. Stale Docs ────────────────────────────────────────────────────────────
 def check_stale_docs():
-    section("STALE DOCUMENTATION")
+    section("STALE DOCUMENTATION — Noosphere Scan")
     out, code = run("python scripts/check_stale_docs.py --strict")
     if code == 0 and "All critical documentation is current" in out:
         ok("All critical docs → CURRENT")
@@ -115,7 +115,7 @@ def check_stale_docs():
 
 # ── 5. System Manifest Consistency ──────────────────────────────────────────
 def check_manifest(actual_test_count):
-    section("MANIFEST CONSISTENCY")
+    section("MANIFEST CONSISTENCY — Codex Verification")
     manifest_path = REPO_ROOT / "system_manifest.json"
     if not manifest_path.exists():
         err("system_manifest.json not found")
@@ -147,7 +147,7 @@ def check_manifest(actual_test_count):
 
 # ── 6. Forbidden Terms ───────────────────────────────────────────────────────
 def check_forbidden():
-    section("FORBIDDEN TERMS")
+    section("FORBIDDEN TERMS — Hereticus Detection")
     terms = ["tamper-proof", "GPT-5", "19x", "VacuumGenesis",
              "unforgeable", "blockchain", "100% test success"]
     dirs = ["docs/", "scripts/", "backend/", "index.html", "README.md"]
@@ -207,7 +207,7 @@ def check_forbidden():
 
 # ── 7. Gap Analysis ──────────────────────────────────────────────────────────
 def run_gap_analysis(test_count):
-    section("COVERAGE GAP ANALYSIS")
+    section("COVERAGE GAP ANALYSIS — Forge World Audit")
 
     # Count tests per domain
     test_dirs = {
@@ -269,7 +269,7 @@ def run_gap_analysis(test_count):
 
 # ── 8. CLAUDE.md Freshness ───────────────────────────────────────────────────
 def check_claude_md(actual_count):
-    section("CLAUDE.MD FRESHNESS")
+    section("CLAUDE.MD FRESHNESS — Lexmechanic Rites")
     claude_path = REPO_ROOT / "CLAUDE.md"
     if not claude_path.exists():
         err("CLAUDE.md not found!")
@@ -297,7 +297,7 @@ def check_claude_md(actual_count):
 
 # ── 9. Watchlist Coverage ────────────────────────────────────────────────────
 def check_watchlist():
-    section("WATCHLIST COVERAGE")
+    section("WATCHLIST COVERAGE — Servo-skull Patrol")
     out, code = run("python scripts/auto_watchlist_scan.py")
     import re
     m = re.search(r"(\d+)/(\d+) files watched \((\d+) unwatched\)", out)
@@ -321,7 +321,7 @@ def check_watchlist():
 
 # ── 10. Branch Sync ───────────────────────────────────────────────────────────
 def check_branch_sync():
-    section("BRANCH SYNC")
+    section("BRANCH SYNC — Skitarii Synchronization")
     # Fetch latest remote state
     run("git fetch origin")
     out, code = run("git rev-list HEAD..origin/main --count")
@@ -367,7 +367,7 @@ def main():
     results["branch_sync"] = check_branch_sync()
 
     # ── Summary ──
-    section("SUMMARY")
+    section("SUMMARY — Omnissiah's Verdict")
     passed = sum(1 for v in results.values() if v)
     total  = len(results)
 
