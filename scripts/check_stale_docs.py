@@ -147,6 +147,22 @@ CONTENT_CHECKS = {
         "banned": ["271 tests", "295 tests", "3 verification layers", "MVP v0.2", "ALL 10 TESTS"],
         "required": ["511 tests", "5 verification layers", "MVP v0.5", "ALL 13 TESTS"],
     },
+    "docs/HOW_TO_ADD_CLAIM.md": {
+        "banned": ["ALL 10", "271", "282", "295", "389", "v0.2", "v0.3", "v0.4"],
+        "required": ["511", "v0.5"],
+    },
+    "docs/REAL_DATA_GUIDE.md": {
+        "banned": ["ALL 10", "271", "282", "295", "389", "v0.2", "v0.3", "v0.4"],
+        "required": ["511", "v0.5"],
+    },
+    "docs/USE_CASES.md": {
+        "banned": ["ALL 10", "271", "282", "295", "389", "v0.2", "v0.3", "v0.4"],
+        "required": ["511", "v0.5"],
+    },
+    "reports/scientific_claim_index.md": {
+        "banned": ["282", "295"],
+        "required": ["14 claims", "511"],
+    },
 }
 
 

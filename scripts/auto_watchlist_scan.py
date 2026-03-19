@@ -36,6 +36,7 @@ EXCLUDE_DIRS = {
     ".planning", ".claude", ".git", "__pycache__",
     "node_modules", ".venv", ".mypy_cache", ".pytest_cache",
     "ppa",  # frozen patent documents — never flag
+    "pack",  # demos/open_data_demo_01/pack/ — generated artifacts
 }
 
 

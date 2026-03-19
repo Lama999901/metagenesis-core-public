@@ -247,3 +247,7 @@ The verification workflow is identical regardless of domain:
 No GPU. No environment access. No trust.
 
 The only thing that changes per domain is the claim type and V&V thresholds.
+
+---
+
+*Use Cases v0.5 — 2026-03-18 — MetaGenesis Core — 14 claims, 511 tests*
