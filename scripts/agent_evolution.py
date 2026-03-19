@@ -40,7 +40,10 @@ def warn(msg): print(f"  {YELLOW}⚠ {RESET} {msg}")
 def info(msg): print(f"  {CYAN}→{RESET} {msg}")
 
 def run(cmd, cwd=REPO_ROOT):
-    r = subprocess.run(cmd, shell=True, capture_output=True, text=True, cwd=cwd)
+    import os
+    env = os.environ.copy()
+    env["PYTHONIOENCODING"] = "utf-8"
+    r = subprocess.run(cmd, shell=True, capture_output=True, text=True, cwd=cwd, env=env, encoding="utf-8", errors="replace")
     return r.stdout.strip(), r.returncode
 
 
