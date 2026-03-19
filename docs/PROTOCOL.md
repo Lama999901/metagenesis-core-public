@@ -1,4 +1,4 @@
-# MetaGenesis Verification Protocol (MVP) v0.2
+# MetaGenesis Verification Protocol (MVP) v0.5
 
 ## What this is
 
@@ -16,7 +16,7 @@ It answers one question no existing tool answers:
 > Can any third party verify this computational result independently —
 > without access to the original model, data, or environment?
 
-MVP answers: yes. In 60 seconds. Offline. With three independent verification
+MVP answers: yes. In 60 seconds. Offline. With five independent verification
 layers, each proven by an adversarial test.
 
 ---
@@ -42,7 +42,7 @@ MVP addresses both:
 
 ---
 
-## Three verification layers
+## Five verification layers
 
 Each layer catches attacks that the previous layers miss.
 
@@ -89,7 +89,27 @@ tests/steward/test_cert03_step_chain_verify.py
 ::TestStepChainVerification::test_tampered_trace_root_hash_fails
 ```
 
-All three layers run on every `mg.py verify --pack bundle.zip`.
+### Layer 4 — Bundle Signing (HMAC-SHA256 + Ed25519)
+
+Detects: unauthorized bundle creator (layers 1–3 pass; layer 4 catches it).
+How: HMAC-SHA256 (shared secret) or Ed25519 (asymmetric) signature over root_hash.
+Proven by adversarial tests:
+```
+tests/steward/test_cert07_bundle_signing.py
+tests/steward/test_cert09_ed25519_attacks.py
+```
+
+### Layer 5 — Temporal Commitment (NIST Randomness Beacon)
+
+Detects: backdated bundles — proves WHEN a bundle was signed.
+How: SHA-256(root_hash) committed before NIST Beacon pulse fetched,
+then binding = SHA-256(pre_commitment + beacon_value).
+Proven by adversarial tests:
+```
+tests/steward/test_cert10_temporal_attacks.py
+```
+
+All five layers run on every `mg.py verify --pack bundle.zip`.
 
 ---
 
@@ -280,7 +300,7 @@ no external dependencies.
 
 ---
 
-## 5 patentable innovations (USPTO PPA #63/996,819)
+## 8 innovations (USPTO PPA #63/996,819)
 
 1. **Governance-Enforced Bidirectional Claim Coverage**
    `scripts/steward_audit.py :: _claim_coverage_bidirectional()`
@@ -298,9 +318,19 @@ no external dependencies.
 
 5. **Step Chain + Cross-Claim Cryptographic Chain**
    `backend/progress/mlbench1_accuracy_certificate.py :: _hash_step()`
-   `backend/progress/dtfem1_displacement_verification.py` (anchor_hash)
-   `backend/progress/drift_monitor.py` (anchor_hash)
    Proven: `tests/steward/test_cert03_*` + `tests/steward/test_cross_claim_chain.py`
+
+6. **Bundle Signing (HMAC-SHA256 + Ed25519)**
+   `scripts/mg_sign.py` + `scripts/mg_ed25519.py`
+   Proven: `tests/steward/test_cert07_*` + `tests/steward/test_cert09_*`
+
+7. **Temporal Commitment (NIST Randomness Beacon)**
+   `scripts/mg_temporal.py`
+   Proven: `tests/steward/test_cert10_*`
+
+8. **5-Layer Independence Proof**
+   Each layer catches attacks the other four miss.
+   Proven: `tests/steward/test_cert11_*` + `tests/steward/test_cert12_*`
 
 Verify full chain end-to-end:
 ```bash
@@ -310,5 +340,5 @@ python scripts/mg.py verify-chain bundle_mtr1/ bundle_dtfem/ bundle_drift/
 
 ---
 
-*MetaGenesis Verification Protocol v0.2 — 2026-03-17*
+*MetaGenesis Verification Protocol (MVP) v0.5 — 2026-03-18*
 *Inventor: Yehor Bazhynov — USPTO PPA #63/996,819*

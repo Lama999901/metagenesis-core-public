@@ -85,7 +85,7 @@ Enforced by: python scripts/steward_audit.py → must output STEWARD AUDIT: PASS
 - steward_audit.py must PASS after every change
 - known_faults.yaml is authoritative — do not contradict it
 
-## 7 innovations (USPTO PPA #63/996,819)
+## 8 innovations (USPTO PPA #63/996,819)
 
 1. Bidirectional claim coverage → steward_audit.py :: _claim_coverage_bidirectional()
 2. Tamper-evident semantic verification → mg.py :: _verify_semantic()  [test_cert02]
@@ -94,6 +94,7 @@ Enforced by: python scripts/steward_audit.py → must output STEWARD AUDIT: PASS
 5. Step Chain + Cross-Claim Chain → all 14 claims + anchor_hash  [test_cert03 + test_cross_claim_chain]
 6. Bundle Signing (HMAC-SHA256 + Ed25519) → mg_sign.py + mg_ed25519.py  [test_cert07 + test_cert09]
 7. Temporal Commitment (NIST Beacon) → mg_temporal.py  [test_temporal + test_cert10]
+8. 5-Layer Independence (CERT-11 + CERT-12) → test_cert11 (coordinated multi-vector) + test_cert12 (encoding attacks)  [proves each layer catches attacks others miss]
 
 ## How to verify everything works
 
@@ -101,7 +102,7 @@ python scripts/steward_audit.py                              # PASS
 python -m pytest tests/ -q                                   # 511 passed
 python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 
-## Current state (2026-03-15)
+## Current state (2026-03-18)
 
 - Claims: 14
 - Tests: 511 passing
@@ -126,8 +127,8 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 ## Key files
 
 - README.md — problem, solution, quickstart
-- docs/PROTOCOL.md — MVP v0.2 protocol specification (3 layers + Cross-Claim Chain)
-- docs/ARCHITECTURE.md — v0.2 architecture diagrams
+- docs/PROTOCOL.md — v0.5 protocol specification (5 layers + Cross-Claim Chain)
+- docs/ARCHITECTURE.md — v0.5 architecture diagrams
 - docs/ROADMAP.md — planned expansion
 - reports/scientific_claim_index.md — all 14 claims with thresholds
 - reports/canonical_state.md — authoritative claims list
@@ -138,7 +139,7 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 - scripts/steward_submission_pack.py — builds submission pack with evidence bundles
 - scripts/mg.py — pack build + verify (3 layers) + verify-chain CLI
   verify-chain: python scripts/mg.py verify-chain bundle1/ bundle2/ bundle3/
-- scripts/deep_verify.py — 10-test proof-not-trust verification script
+- scripts/deep_verify.py — 13-test proof-not-trust verification script
 - demos/open_data_demo_01/run_demo.py — working end-to-end demo
 
 ## Git workflow

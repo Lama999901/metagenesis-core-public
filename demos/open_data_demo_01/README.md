@@ -39,10 +39,12 @@ So: the computational claim (MTR-1) was run on real open data, and the resulting
 ## What this proves
 
 - You can **reproduce** the claim (MTR-1) on an open dataset with a single command.
-- The pack is **tamper-evident** across three independent layers:
+- The pack is **tamper-evident** across five independent layers:
   - **Layer 1 (SHA-256 integrity):** any file change breaks the manifest root_hash.
   - **Layer 2 (semantic):** stripping job_snapshot and recomputing all hashes still fails — semantic check catches it.
   - **Layer 3 (Step Chain):** execution_trace + trace_root_hash commit to the exact computation sequence. Changing any input breaks trace_root_hash.
+  - **Layer 4 (Bundle Signing):** Ed25519/HMAC signature proves WHO created the bundle.
+  - **Layer 5 (Temporal Commitment):** NIST Beacon pre-commitment proves WHEN bundle was signed.
 - The run_artifact.json contains `execution_trace` (4 steps) and `trace_root_hash` — inspect it with any JSON viewer.
 
 ---

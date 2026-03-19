@@ -1,5 +1,5 @@
 # MetaGenesis Core — Update Protocol
-> Version 1.0 — 2026-03-16
+> Version 1.1 — 2026-03-18
 > Mandatory checklist for every significant change.
 > Goal: repo, site, docs, and Project Knowledge always in sync.
 
@@ -49,7 +49,7 @@ Not updating all layers = a tail that accumulates and breaks trust.
     [ ] tests/<domain>/test_<claim_id>.py — min: pass, fail, runner
     [ ] python scripts/steward_audit.py → PASS
     [ ] python -m pytest tests/ -q → all passed
-    [ ] python scripts/deep_verify.py → ALL 10 PASSED
+    [ ] python scripts/deep_verify.py → ALL 13 PASSED
 
 [ ] PROJECT KNOWLEDGE UPDATE:
     [ ] EVOLUTION_LOG.md → CURRENT STATE + SESSION LOG
@@ -88,7 +88,7 @@ Select-String "OLD_N claims" index.html, README.md, llms.txt, CONTEXT_SNAPSHOT.m
     JS counter:        ct(document.getElementById('cn2'),N,1500)
     origin prose:      N passing tests  ← EASY TO MISS
 
-[ ] python scripts/deep_verify.py → ALL 10 PASSED
+[ ] python scripts/deep_verify.py → ALL 13 PASSED
 
 [ ] PROJECT KNOWLEDGE:
     [ ] EVOLUTION_LOG.md → CURRENT STATE tests count
@@ -227,7 +227,7 @@ python -m pytest tests/ -q
 
 # 3. Full verification
 python scripts/deep_verify.py
-# → ALL 10 TESTS PASSED
+# → ALL 13 TESTS PASSED
 
 # 4. No forbidden terms
 grep -r "tamper-proof\|GPT-5\|19x\|blockchain\|unforgeable" scripts/ backend/ tests/
@@ -264,5 +264,61 @@ Select-String "OLD_NUMBER" index.html, README.md, llms.txt, system_manifest.json
 
 ---
 
-*UPDATE_PROTOCOL v1.0 — 2026-03-16 — MetaGenesis Core*
+*UPDATE_PROTOCOL v1.1 — 2026-03-18 — MetaGenesis Core*
 *Update when new change types appear*
+
+---
+
+## NEW CHANGE TYPES ADDED IN v1.1
+
+### 🔒 NEW VERIFICATION LAYER
+
+```
+[ ] scripts/mg_<layer>.py — implementation
+[ ] scripts/mg.py — integrate into verify pipeline
+[ ] tests/steward/test_cert<N>_*.py — adversarial proof
+[ ] docs/PROTOCOL.md — add layer description + update count
+[ ] docs/ARCHITECTURE.md — update layer count + attack hierarchy
+[ ] README.md — update layers count + attack table
+[ ] SECURITY.md — add layer section
+[ ] CONTRIBUTING.md — update layer count
+[ ] CITATION.cff — update layer count
+[ ] CLAUDE.md — update 5-LAYER VERIFICATION section
+[ ] index.html — update layer count everywhere
+[ ] demos/open_data_demo_01/README.md — update layer count
+[ ] UPDATE_PROTOCOL.md — this file
+```
+
+### 💡 NEW INNOVATION (patent)
+
+```
+[ ] ppa/README_PPA.md — add to post-filing table
+[ ] COMMERCIAL.md — update innovation count
+[ ] README.md — add innovation section
+[ ] CLAUDE.md — update innovations count
+[ ] system_manifest.json — add to verified_innovations
+[ ] paper.md — update innovation count + description
+[ ] CURSOR_MASTER_PROMPT_v2_X.md — BLOCK A current state
+```
+
+---
+
+## ⚠️ CRITICAL: FILES AGENTS HISTORICALLY MISS
+
+These files contain version strings but are NOT touched often.
+They require CONTENT-BASED checking (not git-based).
+`check_stale_docs.py --strict` blocks merge if banned strings found.
+
+```
+UPDATE_PROTOCOL.md        ← deep_verify count, version
+CURSOR_MASTER_PROMPT_*.md ← current state block (511 tests)
+SECURITY.md               ← layer count (three/four)
+COMMERCIAL.md             ← innovation count (5/6/7)
+CITATION.cff              ← version, date, layer count
+ppa/README_PPA.md         ← test count, innovation count
+demos/*/README.md         ← layer count
+docs/PROTOCOL.md          ← version, layer count
+docs/ARCHITECTURE.md      ← version, test count
+docs/ROADMAP.md           ← version, test count
+known_faults.yaml         ← test count
+```

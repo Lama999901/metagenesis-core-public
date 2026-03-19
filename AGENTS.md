@@ -154,6 +154,8 @@ everything → mg.py verify runs five independent layers:
   Layer 1: SHA-256 integrity (file modification)
   Layer 2: semantic (job_snapshot present, canary_mode correct, payload.kind matches)
   Layer 3: step chain (trace_root_hash == final execution step hash)
+  Layer 4: bundle signing (HMAC-SHA256 or Ed25519 signature verification)
+  Layer 5: temporal commitment (NIST Beacon pre-commitment proves WHEN signed)
 → PASS or FAIL with specific layer and reason.
 For physical domains: anchor_hash embeds upstream trace_root_hash into downstream Step Chain
 (MTR-1 → DT-FEM-01 → DRIFT-01 cryptographically linked end-to-end).

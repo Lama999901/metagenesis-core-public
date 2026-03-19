@@ -21,7 +21,14 @@ Logic:
 
 import subprocess
 import sys
+import io
 from pathlib import Path
+
+# Fix Windows cp1252 encoding
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+if sys.stderr.encoding != 'utf-8':
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
@@ -76,6 +83,103 @@ CRITICAL_FILES = {
         "description": "Known limitations — test count must match pytest output",
     },
 }
+
+
+# ── Content validation — banned/required strings per file ──────────────────
+CONTENT_CHECKS = {
+    "CONTRIBUTING.md": {
+        "banned": ["223 passed", "295 passed", "ALL 10 TESTS", "3 verification layers"],
+        "required": ["511", "ALL 13 TESTS", "5 verification layers"],
+    },
+    "CITATION.cff": {
+        "banned": ["version: 0.2", "version: 0.3", "version: 0.4", "three independent"],
+        "required": ["version: 0.5", "five independent", "511"],
+    },
+    "docs/PROTOCOL.md": {
+        "banned": ["MVP v0.2", "MVP v0.3", "MVP v0.4", "Three verification layers", "5 patentable"],
+        "required": ["(MVP) v0.5", "Five verification layers", "8 innovations"],
+    },
+    "docs/ARCHITECTURE.md": {
+        "banned": ["282 tests", "Architecture v0.2", "Three verification layers"],
+        "required": ["511 tests", "Five verification layers"],
+    },
+    "docs/ROADMAP.md": {
+        "banned": ["Current version: 0.2", "Current version: 0.3", "Current version: 0.4", "282 adversarial"],
+        "required": ["0.5.0", "511 adversarial"],
+    },
+    "ppa/README_PPA.md": {
+        "banned": ["282 tests", "Current state (2026-03-17)"],
+        "required": ["511 tests", "8 innovations"],
+    },
+    "COMMERCIAL.md": {
+        "banned": ["5 innovations"],
+        "required": ["8 innovations"],
+    },
+    "SECURITY.md": {
+        "banned": ["three independent layers"],
+        "required": ["Layer 4", "Layer 5"],
+    },
+    "demos/open_data_demo_01/README.md": {
+        "banned": ["three independent layers"],
+        "required": ["five independent layers"],
+    },
+    "README.md": {
+        "banned": ["295 passing", "6 innovations", "7 innovations"],
+        "required": ["511", "8 innovations"],
+    },
+    "paper.md": {
+        "banned": ["389 adversarial", "17 March 2026"],
+        "required": ["511 adversarial", "18 March 2026"],
+    },
+    "reports/known_faults.yaml": {
+        "banned": ["282 tests", "295 passed", "295 tests"],
+        "required": ["511 tests", "511 passed"],
+    },
+    "CLAUDE.md": {
+        "banned": ["10-test proof", "12 counters"],
+        "required": ["13-test proof", "8 innovations"],
+    },
+    "UPDATE_PROTOCOL.md": {
+        "banned": ["ALL 10 PASSED", "ALL 10 TESTS PASSED", "v1.0 — 2026-03-16"],
+        "required": ["ALL 13 PASSED", "v1.1"],
+    },
+    "CURSOR_MASTER_PROMPT_v2_3.md": {
+        "banned": ["271 tests", "295 tests", "3 verification layers", "MVP v0.2", "ALL 10 TESTS"],
+        "required": ["511 tests", "5 verification layers", "MVP v0.5", "ALL 13 TESTS"],
+    },
+    "docs/HOW_TO_ADD_CLAIM.md": {
+        "banned": ["ALL 10", "271", "282", "295", "389", "v0.2", "v0.3", "v0.4"],
+        "required": ["511", "v0.5"],
+    },
+    "docs/REAL_DATA_GUIDE.md": {
+        "banned": ["ALL 10", "271", "282", "295", "389", "v0.2", "v0.3", "v0.4"],
+        "required": ["511", "v0.5"],
+    },
+    "docs/USE_CASES.md": {
+        "banned": ["ALL 10", "271", "282", "295", "389", "v0.2", "v0.3", "v0.4"],
+        "required": ["511", "v0.5"],
+    },
+    "reports/scientific_claim_index.md": {
+        "banned": ["282", "295"],
+        "required": ["14 claims", "511"],
+    },
+}
+
+
+def check_content(doc_file, checks):
+    """Check file content for banned/required strings. Returns list of issues."""
+    full_path = REPO_ROOT / doc_file
+    if not full_path.exists():
+        return []
+    content = full_path.read_text(encoding="utf-8", errors="ignore")
+    issues = []
+    for banned in checks.get("banned", []):
+        if banned.lower() in content.lower():
+            issues.append(f"BANNED: '{banned}'")
+    for required in checks.get("required", []):
+        if required.lower() not in content.lower():
+            issues.append(f"MISSING: '{required}'")
+    return issues
 
 
 def run(cmd, cwd=REPO_ROOT):
@@ -135,10 +239,24 @@ def check_stale_docs(strict=False):
     changed = get_files_changed_since(last_merge)
     print(f"  Files changed since merge: {len(changed)}\n")
 
+    # 2b. Content checks (independent of git — always run)
+    content_stale = []
+    print("\n  Content validation (version strings):")
+    for doc_file, checks in CONTENT_CHECKS.items():
+        issues = check_content(doc_file, checks)
+        if issues:
+            content_stale.append((doc_file, issues))
+            print(f"  \u274c CONTENT   {doc_file}")
+            for issue in issues:
+                print(f"               \u2192 {issue}")
+        else:
+            print(f"  \u2705 OK        {doc_file}")
+
     # 3. Check each critical file
     stale = []
     current = []
     ok_no_change_needed = []
+    all_clean = True  # default; updated after git + content checks
 
     for doc_file, meta in CRITICAL_FILES.items():
         doc_path = Path(doc_file)
@@ -179,6 +297,8 @@ def check_stale_docs(strict=False):
     print(f"  OK      : {len(ok_no_change_needed)}")
     print(f"  STALE   : {len(stale)}")
 
+    all_clean = len(stale) == 0 and len(content_stale) == 0
+
     if stale:
         print("\n  ❌ STALE FILES NEED UPDATE:")
         for f in stale:
@@ -186,15 +306,15 @@ def check_stale_docs(strict=False):
         print()
         if strict:
             print("  EXIT 1 (--strict mode)")
-            return False
-        else:
-            print("  ⚠  Run with --strict to fail CI on stale docs")
-            print("  Fix: update stale files to reflect current state")
-    else:
+
+    if not stale and not content_stale:
         print("\n  ✅ All critical documentation is current.")
 
     print("═" * 60 + "\n")
-    return len(stale) == 0
+
+    if not all_clean and strict:
+        return False
+    return all_clean
 
 
 if __name__ == "__main__":

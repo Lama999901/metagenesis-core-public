@@ -213,3 +213,7 @@ Study these before adding your own claim:
 **Domain-specific (pharma/finance):**
 - `backend/progress/pharma1_admet_certificate.py`
 - `backend/progress/finrisk1_var_certificate.py`
+
+---
+
+*How to Add a Claim v0.5 — 2026-03-18 — MetaGenesis Core — 14 claims, 511 tests*

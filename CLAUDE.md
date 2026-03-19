@@ -234,13 +234,13 @@ When adding new file types, add to `scripts/mg_policy_gate_policy.json → allow
 scripts/mg.py               ← core verifier CLI (verify/pack/verify-chain/sign)
 scripts/mg_sign.py          ← bundle signing Innovation #6
 scripts/steward_audit.py    ← governance (SEALED)
-scripts/deep_verify.py      ← 10-test proof script
+scripts/deep_verify.py      ← 13-test proof script
 backend/progress/runner.py  ← job dispatch (14 claims)
 reports/scientific_claim_index.md  ← claim registry
 reports/canonical_state.md  ← authoritative list (LOCKED)
 reports/known_faults.yaml   ← known limitations (SCOPE_001)
 paper.md + paper.bib        ← JOSS paper
-index.html                  ← site (14/511/5/12 counters in 11+ places)
+index.html                  ← site (14 claims/511 tests/5 layers/8 innovations in 11+ places)
 CONTEXT_SNAPSHOT.md         ← live state for AI agents
 ```
 
@@ -354,4 +354,4 @@ git log --since='7 days ago' --name-only --pretty=format: | sort -u
 
 ---
 
-*CLAUDE.md v1.3 — 2026-03-17 — MetaGenesis Core v0.5.0 LIVE*
+*CLAUDE.md v1.4 — 2026-03-18 — MetaGenesis Core v0.5.0 LIVE*

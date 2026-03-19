@@ -3,8 +3,8 @@ gsd_state_version: 1.0
 milestone: v0.5
 milestone_name: milestone
 status: completed
-stopped_at: Completed quick task 260318-j50 (urgent security fix - remove HMAC key file)
-last_updated: "2026-03-18T21:54:20.350Z"
+stopped_at: Completed quick task 260318-jpb (fix stale docs)
+last_updated: "2026-03-18T22:16:34Z"
 last_activity: 2026-03-18 -- Phase 8 Plan 02 index.html counter updates complete
 progress:
   total_phases: 4
@@ -43,7 +43,7 @@ See: .planning/PROJECT.md (updated 2026-03-18)
 Phase: 8 of 8 (Counter Updates)
 Plan: 2 of 2 complete
 Status: Completed
-Last activity: 2026-03-18 - Completed quick task 260318-j50: URGENT security fix
+Last activity: 2026-03-18 - Completed quick task 260318-jpb: Fix stale docs
 
 Progress: [██████████] 9/9 plans complete (100%)
 
@@ -113,9 +113,11 @@ None yet.
 |---|-------------|------|--------|-----------|
 | 260318-imr | Fix git merge conflicts | 2026-03-18 | 28db614 | [260318-imr-fix-git-merge-conflicts-resolve-claude-m](./quick/260318-imr-fix-git-merge-conflicts-resolve-claude-m/) |
 | 260318-j50 | URGENT security fix: remove HMAC key, scrub history, remove dev artifacts | 2026-03-18 | 6e23ee9 | [260318-j50-urgent-security-fix-remove-hmac-key-file](./quick/260318-j50-urgent-security-fix-remove-hmac-key-file/) |
+| 260318-jpb | Fix stale docs: CONTEXT_SNAPSHOT.md, llms.txt, README.md, AGENTS.md | 2026-03-18 | b2fb106 | [260318-jpb-fix-stale-docs-context-snapshot-llms-txt](./quick/260318-jpb-fix-stale-docs-context-snapshot-llms-txt/) |
+| 260318-m0a | Auto-watchlist scanner + agent evolution check #9 | 2026-03-18 | 3ad97a9 | [260318-m0a-auto-watchlist-scanner-agent-evolution-i](./quick/260318-m0a-auto-watchlist-scanner-agent-evolution-i/) |
 
 ## Session Continuity
 
-Last session: 2026-03-18T21:54:20.347Z
-Stopped at: Completed quick task 260318-j50 (urgent security fix - remove HMAC key file)
+Last session: 2026-03-18T23:55:04Z
+Stopped at: Completed quick task 260318-m0a (auto-watchlist scanner + evolution check #9)
 Resume file: None
