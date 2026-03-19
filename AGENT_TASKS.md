@@ -41,7 +41,7 @@ Auto-processed by `scripts/agent_research.py`. First PENDING task gets executed 
 
 ### TASK-006
 - **Title:** Adversarial tests for SYSID-01 (weakest coverage claim)
-- **Status:** PENDING
+- **Status:** DONE (2026-03-19)
 - **Priority:** P1
 - **Output:** reports/AGENT_REPORT_YYYYMMDD.md
 - **Description:** SYSID-01 was identified as weakest-coverage claim in TASK-001. Write 3 adversarial test scenarios: (1) step chain hash tamper, (2) semantic field stripping, (3) threshold boundary injection. Read sysid1_arx_calibration.py to extract exact thresholds and field names.
