@@ -35,6 +35,7 @@ SCAN_SUBDIRS = ["docs", "ppa", "reports", "demos"]
 EXCLUDE_DIRS = {
     ".planning", ".claude", ".git", "__pycache__",
     "node_modules", ".venv", ".mypy_cache", ".pytest_cache",
+    "ppa",  # frozen patent documents — never flag
 }
 
 
