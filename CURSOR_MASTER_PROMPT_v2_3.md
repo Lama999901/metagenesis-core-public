@@ -76,8 +76,8 @@ DO NOT TOUCH:
 
 After all changes:
   python scripts/steward_audit.py   # → STEWARD AUDIT: PASS
-  python -m pytest tests/ -q        # → 271 passed (or more)
-  python scripts/deep_verify.py     # → ALL 10 TESTS PASSED
+  python -m pytest tests/ -q        # → 511 passed (or more)
+  python scripts/deep_verify.py     # → ALL 13 TESTS PASSED
 ```
 
 ---
@@ -124,7 +124,7 @@ STEP 6 — Update numbers IN THE SAME COMMIT
 After:
   python scripts/steward_audit.py   → PASS
   python -m pytest tests/ -q        → all passed
-  python scripts/deep_verify.py     → ALL 10 TESTS PASSED
+  python scripts/deep_verify.py     → ALL 13 TESTS PASSED
 ```
 
 ---
@@ -167,7 +167,7 @@ BASE URL: `https://github.com/Lama999901/metagenesis-core-public/blob/main/`
 
 ```
 <nav>     Protocol | Claims | Verticals | For You | Verify | Free Pilot | GitHub
-#hero     — 14 claims, 271 tests, AUDIT: PASS
+#hero     — 14 claims, 511 tests, AUDIT: PASS
 #protocol — "Not a tool. A standard." — 4 innovations + Step Chain
 #claims   — 14 claim cards with links
 #verticals — 6 verticals
@@ -183,7 +183,7 @@ BASE URL: `https://github.com/Lama999901/metagenesis-core-public/blob/main/`
 <footer>
 ```
 
-**Hero badge:** `14 active claims | 271 tests | PASS | patent pending`
+**Hero badge:** `14 active claims | 511 tests | PASS | patent pending`
 
 ---
 
@@ -191,7 +191,7 @@ BASE URL: `https://github.com/Lama999901/metagenesis-core-public/blob/main/`
 
 ```powershell
 # Numbers in index.html
-Select-String "271" index.html | `
+Select-String "511" index.html | `
   Where-Object {$_.Line -notmatch "rgba\(0,255,223|&#223;|'0,255,223'"}
 
 # JavaScript check in browser
@@ -221,7 +221,7 @@ Select-String "OLD_NUMBER" index.html, README.md, llms.txt, CONTEXT_SNAPSHOT.md,
 # 4. Run tests
 python scripts/steward_audit.py    # → PASS
 python -m pytest tests/ -q         # → all passed
-python scripts/deep_verify.py      # → ALL 10 TESTS PASSED
+python scripts/deep_verify.py      # → ALL 13 TESTS PASSED
 
 # 5. Commit and push
 git add <files>
@@ -331,7 +331,7 @@ tests/fixtures/dtfem01_fail.csv       — 5 rows, 1 row 20% error → FAIL
 python -m pytest tests/ml/test_mlbench01_realdata.py -v
 python -m pytest tests/digital_twin/test_dtfem01_realdata.py -v
 python -m pytest tests/cli/test_real_data_e2e.py -v
-python scripts/deep_verify.py  # → ALL 10 TESTS PASSED
+python scripts/deep_verify.py  # → ALL 13 TESTS PASSED
 ```
 
 **Full guide:** `docs/REAL_DATA_GUIDE.md`
@@ -373,4 +373,4 @@ TRAP-NEW-09: JobStatus enum comparison
 ---
 
 *CURSOR_MASTER_PROMPT v2.3 — 2026-03-16 — MetaGenesis Core*
-*Changes: all text translated to English, test count updated to 271*
+*Changes: all text translated to English, test count updated to 511*
