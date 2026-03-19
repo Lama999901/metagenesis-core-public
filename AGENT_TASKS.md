@@ -6,7 +6,7 @@ Auto-processed by `scripts/agent_research.py`. First PENDING task gets executed 
 
 ### TASK-001
 - **Title:** Audit test coverage per all 14 claims
-- **Status:** PENDING
+- **Status:** DONE (2026-03-18)
 - **Priority:** P1
 - **Output:** reports/AGENT_REPORT_YYYYMMDD.md
 - **Description:** For each of the 14 active claims (MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01, DT-FEM-01, ML_BENCH-02, ML_BENCH-03, PHARMA-01, FINRISK-01, DT-SENSOR-01, DT-CALIB-LOOP-01), count test files and test functions. Find the claim with weakest coverage. Propose 3 new adversarial tests.
