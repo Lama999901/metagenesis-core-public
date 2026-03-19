@@ -302,8 +302,8 @@ system to confirm the claim.
 # State of the Field
 
 Several tools address aspects of computational reproducibility. MLflow
-[@mlflow] tracks experiments and model versions. DVC [@dvc] versions
-datasets and pipelines. lm-eval [@lm-eval] standardizes language model
+[@chen2020mlflow] tracks experiments and model versions. DVC [@kuprieiev2023dvc] versions
+datasets and pipelines. lm-eval [@biderman2024lessons] standardizes language model
 benchmarks. Weights & Biases provides collaborative experiment dashboards.
 
 These tools excel at tracking — recording what was run, when, and with
