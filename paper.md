@@ -11,7 +11,7 @@ tags:
   - provenance
 authors:
   - name: Yehor Bazhynov
-    orcid: 0000-0000-0000-0000
+    orcid: 0009-0006-6292-4892
     affiliation: 1
 affiliations:
   - name: Independent Researcher, Langley, BC, Canada
@@ -238,6 +238,35 @@ Physical anchor traceability (⚓) is scoped to claims with known physical
 constants. For ML and financial claims, the protocol provides tamper-evident
 provenance only. This distinction is formalized in `reports/known_faults.yaml :: SCOPE_001`.
 
+# Agent Evolution System
+
+MetaGenesis Core ships with an embedded agent governance system that enforces
+documentation consistency automatically. Anyone who clones the repository
+receives a 10-check health monitoring suite (`scripts/agent_evolution.py`),
+post-phase validation hooks, and a cumulative learning system
+(`scripts/agent_learn.py`) that records recurring patterns and auto-fix hints
+across sessions.
+
+The system includes:
+
+- **Agent Evolution Runner** — 10 automated checks covering steward audit,
+  test suite, deep verification, stale documentation, manifest consistency,
+  forbidden terms, coverage gaps, CLAUDE.md freshness, watchlist coverage,
+  and branch synchronization.
+- **Agent Learning** — session-to-session memory that surfaces recurring
+  issues and stores auto-fix hints, so the same mistake is never debugged
+  twice.
+- **Watchlist Scanner** (`scripts/auto_watchlist_scan.py`) — detects
+  documentation files that exist outside the validation watchlist, preventing
+  silent documentation drift.
+
+This is itself a demonstration of the protocol's domain-agnostic
+applicability: the same governance-enforcement principle that prevents
+undocumented computational claims from existing also prevents undocumented
+documentation drift. The recursive structure — agents extend the protocol,
+the protocol verifies the agents — provides a concrete example of
+self-referential verification that scales with project complexity.
+
 # Known Limitations
 
 MetaGenesis Core is tamper-evident, not tamper-proof. A sufficiently
@@ -269,6 +298,59 @@ DVC [@kuprieiev2023dvc] and MLflow [@chen2020mlflow] track experiment
 provenance. MetaGenesis Core produces independently verifiable evidence
 from that provenance — a verifier does not need access to the tracking
 system to confirm the claim.
+
+# State of the Field
+
+Several tools address aspects of computational reproducibility. MLflow
+[@chen2020mlflow] tracks experiments and model versions. DVC [@kuprieiev2023dvc] versions
+datasets and pipelines. lm-eval [@biderman2024lessons] standardizes language model
+benchmarks. Weights & Biases provides collaborative experiment dashboards.
+
+These tools excel at tracking — recording what was run, when, and with
+which parameters. However, none produces a self-contained, machine-verifiable
+evidence bundle that a third party can audit offline without access to the
+original tracking infrastructure. A researcher receiving an MLflow run ID
+must trust that the tracking server has not been modified; a DVC-managed
+pipeline requires access to the original remote storage.
+
+MetaGenesis Core fills this gap. It packages computational results into
+cryptographically committed bundles where each verification layer catches
+attacks the other four miss. The result is auditable evidence, not auditable
+logs — a bundle either passes five independent verification checks or it
+does not, regardless of who runs the verifier or where.
+
+# Research Impact Statement
+
+MetaGenesis Core is designed for anyone who publishes computational claims
+and needs verifiable proof that those claims were produced honestly:
+
+- **ML researchers** facing reproducibility requirements from venues
+  adopting stricter artifact evaluation (NeurIPS, ICML, AAAI).
+- **Pharmaceutical teams** navigating FDA guidance on AI/ML in drug
+  development, where audit trails for computational predictions are
+  increasingly expected.
+- **Financial institutions** subject to Basel III model risk management
+  requirements, where independent validation of risk model outputs is
+  mandatory.
+- **Digital twin operators** who must demonstrate that simulation outputs
+  trace back to calibrated physical measurements.
+- **Any researcher** who wants to move beyond "trust me, I ran the code"
+  toward "here is the cryptographic proof that I ran the code and got
+  these results."
+
+# AI Usage Disclosure
+
+Claude (Anthropic) was used as the primary development tool throughout
+this project: architecture decisions, code implementation, patent
+application drafting, and documentation. All AI-generated outputs were
+verified by the author through the project's own adversarial test suite
+(511 tests), steward audit, and 13-test deep verification script.
+Quality was ensured by governance-enforced bidirectional coverage — every
+claim must have tests and every test must correspond to a claim — and
+5-layer tamper-evident verification where each layer catches attacks the
+other four miss. The recursive self-verification structure means the
+protocol that verifies computational claims also verifies the agent that
+helped build it.
 
 # Acknowledgements
 

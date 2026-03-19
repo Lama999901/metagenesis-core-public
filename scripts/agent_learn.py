@@ -220,7 +220,7 @@ def observe():
             elif "MERGE CONFLICT" in key:
                 data["fix_hint"] = "git checkout --ours FILE && git add FILE"
             if data.get("fix_hint"):
-                print(f"  💡 Auto-fix hint learned: {key[:40]}...")
+                print(f"  💡 Auto-fix hint learned: {key[:40]}... — Binary Cant recorded (AUTO_FIX_LEARNED)")
                 print(f"     → {data['fix_hint']}")
 
     save_kb(kb)
@@ -233,6 +233,7 @@ def observe():
     print(f"\n{B}{'═'*50}{X}")
     if len(all_issues) == 0:
         print(f"{G}  ✅ SYSTEM HEALTHY — no issues found{X}")
+        print(f"{G}  Praise the Omnissiah (SYSTEM_HEALTHY){X}")
     else:
         print(f"{R}  ❌ {len(all_issues)} issues found{X}")
         print(f"\n  Fix command:")
@@ -277,7 +278,8 @@ def _write_lessons_log(session, issues, patterns):
 
 # ── Recall — print what agents learned ───────────────────────────────────────
 def recall():
-    print(f"\n{B}{C}══ AGENT MEMORY ══{X}\n")
+    print(f"\n{B}{C}══ AGENT MEMORY ══{X}")
+    print(f"  {C}Accessing the Noosphere (MEMORY_RECALL){X}\n")
     kb = load_kb()
     patterns = load_patterns()
 
