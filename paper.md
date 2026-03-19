@@ -306,6 +306,15 @@ Several tools address aspects of computational reproducibility. MLflow
 datasets and pipelines. lm-eval [@biderman2024lessons] standardizes language model
 benchmarks. Weights & Biases provides collaborative experiment dashboards.
 
+Container-based approaches complement these tracking tools. ReproZip
+[@chirigati2016reprozip] captures system-level dependencies into a
+self-contained package that can be replayed on any machine. Binder
+[@jupyter2018binder] wraps repositories into executable cloud environments,
+enabling one-click reproduction of notebooks. These tools solve the
+environment problem — ensuring the same code runs in the same context —
+but do not produce cryptographic evidence that a specific computation
+met a specific verification threshold.
+
 These tools excel at tracking — recording what was run, when, and with
 which parameters. However, none produces a self-contained, machine-verifiable
 evidence bundle that a third party can audit offline without access to the
