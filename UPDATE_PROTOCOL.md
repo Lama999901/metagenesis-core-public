@@ -311,7 +311,7 @@ They require CONTENT-BASED checking (not git-based).
 
 ```
 UPDATE_PROTOCOL.md        ← deep_verify count, version
-CURSOR_MASTER_PROMPT_*.md ← current state block (271/295/389 tests)
+CURSOR_MASTER_PROMPT_*.md ← current state block (511 tests)
 SECURITY.md               ← layer count (three/four)
 COMMERCIAL.md             ← innovation count (5/6/7)
 CITATION.cff              ← version, date, layer count
