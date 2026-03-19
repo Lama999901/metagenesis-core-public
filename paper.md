@@ -11,7 +11,7 @@ tags:
   - provenance
 authors:
   - name: Yehor Bazhynov
-    orcid: 0000-0000-0000-0000
+    orcid: 0009-0006-6292-4892
     affiliation: 1
 affiliations:
   - name: Independent Researcher, Langley, BC, Canada
@@ -237,6 +237,35 @@ seed reporting detectable) and cross-claim chain determinism.
 Physical anchor traceability (⚓) is scoped to claims with known physical
 constants. For ML and financial claims, the protocol provides tamper-evident
 provenance only. This distinction is formalized in `reports/known_faults.yaml :: SCOPE_001`.
+
+# Agent Evolution System
+
+MetaGenesis Core ships with an embedded agent governance system that enforces
+documentation consistency automatically. Anyone who clones the repository
+receives a 10-check health monitoring suite (`scripts/agent_evolution.py`),
+post-phase validation hooks, and a cumulative learning system
+(`scripts/agent_learn.py`) that records recurring patterns and auto-fix hints
+across sessions.
+
+The system includes:
+
+- **Agent Evolution Runner** — 10 automated checks covering steward audit,
+  test suite, deep verification, stale documentation, manifest consistency,
+  forbidden terms, coverage gaps, CLAUDE.md freshness, watchlist coverage,
+  and branch synchronization.
+- **Agent Learning** — session-to-session memory that surfaces recurring
+  issues and stores auto-fix hints, so the same mistake is never debugged
+  twice.
+- **Watchlist Scanner** (`scripts/auto_watchlist_scan.py`) — detects
+  documentation files that exist outside the validation watchlist, preventing
+  silent documentation drift.
+
+This is itself a demonstration of the protocol's domain-agnostic
+applicability: the same governance-enforcement principle that prevents
+undocumented computational claims from existing also prevents undocumented
+documentation drift. The recursive structure — agents extend the protocol,
+the protocol verifies the agents — provides a concrete example of
+self-referential verification that scales with project complexity.
 
 # Known Limitations
 
