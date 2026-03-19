@@ -56,7 +56,7 @@ def check_steward():
     section("STEWARD AUDIT")
     out, code = run("python scripts/steward_audit.py")
     if code == 0 and "PASS" in out:
-        ok("steward_audit.py → PASS")
+        ok("steward_audit.py → PASS — Inquisition satisfied (STEWARD_PASS)")
         return True
     else:
         err(f"steward_audit.py → FAIL")
@@ -201,7 +201,7 @@ def check_forbidden():
         for f in found: err(f)
         return False
     else:
-        ok("No forbidden terms found")
+        ok("No forbidden terms found — no Hereticus detected (FORBIDDEN_TERMS)")
         return True
 
 
@@ -331,7 +331,7 @@ def check_branch_sync():
         warn("Could not determine branch sync status (advisory)")
         return True
     if behind > 0:
-        err(f"Branch is {behind} commits behind origin/main")
+        err(f"Branch is {behind} commits behind origin/main — Skitarii out of sync (BRANCH_SYNC_FAIL)")
         info("Fix: git fetch origin && git merge origin/main --no-edit")
         return False
     else:
@@ -346,6 +346,7 @@ def main():
 
     print(f"\n{BOLD}{'═'*60}{RESET}")
     print(f"{BOLD}  MetaGenesis Core — Agent Evolution Check{RESET}")
+    info("Servo-skull patrol initiated (HEALTH_CHECK_START)")
     print(f"  {datetime.now().strftime('%Y-%m-%d %H:%M')} | v0.5.0")
     print(f"{BOLD}{'═'*60}{RESET}")
 
@@ -377,11 +378,13 @@ def main():
     print()
     if passed == total:
         print(f"{BOLD}{GREEN}  ✅ ALL {total} CHECKS PASSED — system healthy{RESET}")
+        print(f"  {GREEN}The Omnissiah is pleased (PASS){RESET}")
         print(f"  Tests: {count} | Ready for next milestone")
         code = 0
     else:
         failed = total - passed
         print(f"{BOLD}{RED}  ❌ {failed}/{total} CHECKS FAILED{RESET}")
+        print(f"  {RED}The Machine Spirit is troubled (FAIL){RESET}")
         print()
         print(f"  Run after fixing:")
         print(f"  /gsd:quick \"Update CLAUDE.md to reflect current state: {count} tests, v0.5.0\"")

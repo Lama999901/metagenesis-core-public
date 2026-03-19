@@ -349,7 +349,7 @@ def main():
             cwd=REPO_ROOT, env=env, encoding="utf-8", errors="replace"
         )
 
-    print("Done.")
+    print("Done. Cogitator analysis complete (TASK_DONE)")
 
 
 if __name__ == "__main__":
