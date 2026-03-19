@@ -297,6 +297,8 @@ def check_stale_docs(strict=False):
     print(f"  OK      : {len(ok_no_change_needed)}")
     print(f"  STALE   : {len(stale)}")
 
+    all_clean = len(stale) == 0 and len(content_stale) == 0
+
     if stale:
         print("\n  ❌ STALE FILES NEED UPDATE:")
         for f in stale:
@@ -304,14 +306,14 @@ def check_stale_docs(strict=False):
         print()
         if strict:
             print("  EXIT 1 (--strict mode)")
-            return False
-        else:
-            print("  ⚠  Run with --strict to fail CI on stale docs")
-            print("  Fix: update stale files to reflect current state")
-    else:
+
+    if not stale and not content_stale:
         print("\n  ✅ All critical documentation is current.")
 
     print("═" * 60 + "\n")
+
+    if not all_clean and strict:
+        return False
     return all_clean
 
 
