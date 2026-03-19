@@ -97,7 +97,7 @@ CONTENT_CHECKS = {
     },
     "docs/PROTOCOL.md": {
         "banned": ["MVP v0.2", "MVP v0.3", "MVP v0.4", "Three verification layers", "5 patentable"],
-        "required": ["MVP v0.5", "Five verification layers", "8 innovations"],
+        "required": ["(MVP) v0.5", "Five verification layers", "8 innovations"],
     },
     "docs/ARCHITECTURE.md": {
         "banned": ["282 tests", "Architecture v0.2", "Three verification layers"],
