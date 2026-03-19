@@ -371,9 +371,29 @@ def main():
     passed = sum(1 for v in results.values() if v)
     total  = len(results)
 
+    mechanicus_labels = {
+        "steward":     ("Inquisition satisfied",    "STEWARD"),
+        "tests":       ("Machine Spirit verified",  "TEST"),
+        "deep":        ("Omnissiah approves",       "DEEP"),
+        "docs":        ("Noosphere synchronized",   "DOCS"),
+        "manifest":    ("Codex consistent",         "MANIFEST"),
+        "forbidden":   ("No Hereticus found",       "FORBIDDEN"),
+        "gaps":        ("Forge World complete",      "GAPS"),
+        "claude_md":   ("Lexmechanic current",      "CLAUDEMD"),
+        "watchlist":   ("Servo-skull coverage full", "WATCHLIST"),
+        "branch_sync": ("Skitarii synchronized",    "BRANCH"),
+    }
+
     for check, ok_val in results.items():
-        symbol = f"{GREEN}PASS{RESET}" if ok_val else f"{RED}FAIL{RESET}"
-        print(f"  {symbol}  {check}")
+        status = "PASS" if ok_val else "FAIL"
+        symbol = f"{GREEN}{status}{RESET}" if ok_val else f"{RED}{status}{RESET}"
+        label_info = mechanicus_labels.get(check)
+        if label_info:
+            label, code_prefix = label_info
+            tag = f" — {label} ({code_prefix}_{status})"
+        else:
+            tag = ""
+        print(f"  {symbol}  {check}{tag}")
 
     print()
     if passed == total:
