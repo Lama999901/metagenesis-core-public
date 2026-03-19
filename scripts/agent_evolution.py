@@ -98,8 +98,8 @@ def check_deep_verify():
 # ── 4. Stale Docs ────────────────────────────────────────────────────────────
 def check_stale_docs():
     section("STALE DOCUMENTATION")
-    out, code = run("python scripts/check_stale_docs.py")
-    if "All critical documentation is current" in out:
+    out, code = run("python scripts/check_stale_docs.py --strict")
+    if code == 0 and "All critical documentation is current" in out:
         ok("All critical docs → CURRENT")
         return True, []
     else:

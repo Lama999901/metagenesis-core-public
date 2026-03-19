@@ -23,8 +23,15 @@ import sys
 import subprocess
 import hashlib
 import re
+import io
 from pathlib import Path
 from datetime import datetime
+
+# Fix Windows cp1252 encoding
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+if sys.stderr.encoding != 'utf-8':
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 
 REPO_ROOT   = Path(__file__).resolve().parent.parent
 MEMORY_DIR  = REPO_ROOT / ".agent_memory"
@@ -58,7 +65,11 @@ def save_patterns(p):
 
 # ── Checks ───────────────────────────────────────────────────────────────────
 def run(cmd):
-    r = subprocess.run(cmd, shell=True, capture_output=True, text=True, cwd=REPO_ROOT)
+    import os
+    env = os.environ.copy()
+    env["PYTHONIOENCODING"] = "utf-8"
+    r = subprocess.run(cmd, shell=True, capture_output=True, text=True,
+                       cwd=REPO_ROOT, env=env, encoding="utf-8", errors="replace")
     return r.stdout.strip(), r.returncode
 
 def get_test_count():
