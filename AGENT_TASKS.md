@@ -13,28 +13,28 @@ Auto-processed by `scripts/agent_research.py`. First PENDING task gets executed 
 
 ### TASK-002
 - **Title:** Design claim 15 AGENT-DRIFT-01
-- **Status:** PENDING
+- **Status:** DONE (2026-03-18)
 - **Priority:** P1
 - **Output:** reports/AGENT_REPORT_YYYYMMDD.md
 - **Description:** Design AGENT-DRIFT-01 with job_kind, threshold, step chain structure, physical anchor decision, and estimate implementation hours.
 
 ### TASK-003
 - **Title:** Audit index.html and stale docs for v0.5.0
-- **Status:** PENDING
+- **Status:** DONE (2026-03-18)
 - **Priority:** P2
 - **Output:** reports/AGENT_REPORT_YYYYMMDD.md
 - **Description:** Run check_stale_docs --strict and audit index.html for v0.5.0/JOSS/Ed25519/NLnet/Agent Evolution references. List exact line fixes needed.
 
 ### TASK-004
 - **Title:** Predict JOSS reviewer questions
-- **Status:** PENDING
+- **Status:** DONE (2026-03-18)
 - **Priority:** P2
 - **Output:** reports/AGENT_REPORT_YYYYMMDD.md
 - **Description:** Read paper.md, identify 5 likely JOSS reviewer questions with prepared answers.
 
 ### TASK-005
 - **Title:** Draft integration API sketch
-- **Status:** PENDING
+- **Status:** DONE (2026-03-18)
 - **Priority:** P3
 - **Output:** docs/INTEGRATION_GUIDE.md
 - **Description:** Draft MLflow/DVC/WandB integration API sketch for docs/INTEGRATION_GUIDE.md.
