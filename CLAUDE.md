@@ -1,7 +1,7 @@
 # MetaGenesis Core — Context for AI Agents (GSD)
 
 > Loaded automatically by all GSD agents via CLAUDE.md.
-> Last updated: 2026-03-18 | v0.5.0 LIVE | 14 claims | 511 tests
+> Last updated: 2026-03-18 | v0.5.0 LIVE | 14 claims | 526 tests
 
 ---
 
@@ -41,7 +41,7 @@ scripts/mg.py                                    ← core verifier, modify caref
 "blockchain"        → "cryptographic hash chain"
 "unforgeable"       → don't use
 "GPT-5"             → doesn't exist
-"100% test success" → "511 tests PASS"
+"100% test success" → "526 tests PASS"
 ```
 
 ---
@@ -50,7 +50,7 @@ scripts/mg.py                                    ← core verifier, modify caref
 
 ```bash
 python scripts/steward_audit.py      # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q           # → 511 passed
+python -m pytest tests/ -q           # → 526 passed
 python scripts/deep_verify.py        # → ALL 13 TESTS PASSED
 python scripts/check_stale_docs.py   # → All critical documentation is current
 ```
@@ -82,7 +82,7 @@ git push origin feat/description
 
 ```
 Claims:     14 active (all have 4-step Step Chain)
-Tests:      511 passing
+Tests:      526 passing
 Layers:     5 verification (integrity + semantic + step chain + signing + temporal)
 Innovations: 8 (5 PPA + HMAC + Ed25519 + Temporal)
 Release:    v0.5.0
@@ -240,7 +240,7 @@ reports/scientific_claim_index.md  ← claim registry
 reports/canonical_state.md  ← authoritative list (LOCKED)
 reports/known_faults.yaml   ← known limitations (SCOPE_001)
 paper.md + paper.bib        ← JOSS paper
-index.html                  ← site (14 claims/511 tests/5 layers/8 innovations in 11+ places)
+index.html                  ← site (14 claims/526 tests/5 layers/8 innovations in 11+ places)
 CONTEXT_SNAPSHOT.md         ← live state for AI agents
 ```
 

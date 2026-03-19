@@ -39,7 +39,7 @@ in the non-provisional application.
 | 5-Layer Independence Proof (CERT-11/12) | 2026-03-18 | test_cert11 + test_cert12 — each layer catches attacks others miss |
 | Agent Evolution System | 2026-03-18 | agent_learn.py + agent_evolution.py + check_stale_docs.py |
 
-**Current state (2026-03-18):** 14 claims, 511 tests, 5 layers, 8 innovations.
+**Current state (2026-03-18):** 14 claims, 526 tests, 5 layers, 8 innovations.
 Live state: reports/canonical_state.md
 
 ---

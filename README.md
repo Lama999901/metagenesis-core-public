@@ -5,7 +5,7 @@
 [![Steward Audit](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml/badge.svg)](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Patent Pending](https://img.shields.io/badge/Patent-Pending%20%2363%2F996%2C819-orange.svg)](ppa/README_PPA.md)
-[![Tests](https://img.shields.io/badge/Tests-511%20passing-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-526%20passing-brightgreen.svg)](tests/)
 [![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.5-blueviolet.svg)](docs/PROTOCOL.md)
 [![Sponsor](https://img.shields.io/badge/Sponsor-❤️-pink.svg)](https://github.com/sponsors/Lama999901)
 
@@ -291,7 +291,7 @@ python scripts/steward_audit.py
 # → STEWARD AUDIT: PASS
 
 python -m pytest tests/ -q
-# → 511 passed
+# → 526 passed
 
 # Full proof-not-trust verification (13 tests):
 python scripts/deep_verify.py
@@ -353,7 +353,7 @@ Commercial licensing available for organizations building on the protocol.
 Read these files in order:
 
 ```
-1. CONTEXT_SNAPSHOT.md          ← current state, 14 claims, 511 tests
+1. CONTEXT_SNAPSHOT.md          ← current state, 14 claims, 526 tests
 2. AGENTS.md                    ← hard rules, forbidden terms, protected files
 3. llms.txt                     ← AI-optimized repo summary
 4. reports/canonical_state.md   ← authoritative claims list

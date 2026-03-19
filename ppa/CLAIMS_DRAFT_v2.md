@@ -4,7 +4,7 @@
 > Filing deadline: 2027-03-05 (12 months from PPA #63/996,819).
 > PPA filing basis (FROZEN): see ppa/CLAIMS_DRAFT.md — do NOT edit that file.
 > This document covers ALL claims and innovations for non-provisional filing.
-> Updated: 2026-03-18 | v0.5.0 | 14 claims | 511 tests | 8 innovations
+> Updated: 2026-03-18 | v0.5.0 | 14 claims | 526 tests | 8 innovations
 
 # MetaGenesis Core — Claims Draft v2
 ## For Non-Provisional Application (pre-2027-03-05)
@@ -121,7 +121,7 @@ python scripts/steward_audit.py
 # -> STEWARD AUDIT: PASS
 
 python -m pytest tests/ -q
-# -> 511 passed
+# -> 526 passed
 
 python scripts/deep_verify.py
 # -> ALL 13 TESTS PASSED
@@ -139,4 +139,4 @@ python scripts/agent_evolution.py --summary
 *Deadline: 2027-03-05. Inventor: Yehor Bazhynov.*
 *PPA basis: USPTO #63/996,819, filed 2026-03-05.*
 *FROZEN PPA document: ppa/CLAIMS_DRAFT.md (do not modify).*
-*Current state: v0.5.0 — 14 claims, 511 tests, 8 innovations, 5 verification layers.*
+*Current state: v0.5.0 — 14 claims, 526 tests, 8 innovations, 5 verification layers.*

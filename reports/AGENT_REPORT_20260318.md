@@ -53,14 +53,14 @@ Date: 2026-03-18 22:06
 **Q3: Are there integration tests that verify the full pack-verify round-trip, or only unit tests?**
 
 - **JOSS Criterion:** Tests
-- **Why likely:** The paper claims 511 tests and adversarial proofs, but a reviewer
+- **Why likely:** The paper claims 526 tests and adversarial proofs, but a reviewer
   may ask whether these are unit tests on individual functions or end-to-end tests
   that exercise the complete workflow (claim execution -> pack -> verify -> PASS/FAIL).
 - **Prepared Answer:** Both. The test suite includes: (a) unit tests per claim in
   `tests/<domain>/`, (b) integration tests in `tests/steward/test_cert*.py` that run
   full pack-verify round-trips, (c) adversarial tests (CERT-02 through CERT-12) that
   tamper with bundles and verify the correct layer catches each attack, (d) a 13-test
-  deep verification script (`scripts/deep_verify.py`). CI runs all 511 tests on every PR.
+  deep verification script (`scripts/deep_verify.py`). CI runs all 526 tests on every PR.
 - **Confidence:** MEDIUM-HIGH -- test depth is a common JOSS concern.
 
 **Q4: Where are the contribution guidelines and code of conduct?**
