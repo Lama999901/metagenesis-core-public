@@ -76,28 +76,28 @@ Auto-processed by `scripts/agent_research.py`. First PENDING task gets executed 
 
 ### TASK-011
 - **Title:** Write adversarial test: SYSID-01 Layer 2 semantic stripping
-- **Status:** PENDING
+- **Status:** DONE (2026-03-19)
 - **Priority:** P1
 - **Output:** tests/steward/test_cert_adv_sysid01_semantic.py
 - **Description:** Generate test file that builds a SYSID-01 pack using _make_sem_pack pattern, then strips required semantic fields (mtr_phase, execution_trace, inputs, result) one at a time. Each test asserts _verify_semantic() returns FAIL. Read sysid1_arx_calibration.py for exact field names and test_cert02 for _make_sem_pack pattern.
 
 ### TASK-012
 - **Title:** Write adversarial test: Layer 3 + Layer 5 multi-vector attack
-- **Status:** PENDING
+- **Status:** DONE (2026-03-19)
 - **Priority:** P1
 - **Output:** tests/steward/test_cert_adv_multichain.py
 - **Description:** Generate test file combining step chain tamper (Layer 3) with temporal replay (Layer 5). Scenario: attacker modifies execution_trace hashes AND replays old temporal_commitment.json. Prove both layers catch independently. Read test_cert11 for multi-vector pattern and test_cert10 for temporal helpers.
 
 ### TASK-013
 - **Title:** Write adversarial test: Layer 1 + Layer 4 file mod + wrong key signing
-- **Status:** PENDING
+- **Status:** DONE (2026-03-19)
 - **Priority:** P2
 - **Output:** tests/steward/test_cert_adv_sign_integrity.py
 - **Description:** Generate test file: (1) modify evidence file content, update SHA-256 in manifest (Layer 1 bypass), then verify Layer 4 catches because signature no longer matches. (2) Re-sign with wrong key, verify signature check fails. Read test_cert09 for Ed25519 patterns and test_cert07 for signing patterns.
 
 ### TASK-014
 - **Title:** Write adversarial test: Layer 5 pure temporal isolation
-- **Status:** PENDING
+- **Status:** DONE (2026-03-19)
 - **Priority:** P2
 - **Output:** tests/steward/test_cert_adv_temporal_pure.py
 - **Description:** Generate test file with 4 pure temporal attacks that do NOT involve other layers: (1) truncated beacon value, (2) empty timestamp string, (3) swapped pre_commitment fields between two bundles, (4) temporal_commitment.json with valid structure but all-zero hashes. Read test_cert10 for temporal API usage.

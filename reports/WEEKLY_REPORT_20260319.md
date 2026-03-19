@@ -6,14 +6,14 @@
 - PASS  tests — Machine Spirit verified (TEST_PASS)
 - PASS  deep — Omnissiah approves (DEEP_PASS)
 - PASS  docs — Noosphere synchronized (DOCS_PASS)
-- PASS  manifest — Codex consistent (MANIFEST_PASS)
+- FAIL  manifest — Codex consistent (MANIFEST_FAIL)
 - PASS  forbidden — No Hereticus found (FORBIDDEN_PASS)
 - PASS  gaps — Forge World complete (GAPS_PASS)
-- PASS  claude_md — Lexmechanic current (CLAUDEMD_PASS)
+- FAIL  claude_md — Lexmechanic current (CLAUDEMD_FAIL)
 - PASS  watchlist — Servo-skull coverage full (WATCHLIST_PASS)
 - PASS  branch_sync — Skitarii synchronized (BRANCH_PASS)
-- ✅ ALL 10 CHECKS PASSED — system healthy
-- The Omnissiah is pleased (PASS)
+- ❌ 2/10 CHECKS FAILED
+- The Machine Spirit is troubled (FAIL)
 
 ## Completed Tasks
 
@@ -23,8 +23,16 @@
 - [TASK-004] Predict JOSS reviewer questions (DONE (2026-03-18))
 - [TASK-005] Draft integration API sketch (DONE (2026-03-18))
 - [TASK-006] Adversarial tests for SYSID-01 (weakest coverage claim) (DONE (2026-03-19))
+- [TASK-007] Map claim dependency graph (DONE (2026-03-19))
+- [TASK-008] Temporal verification layer audit (DONE (2026-03-19))
+- [TASK-009] Bundle size optimization analysis (DONE (2026-03-19))
+- [TASK-010] Cross-layer attack surface analysis (DONE (2026-03-19))
+- [TASK-011] Write adversarial test: SYSID-01 Layer 2 semantic stripping (DONE (2026-03-19))
+- [TASK-012] Write adversarial test: Layer 3 + Layer 5 multi-vector attack (DONE (2026-03-19))
+- [TASK-013] Write adversarial test: Layer 1 + Layer 4 file mod + wrong key signing (DONE (2026-03-19))
+- [TASK-014] Write adversarial test: Layer 5 pure temporal isolation (DONE (2026-03-19))
 
-**Pending:** 4 tasks remaining
+**Pending:** 0 tasks remaining
 
 ## Top Patterns
 
