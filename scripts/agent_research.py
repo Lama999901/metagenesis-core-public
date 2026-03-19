@@ -317,6 +317,122 @@ def write_report(task, findings):
 
 
 # ---------------------------------------------------------------------------
+# Self-improvement: generate tasks + weekly report
+# ---------------------------------------------------------------------------
+
+def generate_tasks(tasks_path):
+    """Read .agent_memory/patterns.json, find patterns with count >= 2 and no
+    fix_hint, and append new TASK entries to AGENT_TASKS.md."""
+    import json
+
+    patterns_file = REPO_ROOT / ".agent_memory" / "patterns.json"
+    if not patterns_file.exists():
+        return 0
+
+    try:
+        patterns = json.loads(patterns_file.read_text(encoding="utf-8"))
+    except Exception:
+        return 0
+
+    content = tasks_path.read_text(encoding="utf-8")
+
+    # Find highest existing task number
+    existing_ids = re.findall(r"TASK-(\d+)", content)
+    next_num = max(int(n) for n in existing_ids) + 1 if existing_ids else 1
+
+    added = 0
+    for key, pat in patterns.items():
+        count = pat.get("count", 0)
+        fix_hint = pat.get("fix_hint", "")
+        if count >= 2 and not fix_hint:
+            # Check if this pattern already has a task
+            if key[:40] in content:
+                continue
+
+            task_id = f"TASK-{next_num:03d}"
+            new_task = (
+                f"\n### {task_id}\n"
+                f"- **Title:** Investigate recurring pattern: {key[:60]}\n"
+                f"- **Status:** PENDING\n"
+                f"- **Priority:** P2\n"
+                f"- **Output:** reports/AGENT_REPORT_{{date}}.md\n"
+                f"- **Description:** Pattern '{key[:80]}' has occurred {count} times "
+                f"with no auto-fix hint. Research root cause and propose fix.\n"
+            )
+            content += new_task
+            next_num += 1
+            added += 1
+
+    if added:
+        tasks_path.write_text(content, encoding="utf-8")
+        print(f"  Generated {added} new tasks from recurring patterns")
+
+    return added
+
+
+def weekly_report():
+    """Generate reports/WEEKLY_REPORT_{date}.md with system health summary,
+    completed tasks, new tasks generated, and top patterns."""
+    import json
+
+    today = datetime.now().strftime("%Y%m%d")
+    report_path = REPO_ROOT / "reports" / f"WEEKLY_REPORT_{today}.md"
+
+    lines = [
+        f"# Weekly Agent Report -- {datetime.now().strftime('%Y-%m-%d')}\n",
+    ]
+
+    # System health
+    lines.append("## System Health\n")
+    out, code = run("python scripts/agent_evolution.py --summary")
+    health_lines = [l for l in out.splitlines() if "PASS" in l or "FAIL" in l or "CHECKS" in l]
+    for hl in health_lines[-12:]:
+        # Strip ANSI codes
+        clean = re.sub(r'\x1b\[[0-9;]*m', '', hl).strip()
+        if clean:
+            lines.append(f"- {clean}")
+    lines.append("")
+
+    # Completed tasks
+    lines.append("## Completed Tasks\n")
+    tasks_path = REPO_ROOT / "AGENT_TASKS.md"
+    if tasks_path.exists():
+        content = tasks_path.read_text(encoding="utf-8")
+        tasks = parse_tasks(content)
+        done_tasks = [t for t in tasks if "DONE" in t["status"].upper()]
+        pending_tasks = [t for t in tasks if t["status"].upper() == "PENDING"]
+        for t in done_tasks:
+            lines.append(f"- [{t['id']}] {t['title']} ({t['status']})")
+        lines.append(f"\n**Pending:** {len(pending_tasks)} tasks remaining\n")
+    else:
+        lines.append("- No AGENT_TASKS.md found\n")
+
+    # Top patterns
+    lines.append("## Top Patterns\n")
+    patterns_file = REPO_ROOT / ".agent_memory" / "patterns.json"
+    if patterns_file.exists():
+        try:
+            patterns = json.loads(patterns_file.read_text(encoding="utf-8"))
+            sorted_pats = sorted(patterns.items(), key=lambda x: x[1].get("count", 0), reverse=True)
+            for key, pat in sorted_pats[:10]:
+                count = pat.get("count", 0)
+                hint = pat.get("fix_hint", "")
+                hint_str = f" -- fix: {hint[:50]}" if hint else " -- no fix hint"
+                lines.append(f"- [{count}x] {key[:60]}{hint_str}")
+        except Exception:
+            lines.append("- Could not parse patterns.json")
+    else:
+        lines.append("- No patterns.json found")
+    lines.append("")
+
+    # Write
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    report_path.write_text("\n".join(lines), encoding="utf-8")
+    print(f"  Weekly report: {report_path.relative_to(REPO_ROOT)}")
+    return report_path
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
@@ -338,6 +454,10 @@ def main():
     report_path = write_report(task, findings)
     mark_task_done(task["id"], tasks_path)
     print(f"Report written to {report_path}")
+
+    # Self-improvement: generate new tasks from patterns + weekly report
+    generate_tasks(tasks_path)
+    weekly_report()
 
     # Run agent_learn.py observe
     env = os.environ.copy()
