@@ -11,7 +11,7 @@ tags:
   - provenance
 authors:
   - name: Yehor Bazhynov
-    orcid: 0000-0000-0000-0000
+    orcid: 0009-0006-6292-4892
     affiliation: 1
 affiliations:
   - name: Independent Researcher, Langley, BC, Canada
