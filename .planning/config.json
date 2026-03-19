@@ -37,7 +37,8 @@
   "post_milestone_tasks": [
     "python scripts/agent_evolution.py",
     "/gsd:quick \"Gap analysis on full test suite - find coverage holes and produce prioritized gap report\"",
-    "/gsd:quick \"Update CLAUDE.md v2.0+ to reflect current state: test count, layers, innovations, new CERT files\""
+    "/gsd:quick \"Update CLAUDE.md v2.0+ to reflect current state: test count, layers, innovations, new CERT files\"",
+    "python scripts/agent_research.py"
   ],
   "evolution_protocol": {
     "description": "Recursive self-improvement loop - protocol verifies agents who extend the protocol",
