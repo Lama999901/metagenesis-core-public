@@ -319,6 +319,26 @@ def check_watchlist():
             return False
 
 
+# ── 10. Branch Sync ───────────────────────────────────────────────────────────
+def check_branch_sync():
+    section("BRANCH SYNC")
+    # Fetch latest remote state
+    run("git fetch origin")
+    out, code = run("git rev-list HEAD..origin/main --count")
+    try:
+        behind = int(out.strip())
+    except (ValueError, AttributeError):
+        warn("Could not determine branch sync status (advisory)")
+        return True
+    if behind > 0:
+        err(f"Branch is {behind} commits behind origin/main")
+        info("Fix: git fetch origin && git merge origin/main --no-edit")
+        return False
+    else:
+        ok("Branch is up to date with origin/main")
+        return True
+
+
 # ── Main ─────────────────────────────────────────────────────────────────────
 def main():
     strict = "--strict" in sys.argv
@@ -343,6 +363,7 @@ def main():
     results["gaps"]      = len(gaps) == 0
     results["claude_md"] = check_claude_md(count)
     results["watchlist"] = check_watchlist()
+    results["branch_sync"] = check_branch_sync()
 
     # ── Summary ──
     section("SUMMARY")
