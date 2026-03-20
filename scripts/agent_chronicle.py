@@ -37,18 +37,38 @@ def read_manifest():
 
 
 def read_claim_domains():
-    """Read scientific_claim_index.md and extract claim-domain pairs."""
+    """Read scientific_claim_index.md and extract claim-domain pairs.
+
+    The file uses ``## CLAIM-ID`` section headers with sub-tables
+    containing ``| **domain** | Domain Name |`` rows.  We match headers
+    via regex and extract the domain value from the subsequent table.
+    """
     index_path = REPO_ROOT / "reports" / "scientific_claim_index.md"
     if not index_path.exists():
         return []
     content = index_path.read_text(encoding="utf-8", errors="ignore")
-    # Parse table rows: | CLAIM-ID | ... | domain | ...
+
+    header_pattern = re.compile(
+        r'^## (MTR-\d+|SYSID-\d+|DATA-PIPE-\d+|DRIFT-\d+|ML_BENCH-\d+'
+        r'|DT-[\w-]+|PHARMA-\d+|FINRISK-\d+|AGENT-[\w-]+)',
+        re.MULTILINE,
+    )
+    domain_pattern = re.compile(
+        r'\*\*domain\*\*\s*\|\s*(.+?)\s*\|?\s*$', re.MULTILINE,
+    )
+
     domains = []
-    for line in content.splitlines():
-        if line.startswith("|") and "---" not in line and "Claim" not in line:
-            parts = [p.strip() for p in line.split("|") if p.strip()]
-            if len(parts) >= 2:
-                domains.append((parts[0], parts[1] if len(parts) > 1 else ""))
+    for match in header_pattern.finditer(content):
+        claim_id = match.group(1)
+        section_start = match.end()
+        next_header = header_pattern.search(content, section_start)
+        section_end = next_header.start() if next_header else len(content)
+        section = content[section_start:section_end]
+
+        domain_match = domain_pattern.search(section)
+        domain = domain_match.group(1).strip() if domain_match else ""
+        domains.append((claim_id, domain))
+
     return domains
 
 
