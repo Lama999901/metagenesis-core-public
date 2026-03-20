@@ -6,12 +6,13 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Patent Pending](https://img.shields.io/badge/Patent-Pending%20%2363%2F996%2C819-orange.svg)](ppa/README_PPA.md)
 [![Tests](https://img.shields.io/badge/Tests-544%20passing-brightgreen.svg)](tests/)
-[![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.6-blueviolet.svg)](docs/PROTOCOL.md)
+[![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.6.0-blueviolet.svg)](docs/PROTOCOL.md)
 [![Sponsor](https://img.shields.io/badge/Sponsor-❤️-pink.svg)](https://github.com/sponsors/Lama999901)
 
 **Site:** https://metagenesis-core.dev
 **Contact:** yehor@metagenesis-core.dev
-**PPA:** USPTO #63/996,819 -- filed 2026-03-05
+**PPA:** USPTO #63/996,819 -- filed 2026-03-05  
+**Version:** v0.6.0 | 15 claims | 544 tests | 14 agent checks | 18/18 tasks done
 
 ---
 
@@ -26,7 +27,7 @@ python scripts/mg.py verify --pack bundle.zip
 # -> PASS  or  FAIL: <specific reason and layer>
 ```
 
-One command. Five layers. 60 seconds. Offline. The Omnissiah provides.
+One command. Five layers. 60 seconds. Offline.
 
 ---
 
@@ -145,7 +146,7 @@ Each layer exists because the previous layers are insufficient. CERT-11 proves a
 | The Omnissiah | The Protocol (`mg.py`) -- the source of all computational truth |
 | The Inquisition | `steward_audit.py` -- governance enforcement, no PR escapes its gaze |
 | The Noosphere | `.agent_memory/` -- shared knowledge between agent incarnations |
-| Servo-skulls | `agent_evolution.py` -- 12 autonomous monitoring checks |
+| Servo-skulls | `agent_evolution.py` -- 14 autonomous monitoring checks |
 | Heresy | Unverified computation -- detected, flagged, rejected |
 | The Forge World | GitHub repository -- where claims are forged and tested |
 | Binary Cant | SHA-256 cryptographic hash chain -- the sacred language of verification |
@@ -183,7 +184,7 @@ Working full-time construction  -- while building a verification protocol at nig
 
 Built with **Claude (Anthropic)** as the primary development tool -- architecture decisions, code implementation, patent application drafting, adversarial test design. Every AI-generated output verified by the project's own test suite. The protocol verifies the protocol.
 
-The result:  in **14 days**.**15 verified claims across 7 domains. 544 adversarial tests. 5 verification layers. 8 innovations. 12 autonomous agent monitoring checks running daily in CI.**
+The result:  in **14 days**.**15 verified claims across 7 domains. 544 adversarial tests. 5 verification layers. 8 innovations. 14 autonomous agent monitoring checks running daily in CI.**
 
 This is what happens when determination meets AI-accelerated development in 2026. A construction worker from Ukraine built a patent-pending verification protocol that catches attacks most security tools miss -- because he needed to prove that computational claims are real, and nobody had built the tool to do it.
 
@@ -313,9 +314,9 @@ python -m pytest tests/steward/test_cert12_encoding_attacks.py -v
 
 ## The Agent Evolution System
 
-MetaGenesis Core includes an autonomous agent monitoring system -- 12 checks that run daily in CI, ensuring the protocol and its documentation remain consistent, complete, and correct.
+MetaGenesis Core includes an autonomous agent monitoring system -- 14 checks that run daily in CI, ensuring the protocol and its documentation remain consistent, complete, and correct.
 
-### The 12 Checks
+### The 14 Checks
 
 | # | Check | Mechanicus Name | What it verifies |
 |---|-------|----------------|-----------------|
@@ -327,16 +328,18 @@ MetaGenesis Core includes an autonomous agent monitoring system -- 12 checks tha
 | 6 | `forbidden` | Hereticus | No banned terms in codebase |
 | 7 | `gaps` | Forge World | Every claim has tests, every test has a claim |
 | 8 | `claude_md` | Lexmechanic | `CLAUDE.md` reflects current counters and state |
-| 9 | `watchlist` | Servo-skull | Content checks across 30+ files for stale counters |
+| 9 | `watchlist` | Servo-skull | Content checks across 53 files for stale counters |
 | 10 | `branch_sync` | Skitarii | Branch is synchronized with origin/main |
 | 11 | `coverage` | Genetor | Code coverage analysis and dead code detection |
 | 12 | `self_improve` | Recursive Enlightenment | Self-improvement recommendations from codebase analysis |
+| 13 | `signals` | Astropathic Relay | GitHub stars, forks, issues -- external signal monitoring |
+| 14 | `chronicle` | Historitor | Version snapshot -- records state diff between releases |
 
 ### How it works
 
 ```bash
 python scripts/agent_evolution.py --summary
-# -> ALL 12 CHECKS PASSED -- system healthy
+# -> ALL 14 CHECKS PASSED -- system healthy
 ```
 
 The system runs automatically on every CI merge via `.github/workflows/total_audit_guard.yml`. When a check fails, the merge is blocked. No human override. The protocol protects itself.
@@ -539,9 +542,9 @@ python -m pytest tests/ -q
 python scripts/deep_verify.py
 # -> ALL 13 TESTS PASSED
 
-# Agent evolution system (12 checks):
+# Agent evolution system (14 checks):
 python scripts/agent_evolution.py --summary
-# -> ALL 12 CHECKS PASSED -- system healthy
+# -> ALL 14 CHECKS PASSED -- system healthy
 ```
 
 **Active claims:** MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01, DT-FEM-01, ML_BENCH-02, ML_BENCH-03, PHARMA-01, FINRISK-01, DT-SENSOR-01, DT-CALIB-LOOP-01, AGENT-DRIFT-01
@@ -590,4 +593,3 @@ Read these files in order:
 ---
 
 *MetaGenesis Core -- MVP v0.6 -- Inventor: Yehor Bazhynov -- Patent Pending #63/996,819*
-*The Omnissiah protects.*
