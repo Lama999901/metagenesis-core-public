@@ -173,23 +173,19 @@ No GPU. No access to your code or environment. No trust required. 60 seconds.
 
 ---
 
-### The Founder's Story
+## The Founder's Story
 
-I work construction by day. I had a problem: when researchers 
-publish computational results, there's no standard way to verify 
-them. I needed to prove that computational claims are real, and 
-nobody had built the tool to do it.
+Built by **one person**. Yehor Bazhynov. Construction worker by day. Ukraine to Canada immigrant.
 
-The timeline (from PPA filing on March 5, 2026):
+No computer science degree. No team. No funding. No venture capital. No university lab.
 
-- **Day 1:** Patent application filed (USPTO #63/996,819) — 
-  5 claims, 39 tests, steward audit PASS
-- **Days 1–7:** Step chain innovation, semantic layer, 
-  adversarial test suite, multi-domain expansion
-- **Days 8–12:** Bundle signing (HMAC-SHA256 + Ed25519), 
-  temporal commitment (NIST Beacon), 14 claims across 7 domains
-- **Days 13–14:** 532 adversarial tests, 5 layers proven 
-  independent, JOSS paper drafted, NLnet grant applied
+Working full-time construction  -- while building a verification protocol at night and on weekends. From zero to patent pending (USPTO #63/996,819)
+
+Built with **Claude (Anthropic)** as the primary development tool -- architecture decisions, code implementation, patent application drafting, adversarial test design. Every AI-generated output verified by the project's own test suite. The protocol verifies the protocol.
+
+The result:  in **14 days**.**15 verified claims across 7 domains. 532 adversarial tests. 5 verification layers. 8 innovations. 12 autonomous agent monitoring checks running daily in CI.**
+
+This is what happens when determination meets AI-accelerated development in 2026. A construction worker from Ukraine built a patent-pending verification protocol that catches attacks most security tools miss -- because he needed to prove that computational claims are real, and nobody had built the tool to do it.
 
 ---
 
