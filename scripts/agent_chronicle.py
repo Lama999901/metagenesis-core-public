@@ -37,38 +37,29 @@ def read_manifest():
 
 
 def read_claim_domains():
-    """Read scientific_claim_index.md and extract claim-domain pairs.
-
-    The file uses ``## CLAIM-ID`` section headers with sub-tables
-    containing ``| **domain** | Domain Name |`` rows.  We match headers
-    via regex and extract the domain value from the subsequent table.
-    """
+    """Read scientific_claim_index.md and extract claim-domain pairs."""
     index_path = REPO_ROOT / "reports" / "scientific_claim_index.md"
     if not index_path.exists():
         return []
     content = index_path.read_text(encoding="utf-8", errors="ignore")
-
-    header_pattern = re.compile(
-        r'^## (MTR-\d+|SYSID-\d+|DATA-PIPE-\d+|DRIFT-\d+|ML_BENCH-\d+'
-        r'|DT-[\w-]+|PHARMA-\d+|FINRISK-\d+|AGENT-[\w-]+)',
-        re.MULTILINE,
-    )
-    domain_pattern = re.compile(
-        r'\*\*domain\*\*\s*\|\s*(.+?)\s*\|?\s*$', re.MULTILINE,
-    )
-
+    lines = content.splitlines()
     domains = []
-    for match in header_pattern.finditer(content):
-        claim_id = match.group(1)
-        section_start = match.end()
-        next_header = header_pattern.search(content, section_start)
-        section_end = next_header.start() if next_header else len(content)
-        section = content[section_start:section_end]
-
-        domain_match = domain_pattern.search(section)
-        domain = domain_match.group(1).strip() if domain_match else ""
-        domains.append((claim_id, domain))
-
+    heading_re = re.compile(r'^## ([A-Z][A-Z0-9_-]+(?:-\d+)?)\s*$')
+    for i, line in enumerate(lines):
+        m = heading_re.match(line)
+        if m:
+            claim_id = m.group(1)
+            domain = ""
+            # Search following lines for **domain** row
+            for j in range(i + 1, min(i + 20, len(lines))):
+                if lines[j].startswith("## "):
+                    break
+                if "**domain**" in lines[j].lower():
+                    parts = [p.strip() for p in lines[j].split("|") if p.strip()]
+                    if len(parts) >= 2:
+                        domain = parts[-1]
+                    break
+            domains.append((claim_id, domain))
     return domains
 
 
