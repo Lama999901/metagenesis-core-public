@@ -1,7 +1,7 @@
 # MetaGenesis Core — Context for AI Agents (GSD)
 
 > Loaded automatically by all GSD agents via CLAUDE.md.
-> Last updated: 2026-03-18 | v0.5.0 LIVE | 14 claims | 526 tests
+> Last updated: 2026-03-19 | v0.6.0 LIVE | 15 claims | 532 tests
 
 ---
 
@@ -13,7 +13,7 @@ auditable offline. One command: `python scripts/mg.py verify --pack bundle.zip �
 
 **Inventor:** Yehor Bazhynov | **PPA:** USPTO #63/996,819
 **Repo:** https://github.com/Lama999901/metagenesis-core-public
-**Release:** v0.5.0 LIVE | **JOSS paper:** paper.md in main
+**Release:** v0.6.0 LIVE | **JOSS paper:** paper.md in main
 **Ed25519:** scripts/mg_ed25519.py DONE | **Temporal:** scripts/mg_temporal.py DONE
 **CERT-09:** Ed25519 attacks | **CERT-10:** temporal attacks | **CERT-11:** coordinated multi-vector | **CERT-12:** encoding attacks | **deep_verify:** 13 tests
 
@@ -41,7 +41,7 @@ scripts/mg.py                                    ← core verifier, modify caref
 "blockchain"        → "cryptographic hash chain"
 "unforgeable"       → don't use
 "GPT-5"             → doesn't exist
-"100% test success" → "526 tests PASS"
+"100% test success" → "532 tests PASS"
 ```
 
 ---
@@ -50,7 +50,7 @@ scripts/mg.py                                    ← core verifier, modify caref
 
 ```bash
 python scripts/steward_audit.py      # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q           # → 526 passed
+python -m pytest tests/ -q           # → 532 passed
 python scripts/deep_verify.py        # → ALL 13 TESTS PASSED
 python scripts/check_stale_docs.py   # → All critical documentation is current
 ```
@@ -81,16 +81,16 @@ git push origin feat/description
 ## CURRENT STATE
 
 ```
-Claims:     14 active (all have 4-step Step Chain)
-Tests:      526 passing
+Claims:     15 active (all have 4-step Step Chain)
+Tests:      532 passing
 Layers:     5 verification (integrity + semantic + step chain + signing + temporal)
 Innovations: 8 (5 PPA + HMAC + Ed25519 + Temporal)
-Release:    v0.5.0
+Release:    v0.6.0
 ```
 
 ---
 
-## 14 ACTIVE CLAIMS
+## 15 ACTIVE CLAIMS
 
 | Claim | File | Threshold | Physical Anchor |
 |-------|------|-----------|-----------------|
@@ -108,6 +108,7 @@ Release:    v0.5.0
 | FINRISK-01 | backend/progress/finrisk1_var_certificate.py | ΔVaR ≤ tol | — |
 | DT-SENSOR-01 | backend/progress/dtsensor1_iot_certificate.py | schema+range+temporal | — |
 | DT-CALIB-LOOP-01 | backend/progress/dtcalib1_convergence_certificate.py | drift decreasing | DRIFT-01 ⚓ |
+| AGENT-DRIFT-01 | backend/progress/agent_drift_monitor.py | composite_drift <= 20% | -- |
 
 ---
 
@@ -147,7 +148,7 @@ _trace.append({"step": 4, "name": "threshold_check",
 trace_root_hash = _prev
 ```
 
-**Return structure (must match for ALL 14 claims):**
+**Return structure (must match for ALL 15 claims):**
 ```python
 return {
     "mtr_phase": "CLAIM-ID",
@@ -180,7 +181,7 @@ Layer 5 — Temporal Commitment  scripts/mg_temporal.py       catches: backdated
 ## PHYSICAL ANCHOR PRINCIPLE (SCOPE_001)
 
 **Two distinct properties — never conflate:**
-- Tamper-evident provenance → ALL 14 claims
+- Tamper-evident provenance → ALL 15 claims
 - Physical anchor traceability → ONLY: MTR-1/2/3, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP-01
 
 E = 70 GPa (aluminum) is measured in thousands of labs worldwide — NOT a chosen threshold.
@@ -235,12 +236,12 @@ scripts/mg.py               ← core verifier CLI (verify/pack/verify-chain/sign
 scripts/mg_sign.py          ← bundle signing Innovation #6
 scripts/steward_audit.py    ← governance (SEALED)
 scripts/deep_verify.py      ← 13-test proof script
-backend/progress/runner.py  ← job dispatch (14 claims)
+backend/progress/runner.py  ← job dispatch (15 claims)
 reports/scientific_claim_index.md  ← claim registry
 reports/canonical_state.md  ← authoritative list (LOCKED)
 reports/known_faults.yaml   ← known limitations (SCOPE_001)
 paper.md + paper.bib        ← JOSS paper
-index.html                  ← site (14 claims/526 tests/5 layers/8 innovations in 11+ places)
+index.html                  ← site (15 claims/532 tests/5 layers/8 innovations in 11+ places)
 CONTEXT_SNAPSHOT.md         ← live state for AI agents
 ```
 
@@ -291,6 +292,7 @@ This shows what previous agents learned — recurring issues + auto-fix hints.
 ```
 1. v0.5.0 — Coverage Hardening (COMPLETE)
    Phase 5 ✅ Phase 6 ✅ Phase 7 ✅ Phase 8 ✅
+1b. v0.6.0 — AGENT-DRIFT-01 + Recursive Self-Verification (COMPLETE)
 2. Submit JOSS paper (paper.md ready)
 3. First paying customer ($299)
 4. NLnet NGI0 grant (deadline 2026-04-01)
@@ -354,4 +356,4 @@ git log --since='7 days ago' --name-only --pretty=format: | sort -u
 
 ---
 
-*CLAUDE.md v1.4 — 2026-03-18 — MetaGenesis Core v0.5.0 LIVE*
+*CLAUDE.md v1.5 — 2026-03-19 — MetaGenesis Core v0.6.0 LIVE*

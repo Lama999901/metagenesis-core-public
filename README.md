@@ -5,8 +5,8 @@
 [![Steward Audit](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml/badge.svg)](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Patent Pending](https://img.shields.io/badge/Patent-Pending%20%2363%2F996%2C819-orange.svg)](ppa/README_PPA.md)
-[![Tests](https://img.shields.io/badge/Tests-526%20passing-brightgreen.svg)](tests/)
-[![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.5-blueviolet.svg)](docs/PROTOCOL.md)
+[![Tests](https://img.shields.io/badge/Tests-532%20passing-brightgreen.svg)](tests/)
+[![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.6-blueviolet.svg)](docs/PROTOCOL.md)
 [![Sponsor](https://img.shields.io/badge/Sponsor-❤️-pink.svg)](https://github.com/sponsors/Lama999901)
 
 **Site:** https://metagenesis-core.dev
@@ -40,10 +40,10 @@ One command. Five layers. 60 seconds. Offline. The Omnissiah provides.
 | The Machine Spirit | `execution_trace` + `trace_root_hash` |
 | Sacred Unguents | Cryptographic hash chain binding computation steps |
 | Tech-Priest | The solo founder building the protocol |
-| The Forge World | 14 claims across 7 domains |
+| The Forge World | 15 claims across 7 domains |
 | Binary Cant | Ed25519 + HMAC-SHA256 signatures |
 | Cogitator | NIST Beacon temporal commitment |
-| The Omnissiah's Test | 526 adversarial tests -- ALL PASS |
+| The Omnissiah's Test | 532 adversarial tests -- ALL PASS |
 
 ---
 
@@ -68,7 +68,7 @@ From zero to patent pending (USPTO #63/996,819) in **14 days**.
 
 Built with **Claude (Anthropic)** as the primary development tool -- architecture decisions, code implementation, patent application drafting, adversarial test design. Every AI-generated output verified by the project's own test suite.
 
-The result: **14 verified claims. 526 adversarial tests. 5 verification layers. 8 innovations. Daily autonomous agent monitoring.**
+The result: **15 verified claims. 532 adversarial tests. 5 verification layers. 8 innovations. Daily autonomous agent monitoring.**
 
 Working construction full-time while building this. This is what happens when determination meets AI-accelerated development in 2026.
 
@@ -119,7 +119,7 @@ Not a distributed ledger. No network. No tokens. Works offline.
 ### Two pillars
 
 **Pillar 1 -- Tamper-evident provenance**
-Five-layer verification ensures the bundle and computation haven't been modified. Applies to all 14 claims.
+Five-layer verification ensures the bundle and computation haven't been modified. Applies to all 15 claims.
 
 **Pillar 2 -- Physical anchor traceability**
 The verification chain is grounded in physical constants -- not arbitrary thresholds. MTR-1's anchor is E = 70 GPa for aluminum: measured independently in thousands of laboratories worldwide.
@@ -162,7 +162,7 @@ Every claim in this protocol is backed by adversarial tests that attempt to brea
 
 ```bash
 python -m pytest tests/ -q
-# -> 526 passed
+# -> 532 passed
 ```
 
 The summary test in CERT-05 explicitly proves all five layers are necessary -- no single layer catches all attacks. CERT-11 constructs coordinated attacks where each layer catches what the other four miss. This is not a claim. It is a mathematical proof backed by executable tests.
@@ -289,7 +289,7 @@ Evidence: backend/progress/runner.py :: run_job(canary_mode=True/False)
 ### 5 -- Step Chain + Cross-Claim Cryptographic Chain
 Every claim produces a 4-step cryptographic execution trace. Upstream `trace_root_hash` embeds as `anchor_hash` in downstream claims -- linking MTR-1 -> DT-FEM-01 -> DRIFT-01 end-to-end.
 ```
-Evidence: all 14 claims :: execution_trace + trace_root_hash
+Evidence: all 15 claims :: execution_trace + trace_root_hash
 Proof:    tests/steward/test_cert03_* + tests/steward/test_cross_claim_chain.py
 ```
 
@@ -316,7 +316,7 @@ Proof:    test_cert_5layer_independence
 
 ---
 
-## 14 active verification claims
+## 15 active verification claims
 
 | Claim | Domain | Threshold | Physical Anchor |
 |---|---|---|---|
@@ -334,8 +334,9 @@ Proof:    test_cert_5layer_independence
 | FINRISK-01 | Finance -- VaR Model | `\|DVaR\| <= tolerance` | -- (Basel III/IV) |
 | DT-SENSOR-01 | Digital Twin -- IoT Sensor Integrity | schema + range + temporal | -- |
 | DT-CALIB-LOOP-01 | Digital Twin -- Calibration Convergence | `drift decreasing + final <= threshold` | DRIFT-01 anchor |
+| AGENT-DRIFT-01 | Agent Quality -- Recursive Self-Verification | `composite_drift <= 20%` | -- |
 
-All 14 claims have Step Chain (execution_trace + trace_root_hash). Physical anchor applies to: MTR-1/2/3, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP-01. See `reports/known_faults.yaml` :: SCOPE_001.
+All 15 claims have Step Chain (execution_trace + trace_root_hash). Physical anchor applies to: MTR-1/2/3, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP-01. See `reports/known_faults.yaml` :: SCOPE_001.
 
 ---
 
@@ -362,14 +363,14 @@ python scripts/steward_audit.py
 # -> STEWARD AUDIT: PASS
 
 python -m pytest tests/ -q
-# -> 526 passed
+# -> 532 passed
 
 # Full proof-not-trust verification (13 tests):
 python scripts/deep_verify.py
 # -> ALL 13 TESTS PASSED
 ```
 
-**Active claims:** MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01, DT-FEM-01, ML_BENCH-02, ML_BENCH-03, PHARMA-01, FINRISK-01, DT-SENSOR-01, DT-CALIB-LOOP-01
+**Active claims:** MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01, DT-FEM-01, ML_BENCH-02, ML_BENCH-03, PHARMA-01, FINRISK-01, DT-SENSOR-01, DT-CALIB-LOOP-01, AGENT-DRIFT-01
 **Known limitations:** `reports/known_faults.yaml`
 
 ---
@@ -416,7 +417,7 @@ Commercial licensing available for organizations building on the protocol.
 Read these files in order:
 
 ```
-1. CONTEXT_SNAPSHOT.md          <- current state, 14 claims, 526 tests
+1. CONTEXT_SNAPSHOT.md          <- current state, 15 claims, 532 tests
 2. AGENTS.md                    <- hard rules, forbidden terms, protected files
 3. llms.txt                     <- AI-optimized repo summary
 4. reports/canonical_state.md   <- authoritative claims list
@@ -425,5 +426,5 @@ Read these files in order:
 
 ---
 
-*MetaGenesis Core -- MVP v0.5 -- Inventor: Yehor Bazhynov -- Patent Pending #63/996,819*
+*MetaGenesis Core -- MVP v0.6 -- Inventor: Yehor Bazhynov -- Patent Pending #63/996,819*
 *The Omnissiah protects.*
