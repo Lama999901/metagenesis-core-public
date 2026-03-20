@@ -62,6 +62,14 @@ CRITICAL_FILES = {
         "tracks": ["reports/scientific_claim_index.md", "system_manifest.json"],
         "description": "Canonical state record (steward-managed)",
     },
+    "AGENT_TASKS.md": {
+        "tracks": ["scripts/agent_research.py"],
+        "description": "Agent research task queue",
+    },
+    "reports/canonical_state.md": {
+        "tracks": ["reports/scientific_claim_index.md", "system_manifest.json"],
+        "description": "Canonical state record (steward-managed)",
+    },
 }
 
 
