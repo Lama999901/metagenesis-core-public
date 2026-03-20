@@ -239,6 +239,10 @@ CONTENT_CHECKS = {
         "banned": [],
         "required": [],
     },
+    "scripts/agent_evolution.py": {
+        "banned": [],
+        "required": ["check_signals", "check_chronicle", "v0.6.0"],
+    },
 }
 
 
