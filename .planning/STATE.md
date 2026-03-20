@@ -43,7 +43,7 @@ See: .planning/PROJECT.md (updated 2026-03-18)
 Phase: 8 of 8 (Counter Updates)
 Plan: 2 of 2 complete
 Status: Completed
-Last activity: 2026-03-20 - Completed quick task 260319-uah: Fix agent_chronicle.py claims table parsing
+Last activity: 2026-03-20 - Completed quick task 260320-icp: Coverage boost tests for mg_sign.py and mg_ed25519.py
 
 Progress: [██████████] 9/9 plans complete (100%)
 
@@ -126,9 +126,10 @@ None yet.
 | 260319-szi | Fix CI weekly agent health YML gaps + execute TASK-015-018 | 2026-03-20 | 77fa709 | [260319-szi-fix-ci-weekly-agent-health-yml-gaps-exec](./quick/260319-szi-fix-ci-weekly-agent-health-yml-gaps-exec/) |
 | 260319-uah | Fix agent_chronicle.py claims table parsing (regex header parser) | 2026-03-20 | 6e5948f | [260319-uah-fix-agent-chronicle-py-claims-table-pars](./quick/260319-uah-fix-agent-chronicle-py-claims-table-pars/) |
 | 260320-hmk | Fix read_claim_domains() generic regex heading parser | 2026-03-20 | bd302ea | [260320-hmk-fix-agent-chronicle-py-read-claim-domain](./quick/260320-hmk-fix-agent-chronicle-py-read-claim-domain/) |
+| 260320-icp | Coverage boost: 12 tests for mg_sign.py and mg_ed25519.py | 2026-03-20 | 5601400 | [260320-icp-coverage-boost-tests-for-mg-sign-py-and-](./quick/260320-icp-coverage-boost-tests-for-mg-sign-py-and-/) |
 
 ## Session Continuity
 
-Last session: 2026-03-20T20:46:14Z
-Stopped at: Completed quick task 260320-hmk (fix read_claim_domains generic regex)
+Last session: 2026-03-20T21:18:00Z
+Stopped at: Completed quick task 260320-icp (coverage boost tests for mg_sign.py and mg_ed25519.py)
 Resume file: None
