@@ -120,9 +120,10 @@ None yet.
 | 260319-keg | Mechanicus v2: 5 new research tasks, handlers, atmosphere, TASK-006 executed | 2026-03-19 | e8d430f | [260319-keg-mechanicus-v2-5-new-tasks-research-handl](./quick/260319-keg-mechanicus-v2-5-new-tasks-research-handl/) |
 | 260319-lgq | CERT gap tests: 4 new adversarial test tasks (TASK-011 to TASK-014), 15 tests | 2026-03-19 | 4f0696d | [260319-lgq-cert-gap-tests-4-new-adversarial-test-ta](./quick/260319-lgq-cert-gap-tests-4-new-adversarial-test-ta/) |
 | 260319-m2v | Counter sync 511->526 + Mechanicus README rewrite | 2026-03-19 | 354dfda | [260319-m2v-counter-sync-511-526-readme-mechanicus-r](./quick/260319-m2v-counter-sync-511-526-readme-mechanicus-r/) |
+| 260319-nb2 | Agent coverage analyst + recursive self-improvement (checks 11-12) | 2026-03-19 | 51981cc | [260319-nb2-agent-divine-coverage-analyst-recursive-](./quick/260319-nb2-agent-divine-coverage-analyst-recursive-/) |
 
 ## Session Continuity
 
-Last session: 2026-03-20T00:01:34Z
-Stopped at: Completed quick task 260319-m2v (counter sync + Mechanicus README)
+Last session: 2026-03-19T22:56:20Z
+Stopped at: Completed quick task 260319-nb2 (agent coverage + self-improvement)
 Resume file: None

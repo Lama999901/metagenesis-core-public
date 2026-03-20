@@ -32,7 +32,9 @@
   "post_phase_tasks": [
     "python scripts/agent_learn.py observe",
     "python scripts/auto_watchlist_scan.py",
-    "python scripts/check_stale_docs.py --strict"
+    "python scripts/check_stale_docs.py --strict",
+    "python scripts/agent_coverage.py --summary",
+    "python scripts/agent_evolve_self.py --summary"
   ],
   "post_milestone_tasks": [
     "python scripts/agent_evolution.py",
@@ -63,7 +65,7 @@
   },
   "notes": {
     "current_version": "v0.5.0",
-    "test_count": "511 - run pytest to get live count, use system_manifest.json as source of truth",
+    "test_count": "526 - run pytest to get live count, use system_manifest.json as source of truth",
     "layers": "5 independent - Layer 1 SHA-256, Layer 2 Semantic, Layer 3 Step Chain, Layer 4 Ed25519, Layer 5 NIST Beacon",
     "innovations": "8 (5 PPA + HMAC + Ed25519 + Temporal)",
     "next_milestone": "v0.6.0 - AGENT-DRIFT-01 (claim #15), recursive self-improvement loop formalized",

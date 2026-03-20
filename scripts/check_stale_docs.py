@@ -62,14 +62,6 @@ CRITICAL_FILES = {
         "tracks": ["reports/scientific_claim_index.md", "system_manifest.json"],
         "description": "Canonical state record (steward-managed)",
     },
-    "AGENT_TASKS.md": {
-        "tracks": ["scripts/agent_research.py"],
-        "description": "Agent research task queue",
-    },
-    "reports/canonical_state.md": {
-        "tracks": ["reports/scientific_claim_index.md", "system_manifest.json"],
-        "description": "Canonical state record (steward-managed)",
-    },
 }
 
 
@@ -198,6 +190,14 @@ CONTENT_CHECKS = {
     "ppa/CLAIMS_STATUS_v05.md": {
         "banned": [],
         "required": ["526", "14 claims"],
+    },
+    "scripts/agent_coverage.py": {
+        "banned": [],
+        "required": ["Genetor"],
+    },
+    "scripts/agent_evolve_self.py": {
+        "banned": [],
+        "required": ["Recursive"],
     },
 }
 
