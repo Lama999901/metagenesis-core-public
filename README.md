@@ -187,16 +187,6 @@ The result: **15 verified claims across 7 domains. 532 adversarial tests. 5 veri
 
 This is what happens when determination meets AI-accelerated development in 2026. A construction worker from Ukraine built a patent-pending verification protocol that catches attacks most security tools miss -- because he needed to prove that computational claims are real, and nobody had built the tool to do it.
 
-The timeline:
-- **Day 1-3:** Architecture design, first claim (MTR-1), first verification layer
-- **Day 4-7:** Step chain innovation, semantic layer, adversarial test suite
-- **Day 8-10:** Multi-domain expansion (ML, pharma, finance, digital twin)
-- **Day 11-12:** Bundle signing (HMAC-SHA256 + Ed25519), temporal commitment (NIST Beacon)
-- **Day 13:** Patent application drafted and filed (USPTO #63/996,819)
-- **Day 14:** 532 tests passing, 5 layers proven independent, JOSS paper drafted
-
-Every line of code verified by the protocol's own test suite. Every claim backed by adversarial tests. Every innovation documented with executable proof.
-
 ---
 
 ## Five Verification Layers + Two Pillars
