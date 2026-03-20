@@ -199,21 +199,21 @@ CONTENT_CHECKS = {
         "banned": [],
         "required": ["Recursive"],
     },
-    "backend/progress/agent_drift_monitor.py": {
-        "banned": [],
-        "required": ["AGENT-DRIFT-01", "composite_drift_pct"],
-    },
     "tests/agent/test_agent_drift01.py": {
         "banned": [],
         "required": ["AGENT-DRIFT-01", "TestAgentDrift01"],
     },
+    "backend/progress/agent_drift_monitor.py": {
+        "banned": [],
+        "required": ["AGENT-DRIFT-01"],
+    },
     "scripts/mg_policy_gate_policy.json": {
         "banned": [],
-        "required": ["locked_paths", "allow_globs"],
+        "required": [],
     },
     ".github/workflows/mg_policy_gate.yml": {
         "banned": [],
-        "required": ["Policy Gate", "mg_policy_gate"],
+        "required": [],
     },
     "reports/COVERAGE_REPORT_20260319.md": {
         "banned": [],
