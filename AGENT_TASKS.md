@@ -104,7 +104,7 @@ Auto-processed by `scripts/agent_research.py`. First PENDING task gets executed 
 
 ### TASK-015
 - **Title:** Boost coverage to 60% -- identify top uncovered functions, write test code
-- **Status:** PENDING
+- **Status:** DONE (2026-03-19)
 - **Priority:** P1
 - **Output:** reports/AGENT_REPORT_YYYYMMDD.md
 - **Description:** Read reports/COVERAGE_REPORT_20260319.md, identify the top uncovered functions in mg_sign.py and mg_temporal.py (both are core verification scripts with low coverage), and generate actual pytest test code targeting cmd_keygen, cmd_sign, cmd_verify, cmd_temporal, verify_bundle_signature in mg_sign.py plus create_temporal_commitment, verify_temporal_commitment in mg_temporal.py.

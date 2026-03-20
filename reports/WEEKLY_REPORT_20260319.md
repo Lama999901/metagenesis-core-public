@@ -2,17 +2,17 @@
 
 ## System Health
 
-- PASS  steward — Inquisition satisfied (STEWARD_PASS)
-- PASS  tests — Machine Spirit verified (TEST_PASS)
-- PASS  deep — Omnissiah approves (DEEP_PASS)
+- FAIL  deep — Omnissiah approves (DEEP_FAIL)
 - PASS  docs — Noosphere synchronized (DOCS_PASS)
-- FAIL  manifest — Codex consistent (MANIFEST_FAIL)
+- PASS  manifest — Codex consistent (MANIFEST_PASS)
 - PASS  forbidden — No Hereticus found (FORBIDDEN_PASS)
 - PASS  gaps — Forge World complete (GAPS_PASS)
-- FAIL  claude_md — Lexmechanic current (CLAUDEMD_FAIL)
+- PASS  claude_md — Lexmechanic current (CLAUDEMD_PASS)
 - PASS  watchlist — Servo-skull coverage full (WATCHLIST_PASS)
 - PASS  branch_sync — Skitarii synchronized (BRANCH_PASS)
-- ❌ 2/10 CHECKS FAILED
+- PASS  coverage — Genetor analysis complete (COVERAGE_PASS)
+- PASS  self_improve — Recursive enlightenment done (SELFIMPROVE_PASS)
+- ❌ 2/12 CHECKS FAILED
 - The Machine Spirit is troubled (FAIL)
 
 ## Completed Tasks
@@ -31,8 +31,9 @@
 - [TASK-012] Write adversarial test: Layer 3 + Layer 5 multi-vector attack (DONE (2026-03-19))
 - [TASK-013] Write adversarial test: Layer 1 + Layer 4 file mod + wrong key signing (DONE (2026-03-19))
 - [TASK-014] Write adversarial test: Layer 5 pure temporal isolation (DONE (2026-03-19))
+- [TASK-015] Boost coverage to 60% -- identify top uncovered functions, write test code (DONE (2026-03-19))
 
-**Pending:** 0 tasks remaining
+**Pending:** 3 tasks remaining
 
 ## Top Patterns
 
