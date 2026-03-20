@@ -223,6 +223,22 @@ CONTENT_CHECKS = {
         "banned": [],
         "required": [],
     },
+    "scripts/agent_signals.py": {
+        "banned": [],
+        "required": ["GitHub API", "SIGNALS_"],
+    },
+    "scripts/agent_chronicle.py": {
+        "banned": [],
+        "required": ["CHRONICLE_", "system_manifest"],
+    },
+    "reports/SIGNALS_20260319.md": {
+        "banned": [],
+        "required": [],
+    },
+    "reports/CHRONICLE_0_6_0_20260319.md": {
+        "banned": [],
+        "required": [],
+    },
 }
 
 
