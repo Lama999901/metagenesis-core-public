@@ -52,9 +52,9 @@ measured in thousands of laboratories worldwide) through calibration, FEM
 simulation, and drift monitoring. Each link is cryptographically committed;
 tampering any link invalidates all downstream hashes.
 
-The protocol ships with 14 active verification claims across 7 domains
+The protocol ships with 15 active verification claims across 7 domains
 (materials science, ML/AI, system identification, data pipelines, digital
-twin, pharma/biotech, and financial risk), 526 adversarial tests, and
+twin, pharma/biotech, and financial risk), 532 adversarial tests, and
 governance enforcement that prevents any registered claim from existing
 without a corresponding implementation — and vice versa.
 

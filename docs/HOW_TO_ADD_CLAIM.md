@@ -216,4 +216,4 @@ Study these before adding your own claim:
 
 ---
 
-*How to Add a Claim v0.5 — 2026-03-18 — MetaGenesis Core — 14 claims, 526 tests*
+*How to Add a Claim v0.6 — 2026-03-19 — MetaGenesis Core — 15 claims, 532 tests*

@@ -43,7 +43,7 @@ See: .planning/PROJECT.md (updated 2026-03-18)
 Phase: 8 of 8 (Counter Updates)
 Plan: 2 of 2 complete
 Status: Completed
-Last activity: 2026-03-19 - Completed quick task 260319-m2v: counter sync 511->526 + Mechanicus README
+Last activity: 2026-03-20 - Completed quick task 260319-nwt: Claim #15 AGENT-DRIFT-01 + v0.6.0 counter sync
 
 Progress: [██████████] 9/9 plans complete (100%)
 
@@ -121,9 +121,10 @@ None yet.
 | 260319-lgq | CERT gap tests: 4 new adversarial test tasks (TASK-011 to TASK-014), 15 tests | 2026-03-19 | 4f0696d | [260319-lgq-cert-gap-tests-4-new-adversarial-test-ta](./quick/260319-lgq-cert-gap-tests-4-new-adversarial-test-ta/) |
 | 260319-m2v | Counter sync 511->526 + Mechanicus README rewrite | 2026-03-19 | 354dfda | [260319-m2v-counter-sync-511-526-readme-mechanicus-r](./quick/260319-m2v-counter-sync-511-526-readme-mechanicus-r/) |
 | 260319-nb2 | Agent coverage analyst + recursive self-improvement (checks 11-12) | 2026-03-19 | 51981cc | [260319-nb2-agent-divine-coverage-analyst-recursive-](./quick/260319-nb2-agent-divine-coverage-analyst-recursive-/) |
+| 260319-nwt | Claim #15 AGENT-DRIFT-01 + v0.6.0 counter sync (15 claims, 532 tests) | 2026-03-20 | b0ca0d5 | [260319-nwt-claim-15-agent-drift-01-v0-6-0-counter-s](./quick/260319-nwt-claim-15-agent-drift-01-v0-6-0-counter-s/) |
 
 ## Session Continuity
 
-Last session: 2026-03-19T22:56:20Z
-Stopped at: Completed quick task 260319-nb2 (agent coverage + self-improvement)
+Last session: 2026-03-20T01:16:52Z
+Stopped at: Completed quick task 260319-nwt (Claim #15 AGENT-DRIFT-01 + v0.6.0)
 Resume file: None

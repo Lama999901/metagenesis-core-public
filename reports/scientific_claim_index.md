@@ -277,6 +277,38 @@ is tamper-evident.
 
 ---
 
+## AGENT-DRIFT-01
+
+| Field | Value |
+|-------|--------|
+| **claim_id** | AGENT-DRIFT-01 |
+| **domain** | Agent Quality / Recursive Self-Verification |
+| **job_kind** | `agent_drift_monitor` |
+| **reproduction** | `python -m pytest tests/agent/test_agent_drift01.py -v` |
+| **evidence_fields** | Result lives under `job_snapshot.result`. Contains `mtr_phase` (AGENT-DRIFT-01), `inputs` (baseline, current, weights, drift_threshold_pct), `result` (composite_drift_pct, per_metric_drift, drift_detected, correction_required). |
+| **V&V thresholds** | `composite_drift_pct <= 20.0`. `drift_detected` False when within threshold. |
+| **notes (canary vs normal)** | Same as all other claims: runs in normal or canary mode. |
+
+### Purpose
+
+Agent quality drift monitoring. Compares current agent metrics (tests_per_phase,
+pass_rate, regressions, verifier_iterations) against a verified baseline using
+weighted composite drift. Drift beyond 20% signals correction is required.
+
+This is the first claim where AI agents monitor their own quality through
+the same verification protocol they extend -- recursive self-verification.
+
+### V&V Thresholds (summary)
+
+| Parameter | Value |
+|-----------|-------|
+| drift_threshold_pct | 20.0% |
+| baseline (default) | tests_per_phase=47, pass_rate=1.0, regressions=0, verifier_iterations=1.2 |
+| drift_detected (no-drift case) | False |
+| drift_detected (drift case, >20%) | True |
+
+---
+
 ## Protocol Capabilities (v0.4)
 
 ### 5-Layer Verification Architecture
@@ -334,4 +366,4 @@ before beacon) prevents backdating.
 
 ---
 
-*Index authority: MetaGenesis Core / SCI-01 v0.5 — 14 claims, 526 tests. Append new claims as sections.*
+*Index authority: MetaGenesis Core / SCI-01 v0.6 — 15 claims, 532 tests. Append new claims as sections.*

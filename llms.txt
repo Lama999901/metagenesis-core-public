@@ -3,7 +3,7 @@ with open('/mnt/user-data/outputs/llms.txt', 'r') as f: c = f.read()
 " 
 
 Open verification protocol for computational claims.
-Implements the MetaGenesis Verification Protocol (MVP) v0.5.
+Implements the MetaGenesis Verification Protocol (MVP) v0.6.
 
 Any computational result — ML accuracy, calibration output, FEM simulation,
 ADMET prediction, VaR estimate, IoT sensor stream — can be packaged into a
@@ -27,7 +27,7 @@ A governance + evidence + verification protocol. An open standard.
 4. Detects drift against verified calibration anchors
 5. Cross-Claim Chain: MTR-1 → DT-FEM-01 → DRIFT-01 cryptographically linked end-to-end
 
-## 14 active claims
+## 15 active claims
 
 MTR-1        mtr1_youngs_modulus_calibration          (materials — physical anchor E=70GPa)
 MTR-2        mtr2_thermal_paste_conductivity_calibration (materials — physical anchor)
@@ -43,11 +43,12 @@ PHARMA-01    pharma1_admet_certificate                 (pharma ADMET — FDA 21 
 FINRISK-01   finrisk1_var_certificate                  (finance VaR — Basel III/IV)
 DT-SENSOR-01 dtsensor1_iot_certificate                 (IoT sensor data integrity)
 DT-CALIB-LOOP-01 dtcalib1_convergence_certificate      (calibration convergence)
+AGENT-DRIFT-01   agent_drift_monitor                    (agent quality drift — recursive self-verification)
 
 ## Physical Anchor Principle (SCOPE_001)
 
 Two distinct concepts — never conflate:
-- Tamper-evident provenance: "was the bundle modified?" → ALL 14 claims
+- Tamper-evident provenance: "was the bundle modified?" → ALL 15 claims
 - Physical anchor: "does the number agree with physical reality?" → MTR-1/2/3, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP-01 ONLY
 
 E = 70 GPa for aluminium is a physical constant measured in thousands of labs worldwide.
@@ -91,7 +92,7 @@ Enforced by: python scripts/steward_audit.py → must output STEWARD AUDIT: PASS
 2. Tamper-evident semantic verification → mg.py :: _verify_semantic()  [test_cert02]
 3. Policy-gate immutable anchors → mg_policy_gate_policy.json
 4. Dual-mode canary pipeline → runner.py :: run_job(canary_mode=True/False)
-5. Step Chain + Cross-Claim Chain → all 14 claims + anchor_hash  [test_cert03 + test_cross_claim_chain]
+5. Step Chain + Cross-Claim Chain → all 15 claims + anchor_hash  [test_cert03 + test_cross_claim_chain]
 6. Bundle Signing (HMAC-SHA256 + Ed25519) → mg_sign.py + mg_ed25519.py  [test_cert07 + test_cert09]
 7. Temporal Commitment (NIST Beacon) → mg_temporal.py  [test_temporal + test_cert10]
 8. 5-Layer Independence (CERT-11 + CERT-12) → test_cert11 (coordinated multi-vector) + test_cert12 (encoding attacks)  [proves each layer catches attacks others miss]
@@ -99,13 +100,13 @@ Enforced by: python scripts/steward_audit.py → must output STEWARD AUDIT: PASS
 ## How to verify everything works
 
 python scripts/steward_audit.py                              # PASS
-python -m pytest tests/ -q                                   # 526 passed
+python -m pytest tests/ -q                                   # 532 passed
 python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 
 ## Current state (2026-03-18)
 
-- Claims: 14
-- Tests: 526 passing
+- Claims: 15
+- Tests: 532 passing
 - Verification layers: 5 (integrity + semantic + step chain + bundle signing + temporal commitment)
 - Domains: 7 (materials, sysid, data, ml, digital_twin, pharma_biotech, financial_risk)
 - Cross-Claim Chain: MTR-1 → DT-FEM-01 → DRIFT-01 cryptographically linked via anchor_hash
@@ -133,7 +134,7 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 - reports/scientific_claim_index.md — all 14 claims with thresholds
 - reports/canonical_state.md — authoritative claims list
 - reports/known_faults.yaml — known limitations (SCOPE_001 + ENV_001)
-- backend/progress/runner.py — job dispatch (14 claims)
+- backend/progress/runner.py — job dispatch (15 claims)
 - scripts/steward_audit.py — governance enforcement (SEALED)
 - scripts/steward_dossier.py — generates per-claim dossier .md files from claim index
 - scripts/steward_submission_pack.py — builds submission pack with evidence bundles

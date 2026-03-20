@@ -407,11 +407,33 @@ class ProgressRunner:
                 kwargs["anchor_claim_id"] = str(p.get("anchor_claim_id", "DRIFT-01"))
             return run_dtcalib1(**kwargs)
 
+        from backend.progress.agent_drift_monitor import JOB_KIND as AGENT_DRIFT01_KIND, run_agent_drift_monitor as run_agent_drift01
+        if payload.get("kind") == AGENT_DRIFT01_KIND:
+            p = payload
+            baseline = {
+                "tests_per_phase": float(p.get("baseline_tests_per_phase", 47)),
+                "pass_rate": float(p.get("baseline_pass_rate", 1.0)),
+                "regressions": int(p.get("baseline_regressions", 0)),
+                "verifier_iterations": float(p.get("baseline_verifier_iterations", 1.2)),
+            }
+            current = {
+                "tests_per_phase": float(p.get("current_tests_per_phase", 47)),
+                "pass_rate": float(p.get("current_pass_rate", 1.0)),
+                "regressions": int(p.get("current_regressions", 0)),
+                "verifier_iterations": float(p.get("current_verifier_iterations", 1.2)),
+            }
+            return run_agent_drift01(
+                baseline=baseline,
+                current=current,
+                drift_threshold_pct=float(p.get("drift_threshold_pct", 20.0)),
+            )
+
         registered = [
             MTR1_KIND, MTR2_KIND, MTR3_KIND,
             SYSID1_KIND, DATAPIPE1_KIND, DRIFT01_KIND,
             MLBENCH1_KIND, DTFEM1_KIND, MLBENCH2_KIND, MLBENCH3_KIND,
             PHARMA1_KIND, FINRISK1_KIND, DTSENSOR1_KIND, DTCALIB1_KIND,
+            AGENT_DRIFT01_KIND,
         ]
         raise ValueError(
             f"Unknown job kind: '{payload.get('kind')}'. "

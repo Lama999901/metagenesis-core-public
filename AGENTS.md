@@ -13,7 +13,7 @@ the rules of this repository. Read this before making any change.
 3. README.md             ← architecture, claims, quickstart
 4. llms.txt              ← AI-optimized summary of entire repo
 5. reports/canonical_state.md    ← verified claim list
-6. reports/scientific_claim_index.md  ← all 14 claims with thresholds
+6. reports/scientific_claim_index.md  ← all 15 claims with thresholds
 7. reports/known_faults.yaml     ← known limitations, do not overclaim
 8. docs/PROTOCOL.md      ← full protocol specification
 ```
@@ -27,7 +27,7 @@ After reading these 8 files you can answer any question about this project.
 ## What this repo is
 
 MetaGenesis Core is an open verification protocol layer.
-It implements the MetaGenesis Verification Protocol (MVP) v0.5.
+It implements the MetaGenesis Verification Protocol (MVP) v0.6.
 It makes computational claims tamper-evident, reproducible, and
 independently auditable offline by any third party.
 
@@ -104,7 +104,7 @@ test mtr_phase key present, test determinism (same seed → same result)
 
 Step 6 — Verify:
 python scripts/steward_audit.py → STEWARD AUDIT: PASS
-python -m pytest tests/ -q → 526 passed
+python -m pytest tests/ -q → 532 passed
 python scripts/deep_verify.py → ALL 13 TESTS PASSED
 
 ---
