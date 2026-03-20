@@ -364,6 +364,30 @@ def check_self_improvement():
         return True
 
 
+# ── 13. External Signals ──────────────────────────────────────────────────
+def check_signals():
+    section("EXTERNAL SIGNALS — Astropathic Relay")
+    out, code = run("python scripts/agent_signals.py --summary")
+    if code == 0:
+        ok(f"Signals received — {out.strip()}")
+        return True
+    else:
+        warn(f"Signals unavailable — {out.strip()}")
+        return True  # advisory, not a hard failure
+
+
+# ── 14. Chronicle ─────────────────────────────────────────────────────────
+def check_chronicle():
+    section("CHRONICLE — Historitor Record")
+    out, code = run("python scripts/agent_chronicle.py --summary")
+    if code == 0:
+        ok(f"Chronicle recorded — {out.strip()}")
+        return True
+    else:
+        warn(f"Chronicle issue — {out.strip()}")
+        return True  # advisory, not a hard failure
+
+
 # ── Main ─────────────────────────────────────────────────────────────────────
 def main():
     strict = "--strict" in sys.argv
@@ -372,7 +396,7 @@ def main():
     print(f"\n{BOLD}{'═'*60}{RESET}")
     print(f"{BOLD}  MetaGenesis Core — Agent Evolution Check{RESET}")
     info("Servo-skull patrol initiated (HEALTH_CHECK_START)")
-    print(f"  {datetime.now().strftime('%Y-%m-%d %H:%M')} | v0.5.0")
+    print(f"  {datetime.now().strftime('%Y-%m-%d %H:%M')} | v0.6.0")
     print(f"{BOLD}{'═'*60}{RESET}")
 
     results = {}
@@ -392,6 +416,8 @@ def main():
     results["branch_sync"] = check_branch_sync()
     results["coverage"]    = check_coverage()
     results["self_improve"] = check_self_improvement()
+    results["signals"] = check_signals()
+    results["chronicle"] = check_chronicle()
 
     # ── Summary ──
     section("SUMMARY — Omnissiah's Verdict")
@@ -411,6 +437,8 @@ def main():
         "branch_sync": ("Skitarii synchronized",    "BRANCH"),
         "coverage":      ("Genetor analysis complete",    "COVERAGE"),
         "self_improve":  ("Recursive enlightenment done",  "SELFIMPROVE"),
+        "signals":       ("External signals received",      "SIGNALS"),
+        "chronicle":     ("Chronicle recorded",             "CHRONICLE"),
     }
 
     for check, ok_val in results.items():
@@ -436,7 +464,7 @@ def main():
         print(f"  {RED}The Machine Spirit is troubled (FAIL){RESET}")
         print()
         print(f"  Run after fixing:")
-        print(f"  /gsd:quick \"Update CLAUDE.md to reflect current state: {count} tests, v0.5.0\"")
+        print(f"  /gsd:quick \"Update CLAUDE.md to reflect current state: {count} tests, v0.6.0\"")
         if stale:
             print(f"  /gsd:quick \"Fix stale documentation: {', '.join(stale[:3])}\"")
         code = 1 if strict else 0

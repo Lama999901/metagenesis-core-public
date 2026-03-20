@@ -34,6 +34,10 @@ jobs:
         run: |
           python scripts/agent_research.py
 
+      - name: Agent signals (external relay)
+        run: |
+          python scripts/agent_signals.py
+
       - name: Agent learning (observe and record)
         run: |
           python scripts/agent_learn.py observe
