@@ -205,7 +205,7 @@ CONTENT_CHECKS = {
     },
     "tests/agent/test_agent_drift01.py": {
         "banned": [],
-        "required": ["AGENT-DRIFT-01", "test_agent_drift"],
+        "required": ["AGENT-DRIFT-01", "TestAgentDrift01"],
     },
     "scripts/mg_policy_gate_policy.json": {
         "banned": [],
