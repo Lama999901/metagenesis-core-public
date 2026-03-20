@@ -372,7 +372,7 @@ def main():
     print(f"\n{BOLD}{'═'*60}{RESET}")
     print(f"{BOLD}  MetaGenesis Core — Agent Evolution Check{RESET}")
     info("Servo-skull patrol initiated (HEALTH_CHECK_START)")
-    print(f"  {datetime.now().strftime('%Y-%m-%d %H:%M')} | v0.5.0")
+    print(f"  {datetime.now().strftime('%Y-%m-%d %H:%M')} | v0.6.0")
     print(f"{BOLD}{'═'*60}{RESET}")
 
     results = {}
