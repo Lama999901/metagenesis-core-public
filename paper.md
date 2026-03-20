@@ -54,7 +54,7 @@ tampering any link invalidates all downstream hashes.
 
 The protocol ships with 15 active verification claims across 7 domains
 (materials science, ML/AI, system identification, data pipelines, digital
-twin, pharma/biotech, and financial risk), 532 adversarial tests, and
+twin, pharma/biotech, and financial risk), 544 adversarial tests, and
 governance enforcement that prevents any registered claim from existing
 without a corresponding implementation — and vice versa.
 
