@@ -127,9 +127,11 @@ None yet.
 | 260319-uah | Fix agent_chronicle.py claims table parsing (regex header parser) | 2026-03-20 | 6e5948f | [260319-uah-fix-agent-chronicle-py-claims-table-pars](./quick/260319-uah-fix-agent-chronicle-py-claims-table-pars/) |
 | 260320-hmk | Fix read_claim_domains() generic regex heading parser | 2026-03-20 | bd302ea | [260320-hmk-fix-agent-chronicle-py-read-claim-domain](./quick/260320-hmk-fix-agent-chronicle-py-read-claim-domain/) |
 | 260320-icp | Coverage boost: 12 tests for mg_sign.py and mg_ed25519.py | 2026-03-20 | 5601400 | [260320-icp-coverage-boost-tests-for-mg-sign-py-and-](./quick/260320-icp-coverage-boost-tests-for-mg-sign-py-and-/) |
+| 260320-jt4 | Counter sync 532->544 across all docs and check_stale_docs.py | 2026-03-20 | 01a2cd5 | [260320-jt4-counter-sync-532-544-across-all-docs-and](./quick/260320-jt4-counter-sync-532-544-across-all-docs-and/) |
+| 260320-k8t | Add test_coverage_boost.py to CONTENT_CHECKS watchlist | 2026-03-20 | a6c9f63 | [260320-k8t-add-test-coverage-boost-py-to-content-ch](./quick/260320-k8t-add-test-coverage-boost-py-to-content-ch/) |
 
 ## Session Continuity
 
-Last session: 2026-03-20T21:18:00Z
-Stopped at: Completed quick task 260320-icp (coverage boost tests for mg_sign.py and mg_ed25519.py)
+Last session: 2026-03-20T22:37:00Z
+Stopped at: Completed quick task 260320-k8t (add test_coverage_boost.py to CONTENT_CHECKS)
 Resume file: None

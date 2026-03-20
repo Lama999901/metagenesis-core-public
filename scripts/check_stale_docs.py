@@ -243,6 +243,14 @@ CONTENT_CHECKS = {
         "banned": [],
         "required": ["check_signals", "check_chronicle", "v0.6.0"],
     },
+    "tests/test_coverage_boost.py": {
+        "banned": [],
+        "required": ["generate_key", "run_self_test"],
+    },
+    "reports/CHRONICLE_0_6_0_20260320.md": {
+        "banned": [],
+        "required": [],
+    },
 }
 
 
