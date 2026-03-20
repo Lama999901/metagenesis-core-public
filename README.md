@@ -30,24 +30,137 @@ One command. Five layers. 60 seconds. Offline. The Omnissiah provides.
 
 ---
 
+## The Problem
+
+Computational science has a verification crisis. The numbers are real:
+
+- **Nature 2016 survey:** 70% of scientists reported they cannot reproduce each other's experimental results. Over 50% cannot reproduce their own.
+- **Kapoor & Narayanan 2023:** 294 ML papers from top venues contained inflated results caused by data leakage -- train/test contamination that went undetected through peer review.
+- **NeurIPS 2025 Leaderboard Illusion:** Systematic benchmark gaming documented across major ML competitions. Models optimized for leaderboard position rather than real-world performance.
+- **FDA 2025:** New credibility framework for AI/ML in drug development -- acknowledging that existing validation methods are insufficient for computational claims in regulated industries.
+- **Basel III/IV compliance gaps:** Financial institutions cannot independently verify VaR model outputs without re-running proprietary code in proprietary environments.
+
+**The root cause is simple:** there is no standard way to prove that a number came from the computation that claims to have produced it.
+
+Consider what happens today:
+- A researcher reports accuracy = 0.94. The reviewer sees the number. There is no way to verify it without re-running the code in the original environment -- which may require specific hardware, proprietary data, or hours of compute time.
+- A pharmaceutical company submits a computational drug interaction model. The FDA reviewer must trust the output or demand full environment reproduction.
+- A financial institution reports a VaR calculation. The regulator cannot independently verify it without the bank's proprietary codebase.
+
+Every ML team, every lab, every data pipeline produces computational claims every day. A reviewer must either re-run your entire environment (impractical) or trust the number you reported (unverifiable). MetaGenesis Core closes that gap.
+
+```bash
+python scripts/mg.py verify --pack bundle.zip
+# One command. Offline. No trust required.
+# -> PASS  or  FAIL: <specific layer and reason>
+```
+
+---
+
+## Why SHA-256 Alone Is Not Enough
+
+Most integrity tools answer one question: *was this file modified?* That is necessary but nowhere near sufficient. Here is a concrete attack that SHA-256 alone cannot catch:
+
+**The Semantic Bypass Attack:**
+```
+1. Attacker removes job_snapshot from the run artifact
+2. Attacker recomputes ALL SHA-256 hashes over remaining files
+3. Layer 1 (integrity): PASS -- all hashes match
+4. Layer 2 (semantic):  FAIL -- job_snapshot missing, evidence stripped
+```
+This attack is not theoretical. It is implemented, automated, and caught on every CI merge:
+`tests/steward/test_cert02_*::test_semantic_negative_missing_job_snapshot_fails_verify`
+
+**The Step Chain Attack -- bypasses Layers 1 and 2:**
+```
+1. Attacker changes computation inputs (e.g., accuracy 0.94 -> 0.95)
+2. Attacker recomputes hashes AND preserves semantic structure
+3. Layer 1 (integrity): PASS -- hashes rebuilt correctly
+4. Layer 2 (semantic):  PASS -- all required fields present
+5. Layer 3 (step chain): FAIL -- trace_root_hash does not match final step
+```
+Proven in CI: `tests/steward/test_cert03_step_chain_verify.py::test_tampered_trace_root_hash_fails`
+
+**The Signing Attack -- bypasses Layers 1, 2, and 3:**
+```
+1. Attacker rebuilds entire bundle with correct hashes, semantics, and step chain
+2. Layer 4 (signing): FAIL -- HMAC-SHA256 / Ed25519 signature does not match
+```
+Proven in CI: `tests/steward/test_cert07_*` (13 attack vectors)
+
+**The Backdating Attack -- bypasses Layers 1 through 4:**
+```
+1. Attacker creates a valid signed bundle but claims it was created last month
+2. Layer 5 (temporal): FAIL -- NIST Beacon pre-commitment timestamp mismatch
+```
+Proven in CI: `tests/steward/test_cert10_*`
+
+Each layer exists because the previous layers are insufficient. CERT-11 proves all five layers are independently necessary -- no subset of four catches all attacks.
+
+---
+
+## The Five Layers In Depth
+
+### Layer 1 -- SHA-256 Integrity
+
+**What it catches:** Any file modified after packaging.
+**What Layers 2-5 miss here:** Semantic, step chain, signing, and temporal checks all assume the files are intact. A single bit-flip in the manifest breaks everything downstream.
+**Test file:** `tests/steward/test_cert05_adversarial_gauntlet.py`
+**Output:** `FAIL: integrity — root_hash mismatch (expected abc123..., got def456...)`
+
+### Layer 2 -- Semantic Verification
+
+**What it catches:** Evidence stripped and hashes recomputed. An attacker removes `job_snapshot`, rebuilds all SHA-256 hashes -- Layer 1 says PASS, but Layer 2 catches the missing evidence.
+**What Layers 1,3-5 miss here:** Integrity sees valid hashes. Step chain sees a valid trace. Signing sees a valid signature. Temporal sees a valid timestamp. None of them know that critical evidence was removed.
+**Test file:** `tests/steward/test_cert02_semantic_layer_bypass.py`
+**Output:** `FAIL: semantic — job_snapshot missing from run_artifact`
+
+### Layer 3 -- Step Chain (Cryptographic Hash Chain)
+
+**What it catches:** Computation inputs changed, steps reordered, or results fabricated -- even when all files are present and semantically correct. The 4-step cryptographic hash chain over `init_params -> compute -> metrics -> threshold_check` breaks if anything changes.
+**What Layers 1,2,4,5 miss here:** Files are intact (Layer 1 PASS), all fields present (Layer 2 PASS), signature valid (Layer 4 PASS), timestamp valid (Layer 5 PASS). But the computation was different from what was claimed.
+**Test file:** `tests/steward/test_cert03_step_chain_verify.py`
+**Output:** `FAIL: step_chain — trace_root_hash mismatch`
+
+### Layer 4 -- Bundle Signing (HMAC-SHA256 + Ed25519)
+
+**What it catches:** Unauthorized bundle creator, signature forging, key manipulation. Dual-algorithm support: HMAC-SHA256 for shared-secret scenarios, Ed25519 for asymmetric third-party auditor verification.
+**What Layers 1-3,5 miss here:** A sophisticated attacker who rebuilds the entire bundle with correct hashes, semantics, and step chain -- but does not possess the signing key.
+**Test file:** `tests/steward/test_cert07_bundle_signing.py` + `tests/steward/test_cert09_ed25519_attacks.py`
+**Output:** `FAIL: signing — HMAC signature verification failed`
+
+### Layer 5 -- Temporal Commitment (NIST Randomness Beacon)
+
+**What it catches:** Backdated bundles. Pre-commitment scheme: SHA-256(root_hash) committed before NIST Beacon value fetched, then bound together. Proves WHEN a bundle was created -- not just WHAT it contains.
+**What Layers 1-4 miss here:** A valid, signed, semantically correct bundle that claims to have been created on a date it was not.
+**Test file:** `tests/steward/test_cert10_temporal_attacks.py`
+**Output:** `FAIL: temporal — beacon pre-commitment mismatch`
+
+---
+
 ## The Mechanicus Parallel
 
 | The Mechanicus | MetaGenesis Core |
 |---|---|
-| The Omnissiah | The Protocol (`mg.py`) |
-| The Inquisition | `steward_audit.py` -- governance enforcement |
-| The Litany of Protection | 5-layer verification (SHA-256 + semantic + step chain + signing + temporal) |
-| The Machine Spirit | `execution_trace` + `trace_root_hash` |
-| Sacred Unguents | Cryptographic hash chain binding computation steps |
-| Tech-Priest | The solo founder building the protocol |
-| The Forge World | 15 claims across 7 domains |
-| Binary Cant | Ed25519 + HMAC-SHA256 signatures |
-| Cogitator | NIST Beacon temporal commitment |
-| The Omnissiah's Test | 532 adversarial tests -- ALL PASS |
+| The Omnissiah | The Protocol (`mg.py`) -- the source of all computational truth |
+| The Inquisition | `steward_audit.py` -- governance enforcement, no PR escapes its gaze |
+| The Noosphere | `.agent_memory/` -- shared knowledge between agent incarnations |
+| Servo-skulls | `agent_evolution.py` -- 12 autonomous monitoring checks |
+| Heresy | Unverified computation -- detected, flagged, rejected |
+| The Forge World | GitHub repository -- where claims are forged and tested |
+| Binary Cant | SHA-256 cryptographic hash chain -- the sacred language of verification |
+| The Lexmechanic | `CLAUDE.md` -- the living document that teaches new agents |
+| The Machine Spirit | `agent_learn.py` -- memory recall across agent lifetimes |
+| Skitarii | CI checks -- tireless automated warriors defending every merge |
+| The Cogitator | `agent_research.py` -- gap analysis and strategic planning |
+| The Genetor | `agent_coverage.py` -- coverage analysis, finding weak points in the armor |
+| Recursive Enlightenment | `agent_evolve_self.py` -- agents that improve themselves |
+| The Tech-Priest | The contributor -- human or AI, all serve the protocol |
+| The Litany of Protection | `steward_audit PASS` -- the sacred words that permit a merge |
 
 ---
 
-## What this is
+## What This Is
 
 Any computational result -- ML model accuracy, calibration output, FEM simulation, ADMET prediction, VaR estimate, IoT sensor stream -- packaged into a self-contained evidence bundle that **any third party verifies offline with one command.**
 
@@ -62,23 +175,33 @@ No GPU. No access to your code or environment. No trust required. 60 seconds.
 
 ## The Founder's Story
 
-Built by **one person**. Yehor Bazhynov. Construction worker by day. Ukraine to Canada immigrant. No computer science degree. No team. No funding.
+Built by **one person**. Yehor Bazhynov. Construction worker by day. Ukraine to Canada immigrant.
 
-From zero to patent pending (USPTO #63/996,819) in **14 days**.
+No computer science degree. No team. No funding. No venture capital. No university lab.
 
-Built with **Claude (Anthropic)** as the primary development tool -- architecture decisions, code implementation, patent application drafting, adversarial test design. Every AI-generated output verified by the project's own test suite.
+Working full-time construction -- pouring concrete, framing walls -- while building a verification protocol at night and on weekends. From zero to patent pending (USPTO #63/996,819) in **14 days**.
 
-The result: **15 verified claims. 532 adversarial tests. 5 verification layers. 8 innovations. Daily autonomous agent monitoring.**
+Built with **Claude (Anthropic)** as the primary development tool -- architecture decisions, code implementation, patent application drafting, adversarial test design. Every AI-generated output verified by the project's own test suite. The protocol verifies the protocol.
 
-Working construction full-time while building this. This is what happens when determination meets AI-accelerated development in 2026.
+The result: **15 verified claims across 7 domains. 532 adversarial tests. 5 verification layers. 8 innovations. 12 autonomous agent monitoring checks running daily in CI.**
+
+This is what happens when determination meets AI-accelerated development in 2026. A construction worker from Ukraine built a patent-pending verification protocol that catches attacks most security tools miss -- because he needed to prove that computational claims are real, and nobody had built the tool to do it.
+
+The timeline:
+- **Day 1-3:** Architecture design, first claim (MTR-1), first verification layer
+- **Day 4-7:** Step chain innovation, semantic layer, adversarial test suite
+- **Day 8-10:** Multi-domain expansion (ML, pharma, finance, digital twin)
+- **Day 11-12:** Bundle signing (HMAC-SHA256 + Ed25519), temporal commitment (NIST Beacon)
+- **Day 13:** Patent application drafted and filed (USPTO #63/996,819)
+- **Day 14:** 532 tests passing, 5 layers proven independent, JOSS paper drafted
+
+Every line of code verified by the protocol's own test suite. Every claim backed by adversarial tests. Every innovation documented with executable proof.
 
 ---
 
-## Five verification layers + two pillars
+## Five Verification Layers + Two Pillars
 
-Most verification tools answer one question: *was this number changed after it was produced?*
-
-MetaGenesis Core answers a harder question: **is this number traceable to physical reality -- and was the computation itself executed correctly?**
+MetaGenesis Core answers a harder question than "was this number changed?" It answers: **is this number traceable to physical reality -- and was the computation itself executed correctly?**
 
 ### Five independent verification layers
 
@@ -167,32 +290,7 @@ python -m pytest tests/ -q
 
 The summary test in CERT-05 explicitly proves all five layers are necessary -- no single layer catches all attacks. CERT-11 constructs coordinated attacks where each layer catches what the other four miss. This is not a claim. It is a mathematical proof backed by executable tests.
 
----
-
-## The problem in one sentence
-
-Every ML team, lab, and pipeline produces computational claims every day. There is **no standard way** to verify them independently -- a reviewer must either re-run your entire environment, or trust the number you reported.
-
----
-
-## Why SHA-256 alone is not enough
-
-**The bypass attack -- proven and caught:**
-```
-1. Remove job_snapshot from run artifact
-2. Recompute all SHA-256 hashes -> integrity layer passes
-3. Semantic layer: FAIL -- job_snapshot missing
-```
-Proven: `tests/steward/test_cert02_*::test_semantic_negative_missing_job_snapshot_fails_verify`
-
-**The Step Chain attack -- Layer 3:**
-```
-1. Change computation inputs, recompute hashes -> layers 1+2 pass
-2. trace_root_hash doesn't match final step hash -> Step Chain: FAIL
-```
-Proven: `tests/steward/test_cert03_step_chain_verify.py::test_tampered_trace_root_hash_fails`
-
-**Adversarial Gauntlet -- 5 attack classes, all caught (CERT-05):**
+### Adversarial Gauntlet -- 5 attack classes, all caught (CERT-05)
 
 | Attack | What adversary does | Layer that catches |
 |--------|--------------------|-----------------|
@@ -207,13 +305,15 @@ python -m pytest tests/steward/test_cert05_adversarial_gauntlet.py -v
 # -> 6 passed (5 attacks + 1 summary proof)
 ```
 
-**Coordinated Multi-Vector Attacks -- 5-layer independence proven (CERT-11):**
+### Coordinated Multi-Vector Attacks (CERT-11)
+
 Each verification layer catches attacks that the other four miss. Proves all five layers are independently necessary.
 ```bash
 python -m pytest tests/steward/test_cert11_coordinated_multi_vector.py -v
 ```
 
-**Encoding Attack Resistance (CERT-12):**
+### Encoding Attack Resistance (CERT-12)
+
 BOM injection, null bytes, homoglyph claim IDs, truncated JSON -- all caught.
 ```bash
 python -m pytest tests/steward/test_cert12_encoding_attacks.py -v
@@ -221,7 +321,51 @@ python -m pytest tests/steward/test_cert12_encoding_attacks.py -v
 
 ---
 
-## Try it in 5 minutes
+## The Agent Evolution System
+
+MetaGenesis Core includes an autonomous agent monitoring system -- 12 checks that run daily in CI, ensuring the protocol and its documentation remain consistent, complete, and correct.
+
+### The 12 Checks
+
+| # | Check | Mechanicus Name | What it verifies |
+|---|-------|----------------|-----------------|
+| 1 | `steward` | Inquisition | `steward_audit.py` passes -- governance rules enforced |
+| 2 | `tests` | Machine Spirit | All 532 tests pass |
+| 3 | `deep` | Omnissiah | `deep_verify.py` -- 13 independent proof tests |
+| 4 | `docs` | Noosphere | Stale documentation detection via `check_stale_docs.py` |
+| 5 | `manifest` | Codex | `system_manifest.json` matches actual repo state |
+| 6 | `forbidden` | Hereticus | No banned terms in codebase |
+| 7 | `gaps` | Forge World | Every claim has tests, every test has a claim |
+| 8 | `claude_md` | Lexmechanic | `CLAUDE.md` reflects current counters and state |
+| 9 | `watchlist` | Servo-skull | Content checks across 30+ files for stale counters |
+| 10 | `branch_sync` | Skitarii | Branch is synchronized with origin/main |
+| 11 | `coverage` | Genetor | Code coverage analysis and dead code detection |
+| 12 | `self_improve` | Recursive Enlightenment | Self-improvement recommendations from codebase analysis |
+
+### How it works
+
+```bash
+python scripts/agent_evolution.py --summary
+# -> ALL 12 CHECKS PASSED -- system healthy
+```
+
+The system runs automatically on every CI merge via `.github/workflows/total_audit_guard.yml`. When a check fails, the merge is blocked. No human override. The protocol protects itself.
+
+### The Self-Improvement Loop
+
+The agent system does not just monitor -- it improves:
+
+1. **`agent_learn.py`** -- Memory across agent lifetimes. Each agent records what it learned; the next agent reads it before starting work.
+2. **`agent_research.py`** -- Gap analysis. Identifies missing tests, uncovered attack vectors, stale documentation.
+3. **`agent_coverage.py`** -- Coverage analysis. Finds which code paths lack tests and which tests lack claims.
+4. **`agent_evolve_self.py`** -- Recursive self-improvement. Analyzes the agent system itself and recommends improvements.
+5. **`AGENT-DRIFT-01`** -- The 15th claim. The protocol monitors the quality of the agents that extend it. If agent quality drifts more than 20% from baseline, correction is triggered.
+
+This is recursive self-verification: the protocol verifies the agents, the agents extend the protocol, and a dedicated claim monitors whether the agents are maintaining quality. The entire loop is testable and auditable.
+
+---
+
+## Try It In 5 Minutes
 
 ```bash
 git clone https://github.com/Lama999901/metagenesis-core-public
@@ -236,7 +380,7 @@ No API keys. No network. Works on any machine with Python 3.11+.
 
 ---
 
-## How it works -- 4 steps
+## How It Works -- 4 Steps
 
 ```
 1. runner.run_job()
@@ -259,7 +403,7 @@ No API keys. No network. Works on any machine with Python 3.11+.
 
 ---
 
-## 8 innovations (USPTO PPA #63/996,819)
+## 8 Innovations (USPTO PPA #63/996,819)
 
 ### 1 -- Governance-Enforced Bidirectional Claim Coverage
 Every PR: every registered claim has an implementation, every implementation has a registered claim. Enforced by static analysis -- not human review.
@@ -316,7 +460,7 @@ Proof:    test_cert_5layer_independence
 
 ---
 
-## 15 active verification claims
+## 15 Active Verification Claims
 
 | Claim | Domain | Threshold | Physical Anchor |
 |---|---|---|---|
@@ -340,7 +484,7 @@ All 15 claims have Step Chain (execution_trace + trace_root_hash). Physical anch
 
 ---
 
-## 7 domains -- one protocol
+## 7 Domains -- One Protocol
 
 | Domain | Claims | Regulatory alignment |
 |---|---|---|
@@ -356,7 +500,43 @@ All 15 claims have Step Chain (execution_trace + trace_root_hash). Physical anch
 
 ---
 
-## Verification state
+## Honest Limitations
+
+MetaGenesis Core is transparent about what it does not do. These are documented in `reports/known_faults.yaml` and are intentional design boundaries -- not bugs.
+
+### SCOPE_001 -- Physical Anchor Scope
+
+Physical anchor traceability (verification grounded in measured physical constants) applies **only** to domains with known physical constants:
+- **Materials science:** MTR-1, MTR-2, MTR-3 (E = 70 GPa, thermal conductivity, multilayer contact)
+- **Structural mechanics:** DT-FEM-01 (anchored to MTR-1)
+- **Drift monitoring:** DRIFT-01, DT-CALIB-LOOP-01 (anchored to MTR-1 chain)
+
+For ML accuracy (ML_BENCH-01/02/03), data pipelines (DATA-PIPE-01), pharma (PHARMA-01), finance (FINRISK-01), system identification (SYSID-01), IoT sensors (DT-SENSOR-01), and agent monitoring (AGENT-DRIFT-01), the protocol provides **tamper-evident provenance only** -- not physical anchoring.
+
+**Why this limitation exists:** Thresholds like `|Dacc| <= 0.02` are chosen conventions, not physical constants. There is no "E = 70 GPa equivalent" for ML accuracy. The protocol is honest about this distinction rather than pretending all thresholds are equal.
+
+### ENV_001 -- Test Environment
+
+All 532 tests pass in the reference environment (Python 3.11+, stdlib only). No database dependencies. No external services. No network required. Local environment deviations may require matching Python version.
+
+**Why this limitation exists:** The protocol is designed to work offline with zero external dependencies. This is a feature, not a limitation -- but it means the test suite assumes a clean Python environment.
+
+### What MetaGenesis Core Does NOT Claim
+
+These are explicit non-goals. The protocol is designed to do one thing well -- not everything poorly:
+
+- Does **not** verify algorithm correctness -- only evidence integrity and computation provenance. If your algorithm is wrong but deterministic, the bundle will PASS. That is correct behavior: the protocol proves the computation happened as claimed, not that the science is sound.
+- Does **not** prevent all attacks -- the protocol is tamper-**evident**, meaning tampering is detectable, not impossible. A sufficiently motivated attacker with access to the signing key can create a valid bundle with fabricated results. The protocol makes this visible to any verifier.
+- Does **not** validate training data quality or bias. Data leakage, selection bias, and distribution shift are upstream problems. The protocol verifies that the reported metrics came from the reported computation on the reported data -- not that the data was good.
+- Does **not** prevent p-hacking or result selection. A researcher who runs 100 experiments and reports only the best one will produce a valid bundle. The protocol catches post-hoc modification, not pre-hoc selection.
+- Does **not** replace peer review -- it gives reviewers a verification tool they did not have before. A reviewer can now verify in 60 seconds what previously required environment reproduction.
+- Does **not** guarantee that a passing bundle means the science is correct -- it guarantees the computation was executed as claimed, with the inputs that were claimed, producing the outputs that were reported.
+
+Full limitations: `reports/known_faults.yaml` and `SECURITY.md`
+
+---
+
+## Verification State
 
 ```bash
 python scripts/steward_audit.py
@@ -368,6 +548,10 @@ python -m pytest tests/ -q
 # Full proof-not-trust verification (13 tests):
 python scripts/deep_verify.py
 # -> ALL 13 TESTS PASSED
+
+# Agent evolution system (12 checks):
+python scripts/agent_evolution.py --summary
+# -> ALL 12 CHECKS PASSED -- system healthy
 ```
 
 **Active claims:** MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01, DT-FEM-01, ML_BENCH-02, ML_BENCH-03, PHARMA-01, FINRISK-01, DT-SENSOR-01, DT-CALIB-LOOP-01, AGENT-DRIFT-01
@@ -375,18 +559,7 @@ python scripts/deep_verify.py
 
 ---
 
-## What MetaGenesis Core does NOT claim
-
-- Does **not** verify algorithm correctness -- only evidence integrity
-- Does **not** prevent all attacks -- tamper-**evident**, not tamper-**proof**
-- Does **not** validate training data quality or bias
-- Does **not** prevent p-hacking or result selection
-
-Full limitations: `reports/known_faults.yaml` and `SECURITY.md`
-
----
-
-## Get started
+## Get Started
 
 **Free pilot** -- send your computational result, we build a verification bundle:
 -> https://metagenesis-core.dev/#pilot
@@ -412,7 +585,7 @@ Commercial licensing available for organizations building on the protocol.
 
 ---
 
-## For AI agents and LLMs working in this repo
+## For AI Agents and LLMs Working In This Repo
 
 Read these files in order:
 

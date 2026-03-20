@@ -199,6 +199,30 @@ CONTENT_CHECKS = {
         "banned": [],
         "required": ["Recursive"],
     },
+    "tests/agent/test_agent_drift01.py": {
+        "banned": [],
+        "required": ["AGENT-DRIFT-01", "TestAgentDrift01"],
+    },
+    "backend/progress/agent_drift_monitor.py": {
+        "banned": [],
+        "required": ["AGENT-DRIFT-01"],
+    },
+    "scripts/mg_policy_gate_policy.json": {
+        "banned": [],
+        "required": [],
+    },
+    ".github/workflows/mg_policy_gate.yml": {
+        "banned": [],
+        "required": [],
+    },
+    "reports/COVERAGE_REPORT_20260319.md": {
+        "banned": [],
+        "required": [],
+    },
+    "reports/SELF_IMPROVEMENT_20260319.md": {
+        "banned": [],
+        "required": [],
+    },
 }
 
 
