@@ -101,3 +101,31 @@ Auto-processed by `scripts/agent_research.py`. First PENDING task gets executed 
 - **Priority:** P2
 - **Output:** tests/steward/test_cert_adv_temporal_pure.py
 - **Description:** Generate test file with 4 pure temporal attacks that do NOT involve other layers: (1) truncated beacon value, (2) empty timestamp string, (3) swapped pre_commitment fields between two bundles, (4) temporal_commitment.json with valid structure but all-zero hashes. Read test_cert10 for temporal API usage.
+
+### TASK-015
+- **Title:** Boost coverage to 60% -- identify top uncovered functions, write test code
+- **Status:** PENDING
+- **Priority:** P1
+- **Output:** reports/AGENT_REPORT_YYYYMMDD.md
+- **Description:** Read reports/COVERAGE_REPORT_20260319.md, identify the top uncovered functions in mg_sign.py and mg_temporal.py (both are core verification scripts with low coverage), and generate actual pytest test code targeting cmd_keygen, cmd_sign, cmd_verify, cmd_temporal, verify_bundle_signature in mg_sign.py plus create_temporal_commitment, verify_temporal_commitment in mg_temporal.py.
+
+### TASK-016
+- **Title:** Zenodo DOI preparation -- generate .zenodo.json
+- **Status:** PENDING
+- **Priority:** P2
+- **Output:** .zenodo.json
+- **Description:** Read system_manifest.json and paper.md to extract metadata (title, authors, description, keywords, license, version). Generate a valid .zenodo.json file for automated DOI minting on next GitHub release.
+
+### TASK-017
+- **Title:** SoftwareX submission plan -- analyze JOSS to SoftwareX diff
+- **Status:** PENDING
+- **Priority:** P2
+- **Output:** reports/AGENT_REPORT_YYYYMMDD.md
+- **Description:** Read paper.md and compare JOSS format requirements against SoftwareX Original Software Publication format. Identify sections that need rewriting, additional content needed (impact statement, illustrative examples), and estimate effort in hours.
+
+### TASK-018
+- **Title:** First client outreach analysis
+- **Status:** PENDING
+- **Priority:** P3
+- **Output:** reports/AGENT_REPORT_YYYYMMDD.md
+- **Description:** Read EVOLUTION_LOG.md and any COMMERCIAL.md or business-related files in the repo. Analyze the protocol's readiness for a first paying client ($299 tier). Identify missing features, documentation gaps, and propose a 3-step outreach plan targeting ML teams that need reproducibility auditing.
