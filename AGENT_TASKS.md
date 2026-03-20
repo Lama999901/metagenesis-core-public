@@ -101,3 +101,31 @@ Auto-processed by `scripts/agent_research.py`. First PENDING task gets executed 
 - **Priority:** P2
 - **Output:** tests/steward/test_cert_adv_temporal_pure.py
 - **Description:** Generate test file with 4 pure temporal attacks that do NOT involve other layers: (1) truncated beacon value, (2) empty timestamp string, (3) swapped pre_commitment fields between two bundles, (4) temporal_commitment.json with valid structure but all-zero hashes. Read test_cert10 for temporal API usage.
+
+### TASK-015
+- **Title:** Boost coverage to 65% — mg_sign.py and mg_temporal.py
+- **Status:** PENDING
+- **Priority:** P1
+- **Output:** tests/steward/test_coverage_boost.py
+- **Description:** Read reports/COVERAGE_REPORT_20260319.md, identify top 10 highest-value uncovered functions in mg_sign.py and mg_temporal.py, write actual test code covering them.
+
+### TASK-016
+- **Title:** Zenodo DOI preparation
+- **Status:** PENDING
+- **Priority:** P2
+- **Output:** .zenodo.json
+- **Description:** Read system_manifest.json and paper.md, generate .zenodo.json metadata file with all required fields: title, creators, description, keywords, license, version, doi placeholder.
+
+### TASK-017
+- **Title:** SoftwareX submission plan
+- **Status:** PENDING
+- **Priority:** P2
+- **Output:** docs/SOFTWAREX_PLAN.md
+- **Description:** Read paper.md, analyze differences between JOSS and SoftwareX format requirements, create docs/SOFTWAREX_PLAN.md with exact changes needed for SoftwareX submission.
+
+### TASK-018
+- **Title:** Client outreach analysis
+- **Status:** PENDING
+- **Priority:** P3
+- **Output:** reports/AGENT_REPORT_YYYYMMDD.md
+- **Description:** Read COMMERCIAL.md and EVOLUTION_LOG.md for outreach contact patterns. Analyze which contacts have not replied. Propose 3 best follow-up messages with specific value propositions.

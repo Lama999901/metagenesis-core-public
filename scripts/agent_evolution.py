@@ -281,8 +281,8 @@ def check_claude_md(actual_count):
     if str(actual_count) not in content and actual_count > 0:
         issues.append(f"CLAUDE.md doesn't mention {actual_count} tests")
 
-    if "v0.5.0" not in content:
-        issues.append("CLAUDE.md doesn't mention v0.5.0")
+    if "v0.6.0" not in content:
+        issues.append("CLAUDE.md doesn't mention v0.6.0")
 
     if "<<<<<<" in content or ">>>>>>>" in content or "\n=======" in content:
         issues.append("CLAUDE.md has merge conflict markers!")
