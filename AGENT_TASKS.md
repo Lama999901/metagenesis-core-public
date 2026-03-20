@@ -104,28 +104,28 @@ Auto-processed by `scripts/agent_research.py`. First PENDING task gets executed 
 
 ### TASK-015
 - **Title:** Boost coverage to 65% — mg_sign.py and mg_temporal.py
-- **Status:** PENDING
+- **Status:** DONE (2026-03-19)
 - **Priority:** P1
 - **Output:** tests/steward/test_coverage_boost.py
 - **Description:** Read reports/COVERAGE_REPORT_20260319.md, identify top 10 highest-value uncovered functions in mg_sign.py and mg_temporal.py, write actual test code covering them.
 
 ### TASK-016
 - **Title:** Zenodo DOI preparation
-- **Status:** PENDING
+- **Status:** DONE (2026-03-19)
 - **Priority:** P2
 - **Output:** .zenodo.json
 - **Description:** Read system_manifest.json and paper.md, generate .zenodo.json metadata file with all required fields: title, creators, description, keywords, license, version, doi placeholder.
 
 ### TASK-017
 - **Title:** SoftwareX submission plan
-- **Status:** PENDING
+- **Status:** DONE (2026-03-19)
 - **Priority:** P2
 - **Output:** docs/SOFTWAREX_PLAN.md
 - **Description:** Read paper.md, analyze differences between JOSS and SoftwareX format requirements, create docs/SOFTWAREX_PLAN.md with exact changes needed for SoftwareX submission.
 
 ### TASK-018
 - **Title:** Client outreach analysis
-- **Status:** PENDING
+- **Status:** DONE (2026-03-19)
 - **Priority:** P3
 - **Output:** reports/AGENT_REPORT_YYYYMMDD.md
 - **Description:** Read COMMERCIAL.md and EVOLUTION_LOG.md for outreach contact patterns. Analyze which contacts have not replied. Propose 3 best follow-up messages with specific value propositions.

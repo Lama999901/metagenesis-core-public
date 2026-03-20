@@ -38,6 +38,22 @@ jobs:
         run: |
           python scripts/agent_signals.py
 
+      - name: Agent evolution (14-check health)
+        run: |
+          python scripts/agent_evolution.py --summary
+
+      - name: Agent chronicle (version snapshot)
+        run: |
+          python scripts/agent_chronicle.py --summary
+
+      - name: Agent coverage (quality analysis)
+        run: |
+          python scripts/agent_coverage.py --summary
+
+      - name: Agent self-improvement
+        run: |
+          python scripts/agent_evolve_self.py --summary
+
       - name: Agent learning (observe and record)
         run: |
           python scripts/agent_learn.py observe

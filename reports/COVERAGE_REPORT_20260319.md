@@ -5,21 +5,23 @@
 
 ## Coverage Summary
 
-- **Overall coverage:** 39.7%
-- **Files analyzed:** 41
-- **Files below 50%:** 10
-- **Zero-coverage functions:** 103
+- **Overall coverage:** 38.7%
+- **Files analyzed:** 44
+- **Files below 50%:** 12
+- **Zero-coverage functions:** 115
 - **Low-coverage functions (<50%):** 23
 
 ### Files Below 50% Coverage
 
 | File | Coverage % |
 |------|-----------|
+| `scripts\agent_chronicle.py` | 0.0% |
 | `scripts\agent_coverage.py` | 0.0% |
 | `scripts\agent_evolution.py` | 0.0% |
 | `scripts\agent_evolve_self.py` | 0.0% |
 | `scripts\agent_learn.py` | 0.0% |
 | `scripts\agent_research.py` | 0.0% |
+| `scripts\agent_signals.py` | 0.0% |
 | `scripts\auto_watchlist_scan.py` | 0.0% |
 | `scripts\check_stale_docs.py` | 0.0% |
 | `scripts\deep_verify.py` | 0.0% |
@@ -30,6 +32,11 @@
 
 | File | Function | Lines |
 |------|----------|-------|
+| `scripts\agent_chronicle.py` | `read_manifest` | 31-38 |
+| `scripts\agent_chronicle.py` | `read_claim_domains` | 39-54 |
+| `scripts\agent_chronicle.py` | `count_tasks` | 55-68 |
+| `scripts\agent_chronicle.py` | `find_previous_chronicle` | 69-94 |
+| `scripts\agent_chronicle.py` | `main` | 95-212 |
 | `scripts\agent_coverage.py` | `ok` | 42-42 |
 | `scripts\agent_coverage.py` | `err` | 43-43 |
 | `scripts\agent_coverage.py` | `warn` | 44-44 |
@@ -57,7 +64,9 @@
 | `scripts\agent_evolution.py` | `check_branch_sync` | 323-342 |
 | `scripts\agent_evolution.py` | `check_coverage` | 343-355 |
 | `scripts\agent_evolution.py` | `check_self_improvement` | 356-367 |
-| `scripts\agent_evolution.py` | `main` | 368-449 |
+| `scripts\agent_evolution.py` | `check_signals` | 368-379 |
+| `scripts\agent_evolution.py` | `check_chronicle` | 380-391 |
+| `scripts\agent_evolution.py` | `main` | 392-477 |
 | `scripts\agent_evolve_self.py` | `ok` | 43-43 |
 | `scripts\agent_evolve_self.py` | `err` | 44-44 |
 | `scripts\agent_evolve_self.py` | `warn` | 45-45 |
@@ -114,16 +123,21 @@
 | `scripts\agent_research.py` | `generate_tasks` | 2288-2337 |
 | `scripts\agent_research.py` | `weekly_report` | 2338-2403 |
 | `scripts\agent_research.py` | `main` | 2404-2441 |
+| `scripts\agent_signals.py` | `fetch_github_stats` | 32-54 |
+| `scripts\agent_signals.py` | `count_memory_sessions` | 55-62 |
+| `scripts\agent_signals.py` | `count_tasks` | 63-76 |
+| `scripts\agent_signals.py` | `read_manifest` | 77-85 |
+| `scripts\agent_signals.py` | `main` | 86-165 |
 | `scripts\auto_watchlist_scan.py` | `_should_exclude` | 43-50 |
 | `scripts\auto_watchlist_scan.py` | `collect_doc_files` | 51-78 |
 | `scripts\auto_watchlist_scan.py` | `scan` | 79-119 |
-| `scripts\check_stale_docs.py` | `check_content` | 205-220 |
-| `scripts\check_stale_docs.py` | `run` | 221-228 |
-| `scripts\check_stale_docs.py` | `get_last_merge_commit` | 229-241 |
-| `scripts\check_stale_docs.py` | `get_files_changed_since` | 242-249 |
-| `scripts\check_stale_docs.py` | `files_in_tracked_paths` | 250-258 |
-| `scripts\check_stale_docs.py` | `check_stale_docs` | 259-359 |
-| `scripts\deep_verify.py` | `load_module` | 86-426 |
+| `scripts\check_stale_docs.py` | `check_content` | 245-260 |
+| `scripts\check_stale_docs.py` | `run` | 261-268 |
+| `scripts\check_stale_docs.py` | `get_last_merge_commit` | 269-281 |
+| `scripts\check_stale_docs.py` | `get_files_changed_since` | 282-289 |
+| `scripts\check_stale_docs.py` | `files_in_tracked_paths` | 290-298 |
+| `scripts\check_stale_docs.py` | `check_stale_docs` | 299-399 |
+| `scripts\deep_verify.py` | `load_module` | 87-432 |
 | `scripts\mg_policy_gate.py` | `__init__` | 29-34 |
 | `scripts\mg_policy_gate.py` | `_load_policy` | 35-58 |
 | `scripts\mg_policy_gate.py` | `get_changed_files_git` | 59-79 |
@@ -166,6 +180,11 @@
 
 Tasks for zero-coverage functions (not already in AGENT_TASKS.md):
 
+- **Write tests for read_manifest in agent_chronicle.py** -- `scripts\agent_chronicle.py`
+- **Write tests for read_claim_domains in agent_chronicle.py** -- `scripts\agent_chronicle.py`
+- **Write tests for count_tasks in agent_chronicle.py** -- `scripts\agent_chronicle.py`
+- **Write tests for find_previous_chronicle in agent_chronicle.py** -- `scripts\agent_chronicle.py`
+- **Write tests for main in agent_chronicle.py** -- `scripts\agent_chronicle.py`
 - **Write tests for ok in agent_coverage.py** -- `scripts\agent_coverage.py`
 - **Write tests for err in agent_coverage.py** -- `scripts\agent_coverage.py`
 - **Write tests for warn in agent_coverage.py** -- `scripts\agent_coverage.py`
@@ -181,8 +200,3 @@ Tasks for zero-coverage functions (not already in AGENT_TASKS.md):
 - **Write tests for info in agent_evolution.py** -- `scripts\agent_evolution.py`
 - **Write tests for run in agent_evolution.py** -- `scripts\agent_evolution.py`
 - **Write tests for section in agent_evolution.py** -- `scripts\agent_evolution.py`
-- **Write tests for check_steward in agent_evolution.py** -- `scripts\agent_evolution.py`
-- **Write tests for check_tests in agent_evolution.py** -- `scripts\agent_evolution.py`
-- **Write tests for check_deep_verify in agent_evolution.py** -- `scripts\agent_evolution.py`
-- **Write tests for check_stale_docs in agent_evolution.py** -- `scripts\agent_evolution.py`
-- **Write tests for check_manifest in agent_evolution.py** -- `scripts\agent_evolution.py`
