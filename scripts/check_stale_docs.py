@@ -82,6 +82,14 @@ CRITICAL_FILES = {
         "tracks": ["tests/"],
         "description": "Known limitations — test count must match pytest output",
     },
+    "AGENT_TASKS.md": {
+        "tracks": ["scripts/agent_research.py"],
+        "description": "Agent research task queue",
+    },
+    "reports/canonical_state.md": {
+        "tracks": ["reports/scientific_claim_index.md", "system_manifest.json"],
+        "description": "Canonical state record (steward-managed)",
+    },
 }
 
 
@@ -162,6 +170,42 @@ CONTENT_CHECKS = {
     "reports/scientific_claim_index.md": {
         "banned": ["282", "295"],
         "required": ["14 claims", "526"],
+    },
+    "CODE_OF_CONDUCT.md": {
+        "banned": [],
+        "required": ["Contributor Covenant"],
+    },
+    "EVOLUTION_LOG.md": {
+        "banned": [],
+        "required": [],
+    },
+    "requirements.txt": {
+        "banned": [],
+        "required": [],
+    },
+    "reports/AGENT_REPORT_20260318.md": {
+        "banned": [],
+        "required": [],
+    },
+    "reports/AGENT_REPORT_20260319.md": {
+        "banned": [],
+        "required": [],
+    },
+    "reports/WEEKLY_REPORT_20260318.md": {
+        "banned": [],
+        "required": [],
+    },
+    "reports/WEEKLY_REPORT_20260319.md": {
+        "banned": [],
+        "required": [],
+    },
+    "reports/phase_registry_v0_1.md": {
+        "banned": [],
+        "required": [],
+    },
+    "demos/open_data_demo_01/data/SOURCE.md": {
+        "banned": [],
+        "required": [],
     },
 }
 
