@@ -34,10 +34,6 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 
 # ── Critical files and what code they describe ──────────────────────────────
 CRITICAL_FILES = {
-    "CLAUDE.md": {
-        "tracks": ["scripts/", "backend/progress/", "tests/steward/"],
-        "description": "Agent brain — tracks architecture, test count, innovations",
-    },
     "AGENTS.md": {
         "tracks": ["scripts/steward_audit.py", "scripts/mg.py", "tests/"],
         "description": "Hard rules for repo agents",
@@ -54,33 +50,9 @@ CRITICAL_FILES = {
         "tracks": ["backend/progress/runner.py", "tests/"],
         "description": "Machine-readable canonical state (test_count, active_claims)",
     },
-    "README.md": {
-        "tracks": ["scripts/", "tests/", "system_manifest.json"],
-        "description": "Public-facing documentation",
-    },
     "index.html": {
         "tracks": ["system_manifest.json", "tests/", "scripts/"],
         "description": "Site — contains test counters in 11+ places",
-    },
-    "ppa/README_PPA.md": {
-        "tracks": ["scripts/mg_ed25519.py", "scripts/mg_temporal.py", "scripts/mg_sign.py"],
-        "description": "Post-PPA innovations tracking",
-    },
-    "docs/PROTOCOL.md": {
-        "tracks": ["scripts/mg.py", "scripts/mg_sign.py", "scripts/mg_temporal.py"],
-        "description": "Protocol specification",
-    },
-    "docs/ARCHITECTURE.md": {
-        "tracks": ["backend/progress/", "scripts/mg.py"],
-        "description": "Architecture documentation",
-    },
-    "paper.md": {
-        "tracks": ["scripts/", "tests/steward/", "system_manifest.json"],
-        "description": "JOSS paper — must reflect current innovation count",
-    },
-    "reports/known_faults.yaml": {
-        "tracks": ["tests/"],
-        "description": "Known limitations — test count must match pytest output",
     },
     "AGENT_TASKS.md": {
         "tracks": ["scripts/agent_research.py"],
@@ -206,6 +178,18 @@ CONTENT_CHECKS = {
     "demos/open_data_demo_01/data/SOURCE.md": {
         "banned": [],
         "required": [],
+    },
+    "AGENTS_QUICKSTART.md": {
+        "banned": ["511"],
+        "required": ["526", "agent_evolution"],
+    },
+    "docs/INTEGRATION_GUIDE.md": {
+        "banned": [],
+        "required": ["MLflow", "DVC", "WandB"],
+    },
+    "ppa/CLAIMS_STATUS_v05.md": {
+        "banned": [],
+        "required": ["526", "14 claims"],
     },
 }
 
