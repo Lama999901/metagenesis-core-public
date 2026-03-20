@@ -339,6 +339,31 @@ def check_branch_sync():
         return True
 
 
+# ── 11. Coverage Analysis ────────────────────────────────────────────────────
+def check_coverage():
+    section("CODE COVERAGE — Genetor Analysis")
+    out, code = run("python scripts/agent_coverage.py --summary")
+    if code == 0:
+        ok(f"Coverage analysis complete — {out.strip()}")
+        return True
+    else:
+        warn(f"Coverage below threshold — {out.strip()}")
+        # Advisory, not a hard failure
+        return True
+
+
+# ── 12. Self-Improvement ────────────────────────────────────────────────────
+def check_self_improvement():
+    section("SELF-IMPROVEMENT — Recursive Enlightenment")
+    out, code = run("python scripts/agent_evolve_self.py --summary")
+    if code == 0:
+        ok(f"Self-improvement scan complete — {out.strip()}")
+        return True
+    else:
+        warn(f"Self-improvement scan issue — {out.strip()}")
+        return True
+
+
 # ── Main ─────────────────────────────────────────────────────────────────────
 def main():
     strict = "--strict" in sys.argv
@@ -365,6 +390,8 @@ def main():
     results["claude_md"] = check_claude_md(count)
     results["watchlist"] = check_watchlist()
     results["branch_sync"] = check_branch_sync()
+    results["coverage"]    = check_coverage()
+    results["self_improve"] = check_self_improvement()
 
     # ── Summary ──
     section("SUMMARY — Omnissiah's Verdict")
@@ -382,6 +409,8 @@ def main():
         "claude_md":   ("Lexmechanic current",      "CLAUDEMD"),
         "watchlist":   ("Servo-skull coverage full", "WATCHLIST"),
         "branch_sync": ("Skitarii synchronized",    "BRANCH"),
+        "coverage":      ("Genetor analysis complete",    "COVERAGE"),
+        "self_improve":  ("Recursive enlightenment done",  "SELFIMPROVE"),
     }
 
     for check, ok_val in results.items():
