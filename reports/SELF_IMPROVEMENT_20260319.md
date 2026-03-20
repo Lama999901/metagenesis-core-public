@@ -8,14 +8,14 @@
 - **Total reports:** 4
 - **Date range:** 2026-03-18 to 2026-03-19
 - **Frequency:** healthy: avg 0.3 days between reports
-- **Total findings across reports:** 93
+- **Total findings across reports:** 91
 
 | Report | Date | Findings | Tasks Referenced |
 |--------|------|----------|-----------------|
 | `AGENT_REPORT_20260318.md` | 2026-03-18 | 25 | TASK-004 |
-| `AGENT_REPORT_20260319.md` | 2026-03-19 | 5 | TASK-014 |
-| `WEEKLY_REPORT_20260318.md` | 2026-03-18 | 27 | TASK-002, TASK-001, TASK-003, TASK-004, TASK-005 |
-| `WEEKLY_REPORT_20260319.md` | 2026-03-19 | 36 | TASK-007, TASK-009, TASK-010, TASK-002, TASK-011 |
+| `AGENT_REPORT_20260319.md` | 2026-03-19 | 0 | TASK-018 |
+| `WEEKLY_REPORT_20260318.md` | 2026-03-18 | 27 | TASK-003, TASK-004, TASK-005, TASK-002, TASK-001 |
+| `WEEKLY_REPORT_20260319.md` | 2026-03-19 | 39 | TASK-017, TASK-003, TASK-006, TASK-010, TASK-011 |
 
 ## Handler Analysis
 
