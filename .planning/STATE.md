@@ -43,7 +43,7 @@ See: .planning/PROJECT.md (updated 2026-03-18)
 Phase: 8 of 8 (Counter Updates)
 Plan: 2 of 2 complete
 Status: Completed
-Last activity: 2026-03-20 - Completed quick task 260319-nwt: Claim #15 AGENT-DRIFT-01 + v0.6.0 counter sync
+Last activity: 2026-03-20 - Completed quick task 260319-uah: Fix agent_chronicle.py claims table parsing
 
 Progress: [██████████] 9/9 plans complete (100%)
 
@@ -123,9 +123,11 @@ None yet.
 | 260319-nb2 | Agent coverage analyst + recursive self-improvement (checks 11-12) | 2026-03-19 | 51981cc | [260319-nb2-agent-divine-coverage-analyst-recursive-](./quick/260319-nb2-agent-divine-coverage-analyst-recursive-/) |
 | 260319-nwt | Claim #15 AGENT-DRIFT-01 + v0.6.0 counter sync (15 claims, 532 tests) | 2026-03-20 | b0ca0d5 | [260319-nwt-claim-15-agent-drift-01-v0-6-0-counter-s](./quick/260319-nwt-claim-15-agent-drift-01-v0-6-0-counter-s/) |
 | 260319-sfq | Add agent_signals.py + agent_chronicle.py to CONTENT_CHECKS watchlist | 2026-03-20 | f3b3d91 | [260319-sfq-add-2-missing-files-to-content-checks-in](./quick/260319-sfq-add-2-missing-files-to-content-checks-in/) |
+| 260319-szi | Fix CI weekly agent health YML gaps + execute TASK-015-018 | 2026-03-20 | 77fa709 | [260319-szi-fix-ci-weekly-agent-health-yml-gaps-exec](./quick/260319-szi-fix-ci-weekly-agent-health-yml-gaps-exec/) |
+| 260319-uah | Fix agent_chronicle.py claims table parsing (regex header parser) | 2026-03-20 | 6e5948f | [260319-uah-fix-agent-chronicle-py-claims-table-pars](./quick/260319-uah-fix-agent-chronicle-py-claims-table-pars/) |
 
 ## Session Continuity
 
-Last session: 2026-03-20T04:31:00Z
-Stopped at: Completed quick task 260319-sfq (add 2 missing files to CONTENT_CHECKS)
+Last session: 2026-03-20T05:51:18Z
+Stopped at: Completed quick task 260319-uah (fix agent_chronicle.py read_claim_domains parsing)
 Resume file: None
