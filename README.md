@@ -6,12 +6,13 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Patent Pending](https://img.shields.io/badge/Patent-Pending%20%2363%2F996%2C819-orange.svg)](ppa/README_PPA.md)
 [![Tests](https://img.shields.io/badge/Tests-544%20passing-brightgreen.svg)](tests/)
-[![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.6-blueviolet.svg)](docs/PROTOCOL.md)
+[![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.6.0-blueviolet.svg)](docs/PROTOCOL.md)
 [![Sponsor](https://img.shields.io/badge/Sponsor-❤️-pink.svg)](https://github.com/sponsors/Lama999901)
 
 **Site:** https://metagenesis-core.dev
 **Contact:** yehor@metagenesis-core.dev
-**PPA:** USPTO #63/996,819 -- filed 2026-03-05
+**PPA:** USPTO #63/996,819 -- filed 2026-03-05  
+**Version:** v0.6.0 | 15 claims | 544 tests | 14 agent checks | 18/18 tasks done
 
 ---
 
@@ -327,7 +328,7 @@ MetaGenesis Core includes an autonomous agent monitoring system -- 14 checks tha
 | 6 | `forbidden` | Hereticus | No banned terms in codebase |
 | 7 | `gaps` | Forge World | Every claim has tests, every test has a claim |
 | 8 | `claude_md` | Lexmechanic | `CLAUDE.md` reflects current counters and state |
-| 9 | `watchlist` | Servo-skull | Content checks across 30+ files for stale counters |
+| 9 | `watchlist` | Servo-skull | Content checks across 53 files for stale counters |
 | 10 | `branch_sync` | Skitarii | Branch is synchronized with origin/main |
 | 11 | `coverage` | Genetor | Code coverage analysis and dead code detection |
 | 12 | `self_improve` | Recursive Enlightenment | Self-improvement recommendations from codebase analysis |
