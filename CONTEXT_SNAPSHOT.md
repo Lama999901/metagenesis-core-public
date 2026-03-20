@@ -22,7 +22,7 @@
 
 | Parameter | Value |
 |---|---|
-| Tests | **511 passing** |
+| Tests | **526 passing** |
 | steward_audit | PASS |
 | CI | GREEN |
 | Active claims | **14** |
@@ -92,7 +92,7 @@ Physical anchor scope (SCOPE_001): MTR-1/2/3, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP
 
 ```bash
 python scripts/steward_audit.py          # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q               # → 511 passed
+python -m pytest tests/ -q               # → 526 passed
 python scripts/deep_verify.py            # → ALL 13 TESTS PASSED
 python demos/open_data_demo_01/run_demo.py  # → PASS PASS
 
@@ -105,7 +105,7 @@ python -m pytest tests/steward/test_cert06_real_world_scenarios.py -v
 
 ## What is next
 
-- [x] system_manifest.json test_count → updated to 511
+- [x] system_manifest.json test_count → updated to 526
 - [ ] Site crisis section → add adversarial attacks (Attack 1–5)
 - [ ] Non-provisional patent attorney (deadline 2027-03-05)
 - [ ] First paying customer ($299 via email)

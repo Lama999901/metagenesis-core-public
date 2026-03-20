@@ -18,7 +18,7 @@ abstract: >
   governance-enforced bidirectional claim coverage, dual-mode canary execution
   pipeline, and Cross-Claim Cryptographic Chain linking physical measurements
   to simulation outputs. 14 active claims across materials science, ML/AI,
-  digital twin, pharma, and financial risk domains. 511 adversarial tests.
+  digital twin, pharma, and financial risk domains. 526 adversarial tests.
   Patent Pending USPTO #63/996,819.
 keywords:
   - verification

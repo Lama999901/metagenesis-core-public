@@ -1,30 +1,76 @@
 # MetaGenesis Core
 
-**Open verification protocol for computational claims.**
+**The Omnissiah's Protocol for Computational Truth.**
 
 [![Steward Audit](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml/badge.svg)](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Patent Pending](https://img.shields.io/badge/Patent-Pending%20%2363%2F996%2C819-orange.svg)](ppa/README_PPA.md)
-[![Tests](https://img.shields.io/badge/Tests-511%20passing-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-526%20passing-brightgreen.svg)](tests/)
 [![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.5-blueviolet.svg)](docs/PROTOCOL.md)
 [![Sponsor](https://img.shields.io/badge/Sponsor-❤️-pink.svg)](https://github.com/sponsors/Lama999901)
 
-🌐 **Site:** https://metagenesis-core.dev  
-📧 **Contact:** yehor@metagenesis-core.dev  
-📄 **PPA:** USPTO #63/996,819 — filed 2026-03-05
+**Site:** https://metagenesis-core.dev
+**Contact:** yehor@metagenesis-core.dev
+**PPA:** USPTO #63/996,819 -- filed 2026-03-05
+
+---
+
+## The Creed
+
+> *In the grim darkness of unverifiable computation, one protocol stands between truth and fabrication.*
+
+The machine spirit demands proof. Every claim verified. Every hash chained. Every step traced. No trust required -- only evidence. The protocol does not ask you to believe. It asks you to verify.
+
+```bash
+python scripts/mg.py verify --pack bundle.zip
+# -> PASS  or  FAIL: <specific reason and layer>
+```
+
+One command. Five layers. 60 seconds. Offline. The Omnissiah provides.
+
+---
+
+## The Mechanicus Parallel
+
+| The Mechanicus | MetaGenesis Core |
+|---|---|
+| The Omnissiah | The Protocol (`mg.py`) |
+| The Inquisition | `steward_audit.py` -- governance enforcement |
+| The Litany of Protection | 5-layer verification (SHA-256 + semantic + step chain + signing + temporal) |
+| The Machine Spirit | `execution_trace` + `trace_root_hash` |
+| Sacred Unguents | Cryptographic hash chain binding computation steps |
+| Tech-Priest | The solo founder building the protocol |
+| The Forge World | 14 claims across 7 domains |
+| Binary Cant | Ed25519 + HMAC-SHA256 signatures |
+| Cogitator | NIST Beacon temporal commitment |
+| The Omnissiah's Test | 526 adversarial tests -- ALL PASS |
 
 ---
 
 ## What this is
 
-Any computational result — ML model accuracy, calibration output, FEM simulation, ADMET prediction, VaR estimate, IoT sensor stream — packaged into a self-contained evidence bundle that **any third party verifies offline with one command.**
+Any computational result -- ML model accuracy, calibration output, FEM simulation, ADMET prediction, VaR estimate, IoT sensor stream -- packaged into a self-contained evidence bundle that **any third party verifies offline with one command.**
 
 ```bash
 python scripts/mg.py verify --pack /path/to/bundle
-# → PASS  or  FAIL: <specific reason>
+# -> PASS  or  FAIL: <specific reason>
 ```
 
 No GPU. No access to your code or environment. No trust required. 60 seconds.
+
+---
+
+## The Founder's Story
+
+Built by **one person**. Yehor Bazhynov. Construction worker by day. Ukraine to Canada immigrant. No computer science degree. No team. No funding.
+
+From zero to patent pending (USPTO #63/996,819) in **14 days**.
+
+Built with **Claude (Anthropic)** as the primary development tool -- architecture decisions, code implementation, patent application drafting, adversarial test design. Every AI-generated output verified by the project's own test suite.
+
+The result: **14 verified claims. 526 adversarial tests. 5 verification layers. 8 innovations. Daily autonomous agent monitoring.**
+
+Working construction full-time while building this. This is what happens when determination meets AI-accelerated development in 2026.
 
 ---
 
@@ -32,118 +78,143 @@ No GPU. No access to your code or environment. No trust required. 60 seconds.
 
 Most verification tools answer one question: *was this number changed after it was produced?*
 
-MetaGenesis Core answers a harder question: **is this number traceable to physical reality — and was the computation itself executed correctly?**
+MetaGenesis Core answers a harder question: **is this number traceable to physical reality -- and was the computation itself executed correctly?**
 
 ### Five independent verification layers
 
 Each layer catches attacks the previous layers miss:
 
 ```
-Layer 1 — SHA-256 integrity
+Layer 1 -- SHA-256 integrity
   Catches: file modified after packaging
   Proof:   pack_manifest.json root_hash
 
-Layer 2 — Semantic
+Layer 2 -- Semantic
   Catches: evidence stripped, hashes recomputed (SHA-256 says PASS, semantic says FAIL)
   Proof:   test_cert02 :: test_semantic_negative_missing_job_snapshot_fails_verify
 
-Layer 3 — Step Chain
+Layer 3 -- Step Chain
   Catches: computation inputs changed, steps reordered (layers 1+2 say PASS, step chain says FAIL)
   Proof:   test_cert03 :: test_tampered_trace_root_hash_fails
 
-Layer 4 — Bundle Signing (HMAC-SHA256 + Ed25519)
+Layer 4 -- Bundle Signing (HMAC-SHA256 + Ed25519)
   Catches: unauthorized bundle creator, signature tampering
   Proof:   test_cert07 + test_cert09
 
-Layer 5 — Temporal Commitment (NIST Beacon)
+Layer 5 -- Temporal Commitment (NIST Beacon)
   Catches: backdated bundles, proves WHEN a bundle was signed
   Proof:   test_cert10
 ```
 
-The Step Chain is a cryptographic hash chain over computation steps — same concept as git commits:
+The Step Chain is a cryptographic hash chain over computation steps -- same concept as git commits:
 ```
-init_params       → hash_1
-hash_1 + dataset  → hash_2
-hash_2 + metrics  → hash_3
-hash_3 + verdict  → trace_root_hash
+init_params       -> hash_1
+hash_1 + dataset  -> hash_2
+hash_2 + metrics  -> hash_3
+hash_3 + verdict  -> trace_root_hash
 ```
-Change anything — seed, sample count, step order — `trace_root_hash` breaks.
-Not blockchain. No network. No tokens. Works offline.
+Change anything -- seed, sample count, step order -- `trace_root_hash` breaks.
+Not a distributed ledger. No network. No tokens. Works offline.
 
 ### Two pillars
 
-**Pillar 1 — Tamper-evident provenance**
+**Pillar 1 -- Tamper-evident provenance**
 Five-layer verification ensures the bundle and computation haven't been modified. Applies to all 14 claims.
 
-**Pillar 2 — Physical anchor traceability**
-The verification chain is grounded in physical constants — not arbitrary thresholds. MTR-1's anchor is E = 70 GPa for aluminum: measured independently in thousands of laboratories worldwide.
+**Pillar 2 -- Physical anchor traceability**
+The verification chain is grounded in physical constants -- not arbitrary thresholds. MTR-1's anchor is E = 70 GPa for aluminum: measured independently in thousands of laboratories worldwide.
 
 The full physical anchor chain:
 ```
 Physical reality:  E = 70 GPa  (measured, not assumed)
-        ↓  MTR-1: rel_err ≤ 1% vs. physical constant → PASS
-        ↓  anchor_hash baked into DT-FEM-01 Step 1
-DT-FEM-01: FEM solver output → rel_err ≤ 2% → PASS
-        ↓  anchor_hash baked into DRIFT-01 Step 1
-DRIFT-01:  ongoing deviation → drift ≤ 5% → PASS
+        |  MTR-1: rel_err <= 1% vs. physical constant -> PASS
+        |  anchor_hash baked into DT-FEM-01 Step 1
+DT-FEM-01: FEM solver output -> rel_err <= 2% -> PASS
+        |  anchor_hash baked into DRIFT-01 Step 1
+DRIFT-01:  ongoing deviation -> drift <= 5% -> PASS
 ```
 
 DRIFT-01's `trace_root_hash` cryptographically commits to the entire chain. Verify end-to-end:
 ```bash
 python scripts/mg.py verify-chain bundle_mtr1/ bundle_dtfem/ bundle_drift/
-# → CHAIN PASS
+# -> CHAIN PASS
 ```
+
+---
+
+## Proof: The Adversarial Gauntlet
+
+Every claim in this protocol is backed by adversarial tests that attempt to break it. Every test listed below is real, runs in CI, and passes on every merge.
+
+| Certificate | What it proves | Result |
+|---|---|---|
+| **CERT-02** | Semantic bypass -- strip evidence, recompute hashes | CAUGHT by Layer 2 |
+| **CERT-03** | Step chain tamper -- change inputs, rebuild trace | CAUGHT by Layer 3 |
+| **CERT-04** | Cross-claim chain -- break upstream anchor | CAUGHT by Layer 3 |
+| **CERT-05** | 5-attack gauntlet -- strip, bit-flip, cross-domain, canary, anchor reversal | ALL CAUGHT |
+| **CERT-06** | 5 real-world scenarios -- honest team, cherry-picker, physical chain, audit, reproducibility | ALL CAUGHT |
+| **CERT-07** | Bundle signing -- 13 attack vectors on HMAC-SHA256 | ALL CAUGHT |
+| **CERT-08** | Reproducibility -- 10 determinism proofs across all claims | ALL PASS |
+| **CERT-09** | Ed25519 attacks -- key manipulation, signature forging | ALL CAUGHT |
+| **CERT-10** | Temporal attacks -- backdating, beacon manipulation | ALL CAUGHT |
+| **CERT-11** | Coordinated multi-vector -- all 5 layers proven independently necessary | PROVEN |
+| **CERT-12** | Encoding attacks -- BOM injection, null bytes, homoglyphs, truncated JSON | ALL CAUGHT |
+
+```bash
+python -m pytest tests/ -q
+# -> 526 passed
+```
+
+The summary test in CERT-05 explicitly proves all five layers are necessary -- no single layer catches all attacks. CERT-11 constructs coordinated attacks where each layer catches what the other four miss. This is not a claim. It is a mathematical proof backed by executable tests.
 
 ---
 
 ## The problem in one sentence
 
-Every ML team, lab, and pipeline produces computational claims every day. There is **no standard way** to verify them independently — a reviewer must either re-run your entire environment, or trust the number you reported.
+Every ML team, lab, and pipeline produces computational claims every day. There is **no standard way** to verify them independently -- a reviewer must either re-run your entire environment, or trust the number you reported.
 
 ---
 
 ## Why SHA-256 alone is not enough
 
-**The bypass attack — proven and caught:**
+**The bypass attack -- proven and caught:**
 ```
 1. Remove job_snapshot from run artifact
-2. Recompute all SHA-256 hashes → integrity layer passes
-3. Semantic layer: FAIL — job_snapshot missing
+2. Recompute all SHA-256 hashes -> integrity layer passes
+3. Semantic layer: FAIL -- job_snapshot missing
 ```
 Proven: `tests/steward/test_cert02_*::test_semantic_negative_missing_job_snapshot_fails_verify`
 
-**The Step Chain attack — Layer 3:**
+**The Step Chain attack -- Layer 3:**
 ```
-1. Change computation inputs, recompute hashes → layers 1+2 pass
-2. trace_root_hash doesn't match final step hash → Step Chain: FAIL
+1. Change computation inputs, recompute hashes -> layers 1+2 pass
+2. trace_root_hash doesn't match final step hash -> Step Chain: FAIL
 ```
 Proven: `tests/steward/test_cert03_step_chain_verify.py::test_tampered_trace_root_hash_fails`
 
-**Adversarial Gauntlet — 5 attack classes, all caught (CERT-05):**
+**Adversarial Gauntlet -- 5 attack classes, all caught (CERT-05):**
 
 | Attack | What adversary does | Layer that catches |
 |--------|--------------------|-----------------|
 | Strip & Recompute | Remove evidence, rebuild all SHA-256 | Layer 2 (semantic) |
-| Single-Bit Manipulation | Change accuracy 0.94→0.95 (1%) | Layer 3 (step chain) |
+| Single-Bit Manipulation | Change accuracy 0.94->0.95 (1%) | Layer 3 (step chain) |
 | Cross-Domain Substitution | Submit ML bundle for PHARMA claim | Layer 2 (job_kind) |
 | Canary Laundering | Non-authoritative run as authoritative | Layer 2 (canary_mode) |
-| Anchor Chain Reversal | Skip DT-FEM-01, connect MTR-1→DRIFT-01 | Layer 3 (hash mismatch) |
+| Anchor Chain Reversal | Skip DT-FEM-01, connect MTR-1->DRIFT-01 | Layer 3 (hash mismatch) |
 
 ```bash
 python -m pytest tests/steward/test_cert05_adversarial_gauntlet.py -v
-# → 6 passed (5 attacks + 1 summary proof)
+# -> 6 passed (5 attacks + 1 summary proof)
 ```
 
-The summary test explicitly proves all five layers are necessary — no single layer catches all attacks.
-
-**Coordinated Multi-Vector Attacks — 5-layer independence proven (CERT-11):**
+**Coordinated Multi-Vector Attacks -- 5-layer independence proven (CERT-11):**
 Each verification layer catches attacks that the other four miss. Proves all five layers are independently necessary.
 ```bash
 python -m pytest tests/steward/test_cert11_coordinated_multi_vector.py -v
 ```
 
 **Encoding Attack Resistance (CERT-12):**
-BOM injection, null bytes, homoglyph claim IDs, truncated JSON — all caught.
+BOM injection, null bytes, homoglyph claim IDs, truncated JSON -- all caught.
 ```bash
 python -m pytest tests/steward/test_cert12_encoding_attacks.py -v
 ```
@@ -165,11 +236,11 @@ No API keys. No network. Works on any machine with Python 3.11+.
 
 ---
 
-## How it works — 4 steps
+## How it works -- 4 steps
 
 ```
 1. runner.run_job()
-   Executes computation → produces run_artifact.json with execution_trace + trace_root_hash
+   Executes computation -> produces run_artifact.json with execution_trace + trace_root_hash
 
 2. evidence_index.json
    Maps run artifacts to registered claims with provenance chain
@@ -177,66 +248,66 @@ No API keys. No network. Works on any machine with Python 3.11+.
 3. mg.py pack build
    Bundles artifacts + SHA-256 manifest + root_hash into submission pack
 
-4. mg.py verify — five independent layers:
-   Layer 1 — integrity:    SHA-256 root_hash over all bundle files
-   Layer 2 — semantic:     job_snapshot present, payload.kind correct, canary_mode consistent
-   Layer 3 — step chain:   trace_root_hash == final execution step hash
-   Layer 4 — signing:      HMAC-SHA256 or Ed25519 bundle signature verification
-   Layer 5 — temporal:     NIST Beacon pre-commitment proves WHEN signed
-   → PASS or FAIL with specific reason and layer
+4. mg.py verify -- five independent layers:
+   Layer 1 -- integrity:    SHA-256 root_hash over all bundle files
+   Layer 2 -- semantic:     job_snapshot present, payload.kind correct, canary_mode consistent
+   Layer 3 -- step chain:   trace_root_hash == final execution step hash
+   Layer 4 -- signing:      HMAC-SHA256 or Ed25519 bundle signature verification
+   Layer 5 -- temporal:     NIST Beacon pre-commitment proves WHEN signed
+   -> PASS or FAIL with specific reason and layer
 ```
 
 ---
 
 ## 8 innovations (USPTO PPA #63/996,819)
 
-### 1 — Governance-Enforced Bidirectional Claim Coverage
-Every PR: every registered claim has an implementation, every implementation has a registered claim. Enforced by static analysis — not human review.
+### 1 -- Governance-Enforced Bidirectional Claim Coverage
+Every PR: every registered claim has an implementation, every implementation has a registered claim. Enforced by static analysis -- not human review.
 ```
 Evidence: scripts/steward_audit.py :: _claim_coverage_bidirectional()
 ```
 
-### 2 — Tamper-Evident Bundle with Semantic Verification Layer
+### 2 -- Tamper-Evident Bundle with Semantic Verification Layer
 Three independent verification layers. Each proven by adversarial tests.
 ```
 Evidence: scripts/mg.py :: _verify_pack() + _verify_semantic()
 Proof:    tests/steward/test_cert02_*
 ```
 
-### 3 — Policy-Gate Immutable Evidence Anchors
+### 3 -- Policy-Gate Immutable Evidence Anchors
 CI gate blocks any PR modifying locked evidence paths. No key custody. No timestamping. Works offline.
 ```
 Evidence: scripts/mg_policy_gate_policy.json + .github/workflows/mg_policy_gate.yml
 ```
 
-### 4 — Dual-Mode Canary Execution Pipeline
+### 4 -- Dual-Mode Canary Execution Pipeline
 One interface. Two modes. Identical computation. Authority isolated to metadata only.
 ```
 Evidence: backend/progress/runner.py :: run_job(canary_mode=True/False)
 ```
 
-### 5 — Step Chain + Cross-Claim Cryptographic Chain
-Every claim produces a 4-step cryptographic execution trace. Upstream `trace_root_hash` embeds as `anchor_hash` in downstream claims — linking MTR-1 → DT-FEM-01 → DRIFT-01 end-to-end.
+### 5 -- Step Chain + Cross-Claim Cryptographic Chain
+Every claim produces a 4-step cryptographic execution trace. Upstream `trace_root_hash` embeds as `anchor_hash` in downstream claims -- linking MTR-1 -> DT-FEM-01 -> DRIFT-01 end-to-end.
 ```
 Evidence: all 14 claims :: execution_trace + trace_root_hash
 Proof:    tests/steward/test_cert03_* + tests/steward/test_cross_claim_chain.py
 ```
 
-### 6 — Bundle Signing (HMAC-SHA256 + Ed25519)
+### 6 -- Bundle Signing (HMAC-SHA256 + Ed25519)
 Cryptographic proof of WHO created the bundle. Dual-algorithm support: HMAC-SHA256 for shared-secret scenarios, Ed25519 for third-party auditor verification with asymmetric keys.
 ```
 Evidence: scripts/mg_sign.py + scripts/mg_ed25519.py
 Proof:    tests/steward/test_cert07_* + tests/steward/test_cert09_*
 ```
 
-### 7 — Temporal Commitment (NIST Randomness Beacon)
+### 7 -- Temporal Commitment (NIST Randomness Beacon)
 Cryptographic proof of WHEN a bundle was signed. Pre-commitment scheme using NIST Randomness Beacon 2.0: SHA-256(root_hash) committed before beacon value fetched, then bound together.
 ```
 Evidence: scripts/mg_temporal.py
 Proof:    tests/steward/test_temporal.py + tests/steward/test_cert10_*
 ```
 
-### 8 — 5-Layer Independence Proof (CERT-11 + CERT-12)
+### 8 -- 5-Layer Independence Proof (CERT-11 + CERT-12)
 Formal proof that all five verification layers are independently necessary. CERT-11 constructs coordinated multi-vector attacks; CERT-12 tests encoding edge cases (BOM injection, null bytes, homoglyphs, truncated JSON). Each layer catches attacks the other four miss.
 ```
 Evidence: tests/steward/test_cert11_* + tests/steward/test_cert12_*
@@ -249,34 +320,34 @@ Proof:    test_cert_5layer_independence
 
 | Claim | Domain | Threshold | Physical Anchor |
 |---|---|---|---|
-| MTR-1 | Materials — Young's Modulus | `rel_err ≤ 0.01` | E = 70 GPa (aluminum) |
-| MTR-2 | Materials — Thermal Conductivity | `rel_err ≤ 0.02` | Physical constant |
-| MTR-3 | Materials — Multilayer Contact | `rel_err_k ≤ 0.03` | Physical constant |
-| SYSID-01 | System Identification — ARX | `rel_err_a/b ≤ 0.03` | — |
-| DATA-PIPE-01 | Data Pipelines | schema pass · range pass | — |
-| DRIFT-01 | Drift Monitoring | `drift ≤ 5.0%` | MTR-1 anchor |
-| ML_BENCH-01 | ML — Classification Accuracy | `\|Δacc\| ≤ 0.02` + Step Chain | — |
-| DT-FEM-01 | Digital Twin / FEM | `rel_err ≤ 0.02` | MTR-1 anchor |
-| ML_BENCH-02 | ML — Regression (RMSE, MAE, R²) | `\|ΔRMSE\| ≤ 0.02` | — |
-| ML_BENCH-03 | ML — Time-Series Forecast (MAPE) | `\|ΔMAPE\| ≤ 0.02` | — |
-| PHARMA-01 | Pharma — ADMET (5 properties) | `\|Δprop\| ≤ tolerance` | — (FDA 21 CFR Part 11) |
-| FINRISK-01 | Finance — VaR Model | `\|ΔVaR\| ≤ tolerance` | — (Basel III/IV) |
-| DT-SENSOR-01 | Digital Twin — IoT Sensor Integrity | schema + range + temporal | — |
-| DT-CALIB-LOOP-01 | Digital Twin — Calibration Convergence | `drift decreasing + final ≤ threshold` | DRIFT-01 anchor |
+| MTR-1 | Materials -- Young's Modulus | `rel_err <= 0.01` | E = 70 GPa (aluminum) |
+| MTR-2 | Materials -- Thermal Conductivity | `rel_err <= 0.02` | Physical constant |
+| MTR-3 | Materials -- Multilayer Contact | `rel_err_k <= 0.03` | Physical constant |
+| SYSID-01 | System Identification -- ARX | `rel_err_a/b <= 0.03` | -- |
+| DATA-PIPE-01 | Data Pipelines | schema pass / range pass | -- |
+| DRIFT-01 | Drift Monitoring | `drift <= 5.0%` | MTR-1 anchor |
+| ML_BENCH-01 | ML -- Classification Accuracy | `\|Dacc\| <= 0.02` + Step Chain | -- |
+| DT-FEM-01 | Digital Twin / FEM | `rel_err <= 0.02` | MTR-1 anchor |
+| ML_BENCH-02 | ML -- Regression (RMSE, MAE, R2) | `\|DRMSE\| <= 0.02` | -- |
+| ML_BENCH-03 | ML -- Time-Series Forecast (MAPE) | `\|DMAPE\| <= 0.02` | -- |
+| PHARMA-01 | Pharma -- ADMET (5 properties) | `\|Dprop\| <= tolerance` | -- (FDA 21 CFR Part 11) |
+| FINRISK-01 | Finance -- VaR Model | `\|DVaR\| <= tolerance` | -- (Basel III/IV) |
+| DT-SENSOR-01 | Digital Twin -- IoT Sensor Integrity | schema + range + temporal | -- |
+| DT-CALIB-LOOP-01 | Digital Twin -- Calibration Convergence | `drift decreasing + final <= threshold` | DRIFT-01 anchor |
 
 All 14 claims have Step Chain (execution_trace + trace_root_hash). Physical anchor applies to: MTR-1/2/3, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP-01. See `reports/known_faults.yaml` :: SCOPE_001.
 
 ---
 
-## 7 domains — one protocol
+## 7 domains -- one protocol
 
 | Domain | Claims | Regulatory alignment |
 |---|---|---|
 | **Materials / Engineering** | MTR-1, MTR-2, MTR-3 | Physical constants |
-| **System Identification** | SYSID-01 | — |
+| **System Identification** | SYSID-01 | -- |
 | **Data Pipelines** | DATA-PIPE-01 | FDA 21 CFR Part 11 |
 | **ML / AI** | ML_BENCH-01/02/03, DRIFT-01 | EU AI Act Article 12 |
-| **Digital Twin** | DT-FEM-01, DT-SENSOR-01, DT-CALIB-LOOP-01 | — |
+| **Digital Twin** | DT-FEM-01, DT-SENSOR-01, DT-CALIB-LOOP-01 | -- |
 | **Pharma / Biotech** | PHARMA-01 | FDA 21 CFR Part 11 |
 | **Finance / Risk** | FINRISK-01 | Basel III/IV |
 
@@ -288,25 +359,25 @@ All 14 claims have Step Chain (execution_trace + trace_root_hash). Physical anch
 
 ```bash
 python scripts/steward_audit.py
-# → STEWARD AUDIT: PASS
+# -> STEWARD AUDIT: PASS
 
 python -m pytest tests/ -q
-# → 511 passed
+# -> 526 passed
 
 # Full proof-not-trust verification (13 tests):
 python scripts/deep_verify.py
-# → ALL 13 TESTS PASSED
+# -> ALL 13 TESTS PASSED
 ```
 
-**Active claims:** MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01, DT-FEM-01, ML_BENCH-02, ML_BENCH-03, PHARMA-01, FINRISK-01, DT-SENSOR-01, DT-CALIB-LOOP-01  
+**Active claims:** MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01, DT-FEM-01, ML_BENCH-02, ML_BENCH-03, PHARMA-01, FINRISK-01, DT-SENSOR-01, DT-CALIB-LOOP-01
 **Known limitations:** `reports/known_faults.yaml`
 
 ---
 
 ## What MetaGenesis Core does NOT claim
 
-- Does **not** verify algorithm correctness — only evidence integrity
-- Does **not** prevent all attacks — tamper-**evident**, not tamper-**proof**
+- Does **not** verify algorithm correctness -- only evidence integrity
+- Does **not** prevent all attacks -- tamper-**evident**, not tamper-**proof**
 - Does **not** validate training data quality or bias
 - Does **not** prevent p-hacking or result selection
 
@@ -314,18 +385,10 @@ Full limitations: `reports/known_faults.yaml` and `SECURITY.md`
 
 ---
 
-## Built with Claude
-
-This protocol — codebase, verification infrastructure, patent application, and site — was built by a solo founder using **Claude (Anthropic)** as the primary development tool. From 0 to PPA filing in weeks, working construction full-time.
-
-This is what AI-accelerated deep tech looks like in 2026.
-
----
-
 ## Get started
 
-**Free pilot** — send your computational result, we build a verification bundle:  
-→ https://metagenesis-core.dev/#pilot
+**Free pilot** -- send your computational result, we build a verification bundle:
+-> https://metagenesis-core.dev/#pilot
 
 **Clone and run:**
 ```bash
@@ -333,17 +396,17 @@ git clone https://github.com/Lama999901/metagenesis-core-public
 python demos/open_data_demo_01/run_demo.py
 ```
 
-**Commercial licensing:** see `COMMERCIAL.md`  
-**Protocol spec:** see `docs/PROTOCOL.md`  
-**Architecture:** see `docs/ARCHITECTURE.md`  
+**Commercial licensing:** see `COMMERCIAL.md`
+**Protocol spec:** see `docs/PROTOCOL.md`
+**Architecture:** see `docs/ARCHITECTURE.md`
 **Security policy:** see `SECURITY.md`
 
 ---
 
 ## License
 
-MIT — free to use, modify, deploy.  
-Patent pending: USPTO #63/996,819 covers protocol innovations.  
+MIT -- free to use, modify, deploy.
+Patent pending: USPTO #63/996,819 covers protocol innovations.
 Commercial licensing available for organizations building on the protocol.
 
 ---
@@ -353,13 +416,14 @@ Commercial licensing available for organizations building on the protocol.
 Read these files in order:
 
 ```
-1. CONTEXT_SNAPSHOT.md          ← current state, 14 claims, 511 tests
-2. AGENTS.md                    ← hard rules, forbidden terms, protected files
-3. llms.txt                     ← AI-optimized repo summary
-4. reports/canonical_state.md   ← authoritative claims list
-5. reports/known_faults.yaml    ← known limitations (SCOPE_001 + ENV_001)
+1. CONTEXT_SNAPSHOT.md          <- current state, 14 claims, 526 tests
+2. AGENTS.md                    <- hard rules, forbidden terms, protected files
+3. llms.txt                     <- AI-optimized repo summary
+4. reports/canonical_state.md   <- authoritative claims list
+5. reports/known_faults.yaml    <- known limitations (SCOPE_001 + ENV_001)
 ```
 
 ---
 
-*MetaGenesis Core — MVP v0.5 · Inventor: Yehor Bazhynov · Patent Pending #63/996,819*
+*MetaGenesis Core -- MVP v0.5 -- Inventor: Yehor Bazhynov -- Patent Pending #63/996,819*
+*The Omnissiah protects.*

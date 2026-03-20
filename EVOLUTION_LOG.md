@@ -329,7 +329,7 @@ TRAP-17: FUNDING.yml не в policy gate allowlist
 ## ТЕКУЩЕЕ СОСТОЯНИЕ (конец сессии 2026-03-18)
 
 ```
-claims:   14 | tests: 511 | layers: 5 | innovations: 8
+claims:   14 | tests: 526 | layers: 5 | innovations: 8
 v0.5.0 — PRs запушены, мёрж pending
 CLAUDE.md v2.0 — конфликт resolved
 agent_learn.py + agent_evolution.py — готовы
