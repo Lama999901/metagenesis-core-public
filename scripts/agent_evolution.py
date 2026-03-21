@@ -424,6 +424,17 @@ def check_pr_review():
     return True
 
 
+# ── 16. Impact Analysis ──────────────────────────────────────────────────
+def check_impact():
+    section("IMPACT ANALYSIS -- Cogitator Impact")
+    out, code = run("python scripts/agent_impact.py --summary")
+    if "MISSING" in out:
+        warn(f"Impact gaps detected -- {out.strip()}")
+    else:
+        ok(f"Impact analysis -- {out.strip()}")
+    return True  # Advisory only
+
+
 # ── Main ─────────────────────────────────────────────────────────────────────
 def main():
     strict = "--strict" in sys.argv
@@ -455,6 +466,7 @@ def main():
     results["signals"] = check_signals()
     results["chronicle"] = check_chronicle()
     results["pr_review"] = check_pr_review()
+    results["impact"] = check_impact()
 
     # ── Summary ──
     section("SUMMARY — Omnissiah's Verdict")
@@ -477,6 +489,7 @@ def main():
         "signals":       ("External signals received",      "SIGNALS"),
         "chronicle":     ("Chronicle recorded",             "CHRONICLE"),
         "pr_review":     ("Fabricator-General satisfied",    "PRREVIEW"),
+        "impact":        ("Cogitator impact analyzed",       "IMPACT"),
     }
 
     for check, ok_val in results.items():

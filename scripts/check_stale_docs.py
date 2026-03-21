@@ -245,7 +245,11 @@ CONTENT_CHECKS = {
     },
     "scripts/agent_evolution.py": {
         "banned": [],
-        "required": ["check_signals", "check_chronicle", "check_pr_review", "v0.6.0"],
+        "required": ["check_signals", "check_chronicle", "check_pr_review", "check_impact", "v0.6.0"],
+    },
+    "scripts/agent_impact.py": {
+        "banned": [],
+        "required": ["parse_update_protocol", "detect_change_type", "check_impact"],
     },
     "tests/test_coverage_boost.py": {
         "banned": [],
