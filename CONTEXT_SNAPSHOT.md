@@ -29,7 +29,7 @@
 | Verification layers | 5 (integrity + semantic + step chain + bundle signing + temporal commitment) |
 | Innovations | 8 (5 PPA + HMAC signing + Ed25519 signing + temporal commitment) |
 | Domains | 7 |
-| GitHub Release | v0.6.0 |
+| GitHub Release | v0.7.0 |
 | Adversarial tests | CERT-05 (5 attacks) + CERT-06 (5 scenarios) + CERT-07 (signing) + CERT-08 (reproducibility) + CERT-09 (Ed25519 attacks) + CERT-10 (temporal attacks) + CERT-11 (coordinated multi-vector) + CERT-12 (encoding attacks) |
 
 ---

@@ -72,8 +72,8 @@ CONTENT_CHECKS = {
         "required": ["544", "ALL 13 TESTS", "5 verification layers"],
     },
     "CITATION.cff": {
-        "banned": ["version: 0.2", "version: 0.3", "version: 0.4", "version: 0.5", "three independent"],
-        "required": ["version: 0.6", "five independent", "544"],
+        "banned": ["version: 0.2", "version: 0.3", "version: 0.4", "version: 0.5", "version: 0.6", "three independent"],
+        "required": ["version: 0.7", "five independent", "544"],
     },
     "docs/PROTOCOL.md": {
         "banned": ["MVP v0.2", "MVP v0.3", "MVP v0.4", "Three verification layers", "5 patentable"],
@@ -128,20 +128,20 @@ CONTENT_CHECKS = {
         "required": ["ALL 13 PASSED", "v1.1"],
     },
     "CURSOR_MASTER_PROMPT_v2_3.md": {
-        "banned": ["271 tests", "295 tests", "526 tests", "3 verification layers", "MVP v0.2", "ALL 10 TESTS"],
-        "required": ["544 tests", "5 verification layers", "MVP v0.6", "ALL 13 TESTS"],
+        "banned": ["271 tests", "295 tests", "526 tests", "3 verification layers", "MVP v0.2", "ALL 10 TESTS", "MVP v0.6"],
+        "required": ["544 tests", "5 verification layers", "MVP v0.7", "ALL 13 TESTS"],
     },
     "docs/HOW_TO_ADD_CLAIM.md": {
-        "banned": ["ALL 10", "271", "282", "295", "389", "v0.2", "v0.3", "v0.4"],
-        "required": ["544", "v0.6"],
+        "banned": ["ALL 10", "271", "282", "295", "389", "v0.2", "v0.3", "v0.4", "v0.6"],
+        "required": ["544", "v0.7"],
     },
     "docs/REAL_DATA_GUIDE.md": {
-        "banned": ["ALL 10", "271", "282", "295", "389", "v0.2", "v0.3", "v0.4"],
-        "required": ["544", "v0.6"],
+        "banned": ["ALL 10", "271", "282", "295", "389", "v0.2", "v0.3", "v0.4", "v0.6"],
+        "required": ["544", "v0.7"],
     },
     "docs/USE_CASES.md": {
-        "banned": ["ALL 10", "271", "282", "295", "389", "v0.2", "v0.3", "v0.4"],
-        "required": ["544", "v0.6"],
+        "banned": ["ALL 10", "271", "282", "295", "389", "v0.2", "v0.3", "v0.4", "v0.6"],
+        "required": ["544", "v0.7"],
     },
     "reports/scientific_claim_index.md": {
         "banned": ["282", "295"],
@@ -245,7 +245,7 @@ CONTENT_CHECKS = {
     },
     "scripts/agent_evolution.py": {
         "banned": [],
-        "required": ["check_signals", "check_chronicle", "check_pr_review", "check_impact", "v0.6.0"],
+        "required": ["check_signals", "check_chronicle", "check_pr_review", "check_impact", "v0.7.0"],
     },
     "scripts/agent_impact.py": {
         "banned": [],
