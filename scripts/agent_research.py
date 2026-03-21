@@ -2335,6 +2335,108 @@ def generate_tasks(tasks_path):
     return added
 
 
+def generate_coverage_tasks(tasks_path):
+    """Read the most recent COVERAGE_REPORT_*.md, parse zero-coverage functions,
+    exclude infrastructure scripts, and append PENDING tasks for files with >= 2
+    uncovered functions."""
+    import glob as _glob
+
+    reports = sorted(
+        _glob.glob(str(REPO_ROOT / "reports" / "COVERAGE_REPORT_*.md")),
+        reverse=True,
+    )
+    if not reports:
+        return 0
+
+    report_text = Path(reports[0]).read_text(encoding="utf-8")
+
+    # Find the "Zero-Coverage Functions" section
+    marker = "## Zero-Coverage Functions"
+    idx = report_text.find(marker)
+    if idx < 0:
+        return 0
+
+    section_text = report_text[idx:]
+    # Stop at the next ## heading (if any)
+    next_heading = section_text.find("\n## ", 1)
+    if next_heading > 0:
+        section_text = section_text[:next_heading]
+
+    # Parse table rows: | `file` | `function` | lines |
+    row_re = re.compile(r"\| `([^`]+)` \| `([^`]+)` \| (\d+-\d+) \|")
+    matches = row_re.findall(section_text)
+    if not matches:
+        return 0
+
+    # Exclude infrastructure scripts
+    excluded_prefixes = (
+        "scripts\\agent_", "scripts/agent_",
+        "scripts\\auto_watchlist_scan", "scripts/auto_watchlist_scan",
+        "scripts\\check_stale_docs", "scripts/check_stale_docs",
+        "scripts\\deep_verify", "scripts/deep_verify",
+        "scripts\\mg_policy_gate", "scripts/mg_policy_gate",
+        "scripts\\steward_audit", "scripts/steward_audit",
+    )
+
+    # Group by file
+    from collections import defaultdict
+    by_file = defaultdict(list)
+    for filepath, funcname, lines in matches:
+        # Normalize backslashes to forward slashes
+        norm = filepath.replace("\\", "/")
+        if any(norm.startswith(p.replace("\\", "/")) for p in excluded_prefixes):
+            continue
+        by_file[norm].append(funcname)
+
+    if not by_file:
+        return 0
+
+    # Only files with >= 2 uncovered functions
+    candidates = {f: funcs for f, funcs in by_file.items() if len(funcs) >= 2}
+    if not candidates:
+        return 0
+
+    content = tasks_path.read_text(encoding="utf-8")
+
+    # Find highest existing task number
+    existing_ids = re.findall(r"TASK-(\d+)", content)
+    next_num = max(int(n) for n in existing_ids) + 1 if existing_ids else 1
+
+    added = 0
+    for filepath, funcs in sorted(candidates.items()):
+        filename = Path(filepath).name
+        # Check if this file already has a coverage task
+        if f"Coverage boost: {filename}" in content:
+            continue
+
+        task_id = f"TASK-{next_num:03d}"
+        func_list = ", ".join(funcs[:8])
+        if len(funcs) > 8:
+            func_list += f" (+{len(funcs) - 8} more)"
+
+        # Determine test directory
+        test_file = f"tests/test_{Path(filepath).stem}.py"
+
+        new_task = (
+            f"\n### {task_id}\n"
+            f"- **Title:** Coverage boost: {filename} ({len(funcs)} uncovered functions)\n"
+            f"- **Status:** PENDING\n"
+            f"- **Priority:** P2\n"
+            f"- **Output:** {test_file}\n"
+            f"- **Description:** Zero-coverage functions: {func_list}. "
+            f"Write tests to cover these functions in {filepath}.\n"
+        )
+        content += new_task
+        next_num += 1
+        added += 1
+
+    if added:
+        tasks_path.write_text(content, encoding="utf-8")
+        print(f"  Generated {added} coverage tasks from COVERAGE_REPORT")
+
+    return added
+
+
 def weekly_report():
     """Generate reports/WEEKLY_REPORT_{date}.md with system health summary,
     completed tasks, new tasks generated, and top patterns."""
@@ -2420,8 +2522,9 @@ def main():
     mark_task_done(task["id"], tasks_path)
     print(f"Report written to {report_path}")
 
-    # Self-improvement: generate new tasks from patterns + weekly report
+    # Self-improvement: generate new tasks from patterns + coverage + weekly report
     generate_tasks(tasks_path)
+    generate_coverage_tasks(tasks_path)
     weekly_report()
 
     # Run agent_learn.py observe

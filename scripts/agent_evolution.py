@@ -388,6 +388,42 @@ def check_chronicle():
         return True  # advisory, not a hard failure
 
 
+# ── 15. PR Review Quality ──────────────────────────────────────────────────
+def check_pr_review():
+    section("PR REVIEW -- Fabricator-General Inspection")
+    # Check last commit's new .py files for corresponding test files
+    out, _ = run("git diff --name-only HEAD~1 HEAD")
+    if not out:
+        ok("No changes in last commit (advisory)")
+        return True
+
+    changed = out.splitlines()
+    new_py = [f for f in changed if f.endswith(".py")
+              and not f.startswith("tests/")
+              and not f.startswith("test_")]
+
+    untested = []
+    for py_file in new_py:
+        stem = Path(py_file).stem
+        # Check if any test file references this module
+        test_out, _ = run(f'grep -rl "{stem}" tests/ 2>/dev/null')
+        if not test_out:
+            untested.append(py_file)
+
+    if untested:
+        for f in untested:
+            warn(f"No test coverage found for: {f}")
+        info(f"{len(untested)}/{len(new_py)} changed .py files lack test references")
+    else:
+        if new_py:
+            ok(f"All {len(new_py)} changed .py files have test references")
+        else:
+            ok("No new .py source files in last commit")
+
+    # Advisory only -- always returns True
+    return True
+
+
 # ── Main ─────────────────────────────────────────────────────────────────────
 def main():
     strict = "--strict" in sys.argv
@@ -418,6 +454,7 @@ def main():
     results["self_improve"] = check_self_improvement()
     results["signals"] = check_signals()
     results["chronicle"] = check_chronicle()
+    results["pr_review"] = check_pr_review()
 
     # ── Summary ──
     section("SUMMARY — Omnissiah's Verdict")
@@ -439,6 +476,7 @@ def main():
         "self_improve":  ("Recursive enlightenment done",  "SELFIMPROVE"),
         "signals":       ("External signals received",      "SIGNALS"),
         "chronicle":     ("Chronicle recorded",             "CHRONICLE"),
+        "pr_review":     ("Fabricator-General satisfied",    "PRREVIEW"),
     }
 
     for check, ok_val in results.items():

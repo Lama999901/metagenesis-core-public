@@ -79,6 +79,10 @@ CONTENT_CHECKS = {
         "banned": ["MVP v0.2", "MVP v0.3", "MVP v0.4", "Three verification layers", "5 patentable"],
         "required": ["(MVP) v0.5", "Five verification layers", "8 innovations"],
     },
+    "docs/AGENT_SYSTEM.md": {
+        "banned": [],
+        "required": ["Level 1", "Level 2", "Level 3", "AGENT-DRIFT-01", "15 checks"],
+    },
     "docs/ARCHITECTURE.md": {
         "banned": ["282 tests", "511 tests", "Architecture v0.2", "Three verification layers"],
         "required": ["544 tests", "Five verification layers"],
@@ -241,7 +245,7 @@ CONTENT_CHECKS = {
     },
     "scripts/agent_evolution.py": {
         "banned": [],
-        "required": ["check_signals", "check_chronicle", "v0.6.0"],
+        "required": ["check_signals", "check_chronicle", "check_pr_review", "v0.6.0"],
     },
     "tests/test_coverage_boost.py": {
         "banned": [],
