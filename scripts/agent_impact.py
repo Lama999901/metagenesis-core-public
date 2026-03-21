@@ -31,8 +31,8 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 def run(cmd, cwd=REPO_ROOT):
     env = os.environ.copy()
     env["PYTHONIOENCODING"] = "utf-8"
-    r = subprocess.run(cmd, shell=True, capture_output=True, text=True,
-                       cwd=cwd, env=env, encoding="utf-8", errors="replace")
+    r = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
+                       text=True, cwd=cwd, env=env, encoding="utf-8", errors="replace")
     return r.stdout.strip(), r.returncode
 
 
@@ -186,10 +186,10 @@ def main():
     summary_only = "--summary" in sys.argv
 
     # Get changed files from last commit
-    out, code = run("git diff --name-only HEAD~1 HEAD 2>/dev/null")
+    out, code = run("git diff --name-only HEAD~1 HEAD")
     if not out:
         # Try diff against main
-        out, code = run("git diff --name-only origin/main...HEAD 2>/dev/null")
+        out, code = run("git diff --name-only origin/main...HEAD")
 
     if not out:
         if summary_only:
