@@ -54,7 +54,7 @@ tampering any link invalidates all downstream hashes.
 
 The protocol ships with 15 active verification claims across 7 domains
 (materials science, ML/AI, system identification, data pipelines, digital
-twin, pharma/biotech, and financial risk), 544 adversarial tests, and
+twin, pharma/biotech, and financial risk), 586 adversarial tests, and
 governance enforcement that prevents any registered claim from existing
 without a corresponding implementation — and vice versa.
 
@@ -159,7 +159,7 @@ library.
 A distinction is maintained between two properties:
 
 - **Tamper-evident provenance** ("was the bundle modified?"): applies to
-  all 14 claims
+  all 15 claims
 - **Physical anchor traceability** ("does the number agree with physical
   reality?"): applies only to claims anchored to independently measured
   physical constants
@@ -210,7 +210,7 @@ cryptographic identity. Hash equality constitutes reproducibility proof;
 hash inequality indicates a discrepancy, and the step-level trace identifies
 which step diverged.
 
-This property is proven across all 14 claims in
+This property is proven across all 15 claims in
 `tests/steward/test_cert08_reproducibility.py`, including parameter
 sensitivity (different parameters → different hash, making selective
 seed reporting detectable) and cross-claim chain determinism.
@@ -233,6 +233,7 @@ seed reporting detectable) and cross-claim chain determinism.
 | FINRISK-01 | Finance VaR | `\|ΔVaR\| ≤ tol` | — |
 | DT-SENSOR-01 | IoT Sensor Integrity | schema + range + temporal | — |
 | DT-CALIB-LOOP-01 | Calibration Convergence | drift decreasing | DRIFT-01 ⚓ |
+| AGENT-DRIFT-01 | Agent Quality Drift | composite_drift ≤ 20% | — |
 
 Physical anchor traceability (⚓) is scoped to claims with known physical
 constants. For ML and financial claims, the protocol provides tamper-evident
@@ -242,14 +243,14 @@ provenance only. This distinction is formalized in `reports/known_faults.yaml ::
 
 MetaGenesis Core ships with an embedded agent governance system that enforces
 documentation consistency automatically. Anyone who clones the repository
-receives a 10-check health monitoring suite (`scripts/agent_evolution.py`),
+receives a 16-check health monitoring suite (`scripts/agent_evolution.py`),
 post-phase validation hooks, and a cumulative learning system
 (`scripts/agent_learn.py`) that records recurring patterns and auto-fix hints
 across sessions.
 
 The system includes:
 
-- **Agent Evolution Runner** — 10 automated checks covering steward audit,
+- **Agent Evolution Runner** — 16 automated checks covering steward audit,
   test suite, deep verification, stale documentation, manifest consistency,
   forbidden terms, coverage gaps, CLAUDE.md freshness, watchlist coverage,
   and branch synchronization.
@@ -353,7 +354,7 @@ Claude (Anthropic) was used as the primary development tool throughout
 this project: architecture decisions, code implementation, patent
 application drafting, and documentation. All AI-generated outputs were
 verified by the author through the project's own adversarial test suite
-(526 tests), steward audit, and 13-test deep verification script.
+(586 tests), steward audit, and 13-test deep verification script.
 Quality was ensured by governance-enforced bidirectional coverage — every
 claim must have tests and every test must correspond to a claim — and
 5-layer tamper-evident verification where each layer catches attacks the
