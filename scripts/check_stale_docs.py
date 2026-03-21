@@ -245,7 +245,7 @@ CONTENT_CHECKS = {
     },
     "scripts/agent_evolution.py": {
         "banned": [],
-        "required": ["check_signals", "check_chronicle", "v0.6.0"],
+        "required": ["check_signals", "check_chronicle", "check_pr_review", "v0.6.0"],
     },
     "tests/test_coverage_boost.py": {
         "banned": [],
