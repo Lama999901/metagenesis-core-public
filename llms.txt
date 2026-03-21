@@ -3,7 +3,7 @@ with open('/mnt/user-data/outputs/llms.txt', 'r') as f: c = f.read()
 " 
 
 Open verification protocol for computational claims.
-Implements the MetaGenesis Verification Protocol (MVP) v0.6.
+Implements the MetaGenesis Verification Protocol (MVP) v0.7.
 
 Any computational result — ML accuracy, calibration output, FEM simulation,
 ADMET prediction, VaR estimate, IoT sensor stream — can be packaged into a

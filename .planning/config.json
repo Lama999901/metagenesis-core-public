@@ -34,7 +34,8 @@
     "python scripts/auto_watchlist_scan.py",
     "python scripts/check_stale_docs.py --strict",
     "python scripts/agent_coverage.py --summary",
-    "python scripts/agent_evolve_self.py --summary"
+    "python scripts/agent_evolve_self.py --summary",
+    "python scripts/agent_impact.py --verify-last-commit"
   ],
   "post_milestone_tasks": [
     "python scripts/agent_evolution.py",
