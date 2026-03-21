@@ -93,4 +93,4 @@ AGENT-DRIFT-01
 
 ---
 
-*docs/AGENT_SYSTEM.md -- v0.6.0 -- MetaGenesis Core*
+*docs/AGENT_SYSTEM.md -- v0.7.0 -- MetaGenesis Core*
