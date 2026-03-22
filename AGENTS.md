@@ -27,7 +27,7 @@ After reading these 8 files you can answer any question about this project.
 ## What this repo is
 
 MetaGenesis Core is an open verification protocol layer.
-It implements the MetaGenesis Verification Protocol (MVP) v0.7.
+It implements the MetaGenesis Verification Protocol (MVP) v0.6.
 It makes computational claims tamper-evident, reproducible, and
 independently auditable offline by any third party.
 
@@ -127,6 +127,7 @@ python scripts/deep_verify.py → ALL 13 TESTS PASSED
 | FINRISK-01 | backend/progress/finrisk1_var_certificate.py | tests/ml/ |
 | DT-SENSOR-01 | backend/progress/dtsensor1_iot_certificate.py | tests/digital_twin/ |
 | DT-CALIB-LOOP-01 | backend/progress/dtcalib1_convergence_certificate.py | tests/digital_twin/ |
+| AGENT-DRIFT-01 | backend/progress/agent_drift_monitor.py | tests/steward/ |
 
 ---
 
