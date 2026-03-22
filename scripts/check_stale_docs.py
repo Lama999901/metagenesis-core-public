@@ -81,7 +81,7 @@ CONTENT_CHECKS = {
     },
     "docs/AGENT_SYSTEM.md": {
         "banned": [],
-        "required": ["Level 1", "Level 2", "Level 3", "AGENT-DRIFT-01", "15 checks"],
+        "required": ["Level 1", "Level 2", "Level 3", "AGENT-DRIFT-01", "16 checks"],
     },
     "docs/ARCHITECTURE.md": {
         "banned": ["282 tests", "511 tests", "544 tests", "Architecture v0.2", "Three verification layers"],
@@ -258,6 +258,10 @@ CONTENT_CHECKS = {
     "reports/CHRONICLE_0_6_0_20260320.md": {
         "banned": [],
         "required": [],
+    },
+    "scripts/agent_diff_review.py": {
+        "banned": [],
+        "required": ["REPO_ROOT", "ast.parse", "forbidden"],
     },
 }
 
