@@ -5,14 +5,14 @@
 [![Steward Audit](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml/badge.svg)](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Patent Pending](https://img.shields.io/badge/Patent-Pending%20%2363%2F996%2C819-orange.svg)](ppa/README_PPA.md)
-[![Tests](https://img.shields.io/badge/Tests-544%20passing-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-586%20passing-brightgreen.svg)](tests/)
 [![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.7.0-blueviolet.svg)](docs/PROTOCOL.md)
 [![Sponsor](https://img.shields.io/badge/Sponsor-❤️-pink.svg)](https://github.com/sponsors/Lama999901)
 
 **Site:** https://metagenesis-core.dev
 **Contact:** yehor@metagenesis-core.dev
 **PPA:** USPTO #63/996,819 -- filed 2026-03-05  
-**Version:** v0.7.0 | 15 claims | 544 tests | 14 agent checks | 18/18 tasks done
+**Version:** v0.7.0 | 15 claims | 586 tests | 14 agent checks | 18/18 tasks done
 
 ---
 
@@ -184,7 +184,7 @@ Working full-time construction  -- while building a verification protocol at nig
 
 Built with **Claude (Anthropic)** as the primary development tool -- architecture decisions, code implementation, patent application drafting, adversarial test design. Every AI-generated output verified by the project's own test suite. The protocol verifies the protocol.
 
-The result:  in **14 days**.**15 verified claims across 7 domains. 544 adversarial tests. 5 verification layers. 8 innovations. 14 autonomous agent monitoring checks running daily in CI.**
+The result:  in **14 days**.**15 verified claims across 7 domains. 586 adversarial tests. 5 verification layers. 8 innovations. 14 autonomous agent monitoring checks running daily in CI.**
 
 This is what happens when determination meets AI-accelerated development in 2026. A construction worker from Ukraine built a patent-pending verification protocol that catches attacks most security tools miss -- because he needed to prove that computational claims are real, and nobody had built the tool to do it.
 
@@ -276,7 +276,7 @@ Every claim in this protocol is backed by adversarial tests that attempt to brea
 
 ```bash
 python -m pytest tests/ -q
-# -> 544 passed
+# -> 586 passed
 ```
 
 The summary test in CERT-05 explicitly proves all five layers are necessary -- no single layer catches all attacks. CERT-11 constructs coordinated attacks where each layer catches what the other four miss. This is not a claim. It is a mathematical proof backed by executable tests.
@@ -321,7 +321,7 @@ MetaGenesis Core includes an autonomous agent monitoring system -- 14 checks tha
 | # | Check | Mechanicus Name | What it verifies |
 |---|-------|----------------|-----------------|
 | 1 | `steward` | Inquisition | `steward_audit.py` passes -- governance rules enforced |
-| 2 | `tests` | Machine Spirit | All 544 tests pass |
+| 2 | `tests` | Machine Spirit | All 586 tests pass |
 | 3 | `deep` | Omnissiah | `deep_verify.py` -- 13 independent proof tests |
 | 4 | `docs` | Noosphere | Stale documentation detection via `check_stale_docs.py` |
 | 5 | `manifest` | Codex | `system_manifest.json` matches actual repo state |
@@ -510,7 +510,7 @@ For ML accuracy (ML_BENCH-01/02/03), data pipelines (DATA-PIPE-01), pharma (PHAR
 
 ### ENV_001 -- Test Environment
 
-All 544 tests pass in the reference environment (Python 3.11+, stdlib only). No database dependencies. No external services. No network required. Local environment deviations may require matching Python version.
+All 586 tests pass in the reference environment (Python 3.11+, stdlib only). No database dependencies. No external services. No network required. Local environment deviations may require matching Python version.
 
 **Why this limitation exists:** The protocol is designed to work offline with zero external dependencies. This is a feature, not a limitation -- but it means the test suite assumes a clean Python environment.
 
@@ -536,7 +536,7 @@ python scripts/steward_audit.py
 # -> STEWARD AUDIT: PASS
 
 python -m pytest tests/ -q
-# -> 544 passed
+# -> 586 passed
 
 # Full proof-not-trust verification (13 tests):
 python scripts/deep_verify.py
@@ -583,7 +583,7 @@ Commercial licensing available for organizations building on the protocol.
 Read these files in order:
 
 ```
-1. CONTEXT_SNAPSHOT.md          <- current state, 15 claims, 544 tests
+1. CONTEXT_SNAPSHOT.md          <- current state, 15 claims, 586 tests
 2. AGENTS.md                    <- hard rules, forbidden terms, protected files
 3. llms.txt                     <- AI-optimized repo summary
 4. reports/canonical_state.md   <- authoritative claims list
