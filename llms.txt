@@ -3,7 +3,7 @@ with open('/mnt/user-data/outputs/llms.txt', 'r') as f: c = f.read()
 " 
 
 Open verification protocol for computational claims.
-Implements the MetaGenesis Verification Protocol (MVP) v0.7.
+Implements the MetaGenesis Verification Protocol (MVP) v0.6.
 
 Any computational result — ML accuracy, calibration output, FEM simulation,
 ADMET prediction, VaR estimate, IoT sensor stream — can be packaged into a
@@ -103,7 +103,7 @@ python scripts/steward_audit.py                              # PASS
 python -m pytest tests/ -q                                   # 544 passed
 python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 
-## Current state (2026-03-18)
+## Current state (2026-03-21)
 
 - Claims: 15
 - Tests: 544 passing
@@ -116,7 +116,7 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 - HN post live: https://news.ycombinator.com/item?id=47335416
 - PPA filed: 2026-03-05 — non-provisional deadline 2027-03-05
 - Payment: $299/bundle — bank transfer / crypto (BTC/ETH/USDC) / invoice — yehor@metagenesis-core.dev
-- GitHub Release: v0.5.0 — https://github.com/Lama999901/metagenesis-core-public/releases/tag/v0.5.0
+- GitHub Release: v0.6.0 — https://github.com/Lama999901/metagenesis-core-public/releases/tag/v0.6.0
 - Outreach sent: Tongqi Wen, Giovanni Pizzi, Brian Nosek (follow-up), Peter Coveney (follow-up),
   Arvind Narayanan (follow-up), Jeffrey Ip, Elena Samuylova (resent with subject),
   Anand Kannappan, Vikram Chatterji, Woody Sherman, Jonathan Godwin,
@@ -131,7 +131,7 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 - docs/PROTOCOL.md — v0.5 protocol specification (5 layers + Cross-Claim Chain)
 - docs/ARCHITECTURE.md — v0.5 architecture diagrams
 - docs/ROADMAP.md — planned expansion
-- reports/scientific_claim_index.md — all 14 claims with thresholds
+- reports/scientific_claim_index.md — all 15 claims with thresholds
 - reports/canonical_state.md — authoritative claims list
 - reports/known_faults.yaml — known limitations (SCOPE_001 + ENV_001)
 - backend/progress/runner.py — job dispatch (15 claims)
@@ -142,6 +142,15 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
   verify-chain: python scripts/mg.py verify-chain bundle1/ bundle2/ bundle3/
 - scripts/deep_verify.py — 13-test proof-not-trust verification script
 - demos/open_data_demo_01/run_demo.py — working end-to-end demo
+
+## Agent evolution system
+
+Embedded agent governance with 16 evolution checks (`scripts/agent_evolution.py`)
+and 8 daily CI agents enforcing documentation consistency, test coverage,
+manifest accuracy, forbidden terms, and branch synchronization automatically.
+Includes cumulative learning (`scripts/agent_learn.py`) that records recurring
+patterns across sessions. AGENT-DRIFT-01 monitors agent quality drift through
+the same verification mechanism the agents extend.
 
 ## Git workflow
 
