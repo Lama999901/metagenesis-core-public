@@ -23,7 +23,7 @@ Key properties:
 
 Scripts: mg.py, mg_sign.py, mg_ed25519.py, mg_temporal.py, deep_verify.py
 Purpose: 5-layer verification of computational claims.
-Autonomy: Low -- verified against 544+ adversarial tests before any change.
+Autonomy: Low -- verified against 586+ adversarial tests before any change.
 
 Layers:
 1. SHA-256 integrity (pack_manifest.json)
