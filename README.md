@@ -6,13 +6,13 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Patent Pending](https://img.shields.io/badge/Patent-Pending%20%2363%2F996%2C819-orange.svg)](ppa/README_PPA.md)
 [![Tests](https://img.shields.io/badge/Tests-544%20passing-brightgreen.svg)](tests/)
-[![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.6.0-blueviolet.svg)](docs/PROTOCOL.md)
+[![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.7.0-blueviolet.svg)](docs/PROTOCOL.md)
 [![Sponsor](https://img.shields.io/badge/Sponsor-❤️-pink.svg)](https://github.com/sponsors/Lama999901)
 
 **Site:** https://metagenesis-core.dev
 **Contact:** yehor@metagenesis-core.dev
 **PPA:** USPTO #63/996,819 -- filed 2026-03-05  
-**Version:** v0.6.0 | 15 claims | 544 tests | 14 agent checks | 18/18 tasks done
+**Version:** v0.7.0 | 15 claims | 544 tests | 14 agent checks | 18/18 tasks done
 
 ---
 
@@ -592,4 +592,4 @@ Read these files in order:
 
 ---
 
-*MetaGenesis Core -- MVP v0.6 -- Inventor: Yehor Bazhynov -- Patent Pending #63/996,819*
+*MetaGenesis Core -- MVP v0.7 -- Inventor: Yehor Bazhynov -- Patent Pending #63/996,819*

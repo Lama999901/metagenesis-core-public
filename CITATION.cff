@@ -4,7 +4,7 @@ title: "MetaGenesis Core: Open Verification Protocol for Computational Claims"
 authors:
   - family-names: Bazhynov
     given-names: Yehor
-version: 0.6.0
+version: 0.7.0
 date-released: "2026-03-18"
 url: "https://metagenesis-core.dev"
 repository-code: "https://github.com/Lama999901/metagenesis-core-public"

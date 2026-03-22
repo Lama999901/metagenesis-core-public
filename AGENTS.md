@@ -27,7 +27,7 @@ After reading these 8 files you can answer any question about this project.
 ## What this repo is
 
 MetaGenesis Core is an open verification protocol layer.
-It implements the MetaGenesis Verification Protocol (MVP) v0.6.
+It implements the MetaGenesis Verification Protocol (MVP) v0.7.
 It makes computational claims tamper-evident, reproducible, and
 independently auditable offline by any third party.
 

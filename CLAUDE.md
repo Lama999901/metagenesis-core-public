@@ -1,7 +1,7 @@
 # MetaGenesis Core — Context for AI Agents (GSD)
 
 > Loaded automatically by all GSD agents via CLAUDE.md.
-> Last updated: 2026-03-19 | v0.6.0 LIVE | 15 claims | 544 tests
+> Last updated: 2026-03-19 | v0.7.0 LIVE | 15 claims | 544 tests
 
 ---
 
@@ -13,7 +13,7 @@ auditable offline. One command: `python scripts/mg.py verify --pack bundle.zip �
 
 **Inventor:** Yehor Bazhynov | **PPA:** USPTO #63/996,819
 **Repo:** https://github.com/Lama999901/metagenesis-core-public
-**Release:** v0.6.0 LIVE | **JOSS paper:** paper.md in main
+**Release:** v0.7.0 LIVE | **JOSS paper:** paper.md in main
 **Ed25519:** scripts/mg_ed25519.py DONE | **Temporal:** scripts/mg_temporal.py DONE
 **CERT-09:** Ed25519 attacks | **CERT-10:** temporal attacks | **CERT-11:** coordinated multi-vector | **CERT-12:** encoding attacks | **deep_verify:** 13 tests
 
@@ -85,7 +85,7 @@ Claims:     15 active (all have 4-step Step Chain)
 Tests:      544 passing
 Layers:     5 verification (integrity + semantic + step chain + signing + temporal)
 Innovations: 8 (5 PPA + HMAC + Ed25519 + Temporal)
-Release:    v0.6.0
+Release:    v0.7.0
 ```
 
 ---
@@ -356,4 +356,4 @@ git log --since='7 days ago' --name-only --pretty=format: | sort -u
 
 ---
 
-*CLAUDE.md v1.5 — 2026-03-19 — MetaGenesis Core v0.6.0 LIVE*
+*CLAUDE.md v1.5 — 2026-03-19 — MetaGenesis Core v0.7.0 LIVE*
