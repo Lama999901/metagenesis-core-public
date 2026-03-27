@@ -108,8 +108,12 @@ CONTENT_CHECKS = {
         "required": ["five independent layers"],
     },
     "README.md": {
-        "banned": ["295 passing", "511 passing", "526 passing", "544 passing", "6 innovations", "7 innovations"],
-        "required": ["586", "8 innovations"],
+        "banned": ["295 passing", "511 passing", "526 passing", "544 passing", "6 innovations", "7 innovations", "14 agent checks", "The 14 Checks", "ALL 14 CHECKS PASSED", "10 automated"],
+        "required": ["586", "8 innovations", "17 agent checks", "The 17 Checks", "ALL 17 CHECKS PASSED"],
+    },
+    "index.html": {
+        "banned": ["<span>10</span>", "14 active domain claims", "Fourteen</span> claims"],
+        "required": ["<span>17</span>", "15 active domain claims", "Fifteen</span> claims"],
     },
     "paper.md": {
         "banned": ["389 adversarial", "511 adversarial", "526 adversarial", "544 adversarial", "17 March 2026"],
