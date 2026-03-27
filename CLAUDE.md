@@ -1,7 +1,7 @@
 # MetaGenesis Core — Context for AI Agents (GSD)
 
 > Loaded automatically by all GSD agents via CLAUDE.md.
-> Last updated: 2026-03-19 | v0.7.0 LIVE | 15 claims | 586 tests
+> Last updated: 2026-03-26 | v0.7.0 LIVE | 15 claims | 586 tests
 
 ---
 
@@ -53,6 +53,7 @@ python scripts/steward_audit.py      # → STEWARD AUDIT: PASS
 python -m pytest tests/ -q           # → 586 passed
 python scripts/deep_verify.py        # → ALL 13 TESTS PASSED
 python scripts/check_stale_docs.py   # → All critical documentation is current
+python scripts/agent_diff_review.py  # → DIFF REVIEW PASSED
 ```
 
 **If ANY gate fails — STOP. Fix before committing.**
@@ -236,6 +237,7 @@ scripts/mg.py               ← core verifier CLI (verify/pack/verify-chain/sign
 scripts/mg_sign.py          ← bundle signing Innovation #6
 scripts/steward_audit.py    ← governance (SEALED)
 scripts/deep_verify.py      ← 13-test proof script
+scripts/agent_diff_review.py ← AST structural diff review
 backend/progress/runner.py  ← job dispatch (15 claims)
 reports/scientific_claim_index.md  ← claim registry
 reports/canonical_state.md  ← authoritative list (LOCKED)
@@ -290,13 +292,12 @@ This shows what previous agents learned — recurring issues + auto-fix hints.
 ## WHAT'S NEXT (priority order)
 
 ```
-1. v0.5.0 — Coverage Hardening (COMPLETE)
-   Phase 5 ✅ Phase 6 ✅ Phase 7 ✅ Phase 8 ✅
-1b. v0.6.0 — AGENT-DRIFT-01 + Recursive Self-Verification (COMPLETE)
-2. Submit JOSS paper (paper.md ready)
-3. First paying customer ($299)
-4. NLnet NGI0 grant (deadline 2026-04-01)
-5. Patent attorney (deadline 2027-03-05)
+1. v0.7.0 LIVE ✅
+2. agent_diff_review.py (Check #17 candidate) ✅
+3. Wave-2 outreach (Chollet, LMArena, Percy Liang)
+4. Coverage 45% → 65%
+5. First paying customer ($299)
+6. Patent attorney (deadline 2027-03-05)
 ```
 
 ## FUTURE EVOLUTION — v0.6.0 IDEAS
