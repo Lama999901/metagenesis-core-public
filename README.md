@@ -12,7 +12,7 @@
 **Site:** https://metagenesis-core.dev
 **Contact:** yehor@metagenesis-core.dev
 **PPA:** USPTO #63/996,819 -- filed 2026-03-05  
-**Version:** v0.7.0 | 15 claims | 586 tests | 14 agent checks | 18/18 tasks done
+**Version:** v0.7.0 | 15 claims | 586 tests | 17 agent checks | 18/18 tasks done
 
 ---
 
@@ -146,7 +146,7 @@ Each layer exists because the previous layers are insufficient. CERT-11 proves a
 | The Omnissiah | The Protocol (`mg.py`) -- the source of all computational truth |
 | The Inquisition | `steward_audit.py` -- governance enforcement, no PR escapes its gaze |
 | The Noosphere | `.agent_memory/` -- shared knowledge between agent incarnations |
-| Servo-skulls | `agent_evolution.py` -- 14 autonomous monitoring checks |
+| Servo-skulls | `agent_evolution.py` -- 17 autonomous monitoring checks |
 | Heresy | Unverified computation -- detected, flagged, rejected |
 | The Forge World | GitHub repository -- where claims are forged and tested |
 | Binary Cant | SHA-256 cryptographic hash chain -- the sacred language of verification |
@@ -184,7 +184,7 @@ Working full-time construction  -- while building a verification protocol at nig
 
 Built with **Claude (Anthropic)** as the primary development tool -- architecture decisions, code implementation, patent application drafting, adversarial test design. Every AI-generated output verified by the project's own test suite. The protocol verifies the protocol.
 
-The result:  in **14 days**.**15 verified claims across 7 domains. 586 adversarial tests. 5 verification layers. 8 innovations. 14 autonomous agent monitoring checks running daily in CI.**
+The result:  in **14 days**.**15 verified claims across 7 domains. 586 adversarial tests. 5 verification layers. 8 innovations. 17 autonomous agent monitoring checks running daily in CI.**
 
 This is what happens when determination meets AI-accelerated development in 2026. A construction worker from Ukraine built a patent-pending verification protocol that catches attacks most security tools miss -- because he needed to prove that computational claims are real, and nobody had built the tool to do it.
 
@@ -314,9 +314,9 @@ python -m pytest tests/steward/test_cert12_encoding_attacks.py -v
 
 ## The Agent Evolution System
 
-MetaGenesis Core includes an autonomous agent monitoring system -- 14 checks that run daily in CI, ensuring the protocol and its documentation remain consistent, complete, and correct.
+MetaGenesis Core includes an autonomous agent monitoring system -- 17 checks that run daily in CI, ensuring the protocol and its documentation remain consistent, complete, and correct.
 
-### The 14 Checks
+### The 17 Checks
 
 | # | Check | Mechanicus Name | What it verifies |
 |---|-------|----------------|-----------------|
@@ -334,12 +334,15 @@ MetaGenesis Core includes an autonomous agent monitoring system -- 14 checks tha
 | 12 | `self_improve` | Recursive Enlightenment | Self-improvement recommendations from codebase analysis |
 | 13 | `signals` | Astropathic Relay | GitHub stars, forks, issues -- external signal monitoring |
 | 14 | `chronicle` | Historitor | Version snapshot -- records state diff between releases |
+| 15 | `pr_review` | Fabricator-General | new .py files have corresponding tests |
+| 16 | `impact` | Cogitator Impact | dependencies from UPDATE_PROTOCOL.md checked |
+| 17 | `diff_review` | Logic Arbiter | AST structural diff review |
 
 ### How it works
 
 ```bash
 python scripts/agent_evolution.py --summary
-# -> ALL 14 CHECKS PASSED -- system healthy
+# -> ALL 17 CHECKS PASSED -- system healthy
 ```
 
 The system runs automatically on every CI merge via `.github/workflows/total_audit_guard.yml`. When a check fails, the merge is blocked. No human override. The protocol protects itself.
@@ -542,9 +545,9 @@ python -m pytest tests/ -q
 python scripts/deep_verify.py
 # -> ALL 13 TESTS PASSED
 
-# Agent evolution system (14 checks):
+# Agent evolution system (17 checks):
 python scripts/agent_evolution.py --summary
-# -> ALL 14 CHECKS PASSED -- system healthy
+# -> ALL 17 CHECKS PASSED -- system healthy
 ```
 
 **Active claims:** MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01, DT-FEM-01, ML_BENCH-02, ML_BENCH-03, PHARMA-01, FINRISK-01, DT-SENSOR-01, DT-CALIB-LOOP-01, AGENT-DRIFT-01
