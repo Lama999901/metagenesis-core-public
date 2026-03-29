@@ -428,12 +428,47 @@ class ProgressRunner:
                 drift_threshold_pct=float(p.get("drift_threshold_pct", 20.0)),
             )
 
+        from backend.progress.mtr4_titanium_calibration import JOB_KIND as MTR4_KIND, run_calibration as run_mtr4
+        if payload.get("kind") == MTR4_KIND:
+            p = payload
+            return run_mtr4(
+                seed=int(p.get("seed", 42)),
+                E_true=float(p.get("E_true", 114e9)),
+                n_points=int(p.get("n_points", 50)),
+                max_strain=float(p.get("max_strain", 0.002)),
+                noise_scale=float(p["noise_scale"]) if p.get("noise_scale") is not None else None,
+            )
+
+        from backend.progress.mtr5_steel_calibration import JOB_KIND as MTR5_KIND, run_calibration as run_mtr5
+        if payload.get("kind") == MTR5_KIND:
+            p = payload
+            return run_mtr5(
+                seed=int(p.get("seed", 43)),
+                E_true=float(p.get("E_true", 193e9)),
+                n_points=int(p.get("n_points", 50)),
+                max_strain=float(p.get("max_strain", 0.002)),
+                noise_scale=float(p["noise_scale"]) if p.get("noise_scale") is not None else None,
+            )
+
+        from backend.progress.mtr6_copper_conductivity import JOB_KIND as MTR6_KIND, run_calibration as run_mtr6
+        if payload.get("kind") == MTR6_KIND:
+            p = payload
+            return run_mtr6(
+                seed=int(p.get("seed", 44)),
+                k_true=float(p.get("k_true", 401.0)),
+                n_points=int(p.get("n_points", 50)),
+                L=float(p.get("L", 0.01)),
+                A=float(p.get("A", 1e-4)),
+                q_max=float(p.get("q_max", 10.0)),
+                noise_scale=float(p["noise_scale"]) if p.get("noise_scale") is not None else None,
+            )
+
         registered = [
             MTR1_KIND, MTR2_KIND, MTR3_KIND,
             SYSID1_KIND, DATAPIPE1_KIND, DRIFT01_KIND,
             MLBENCH1_KIND, DTFEM1_KIND, MLBENCH2_KIND, MLBENCH3_KIND,
             PHARMA1_KIND, FINRISK1_KIND, DTSENSOR1_KIND, DTCALIB1_KIND,
-            AGENT_DRIFT01_KIND,
+            AGENT_DRIFT01_KIND, MTR4_KIND, MTR5_KIND, MTR6_KIND,
         ]
         raise ValueError(
             f"Unknown job kind: '{payload.get('kind')}'. "

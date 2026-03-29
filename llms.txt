@@ -27,7 +27,7 @@ A governance + evidence + verification protocol. An open standard.
 4. Detects drift against verified calibration anchors
 5. Cross-Claim Chain: MTR-1 → DT-FEM-01 → DRIFT-01 cryptographically linked end-to-end
 
-## 15 active claims
+## 18 active claims
 
 MTR-1        mtr1_youngs_modulus_calibration          (materials — physical anchor E=70GPa)
 MTR-2        mtr2_thermal_paste_conductivity_calibration (materials — physical anchor)
@@ -44,11 +44,14 @@ FINRISK-01   finrisk1_var_certificate                  (finance VaR — Basel II
 DT-SENSOR-01 dtsensor1_iot_certificate                 (IoT sensor data integrity)
 DT-CALIB-LOOP-01 dtcalib1_convergence_certificate      (calibration convergence)
 AGENT-DRIFT-01   agent_drift_monitor                    (agent quality drift — recursive self-verification)
+MTR-4        mtr4_titanium_modulus_calibration        (materials — physical anchor E=114GPa Ti-6Al-4V)
+MTR-5        mtr5_steel_modulus_calibration           (materials — physical anchor E=193GPa SS316L)
+MTR-6        mtr6_copper_conductivity_calibration     (materials — physical anchor k=401 W/(m·K) Cu)
 
 ## Physical Anchor Principle (SCOPE_001)
 
 Two distinct concepts — never conflate:
-- Tamper-evident provenance: "was the bundle modified?" → ALL 15 claims
+- Tamper-evident provenance: "was the bundle modified?" → ALL 18 claims
 - Physical anchor: "does the number agree with physical reality?" → MTR-1/2/3, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP-01 ONLY
 
 E = 70 GPa for aluminium is a physical constant measured in thousands of labs worldwide.
@@ -92,7 +95,7 @@ Enforced by: python scripts/steward_audit.py → must output STEWARD AUDIT: PASS
 2. Tamper-evident semantic verification → mg.py :: _verify_semantic()  [test_cert02]
 3. Policy-gate immutable anchors → mg_policy_gate_policy.json
 4. Dual-mode canary pipeline → runner.py :: run_job(canary_mode=True/False)
-5. Step Chain + Cross-Claim Chain → all 15 claims + anchor_hash  [test_cert03 + test_cross_claim_chain]
+5. Step Chain + Cross-Claim Chain → all 18 claims + anchor_hash  [test_cert03 + test_cross_claim_chain]
 6. Bundle Signing (HMAC-SHA256 + Ed25519) → mg_sign.py + mg_ed25519.py  [test_cert07 + test_cert09]
 7. Temporal Commitment (NIST Beacon) → mg_temporal.py  [test_temporal + test_cert10]
 8. 5-Layer Independence (CERT-11 + CERT-12) → test_cert11 (coordinated multi-vector) + test_cert12 (encoding attacks)  [proves each layer catches attacks others miss]
@@ -100,13 +103,13 @@ Enforced by: python scripts/steward_audit.py → must output STEWARD AUDIT: PASS
 ## How to verify everything works
 
 python scripts/steward_audit.py                              # PASS
-python -m pytest tests/ -q                                   # 586 passed
+python -m pytest tests/ -q                                   # 595 passed
 python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 
 ## Current state (2026-03-21)
 
-- Claims: 15
-- Tests: 586 passing
+- Claims: 18
+- Tests: 595 passing
 - Verification layers: 5 (integrity + semantic + step chain + bundle signing + temporal commitment)
 - Domains: 7 (materials, sysid, data, ml, digital_twin, pharma_biotech, financial_risk)
 - Cross-Claim Chain: MTR-1 → DT-FEM-01 → DRIFT-01 cryptographically linked via anchor_hash
@@ -131,10 +134,10 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 - docs/PROTOCOL.md — v0.5 protocol specification (5 layers + Cross-Claim Chain)
 - docs/ARCHITECTURE.md — v0.5 architecture diagrams
 - docs/ROADMAP.md — planned expansion
-- reports/scientific_claim_index.md — all 15 claims with thresholds
+- reports/scientific_claim_index.md — all 18 claims with thresholds
 - reports/canonical_state.md — authoritative claims list
 - reports/known_faults.yaml — known limitations (SCOPE_001 + ENV_001)
-- backend/progress/runner.py — job dispatch (15 claims)
+- backend/progress/runner.py — job dispatch (18 claims)
 - scripts/steward_audit.py — governance enforcement (SEALED)
 - scripts/steward_dossier.py — generates per-claim dossier .md files from claim index
 - scripts/steward_submission_pack.py — builds submission pack with evidence bundles

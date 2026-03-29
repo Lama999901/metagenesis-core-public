@@ -40,7 +40,7 @@ actual_tests = int(m.group(1)) if m else 0
 print(f"  {OK} {actual_tests} tests passed")
 
 print("\n" + "=" * 60)
-print("TEST 3: All 15 JOB_KIND constants match runner dispatch")
+print("TEST 3: All 18 JOB_KIND constants match runner dispatch")
 print("=" * 60)
 claim_files = {
     "mtr1_calibration": "mtr1_youngs_modulus_calibration",
@@ -58,6 +58,9 @@ claim_files = {
     "dtsensor1_iot_certificate": "dtsensor1_iot_certificate",
     "dtcalib1_convergence_certificate": "dtcalib1_convergence_certificate",
     "agent_drift_monitor": "agent_drift_monitor",
+    "mtr4_titanium_calibration": "mtr4_titanium_modulus_calibration",
+    "mtr5_steel_calibration": "mtr5_steel_modulus_calibration",
+    "mtr6_copper_conductivity": "mtr6_copper_conductivity_calibration",
 }
 runner_text = (root / "backend/progress/runner.py").read_text(encoding="utf-8")
 all_ok = True
@@ -80,7 +83,7 @@ for module, expected_kind in claim_files.items():
 assert all_ok, "SOME CLAIMS FAILED"
 
 print("\n" + "=" * 60)
-print("TEST 4: All 15 claims have execution_trace + trace_root_hash")
+print("TEST 4: All 18 claims have execution_trace + trace_root_hash")
 print("=" * 60)
 import importlib.util, sys as _sys
 
@@ -126,6 +129,12 @@ test_calls = [
                     "regressions": 0, "verifier_iterations": 1.2},
           current={"tests_per_phase": 47, "pass_rate": 1.0,
                    "regressions": 0, "verifier_iterations": 1.2})),
+    ("mtr4_titanium_calibration", "run_calibration",
+     dict(seed=42, E_true=114e9, n_points=30, max_strain=0.002)),
+    ("mtr5_steel_calibration", "run_calibration",
+     dict(seed=43, E_true=193e9, n_points=30, max_strain=0.002)),
+    ("mtr6_copper_conductivity", "run_calibration",
+     dict(seed=44, k_true=401.0, n_points=30)),
 ]
 
 all_ok = True
@@ -194,17 +203,17 @@ print("\n" + "=" * 60)
 print("TEST 7: site numbers match code")
 print("=" * 60)
 html = (root / "index.html").read_text(encoding="utf-8")
-assert ">15<" in html, f"{ERR} claims not 15 in HTML"
+assert ">18<" in html, f"{ERR} claims not 18 in HTML"
 assert ">5<" in html,   f"{ERR} layers not 5 in HTML"
 assert ">7<" in html,   f"{ERR} domains not 7 in HTML"
 
 manifest = json.loads((root / "system_manifest.json").read_text(encoding="utf-8"))
 manifest_tests = manifest["test_count"]
-assert len(manifest["active_claims"]) == 15
+assert len(manifest["active_claims"]) == 18
 assert "v0." in manifest["protocol"], f"{ERR} manifest protocol={manifest['protocol']}"
 # Check site shows a test count (dynamic -- exact sync is a counter-update task)
-print(f"  {OK} site: 15 claims, {manifest_tests} tests, 5 layers, 7 domains")
-print(f"  {OK} system_manifest: 15 claims, {manifest_tests} tests, protocol v0.6")
+print(f"  {OK} site: 18 claims, {manifest_tests} tests, 5 layers, 7 domains")
+print(f"  {OK} system_manifest: 18 claims, {manifest_tests} tests, protocol v0.6")
 
 print("\n" + "=" * 60)
 print("TEST 8: Demo end-to-end PASS PASS")

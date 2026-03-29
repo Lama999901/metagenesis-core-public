@@ -38,8 +38,11 @@ in the non-provisional application.
 | Innovation #8: Temporal Commitment (NIST Beacon) | 2026-03-18 | mg_temporal.py — Layer 5, proves WHEN bundle was signed |
 | 5-Layer Independence Proof (CERT-11/12) | 2026-03-18 | test_cert11 + test_cert12 — each layer catches attacks others miss |
 | Agent Evolution System | 2026-03-18 | agent_learn.py + agent_evolution.py + check_stale_docs.py |
+| MTR-4 (Titanium Ti-6Al-4V) | 2026-03-29 | Physical anchor E=114 GPa (NIST) |
+| MTR-5 (Stainless Steel SS316L) | 2026-03-29 | Physical anchor E=193 GPa (NIST) |
+| MTR-6 (Copper Conductivity) | 2026-03-29 | Physical anchor k=401 W/(m·K) (NIST) |
 
-**Current state (2026-03-19):** 15 claims, 586 tests, 5 layers, 8 innovations.
+**Current state (2026-03-29):** 18 claims, 595 tests, 5 layers, 8 innovations.
 Live state: reports/canonical_state.md
 
 ---

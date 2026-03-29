@@ -13,7 +13,7 @@ the rules of this repository. Read this before making any change.
 3. README.md             ← architecture, claims, quickstart
 4. llms.txt              ← AI-optimized summary of entire repo
 5. reports/canonical_state.md    ← verified claim list
-6. reports/scientific_claim_index.md  ← all 15 claims with thresholds
+6. reports/scientific_claim_index.md  ← all 18 claims with thresholds
 7. reports/known_faults.yaml     ← known limitations, do not overclaim
 8. docs/PROTOCOL.md      ← full protocol specification
 ```
@@ -104,7 +104,7 @@ test mtr_phase key present, test determinism (same seed → same result)
 
 Step 6 — Verify:
 python scripts/steward_audit.py → STEWARD AUDIT: PASS
-python -m pytest tests/ -q → 586 passed
+python -m pytest tests/ -q → 595 passed
 python scripts/deep_verify.py → ALL 13 TESTS PASSED
 
 ---
@@ -128,6 +128,9 @@ python scripts/deep_verify.py → ALL 13 TESTS PASSED
 | DT-SENSOR-01 | backend/progress/dtsensor1_iot_certificate.py | tests/digital_twin/ |
 | DT-CALIB-LOOP-01 | backend/progress/dtcalib1_convergence_certificate.py | tests/digital_twin/ |
 | AGENT-DRIFT-01 | backend/progress/agent_drift_monitor.py | tests/steward/ |
+| MTR-4 | backend/progress/mtr4_titanium_calibration.py | tests/materials/ |
+| MTR-5 | backend/progress/mtr5_steel_calibration.py | tests/materials/ |
+| MTR-6 | backend/progress/mtr6_copper_conductivity.py | tests/materials/ |
 
 ---
 

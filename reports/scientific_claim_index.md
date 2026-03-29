@@ -366,4 +366,43 @@ before beacon) prevents backdating.
 
 ---
 
-*Index authority: MetaGenesis Core / SCI-01 v0.7 — 15 claims, 586 tests. Append new claims as sections.*
+## MTR-4
+
+| Field | Value |
+|-------|--------|
+| **claim_id** | MTR-4 |
+| **domain** | Materials Science |
+| **job_kind** | `mtr4_titanium_modulus_calibration` |
+| **reproduction** | `python -m pytest tests/materials/test_mtr4_titanium.py -v` |
+| **V&V thresholds** | `relative_error <= 0.01`; Physical anchor: E = 114 GPa Ti-6Al-4V (NIST) |
+| **notes** | Aerospace/medical applications. Same canary/normal modes as MTR-1. |
+
+---
+
+## MTR-5
+
+| Field | Value |
+|-------|--------|
+| **claim_id** | MTR-5 |
+| **domain** | Materials Science |
+| **job_kind** | `mtr5_steel_modulus_calibration` |
+| **reproduction** | `python -m pytest tests/materials/test_mtr5_steel.py -v` |
+| **V&V thresholds** | `relative_error <= 0.01`; Physical anchor: E = 193 GPa SS316L (NIST) |
+| **notes** | Nuclear/surgical/chemical applications. Same canary/normal modes as MTR-1. |
+
+---
+
+## MTR-6
+
+| Field | Value |
+|-------|--------|
+| **claim_id** | MTR-6 |
+| **domain** | Materials Science |
+| **job_kind** | `mtr6_copper_conductivity_calibration` |
+| **reproduction** | `python -m pytest tests/materials/test_mtr6_copper.py -v` |
+| **V&V thresholds** | `relative_error <= 0.02`; Physical anchor: k = 401 W/(m·K) Cu (NIST) |
+| **notes** | Electronics/power/thermal management. Same canary/normal modes as MTR-2. |
+
+---
+
+*Index authority: MetaGenesis Core / SCI-01 v0.7 — 18 claims, 595 tests. Append new claims as sections.*
