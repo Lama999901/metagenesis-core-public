@@ -34,7 +34,7 @@ Layers:
 
 ## Level 3: EVOLUTION (Mechanicus Forge)
 
-Scripts: agent_evolution.py (15 checks), agent_research.py (task queue),
+Scripts: agent_evolution.py (17 checks), agent_research.py (task queue),
          agent_coverage.py (Genetor), agent_evolve_self.py (recursive),
          agent_signals.py (external), agent_chronicle.py (history),
          agent_learn.py (memory), agent_drift_monitor.py (AGENT-DRIFT-01)
@@ -44,7 +44,7 @@ Autonomy: High -- agents generate tasks, execute research, detect gaps.
 
 ### Recursive Self-Verification Loop
 
-1. agent_evolution.py runs 15 checks after every merge
+1. agent_evolution.py runs 17 checks after every merge
 2. agent_coverage.py identifies untested code paths
 3. agent_research.py auto-generates tasks from coverage gaps
 4. Tasks execute: write tests, audit code, produce reports
@@ -82,7 +82,7 @@ AGENT-DRIFT-01
 | mg_ed25519.py | 2 | Ed25519 operations |
 | mg_temporal.py | 2 | Temporal commitment |
 | deep_verify.py | 2 | 13-test proof script |
-| agent_evolution.py | 3 | 15-check health monitor |
+| agent_evolution.py | 3 | 17-check health monitor |
 | agent_research.py | 3 | Task queue + execution |
 | agent_coverage.py | 3 | Code coverage analysis |
 | agent_evolve_self.py | 3 | Recursive improvement |
