@@ -1,7 +1,7 @@
 # MetaGenesis Core — Context for AI Agents (GSD)
 
 > Loaded automatically by all GSD agents via CLAUDE.md.
-> Last updated: 2026-03-19 | v0.7.0 LIVE | 15 claims | 586 tests
+> Last updated: 2026-03-29 | v0.7.0 LIVE | 18 claims | 595 tests
 
 ---
 
@@ -41,7 +41,7 @@ scripts/mg.py                                    ← core verifier, modify caref
 "blockchain"        → "cryptographic hash chain"
 "unforgeable"       → don't use
 "GPT-5"             → doesn't exist
-"100% test success" → "586 tests PASS"
+"100% test success" → "595 tests PASS"
 ```
 
 ---
@@ -50,9 +50,10 @@ scripts/mg.py                                    ← core verifier, modify caref
 
 ```bash
 python scripts/steward_audit.py      # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q           # → 586 passed
+python -m pytest tests/ -q           # → 595 passed
 python scripts/deep_verify.py        # → ALL 13 TESTS PASSED
 python scripts/check_stale_docs.py   # → All critical documentation is current
+python scripts/agent_diff_review.py  # → DIFF REVIEW PASSED
 ```
 
 **If ANY gate fails — STOP. Fix before committing.**
@@ -81,7 +82,7 @@ git push origin feat/description
 ## CURRENT STATE
 
 ```
-Claims:     15 active (all have 4-step Step Chain)
+Claims:     18 active (all have 4-step Step Chain)
 Tests:      586 passing
 Layers:     5 verification (integrity + semantic + step chain + signing + temporal)
 Innovations: 8 (5 PPA + HMAC + Ed25519 + Temporal)
@@ -90,7 +91,7 @@ Release:    v0.7.0
 
 ---
 
-## 15 ACTIVE CLAIMS
+## 18 ACTIVE CLAIMS
 
 | Claim | File | Threshold | Physical Anchor |
 |-------|------|-----------|-----------------|
@@ -109,6 +110,9 @@ Release:    v0.7.0
 | DT-SENSOR-01 | backend/progress/dtsensor1_iot_certificate.py | schema+range+temporal | — |
 | DT-CALIB-LOOP-01 | backend/progress/dtcalib1_convergence_certificate.py | drift decreasing | DRIFT-01 ⚓ |
 | AGENT-DRIFT-01 | backend/progress/agent_drift_monitor.py | composite_drift <= 20% | -- |
+| MTR-4 | backend/progress/mtr4_titanium_calibration.py | rel_err ≤ 0.01 | E=114GPa ⚓ |
+| MTR-5 | backend/progress/mtr5_steel_calibration.py | rel_err ≤ 0.01 | E=193GPa ⚓ |
+| MTR-6 | backend/progress/mtr6_copper_conductivity.py | rel_err ≤ 0.02 | k=401 W/(m·K) ⚓ |
 
 ---
 
@@ -148,7 +152,7 @@ _trace.append({"step": 4, "name": "threshold_check",
 trace_root_hash = _prev
 ```
 
-**Return structure (must match for ALL 15 claims):**
+**Return structure (must match for ALL 18 claims):**
 ```python
 return {
     "mtr_phase": "CLAIM-ID",
@@ -181,7 +185,7 @@ Layer 5 — Temporal Commitment  scripts/mg_temporal.py       catches: backdated
 ## PHYSICAL ANCHOR PRINCIPLE (SCOPE_001)
 
 **Two distinct properties — never conflate:**
-- Tamper-evident provenance → ALL 15 claims
+- Tamper-evident provenance → ALL 18 claims
 - Physical anchor traceability → ONLY: MTR-1/2/3, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP-01
 
 E = 70 GPa (aluminum) is measured in thousands of labs worldwide — NOT a chosen threshold.
@@ -236,12 +240,12 @@ scripts/mg.py               ← core verifier CLI (verify/pack/verify-chain/sign
 scripts/mg_sign.py          ← bundle signing Innovation #6
 scripts/steward_audit.py    ← governance (SEALED)
 scripts/deep_verify.py      ← 13-test proof script
-backend/progress/runner.py  ← job dispatch (15 claims)
+backend/progress/runner.py  ← job dispatch (18 claims)
 reports/scientific_claim_index.md  ← claim registry
 reports/canonical_state.md  ← authoritative list (LOCKED)
 reports/known_faults.yaml   ← known limitations (SCOPE_001)
 paper.md + paper.bib        ← JOSS paper
-index.html                  ← site (15 claims/586 tests/5 layers/8 innovations in 11+ places)
+index.html                  ← site (18 claims/595 tests/5 layers/8 innovations in 11+ places)
 CONTEXT_SNAPSHOT.md         ← live state for AI agents
 ```
 
@@ -290,13 +294,12 @@ This shows what previous agents learned — recurring issues + auto-fix hints.
 ## WHAT'S NEXT (priority order)
 
 ```
-1. v0.5.0 — Coverage Hardening (COMPLETE)
-   Phase 5 ✅ Phase 6 ✅ Phase 7 ✅ Phase 8 ✅
-1b. v0.6.0 — AGENT-DRIFT-01 + Recursive Self-Verification (COMPLETE)
-2. Submit JOSS paper (paper.md ready)
-3. First paying customer ($299)
-4. NLnet NGI0 grant (deadline 2026-04-01)
-5. Patent attorney (deadline 2027-03-05)
+1. v0.7.0 LIVE ✅
+2. agent_diff_review.py (Check #17 candidate) ✅
+3. Wave-2 outreach (Chollet, LMArena, Percy Liang)
+4. Coverage 45% → 65%
+5. First paying customer ($299)
+6. Patent attorney (deadline 2027-03-05)
 ```
 
 ## FUTURE EVOLUTION — v0.6.0 IDEAS
