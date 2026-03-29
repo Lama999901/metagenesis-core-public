@@ -314,7 +314,7 @@ python -m pytest tests/steward/test_cert12_encoding_attacks.py -v
 
 ## The Agent Evolution System
 
-MetaGenesis Core includes an autonomous agent monitoring system -- 14 checks that run daily in CI, ensuring the protocol and its documentation remain consistent, complete, and correct.
+MetaGenesis Core includes an autonomous agent monitoring system -- 17 checks that run daily in CI, ensuring the protocol and its documentation remain consistent, complete, and correct.
 
 ### The 17 Checks
 
@@ -334,6 +334,9 @@ MetaGenesis Core includes an autonomous agent monitoring system -- 14 checks tha
 | 12 | `self_improve` | Recursive Enlightenment | Self-improvement recommendations from codebase analysis |
 | 13 | `signals` | Astropathic Relay | GitHub stars, forks, issues -- external signal monitoring |
 | 14 | `chronicle` | Historitor | Version snapshot -- records state diff between releases |
+| 15 | `pr_review` | Fabricator-General | new .py files have corresponding tests |
+| 16 | `impact` | Cogitator Impact | dependencies from UPDATE_PROTOCOL.md checked |
+| 17 | `diff_review` | Logic Arbiter | AST structural diff review |
 
 ### How it works
 
@@ -542,7 +545,7 @@ python -m pytest tests/ -q
 python scripts/deep_verify.py
 # -> ALL 13 TESTS PASSED
 
-# Agent evolution system (14 checks):
+# Agent evolution system (17 checks):
 python scripts/agent_evolution.py --summary
 # -> ALL 17 CHECKS PASSED -- system healthy
 ```

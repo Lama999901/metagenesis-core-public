@@ -53,6 +53,7 @@ python scripts/steward_audit.py      # → STEWARD AUDIT: PASS
 python -m pytest tests/ -q           # → 595 passed
 python scripts/deep_verify.py        # → ALL 13 TESTS PASSED
 python scripts/check_stale_docs.py   # → All critical documentation is current
+python scripts/agent_diff_review.py  # → DIFF REVIEW PASSED
 ```
 
 **If ANY gate fails — STOP. Fix before committing.**
@@ -293,13 +294,12 @@ This shows what previous agents learned — recurring issues + auto-fix hints.
 ## WHAT'S NEXT (priority order)
 
 ```
-1. v0.5.0 — Coverage Hardening (COMPLETE)
-   Phase 5 ✅ Phase 6 ✅ Phase 7 ✅ Phase 8 ✅
-1b. v0.6.0 — AGENT-DRIFT-01 + Recursive Self-Verification (COMPLETE)
-2. Submit JOSS paper (paper.md ready)
-3. First paying customer ($299)
-4. NLnet NGI0 grant (deadline 2026-04-01)
-5. Patent attorney (deadline 2027-03-05)
+1. v0.7.0 LIVE ✅
+2. agent_diff_review.py (Check #17 candidate) ✅
+3. Wave-2 outreach (Chollet, LMArena, Percy Liang)
+4. Coverage 45% → 65%
+5. First paying customer ($299)
+6. Patent attorney (deadline 2027-03-05)
 ```
 
 ## FUTURE EVOLUTION — v0.6.0 IDEAS

@@ -435,6 +435,19 @@ def check_impact():
     return True  # Advisory only
 
 
+# ── 17. Diff Review ──────────────────────────────────────────────────────────
+def check_diff_review():
+    section("DIFF REVIEW — Logic Arbiter")
+    out, code = run("python scripts/agent_diff_review.py --summary")
+    info(out if out else "no diff output")
+    if code == 0:
+        ok("agent_diff_review → PASS (DIFF_PASS)")
+        return True
+    else:
+        err("agent_diff_review → issues found (DIFF_FAIL)")
+        return False
+
+
 # ── Main ─────────────────────────────────────────────────────────────────────
 def main():
     strict = "--strict" in sys.argv
@@ -467,6 +480,7 @@ def main():
     results["chronicle"] = check_chronicle()
     results["pr_review"] = check_pr_review()
     results["impact"] = check_impact()
+    results["diff_review"] = check_diff_review()
 
     # ── Summary ──
     section("SUMMARY — Omnissiah's Verdict")
@@ -490,6 +504,7 @@ def main():
         "chronicle":     ("Chronicle recorded",             "CHRONICLE"),
         "pr_review":     ("Fabricator-General satisfied",    "PRREVIEW"),
         "impact":        ("Cogitator impact analyzed",       "IMPACT"),
+        "diff_review":   ("Logic Arbiter satisfied",          "DIFF"),
     }
 
     for check, ok_val in results.items():
