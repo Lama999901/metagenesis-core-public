@@ -68,7 +68,7 @@ CRITICAL_FILES = {
 # ── Content validation — banned/required strings per file ──────────────────
 CONTENT_CHECKS = {
     "CONTRIBUTING.md": {
-        "banned": ["223 passed", "295 passed", "511 passed", "526 passed", "544 passed", "595 passed", "ALL 10 TESTS", "3 verification layers"],
+        "banned": ["223 passed", "295 passed", "511 passed", "526 passed", "544 passed", "586 passed", "ALL 10 TESTS", "3 verification layers"],
         "required": ["595", "ALL 13 TESTS", "5 verification layers"],
     },
     "CITATION.cff": {
