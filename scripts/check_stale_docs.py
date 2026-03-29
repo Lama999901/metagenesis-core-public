@@ -80,8 +80,8 @@ CONTENT_CHECKS = {
         "required": ["(MVP) v0.5", "Five verification layers", "8 innovations"],
     },
     "docs/AGENT_SYSTEM.md": {
-        "banned": [],
-        "required": ["Level 1", "Level 2", "Level 3", "AGENT-DRIFT-01", "15 checks"],
+        "banned": ["15 checks", "15-check"],
+        "required": ["Level 1", "Level 2", "Level 3", "AGENT-DRIFT-01", "17 checks"],
     },
     "docs/ARCHITECTURE.md": {
         "banned": ["282 tests", "511 tests", "544 tests", "Architecture v0.2", "Three verification layers"],
@@ -124,8 +124,8 @@ CONTENT_CHECKS = {
         "required": ["595 tests", "595 passed"],
     },
     "CLAUDE.md": {
-        "banned": ["10-test proof", "12 counters"],
-        "required": ["13-test proof", "8 innovations"],
+        "banned": ["10-test proof", "12 counters", "15 claims", "16 claims", "17 claims"],
+        "required": ["13-test proof", "8 innovations", "18 claims", "595 tests"],
     },
     "UPDATE_PROTOCOL.md": {
         "banned": ["ALL 10 PASSED", "ALL 10 TESTS PASSED", "v1.0 — 2026-03-16"],
