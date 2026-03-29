@@ -174,8 +174,15 @@ class TestCheckImpact:
             "backend/progress/new_claim.py",
             "backend/progress/runner.py",
             "reports/scientific_claim_index.md",
+            "reports/canonical_state.md",
             "system_manifest.json", "index.html",
             "README.md", "AGENTS.md", "llms.txt", "CONTEXT_SNAPSHOT.md",
+            "CONTRIBUTING.md",
+            "paper.md",
+            "ppa/README_PPA.md",
+            "scripts/check_stale_docs.py",
+            "CLAUDE.md",
+            "COMMERCIAL.md",
         ]
         result = check_impact(files)
         assert "new_claim" in result["change_types"]
