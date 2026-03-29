@@ -22,10 +22,10 @@
 
 | Parameter | Value |
 |---|---|
-| Tests | **586 passing** |
+| Tests | **595 passing** |
 | steward_audit | PASS |
 | CI | GREEN |
-| Active claims | **15** |
+| Active claims | **18** |
 | Verification layers | 5 (integrity + semantic + step chain + bundle signing + temporal commitment) |
 | Innovations | 8 (5 PPA + HMAC signing + Ed25519 signing + temporal commitment) |
 | Domains | 7 |
@@ -34,7 +34,7 @@
 
 ---
 
-## 15 active claims
+## 18 active claims
 
 | Claim | Domain | Threshold | Physical Anchor |
 |-------|--------|-----------|-----------------|
@@ -53,8 +53,11 @@
 | DT-SENSOR-01 | IoT — Sensor Integrity | schema + range + temporal | — |
 | DT-CALIB-LOOP-01 | Digital Twin — Convergence | `drift_pct decreasing` | DRIFT-01 anchor ⚓ |
 | AGENT-DRIFT-01 | Agent Quality — Self-Verification | `composite_drift <= 20%` | — |
+| MTR-4 | Materials — Titanium Ti-6Al-4V | `rel_err ≤ 0.01` | E = 114 GPa ⚓ |
+| MTR-5 | Materials — Stainless Steel SS316L | `rel_err ≤ 0.01` | E = 193 GPa ⚓ |
+| MTR-6 | Materials — Copper Conductivity | `rel_err ≤ 0.02` | k = 401 W/(m·K) ⚓ |
 
-Physical anchor scope (SCOPE_001): MTR-1/2/3, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP-01 only.
+Physical anchor scope (SCOPE_001): MTR-1/2/3/4/5/6, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP-01 only.
 
 ---
 
@@ -82,7 +85,7 @@ Physical anchor scope (SCOPE_001): MTR-1/2/3, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP
 2. **Tamper-Evident Bundle + Semantic Layer** → `mg.py :: _verify_pack() + _verify_semantic()`
 3. **Policy-Gate Immutable Anchors** → `mg_policy_gate_policy.json`
 4. **Dual-Mode Canary Pipeline** → `runner.py :: run_job(canary_mode=True/False)`
-5. **Step Chain + Cross-Claim Chain** → all 15 claims + anchor_hash MTR-1→DT-FEM-01→DRIFT-01
+5. **Step Chain + Cross-Claim Chain** → all 18 claims + anchor_hash MTR-1→DT-FEM-01→DRIFT-01
 6. **Bundle Signing (HMAC-SHA256 + Ed25519)** → `mg_sign.py` + `mg_ed25519.py` [test_cert07 + test_cert09]
 7. **Temporal Commitment (NIST Beacon)** → `mg_temporal.py` [test_temporal + test_cert10]
 8. **5-Layer Independence (CERT-11 coordinated + CERT-12 encoding)** → test_cert11 + test_cert12 [proves each layer catches attacks others miss]
@@ -93,7 +96,7 @@ Physical anchor scope (SCOPE_001): MTR-1/2/3, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP
 
 ```bash
 python scripts/steward_audit.py          # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q               # → 586 passed
+python -m pytest tests/ -q               # → 595 passed
 python scripts/deep_verify.py            # → ALL 13 TESTS PASSED
 python demos/open_data_demo_01/run_demo.py  # → PASS PASS
 
@@ -106,7 +109,7 @@ python -m pytest tests/steward/test_cert06_real_world_scenarios.py -v
 
 ## What is next
 
-- [x] system_manifest.json test_count → updated to 586
+- [x] system_manifest.json test_count → updated to 595
 - [ ] Site crisis section → add adversarial attacks (Attack 1–5)
 - [ ] Non-provisional patent attorney (deadline 2027-03-05)
 - [ ] First paying customer ($299 via email)

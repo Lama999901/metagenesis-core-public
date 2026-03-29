@@ -52,9 +52,9 @@ measured in thousands of laboratories worldwide) through calibration, FEM
 simulation, and drift monitoring. Each link is cryptographically committed;
 tampering any link invalidates all downstream hashes.
 
-The protocol ships with 15 active verification claims across 7 domains
+The protocol ships with 18 active verification claims across 7 domains
 (materials science, ML/AI, system identification, data pipelines, digital
-twin, pharma/biotech, and financial risk), 586 adversarial tests, and
+twin, pharma/biotech, and financial risk), 595 adversarial tests, and
 governance enforcement that prevents any registered claim from existing
 without a corresponding implementation — and vice versa.
 
@@ -159,7 +159,7 @@ library.
 A distinction is maintained between two properties:
 
 - **Tamper-evident provenance** ("was the bundle modified?"): applies to
-  all 15 claims
+  all 18 claims
 - **Physical anchor traceability** ("does the number agree with physical
   reality?"): applies only to claims anchored to independently measured
   physical constants
@@ -210,7 +210,7 @@ cryptographic identity. Hash equality constitutes reproducibility proof;
 hash inequality indicates a discrepancy, and the step-level trace identifies
 which step diverged.
 
-This property is proven across all 15 claims in
+This property is proven across all 18 claims in
 `tests/steward/test_cert08_reproducibility.py`, including parameter
 sensitivity (different parameters → different hash, making selective
 seed reporting detectable) and cross-claim chain determinism.
@@ -354,7 +354,7 @@ Claude (Anthropic) was used as the primary development tool throughout
 this project: architecture decisions, code implementation, patent
 application drafting, and documentation. All AI-generated outputs were
 verified by the author through the project's own adversarial test suite
-(586 tests), steward audit, and 13-test deep verification script.
+(595 tests), steward audit, and 13-test deep verification script.
 Quality was ensured by governance-enforced bidirectional coverage — every
 claim must have tests and every test must correspond to a claim — and
 5-layer tamper-evident verification where each layer catches attacks the

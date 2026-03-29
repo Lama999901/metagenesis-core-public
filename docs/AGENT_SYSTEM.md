@@ -23,7 +23,7 @@ Key properties:
 
 Scripts: mg.py, mg_sign.py, mg_ed25519.py, mg_temporal.py, deep_verify.py
 Purpose: 5-layer verification of computational claims.
-Autonomy: Low -- verified against 586+ adversarial tests before any change.
+Autonomy: Low -- verified against 595+ adversarial tests before any change.
 
 Layers:
 1. SHA-256 integrity (pack_manifest.json)
@@ -60,11 +60,11 @@ Forge World -- autonomous research and improvement within the constraints
 set by Levels 1 and 2.
 
 The key insight: agents that extend the protocol are monitored BY the protocol.
-AGENT-DRIFT-01 uses the same step chain mechanism as all 15 claims.
+AGENT-DRIFT-01 uses the same step chain mechanism as all 18 claims.
 
 ## Claim Coverage
 
-All 15 active claims verified through 4-step hash chains:
+All 18 active claims verified through 4-step hash chains:
 MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01,
 ML_BENCH-01, DT-FEM-01, ML_BENCH-02, ML_BENCH-03,
 PHARMA-01, FINRISK-01, DT-SENSOR-01, DT-CALIB-LOOP-01,

@@ -17,8 +17,8 @@ abstract: >
   execution trace, Ed25519 bundle signing, NIST Beacon temporal commitment),
   governance-enforced bidirectional claim coverage, dual-mode canary execution
   pipeline, and Cross-Claim Cryptographic Chain linking physical measurements
-  to simulation outputs. 15 active claims across materials science, ML/AI,
-  digital twin, pharma, and financial risk domains. 586 adversarial tests.
+  to simulation outputs. 18 active claims across materials science, ML/AI,
+  digital twin, pharma, and financial risk domains. 595 adversarial tests.
   Patent Pending USPTO #63/996,819.
 keywords:
   - verification
