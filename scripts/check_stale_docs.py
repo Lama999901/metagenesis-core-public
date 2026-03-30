@@ -108,8 +108,8 @@ CONTENT_CHECKS = {
         "required": ["five independent layers"],
     },
     "README.md": {
-        "banned": ["295 passing", "511 passing", "526 passing", "544 passing", "595 passing", "6 innovations", "7 innovations", "14 agent checks", "The 14 Checks", "ALL 14 CHECKS PASSED", "10 automated"],
-        "required": ["595", "8 innovations", "17 agent checks", "The 17 Checks", "ALL 17 CHECKS PASSED"],
+        "banned": ["295 passing", "511 passing", "526 passing", "544 passing", "595 passing", "6 innovations", "7 innovations", "14 agent checks", "17 agent checks", "The 14 Checks", "The 17 Checks", "ALL 14 CHECKS PASSED", "ALL 17 CHECKS PASSED", "10 automated", "18 verified claims", "17 autonomous", "15 Active Verification"],
+        "required": ["601", "8 innovations", "18 agent checks", "The 18 Checks", "ALL 18 CHECKS PASSED", "20 claims", "PHYS-01", "PHYS-02"],
     },
     "index.html": {
         "banned": ["<span>10</span>", "14 active domain claims", "Fourteen</span> claims", "Fifteen</span> claims", "15 active domain claims", "18 active domain claims", "Eighteen</span> claims"],
