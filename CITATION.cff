@@ -4,8 +4,8 @@ title: "MetaGenesis Core: Open Verification Protocol for Computational Claims"
 authors:
   - family-names: Bazhynov
     given-names: Yehor
-version: 0.7.0
-date-released: "2026-03-18"
+version: 0.8.0
+date-released: "2026-03-30"
 url: "https://metagenesis-core.dev"
 repository-code: "https://github.com/Lama999901/metagenesis-core-public"
 license: MIT
@@ -17,8 +17,8 @@ abstract: >
   execution trace, Ed25519 bundle signing, NIST Beacon temporal commitment),
   governance-enforced bidirectional claim coverage, dual-mode canary execution
   pipeline, and Cross-Claim Cryptographic Chain linking physical measurements
-  to simulation outputs. 18 active claims across materials science, ML/AI,
-  digital twin, pharma, and financial risk domains. 595 adversarial tests.
+  to simulation outputs. 20 active claims across materials science, ML/AI,
+  digital twin, pharma, and financial risk domains. 601 adversarial tests.
   Patent Pending USPTO #63/996,819.
 keywords:
   - verification

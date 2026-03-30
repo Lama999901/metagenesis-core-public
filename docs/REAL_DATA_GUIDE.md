@@ -184,7 +184,7 @@ A: Current version requires `y_true`/`y_pred` for ML and `fem_value`/`measured_v
 A: Yes. The bundle is fully self-contained. No network, no API, no cloud.
 
 **Q: What if I need a different claim type (regression, time series, pharma)?**
-A: We have 14 claim types. Email us with your use case.
+A: We have 20 claim types. Email us with your use case.
 
 ---
 
@@ -197,4 +197,4 @@ A: We have 14 claim types. Email us with your use case.
 
 ---
 
-*Real Data Guide v0.7 — 2026-03-19 — MetaGenesis Core — 18 claims, 595 tests*
+*Real Data Guide v0.8 — 2026-03-30 — MetaGenesis Core — 20 claims, 601 tests*
