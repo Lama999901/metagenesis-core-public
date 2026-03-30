@@ -295,6 +295,10 @@ CONTENT_CHECKS = {
         "banned": [],
         "required": [],
     },
+    "reports/AGENT_REPORT_20260329.md": {
+        "banned": [],
+        "required": [],
+    },
 }
 
 
