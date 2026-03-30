@@ -263,6 +263,38 @@ CONTENT_CHECKS = {
         "banned": [],
         "required": [],
     },
+    "reports/COVERAGE_REPORT_20260320.md": {
+        "banned": [],
+        "required": [],
+    },
+    "reports/COVERAGE_REPORT_20260321.md": {
+        "banned": [],
+        "required": [],
+    },
+    "reports/COVERAGE_REPORT_20260326.md": {
+        "banned": [],
+        "required": [],
+    },
+    "reports/COVERAGE_REPORT_20260329.md": {
+        "banned": [],
+        "required": [],
+    },
+    "reports/SELF_IMPROVEMENT_20260320.md": {
+        "banned": [],
+        "required": [],
+    },
+    "reports/SELF_IMPROVEMENT_20260321.md": {
+        "banned": [],
+        "required": [],
+    },
+    "reports/SELF_IMPROVEMENT_20260326.md": {
+        "banned": [],
+        "required": [],
+    },
+    "reports/SELF_IMPROVEMENT_20260329.md": {
+        "banned": [],
+        "required": [],
+    },
 }
 
 
