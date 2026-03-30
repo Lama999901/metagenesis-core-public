@@ -129,3 +129,24 @@ Auto-processed by `scripts/agent_research.py`. First PENDING task gets executed 
 - **Priority:** P3
 - **Output:** reports/AGENT_REPORT_YYYYMMDD.md
 - **Description:** Read COMMERCIAL.md and EVOLUTION_LOG.md for outreach contact patterns. Analyze which contacts have not replied. Propose 3 best follow-up messages with specific value propositions.
+
+### TASK-019
+- **Title:** Coverage audit for MTR-4, MTR-5, MTR-6
+- **Status:** DONE (2026-03-29)
+- **Priority:** P1
+- **Output:** reports/AGENT_REPORT_20260329.md
+- **Description:** Audit test coverage for MTR-4 (Ti E=114GPa), MTR-5 (SS316L E=193GPa), MTR-6 (Cu k=401 W/mK). Count test functions. Verify physical anchor thresholds. Propose adversarial tests if missing.
+
+### TASK-020
+- **Title:** Update claim dependency graph for MTR-4/5/6
+- **Status:** DONE (2026-03-29)
+- **Priority:** P2
+- **Output:** reports/AGENT_REPORT_20260329.md
+- **Description:** Update dependency graph to include MTR-4/5/6. Check if downstream claims should reference new anchors.
+
+### TASK-021
+- **Title:** Verify scientific_claim_index.md has MTR-4/5/6 entries
+- **Status:** DONE (2026-03-29)
+- **Priority:** P1
+- **Output:** reports/scientific_claim_index.md
+- **Description:** Check MTR-4 (rel_err<=0.01), MTR-5 (rel_err<=0.01), MTR-6 (rel_err<=0.02) in scientific_claim_index.md. Fix if missing.
