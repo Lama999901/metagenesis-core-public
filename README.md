@@ -12,7 +12,7 @@
 **Site:** https://metagenesis-core.dev
 **Contact:** yehor@metagenesis-core.dev
 **PPA:** USPTO #63/996,819 -- filed 2026-03-05  
-**Version:** v0.7.0 | 18 claims | 595 tests | 17 agent checks | 18/18 tasks done
+**Version:** v0.7.0 | 20 claims | 601 tests | 17 agent checks | 18/18 tasks done
 
 ---
 
@@ -227,7 +227,7 @@ Not a distributed ledger. No network. No tokens. Works offline.
 ### Two pillars
 
 **Pillar 1 -- Tamper-evident provenance**
-Five-layer verification ensures the bundle and computation haven't been modified. Applies to all 18 claims.
+Five-layer verification ensures the bundle and computation haven't been modified. Applies to all 20 claims.
 
 **Pillar 2 -- Physical anchor traceability**
 The verification chain is grounded in physical constants -- not arbitrary thresholds. MTR-1's anchor is E = 70 GPa for aluminum: measured independently in thousands of laboratories worldwide.
@@ -423,7 +423,7 @@ Evidence: backend/progress/runner.py :: run_job(canary_mode=True/False)
 ### 5 -- Step Chain + Cross-Claim Cryptographic Chain
 Every claim produces a 4-step cryptographic execution trace. Upstream `trace_root_hash` embeds as `anchor_hash` in downstream claims -- linking MTR-1 -> DT-FEM-01 -> DRIFT-01 end-to-end.
 ```
-Evidence: all 18 claims :: execution_trace + trace_root_hash
+Evidence: all 20 claims :: execution_trace + trace_root_hash
 Proof:    tests/steward/test_cert03_* + tests/steward/test_cross_claim_chain.py
 ```
 
@@ -580,7 +580,7 @@ Commercial licensing available for organizations building on the protocol.
 Read these files in order:
 
 ```
-1. CONTEXT_SNAPSHOT.md          <- current state, 18 claims, 595 tests
+1. CONTEXT_SNAPSHOT.md          <- current state, 20 claims, 601 tests
 2. AGENTS.md                    <- hard rules, forbidden terms, protected files
 3. llms.txt                     <- AI-optimized repo summary
 4. reports/canonical_state.md   <- authoritative claims list

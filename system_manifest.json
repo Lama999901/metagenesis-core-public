@@ -3,8 +3,8 @@
   "version": "0.7.0",
   "description": "Open verification protocol for computational claims. Any computation — ML model accuracy, calibration result, data pipeline output — packaged into a tamper-evident bundle verifiable offline by any third party with one command.",
   "protocol": "MetaGenesis Verification Protocol (MVP) v0.7",
-  "active_claims": ["MTR-1", "MTR-2", "MTR-3", "SYSID-01", "DATA-PIPE-01", "DRIFT-01", "ML_BENCH-01", "DT-FEM-01", "ML_BENCH-02", "ML_BENCH-03", "PHARMA-01", "FINRISK-01", "DT-SENSOR-01", "DT-CALIB-LOOP-01", "AGENT-DRIFT-01", "MTR-4", "MTR-5", "MTR-6"],
-  "domains": ["materials_science", "system_identification", "data_pipelines", "ml_benchmarking", "digital_twin", "pharma_biotech", "financial_risk"],
+  "active_claims": ["MTR-1", "MTR-2", "MTR-3", "SYSID-01", "DATA-PIPE-01", "DRIFT-01", "ML_BENCH-01", "DT-FEM-01", "ML_BENCH-02", "ML_BENCH-03", "PHARMA-01", "FINRISK-01", "DT-SENSOR-01", "DT-CALIB-LOOP-01", "AGENT-DRIFT-01", "MTR-4", "MTR-5", "MTR-6", "PHYS-01", "PHYS-02"],
+  "domains": ["materials_science", "system_identification", "data_pipelines", "ml_benchmarking", "digital_twin", "pharma_biotech", "financial_risk", "fundamental_physics"],
   "verified_innovations": [
     "bidirectional_claim_coverage",
     "tamper_evident_semantic_verification",
@@ -15,7 +15,7 @@
     "bundle_signing_hmac_sha256",
     "temporal_commitment_nist_beacon"
   ],
-  "test_count": 595,
+  "test_count": 601,
   "steward_audit": "PASS",
   "ppa_filed": "2026-03-05",
   "ppa_number": "63/996,819",

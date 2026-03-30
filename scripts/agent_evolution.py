@@ -134,8 +134,8 @@ def check_manifest(actual_test_count):
     if actual_test_count > 0 and manifest_count != actual_test_count:
         issues.append(f"test_count: manifest={manifest_count} vs actual={actual_test_count}")
 
-    if claims != 18:
-        issues.append(f"active_claims: {claims} (expected 18)")
+    if claims != 20:
+        issues.append(f"active_claims: {claims} (expected 20)")
 
     if issues:
         for i in issues: err(i)
