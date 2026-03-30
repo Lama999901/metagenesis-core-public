@@ -5,14 +5,14 @@
 [![Steward Audit](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml/badge.svg)](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Patent Pending](https://img.shields.io/badge/Patent-Pending%20%2363%2F996%2C819-orange.svg)](ppa/README_PPA.md)
-[![Tests](https://img.shields.io/badge/Tests-595%20passing-brightgreen.svg)](tests/)
-[![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.7.0-blueviolet.svg)](docs/PROTOCOL.md)
+[![Tests](https://img.shields.io/badge/Tests-601%20passing-brightgreen.svg)](tests/)
+[![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.8.0-blueviolet.svg)](docs/PROTOCOL.md)
 [![Sponsor](https://img.shields.io/badge/Sponsor-❤️-pink.svg)](https://github.com/sponsors/Lama999901)
 
 **Site:** https://metagenesis-core.dev
 **Contact:** yehor@metagenesis-core.dev
 **PPA:** USPTO #63/996,819 -- filed 2026-03-05  
-**Version:** v0.7.0 | 20 claims | 601 tests | 17 agent checks | 18/18 tasks done
+**Version:** v0.8.0 | 20 claims | 601 tests | 18 agent checks | 21/21 tasks done
 
 ---
 
@@ -146,7 +146,7 @@ Each layer exists because the previous layers are insufficient. CERT-11 proves a
 | The Omnissiah | The Protocol (`mg.py`) -- the source of all computational truth |
 | The Inquisition | `steward_audit.py` -- governance enforcement, no PR escapes its gaze |
 | The Noosphere | `.agent_memory/` -- shared knowledge between agent incarnations |
-| Servo-skulls | `agent_evolution.py` -- 17 autonomous monitoring checks |
+| Servo-skulls | `agent_evolution.py` -- 18 autonomous monitoring checks |
 | Heresy | Unverified computation -- detected, flagged, rejected |
 | The Forge World | GitHub repository -- where claims are forged and tested |
 | Binary Cant | SHA-256 cryptographic hash chain -- the sacred language of verification |
@@ -180,7 +180,7 @@ Built by **one person**. Yehor Bazhynov. Inventor, USPTO #63/996,819.
 
 Built after hours, without a team, without funding, using **Claude (Anthropic)** as the primary development tool. Every AI-generated output verified by the project's own test suite. The protocol verifies the protocol.
 
-The result: **18 verified claims across 7 domains. 595 adversarial tests. 5 verification layers. 8 innovations. 17 autonomous agent monitoring checks running daily in CI.**
+The result: **20 verified claims across 8 domains. 601 adversarial tests. 5 verification layers. 8 innovations. 18 autonomous agent monitoring checks running daily in CI.**
 
 ---
 
@@ -270,7 +270,7 @@ Every claim in this protocol is backed by adversarial tests that attempt to brea
 
 ```bash
 python -m pytest tests/ -q
-# -> 595 passed
+# -> 601 passed
 ```
 
 The summary test in CERT-05 explicitly proves all five layers are necessary -- no single layer catches all attacks. CERT-11 constructs coordinated attacks where each layer catches what the other four miss. This is not a claim. It is a mathematical proof backed by executable tests.
@@ -308,14 +308,14 @@ python -m pytest tests/steward/test_cert12_encoding_attacks.py -v
 
 ## The Agent Evolution System
 
-MetaGenesis Core includes an autonomous agent monitoring system -- 17 checks that run daily in CI, ensuring the protocol and its documentation remain consistent, complete, and correct.
+MetaGenesis Core includes an autonomous agent monitoring system -- 18 checks that run daily in CI, ensuring the protocol and its documentation remain consistent, complete, and correct.
 
-### The 17 Checks
+### The 18 Checks
 
 | # | Check | Mechanicus Name | What it verifies |
 |---|-------|----------------|-----------------|
 | 1 | `steward` | Inquisition | `steward_audit.py` passes -- governance rules enforced |
-| 2 | `tests` | Machine Spirit | All 595 tests pass |
+| 2 | `tests` | Machine Spirit | All 601 tests pass |
 | 3 | `deep` | Omnissiah | `deep_verify.py` -- 13 independent proof tests |
 | 4 | `docs` | Noosphere | Stale documentation detection via `check_stale_docs.py` |
 | 5 | `manifest` | Codex | `system_manifest.json` matches actual repo state |
@@ -331,12 +331,13 @@ MetaGenesis Core includes an autonomous agent monitoring system -- 17 checks tha
 | 15 | `pr_review` | Fabricator-General | new .py files have corresponding tests |
 | 16 | `impact` | Cogitator Impact | dependencies from UPDATE_PROTOCOL.md checked |
 | 17 | `diff_review` | Logic Arbiter | AST structural diff review |
+| 18 | `auto_pr` | Autonomous Forge | Level 3 autonomous PR queue -- agents create PRs, Yehor approves |
 
 ### How it works
 
 ```bash
 python scripts/agent_evolution.py --summary
-# -> ALL 17 CHECKS PASSED -- system healthy
+# -> ALL 18 CHECKS PASSED -- system healthy
 ```
 
 The system runs automatically on every CI merge via `.github/workflows/total_audit_guard.yml`. When a check fails, the merge is blocked. No human override. The protocol protects itself.
@@ -450,7 +451,7 @@ Proof:    test_cert_5layer_independence
 
 ---
 
-## 15 Active Verification Claims
+## 20 Active Verification Claims
 
 | Claim | Domain | Threshold | Physical Anchor |
 |---|---|---|---|
@@ -469,22 +470,28 @@ Proof:    test_cert_5layer_independence
 | DT-SENSOR-01 | Digital Twin -- IoT Sensor Integrity | schema + range + temporal | -- |
 | DT-CALIB-LOOP-01 | Digital Twin -- Calibration Convergence | `drift decreasing + final <= threshold` | DRIFT-01 anchor |
 | AGENT-DRIFT-01 | Agent Quality -- Recursive Self-Verification | `composite_drift <= 20%` | -- |
+| MTR-4 | Materials -- Young's Modulus (Ti-6Al-4V) | `rel_err <= 0.01` | E = 114 GPa (NIST) |
+| MTR-5 | Materials -- Young's Modulus (SS316L) | `rel_err <= 0.01` | E = 193 GPa (NIST) |
+| MTR-6 | Materials -- Thermal Conductivity (Cu) | `rel_err <= 0.02` | k = 401 W/(m·K) (NIST) |
+| PHYS-01 | Fundamental Physics -- Thermodynamics | `rel_err <= 1e-9` | kB = 1.380649×10⁻²³ J/K (SI 2019, exact) |
+| PHYS-02 | Fundamental Physics -- Molecular Mass | `rel_err <= 1e-8` | NA = 6.02214076×10²³ mol⁻¹ (SI 2019, exact) |
 
-All 18 claims have Step Chain (execution_trace + trace_root_hash). Physical anchor applies to: MTR-1/2/3, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP-01. See `reports/known_faults.yaml` :: SCOPE_001.
+All 20 claims have Step Chain (execution_trace + trace_root_hash). Physical anchor applies to: MTR-1/2/3/4/5/6, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP-01, PHYS-01, PHYS-02. See `reports/known_faults.yaml` :: SCOPE_001.
 
 ---
 
-## 7 Domains -- One Protocol
+## 8 Domains -- One Protocol
 
 | Domain | Claims | Regulatory alignment |
 |---|---|---|
-| **Materials / Engineering** | MTR-1, MTR-2, MTR-3 | Physical constants |
+| **Materials / Engineering** | MTR-1, MTR-2, MTR-3, MTR-4, MTR-5, MTR-6 | NIST physical constants |
 | **System Identification** | SYSID-01 | -- |
 | **Data Pipelines** | DATA-PIPE-01 | FDA 21 CFR Part 11 |
 | **ML / AI** | ML_BENCH-01/02/03, DRIFT-01 | EU AI Act Article 12 |
 | **Digital Twin** | DT-FEM-01, DT-SENSOR-01, DT-CALIB-LOOP-01 | -- |
 | **Pharma / Biotech** | PHARMA-01 | FDA 21 CFR Part 11 |
 | **Finance / Risk** | FINRISK-01 | Basel III/IV |
+| **Fundamental Physics** | PHYS-01, PHYS-02 | SI 2019 exact constants |
 
 > MetaGenesis Core does not constitute legal or regulatory compliance advice. It provides technical infrastructure that supports compliance workflows.
 
@@ -494,10 +501,24 @@ All 18 claims have Step Chain (execution_trace + trace_root_hash). Physical anch
 
 MetaGenesis Core is transparent about what it does not do. These are documented in `reports/known_faults.yaml` and are intentional design boundaries -- not bugs.
 
+### Physical Anchor Hierarchy
+
+MetaGenesis Core anchors computations at two levels:
+
+| Level | Example | Uncertainty | Claims |
+|-------|---------|-------------|--------|
+| **NIST-measured** | E = 70 GPa (Al), 114 GPa (Ti), 193 GPa (SS316L), k = 401 W/(m·K) Cu | ~1% | MTR-1..6, DT-FEM-01, DRIFT-01 |
+| **SI 2019 exact** | kB = 1.380649×10⁻²³ J/K, NA = 6.02214076×10²³ mol⁻¹ | **0 — exact** | PHYS-01, PHYS-02 |
+
+NIST values are measured and carry ~1% uncertainty. SI 2019 fundamental constants are **exact by definition** -- they define the SI units themselves. kB defines the kelvin. NA defines the mole. Any computation using these constants can be anchored to the laws of physics with zero uncertainty. This is the strongest possible verification chain.
+
+---
+
 ### SCOPE_001 -- Physical Anchor Scope
 
 Physical anchor traceability (verification grounded in measured physical constants) applies **only** to domains with known physical constants:
-- **Materials science:** MTR-1, MTR-2, MTR-3 (E = 70 GPa, thermal conductivity, multilayer contact)
+- **Materials science:** MTR-1, MTR-2, MTR-3, MTR-4, MTR-5, MTR-6 (NIST-measured ~1% uncertainty)
+- **Fundamental physics:** PHYS-01, PHYS-02 (SI 2019 exact constants -- zero uncertainty)
 - **Structural mechanics:** DT-FEM-01 (anchored to MTR-1)
 - **Drift monitoring:** DRIFT-01, DT-CALIB-LOOP-01 (anchored to MTR-1 chain)
 
@@ -507,7 +528,7 @@ For ML accuracy (ML_BENCH-01/02/03), data pipelines (DATA-PIPE-01), pharma (PHAR
 
 ### ENV_001 -- Test Environment
 
-All 595 tests pass in the reference environment (Python 3.11+, stdlib only). No database dependencies. No external services. No network required. Local environment deviations may require matching Python version.
+All 601 tests pass in the reference environment (Python 3.11+, stdlib only). No database dependencies. No external services. No network required. Local environment deviations may require matching Python version.
 
 **Why this limitation exists:** The protocol is designed to work offline with zero external dependencies. This is a feature, not a limitation -- but it means the test suite assumes a clean Python environment.
 
@@ -533,18 +554,18 @@ python scripts/steward_audit.py
 # -> STEWARD AUDIT: PASS
 
 python -m pytest tests/ -q
-# -> 595 passed
+# -> 601 passed
 
 # Full proof-not-trust verification (13 tests):
 python scripts/deep_verify.py
 # -> ALL 13 TESTS PASSED
 
-# Agent evolution system (17 checks):
+# Agent evolution system (18 checks):
 python scripts/agent_evolution.py --summary
-# -> ALL 17 CHECKS PASSED -- system healthy
+# -> ALL 18 CHECKS PASSED -- system healthy
 ```
 
-**Active claims:** MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01, DT-FEM-01, ML_BENCH-02, ML_BENCH-03, PHARMA-01, FINRISK-01, DT-SENSOR-01, DT-CALIB-LOOP-01, AGENT-DRIFT-01
+**Active claims:** MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01, DT-FEM-01, ML_BENCH-02, ML_BENCH-03, PHARMA-01, FINRISK-01, DT-SENSOR-01, DT-CALIB-LOOP-01, AGENT-DRIFT-01, MTR-4, MTR-5, MTR-6, PHYS-01, PHYS-02
 **Known limitations:** `reports/known_faults.yaml`
 
 ---
@@ -589,4 +610,4 @@ Read these files in order:
 
 ---
 
-*MetaGenesis Core -- MVP v0.7 -- Inventor: Yehor Bazhynov -- Patent Pending #63/996,819*
+*MetaGenesis Core -- MVP v0.8 -- Inventor: Yehor Bazhynov -- Patent Pending #63/996,819*
