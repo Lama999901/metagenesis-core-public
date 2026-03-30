@@ -405,4 +405,30 @@ before beacon) prevents backdating.
 
 ---
 
-*Index authority: MetaGenesis Core / SCI-01 v0.7 — 18 claims, 595 tests. Append new claims as sections.*
+## PHYS-01
+
+| Field | Value |
+|-------|--------|
+| **claim_id** | PHYS-01 |
+| **domain** | Fundamental Physics |
+| **job_kind** | `phys01_boltzmann_thermodynamics` |
+| **reproduction** | `python -m pytest tests/physics/test_phys01_boltzmann.py -v` |
+| **V&V thresholds** | rel_err ≤ 1e-9; kB = 1.380649×10⁻²³ J/K (SI 2019, exact) |
+| **notes** | Ideal gas kinetic energy verification. Same canary/normal modes as MTR-1. |
+
+---
+
+## PHYS-02
+
+| Field | Value |
+|-------|--------|
+| **claim_id** | PHYS-02 |
+| **domain** | Fundamental Physics |
+| **job_kind** | `phys02_avogadro_chemistry` |
+| **reproduction** | `python -m pytest tests/physics/test_phys02_avogadro.py -v` |
+| **V&V thresholds** | rel_err ≤ 1e-8; NA = 6.02214076×10²³ mol⁻¹ (SI 2019, exact) |
+| **notes** | Molecular mass of water verification. Same canary/normal modes as MTR-1. |
+
+---
+
+*Index authority: MetaGenesis Core / SCI-01 v0.7 — 20 claims, 595 tests. Append new claims as sections.*

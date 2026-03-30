@@ -25,7 +25,7 @@
 | Tests | **595 passing** |
 | steward_audit | PASS |
 | CI | GREEN |
-| Active claims | **18** |
+| Active claims | **20** |
 | Verification layers | 5 (integrity + semantic + step chain + bundle signing + temporal commitment) |
 | Innovations | 8 (5 PPA + HMAC signing + Ed25519 signing + temporal commitment) |
 | Domains | 7 |
@@ -34,7 +34,7 @@
 
 ---
 
-## 18 active claims
+## 20 active claims
 
 | Claim | Domain | Threshold | Physical Anchor |
 |-------|--------|-----------|-----------------|
@@ -85,7 +85,7 @@ Physical anchor scope (SCOPE_001): MTR-1/2/3/4/5/6, DT-FEM-01, DRIFT-01, DT-CALI
 2. **Tamper-Evident Bundle + Semantic Layer** → `mg.py :: _verify_pack() + _verify_semantic()`
 3. **Policy-Gate Immutable Anchors** → `mg_policy_gate_policy.json`
 4. **Dual-Mode Canary Pipeline** → `runner.py :: run_job(canary_mode=True/False)`
-5. **Step Chain + Cross-Claim Chain** → all 18 claims + anchor_hash MTR-1→DT-FEM-01→DRIFT-01
+5. **Step Chain + Cross-Claim Chain** → all 20 claims + anchor_hash MTR-1→DT-FEM-01→DRIFT-01
 6. **Bundle Signing (HMAC-SHA256 + Ed25519)** → `mg_sign.py` + `mg_ed25519.py` [test_cert07 + test_cert09]
 7. **Temporal Commitment (NIST Beacon)** → `mg_temporal.py` [test_temporal + test_cert10]
 8. **5-Layer Independence (CERT-11 coordinated + CERT-12 encoding)** → test_cert11 + test_cert12 [proves each layer catches attacks others miss]

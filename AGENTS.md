@@ -13,7 +13,7 @@ the rules of this repository. Read this before making any change.
 3. README.md             ← architecture, claims, quickstart
 4. llms.txt              ← AI-optimized summary of entire repo
 5. reports/canonical_state.md    ← verified claim list
-6. reports/scientific_claim_index.md  ← all 18 claims with thresholds
+6. reports/scientific_claim_index.md  ← all 20 claims with thresholds
 7. reports/known_faults.yaml     ← known limitations, do not overclaim
 8. docs/PROTOCOL.md      ← full protocol specification
 ```

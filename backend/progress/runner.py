@@ -463,12 +463,21 @@ class ProgressRunner:
                 noise_scale=float(p["noise_scale"]) if p.get("noise_scale") is not None else None,
             )
 
+        from backend.progress.phys01_boltzmann import JOB_KIND as PHYS1_KIND, run_verification as run_phys01
+        if payload.get("kind") == PHYS1_KIND:
+            return run_phys01(T=float(payload.get("T", 300.0)))
+
+        from backend.progress.phys02_avogadro import JOB_KIND as PHYS2_KIND, run_verification as run_phys02
+        if payload.get("kind") == PHYS2_KIND:
+            return run_phys02()
+
         registered = [
             MTR1_KIND, MTR2_KIND, MTR3_KIND,
             SYSID1_KIND, DATAPIPE1_KIND, DRIFT01_KIND,
             MLBENCH1_KIND, DTFEM1_KIND, MLBENCH2_KIND, MLBENCH3_KIND,
             PHARMA1_KIND, FINRISK1_KIND, DTSENSOR1_KIND, DTCALIB1_KIND,
             AGENT_DRIFT01_KIND, MTR4_KIND, MTR5_KIND, MTR6_KIND,
+            PHYS1_KIND, PHYS2_KIND,
         ]
         raise ValueError(
             f"Unknown job kind: '{payload.get('kind')}'. "
