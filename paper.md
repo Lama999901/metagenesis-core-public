@@ -52,9 +52,9 @@ measured in thousands of laboratories worldwide) through calibration, FEM
 simulation, and drift monitoring. Each link is cryptographically committed;
 tampering any link invalidates all downstream hashes.
 
-The protocol ships with 18 active verification claims across 7 domains
+The protocol ships with 20 active verification claims across 7 domains
 (materials science, ML/AI, system identification, data pipelines, digital
-twin, pharma/biotech, and financial risk), 595 adversarial tests, and
+twin, pharma/biotech, and financial risk), 601 adversarial tests, and
 governance enforcement that prevents any registered claim from existing
 without a corresponding implementation — and vice versa.
 
@@ -159,7 +159,7 @@ library.
 A distinction is maintained between two properties:
 
 - **Tamper-evident provenance** ("was the bundle modified?"): applies to
-  all 18 claims
+  all 20 claims
 - **Physical anchor traceability** ("does the number agree with physical
   reality?"): applies only to claims anchored to independently measured
   physical constants
@@ -210,7 +210,7 @@ cryptographic identity. Hash equality constitutes reproducibility proof;
 hash inequality indicates a discrepancy, and the step-level trace identifies
 which step diverged.
 
-This property is proven across all 18 claims in
+This property is proven across all 20 claims in
 `tests/steward/test_cert08_reproducibility.py`, including parameter
 sensitivity (different parameters → different hash, making selective
 seed reporting detectable) and cross-claim chain determinism.
@@ -234,6 +234,11 @@ seed reporting detectable) and cross-claim chain determinism.
 | DT-SENSOR-01 | IoT Sensor Integrity | schema + range + temporal | — |
 | DT-CALIB-LOOP-01 | Calibration Convergence | drift decreasing | DRIFT-01 ⚓ |
 | AGENT-DRIFT-01 | Agent Quality — Self-Verification | `composite_drift <= 20%` | — |
+| MTR-4 | Materials — Titanium Modulus | `rel_err ≤ 0.01` | E = 114 GPa ⚓ |
+| MTR-5 | Materials — Steel Modulus | `rel_err ≤ 0.01` | E = 193 GPa ⚓ |
+| MTR-6 | Materials — Copper Conductivity | `rel_err ≤ 0.02` | k = 401 W/(m·K) ⚓ |
+| PHYS-01 | Fundamental Physics — Boltzmann | `rel_err ≤ 1e-9` | kB = 1.380649e-23 J/K ⚓ |
+| PHYS-02 | Fundamental Physics — Avogadro | `rel_err ≤ 1e-8` | NA = 6.022e23 mol⁻¹ ⚓ |
 
 Physical anchor traceability (⚓) is scoped to claims with known physical
 constants. For ML and financial claims, the protocol provides tamper-evident
@@ -354,7 +359,7 @@ Claude (Anthropic) was used as the primary development tool throughout
 this project: architecture decisions, code implementation, patent
 application drafting, and documentation. All AI-generated outputs were
 verified by the author through the project's own adversarial test suite
-(595 tests), steward audit, and 13-test deep verification script.
+(601 tests), steward audit, and 13-test deep verification script.
 Quality was ensured by governance-enforced bidirectional coverage — every
 claim must have tests and every test must correspond to a claim — and
 5-layer tamper-evident verification where each layer catches attacks the

@@ -236,8 +236,14 @@ Semantic verifier checks canary_mode flag consistency per bundle slot.
 | FINRISK-01 | finrisk1_var_certificate.py | Finance | ✓ | — |
 | DT-SENSOR-01 | dtsensor1_iot_certificate.py | Digital Twin | ✓ | — |
 | DT-CALIB-LOOP-01 | dtcalib1_convergence_certificate.py | Digital Twin | ✓ | DRIFT-01 anchor |
+| AGENT-DRIFT-01 | agent_drift_monitor.py | Agent Quality | ✓ | — |
+| MTR-4 | mtr4_titanium_calibration.py | Materials | ✓ | E = 114 GPa (titanium) |
+| MTR-5 | mtr5_steel_calibration.py | Materials | ✓ | E = 193 GPa (steel) |
+| MTR-6 | mtr6_copper_conductivity.py | Materials | ✓ | k = 401 W/(m·K) (copper) |
+| PHYS-01 | phys01_boltzmann.py | Physics | ✓ | kB = 1.380649e-23 J/K |
+| PHYS-02 | phys02_avogadro.py | Physics | ✓ | NA = 6.022e23 mol⁻¹ |
 
-All 14 claims have Step Chain (execution_trace + trace_root_hash).
+All 20 claims have Step Chain (execution_trace + trace_root_hash).
 DT-FEM-01 and DRIFT-01 support anchor_hash for Cross-Claim Chain.
 
 ---
@@ -257,7 +263,7 @@ DT-FEM-01 and DRIFT-01 support anchor_hash for Cross-Claim Chain.
 | `test_cert05_adversarial_gauntlet.py` | 5 attacks: Strip+Recompute, Single-Bit, Cross-Domain, Canary Laundering, Chain Reversal |
 | `test_cert06_real_world_scenarios.py` | 5 real-world proofs: honest team, cherry-picker, physical anchor, audit trail, reproducibility crisis |
 
-595 tests total. steward_audit PASS.
+601 tests total. steward_audit PASS.
 
 ---
 
