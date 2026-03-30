@@ -1,7 +1,7 @@
 # MetaGenesis Core — Context for AI Agents (GSD)
 
 > Loaded automatically by all GSD agents via CLAUDE.md.
-> Last updated: 2026-03-29 | v0.7.0 LIVE | 18 claims | 595 tests
+> Last updated: 2026-03-29 | v0.7.0 LIVE | 20 claims | 601 tests
 
 ---
 
@@ -41,7 +41,7 @@ scripts/mg.py                                    ← core verifier, modify caref
 "blockchain"        → "cryptographic hash chain"
 "unforgeable"       → don't use
 "GPT-5"             → doesn't exist
-"100% test success" → "595 tests PASS"
+"100% test success" → "601 tests PASS"
 ```
 
 ---
@@ -50,7 +50,7 @@ scripts/mg.py                                    ← core verifier, modify caref
 
 ```bash
 python scripts/steward_audit.py      # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q           # → 595 passed
+python -m pytest tests/ -q           # → 601 passed
 python scripts/deep_verify.py        # → ALL 13 TESTS PASSED
 python scripts/check_stale_docs.py   # → All critical documentation is current
 python scripts/agent_diff_review.py  # → DIFF REVIEW PASSED
@@ -82,8 +82,8 @@ git push origin feat/description
 ## CURRENT STATE
 
 ```
-Claims:     18 active (all have 4-step Step Chain)
-Tests:      586 passing
+Claims:     20 active (all have 4-step Step Chain)
+Tests:      601 passing
 Layers:     5 verification (integrity + semantic + step chain + signing + temporal)
 Innovations: 8 (5 PPA + HMAC + Ed25519 + Temporal)
 Release:    v0.7.0
@@ -91,7 +91,7 @@ Release:    v0.7.0
 
 ---
 
-## 18 ACTIVE CLAIMS
+## 20 ACTIVE CLAIMS
 
 | Claim | File | Threshold | Physical Anchor |
 |-------|------|-----------|-----------------|
@@ -113,6 +113,8 @@ Release:    v0.7.0
 | MTR-4 | backend/progress/mtr4_titanium_calibration.py | rel_err ≤ 0.01 | E=114GPa ⚓ |
 | MTR-5 | backend/progress/mtr5_steel_calibration.py | rel_err ≤ 0.01 | E=193GPa ⚓ |
 | MTR-6 | backend/progress/mtr6_copper_conductivity.py | rel_err ≤ 0.02 | k=401 W/(m·K) ⚓ |
+| PHYS-01 | backend/progress/phys01_boltzmann.py | rel_err ≤ 1e-9 | kB=1.380649e-23 J/K ⚓ |
+| PHYS-02 | backend/progress/phys02_avogadro.py | rel_err ≤ 1e-8 | NA=6.022e23 mol⁻¹ ⚓ |
 
 ---
 
@@ -152,7 +154,7 @@ _trace.append({"step": 4, "name": "threshold_check",
 trace_root_hash = _prev
 ```
 
-**Return structure (must match for ALL 18 claims):**
+**Return structure (must match for ALL 20 claims):**
 ```python
 return {
     "mtr_phase": "CLAIM-ID",
@@ -185,7 +187,7 @@ Layer 5 — Temporal Commitment  scripts/mg_temporal.py       catches: backdated
 ## PHYSICAL ANCHOR PRINCIPLE (SCOPE_001)
 
 **Two distinct properties — never conflate:**
-- Tamper-evident provenance → ALL 18 claims
+- Tamper-evident provenance → ALL 20 claims
 - Physical anchor traceability → ONLY: MTR-1/2/3, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP-01
 
 E = 70 GPa (aluminum) is measured in thousands of labs worldwide — NOT a chosen threshold.
@@ -240,12 +242,12 @@ scripts/mg.py               ← core verifier CLI (verify/pack/verify-chain/sign
 scripts/mg_sign.py          ← bundle signing Innovation #6
 scripts/steward_audit.py    ← governance (SEALED)
 scripts/deep_verify.py      ← 13-test proof script
-backend/progress/runner.py  ← job dispatch (18 claims)
+backend/progress/runner.py  ← job dispatch (20 claims)
 reports/scientific_claim_index.md  ← claim registry
 reports/canonical_state.md  ← authoritative list (LOCKED)
 reports/known_faults.yaml   ← known limitations (SCOPE_001)
 paper.md + paper.bib        ← JOSS paper
-index.html                  ← site (18 claims/595 tests/5 layers/8 innovations in 11+ places)
+index.html                  ← site (20 claims/601 tests/5 layers/8 innovations in 11+ places)
 CONTEXT_SNAPSHOT.md         ← live state for AI agents
 ```
 

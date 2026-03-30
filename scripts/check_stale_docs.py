@@ -112,8 +112,8 @@ CONTENT_CHECKS = {
         "required": ["595", "8 innovations", "17 agent checks", "The 17 Checks", "ALL 17 CHECKS PASSED"],
     },
     "index.html": {
-        "banned": ["<span>10</span>", "14 active domain claims", "Fourteen</span> claims", "Fifteen</span> claims", "15 active domain claims"],
-        "required": ["<span>17</span>", "18 active domain claims", "Eighteen</span> claims"],
+        "banned": ["<span>10</span>", "14 active domain claims", "Fourteen</span> claims", "Fifteen</span> claims", "15 active domain claims", "18 active domain claims", "Eighteen</span> claims"],
+        "required": ["<span>17</span>", "20 active domain claims", "Twenty</span> claims"],
     },
     "paper.md": {
         "banned": ["389 adversarial", "511 adversarial", "526 adversarial", "544 adversarial", "17 March 2026"],
@@ -124,8 +124,8 @@ CONTENT_CHECKS = {
         "required": ["595 tests", "595 passed"],
     },
     "CLAUDE.md": {
-        "banned": ["10-test proof", "12 counters", "15 claims", "16 claims", "17 claims"],
-        "required": ["13-test proof", "8 innovations", "18 claims", "595 tests"],
+        "banned": ["10-test proof", "12 counters", "15 claims", "16 claims", "17 claims", "18 claims", "19 claims"],
+        "required": ["13-test proof", "8 innovations", "20 claims", "601 tests"],
     },
     "UPDATE_PROTOCOL.md": {
         "banned": ["ALL 10 PASSED", "ALL 10 TESTS PASSED", "v1.0 — 2026-03-16"],
@@ -149,7 +149,7 @@ CONTENT_CHECKS = {
     },
     "reports/scientific_claim_index.md": {
         "banned": ["282", "295"],
-        "required": ["18 claims", "595"],
+        "required": ["20 claims", "595"],
     },
     "CODE_OF_CONDUCT.md": {
         "banned": [],
@@ -197,7 +197,7 @@ CONTENT_CHECKS = {
     },
     "ppa/CLAIMS_STATUS_v05.md": {
         "banned": [],
-        "required": ["595", "18 claims"],
+        "required": ["595", "20 claims"],
     },
     "scripts/agent_coverage.py": {
         "banned": [],
@@ -298,6 +298,14 @@ CONTENT_CHECKS = {
     "reports/AGENT_REPORT_20260329.md": {
         "banned": [],
         "required": [],
+    },
+    "backend/progress/phys01_boltzmann.py": {
+        "banned": [],
+        "required": ["PHYS-01", "BOLTZMANN_K"],
+    },
+    "backend/progress/phys02_avogadro.py": {
+        "banned": [],
+        "required": ["PHYS-02", "AVOGADRO_N"],
     },
 }
 
