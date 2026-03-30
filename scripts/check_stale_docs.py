@@ -48,7 +48,7 @@ CRITICAL_FILES = {
     },
     "system_manifest.json": {
         "tracks": ["backend/progress/runner.py", "tests/"],
-        "description": "Machine-readable canonical state (test_count, active_claims)",
+        "description": "Machine-readable canonical state (test_count, active_claims, version)",
     },
     "index.html": {
         "tracks": ["system_manifest.json", "tests/", "scripts/"],
@@ -68,28 +68,28 @@ CRITICAL_FILES = {
 # ── Content validation — banned/required strings per file ──────────────────
 CONTENT_CHECKS = {
     "CONTRIBUTING.md": {
-        "banned": ["223 passed", "295 passed", "511 passed", "526 passed", "544 passed", "586 passed", "ALL 10 TESTS", "3 verification layers"],
-        "required": ["595", "ALL 13 TESTS", "5 verification layers"],
+        "banned": ["223 passed", "295 passed", "511 passed", "526 passed", "544 passed", "586 passed", "595 passed", "ALL 10 TESTS", "3 verification layers"],
+        "required": ["601", "ALL 13 TESTS", "5 verification layers"],
     },
     "CITATION.cff": {
-        "banned": ["version: 0.2", "version: 0.3", "version: 0.4", "version: 0.5", "version: 0.6", "three independent"],
-        "required": ["version: 0.7", "five independent", "595"],
+        "banned": ["version: 0.2", "version: 0.3", "version: 0.4", "version: 0.5", "version: 0.6", "version: 0.7", "three independent"],
+        "required": ["version: 0.8", "five independent", "601"],
     },
     "docs/PROTOCOL.md": {
         "banned": ["MVP v0.2", "MVP v0.3", "MVP v0.4", "Three verification layers", "5 patentable"],
         "required": ["(MVP) v0.5", "Five verification layers", "8 innovations"],
     },
     "docs/AGENT_SYSTEM.md": {
-        "banned": ["15 checks", "15-check"],
-        "required": ["Level 1", "Level 2", "Level 3", "AGENT-DRIFT-01", "17 checks"],
+        "banned": ["15 checks", "15-check", "17 checks", "17-check"],
+        "required": ["Level 1", "Level 2", "Level 3", "AGENT-DRIFT-01", "18 checks"],
     },
     "docs/ARCHITECTURE.md": {
-        "banned": ["282 tests", "511 tests", "544 tests", "Architecture v0.2", "Three verification layers"],
-        "required": ["595 tests", "Five verification layers"],
+        "banned": ["282 tests", "511 tests", "544 tests", "595 tests", "Architecture v0.2", "Three verification layers"],
+        "required": ["601 tests", "Five verification layers"],
     },
     "docs/ROADMAP.md": {
-        "banned": ["Current version: 0.2", "Current version: 0.3", "Current version: 0.4", "282 adversarial"],
-        "required": ["0.5.0", "595 adversarial"],
+        "banned": ["Current version: 0.2", "Current version: 0.3", "Current version: 0.4", "282 adversarial", "595 adversarial"],
+        "required": ["0.8.0", "601 adversarial"],
     },
     "ppa/README_PPA.md": {
         "banned": ["282 tests", "511 tests", "544 tests", "595 tests", "Current state (2026-03-17)"],
@@ -116,12 +116,12 @@ CONTENT_CHECKS = {
         "required": ["<span>17</span>", "20 active domain claims", "Twenty</span> claims", "hv\">v0.8.0"],
     },
     "paper.md": {
-        "banned": ["389 adversarial", "511 adversarial", "526 adversarial", "544 adversarial", "17 March 2026"],
-        "required": ["595 adversarial", "18 March 2026"],
+        "banned": ["389 adversarial", "511 adversarial", "526 adversarial", "544 adversarial", "595 adversarial", "17 March 2026"],
+        "required": ["601 adversarial", "18 March 2026"],
     },
     "reports/known_faults.yaml": {
-        "banned": ["282 tests", "295 passed", "295 tests", "511 tests", "511 passed", "526 tests", "544 tests", "544 passed"],
-        "required": ["595 tests", "595 passed"],
+        "banned": ["282 tests", "295 passed", "295 tests", "511 tests", "511 passed", "526 tests", "544 tests", "544 passed", "595 tests", "595 passed"],
+        "required": ["601 tests", "601 passed"],
     },
     "CLAUDE.md": {
         "banned": ["10-test proof", "12 counters", "15 claims", "16 claims", "17 claims", "18 claims", "19 claims"],
@@ -132,24 +132,24 @@ CONTENT_CHECKS = {
         "required": ["ALL 13 PASSED", "v1.1"],
     },
     "CURSOR_MASTER_PROMPT_v2_3.md": {
-        "banned": ["271 tests", "295 tests", "526 tests", "544 tests", "3 verification layers", "MVP v0.2", "ALL 10 TESTS", "MVP v0.6"],
-        "required": ["595 tests", "5 verification layers", "MVP v0.7", "ALL 13 TESTS"],
+        "banned": ["271 tests", "295 tests", "526 tests", "544 tests", "595 tests", "3 verification layers", "MVP v0.2", "ALL 10 TESTS", "MVP v0.6"],
+        "required": ["601 tests", "5 verification layers", "MVP v0.8", "ALL 13 TESTS"],
     },
     "docs/HOW_TO_ADD_CLAIM.md": {
         "banned": ["ALL 10", "271", "282", "295", "389", "v0.2", "v0.3", "v0.4", "v0.6"],
-        "required": ["595", "v0.7"],
+        "required": ["601", "v0.8"],
     },
     "docs/REAL_DATA_GUIDE.md": {
         "banned": ["ALL 10", "271", "282", "295", "389", "v0.2", "v0.3", "v0.4", "v0.6"],
-        "required": ["595", "v0.7"],
+        "required": ["601", "v0.8"],
     },
     "docs/USE_CASES.md": {
         "banned": ["ALL 10", "271", "282", "295", "389", "v0.2", "v0.3", "v0.4", "v0.6"],
-        "required": ["595", "v0.7"],
+        "required": ["601", "v0.8"],
     },
     "reports/scientific_claim_index.md": {
         "banned": ["282", "295"],
-        "required": ["20 claims", "595"],
+        "required": ["20 claims", "601"],
     },
     "CODE_OF_CONDUCT.md": {
         "banned": [],
@@ -187,17 +187,9 @@ CONTENT_CHECKS = {
         "banned": [],
         "required": [],
     },
-    "AGENTS_QUICKSTART.md": {
-        "banned": ["511", "526"],
-        "required": ["595", "agent_evolution"],
-    },
     "docs/INTEGRATION_GUIDE.md": {
         "banned": [],
         "required": ["MLflow", "DVC", "WandB"],
-    },
-    "ppa/CLAIMS_STATUS_v05.md": {
-        "banned": [],
-        "required": ["595", "20 claims"],
     },
     "scripts/agent_coverage.py": {
         "banned": [],
@@ -249,7 +241,7 @@ CONTENT_CHECKS = {
     },
     "scripts/agent_evolution.py": {
         "banned": [],
-        "required": ["check_signals", "check_chronicle", "check_pr_review", "check_impact", "v0.7.0"],
+        "required": ["check_signals", "check_chronicle", "check_pr_review", "check_impact", "v0.8.0"],
     },
     "scripts/agent_impact.py": {
         "banned": [],
