@@ -3260,21 +3260,27 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         if(!h._sP){
           // Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐµÐ½Ð½Ñ‹Ðµ Unicode ÑÐ¸Ð¼Ð²Ð¾Ð»Ñ‹, Ð½ÐµÑ‚ Ð¼Ð½Ð¾Ð³Ð¾ÑÐ¸Ð¼Ð²Ð¾Ð»ÑŒÐ½Ñ‹Ñ… ÑÑ‚Ñ€Ð¾Ðº
           h._sP=[
-            // Greek — physics alphabet (single/double char only)
-            'Î±','Î²','Î³','Î´','Îµ','Î·','Î¸','Î»','Î¼','Î½','Î¾','Ï€','Ï','Ïƒ','Ï„','Ï†','Ï‡','Ïˆ','Ï‰',
-            'Î“','Î”','Î›','Î£','Î¦','Î¨','Î©',
-            // Math operators
-            'âˆ‚','âˆ‡','âˆž','âˆ‘','âˆ','âˆš','âˆ«','â‰ˆ','â‰¡','â‰ ','≤','â‰¥','âˆˆ','âŠ¥','â„','Â±',
-            // Short science tokens (≤3 char)
-            'Eâ‚€','Î”T','âˆ‚T','âŠ•','Â¬','â†”',
-            // Short ML tokens
-            'Å·','RÂ²','â„“Â²','fÌ‚',
-            // Verification
-            '→','âˆ§','âˆ¨','âˆ€','âˆƒ','âŠ¢','âŠ¨','â—»','â—‡',
-            // 2-char combos
-            'dÏƒ','dÎµ','dF','Î”k','Î”Î¼','Pâ‚€','kâ‚€','zâ»','Îµáµ£',
-            // Verification status tokens
-            'PASS','FAIL'
+            // SI 2019 physical constants — the PHYS-01/02 anchors
+            'kB','NA','ℏ','c₀','e⁻',
+            // Physical values — NIST anchors (MTR-1..6)
+            '70G','114G','193G','401W',
+            // Greek physics alphabet
+            'α','β','γ','δ','ε','η','θ','λ','μ','ν','ξ','π','ρ','σ','τ','φ','χ','ψ','ω',
+            'Δ','Γ','Λ','Σ','Φ','Ψ','Ω',
+            // Differential geometry & calculus
+            '∂','∇','∞','∑','∏','√','∫','∮',
+            // Logic & proof theory — verification layer
+            '⊢','⊨','∀','∃','◻','◇','∧','∨','¬','⊥',
+            // Equality & comparison
+            '≡','≠','≤','≥','≈','∈','∉',
+            // Cryptographic layer
+            'SHA','256','H(x)','r(x)',
+            // Science tokens — material & physics
+            'E₀','ΔT','dσ','dε','dF','Δk','R²','εᵣ',
+            // Verification protocol tokens
+            'PASS','FAIL','⊕','→','↔',
+            // Imaginary & complex
+            'ℏ','ℓ²','ℝ','ℂ','ℤ','±'
           ];
           h._sI = Math.floor(Math.abs(Math.sin(h.ph*17+h.wx*53))*h._sP.length) % h._sP.length;
           h._sN = (h._sI+3+Math.floor(h.ph*11)) % h._sP.length;
