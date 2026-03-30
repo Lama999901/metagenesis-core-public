@@ -176,17 +176,11 @@ No GPU. No access to your code or environment. No trust required. 60 seconds.
 
 ## The Founder's Story
 
-Built by **one person**. Yehor Bazhynov. Construction worker by day. Ukraine to Canada immigrant.
+Built by **one person**. Yehor Bazhynov. Inventor, USPTO #63/996,819.
 
-No computer science degree. No team. No funding. No venture capital. No university lab.
+Built after hours, without a team, without funding, using **Claude (Anthropic)** as the primary development tool. Every AI-generated output verified by the project's own test suite. The protocol verifies the protocol.
 
-Working full-time construction  -- while building a verification protocol at night and on weekends. From zero to patent pending (USPTO #63/996,819)
-
-Built with **Claude (Anthropic)** as the primary development tool -- architecture decisions, code implementation, patent application drafting, adversarial test design. Every AI-generated output verified by the project's own test suite. The protocol verifies the protocol.
-
-The result:  in **14 days**.**15 verified claims across 7 domains. 595 adversarial tests. 5 verification layers. 8 innovations. 17 autonomous agent monitoring checks running daily in CI.**
-
-This is what happens when determination meets AI-accelerated development in 2026. A construction worker from Ukraine built a patent-pending verification protocol that catches attacks most security tools miss -- because he needed to prove that computational claims are real, and nobody had built the tool to do it.
+The result: **18 verified claims across 7 domains. 595 adversarial tests. 5 verification layers. 8 innovations. 17 autonomous agent monitoring checks running daily in CI.**
 
 ---
 
