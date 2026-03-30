@@ -295,6 +295,10 @@ CONTENT_CHECKS = {
         "banned": [],
         "required": [],
     },
+    "scripts/agent_pr_creator.py": {
+        "banned": [],
+        "required": ["fix_watchlist", "fix_stale_counters", "git_create_branch"],
+    },
 }
 
 

@@ -448,6 +448,18 @@ def check_diff_review():
         return False
 
 
+# ── 18. Auto PR ─────────────────────────────────────────────────────────────
+def check_auto_pr():
+    section("AUTO PR — Level 3 Autonomy")
+    out, code = run("python scripts/agent_pr_creator.py --summary")
+    if "no auto-pr needed" in out.lower() or "system current" in out.lower():
+        ok("No auto-fixable issues — Level 3 current (AUTOPR_CLEAN)")
+        return True
+    else:
+        warn(f"Auto-fixable issues detected: {out.strip()[:100]} (AUTOPR_PENDING)")
+        return True  # advisory
+
+
 # ── Main ─────────────────────────────────────────────────────────────────────
 def main():
     strict = "--strict" in sys.argv
@@ -481,6 +493,7 @@ def main():
     results["pr_review"] = check_pr_review()
     results["impact"] = check_impact()
     results["diff_review"] = check_diff_review()
+    results["auto_pr"] = check_auto_pr()
 
     # ── Summary ──
     section("SUMMARY — Omnissiah's Verdict")
@@ -505,6 +518,7 @@ def main():
         "pr_review":     ("Fabricator-General satisfied",    "PRREVIEW"),
         "impact":        ("Cogitator impact analyzed",       "IMPACT"),
         "diff_review":   ("Logic Arbiter satisfied",          "DIFF"),
+        "auto_pr":       ("Autonomous PRs current",            "AUTOPR"),
     }
 
     for check, ok_val in results.items():
