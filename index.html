@@ -704,44 +704,44 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
 .flinks a:hover{color:var(--txt)}
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    FILE LINK COLOR SYSTEM
-   .py  â†’ cyan   .json â†’ amber  .yaml â†’ coral
-   .md  â†’ violet  tests/ â†’ green  demos/ â†’ teal
+   .py  → cyan   .json → amber  .yaml → coral
+   .md  → violet  tests/ → green  demos/ → teal
 â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 a[href*="github.com/Lama999901"]{
   text-decoration:none;
   transition:color .18s,opacity .18s,border-color .18s,background .18s;
 }
-/* Python scripts â†’ cyan */
+/* Python scripts → cyan */
 a[href*=".py"]{
   color:var(--c);
   border-bottom:1px solid rgba(0,229,255,.25);
 }
 a[href*=".py"]:hover{border-bottom-color:var(--c);opacity:.82}
-/* Test files â†’ green (overrides .py) */
+/* Test files → green (overrides .py) */
 a[href*="/tests/"]{
   color:var(--ok);
   border-bottom:1px solid rgba(0,255,223,.25);
 }
 a[href*="/tests/"]:hover{border-bottom-color:var(--ok)}
-/* JSON â†’ amber */
+/* JSON → amber */
 a[href*=".json"]{
   color:#ffb347;
   border-bottom:1px solid rgba(255,179,71,.25);
 }
 a[href*=".json"]:hover{border-bottom-color:#ffb347}
-/* YAML â†’ coral */
+/* YAML → coral */
 a[href*=".yaml"]{
   color:#ff8c6b;
   border-bottom:1px solid rgba(255,140,107,.25);
 }
 a[href*=".yaml"]:hover{border-bottom-color:#ff8c6b}
-/* Markdown docs â†’ soft violet */
+/* Markdown docs → soft violet */
 a[href*=".md"]{
   color:#b8a4ff;
   border-bottom:1px solid rgba(184,164,255,.25);
 }
 a[href*=".md"]:hover{border-bottom-color:#b8a4ff}
-/* Demos/bundles â†’ teal */
+/* Demos/bundles → teal */
 a[href*="/demos/"]{
   color:#5dd8d8;
   border-bottom:1px solid rgba(93,216,216,.25);
@@ -1347,7 +1347,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 .origin-step:nth-child(3) .origin-step-txt{color:rgba(238,247,251,.28);text-decoration:line-through;text-decoration-color:rgba(255,64,96,.35)}
 /* step 04 — THE solution */
 .origin-step.active{border:1px solid rgba(0,229,255,.2)!important;border-bottom:1px solid rgba(0,229,255,.2)!important;background:rgba(0,229,255,.04);padding:18px 16px;margin-top:10px;position:relative}
-.origin-step.active::before{content:'â†’ SOLUTION';position:absolute;top:-10px;left:16px;font-size:9px;letter-spacing:.18em;color:var(--ok);background:var(--ink1);padding:0 8px}
+.origin-step.active::before{content:'→ SOLUTION';position:absolute;top:-10px;left:16px;font-size:9px;letter-spacing:.18em;color:var(--ok);background:var(--ink1);padding:0 8px}
 .origin-step.active .origin-step-n{border-color:var(--ok)!important;color:var(--ok)!important;background:rgba(0,255,223,.08)!important;box-shadow:0 0 16px rgba(0,255,223,.25)}
 .origin-step.active .origin-step-txt{color:var(--txt)!important;font-size:14px!important;text-decoration:none!important}
 .origin-step-n{flex-shrink:0;width:28px;height:28px;border:1px solid var(--ln2);display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:10px;color:var(--txt3);margin-top:2px;transition:all .4s ease}
@@ -1439,7 +1439,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
   <div class="ndot">AUDIT: PASS</div>
   <div class="nlinks">
     <a href="#protocol">Protocol</a><span class="ndrop"><a href="#claims">Claims</a><div class="ndmenu"><a href="#claims" onclick="document.querySelectorAll('.cid')[0]?.scrollIntoView()">MTR-1 — Young's Modulus</a><a href="#claims" onclick="document.querySelectorAll('.cid')[1]?.scrollIntoView()">MTR-2 — Thermal Conductivity</a><a href="#claims" onclick="document.querySelectorAll('.cid')[2]?.scrollIntoView()">MTR-3 — Multilayer Contact</a><div class="ndiv"></div><a href="#claims">SYSID-01 — ARX Calibration</a><a href="#claims">DATA-PIPE-01 — Quality Cert</a><a href="#claims">DRIFT-01 — Drift Monitor</a><a href="#claims">ML_BENCH-01 — Accuracy Cert</a><a href="#claims">DT-FEM-01 — FEM Verification</a></div></span><a href="#verticals">Verticals</a><span class="ndrop"><a href="#segments">For You</a><div class="ndmenu"><a href="#segments" onclick="document.querySelector('[data-seg=ml]')?.click()">ML / AI Teams</a><a href="#segments" onclick="document.querySelector('[data-seg=pharma]')?.click()">Pharma / Biotech</a><a href="#segments" onclick="document.querySelector('[data-seg=finance]')?.click()">Finance / Quant</a><a href="#segments" onclick="document.querySelector('[data-seg=research]')?.click()">Research Labs</a></div></span><a href="#verifier">Verify</a><a href="#pilot">Free Pilot</a>
-    <button id="navmap-btn" onclick="document.getElementById('megaover').classList.add('open')">âŠž SITE MAP</button>
+    <button id="navmap-btn" onclick="document.getElementById('megaover').classList.add('open')">⊞ SITE MAP</button>
     <a href="https://github.com/Lama999901/metagenesis-core-public" class="ngit">GITHUB &#8594;</a>
   </div>
   <button class="hamburger" id="hbtn" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -1458,7 +1458,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 </div>
 
 <div id="megaover">
-  <button class="mo-close" onclick="document.getElementById('megaover').classList.remove('open');return false;">âœ• CLOSE</button>
+  <button class="mo-close" onclick="document.getElementById('megaover').classList.remove('open');return false;">✕ CLOSE</button>
   <div class="mo-title"><h2>— SITE NAVIGATION —</h2></div>
   <div class="mo-grid">
     <div class="mo-col">
@@ -1532,7 +1532,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 </div>
 
 <div class="mobile-menu" id="mmenu">
-    <button id="mmclose" aria-label="Close menu" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">âœ•</button>
+    <button id="mmclose" aria-label="Close menu" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">✕</button>
     <a href="#protocol" class="mmlink" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">Protocol</a>
     <div class="mm-acc">
       <div class="mm-acc-head" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('open')">
@@ -1576,7 +1576,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
     <a href="#pricing" class="mmlink" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">Pricing</a>
     <a href="#faq" class="mmlink" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">FAQ</a>
     <a href="#pilot" class="mmlink" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">Free Pilot</a>
-    <a href="https://github.com/Lama999901/metagenesis-core-public" class="mgit mmlink">GitHub â†’</a>
+    <a href="https://github.com/Lama999901/metagenesis-core-public" class="mgit mmlink">GitHub →</a>
 </div>
 
 <section class="hero">
@@ -1814,18 +1814,18 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 
       <div class="ccl-row">
         <div class="ccl-problem">Accuracy claim with no third-party proof</div>
-        <div class="ccl-arrow">â†’</div>
+        <div class="ccl-arrow">→</div>
         <div class="ccl-solution">
           <span class="ccl-badge">CLOSED</span>
           <span class="ccl-claim">ML_BENCH-01</span>
           <a class="ccl-path" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank">mlbench1_accuracy_certificate.py</a>
-          <span class="ccl-threshold">&Delta;accuracy â‰¤ 0.02 &middot; semantic PASS</span>
+          <span class="ccl-threshold">&Delta;accuracy ≤ 0.02 &middot; semantic PASS</span>
         </div>
       </div>
 
       <div class="ccl-row">
         <div class="ccl-problem">Data leakage inflating benchmark results (294 papers)</div>
-        <div class="ccl-arrow">â†’</div>
+        <div class="ccl-arrow">→</div>
         <div class="ccl-solution">
           <span class="ccl-badge">CLOSED</span>
           <span class="ccl-claim">DATA-PIPE-01</span>
@@ -1836,33 +1836,33 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 
       <div class="ccl-row">
         <div class="ccl-problem">FEM/CFD simulation outputs unverifiable by engineering auditors</div>
-        <div class="ccl-arrow">â†’</div>
+        <div class="ccl-arrow">→</div>
         <div class="ccl-solution">
           <span class="ccl-badge">CLOSED</span>
           <span class="ccl-claim">DT-FEM-01</span>
           <a class="ccl-path" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtfem1_displacement_verification.py" target="_blank">dtfem1_displacement_verification.py</a>
-          <span class="ccl-threshold">rel_err â‰¤ 0.02 vs physical reference &middot; ISO/ASME V&amp;V&nbsp;10</span>
+          <span class="ccl-threshold">rel_err ≤ 0.02 vs physical reference &middot; ISO/ASME V&amp;V&nbsp;10</span>
         </div>
       </div>
 
       <div class="ccl-row">
         <div class="ccl-problem">Calibration drift undetected between model versions</div>
-        <div class="ccl-arrow">â†’</div>
+        <div class="ccl-arrow">→</div>
         <div class="ccl-solution">
           <span class="ccl-badge">CLOSED</span>
           <span class="ccl-claim">DRIFT-01 &middot; MTR-1/2/3</span>
           <a class="ccl-path" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank">drift_monitor.py</a>
-          <span class="ccl-threshold">drift_threshold 5.0% &middot; rel_err â‰¤ 0.01â€“0.03</span>
+          <span class="ccl-threshold">drift_threshold 5.0% &middot; rel_err ≤ 0.01â€“0.03</span>
         </div>
       </div>
 
       <div class="ccl-row">
         <div class="ccl-problem">Regulatory submissions with no offline-verifiable audit trail</div>
-        <div class="ccl-arrow">â†’</div>
+        <div class="ccl-arrow">→</div>
         <div class="ccl-solution">
           <span class="ccl-badge">CLOSED</span>
           <span class="ccl-claim">All 20 claims</span>
-          <a class="ccl-path" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/mg.py" target="_blank">mg.py verify --pack bundle.zip â†’ PASS</a>
+          <a class="ccl-path" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/mg.py" target="_blank">mg.py verify --pack bundle.zip → PASS</a>
           <span class="ccl-threshold">offline &middot; no model access &middot; 60 seconds</span>
         </div>
       </div>
@@ -2022,7 +2022,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
     <div class="plain-label">In plain language</div>
     <div class="plain-text">
       <p>Think of it like a <strong>certificate of conformity</strong> for computation.</p>
-      <p>When a product gets certified, the certifier doesnâ€™t rebuild it from scratch — they verify it meets the documented spec. That certificate is then trusted by anyone, anywhere, without repeating the test.</p>
+      <p>When a product gets certified, the certifier doesn’t rebuild it from scratch — they verify it meets the documented spec. That certificate is then trusted by anyone, anywhere, without repeating the test.</p>
       <p>MetaGenesis Core does the same for computational results. <strong>The bundle is the proof.</strong></p>
       <p>And where a physical constant exists &#8212; E&nbsp;=&nbsp;70&nbsp;GPa for aluminum (NIST, ~1% uncertainty), or k<sub>B</sub>&nbsp;=&nbsp;1.380649&times;10<sup>&#8209;23</sup>&nbsp;J/K by SI&nbsp;2019 definition (exact, zero uncertainty) &#8212; the verification chain is anchored to <strong>physical reality itself</strong>. NIST-measured material constants. SI fundamental constants. This is traceability, not compliance.</p>
     </div>
@@ -2537,10 +2537,10 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
       <div class="price-badge">Most popular</div>
       <div class="price-name">Verification Bundle</div>
       <div class="price-amount">$299</div>
-      <div class="price-desc">Your result â†’ tamper-evident bundle in 48h. Any third party verifies offline with one command.</div>
+      <div class="price-desc">Your result → tamper-evident bundle in 48h. Any third party verifies offline with one command.</div>
       <ul class="price-list">
         <li>Your specific claim packaged &amp; signed</li>
-        <li>mg.py verify â†’ PASS or FAIL</li>
+        <li>mg.py verify → PASS or FAIL</li>
         <li>Any reviewer verifies offline, no access to your code</li>
         <li>Patent-pending protocol (USPTO #63/996,819)</li>
         <li>Delivered within 48 hours</li>
@@ -2662,7 +2662,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         <div class="seg-scenario">
           <span class="seg-scenario-label">Your scenario</span>
           <div class="seg-flow">
-            <div class="seg-step"><span class="seg-step-n">1</span><span>You run ML_BENCH-01 â†’ <a href="https://github.com/Lama999901/metagenesis-core-public/tree/main/demos/open_data_demo_01" target="_blank">bundle</a> contains predictions CSV + SHA-256 fingerprint + semantic proof</span></div>
+            <div class="seg-step"><span class="seg-step-n">1</span><span>You run ML_BENCH-01 → <a href="https://github.com/Lama999901/metagenesis-core-public/tree/main/demos/open_data_demo_01" target="_blank">bundle</a> contains predictions CSV + SHA-256 fingerprint + semantic proof</span></div>
             <div class="seg-step"><span class="seg-step-n">2</span><span>Client runs <code>mg.py verify --pack bundle.zip</code> on their laptop</span></div>
             <div class="seg-step"><span class="seg-step-n">3</span><span>They see <span class="seg-pass">PASS</span> — your claimed accuracy is verified. No model access. No GPU. No trust required.</span></div>
           </div>
@@ -2678,8 +2678,8 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
           </div>
         </div>
         <div class="seg-cta-row">
-          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" class="seg-btn-secondary">View ML_BENCH-01 on GitHub â†’</a>
-          <a href="#pilot" class="seg-btn-primary">Request Free Pilot â†’</a>
+          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" class="seg-btn-secondary">View ML_BENCH-01 on GitHub →</a>
+          <a href="#pilot" class="seg-btn-primary">Request Free Pilot →</a>
         </div>
       </div>
 
@@ -2691,7 +2691,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         <div class="seg-scenario">
           <span class="seg-scenario-label">Your scenario</span>
           <div class="seg-flow">
-            <div class="seg-step"><span class="seg-step-n">1</span><span>Your calibration pipeline runs â†’ MTR series + DATA-PIPE-01 produce evidence bundles with full provenance chain</span></div>
+            <div class="seg-step"><span class="seg-step-n">1</span><span>Your calibration pipeline runs → MTR series + DATA-PIPE-01 produce evidence bundles with full provenance chain</span></div>
             <div class="seg-step"><span class="seg-step-n">2</span><span>Regulatory reviewer runs verification offline — no access to your environment or proprietary data</span></div>
             <div class="seg-step"><span class="seg-step-n">3</span><span>Audit trail is SHA-256 + semantically verified. Every deviation surfaces as <span class="seg-fail">FAIL</span> with specific reason.</span></div>
           </div>
@@ -2706,8 +2706,8 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
           </div>
         </div>
         <div class="seg-cta-row">
-          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/PROTOCOL.md" class="seg-btn-secondary">Read Protocol Spec â†’</a>
-          <a href="#pilot" class="seg-btn-primary">Request Free Pilot â†’</a>
+          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/PROTOCOL.md" class="seg-btn-secondary">Read Protocol Spec →</a>
+          <a href="#pilot" class="seg-btn-primary">Request Free Pilot →</a>
         </div>
       </div>
 
@@ -2719,7 +2719,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         <div class="seg-scenario">
           <span class="seg-scenario-label">Your scenario</span>
           <div class="seg-flow">
-            <div class="seg-step"><span class="seg-step-n">1</span><span>Risk model runs â†’ bundle contains output fingerprint + claimed metrics + governance-enforced evidence index</span></div>
+            <div class="seg-step"><span class="seg-step-n">1</span><span>Risk model runs → bundle contains output fingerprint + claimed metrics + governance-enforced evidence index</span></div>
             <div class="seg-step"><span class="seg-step-n">2</span><span>Independent validator verifies bundle offline — no model access, no proprietary data exposure</span></div>
             <div class="seg-step"><span class="seg-step-n">3</span><span>Semantic layer catches any post-hoc modification. Evidence chain is audit-ready for Basel model risk documentation.</span></div>
           </div>
@@ -2733,8 +2733,8 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
           </div>
         </div>
         <div class="seg-cta-row">
-          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/COMMERCIAL.md" class="seg-btn-secondary">Commercial Licensing â†’</a>
-          <a href="#pilot" class="seg-btn-primary">Request Free Pilot â†’</a>
+          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/COMMERCIAL.md" class="seg-btn-secondary">Commercial Licensing →</a>
+          <a href="#pilot" class="seg-btn-primary">Request Free Pilot →</a>
         </div>
       </div>
 
@@ -2746,7 +2746,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         <div class="seg-scenario">
           <span class="seg-scenario-label">Your scenario</span>
           <div class="seg-flow">
-            <div class="seg-step"><span class="seg-step-n">1</span><span>Your computation runs â†’ evidence bundle contains result + dataset SHA-256 fingerprint + semantic proof. No raw data included.</span></div>
+            <div class="seg-step"><span class="seg-step-n">1</span><span>Your computation runs → evidence bundle contains result + dataset SHA-256 fingerprint + semantic proof. No raw data included.</span></div>
             <div class="seg-step"><span class="seg-step-n">2</span><span>Reviewer downloads bundle from your supplementary materials. Runs one command on their laptop.</span></div>
             <div class="seg-step"><span class="seg-step-n">3</span><span>They see <span class="seg-pass">PASS</span> — your results are independently verified. No environment, no GPU, no trust required.</span></div>
           </div>
@@ -2763,8 +2763,8 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
           </div>
         </div>
         <div class="seg-cta-row">
-          <a href="https://github.com/Lama999901/metagenesis-core-public#try-it-in-5-minutes" class="seg-btn-secondary">Clone & Try in 5 min â†’</a>
-          <a href="#pilot" class="seg-btn-primary">Request Free Pilot â†’</a>
+          <a href="https://github.com/Lama999901/metagenesis-core-public#try-it-in-5-minutes" class="seg-btn-secondary">Clone & Try in 5 min →</a>
+          <a href="#pilot" class="seg-btn-primary">Request Free Pilot →</a>
         </div>
       </div>
 
@@ -2777,9 +2777,9 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         <div class="seg-scenario">
           <span class="seg-scenario-label">Your scenario</span>
           <div class="seg-flow">
-            <div class="seg-step"><span class="seg-step-n">1</span><span>Your FEM solver runs â†’ DT-FEM-01 verifies output against physical reference â†’ bundle contains displacement result + SHA-256 fingerprint + semantic proof</span></div>
+            <div class="seg-step"><span class="seg-step-n">1</span><span>Your FEM solver runs → DT-FEM-01 verifies output against physical reference → bundle contains displacement result + SHA-256 fingerprint + semantic proof</span></div>
             <div class="seg-step"><span class="seg-step-n">2</span><span>Client runs <code>mg.py verify --pack bundle.zip</code> on their machine</span></div>
-            <div class="seg-step"><span class="seg-step-n">3</span><span>They see <span class="seg-pass">PASS</span> — rel_err â‰¤ 0.02 verified. No solver access. No environment. No trust required.</span></div>
+            <div class="seg-step"><span class="seg-step-n">3</span><span>They see <span class="seg-pass">PASS</span> — rel_err ≤ 0.02 verified. No solver access. No environment. No trust required.</span></div>
           </div>
         </div>
         <div class="seg-claims-row">
@@ -2793,8 +2793,8 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
           </div>
         </div>
         <div class="seg-cta-row">
-          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtfem1_displacement_verification.py" class="seg-btn-secondary">View DT-FEM-01 on GitHub â†’</a>
-          <a href="#pilot" class="seg-btn-primary">Request Free Pilot â†’</a>
+          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtfem1_displacement_verification.py" class="seg-btn-secondary">View DT-FEM-01 on GitHub →</a>
+          <a href="#pilot" class="seg-btn-primary">Request Free Pilot →</a>
         </div>
       </div>
 
@@ -2832,7 +2832,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
             <label class="vrf-label" for="ml-actual">actual_accuracy <span class="vrf-unit">0.00 â€“ 1.00</span></label>
             <input class="vrf-input" id="ml-actual" type="number" min="0" max="1" step="0.01" value="0.93" placeholder="0.93">
           </div>
-          <div class="vrf-threshold">threshold: |actual âˆ’ claimed| â‰¤ 0.02</div>
+          <div class="vrf-threshold">threshold: |actual − claimed| ≤ 0.02</div>
         </div>
 
         <div class="vrf-input-group" data-claim="mtr">
@@ -2844,7 +2844,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
             <label class="vrf-label" for="mtr-actual">actual_value <span class="vrf-unit">GPa</span></label>
             <input class="vrf-input" id="mtr-actual" type="number" min="0" step="0.1" value="201.5" placeholder="201.5">
           </div>
-          <div class="vrf-threshold">threshold: |actual âˆ’ claimed| / claimed â‰¤ 0.01</div>
+          <div class="vrf-threshold">threshold: |actual − claimed| / claimed ≤ 0.01</div>
         </div>
 
         <div class="vrf-input-group" data-claim="data">
@@ -2858,7 +2858,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
               <span>range_valid — all values within expected bounds</span>
             </label>
           </div>
-          <div class="vrf-threshold">threshold: schema_valid AND range_valid â†’ PASS</div>
+          <div class="vrf-threshold">threshold: schema_valid AND range_valid → PASS</div>
         </div>
 
         <div class="vrf-input-group" data-claim="drift">
@@ -2870,7 +2870,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
             <label class="vrf-label" for="drift-current">current_value <span class="vrf-unit">new measurement</span></label>
             <input class="vrf-input" id="drift-current" type="number" step="0.01" value="103.2" placeholder="103.2">
           </div>
-          <div class="vrf-threshold">threshold: |current âˆ’ baseline| / baseline â‰¤ 0.05 (5%)</div>
+          <div class="vrf-threshold">threshold: |current − baseline| / baseline ≤ 0.05 (5%)</div>
         </div>
 
         <div class="vrf-input-group" data-claim="dtfem">
@@ -2882,7 +2882,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
             <label class="vrf-label" for="dtfem-reference">reference_displacement <span class="vrf-unit">mm (physical)</span></label>
             <input class="vrf-input" id="dtfem-reference" type="number" step="0.001" value="2.500" placeholder="2.500">
           </div>
-          <div class="vrf-threshold">threshold: |simulated âˆ’ reference| / reference â‰¤ 0.02</div>
+          <div class="vrf-threshold">threshold: |simulated − reference| / reference ≤ 0.02</div>
         </div>
 
         <button class="vrf-run-btn" id="vrf-run">
@@ -2897,7 +2897,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         </div>
         <div class="vrf-term-body" id="vrf-output">
           <div class="vrf-line dim">$ python scripts/mg.py verify --pack bundle.zip</div>
-          <div class="vrf-line dim">â†’ awaiting input...</div>
+          <div class="vrf-line dim">→ awaiting input...</div>
         </div>
       </div>
     </div>
@@ -2938,7 +2938,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         <div class="pilot-domain-hint" id="pf-domain-hint" style="display:none">
           <div class="pdh-inner" id="pdh-ml-ai" style="display:none">
             <span class="pdh-claim">ML_BENCH-01</span>
-            <span class="pdh-text">Your model claims 94% accuracy. Your client wants proof they can verify in 60 seconds — no model access, no GPU. We package your result into a tamper-evident bundle. <code>mg.py verify --pack bundle.zip â†’ PASS</code></span>
+            <span class="pdh-text">Your model claims 94% accuracy. Your client wants proof they can verify in 60 seconds — no model access, no GPU. We package your result into a tamper-evident bundle. <code>mg.py verify --pack bundle.zip → PASS</code></span>
           </div>
           <div class="pdh-inner" id="pdh-pharma" style="display:none">
             <span class="pdh-claim">DATA-PIPE-01 Â· MTR series</span>
@@ -2954,7 +2954,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
           </div>
           <div class="pdh-inner" id="pdh-femdt" style="display:none">
             <span class="pdh-claim">DT-FEM-01 Â· MTR-1 Â· DRIFT-01</span>
-            <span class="pdh-text">Your ANSYS, FEniCS, or OpenFOAM output needs machine-verifiable proof against a physical reference. We package your displacement result as a tamper-evident bundle — rel_err â‰¤ 0.02 certified, verifiable offline by any engineering auditor.</span>
+            <span class="pdh-text">Your ANSYS, FEniCS, or OpenFOAM output needs machine-verifiable proof against a physical reference. We package your displacement result as a tamper-evident bundle — rel_err ≤ 0.02 certified, verifiable offline by any engineering auditor.</span>
           </div>
           <div class="pdh-inner" id="pdh-other" style="display:none">
             <span class="pdh-claim">Custom claim</span>
@@ -2967,13 +2967,13 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         </div>
         <div class="pilot-footer">
           <button class="pilot-submit" type="submit" id="pilot-submit">
-            <span id="pilot-submit-label">Request Free Pilot â†’</span>
+            <span id="pilot-submit-label">Request Free Pilot →</span>
           </button>
           <p class="pilot-note">No account. No credit card. Response within 48 hours.</p>
         </div>
       </form>
       <div class="pilot-success" id="pilot-success" style="display:none">
-        <div class="pilot-success-icon">âœ“</div>
+        <div class="pilot-success-icon">✔</div>
         <div class="pilot-success-title">Request received.</div>
         <div class="pilot-success-text">We'll review your use case and reply within 48 hours with a working verification bundle or a specific question. Check your inbox at the email you provided.</div>
       </div>
@@ -3264,13 +3264,13 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
             'Î±','Î²','Î³','Î´','Îµ','Î·','Î¸','Î»','Î¼','Î½','Î¾','Ï€','Ï','Ïƒ','Ï„','Ï†','Ï‡','Ïˆ','Ï‰',
             'Î“','Î”','Î›','Î£','Î¦','Î¨','Î©',
             // Math operators
-            'âˆ‚','âˆ‡','âˆž','âˆ‘','âˆ','âˆš','âˆ«','â‰ˆ','â‰¡','â‰ ','â‰¤','â‰¥','âˆˆ','âŠ¥','â„','Â±',
-            // Short science tokens (â‰¤3 char)
+            'âˆ‚','âˆ‡','âˆž','âˆ‘','âˆ','âˆš','âˆ«','â‰ˆ','â‰¡','â‰ ','≤','â‰¥','âˆˆ','âŠ¥','â„','Â±',
+            // Short science tokens (≤3 char)
             'Eâ‚€','Î”T','âˆ‚T','âŠ•','Â¬','â†”',
             // Short ML tokens
             'Å·','RÂ²','â„“Â²','fÌ‚',
             // Verification
-            'â†’','âˆ§','âˆ¨','âˆ€','âˆƒ','âŠ¢','âŠ¨','â—»','â—‡',
+            '→','âˆ§','âˆ¨','âˆ€','âˆƒ','âŠ¢','âŠ¨','â—»','â—‡',
             // 2-char combos
             'dÏƒ','dÎµ','dF','Î”k','Î”Î¼','Pâ‚€','kâ‚€','zâ»','Îµáµ£',
             // Verification status tokens
@@ -3288,17 +3288,17 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         // S-curve crossfade — continuous across reset boundary
         // 0..0.72: A fully visible, B invisible
         // 0.72..1.0: A fades OUT, B fades IN (sine ease)
-        // at reset _sT=0: A=old_B (alpha=1), new B=0 â†’ no jump
+        // at reset _sT=0: A=old_B (alpha=1), new B=0 → no jump
         var _t01 = h._sT;
         var _hold = 0.72;
         var _cfA, _cfB;
         if(_t01 < _hold){
           _cfA = 1.0; _cfB = 0.0;
         } else {
-          var _xf = (_t01 - _hold) / (1.0 - _hold); // 0â†’1
-          var _ease = 0.5 - 0.5*Math.cos(_xf * Math.PI); // S-curve 0â†’1
-          _cfA = 1.0 - _ease; // 1â†’0
-          _cfB = _ease;       // 0â†’1
+          var _xf = (_t01 - _hold) / (1.0 - _hold); // 0→1
+          var _ease = 0.5 - 0.5*Math.cos(_xf * Math.PI); // S-curve 0→1
+          _cfA = 1.0 - _ease; // 1→0
+          _cfB = _ease;       // 0→1
         }
 
         var _s  = h._sP[h._sI];
@@ -3379,12 +3379,12 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         btn.classList.add('active');
         var grp=document.querySelector('.vrf-input-group[data-claim="'+currentClaim+'"]');
         if(grp)grp.classList.add('active');
-        if(output){output.innerHTML='<div class="vrf-line dim">$ python scripts/mg.py verify --pack bundle.zip</div><div class="vrf-line dim">â†’ awaiting input...</div>';}
+        if(output){output.innerHTML='<div class="vrf-line dim">$ python scripts/mg.py verify --pack bundle.zip</div><div class="vrf-line dim">→ awaiting input...</div>';}
       });
     });
 
     function resetOutput(){
-      if(output)output.innerHTML='<div class="vrf-line dim">$ python scripts/mg.py verify --pack bundle.zip</div><div class="vrf-line dim">â†’ awaiting input...</div>';
+      if(output)output.innerHTML='<div class="vrf-line dim">$ python scripts/mg.py verify --pack bundle.zip</div><div class="vrf-line dim">→ awaiting input...</div>';
     }
 
     function addLine(cls,text,delay){
@@ -3415,13 +3415,13 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         var ac=parseFloat(document.getElementById('ml-actual')?document.getElementById('ml-actual').value:0)||0;
         var delta=Math.abs(ac-cl);
         pass=delta<=0.02;
-        reason=pass?'accuracy delta '+delta.toFixed(4)+' â‰¤ 0.02':'accuracy delta '+delta.toFixed(4)+' > 0.02 — threshold exceeded';
+        reason=pass?'accuracy delta '+delta.toFixed(4)+' ≤ 0.02':'accuracy delta '+delta.toFixed(4)+' > 0.02 — threshold exceeded';
       } else if(currentClaim==='mtr'){
         var cl2=parseFloat(document.getElementById('mtr-claimed')?document.getElementById('mtr-claimed').value:0)||0;
         var ac2=parseFloat(document.getElementById('mtr-actual')?document.getElementById('mtr-actual').value:0)||0;
         var re=cl2>0?Math.abs(ac2-cl2)/cl2:1;
         pass=re<=0.01;
-        reason=pass?'relative_error '+re.toFixed(5)+' â‰¤ 0.01':'relative_error '+re.toFixed(5)+' > 0.01 — threshold exceeded';
+        reason=pass?'relative_error '+re.toFixed(5)+' ≤ 0.01':'relative_error '+re.toFixed(5)+' > 0.01 — threshold exceeded';
       } else if(currentClaim==='data'){
         var sv=document.getElementById('data-schema')?document.getElementById('data-schema').checked:false;
         var rv=document.getElementById('data-range')?document.getElementById('data-range').checked:false;
@@ -3432,24 +3432,24 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         var cu=parseFloat(document.getElementById('drift-current')?document.getElementById('drift-current').value:0)||0;
         var dr=bl>0?Math.abs(cu-bl)/bl:1;
         pass=dr<=0.05;
-        reason=pass?'drift '+(dr*100).toFixed(2)+'% â‰¤ 5.00%':'drift '+(dr*100).toFixed(2)+'% > 5.00% — calibration drift detected';
+        reason=pass?'drift '+(dr*100).toFixed(2)+'% ≤ 5.00%':'drift '+(dr*100).toFixed(2)+'% > 5.00% — calibration drift detected';
       } else if(currentClaim==='dtfem'){
         var sim=parseFloat(document.getElementById('dtfem-simulated')?document.getElementById('dtfem-simulated').value:0)||0;
         var ref=parseFloat(document.getElementById('dtfem-reference')?document.getElementById('dtfem-reference').value:0)||0;
         var fe=ref>0?Math.abs(sim-ref)/ref:1;
         pass=fe<=0.02;
-        reason=pass?'rel_err '+fe.toFixed(5)+' â‰¤ 0.02 — FEM output verified':'rel_err '+fe.toFixed(5)+' > 0.02 — FEM displacement exceeds threshold';
+        reason=pass?'rel_err '+fe.toFixed(5)+' ≤ 0.02 — FEM output verified':'rel_err '+fe.toFixed(5)+' > 0.02 — FEM displacement exceeds threshold';
       }
 
       var seq=[
         [100,'cmd','$ python scripts/mg.py verify --pack bundle.zip'],
-        [400,'info','â†’ Loading pack_manifest.json...'],
-        [700,'ok','âœ“ integrity layer: SHA-256 root_hash match'],
-        [1050,'ok','âœ“ evidence_index: claim mapping verified'],
-        [1400,'ok','âœ“ semantic layer: job_snapshot present'],
-        [1750,'ok','âœ“ step chain: trace_root_hash == final step hash'],
-        [2050,'ok','âœ“ canary_mode flag: correct'],
-        [2100,'info','â†’ Running threshold check...'],
+        [400,'info','→ Loading pack_manifest.json...'],
+        [700,'ok','✔ integrity layer: SHA-256 root_hash match'],
+        [1050,'ok','✔ evidence_index: claim mapping verified'],
+        [1400,'ok','✔ semantic layer: job_snapshot present'],
+        [1750,'ok','✔ step chain: trace_root_hash == final step hash'],
+        [2050,'ok','✔ canary_mode flag: correct'],
+        [2100,'info','→ Running threshold check...'],
         [2400,'muted','  claim: '+(currentClaim==='ml'?'ML_BENCH-01':currentClaim==='mtr'?'MTR-1':currentClaim==='data'?'DATA-PIPE-01':currentClaim==='drift'?'DRIFT-01':'DT-FEM-01')],
         [2700,'muted','  '+reason],
       ];
@@ -3460,7 +3460,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
       }).then(function(){
         var rd=document.createElement('div');
         rd.className=pass?'vrf-result-pass':'vrf-result-fail';
-        rd.textContent=pass?'âœ“ VERIFICATION: PASS':'âœ— VERIFICATION: FAIL — '+reason;
+        rd.textContent=pass?'✔ VERIFICATION: PASS':'âœ— VERIFICATION: FAIL — '+reason;
         output.appendChild(rd);
         output.scrollTop=output.scrollHeight;
         runBtn.classList.remove('running');
