@@ -92,8 +92,8 @@ CONTENT_CHECKS = {
         "required": ["0.5.0", "595 adversarial"],
     },
     "ppa/README_PPA.md": {
-        "banned": ["282 tests", "511 tests", "544 tests", "Current state (2026-03-17)"],
-        "required": ["595 tests", "8 innovations"],
+        "banned": ["282 tests", "511 tests", "544 tests", "595 tests", "Current state (2026-03-17)"],
+        "required": ["601 tests", "8 innovations"],
     },
     "COMMERCIAL.md": {
         "banned": ["5 innovations"],
