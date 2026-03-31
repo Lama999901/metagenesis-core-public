@@ -5,14 +5,14 @@
 [![Steward Audit](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml/badge.svg)](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Patent Pending](https://img.shields.io/badge/Patent-Pending%20%2363%2F996%2C819-orange.svg)](ppa/README_PPA.md)
-[![Tests](https://img.shields.io/badge/Tests-601%20passing-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-608%20passing-brightgreen.svg)](tests/)
 [![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.8.0-blueviolet.svg)](docs/PROTOCOL.md)
 [![Sponsor](https://img.shields.io/badge/Sponsor-❤️-pink.svg)](https://github.com/sponsors/Lama999901)
 
 **Site:** https://metagenesis-core.dev
 **Contact:** yehor@metagenesis-core.dev
 **PPA:** USPTO #63/996,819 -- filed 2026-03-05  
-**Version:** v0.8.0 | 20 claims | 601 tests | 18 agent checks | 21/21 tasks done
+**Version:** v0.8.0 | 20 claims | 608 tests | 18 agent checks | 21/21 tasks done
 
 ---
 
@@ -180,7 +180,7 @@ Built by **one person**. Yehor Bazhynov. Inventor, USPTO #63/996,819.
 
 Built after hours, without a team, without funding, using **Claude (Anthropic)** as the primary development tool. Every AI-generated output verified by the project's own test suite. The protocol verifies the protocol.
 
-The result: **20 verified claims across 8 domains. 601 adversarial tests. 5 verification layers. 8 innovations. 18 autonomous agent monitoring checks running daily in CI.**
+The result: **20 verified claims across 8 domains. 608 adversarial tests. 5 verification layers. 8 innovations. 18 autonomous agent monitoring checks running daily in CI.**
 
 ---
 
@@ -270,7 +270,7 @@ Every claim in this protocol is backed by adversarial tests that attempt to brea
 
 ```bash
 python -m pytest tests/ -q
-# -> 601 passed
+# -> 608 passed
 ```
 
 The summary test in CERT-05 explicitly proves all five layers are necessary -- no single layer catches all attacks. CERT-11 constructs coordinated attacks where each layer catches what the other four miss. This is not a claim. It is a mathematical proof backed by executable tests.
@@ -315,7 +315,7 @@ MetaGenesis Core includes an autonomous agent monitoring system -- 18 checks tha
 | # | Check | Mechanicus Name | What it verifies |
 |---|-------|----------------|-----------------|
 | 1 | `steward` | Inquisition | `steward_audit.py` passes -- governance rules enforced |
-| 2 | `tests` | Machine Spirit | All 601 tests pass |
+| 2 | `tests` | Machine Spirit | All 608 tests pass |
 | 3 | `deep` | Omnissiah | `deep_verify.py` -- 13 independent proof tests |
 | 4 | `docs` | Noosphere | Stale documentation detection via `check_stale_docs.py` |
 | 5 | `manifest` | Codex | `system_manifest.json` matches actual repo state |
@@ -528,7 +528,7 @@ For ML accuracy (ML_BENCH-01/02/03), data pipelines (DATA-PIPE-01), pharma (PHAR
 
 ### ENV_001 -- Test Environment
 
-All 601 tests pass in the reference environment (Python 3.11+, stdlib only). No database dependencies. No external services. No network required. Local environment deviations may require matching Python version.
+All 608 tests pass in the reference environment (Python 3.11+, stdlib only). No database dependencies. No external services. No network required. Local environment deviations may require matching Python version.
 
 **Why this limitation exists:** The protocol is designed to work offline with zero external dependencies. This is a feature, not a limitation -- but it means the test suite assumes a clean Python environment.
 
@@ -554,7 +554,7 @@ python scripts/steward_audit.py
 # -> STEWARD AUDIT: PASS
 
 python -m pytest tests/ -q
-# -> 601 passed
+# -> 608 passed
 
 # Full proof-not-trust verification (13 tests):
 python scripts/deep_verify.py
@@ -601,7 +601,7 @@ Commercial licensing available for organizations building on the protocol.
 Read these files in order:
 
 ```
-1. CONTEXT_SNAPSHOT.md          <- current state, 20 claims, 601 tests
+1. CONTEXT_SNAPSHOT.md          <- current state, 20 claims, 608 tests
 2. AGENTS.md                    <- hard rules, forbidden terms, protected files
 3. llms.txt                     <- AI-optimized repo summary
 4. reports/canonical_state.md   <- authoritative claims list
