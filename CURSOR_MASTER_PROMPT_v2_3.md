@@ -8,7 +8,7 @@
 
 ```
 CONTEXT: MetaGenesis Core — verification protocol layer for computational claims.
-v0.8.0 | 20 claims | 601 tests | 5 layers | 8 innovations
+v0.8.0 | 20 claims | 608 tests | 5 layers | 8 innovations
   PPA #63/996,819. Repo: https://github.com/Lama999901/metagenesis-core-public
 
 NEVER TOUCH these files under any circumstances:
@@ -26,7 +26,7 @@ BANNED TERMS — never write these anywhere:
   Instead use: "tamper-evident under trusted verifier assumptions"
 
 CURRENT STATE:
-20 claims / 601 tests / 5 verification layers / MVP v0.8
+20 claims / 608 tests / 5 verification layers / MVP v0.8
   steward_audit: PASS / deep_verify: ALL 13 TESTS PASSED
 ```
 
@@ -76,7 +76,7 @@ DO NOT TOUCH:
 
 After all changes:
   python scripts/steward_audit.py   # → STEWARD AUDIT: PASS
-  python -m pytest tests/ -q        # → 601 passed (or more)
+  python -m pytest tests/ -q        # → 608 passed (or more)
   python scripts/deep_verify.py     # → ALL 13 TESTS PASSED
 ```
 
@@ -167,7 +167,7 @@ BASE URL: `https://github.com/Lama999901/metagenesis-core-public/blob/main/`
 
 ```
 <nav>     Protocol | Claims | Verticals | For You | Verify | Free Pilot | GitHub
-#hero     — 20 claims, 601 tests, AUDIT: PASS
+#hero     — 20 claims, 608 tests, AUDIT: PASS
 #protocol — "Not a tool. A standard." — 4 innovations + Step Chain
 #claims   — 14 claim cards with links
 #verticals — 6 verticals
@@ -183,7 +183,7 @@ BASE URL: `https://github.com/Lama999901/metagenesis-core-public/blob/main/`
 <footer>
 ```
 
-**Hero badge:** `18 active claims | 601 tests | PASS | patent pending`
+**Hero badge:** `18 active claims | 608 tests | PASS | patent pending`
 
 ---
 
@@ -191,7 +191,7 @@ BASE URL: `https://github.com/Lama999901/metagenesis-core-public/blob/main/`
 
 ```powershell
 # Numbers in index.html
-Select-String "601" index.html | `
+Select-String "608" index.html | `
   Where-Object {$_.Line -notmatch "rgba\(0,255,223|&#223;|'0,255,223'"}
 
 # JavaScript check in browser
@@ -373,4 +373,4 @@ TRAP-NEW-09: JobStatus enum comparison
 ---
 
 *CURSOR_MASTER_PROMPT v2.3 — 2026-03-16 — MetaGenesis Core*
-*Changes: all text translated to English, test count updated to 601*
+*Changes: all text translated to English, test count updated to 608*
