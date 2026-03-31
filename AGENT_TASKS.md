@@ -150,3 +150,38 @@ Auto-processed by `scripts/agent_research.py`. First PENDING task gets executed 
 - **Priority:** P1
 - **Output:** reports/scientific_claim_index.md
 - **Description:** Check MTR-4 (rel_err<=0.01), MTR-5 (rel_err<=0.01), MTR-6 (rel_err<=0.02) in scientific_claim_index.md. Fix if missing.
+
+### TASK-022
+- **Title:** Fix stale CONTEXT_SNAPSHOT.md, llms.txt, AGENTS.md
+- **Status:** PENDING
+- **Priority:** P1
+- **Output:** CONTEXT_SNAPSHOT.md, llms.txt, AGENTS.md
+- **Description:** Update all three files to v0.8.0 state: 601 tests, 20 claims, 18 agent checks, GitHub Release v0.8.0, add PHYS-01/02 to claims table. AGENTS.md Step 6: 595->601. Read system_manifest.json for ground truth.
+
+### TASK-023
+- **Title:** Update UPDATE_PROTOCOL.md v1.0 to v1.1
+- **Status:** PENDING
+- **Priority:** P1
+- **Output:** UPDATE_PROTOCOL.md
+- **Description:** Change version marker from 'v1.0 -- 2026-03-16' to 'v1.1 -- 2026-03-30'. Add rule in section НОВЫЕ ТЕСТЫ: 'При изменении test count -> в ТОМ ЖЕ PR обновить check_stale_docs.py required strings для всех файлов ссылающихся на старое число.'
+
+### TASK-024
+- **Title:** Fix ppa/README_PPA.md missing 601 tests reference
+- **Status:** PENDING
+- **Priority:** P2
+- **Output:** ppa/README_PPA.md
+- **Description:** check_stale_docs.py requires '601 tests' and '8 innovations' in README_PPA.md. Add a Current State section at the bottom: 'Current verification state: 601 tests, 20 claims, 8 innovations, v0.8.0'. Keep all historical data intact.
+
+### TASK-025
+- **Title:** Audit PHYS-01/02 test coverage
+- **Status:** PENDING
+- **Priority:** P2
+- **Output:** reports/AGENT_REPORT_YYYYMMDD.md
+- **Description:** Check tests/physics/ directory. Count test functions for PHYS-01 and PHYS-02. Verify SI 2019 exact constants documented in README and paper.md. Verify physical anchor hierarchy is correct in docs.
+
+### TASK-026
+- **Title:** Prepare Wave-2 outreach drafts for Chollet, LMArena, Percy Liang
+- **Status:** PENDING
+- **Priority:** P3
+- **Output:** reports/AGENT_REPORT_YYYYMMDD.md
+- **Description:** Read CONTEXT_SNAPSHOT.md outreach tracker. Draft three personalized emails with PHYS-01/02 angle: kB and NA are SI 2019 exact constants, zero uncertainty -- strongest possible physical anchor. Chollet: ARC Prize benchmark integrity. LMArena: Leaderboard Illusion paper angle. Percy Liang: HELM verification angle.
