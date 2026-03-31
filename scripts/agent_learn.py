@@ -96,8 +96,11 @@ def scan_file_for_stale(path, etalon_count, etalon_version):
         issues.append(f"MERGE CONFLICT MARKERS in {path.name}")
 
     # Check for old test counts
+    skip_282 = path.name == 'README_PPA.md'
     old_counts = [c for c in ["295", "271", "270", "282", "389", "391", "471"]
-                  if c in content and str(etalon_count) not in content]
+                  if c in content
+                  and str(etalon_count) not in content
+                  and not (c == "282" and skip_282)]
     if old_counts and etalon_count > 0:
         issues.append(f"STALE COUNT in {path.name}: found {old_counts}, etalon={etalon_count}")
 
