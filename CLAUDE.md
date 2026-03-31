@@ -297,7 +297,8 @@ This shows what previous agents learned — recurring issues + auto-fix hints.
 
 ```
 1. v0.8.0 LIVE ✅
-2. agent_diff_review.py (Check #17 candidate) ✅
+2. agent_diff_review.py (Check #17) ✅
+3. agent_pr_creator.py (Check #18 — Autonomous Forge) ✅
 3. Wave-2 outreach (Chollet, LMArena, Percy Liang)
 4. Coverage 45% → 65%
 5. First paying customer ($299)
