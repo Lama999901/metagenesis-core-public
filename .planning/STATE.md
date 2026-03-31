@@ -135,9 +135,10 @@ None yet.
 | 260320-ny9 | Test agent_impact.py accuracy with intentional gaps (test-and-revert) | 2026-03-21 | (no code commit) | [260320-ny9-test-agent-impact-py-accuracy-with-inten](./quick/260320-ny9-test-agent-impact-py-accuracy-with-inten/) |
 | 260330-jy1 | Full counter/version sync after MTR-4/5/6 + PHYS-01/02 (v0.8.0, 601 tests, 20 claims) | 2026-03-30 | bff9791 | [260330-jy1-task-023-full-sync-after-mtr-4-5-6-phys-](./quick/260330-jy1-task-023-full-sync-after-mtr-4-5-6-phys-/) |
 | 260330-ktb | Add check #18 Auto PR to agent_evolution.py | 2026-03-30 | 93eaf57 | [260330-ktb-add-check-18-auto-pr-to-agent-evolution-](./quick/260330-ktb-add-check-18-auto-pr-to-agent-evolution-/) |
+| 260330-ucg | Agent training sprint 1: fix agent_learn.py false positive + TASK-022-026 | 2026-03-30 | cc25149 | [260330-ucg-agent-training-sprint-1-fix-agent-learn-](./quick/260330-ucg-agent-training-sprint-1-fix-agent-learn-/) |
 
 ## Session Continuity
 
-Last session: 2026-03-30T22:33:00Z
-Stopped at: Completed quick task 260330-ktb (add check #18 Auto PR to agent_evolution.py)
+Last session: 2026-03-30T22:54:00Z
+Stopped at: Completed quick task 260330-ucg (agent training sprint 1: fix agent_learn.py false positive + TASK-022-026)
 Resume file: None
