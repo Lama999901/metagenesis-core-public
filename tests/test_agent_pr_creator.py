@@ -18,7 +18,7 @@ class TestDetectStaleCounters(unittest.TestCase):
     @patch("builtins.open", mock_open(read_data='{"test_count": 601}'))
     def test_detect_stale_counters_clean(self, mock_run):
         mock_run.return_value = MagicMock(
-            stdout="601 tests collected\n", returncode=0
+            stdout="601 passed, 2 skipped in 5.00s\n", returncode=0
         )
         result = apc.detect_stale_counters(dry_run=True)
         self.assertFalse(result["stale"])
@@ -29,7 +29,7 @@ class TestDetectStaleCounters(unittest.TestCase):
     @patch("builtins.open", mock_open(read_data='{"test_count": 601}'))
     def test_detect_stale_counters_mismatch(self, mock_run):
         mock_run.return_value = MagicMock(
-            stdout="610 tests collected\n", returncode=0
+            stdout="610 passed in 5.00s\n", returncode=0
         )
         result = apc.detect_stale_counters(dry_run=True)
         self.assertTrue(result["stale"])
