@@ -37,12 +37,12 @@ def detect_stale_counters(dry_run=False):
     manifest_count = manifest.get("test_count", 0)
 
     proc = subprocess.run(
-        [sys.executable, "-m", "pytest", "tests/", "--collect-only", "-q"],
+        [sys.executable, "-m", "pytest", "tests/", "-q", "--tb=no"],
         stdout=subprocess.PIPE, text=True, cwd=str(REPO_ROOT),
         stderr=subprocess.DEVNULL, encoding="utf-8", errors="ignore",
     )
     actual_count = 0
-    m = re.search(r"(\d+) tests? collected", proc.stdout)
+    m = re.search(r"(\d+) passed", proc.stdout)
     if m:
         actual_count = int(m.group(1))
 
