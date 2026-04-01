@@ -1,167 +1,186 @@
 # AGENTS.md — Rules for AI Agents Working in This Repo
 
-This file tells Cursor, Claude, Copilot, and any other AI agent
-the rules of this repository. Read this before making any change.
+> v0.8.0 | 20 claims | 608 tests | 18 agent checks
+> This file tells Cursor, Claude, Copilot, and any AI agent the rules of this repo.
+> Read CLAUDE.md first — it is always more current and wins all conflicts.
 
 ---
 
-## HOW TO FULLY ORIENT YOURSELF (read these files in order)
+## MISSION IN ONE SENTENCE
+
+MetaGenesis Core is a **notary for computations** — we certify that a computer
+produced exactly this result, at exactly this time, in exactly this way.
+Without access to the computer. Without trusting anyone. In 60 seconds.
+
+The first paying customer ($299) is the top commercial priority.
+Every change must serve credibility, adoption, or client conversion.
+
+---
+
+## HOW TO FULLY ORIENT YOURSELF (read in order)
 
 ```
-1. CONTEXT_SNAPSHOT.md   ← start here: current state, done, pending, contacts
-2. AGENTS.md             ← this file: rules, forbidden terms, workflow
+1. CLAUDE.md             ← PRIMARY: mission, traps, technical rules — READ FIRST
+2. AGENTS.md             ← this file: hard rules, claim procedure
 3. README.md             ← architecture, claims, quickstart
-4. llms.txt              ← AI-optimized summary of entire repo
-5. reports/canonical_state.md    ← verified claim list
+4. llms.txt              ← LLM-optimized repo summary
+5. reports/canonical_state.md    ← verified claim list (LOCKED)
 6. reports/scientific_claim_index.md  ← all 20 claims with thresholds
 7. reports/known_faults.yaml     ← known limitations, do not overclaim
 8. docs/PROTOCOL.md      ← full protocol specification
 ```
 
-After reading these 8 files you can answer any question about this project.
-
----
+Before any task: `python scripts/agent_learn.py recall`
 
 ---
 
 ## What this repo is
 
 MetaGenesis Core is an open verification protocol layer.
-It implements the MetaGenesis Verification Protocol (MVP) v0.6.
+It implements the MetaGenesis Verification Protocol (MVP) v0.8.
 It makes computational claims tamper-evident, reproducible, and
 independently auditable offline by any third party.
 
 It is NOT a simulation platform.
 It is NOT an AI coordination system.
-It is NOT a molecular assembler or bio-computational system.
 It IS a governance + evidence + verification pipeline.
+It IS patent pending (USPTO #63/996,819).
 
 ---
 
 ## Hard rules — never violate these
 
 **1. Never invent implementations.**
-If a file, function, or test does not exist in the repo,
-say: "Not found in current project context. Please add: <path>"
+If a file, function, or test does not exist in the repo, say:
+"Not found in current project context. Please add: <path>"
 Do not generate placeholder code and claim it is real.
 
 **2. steward_audit must PASS after every change.**
-Before completing any task, run:
+```bash
 python scripts/steward_audit.py
-If it outputs anything other than STEWARD AUDIT: PASS — stop and fix.
+# → STEWARD AUDIT: PASS (required before any merge)
+```
 
 **3. Never use forbidden language.**
-Forbidden: "tamper-proof", "impossible", "unforgeable", "100% test success",
-"19x performance", "GPT-5 integration", "VacuumGenesisEngine", "500+ modules"
-Required: "tamper-evident under trusted verifier assumptions"
+```
+FORBIDDEN → CORRECT
+"tamper-proof" → "tamper-evident"
+"blockchain" → "cryptographic hash chain"
+"unforgeable" → don't use
+"GPT-5" → doesn't exist
+"100% test success" → "608 tests PASS"
+"595 tests" / "601 tests" → "608 tests"
+"v0.6" / "v0.7" → "v0.8.0"
+```
 
-**4. Never add a claim without all four components.**
-A claim requires ALL of:
-  a) implementation file in backend/progress/
-  b) test file in tests/
-  c) entry in reports/scientific_claim_index.md (with job_kind in backticks)
-  d) claim_id added to reports/canonical_state.md current_claims_list
+**4. Never add a claim without ALL components (use GSD).**
+A claim requires:
+  a) backend/progress/<claim_id>.py with 4-step Step Chain
+  b) backend/progress/runner.py dispatch block
+  c) reports/scientific_claim_index.md entry
+  d) reports/canonical_state.md current_claims_list update
+  e) tests/<domain>/test_<claim_id>.py (pass/fail/determinism)
+  f) Counter update everywhere + check_stale_docs.py (UPDATE_PROTOCOL v1.1)
 
-**5. Never touch these without explicit instruction.**
-- reports/canonical_state.md (except to add claim to current_claims_list)
-- reports/known_faults.yaml (do not remove or downgrade any fault entry)
-- scripts/steward_audit.py
-- scripts/mg_policy_gate_policy.json
-- tests/steward/test_cert02_pack_includes_evidence_and_semantic_verify.py
-- ppa/CLAIMS_DRAFT.md (frozen — incorporated by reference into USPTO PPA)
-- docs/ROADMAP.md (do not change version numbers)
-- .github/workflows/
+**5. Never touch sealed files.**
+```
+reports/canonical_state.md       ← policy-gate locked
+reports/known_faults.yaml        ← never remove/downgrade entries
+scripts/steward_audit.py         ← SEALED
+scripts/mg_policy_gate_policy.json ← SEALED
+ppa/CLAIMS_DRAFT.md              ← FROZEN (USPTO)
+.github/workflows/               ← CI gates, add only
+```
 
 **6. Separate FACTS from ASSUMPTIONS.**
 Every technical claim must reference: file path + function name.
-If you are not sure something exists, say so explicitly.
+If not sure something exists — say so explicitly.
+
+**7. Always use GSD for claims/agents/counters.**
+Manual edits without GSD = invisible tails in check_stale_docs.py rules.
 
 ---
 
-## How to add a new claim (correct procedure)
+## How to add a new claim (always via GSD)
 
-Step 1 — Create implementation:
-File: backend/progress/<claim_id_lower>.py
-Required: JOB_KIND constant, run_*() function returning dict with mtr_phase key
+```
+/gsd:quick "Add claim <CLAIM-ID> following ALL 6 steps from UPDATE_PROTOCOL.md..."
+```
 
-Step 2 — Register in runner:
-File: backend/progress/runner.py, function _execute_job_logic()
-Add dispatch block following the exact pattern of existing claims
+Manual procedure (only if GSD unavailable):
 
-Step 3 — Add to claim index:
-File: reports/scientific_claim_index.md
-Add section with: claim_id, domain, job_kind (in backticks), V&V thresholds,
-reproduction command, use case examples
+Step 1 — Implementation: backend/progress/<claim_id_lower>.py
+  Required: JOB_KIND constant, 4-step Step Chain, return dict with mtr_phase key
 
-Step 4 — Update canonical state:
-File: reports/canonical_state.md
-Add claim_id to current_claims_list pipe-separated value
+Step 2 — Runner dispatch: backend/progress/runner.py → _execute_job_logic()
 
-Step 5 — Write tests:
-File: tests/<domain>/test_<claim_id_lower>.py
-Required: test pass case, test fail case, test adversarial edge case,
-test mtr_phase key present, test determinism (same seed → same result)
+Step 3 — Claim index: reports/scientific_claim_index.md
+  Add: claim_id, domain, job_kind, V&V thresholds, reproduction command
 
-Step 6 — Verify:
-python scripts/steward_audit.py → STEWARD AUDIT: PASS
-python -m pytest tests/ -q → 595 passed
-python scripts/deep_verify.py → ALL 13 TESTS PASSED
+Step 4 — Canonical state: reports/canonical_state.md → current_claims_list
+
+Step 5 — Tests: tests/<domain>/test_<claim_id_lower>.py
+  Required: pass case, fail case, adversarial edge, mtr_phase key, determinism
+
+Step 6 — Update ALL counters AND check_stale_docs.py required strings (same PR):
+```bash
+python scripts/steward_audit.py  # → STEWARD AUDIT: PASS
+python -m pytest tests/ -q       # → 608+ passed
+python scripts/deep_verify.py    # → ALL 13 TESTS PASSED
+python scripts/agent_pr_creator.py --summary  # → No auto-pr needed
+```
 
 ---
 
 ## Active claims and their locations
 
-| Claim | File | Test |
-|-------|------|------|
-| MTR-1 | backend/progress/mtr1_calibration.py | tests/materials/ |
-| MTR-2 | backend/progress/mtr2_thermal_conductivity.py | tests/materials/ |
-| MTR-3 | backend/progress/mtr3_thermal_multilayer.py | tests/materials/ |
-| SYSID-01 | backend/progress/sysid1_arx_calibration.py | tests/systems/ |
-| DATA-PIPE-01 | backend/progress/datapipe1_quality_certificate.py | tests/data/ |
-| DRIFT-01 | backend/progress/drift_monitor.py | tests/steward/ |
-| ML_BENCH-01 | backend/progress/mlbench1_accuracy_certificate.py | tests/ml/ |
-| DT-FEM-01 | backend/progress/dtfem1_displacement_verification.py | tests/digital_twin/ |
-| ML_BENCH-02 | backend/progress/mlbench2_regression_certificate.py | tests/ml/ |
-| ML_BENCH-03 | backend/progress/mlbench3_timeseries_certificate.py | tests/ml/ |
-| PHARMA-01 | backend/progress/pharma1_admet_certificate.py | tests/ml/ |
-| FINRISK-01 | backend/progress/finrisk1_var_certificate.py | tests/ml/ |
-| DT-SENSOR-01 | backend/progress/dtsensor1_iot_certificate.py | tests/digital_twin/ |
-| DT-CALIB-LOOP-01 | backend/progress/dtcalib1_convergence_certificate.py | tests/digital_twin/ |
-| AGENT-DRIFT-01 | backend/progress/agent_drift_monitor.py | tests/steward/ |
-| MTR-4 | backend/progress/mtr4_titanium_calibration.py | tests/materials/ |
-| MTR-5 | backend/progress/mtr5_steel_calibration.py | tests/materials/ |
-| MTR-6 | backend/progress/mtr6_copper_conductivity.py | tests/materials/ |
+| Claim | File | Domain | Test |
+|-------|------|--------|------|
+| MTR-1 | backend/progress/mtr1_calibration.py | Materials (Al E=70GPa) | tests/materials/ |
+| MTR-2 | backend/progress/mtr2_thermal_conductivity.py | Materials (thermal) | tests/materials/ |
+| MTR-3 | backend/progress/mtr3_thermal_multilayer.py | Materials (multilayer) | tests/materials/ |
+| MTR-4 | backend/progress/mtr4_titanium_calibration.py | Materials (Ti E=114GPa) | tests/materials/ |
+| MTR-5 | backend/progress/mtr5_steel_calibration.py | Materials (SS E=193GPa) | tests/materials/ |
+| MTR-6 | backend/progress/mtr6_copper_conductivity.py | Materials (Cu k=401) | tests/materials/ |
+| PHYS-01 | backend/progress/phys01_boltzmann.py | Physics (kB SI2019) | tests/physics/ |
+| PHYS-02 | backend/progress/phys02_avogadro.py | Physics (NA SI2019) | tests/physics/ |
+| SYSID-01 | backend/progress/sysid1_arx_calibration.py | System ID | tests/systems/ |
+| DATA-PIPE-01 | backend/progress/datapipe1_quality_certificate.py | Data Pipelines | tests/data/ |
+| DRIFT-01 | backend/progress/drift_monitor.py | Drift Monitoring | tests/steward/ |
+| ML_BENCH-01 | backend/progress/mlbench1_accuracy_certificate.py | ML Classification | tests/ml/ |
+| ML_BENCH-02 | backend/progress/mlbench2_regression_certificate.py | ML Regression | tests/ml/ |
+| ML_BENCH-03 | backend/progress/mlbench3_timeseries_certificate.py | ML Time-Series | tests/ml/ |
+| DT-FEM-01 | backend/progress/dtfem1_displacement_verification.py | Digital Twin FEM | tests/digital_twin/ |
+| DT-SENSOR-01 | backend/progress/dtsensor1_iot_certificate.py | Digital Twin IoT | tests/digital_twin/ |
+| DT-CALIB-LOOP-01 | backend/progress/dtcalib1_convergence_certificate.py | Digital Twin Calib | tests/digital_twin/ |
+| PHARMA-01 | backend/progress/pharma1_admet_certificate.py | Pharma ADMET | tests/ml/ |
+| FINRISK-01 | backend/progress/finrisk1_var_certificate.py | Finance VaR | tests/ml/ |
+| AGENT-DRIFT-01 | backend/progress/agent_drift_monitor.py | Agent Quality | tests/agent/ |
 
 ---
 
 ## Acceptance commands (run before any commit)
 
-python scripts/steward_audit.py
-python -m pytest tests/ -q
-python demos/open_data_demo_01/run_demo.py
-grep -r "tamper-proof\|GPT-5\|19x\|VacuumGenesis\|Infinity Protocol" docs/ scripts/ backend/ tests/
-# → must return empty
-
-# Full proof-not-trust (13 tests including bypass attack + Cross-Claim Chain + Ed25519 + Temporal):
-python scripts/deep_verify.py
-# → ALL 13 TESTS PASSED
-
-All must pass.
+```bash
+python scripts/steward_audit.py      # → STEWARD AUDIT: PASS
+python -m pytest tests/ -q           # → 608 passed
+python scripts/deep_verify.py        # → ALL 13 TESTS PASSED
+python scripts/agent_pr_creator.py --summary  # → No auto-pr needed
+grep -r "tamper-proof\|GPT-5\|19x\|VacuumGenesis\|blockchain" docs/ scripts/ backend/ tests/
+# → empty
+```
 
 ---
 
 ## Architecture in one paragraph
 
-Job runs via runner.run_job() → produces run_artifact.json (with execution_trace + trace_root_hash)
-+ ledger_snapshot.jsonl → evidence_index maps artifacts to claims → steward_submission_pack bundles
-everything → mg.py verify runs five independent layers:
-  Layer 1: SHA-256 integrity (file modification)
-  Layer 2: semantic (job_snapshot present, canary_mode correct, payload.kind matches)
-  Layer 3: step chain (trace_root_hash == final execution step hash)
-  Layer 4: bundle signing (HMAC-SHA256 or Ed25519 signature verification)
-  Layer 5: temporal commitment (NIST Beacon pre-commitment proves WHEN signed)
-→ PASS or FAIL with specific layer and reason.
-For physical domains: anchor_hash embeds upstream trace_root_hash into downstream Step Chain
-(MTR-1 → DT-FEM-01 → DRIFT-01 cryptographically linked end-to-end).
-Steward_audit enforces bidirectional coverage: runner kinds == claim_index kinds == canonical_state.
-Protocol specification: docs/PROTOCOL.md. Architecture: docs/ARCHITECTURE.md.
+Job runs via runner.run_job() → produces run_artifact.json (execution_trace +
+trace_root_hash) + ledger_snapshot.jsonl → evidence_index maps artifacts to
+claims → steward_submission_pack bundles everything → mg.py verify runs five
+independent layers: (1) SHA-256 integrity, (2) semantic verification,
+(3) step chain hash chain, (4) bundle signing Ed25519/HMAC,
+(5) temporal commitment NIST Beacon → PASS or FAIL with specific reason.
+Physical chain: MTR-1 → DT-FEM-01 → DRIFT-01 cryptographically linked via anchor_hash.
+Steward_audit enforces bidirectional coverage on every PR.
+agent_evolution.py runs 18 Mechanicus checks after every merge.
+agent_pr_creator.py autonomously creates PRs for detected issues.

@@ -138,9 +138,10 @@ None yet.
 | 260330-ucg | Agent training sprint 1: fix agent_learn.py false positive + TASK-022-026 | 2026-03-30 | cc25149 | [260330-ucg-agent-training-sprint-1-fix-agent-learn-](./quick/260330-ucg-agent-training-sprint-1-fix-agent-learn-/) |
 | 260330-uyi | Replace stub agent_pr_creator.py with real Level 3 agent (3 detectors) | 2026-03-30 | bf2cbfd | [260330-uyi-replace-stub-agent-pr-creator-py-with-re](./quick/260330-uyi-replace-stub-agent-pr-creator-py-with-re/) |
 | 260330-vbc | Counter sync 601->608 across all docs and check_stale_docs.py | 2026-03-31 | a36714d | [260330-vbc-counter-sync-601-608-per-update-protocol](./quick/260330-vbc-counter-sync-601-608-per-update-protocol/) |
+| 260331-m5w | Commit CLAUDE.md v2.0 + AGENTS.md v0.8.0 | 2026-03-31 | ad1df42 | [260331-m5w-commit-claude-md-v2-0-and-agents-md-v0-8](./quick/260331-m5w-commit-claude-md-v2-0-and-agents-md-v0-8/) |
 
 ## Session Continuity
 
-Last session: 2026-03-31T06:37:53Z
-Stopped at: Completed quick task 260330-vbc (counter sync 601->608)
+Last session: 2026-03-31T06:39:14Z
+Stopped at: Completed quick task 260331-m5w (CLAUDE.md v2.0 + AGENTS.md v0.8.0)
 Resume file: None
