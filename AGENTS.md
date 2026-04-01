@@ -1,6 +1,6 @@
 # AGENTS.md — Rules for AI Agents Working in This Repo
 
-> v0.8.0 | 20 claims | 651 tests | 18 agent checks
+> v0.8.0 | 20 claims | 651 tests | 19 agent checks
 > This file tells Cursor, Claude, Copilot, and any AI agent the rules of this repo.
 > Read CLAUDE.md first — it is always more current and wins all conflicts.
 

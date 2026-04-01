@@ -76,8 +76,8 @@ CONTENT_CHECKS = {
         "required": ["651", "v0.8"],
     },
     "AGENTS.md": {
-        "banned": ["16 agent checks", "17 agent checks"],
-        "required": ["651", "v0.8.0", "20 claims", "18 agent checks"],
+        "banned": ["16 agent checks", "17 agent checks", "18 agent checks"],
+        "required": ["651", "v0.8.0", "20 claims", "19 agent checks"],
     },
     "CONTRIBUTING.md": {
         "banned": ["223 passed", "295 passed", "511 passed", "526 passed", "544 passed", "586 passed", "595 passed", "601 passed", "608 passed", "601", "ALL 10 TESTS", "3 verification layers"],
@@ -92,8 +92,8 @@ CONTENT_CHECKS = {
         "required": ["(MVP) v0.8", "Five verification layers", "8 innovations"],
     },
     "docs/AGENT_SYSTEM.md": {
-        "banned": ["15 checks", "15-check", "17 checks", "17-check"],
-        "required": ["Level 1", "Level 2", "Level 3", "AGENT-DRIFT-01", "18 checks"],
+        "banned": ["15 checks", "15-check", "17 checks", "17-check", "18 checks", "18-check"],
+        "required": ["Level 1", "Level 2", "Level 3", "AGENT-DRIFT-01", "19 checks"],
     },
     "docs/ARCHITECTURE.md": {
         "banned": ["282 tests", "511 tests", "544 tests", "595 tests", "601 tests", "Architecture v0.2", "Three verification layers"],
@@ -120,8 +120,8 @@ CONTENT_CHECKS = {
         "required": ["five independent layers"],
     },
     "README.md": {
-        "banned": ["295 passing", "511 passing", "526 passing", "544 passing", "595 passing", "601 passing", "601", "6 innovations", "7 innovations", "14 agent checks", "17 agent checks", "The 14 Checks", "The 17 Checks", "ALL 14 CHECKS PASSED", "ALL 17 CHECKS PASSED", "10 automated", "18 verified claims", "17 autonomous", "15 Active Verification"],
-        "required": ["651", "8 innovations", "18 agent checks", "The 18 Checks", "ALL 18 CHECKS PASSED", "20 claims", "PHYS-01", "PHYS-02"],
+        "banned": ["295 passing", "511 passing", "526 passing", "544 passing", "595 passing", "601 passing", "601", "6 innovations", "7 innovations", "14 agent checks", "17 agent checks", "18 agent checks", "The 14 Checks", "The 17 Checks", "The 18 Checks", "ALL 14 CHECKS PASSED", "ALL 17 CHECKS PASSED", "ALL 18 CHECKS PASSED", "10 automated", "18 verified claims", "17 autonomous", "15 Active Verification"],
+        "required": ["651", "8 innovations", "19 agent checks", "The 19 Checks", "ALL 19 CHECKS PASSED", "20 claims", "PHYS-01", "PHYS-02"],
     },
     "index.html": {
         "banned": ["<span>10</span>", "14 active domain claims", "Fourteen</span> claims", "Fifteen</span> claims", "15 active domain claims", "18 active domain claims", "Eighteen</span> claims", "hv\">v0.7.0"],
@@ -253,7 +253,7 @@ CONTENT_CHECKS = {
     },
     "scripts/agent_evolution.py": {
         "banned": [],
-        "required": ["check_signals", "check_chronicle", "check_pr_review", "check_impact", "v0.8.0"],
+        "required": ["check_signals", "check_chronicle", "check_pr_review", "check_impact", "check_semantic_audit", "v0.8.0"],
     },
     "scripts/agent_impact.py": {
         "banned": [],

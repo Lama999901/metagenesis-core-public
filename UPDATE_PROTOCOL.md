@@ -34,6 +34,7 @@ Not updating all layers = a tail that accumulates and breaks trust.
 [ ] runner.py — dispatch added
 [ ] reports/scientific_claim_index.md — section added
 [ ] reports/canonical_state.md — claim_id in current_claims_list
+[ ] python scripts/agent_audit.py --summary -> ALL 6 CHECKS PASS
 
 [ ] UPDATE NUMBERS EVERYWHERE:
     [ ] system_manifest.json → active_claims + test_count
@@ -309,6 +310,7 @@ Select-String "OLD_NUMBER" index.html, README.md, llms.txt, system_manifest.json
 [ ] system_manifest.json — add to verified_innovations
 [ ] paper.md — update innovation count + description
 [ ] CURSOR_MASTER_PROMPT_v2_X.md — BLOCK A current state
+[ ] reports/audit_config.json -> add innovation to innovations_test_map
 ```
 
 ---
