@@ -12,7 +12,7 @@
 **Site:** https://metagenesis-core.dev
 **Contact:** yehor@metagenesis-core.dev
 **PPA:** USPTO #63/996,819 -- filed 2026-03-05  
-**Version:** v0.8.0 | 20 claims | 651 tests | 18 agent checks | 21/21 tasks done
+**Version:** v0.8.0 | 20 claims | 651 tests | 19 agent checks | 21/21 tasks done
 
 ---
 
@@ -321,7 +321,7 @@ python -m pytest tests/steward/test_cert12_encoding_attacks.py -v
 
 MetaGenesis Core includes an autonomous agent monitoring system -- 18 checks that run daily in CI, ensuring the protocol and its documentation remain consistent, complete, and correct.
 
-### The 18 Checks
+### The 19 Checks
 
 | # | Check | What it verifies |
 |---|-------|-----------------|
@@ -348,7 +348,7 @@ MetaGenesis Core includes an autonomous agent monitoring system -- 18 checks tha
 
 ```bash
 python scripts/agent_evolution.py --summary
-# -> ALL 18 CHECKS PASSED -- system healthy
+# -> ALL 19 CHECKS PASSED -- system healthy
 ```
 
 The system runs automatically on every CI merge via `.github/workflows/total_audit_guard.yml`. When a check fails, the merge is blocked. No human override. The protocol protects itself.
@@ -581,7 +581,7 @@ python scripts/deep_verify.py
 
 # Agent evolution system (18 checks):
 python scripts/agent_evolution.py --summary
-# -> ALL 18 CHECKS PASSED -- system healthy
+# -> ALL 19 CHECKS PASSED -- system healthy
 ```
 
 **Active claims:** MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01, DT-FEM-01, ML_BENCH-02, ML_BENCH-03, PHARMA-01, FINRISK-01, DT-SENSOR-01, DT-CALIB-LOOP-01, AGENT-DRIFT-01, MTR-4, MTR-5, MTR-6, PHYS-01, PHYS-02

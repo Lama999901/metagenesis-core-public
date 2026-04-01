@@ -1,0 +1,43 @@
+{
+  "version": "1.0",
+  "description": "Audit config — update when innovations change (see UPDATE_PROTOCOL.md)",
+  "last_updated": "2026-04-01",
+  "innovations_test_map": {
+    "bidirectional_claim_coverage":         "tests/steward/test_stew02_claim_coverage.py",
+    "tamper_evident_semantic_verification": "tests/steward/test_cert02_pack_includes_evidence_and_semantic_verify.py",
+    "policy_gate_immutable_anchors":        "tests/scripts/test_mg_policy_gate.py",
+    "dual_mode_canary_pipeline":            "tests/steward/test_stew05_pack_includes_all_claims.py",
+    "step_chain_verification":              "tests/steward/test_cert03_step_chain_verify.py",
+    "cross_claim_cryptographic_chain":      "tests/steward/test_cross_claim_chain.py",
+    "bundle_signing_hmac_sha256":           "tests/steward/test_cert07_bundle_signing.py",
+    "temporal_commitment_nist_beacon":      "tests/steward/test_cert10_temporal_attacks.py"
+  },
+  "physical_anchor_constants": {
+    "PHYS-01": {
+      "file": "backend/progress/phys01_boltzmann.py",
+      "constant_name": "BOLTZMANN_K",
+      "expected_value": 1.380649e-23,
+      "tolerance": 1e-30,
+      "anchor_type": "SI 2019 exact"
+    },
+    "PHYS-02": {
+      "file": "backend/progress/phys02_avogadro.py",
+      "constant_name": "AVOGADRO_N",
+      "expected_value": 6.02214076e23,
+      "tolerance": 1e14,
+      "anchor_type": "SI 2019 exact"
+    }
+  },
+  "demo_regulatory_keywords": {
+    "01_ai_benchmark": ["NeurIPS", "Leaderboard Illusion", "Meta"],
+    "02_pharma":       ["FDA", "21 CFR", "credibility framework"],
+    "03_finance":      ["Basel", "SR 11-7", "VaR"],
+    "04_digital_twin": ["AS9100", "NASA-STD", "FEM"]
+  },
+  "patent": {
+    "ppa_number": "63/996,819",
+    "ppa_filed": "2026-03-05",
+    "warn_days_before_deadline": 90,
+    "fail_days_before_deadline": 30
+  }
+}

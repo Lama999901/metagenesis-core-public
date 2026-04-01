@@ -162,7 +162,7 @@ Tests:       651 passing (2 skipped)
 Layers:      5 verification (integrity + semantic + step chain + signing + temporal)
 Innovations: 8 (5 PPA + HMAC + Ed25519 + Temporal)
 Domains:     8 (materials, sysid, data, ml, digital_twin, pharma, finance, physics)
-Checks:      18 Mechanicus (agent_evolution.py)
+Checks:      19 Mechanicus (agent_evolution.py)
 Release:     v0.8.0 LIVE
 Coverage:    ~40% (target 65%)
 agent_pr_creator: REAL (203 lines, 3 detectors) — catches stale counters automatically
@@ -350,7 +350,7 @@ scripts/mg_ed25519.py       ← Ed25519 asymmetric signing Innovation #7
 scripts/mg_temporal.py      ← NIST Beacon temporal commitment Innovation #8 (Layer 5)
 scripts/steward_audit.py    ← governance (SEALED)
 scripts/deep_verify.py      ← 13-test proof script
-scripts/agent_evolution.py  ← 18 Mechanicus checks
+scripts/agent_evolution.py  ← 19 Mechanicus checks
 scripts/agent_pr_creator.py ← Level 3 autonomous PR (203 lines, 3 detectors)
 scripts/agent_learn.py      ← session memory (57 sessions, 15 patterns)
 scripts/check_stale_docs.py ← documentation currency checker
@@ -427,5 +427,5 @@ This shows recurring issues + auto-fix hints from 57 sessions.
 ---
 
 *CLAUDE.md v2.0 — 2026-03-31 — MetaGenesis Core v0.8.0 LIVE*
-*651 tests | 20 claims | 18 checks | Level 3 autonomous forge ACTIVE*
+*651 tests | 20 claims | 19 checks | Level 3 autonomous forge ACTIVE*
 *Mission: notary for computations. First client = history.*

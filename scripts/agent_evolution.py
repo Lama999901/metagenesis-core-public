@@ -460,6 +460,20 @@ def check_auto_pr():
         return True  # advisory only
 
 
+def check_semantic_audit():
+    section("SEMANTIC AUDIT — Project Coherence Check")
+    out, code = run("python scripts/agent_audit.py --summary")
+    if code == 0:
+        ok("All semantic checks pass (SEMANTIC_PASS)")
+        return True
+    else:
+        err("Semantic audit failed (SEMANTIC_FAIL)")
+        for line in out.splitlines():
+            if "FAIL" in line:
+                info(line.strip()[:100])
+        return False
+
+
 # ── Main ─────────────────────────────────────────────────────────────────────
 def main():
     strict = "--strict" in sys.argv
@@ -494,6 +508,7 @@ def main():
     results["impact"] = check_impact()
     results["diff_review"] = check_diff_review()
     results["auto_pr"]    = check_auto_pr()
+    results["semantic_audit"] = check_semantic_audit()
 
     # ── Summary ──
     section("SUMMARY — Omnissiah's Verdict")
@@ -519,6 +534,7 @@ def main():
         "impact":        ("Cogitator impact analyzed",       "IMPACT"),
         "diff_review":   ("Logic Arbiter satisfied",          "DIFF"),
         "auto_pr":       ("Autonomous Forge current",         "AUTOPR"),
+        "semantic_audit": ("Project semantically coherent",    "SEMANTIC"),
     }
 
     for check, ok_val in results.items():

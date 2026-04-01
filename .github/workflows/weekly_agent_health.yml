@@ -38,9 +38,13 @@ jobs:
         run: |
           python scripts/agent_signals.py || true
 
-      - name: Agent evolution (18-check health)
+      - name: Agent evolution (19-check health)
         run: |
           python scripts/agent_evolution.py --summary
+
+      - name: Agent semantic audit (project coherence)
+        run: |
+          python scripts/agent_audit.py --summary || true
 
       - name: Agent chronicle (version snapshot)
         run: |
