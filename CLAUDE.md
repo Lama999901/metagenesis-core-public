@@ -116,9 +116,8 @@ scripts/mg.py                                    ← core verifier, modify caref
 "unforgeable"       → don't use
 "GPT-5"             → doesn't exist
 "100% test success" → "608 tests PASS"
-"595 tests"         → outdated, use 608
-"601 tests"         → outdated, use 608
-"v0.7.0"            → outdated, use v0.8.0
+any stale test count → always use current count from system_manifest.json
+any stale version    → always use v0.8.0
 ```
 
 ---
