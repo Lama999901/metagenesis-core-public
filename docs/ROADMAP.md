@@ -4,7 +4,7 @@ This roadmap reflects planned development directions.
 All items are subject to change based on community feedback and priorities.
 
 **Current version:** 0.8.0
-**Protocol:** MetaGenesis Verification Protocol (MVP) v0.5
+**Protocol:** MetaGenesis Verification Protocol (MVP) v0.8
 
 **Core principle:** MetaGenesis Core verifies that computational results
 agree with physical reality — not just that numbers weren't changed.
@@ -24,7 +24,7 @@ This is traceability to physical measurement, not threshold compliance.
       ML_BENCH-01, DT-FEM-01
 - [x] Protocol specification (docs/PROTOCOL.md v0.2)
 - [x] Architecture documentation (docs/ARCHITECTURE.md v0.2)
-- [x] Step Chain Verification in ALL 14 claims (4-step execution trace)
+- [x] Step Chain Verification in ALL 20 claims (4-step execution trace)
 - [x] Cross-Claim Cryptographic Chain (MTR-1 → DT-FEM-01 → DRIFT-01)
 - [x] anchor_hash validation in mg.py verify
 - [x] verify-chain CLI command

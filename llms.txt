@@ -1,9 +1,5 @@
-python3 -c "
-with open('/mnt/user-data/outputs/llms.txt', 'r') as f: c = f.read()
-" 
-
 Open verification protocol for computational claims.
-Implements the MetaGenesis Verification Protocol (MVP) v0.6.
+Implements the MetaGenesis Verification Protocol (MVP) v0.8.
 
 Any computational result — ML accuracy, calibration output, FEM simulation,
 ADMET prediction, VaR estimate, IoT sensor stream — can be packaged into a
@@ -47,12 +43,14 @@ AGENT-DRIFT-01   agent_drift_monitor                    (agent quality drift —
 MTR-4        mtr4_titanium_modulus_calibration        (materials — physical anchor E=114GPa Ti-6Al-4V)
 MTR-5        mtr5_steel_modulus_calibration           (materials — physical anchor E=193GPa SS316L)
 MTR-6        mtr6_copper_conductivity_calibration     (materials — physical anchor k=401 W/(m·K) Cu)
+PHYS-01      phys01_boltzmann                         (fundamental physics — SI 2019 exact kB=1.380649e-23 J/K)
+PHYS-02      phys02_avogadro                          (fundamental physics — SI 2019 exact NA=6.022e23 mol-1)
 
 ## Physical Anchor Principle (SCOPE_001)
 
 Two distinct concepts — never conflate:
 - Tamper-evident provenance: "was the bundle modified?" → ALL 20 claims
-- Physical anchor: "does the number agree with physical reality?" → MTR-1/2/3, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP-01 ONLY
+- Physical anchor: "does the number agree with physical reality?" → MTR-1/2/3/4/5/6, PHYS-01/02, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP-01 ONLY
 
 E = 70 GPa for aluminium is a physical constant measured in thousands of labs worldwide.
 NOT a chosen threshold. MTR-1 verifies rel_err ≤ 1% vs this constant.
@@ -103,15 +101,15 @@ Enforced by: python scripts/steward_audit.py → must output STEWARD AUDIT: PASS
 ## How to verify everything works
 
 python scripts/steward_audit.py                              # PASS
-python -m pytest tests/ -q                                   # 595 passed
+python -m pytest tests/ -q                                   # 608 passed
 python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 
-## Current state (2026-03-21)
+## Current state (2026-03-31)
 
-- Claims: 18
-- Tests: 595 passing
+- Claims: 20
+- Tests: 608 passing
 - Verification layers: 5 (integrity + semantic + step chain + bundle signing + temporal commitment)
-- Domains: 7 (materials, sysid, data, ml, digital_twin, pharma_biotech, financial_risk)
+- Domains: 8 (materials, sysid, data, ml, digital_twin, pharma_biotech, financial_risk, fundamental_physics)
 - Cross-Claim Chain: MTR-1 → DT-FEM-01 → DRIFT-01 cryptographically linked via anchor_hash
 - steward_audit: PASS
 - known_faults: 2 entries (ENV_001 + SCOPE_001)
@@ -119,7 +117,7 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 - HN post live: https://news.ycombinator.com/item?id=47335416
 - PPA filed: 2026-03-05 — non-provisional deadline 2027-03-05
 - Payment: $299/bundle — bank transfer / crypto (BTC/ETH/USDC) / invoice — yehor@metagenesis-core.dev
-- GitHub Release: v0.6.0 — https://github.com/Lama999901/metagenesis-core-public/releases/tag/v0.6.0
+- GitHub Release: v0.8.0 — https://github.com/Lama999901/metagenesis-core-public/releases/tag/v0.8.0
 - Outreach sent: Tongqi Wen, Giovanni Pizzi, Brian Nosek (follow-up), Peter Coveney (follow-up),
   Arvind Narayanan (follow-up), Jeffrey Ip, Elena Samuylova (resent with subject),
   Anand Kannappan, Vikram Chatterji, Woody Sherman, Jonathan Godwin,
@@ -131,8 +129,8 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 ## Key files
 
 - README.md — problem, solution, quickstart
-- docs/PROTOCOL.md — v0.5 protocol specification (5 layers + Cross-Claim Chain)
-- docs/ARCHITECTURE.md — v0.5 architecture diagrams
+- docs/PROTOCOL.md — v0.8 protocol specification (5 layers + Cross-Claim Chain)
+- docs/ARCHITECTURE.md — v0.8 architecture diagrams
 - docs/ROADMAP.md — planned expansion
 - reports/scientific_claim_index.md — all 20 claims with thresholds
 - reports/canonical_state.md — authoritative claims list
@@ -148,7 +146,7 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 
 ## Agent evolution system
 
-Embedded agent governance with 16 evolution checks (`scripts/agent_evolution.py`)
+Embedded agent governance with 18 evolution checks (`scripts/agent_evolution.py`)
 and 8 daily CI agents enforcing documentation consistency, test coverage,
 manifest accuracy, forbidden terms, and branch synchronization automatically.
 Includes cumulative learning (`scripts/agent_learn.py`) that records recurring
