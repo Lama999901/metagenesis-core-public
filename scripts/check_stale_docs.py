@@ -76,8 +76,8 @@ CONTENT_CHECKS = {
         "required": ["version: 0.8", "five independent", "608"],
     },
     "docs/PROTOCOL.md": {
-        "banned": ["MVP v0.2", "MVP v0.3", "MVP v0.4", "Three verification layers", "5 patentable"],
-        "required": ["(MVP) v0.5", "Five verification layers", "8 innovations"],
+        "banned": ["MVP v0.2", "MVP v0.3", "MVP v0.4", "MVP v0.5", "Three verification layers", "5 patentable"],
+        "required": ["(MVP) v0.8", "Five verification layers", "8 innovations"],
     },
     "docs/AGENT_SYSTEM.md": {
         "banned": ["15 checks", "15-check", "17 checks", "17-check"],
