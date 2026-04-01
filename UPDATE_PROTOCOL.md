@@ -198,6 +198,16 @@ Select-String "OLD_NUMBER" index.html, README.md, AGENTS.md, llms.txt, system_ma
 
 ---
 
+## NEW DEMOS (new client scenario)
+
+When a new `demos/client_scenarios/*/run_scenario.py` is added:
+
+- [ ] README.md -- add to demos section
+- [ ] llms.txt -- update demos count / mention new scenario
+- [ ] demos/client_scenarios/README.md -- add scenario row to table
+
+---
+
 ## LESSONS: HOW TAILS APPEAR
 
 | When | What was missed | Consequence |

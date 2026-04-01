@@ -102,6 +102,14 @@ DEPENDENCY_RULES = {
             "system_manifest.json",
         ],
     },
+    "new_demo": {
+        "trigger_paths": ["demos/"],
+        "trigger_description": "New demo scenario added",
+        "required_files": [
+            "README.md",
+            "llms.txt",
+        ],
+    },
 }
 
 

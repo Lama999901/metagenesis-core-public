@@ -143,6 +143,7 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
   verify-chain: python scripts/mg.py verify-chain bundle1/ bundle2/ bundle3/
 - scripts/deep_verify.py — 13-test proof-not-trust verification script
 - demos/open_data_demo_01/run_demo.py — working end-to-end demo
+- demos/client_scenarios/ — 4 client scenarios: ML/AI, Pharma, Finance, Digital Twin
 
 ## Agent evolution system
 
