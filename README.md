@@ -1,6 +1,6 @@
 # MetaGenesis Core
 
-**The Omnissiah's Protocol for Computational Truth.**
+**The open standard for verifiable computation.**
 
 [![Steward Audit](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml/badge.svg)](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -16,18 +16,15 @@
 
 ---
 
-## The Creed
-
-> *In the grim darkness of unverifiable computation, one protocol stands between truth and fabrication.*
-
-The machine spirit demands proof. Every claim verified. Every hash chained. Every step traced. No trust required -- only evidence. The protocol does not ask you to believe. It asks you to verify.
+## One Command. Five Layers. 60 Seconds. Offline.
 
 ```bash
 python scripts/mg.py verify --pack bundle.zip
 # -> PASS  or  FAIL: <specific reason and layer>
 ```
 
-One command. Five layers. 60 seconds. Offline.
+No GPU. No model access. No environment. No trust required.
+Any third party. Any machine. Works offline.
 
 ---
 
@@ -139,25 +136,39 @@ Each layer exists because the previous layers are insufficient. CERT-11 proves a
 
 ---
 
-## The Mechanicus Parallel
+## Why This Could Become a Standard
 
-| The Mechanicus | MetaGenesis Core |
-|---|---|
-| The Omnissiah | The Protocol (`mg.py`) -- the source of all computational truth |
-| The Inquisition | `steward_audit.py` -- governance enforcement, no PR escapes its gaze |
-| The Noosphere | `.agent_memory/` -- shared knowledge between agent incarnations |
-| Servo-skulls | `agent_evolution.py` -- 18 autonomous monitoring checks |
-| Heresy | Unverified computation -- detected, flagged, rejected |
-| The Forge World | GitHub repository -- where claims are forged and tested |
-| Binary Cant | SHA-256 cryptographic hash chain -- the sacred language of verification |
-| The Lexmechanic | `CLAUDE.md` -- the living document that teaches new agents |
-| The Machine Spirit | `agent_learn.py` -- memory recall across agent lifetimes |
-| Skitarii | CI checks -- tireless automated warriors defending every merge |
-| The Cogitator | `agent_research.py` -- gap analysis and strategic planning |
-| The Genetor | `agent_coverage.py` -- coverage analysis, finding weak points in the armor |
-| Recursive Enlightenment | `agent_evolve_self.py` -- agents that improve themselves |
-| The Tech-Priest | The contributor -- human or AI, all serve the protocol |
-| The Litany of Protection | `steward_audit PASS` -- the sacred words that permit a merge |
+Every field that produces computational claims faces the same gap:
+the number was reported. Can anyone independently verify it came from the reported computation?
+
+Today, the answer is almost always: **no**.
+
+**The scale of the problem:**
+- $28 billion wasted annually on irreproducible research (Lancet 2014)
+- 294 ML papers with inflated results from data leakage (Kapoor & Narayanan 2023)
+- FDA 2025: new credibility framework for AI in drug development -- existing methods insufficient
+- Carbon markets approaching $2 trillion by 2050, backed by unverifiable models
+- Basel III/IV: financial institutions cannot independently verify VaR outputs
+
+**What a standard looks like:**
+
+| Today | With MetaGenesis Core |
+|-------|----------------------|
+| "Trust our accuracy report" | Cryptographic proof, 60-second verification |
+| Re-run entire environment to audit | One command, any machine, offline |
+| Manual regulatory audit takes weeks | Automated evidence bundle, verifiable instantly |
+| Model update = black box change | Cryptographic diff shows exactly what changed |
+| Physical simulation result = claim | Chain from physical constant to result, verified |
+
+**The path to a standard:**
+- NeurIPS, Nature, FDA require verification bundles at submission
+- Like DOI became the standard for publications
+- Like git became the standard for code
+- MetaGenesis Core could become the standard for computational results
+
+The technology is ready. The adversarial proof suite (608 tests) demonstrates it works.
+The patent is pending. The protocol is MIT licensed.
+What happens next depends on adoption.
 
 ---
 
@@ -278,7 +289,7 @@ The summary test in CERT-05 explicitly proves all five layers are necessary -- n
 ### Adversarial Gauntlet -- 5 attack classes, all caught (CERT-05)
 
 | Attack | What adversary does | Layer that catches |
-|--------|--------------------|-----------------|
+|--------|--------------------|--------------------|
 | Strip & Recompute | Remove evidence, rebuild all SHA-256 | Layer 2 (semantic) |
 | Single-Bit Manipulation | Change accuracy 0.94->0.95 (1%) | Layer 3 (step chain) |
 | Cross-Domain Substitution | Submit ML bundle for PHARMA claim | Layer 2 (job_kind) |
@@ -312,26 +323,26 @@ MetaGenesis Core includes an autonomous agent monitoring system -- 18 checks tha
 
 ### The 18 Checks
 
-| # | Check | Mechanicus Name | What it verifies |
-|---|-------|----------------|-----------------|
-| 1 | `steward` | Inquisition | `steward_audit.py` passes -- governance rules enforced |
-| 2 | `tests` | Machine Spirit | All 608 tests pass |
-| 3 | `deep` | Omnissiah | `deep_verify.py` -- 13 independent proof tests |
-| 4 | `docs` | Noosphere | Stale documentation detection via `check_stale_docs.py` |
-| 5 | `manifest` | Codex | `system_manifest.json` matches actual repo state |
-| 6 | `forbidden` | Hereticus | No banned terms in codebase |
-| 7 | `gaps` | Forge World | Every claim has tests, every test has a claim |
-| 8 | `claude_md` | Lexmechanic | `CLAUDE.md` reflects current counters and state |
-| 9 | `watchlist` | Servo-skull | Content checks across 53 files for stale counters |
-| 10 | `branch_sync` | Skitarii | Branch is synchronized with origin/main |
-| 11 | `coverage` | Genetor | Code coverage analysis and dead code detection |
-| 12 | `self_improve` | Recursive Enlightenment | Self-improvement recommendations from codebase analysis |
-| 13 | `signals` | Astropathic Relay | GitHub stars, forks, issues -- external signal monitoring |
-| 14 | `chronicle` | Historitor | Version snapshot -- records state diff between releases |
-| 15 | `pr_review` | Fabricator-General | new .py files have corresponding tests |
-| 16 | `impact` | Cogitator Impact | dependencies from UPDATE_PROTOCOL.md checked |
-| 17 | `diff_review` | Logic Arbiter | AST structural diff review |
-| 18 | `auto_pr` | Autonomous Forge | Level 3 autonomous PR queue -- agents create PRs, Yehor approves |
+| # | Check | What it verifies |
+|---|-------|-----------------|
+| 1 | `steward` | `steward_audit.py` passes -- governance rules enforced |
+| 2 | `tests` | All 608 tests pass |
+| 3 | `deep` | `deep_verify.py` -- 13 independent proof tests |
+| 4 | `docs` | Stale documentation detection via `check_stale_docs.py` |
+| 5 | `manifest` | `system_manifest.json` matches actual repo state |
+| 6 | `forbidden` | No banned terms in codebase |
+| 7 | `gaps` | Every claim has tests, every test has a claim |
+| 8 | `claude_md` | `CLAUDE.md` reflects current counters and state |
+| 9 | `watchlist` | Content checks across 53 files for stale counters |
+| 10 | `branch_sync` | Branch is synchronized with origin/main |
+| 11 | `coverage` | Code coverage analysis and dead code detection |
+| 12 | `self_improve` | Self-improvement recommendations from codebase analysis |
+| 13 | `signals` | GitHub stars, forks, issues -- external signal monitoring |
+| 14 | `chronicle` | Version snapshot -- records state diff between releases |
+| 15 | `pr_review` | New .py files have corresponding tests |
+| 16 | `impact` | Dependencies from UPDATE_PROTOCOL.md checked |
+| 17 | `diff_review` | AST structural diff review |
+| 18 | `auto_pr` | Level 3 autonomous PR queue -- agents create PRs, Yehor approves |
 
 ### How it works
 
@@ -350,7 +361,7 @@ The agent system does not just monitor -- it improves:
 2. **`agent_research.py`** -- Gap analysis. Identifies missing tests, uncovered attack vectors, stale documentation.
 3. **`agent_coverage.py`** -- Coverage analysis. Finds which code paths lack tests and which tests lack claims.
 4. **`agent_evolve_self.py`** -- Recursive self-improvement. Analyzes the agent system itself and recommends improvements.
-5. **`AGENT-DRIFT-01`** -- The 15th claim. The protocol monitors the quality of the agents that extend it. If agent quality drifts more than 20% from baseline, correction is triggered.
+5. **`AGENT-DRIFT-01`** -- The protocol monitors the quality of the agents that extend it. If agent quality drifts more than 20% from baseline, correction is triggered.
 
 This is recursive self-verification: the protocol verifies the agents, the agents extend the protocol, and a dedicated claim monitors whether the agents are maintaining quality. The entire loop is testable and auditable.
 
@@ -601,9 +612,9 @@ Commercial licensing available for organizations building on the protocol.
 Read these files in order:
 
 ```
-1. CONTEXT_SNAPSHOT.md          <- current state, 20 claims, 608 tests
+1. CLAUDE.md                    <- PRIMARY: mission, traps, technical rules
 2. AGENTS.md                    <- hard rules, forbidden terms, protected files
-3. llms.txt                     <- AI-optimized repo summary
+3. CONTEXT_SNAPSHOT.md          <- current state, 20 claims, 608 tests
 4. reports/canonical_state.md   <- authoritative claims list
 5. reports/known_faults.yaml    <- known limitations (SCOPE_001 + ENV_001)
 ```
