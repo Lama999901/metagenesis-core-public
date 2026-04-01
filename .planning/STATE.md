@@ -43,7 +43,7 @@ See: .planning/PROJECT.md (updated 2026-03-18)
 Phase: 8 of 8 (Counter Updates)
 Plan: 2 of 2 complete
 Status: Completed
-Last activity: 2026-03-31 - Completed quick task 260330-vbc: Counter sync 601->608 across all documentation
+Last activity: 2026-04-01 - Completed quick task 260331-ov3: fix stale counters in llms.txt + CONTEXT_SNAPSHOT.md
 
 Progress: [██████████] 9/9 plans complete (100%)
 
@@ -139,9 +139,13 @@ None yet.
 | 260330-uyi | Replace stub agent_pr_creator.py with real Level 3 agent (3 detectors) | 2026-03-30 | bf2cbfd | [260330-uyi-replace-stub-agent-pr-creator-py-with-re](./quick/260330-uyi-replace-stub-agent-pr-creator-py-with-re/) |
 | 260330-vbc | Counter sync 601->608 across all docs and check_stale_docs.py | 2026-03-31 | a36714d | [260330-vbc-counter-sync-601-608-per-update-protocol](./quick/260330-vbc-counter-sync-601-608-per-update-protocol/) |
 | 260331-m5w | Commit CLAUDE.md v2.0 + AGENTS.md v0.8.0 | 2026-03-31 | ad1df42 | [260331-m5w-commit-claude-md-v2-0-and-agents-md-v0-8](./quick/260331-m5w-commit-claude-md-v2-0-and-agents-md-v0-8/) |
+| 260331-mye | README v2 — remove Mechanicus, add standard potential | 2026-03-31 | ad0745d | [260331-mye-commit-readme-md-v2-remove-mechanicus-ad](./quick/260331-mye-commit-readme-md-v2-remove-mechanicus-ad/) |
+| 260331-nb3 | index.html — fix 595→608, mission copy, market scale, standard vision | 2026-03-31 | 286a879 | [260331-nb3-fix-index-html-restore-from-git-4-missio](./quick/260331-nb3-fix-index-html-restore-from-git-4-missio/) |
+| 260331-ode | Technical Truth Audit v0.8.0 — all 7 sections verified | 2026-04-01 | badf522 | [260331-ode-technical-truth-audit-v0-8-0-all-7-secti](./quick/260331-ode-technical-truth-audit-v0-8-0-all-7-secti/) |
+| 260331-ov3 | Fix stale counters in llms.txt and CONTEXT_SNAPSHOT.md | 2026-04-01 | 748f3b1, 96a8a46 | [260331-ov3-fix-stale-counters-in-llms-txt-paper-md-](./quick/260331-ov3-fix-stale-counters-in-llms-txt-paper-md-/) |
 
 ## Session Continuity
 
-Last session: 2026-03-31T06:39:14Z
-Stopped at: Completed quick task 260331-m5w (CLAUDE.md v2.0 + AGENTS.md v0.8.0)
+Last session: 2026-04-01T01:58:00Z
+Stopped at: Completed quick task 260331-ov3 (fix stale counters in llms.txt and CONTEXT_SNAPSHOT.md)
 Resume file: None
