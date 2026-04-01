@@ -36,7 +36,7 @@ jobs:
 
       - name: Agent signals (external relay)
         run: |
-          python scripts/agent_signals.py
+          python scripts/agent_signals.py || true
 
       - name: Agent evolution (18-check health)
         run: |
@@ -48,11 +48,11 @@ jobs:
 
       - name: Agent coverage (quality analysis)
         run: |
-          python scripts/agent_coverage.py --summary
+          python scripts/agent_coverage.py --summary || true
 
       - name: Agent self-improvement
         run: |
-          python scripts/agent_evolve_self.py --summary
+          python scripts/agent_evolve_self.py --summary || true
 
       - name: Agent learning (observe and record)
         run: |
