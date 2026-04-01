@@ -378,6 +378,14 @@ python demos/open_data_demo_01/run_demo.py
 
 Expected output: `PASS PASS`
 
+Run all 4 client scenario demos (ML/AI, Pharma, Finance, Digital Twin):
+
+```bash
+python demos/client_scenarios/run_all_scenarios.py
+```
+
+Expected output: `4/4 PASS`
+
 No API keys. No network. Works on any machine with Python 3.11+.
 
 ---
