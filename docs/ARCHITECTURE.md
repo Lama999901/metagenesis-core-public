@@ -107,7 +107,7 @@ Same concept as git commits (each commits to its parent).
 Implemented in stdlib only. Works offline.
 
 Implementation: `backend/progress/mlbench1_accuracy_certificate.py :: _hash_step()`
-(same pattern in all 14 claims)
+(same pattern in all 20 claims)
 
 ---
 
@@ -255,7 +255,7 @@ DT-FEM-01 and DRIFT-01 support anchor_hash for Cross-Claim Chain.
 | `test_cert01_pack_manifest_verify.py` | Integrity layer: SHA-256 + root_hash |
 | `test_cert02_*` | Semantic layer: bypass attack caught |
 | `test_cert03_step_chain_verify.py` | Step Chain layer: tamper detection in verifier |
-| `test_step_chain_all_claims.py` | Step Chain present and valid in all 14 claims |
+| `test_step_chain_all_claims.py` | Step Chain present and valid in all 20 claims |
 | `test_cross_claim_chain.py` | Cross-Claim Chain: anchor_hash links MTR-1→DT-FEM-01→DRIFT-01 |
 | `test_stew01-07_*` | Governance: bidirectional coverage, steward audit |
 | `test_drift01_*` | DRIFT-01 calibration anchor |
@@ -267,4 +267,4 @@ DT-FEM-01 and DRIFT-01 support anchor_hash for Cross-Claim Chain.
 
 ---
 
-*Architecture v0.5 — 2026-03-18 — MetaGenesis Core*
+*Architecture v0.8 — 2026-03-31 — MetaGenesis Core*

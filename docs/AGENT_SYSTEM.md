@@ -23,7 +23,7 @@ Key properties:
 
 Scripts: mg.py, mg_sign.py, mg_ed25519.py, mg_temporal.py, deep_verify.py
 Purpose: 5-layer verification of computational claims.
-Autonomy: Low -- verified against 601+ adversarial tests before any change.
+Autonomy: Low -- verified against 608+ adversarial tests before any change.
 
 Layers:
 1. SHA-256 integrity (pack_manifest.json)
@@ -52,16 +52,10 @@ Autonomy: High -- agents generate tasks, execute research, detect gaps.
 5. AGENT-DRIFT-01 monitors agent quality drift (composite threshold <= 20%)
 6. If drift detected: correction_required triggers re-research
 
-### The Mechanicus Parallel
-
-Like the Adeptus Mechanicus of Warhammer 40K, the agent system treats the
-verification protocol as sacred technology. Level 1 is immutable dogma.
-Level 2 is the Machine Spirit -- verified but evolvable. Level 3 is the
-Forge World -- autonomous research and improvement within the constraints
-set by Levels 1 and 2.
+### Recursive Self-Verification
 
 The key insight: agents that extend the protocol are monitored BY the protocol.
-AGENT-DRIFT-01 uses the same step chain mechanism as all 18 claims.
+AGENT-DRIFT-01 uses the same step chain mechanism as all 20 claims.
 
 ## Claim Coverage
 

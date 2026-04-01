@@ -248,7 +248,7 @@ provenance only. This distinction is formalized in `reports/known_faults.yaml ::
 
 MetaGenesis Core ships with an embedded agent governance system that enforces
 documentation consistency automatically. Anyone who clones the repository
-receives a 16-check health monitoring suite (`scripts/agent_evolution.py`),
+receives an 18-check health monitoring suite (`scripts/agent_evolution.py`),
 post-phase validation hooks, and a cumulative learning system
 (`scripts/agent_learn.py`) that records recurring patterns and auto-fix hints
 across sessions.

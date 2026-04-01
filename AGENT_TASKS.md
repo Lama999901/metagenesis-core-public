@@ -153,10 +153,10 @@ Auto-processed by `scripts/agent_research.py`. First PENDING task gets executed 
 
 ### TASK-022
 - **Title:** Fix stale CONTEXT_SNAPSHOT.md, llms.txt, AGENTS.md
-- **Status:** PENDING
+- **Status:** DONE (2026-03-31)
 - **Priority:** P1
 - **Output:** CONTEXT_SNAPSHOT.md, llms.txt, AGENTS.md
-- **Description:** Update all three files to v0.8.0 state: 601 tests, 20 claims, 18 agent checks, GitHub Release v0.8.0, add PHYS-01/02 to claims table. AGENTS.md Step 6: 595->601. Read system_manifest.json for ground truth.
+- **Description:** Update all three files to v0.8.0 state: 608 tests, 20 claims, 18 agent checks, GitHub Release v0.8.0, add PHYS-01/02 to claims table. AGENTS.md Step 6: 595->608. Read system_manifest.json for ground truth.
 
 ### TASK-023
 - **Title:** Update UPDATE_PROTOCOL.md v1.0 to v1.1
@@ -166,11 +166,11 @@ Auto-processed by `scripts/agent_research.py`. First PENDING task gets executed 
 - **Description:** Change version marker from 'v1.0 -- 2026-03-16' to 'v1.1 -- 2026-03-30'. Add rule in section НОВЫЕ ТЕСТЫ: 'При изменении test count -> в ТОМ ЖЕ PR обновить check_stale_docs.py required strings для всех файлов ссылающихся на старое число.'
 
 ### TASK-024
-- **Title:** Fix ppa/README_PPA.md missing 601 tests reference
+- **Title:** Fix ppa/README_PPA.md missing 608 tests reference
 - **Status:** PENDING
 - **Priority:** P2
 - **Output:** ppa/README_PPA.md
-- **Description:** check_stale_docs.py requires '601 tests' and '8 innovations' in README_PPA.md. Add a Current State section at the bottom: 'Current verification state: 601 tests, 20 claims, 8 innovations, v0.8.0'. Keep all historical data intact.
+- **Description:** check_stale_docs.py requires '601 tests' and '8 innovations' in README_PPA.md. Add a Current State section at the bottom: 'Current verification state: 608 tests, 20 claims, 8 innovations, v0.8.0'. Keep all historical data intact.
 
 ### TASK-025
 - **Title:** Audit PHYS-01/02 test coverage
@@ -185,3 +185,130 @@ Auto-processed by `scripts/agent_research.py`. First PENDING task gets executed 
 - **Priority:** P3
 - **Output:** reports/AGENT_REPORT_YYYYMMDD.md
 - **Description:** Read CONTEXT_SNAPSHOT.md outreach tracker. Draft three personalized emails with PHYS-01/02 angle: kB and NA are SI 2019 exact constants, zero uncertainty -- strongest possible physical anchor. Chollet: ARC Prize benchmark integrity. LMArena: Leaderboard Illusion paper angle. Percy Liang: HELM verification angle.
+
+### TASK-027
+- **Title:** Full Technical Truth Audit — verify every claimed capability word for word
+- **Status:** PENDING
+- **Priority:** P1
+- **Output:** reports/AUDIT_TRUTH_20260401.md
+- **Description:** Comprehensive end-to-end audit. Every claim in README.md, CLAUDE.md, system_manifest.json verified against actual code execution. Produce a formal audit report with git hash, timestamp, and PASS/FAIL for each item.
+
+  Execute these checks IN ORDER and record every result:
+
+  SECTION 1 — CORE INFRASTRUCTURE
+  1.1 Run: python scripts/steward_audit.py → must output "STEWARD AUDIT: PASS"
+  1.2 Run: python -m pytest tests/ -q --tb=short → count passed tests, record exact number
+  1.3 Run: python scripts/deep_verify.py → must output "ALL 13 TESTS PASSED"
+  1.4 Run: python scripts/agent_evolution.py --summary → must output "ALL 18 CHECKS PASSED"
+  1.5 Run: python scripts/agent_pr_creator.py --summary → must output "No auto-pr needed"
+  1.6 Run: python scripts/check_stale_docs.py --strict → must exit 0
+
+  SECTION 2 — ALL 20 CLAIMS PRODUCE PASS AT DOCUMENTED THRESHOLDS
+  For each claim, import the module and call its run function with default params.
+  Verify result["result"]["pass"] is True AND rel_err (or equivalent) is within threshold.
+  Record: claim_id | threshold | actual_value | PASS/FAIL
+
+  Claims to verify:
+  - MTR-1: rel_err <= 0.01 vs E=70GPa
+  - MTR-2: rel_err <= 0.02
+  - MTR-3: rel_err_k <= 0.03
+  - MTR-4: rel_err <= 0.01 vs E=114GPa (Ti-6Al-4V, NIST)
+  - MTR-5: rel_err <= 0.01 vs E=193GPa (SS316L, NIST)
+  - MTR-6: rel_err <= 0.02 vs k=401 W/(m·K) (Cu, NIST)
+  - PHYS-01: rel_err <= 1e-9 vs kB=1.380649e-23 J/K (SI 2019, exact) — CRITICAL: must be near zero
+  - PHYS-02: rel_err <= 1e-8 vs NA=6.02214076e23 mol-1 (SI 2019, exact) — CRITICAL: must be near zero
+  - SYSID-01: rel_err_a <= 0.03, rel_err_b <= 0.03
+  - DATA-PIPE-01: pass=True
+  - DRIFT-01: drift_pct <= 5.0
+  - ML_BENCH-01: abs(actual_acc - claimed_acc) <= 0.02
+  - ML_BENCH-02: abs(actual_rmse - claimed_rmse) <= 0.02
+  - ML_BENCH-03: abs(actual_mape - claimed_mape) <= 0.02
+  - DT-FEM-01: rel_err <= 0.02
+  - DT-SENSOR-01: pass=True
+  - DT-CALIB-LOOP-01: drift decreasing, final <= threshold
+  - PHARMA-01: abs(predicted - claimed) <= tolerance
+  - FINRISK-01: abs(actual_var - claimed_var) <= tolerance
+  - AGENT-DRIFT-01: composite_drift <= 20.0
+
+  SECTION 3 — 5 VERIFICATION LAYERS — EACH INDEPENDENTLY CATCHES ITS ATTACK
+  Run each CERT test suite individually and record PASS/FAIL:
+  3.1 python -m pytest tests/steward/test_cert02_pack_includes_evidence_and_semantic_verify.py -v
+  3.2 python -m pytest tests/steward/test_cert03_step_chain_verify.py -v
+  3.3 python -m pytest tests/steward/test_cert04_anchor_hash_verify.py -v
+  3.4 python -m pytest tests/steward/test_cert05_adversarial_gauntlet.py -v
+  3.5 python -m pytest tests/steward/test_cert06_real_world_scenarios.py -v
+  3.6 python -m pytest tests/steward/test_cert07_bundle_signing.py -v
+  3.7 python -m pytest tests/steward/test_cert08_reproducibility.py -v
+  3.8 python -m pytest tests/steward/test_cert09_ed25519_attacks.py -v
+  3.9 python -m pytest tests/steward/test_cert10_temporal_attacks.py -v
+  3.10 python -m pytest tests/steward/test_cert11_coordinated_attack.py -v
+  3.11 python -m pytest tests/steward/test_cert12_encoding_attacks.py -v
+  3.12 python -m pytest tests/steward/test_cert_5layer_independence.py -v
+  Record: CERT | tests_count | PASS/FAIL
+
+  SECTION 4 — PHYSICAL ANCHOR CHAIN END-TO-END
+  4.1 Run MTR-1 with seed=42, E_true=70e9. Record trace_root_hash as anchor1.
+  4.2 Run DT-FEM-01 with anchor_hash=anchor1. Verify trace_root_hash differs from no-anchor run.
+  4.3 Run DRIFT-01 with anchor_hash from DT-FEM-01. Verify chain is cryptographically linked.
+  4.4 Verify: python scripts/mg.py verify-chain --help exists (CLI command present)
+  4.5 Run PHYS-01 with T=300.0. Record actual rel_err. Must be < 1e-12 (effectively zero).
+  4.6 Run PHYS-02. Record actual rel_err. Must be < 1e-10 (effectively zero).
+
+  SECTION 5 — GOVERNANCE SYSTEM
+  5.1 Verify canonical_state.md lists exactly 20 claims — count them
+  5.2 Verify scientific_claim_index.md has exactly 20 claim sections
+  5.3 Verify runner.py dispatches exactly 20 job_kinds — count dispatch blocks
+  5.4 Verify steward_audit bidirectional: claims == implementations == runner
+
+  SECTION 6 — AGENT SYSTEM
+  6.1 Verify agent_learn.py recall runs without error, shows session count >= 58
+  6.2 Verify .agent_memory/patterns.json exists and has >= 15 patterns
+  6.3 Verify agent_pr_creator.py is real (>100 lines), not stub
+  6.4 Verify agent_evolution.py has exactly 18 check functions
+
+  SECTION 7 — SITE vs CODE CONSISTENCY
+  7.1 Read index.html: verify "608" appears in test count positions
+  7.2 Read index.html: verify "20" appears in claims count
+  7.3 Read system_manifest.json: verify test_count == actual pytest count
+  7.4 Read README.md: verify "The open standard for verifiable computation" is subtitle
+  7.5 Read README.md: verify Mechanicus Parallel table is NOT present
+
+  OUTPUT FORMAT for reports/AUDIT_TRUTH_20260401.md:
+  # MetaGenesis Core — Technical Truth Audit
+  Date: [date]
+  Git hash: [git rev-parse HEAD]
+  Version: v0.8.0
+
+  ## Executive Summary
+  TOTAL CHECKS: N
+  PASSED: N
+  FAILED: N (list each failure with exact error)
+
+  ## Section 1: Core Infrastructure
+  [table: check | result | output]
+
+  ## Section 2: All 20 Claims at Documented Thresholds
+  [table: claim | threshold | actual_value | result]
+
+  ## Section 3: Adversarial Proof Suite
+  [table: cert | tests | result]
+
+  ## Section 4: Physical Anchor Chain
+  [table: check | result]
+
+  ## Section 5: Governance System
+  [table: check | result]
+
+  ## Section 6: Agent System
+  [table: check | result]
+
+  ## Section 7: Site vs Code
+  [table: check | result]
+
+  ## Verdict
+  If ALL checks PASS: "AUDIT PASS — All claimed capabilities verified word for word."
+  If ANY check FAILS: "AUDIT PARTIAL — [N] failures require attention: [list]"
+
+  CRITICAL: Do NOT summarize or skip. Run every check. Record every result.
+  If a check fails, record the exact error and continue to next check.
+  This audit is the formal proof that the protocol does what it claims.

@@ -1,4 +1,4 @@
-# MetaGenesis Verification Protocol (MVP) v0.5
+# MetaGenesis Verification Protocol (MVP) v0.8
 
 ## What this is
 
@@ -276,9 +276,15 @@ To extend MVP to a new computational domain:
 | FINRISK-01 | Finance — VaR | `\|ΔVaR\| ≤ tolerance` | — |
 | DT-SENSOR-01 | IoT — Sensor Integrity | schema + range + temporal | — |
 | DT-CALIB-LOOP-01 | Digital Twin — Convergence | drift_pct decreasing | DRIFT-01 anchor |
+| AGENT-DRIFT-01 | Agent Quality — Self-Verification | `composite_drift <= 20%` | — |
+| MTR-4 | Materials — Titanium Ti-6Al-4V | `rel_err ≤ 0.01` | E = 114 GPa |
+| MTR-5 | Materials — Stainless Steel SS316L | `rel_err ≤ 0.01` | E = 193 GPa |
+| MTR-6 | Materials — Copper Conductivity | `rel_err ≤ 0.02` | k = 401 W/(m·K) |
+| PHYS-01 | Fundamental Physics — Boltzmann | `rel_err ≤ 1e-9` | kB = 1.380649e-23 J/K (SI 2019 exact) |
+| PHYS-02 | Fundamental Physics — Avogadro | `rel_err ≤ 1e-8` | NA = 6.022e23 mol⁻¹ (SI 2019 exact) |
 
-Physical anchor applies to: MTR-1/2/3, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP-01.
-Tamper-evident provenance: all 14 claims (SCOPE_001).
+Physical anchor applies to: MTR-1/2/3/4/5/6, PHYS-01/02, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP-01.
+Tamper-evident provenance: all 20 claims (SCOPE_001).
 Documented in `reports/known_faults.yaml` :: SCOPE_001.
 
 ---
@@ -340,5 +346,5 @@ python scripts/mg.py verify-chain bundle_mtr1/ bundle_dtfem/ bundle_drift/
 
 ---
 
-*MetaGenesis Verification Protocol (MVP) v0.5 — 2026-03-18*
+*MetaGenesis Verification Protocol (MVP) v0.8 — 2026-03-31*
 *Inventor: Yehor Bazhynov — USPTO PPA #63/996,819*
