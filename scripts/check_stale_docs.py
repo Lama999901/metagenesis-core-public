@@ -67,6 +67,18 @@ CRITICAL_FILES = {
 
 # ── Content validation — banned/required strings per file ──────────────────
 CONTENT_CHECKS = {
+    "llms.txt": {
+        "banned": ["595 passing", "595 passed", "16 evolution checks", "Claims: 18", "Domains: 7 ("],
+        "required": ["608", "v0.8", "20 active claims", "PHYS-01", "PHYS-02"],
+    },
+    "CONTEXT_SNAPSHOT.md": {
+        "banned": ["595 passing", "595 passed", "v0.6.0", "Domains | 7"],
+        "required": ["608", "v0.8"],
+    },
+    "AGENTS.md": {
+        "banned": ["16 agent checks", "17 agent checks"],
+        "required": ["608", "v0.8.0", "20 claims", "18 agent checks"],
+    },
     "CONTRIBUTING.md": {
         "banned": ["223 passed", "295 passed", "511 passed", "526 passed", "544 passed", "586 passed", "595 passed", "601 passed", "601", "ALL 10 TESTS", "3 verification layers"],
         "required": ["608", "ALL 13 TESTS", "5 verification layers"],
