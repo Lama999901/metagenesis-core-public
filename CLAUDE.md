@@ -1,7 +1,7 @@
 # MetaGenesis Core — Context for AI Agents (GSD)
 
 > Loaded automatically by all GSD agents via CLAUDE.md.
-> Last updated: 2026-03-31 | v0.8.0 LIVE | 20 claims | 779 tests
+> Last updated: 2026-03-31 | v0.8.0 LIVE | 20 claims | 839 tests
 
 ---
 
@@ -115,7 +115,7 @@ scripts/mg.py                                    ← core verifier, modify caref
 "blockchain"        → "cryptographic hash chain"
 "unforgeable"       → don't use
 "GPT-5"             → doesn't exist
-"100% test success" → "779 tests PASS"
+"100% test success" → "839 tests PASS"
 any stale test count → always use current count from system_manifest.json
 any stale version    → always use v0.8.0
 ```
@@ -126,7 +126,7 @@ any stale version    → always use v0.8.0
 
 ```bash
 python scripts/steward_audit.py      # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q           # → 779 passed
+python -m pytest tests/ -q           # → 839 passed
 python scripts/deep_verify.py        # → ALL 13 TESTS PASSED
 python scripts/check_stale_docs.py   # → All critical documentation is current
 python scripts/agent_diff_review.py  # → DIFF REVIEW PASSED
@@ -158,7 +158,7 @@ git push origin feat/description
 
 ```
 Claims:      20 active (all have 4-step Step Chain)
-Tests:       779 passing (2 skipped)
+Tests:       839 passing (2 skipped)
 Layers:      5 verification (integrity + semantic + step chain + signing + temporal)
 Innovations: 8 (5 PPA + HMAC + Ed25519 + Temporal)
 Domains:     8 (materials, sysid, data, ml, digital_twin, pharma, finance, physics)
@@ -359,7 +359,7 @@ reports/scientific_claim_index.md  ← claim registry
 reports/canonical_state.md  ← authoritative list (LOCKED)
 reports/known_faults.yaml   ← known limitations (SCOPE_001 + ENV_001)
 paper.md + paper.bib        ← JOSS paper (resubmit Sep 2026)
-index.html                  ← site (779 tests/20 claims/5 layers/8 innovations)
+index.html                  ← site (839 tests/20 claims/5 layers/8 innovations)
 CONTEXT_SNAPSHOT.md         ← live state for AI agents
 ```
 
@@ -427,5 +427,5 @@ This shows recurring issues + auto-fix hints from 57 sessions.
 ---
 
 *CLAUDE.md v2.0 — 2026-03-31 — MetaGenesis Core v0.8.0 LIVE*
-*779 tests | 20 claims | 19 checks | Level 3 autonomous forge ACTIVE*
+*839 tests | 20 claims | 19 checks | Level 3 autonomous forge ACTIVE*
 *Mission: notary for computations. First client = history.*
