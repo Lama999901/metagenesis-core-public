@@ -1,6 +1,6 @@
 # AGENTS.md — Rules for AI Agents Working in This Repo
 
-> v0.8.0 | 20 claims | 839 tests | 19 agent checks
+> v0.8.0 | 20 claims | 906 tests | 19 agent checks
 > This file tells Cursor, Claude, Copilot, and any AI agent the rules of this repo.
 > Read CLAUDE.md first — it is always more current and wins all conflicts.
 
@@ -68,8 +68,8 @@ FORBIDDEN → CORRECT
 "blockchain" → "cryptographic hash chain"
 "unforgeable" → don't use
 "GPT-5" → doesn't exist
-"100% test success" → "839 tests PASS"
-"595 tests" / "601 tests" → "839 tests"
+"100% test success" → "906 tests PASS"
+"595 tests" / "601 tests" → "906 tests"
 "v0.6" / "v0.7" → "v0.8.0"
 ```
 
@@ -163,7 +163,7 @@ python scripts/agent_pr_creator.py --summary  # → No auto-pr needed
 
 ```bash
 python scripts/steward_audit.py      # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q           # → 839 passed
+python -m pytest tests/ -q           # → 906 passed
 python scripts/deep_verify.py        # → ALL 13 TESTS PASSED
 python scripts/agent_pr_creator.py --summary  # → No auto-pr needed
 grep -r "tamper-proof\|GPT-5\|19x\|VacuumGenesis\|blockchain" docs/ scripts/ backend/ tests/
