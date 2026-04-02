@@ -172,3 +172,158 @@ class TestFindPreviousChronicle:
         assert "claims" in result
         assert "tests" in result
         assert "innovations" in result
+
+
+# -- read_manifest extended ---------------------------------------------------
+
+class TestReadManifestExtended:
+    def test_returns_version_key(self, tmp_path):
+        data = {"version": "1.0.0"}
+        (tmp_path / "system_manifest.json").write_text(
+            json.dumps(data), encoding="utf-8"
+        )
+        with patch("agent_chronicle.REPO_ROOT", tmp_path):
+            result = agent_chronicle.read_manifest()
+        assert result["version"] == "1.0.0"
+
+    def test_returns_active_claims(self, tmp_path):
+        data = {"active_claims": ["MTR-1"]}
+        (tmp_path / "system_manifest.json").write_text(
+            json.dumps(data), encoding="utf-8"
+        )
+        with patch("agent_chronicle.REPO_ROOT", tmp_path):
+            result = agent_chronicle.read_manifest()
+        assert "active_claims" in result
+
+    def test_returns_verified_innovations(self, tmp_path):
+        data = {"verified_innovations": ["X"]}
+        (tmp_path / "system_manifest.json").write_text(
+            json.dumps(data), encoding="utf-8"
+        )
+        with patch("agent_chronicle.REPO_ROOT", tmp_path):
+            result = agent_chronicle.read_manifest()
+        assert "verified_innovations" in result
+
+
+# -- read_claim_domains extended ----------------------------------------------
+
+class TestReadClaimDomainsExtended:
+    def test_empty_file(self, tmp_path):
+        reports = tmp_path / "reports"
+        reports.mkdir()
+        (reports / "scientific_claim_index.md").write_text("", encoding="utf-8")
+        with patch("agent_chronicle.REPO_ROOT", tmp_path):
+            result = agent_chronicle.read_claim_domains()
+        assert result == []
+
+    def test_no_domain_row(self, tmp_path):
+        reports = tmp_path / "reports"
+        reports.mkdir()
+        (reports / "scientific_claim_index.md").write_text(
+            "## MTR-1\nSome text\n", encoding="utf-8"
+        )
+        with patch("agent_chronicle.REPO_ROOT", tmp_path):
+            result = agent_chronicle.read_claim_domains()
+        assert len(result) == 1
+        assert result[0][0] == "MTR-1"
+        assert result[0][1] == ""
+
+    def test_multiple_claims_with_domains(self, tmp_path):
+        reports = tmp_path / "reports"
+        reports.mkdir()
+        content = (
+            "## MTR-1\n| **domain** | materials |\n\n"
+            "## PHYS-01\n| **domain** | physics |\n"
+        )
+        (reports / "scientific_claim_index.md").write_text(content, encoding="utf-8")
+        with patch("agent_chronicle.REPO_ROOT", tmp_path):
+            result = agent_chronicle.read_claim_domains()
+        assert len(result) == 2
+
+    def test_heading_must_be_h2(self, tmp_path):
+        reports = tmp_path / "reports"
+        reports.mkdir()
+        (reports / "scientific_claim_index.md").write_text(
+            "### MTR-1\n| **domain** | materials |\n", encoding="utf-8"
+        )
+        with patch("agent_chronicle.REPO_ROOT", tmp_path):
+            result = agent_chronicle.read_claim_domains()
+        assert result == []
+
+
+# -- count_tasks extended -----------------------------------------------------
+
+class TestCountTasksExtended:
+    def test_only_done(self, tmp_path):
+        content = "Status: DONE\nStatus: DONE\nStatus: DONE\n"
+        (tmp_path / "AGENT_TASKS.md").write_text(content, encoding="utf-8")
+        with patch("agent_chronicle.REPO_ROOT", tmp_path):
+            p, d = agent_chronicle.count_tasks()
+        assert p == 0 and d == 3
+
+    def test_only_pending(self, tmp_path):
+        content = "Status: PENDING\nStatus: PENDING\n"
+        (tmp_path / "AGENT_TASKS.md").write_text(content, encoding="utf-8")
+        with patch("agent_chronicle.REPO_ROOT", tmp_path):
+            p, d = agent_chronicle.count_tasks()
+        assert p == 2 and d == 0
+
+    def test_empty_file(self, tmp_path):
+        (tmp_path / "AGENT_TASKS.md").write_text("", encoding="utf-8")
+        with patch("agent_chronicle.REPO_ROOT", tmp_path):
+            p, d = agent_chronicle.count_tasks()
+        assert p == 0 and d == 0
+
+
+# -- find_previous_chronicle extended -----------------------------------------
+
+class TestFindPreviousChronicleExtended:
+    def test_picks_latest_by_sort(self, tmp_path):
+        reports = tmp_path / "reports"
+        reports.mkdir()
+        (reports / "CHRONICLE_a.md").write_text("# A\n> Claims: 10\n", encoding="utf-8")
+        (reports / "CHRONICLE_z.md").write_text("# Z\n> Claims: 20\n", encoding="utf-8")
+        with patch("agent_chronicle.REPO_ROOT", tmp_path):
+            result = agent_chronicle.find_previous_chronicle()
+        assert result is not None
+        assert result["file"] == "CHRONICLE_z.md"
+
+    def test_extracts_claims_count(self, tmp_path):
+        reports = tmp_path / "reports"
+        reports.mkdir()
+        (reports / "CHRONICLE_test.md").write_text(
+            "# C\n> Claims: 15\n", encoding="utf-8"
+        )
+        with patch("agent_chronicle.REPO_ROOT", tmp_path):
+            result = agent_chronicle.find_previous_chronicle()
+        assert result["claims"] == 15
+
+    def test_extracts_tests_count(self, tmp_path):
+        reports = tmp_path / "reports"
+        reports.mkdir()
+        (reports / "CHRONICLE_test.md").write_text(
+            "# C\n> Tests: 500\n", encoding="utf-8"
+        )
+        with patch("agent_chronicle.REPO_ROOT", tmp_path):
+            result = agent_chronicle.find_previous_chronicle()
+        assert result["tests"] == 500
+
+    def test_extracts_innovations_count(self, tmp_path):
+        reports = tmp_path / "reports"
+        reports.mkdir()
+        (reports / "CHRONICLE_test.md").write_text(
+            "# C\n> Innovations: 8\n", encoding="utf-8"
+        )
+        with patch("agent_chronicle.REPO_ROOT", tmp_path):
+            result = agent_chronicle.find_previous_chronicle()
+        assert result["innovations"] == 8
+
+    def test_missing_numbers_not_in_dict(self, tmp_path):
+        reports = tmp_path / "reports"
+        reports.mkdir()
+        (reports / "CHRONICLE_test.md").write_text(
+            "# C\nNo numbers here\n", encoding="utf-8"
+        )
+        with patch("agent_chronicle.REPO_ROOT", tmp_path):
+            result = agent_chronicle.find_previous_chronicle()
+        assert "claims" not in result

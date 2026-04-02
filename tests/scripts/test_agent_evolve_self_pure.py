@@ -170,3 +170,180 @@ class TestAnalyzeHandlers:
             result = agent_evolve_self.analyze_handlers()
         assert len(result) == 1
         assert result[0]["verdict"] == "OK"
+
+
+# -- parse_report_date extended -----------------------------------------------
+
+class TestParseReportDateExtended:
+    def test_extracts_from_middle_of_filename(self):
+        dt = agent_evolve_self.parse_report_date("WEEKLY_REPORT_20260319_v2.md")
+        assert dt == datetime(2026, 3, 19)
+
+    def test_multiple_date_groups_takes_first(self):
+        dt = agent_evolve_self.parse_report_date("REPORT_20260101_20260202.md")
+        assert dt == datetime(2026, 1, 1)
+
+    def test_returns_none_for_no_digits(self):
+        assert agent_evolve_self.parse_report_date("README.md") is None
+
+    def test_returns_none_for_short_digits(self):
+        assert agent_evolve_self.parse_report_date("report_123.md") is None
+
+
+# -- analyze_reports extended -------------------------------------------------
+
+class TestAnalyzeReportsExtended:
+    def test_empty_reports_dir(self, tmp_path):
+        reports = tmp_path / "reports"
+        reports.mkdir()
+        with patch("agent_evolve_self.REPO_ROOT", tmp_path):
+            result = agent_evolve_self.analyze_reports()
+        assert result == []
+
+    def test_extracts_headers(self, tmp_path):
+        reports = tmp_path / "reports"
+        reports.mkdir()
+        (reports / "AGENT_REPORT_20260401.md").write_text(
+            "## Section A\n### Sub B\nSome text\n", encoding="utf-8"
+        )
+        with patch("agent_evolve_self.REPO_ROOT", tmp_path):
+            result = agent_evolve_self.analyze_reports()
+        assert len(result) >= 1
+        assert len(result[0]["headers"]) >= 2
+
+    def test_extracts_task_ids(self, tmp_path):
+        reports = tmp_path / "reports"
+        reports.mkdir()
+        (reports / "AGENT_REPORT_20260401.md").write_text(
+            "Working on TASK-001 and TASK-002\n", encoding="utf-8"
+        )
+        with patch("agent_evolve_self.REPO_ROOT", tmp_path):
+            result = agent_evolve_self.analyze_reports()
+        assert len(result) >= 1
+        assert "TASK-001" in result[0]["task_ids"]
+        assert "TASK-002" in result[0]["task_ids"]
+
+    def test_extracts_file_paths(self, tmp_path):
+        reports = tmp_path / "reports"
+        reports.mkdir()
+        (reports / "AGENT_REPORT_20260401.md").write_text(
+            "Check `scripts/foo.py` for issues\n", encoding="utf-8"
+        )
+        with patch("agent_evolve_self.REPO_ROOT", tmp_path):
+            result = agent_evolve_self.analyze_reports()
+        assert len(result) >= 1
+        assert "scripts/foo.py" in result[0]["files_mentioned"]
+
+
+# -- analyze_patterns extended ------------------------------------------------
+
+class TestAnalyzePatternsExtended:
+    def test_no_memory_dir(self, tmp_path):
+        with patch("agent_evolve_self.REPO_ROOT", tmp_path):
+            all_p, unadd = agent_evolve_self.analyze_patterns()
+        assert all_p == [] and unadd == []
+
+    def test_invalid_json(self, tmp_path):
+        mem = tmp_path / ".agent_memory"
+        mem.mkdir()
+        (mem / "patterns.json").write_text("not json!", encoding="utf-8")
+        with patch("agent_evolve_self.REPO_ROOT", tmp_path):
+            all_p, unadd = agent_evolve_self.analyze_patterns()
+        assert all_p == [] and unadd == []
+
+    def test_all_with_hints(self, tmp_path):
+        mem = tmp_path / ".agent_memory"
+        mem.mkdir()
+        data = {"p1": {"count": 5, "fix_hint": "do x", "first_seen": "2026-01-01", "last_seen": "2026-03-01"}}
+        (mem / "patterns.json").write_text(json.dumps(data), encoding="utf-8")
+        with patch("agent_evolve_self.REPO_ROOT", tmp_path):
+            all_p, unadd = agent_evolve_self.analyze_patterns()
+        assert len(all_p) == 1
+        assert unadd == []
+
+    def test_count_one_with_no_hint(self, tmp_path):
+        mem = tmp_path / ".agent_memory"
+        mem.mkdir()
+        data = {"rare": {"count": 1, "fix_hint": "", "first_seen": "2026-01-01", "last_seen": "2026-01-01"}}
+        (mem / "patterns.json").write_text(json.dumps(data), encoding="utf-8")
+        with patch("agent_evolve_self.REPO_ROOT", tmp_path):
+            all_p, unadd = agent_evolve_self.analyze_patterns()
+        assert len(all_p) == 1
+        assert unadd == []  # count < 2 threshold
+
+    def test_first_seen_last_seen_preserved(self, tmp_path):
+        mem = tmp_path / ".agent_memory"
+        mem.mkdir()
+        data = {"bug": {"count": 3, "fix_hint": "fix it",
+                        "first_seen": "2026-01-01", "last_seen": "2026-03-15"}}
+        (mem / "patterns.json").write_text(json.dumps(data), encoding="utf-8")
+        with patch("agent_evolve_self.REPO_ROOT", tmp_path):
+            all_p, unadd = agent_evolve_self.analyze_patterns()
+        assert all_p[0]["first_seen"] == "2026-01-01"
+        assert all_p[0]["last_seen"] == "2026-03-15"
+
+
+# -- analyze_handlers extended ------------------------------------------------
+
+class TestAnalyzeHandlersExtended:
+    def test_no_research_file(self, tmp_path):
+        with patch("agent_evolve_self.REPO_ROOT", tmp_path):
+            result = agent_evolve_self.analyze_handlers()
+        assert result == []
+
+    def test_complex_handler(self, tmp_path):
+        scripts = tmp_path / "scripts"
+        scripts.mkdir()
+        lines = ["def execute_task_001():"] + ["    x = 1"] * 249
+        (scripts / "agent_research.py").write_text(
+            "\n".join(lines) + "\n", encoding="utf-8"
+        )
+        with patch("agent_evolve_self.REPO_ROOT", tmp_path):
+            result = agent_evolve_self.analyze_handlers()
+        assert len(result) == 1
+        assert result[0]["verdict"] == "COMPLEX"
+
+    def test_multiple_handlers(self, tmp_path):
+        scripts = tmp_path / "scripts"
+        scripts.mkdir()
+        # handler 1: 10 lines (SHALLOW)
+        lines = ["def execute_task_001():"] + ["    x = 1"] * 9
+        # handler 2: 100 lines (OK)
+        lines += ["def execute_task_002():"] + ["    y = 2"] * 99
+        (scripts / "agent_research.py").write_text(
+            "\n".join(lines) + "\n", encoding="utf-8"
+        )
+        with patch("agent_evolve_self.REPO_ROOT", tmp_path):
+            result = agent_evolve_self.analyze_handlers()
+        assert len(result) == 2
+
+    def test_handler_start_line(self, tmp_path):
+        scripts = tmp_path / "scripts"
+        scripts.mkdir()
+        content = "# header\n\ndef execute_task_001():\n    pass\n"
+        (scripts / "agent_research.py").write_text(content, encoding="utf-8")
+        with patch("agent_evolve_self.REPO_ROOT", tmp_path):
+            result = agent_evolve_self.analyze_handlers()
+        assert len(result) == 1
+        assert result[0]["start"] == 3  # 1-indexed, line 3
+
+
+# -- check_report_frequency extended ------------------------------------------
+
+class TestCheckReportFrequencyExtended:
+    def test_single_report(self):
+        reports = [{"date": datetime(2026, 3, 1)}]
+        status, gap = agent_evolve_self.check_report_frequency(reports)
+        assert status == "insufficient data"
+
+    def test_all_none_dates(self):
+        reports = [{"date": None}, {"date": None}]
+        status, gap = agent_evolve_self.check_report_frequency(reports)
+        assert status == "insufficient data"
+
+    def test_exactly_7_day_gap(self):
+        d1 = datetime(2026, 3, 1)
+        d2 = datetime(2026, 3, 8)
+        reports = [{"date": d1}, {"date": d2}]
+        status, gap = agent_evolve_self.check_report_frequency(reports)
+        assert "healthy" in status
