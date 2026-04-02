@@ -120,8 +120,8 @@ CONTENT_CHECKS = {
         "required": ["five independent layers"],
     },
     "README.md": {
-        "banned": ["295 passing", "511 passing", "526 passing", "544 passing", "595 passing", "601 passing", "601", "6 innovations", "7 innovations", "14 agent checks", "17 agent checks", "18 agent checks", "The 14 Checks", "The 17 Checks", "The 18 Checks", "ALL 14 CHECKS PASSED", "ALL 17 CHECKS PASSED", "ALL 18 CHECKS PASSED", "10 automated", "18 verified claims", "17 autonomous", "15 Active Verification"],
-        "required": ["779", "8 innovations", "19 agent checks", "The 19 Checks", "ALL 19 CHECKS PASSED", "20 claims", "PHYS-01", "PHYS-02"],
+        "banned": ["295 passing", "511 passing", "526 passing", "544 passing", "595 passing", "601 passing", "601", "6 innovations", "7 innovations", "14 agent checks", "17 agent checks", "18 agent checks", "The 14 Checks", "The 17 Checks", "The 18 Checks", "ALL 14 CHECKS PASSED", "ALL 17 CHECKS PASSED", "ALL 18 CHECKS PASSED", "10 automated", "18 verified claims", "17 autonomous", "15 Active Verification", "Tests-608%20passing", "Tests-651%20passing", "Tests-734%20passing"],
+        "required": ["779", "8 innovations", "19 agent checks", "The 19 Checks", "ALL 19 CHECKS PASSED", "20 claims", "PHYS-01", "PHYS-02", "Tests-779%20passing"],
     },
     "index.html": {
         "banned": ["<span>10</span>", "14 active domain claims", "Fourteen</span> claims", "Fifteen</span> claims", "15 active domain claims", "18 active domain claims", "Eighteen</span> claims", "hv\">v0.7.0"],
