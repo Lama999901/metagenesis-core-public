@@ -5,14 +5,14 @@
 [![Steward Audit](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml/badge.svg)](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Patent Pending](https://img.shields.io/badge/Patent-Pending%20%2363%2F996%2C819-orange.svg)](ppa/README_PPA.md)
-[![Tests](https://img.shields.io/badge/Tests-906%20passing-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-966%20passing-brightgreen.svg)](tests/)
 [![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.8.0-blueviolet.svg)](docs/PROTOCOL.md)
 [![Sponsor](https://img.shields.io/badge/Sponsor-❤️-pink.svg)](https://github.com/sponsors/Lama999901)
 
 **Site:** https://metagenesis-core.dev
 **Contact:** yehor@metagenesis-core.dev
 **PPA:** USPTO #63/996,819 -- filed 2026-03-05  
-**Version:** v0.8.0 | 20 claims | 906 tests | 19 agent checks | 21/21 tasks done
+**Version:** v0.8.0 | 20 claims | 966 tests | 19 agent checks | 21/21 tasks done
 
 ---
 
@@ -166,7 +166,7 @@ Today, the answer is almost always: **no**.
 - Like git became the standard for code
 - MetaGenesis Core could become the standard for computational results
 
-The technology is ready. The adversarial proof suite (906 tests) demonstrates it works.
+The technology is ready. The adversarial proof suite (966 tests) demonstrates it works.
 The patent is pending. The protocol is MIT licensed.
 What happens next depends on adoption.
 
@@ -191,7 +191,7 @@ Built by **one person**. Yehor Bazhynov. Inventor, USPTO #63/996,819.
 
 Built after hours, without a team, without funding, using **Claude (Anthropic)** as the primary development tool. Every AI-generated output verified by the project's own test suite. The protocol verifies the protocol.
 
-The result: **20 verified claims across 8 domains. 906 adversarial tests. 5 verification layers. 8 innovations. 18 autonomous agent monitoring checks running daily in CI.**
+The result: **20 verified claims across 8 domains. 966 adversarial tests. 5 verification layers. 8 innovations. 18 autonomous agent monitoring checks running daily in CI.**
 
 ---
 
@@ -281,7 +281,7 @@ Every claim in this protocol is backed by adversarial tests that attempt to brea
 
 ```bash
 python -m pytest tests/ -q
-# -> 906 passed
+# -> 966 passed
 ```
 
 The summary test in CERT-05 explicitly proves all five layers are necessary -- no single layer catches all attacks. CERT-11 constructs coordinated attacks where each layer catches what the other four miss. This is not a claim. It is a mathematical proof backed by executable tests.
@@ -326,7 +326,7 @@ MetaGenesis Core includes an autonomous agent monitoring system -- 18 checks tha
 | # | Check | What it verifies |
 |---|-------|-----------------|
 | 1 | `steward` | `steward_audit.py` passes -- governance rules enforced |
-| 2 | `tests` | All 906 tests pass |
+| 2 | `tests` | All 966 tests pass |
 | 3 | `deep` | `deep_verify.py` -- 13 independent proof tests |
 | 4 | `docs` | Stale documentation detection via `check_stale_docs.py` |
 | 5 | `manifest` | `system_manifest.json` matches actual repo state |
@@ -547,7 +547,7 @@ For ML accuracy (ML_BENCH-01/02/03), data pipelines (DATA-PIPE-01), pharma (PHAR
 
 ### ENV_001 -- Test Environment
 
-All 906 tests pass in the reference environment (Python 3.11+, stdlib only). No database dependencies. No external services. No network required. Local environment deviations may require matching Python version.
+All 966 tests pass in the reference environment (Python 3.11+, stdlib only). No database dependencies. No external services. No network required. Local environment deviations may require matching Python version.
 
 **Why this limitation exists:** The protocol is designed to work offline with zero external dependencies. This is a feature, not a limitation -- but it means the test suite assumes a clean Python environment.
 
@@ -573,7 +573,7 @@ python scripts/steward_audit.py
 # -> STEWARD AUDIT: PASS
 
 python -m pytest tests/ -q
-# -> 906 passed
+# -> 966 passed
 
 # Full proof-not-trust verification (13 tests):
 python scripts/deep_verify.py
@@ -622,7 +622,7 @@ Read these files in order:
 ```
 1. CLAUDE.md                    <- PRIMARY: mission, traps, technical rules
 2. AGENTS.md                    <- hard rules, forbidden terms, protected files
-3. CONTEXT_SNAPSHOT.md          <- current state, 20 claims, 906 tests
+3. CONTEXT_SNAPSHOT.md          <- current state, 20 claims, 966 tests
 4. reports/canonical_state.md   <- authoritative claims list
 5. reports/known_faults.yaml    <- known limitations (SCOPE_001 + ENV_001)
 ```
