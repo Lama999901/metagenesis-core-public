@@ -43,7 +43,7 @@ See: .planning/PROJECT.md (updated 2026-03-18)
 Phase: 8 of 8 (Counter Updates)
 Plan: 2 of 2 complete
 Status: Completed
-Last activity: 2026-04-01 - Completed quick task 260331-ov3: fix stale counters in llms.txt + CONTEXT_SNAPSHOT.md
+Last activity: 2026-04-02 - Completed quick task 260401-t80: coverage boost v6 (906->966 tests)
 
 Progress: [██████████] 9/9 plans complete (100%)
 
@@ -143,9 +143,10 @@ None yet.
 | 260331-nb3 | index.html — fix 595→608, mission copy, market scale, standard vision | 2026-03-31 | 286a879 | [260331-nb3-fix-index-html-restore-from-git-4-missio](./quick/260331-nb3-fix-index-html-restore-from-git-4-missio/) |
 | 260331-ode | Technical Truth Audit v0.8.0 — all 7 sections verified | 2026-04-01 | badf522 | [260331-ode-technical-truth-audit-v0-8-0-all-7-secti](./quick/260331-ode-technical-truth-audit-v0-8-0-all-7-secti/) |
 | 260331-ov3 | Fix stale counters in llms.txt and CONTEXT_SNAPSHOT.md | 2026-04-01 | 748f3b1, 96a8a46 | [260331-ov3-fix-stale-counters-in-llms-txt-paper-md-](./quick/260331-ov3-fix-stale-counters-in-llms-txt-paper-md-/) |
+| 260401-t80 | Coverage boost v6: 60 tests (906->966), check_coverage threshold | 2026-04-02 | ae8477f, f5936ab | [260401-t80-coverage-boost-v6-mg-ed25519-mg-sign-dif](./quick/260401-t80-coverage-boost-v6-mg-ed25519-mg-sign-dif/) |
 
 ## Session Continuity
 
-Last session: 2026-04-01T01:58:00Z
-Stopped at: Completed quick task 260331-ov3 (fix stale counters in llms.txt and CONTEXT_SNAPSHOT.md)
+Last session: 2026-04-02T05:15:00Z
+Stopped at: Completed quick task 260401-t80 (coverage boost v6: 906->966 tests)
 Resume file: None

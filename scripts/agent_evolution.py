@@ -342,14 +342,28 @@ def check_branch_sync():
 # ── 11. Coverage Analysis ────────────────────────────────────────────────────
 def check_coverage():
     section("CODE COVERAGE — Genetor Analysis")
+    import re
+    THRESHOLD = 49.0
     out, code = run("python scripts/agent_coverage.py --summary")
-    if code == 0:
-        ok(f"Coverage analysis complete — {out.strip()}")
-        return True
-    else:
-        warn(f"Coverage below threshold — {out.strip()}")
-        # Advisory, not a hard failure
-        return True
+    if code != 0:
+        warn(f"Coverage tool failed — {out.strip()}")
+        return True  # tool failure is advisory, not a hard fail
+    # Parse coverage percentage from output
+    match = re.search(r'Coverage ([\d.]+)%', out)
+    if match:
+        pct = float(match.group(1))
+        if pct < THRESHOLD:
+            err(f"Coverage {pct:.1f}% BELOW minimum {THRESHOLD}% — governance FAIL")
+            return False
+        elif pct < 65.0:
+            ok(f"Coverage {pct:.1f}% (target 65%)")
+            return True
+        else:
+            ok(f"Coverage {pct:.1f}% — target met")
+            return True
+    # Fallback: coverage script not available or output unparseable
+    ok(f"Coverage analysis complete — {out.strip()}")
+    return True
 
 
 # ── 12. Self-Improvement ────────────────────────────────────────────────────
