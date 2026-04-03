@@ -5,10 +5,11 @@ MetaGenesis Core -- Agent PR Creator (Autonomous Forge)
 Level 3 autonomous agent: scans for auto-fixable issues,
 creates branches/PRs for stale counters when safe.
 
-Three detectors:
+Four detectors:
   1. Stale counter  -- system_manifest.json test_count vs actual
   2. Forbidden terms -- banned words in docs/scripts/backend
   3. Manifest sync   -- version vs latest git tag
+  4. Coverage drop   -- code coverage below 65% threshold
 
 Usage:
     python scripts/agent_pr_creator.py              # full scan + auto-fix
@@ -159,6 +160,32 @@ def detect_manifest_sync():
 
 
 # ---------------------------------------------------------------------------
+# 4. Coverage drop detection
+# ---------------------------------------------------------------------------
+def detect_coverage_drop():
+    """Detect if code coverage has dropped below 65% threshold."""
+    import glob as _glob
+    reports = sorted(
+        _glob.glob(str(REPO_ROOT / "reports" / "COVERAGE_REPORT_*.md")),
+        reverse=True,
+    )
+    if not reports:
+        return None
+    try:
+        content = Path(reports[0]).read_text(encoding="utf-8")
+        m = re.search(r'Overall coverage:\s*([\d.]+)%', content)
+        if not m:
+            m = re.search(r'Coverage\s+([\d.]+)%', content)
+        if m:
+            pct = float(m.group(1))
+            if pct < 65.0:
+                return f"Coverage dropped to {pct:.1f}% (minimum 65%). Fix: add tests to restore coverage."
+        return None
+    except Exception:
+        return None
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 def main():
@@ -191,8 +218,15 @@ def main():
     else:
         print(f"  Manifest sync OK: {sync['manifest_version']}")
 
+    # 4. Coverage drop
+    coverage_warning = detect_coverage_drop()
+    if coverage_warning:
+        print(f"  COVERAGE DROP: {coverage_warning}")
+    else:
+        print("  Coverage: OK")
+
     # Summary
-    issues = stale["stale"] or len(forbidden) > 0 or not sync["synced"]
+    issues = stale["stale"] or len(forbidden) > 0 or not sync["synced"] or coverage_warning
     if not issues:
         print("No auto-pr needed -- system current")
 

@@ -1,4 +1,4 @@
-"""Tests for scripts/agent_pr_creator.py -- detect_forbidden_terms (10 tests)."""
+"""Tests for scripts/agent_pr_creator.py -- detect_forbidden_terms + detect_coverage_drop (18 tests)."""
 import sys
 from pathlib import Path
 from unittest.mock import patch
@@ -77,3 +77,72 @@ class TestDetectForbiddenTerms:
         with patch("agent_pr_creator.REPO_ROOT", tmp_path):
             result = apc.detect_forbidden_terms()
         assert result == []
+
+
+class TestDetectCoverageDrop:
+    """Tests for detect_coverage_drop() -- 8 tests."""
+
+    def test_detect_coverage_drop_above_threshold(self, tmp_path):
+        """Report with 81.2% coverage should return None."""
+        _write(tmp_path / "reports" / "COVERAGE_REPORT_20260402.md",
+               "Overall coverage: 81.2%\n")
+        with patch("agent_pr_creator.REPO_ROOT", tmp_path):
+            result = apc.detect_coverage_drop()
+        assert result is None
+
+    def test_detect_coverage_drop_below_threshold(self, tmp_path):
+        """Report with 50.0% coverage should return warning string."""
+        _write(tmp_path / "reports" / "COVERAGE_REPORT_20260402.md",
+               "Overall coverage: 50.0%\n")
+        with patch("agent_pr_creator.REPO_ROOT", tmp_path):
+            result = apc.detect_coverage_drop()
+        assert result is not None
+        assert "50.0%" in result
+
+    def test_detect_coverage_drop_at_threshold(self, tmp_path):
+        """Report with exactly 65.0% should return None (not below)."""
+        _write(tmp_path / "reports" / "COVERAGE_REPORT_20260402.md",
+               "Overall coverage: 65.0%\n")
+        with patch("agent_pr_creator.REPO_ROOT", tmp_path):
+            result = apc.detect_coverage_drop()
+        assert result is None
+
+    def test_detect_coverage_drop_no_report(self, tmp_path):
+        """Empty reports dir should return None."""
+        (tmp_path / "reports").mkdir(parents=True, exist_ok=True)
+        with patch("agent_pr_creator.REPO_ROOT", tmp_path):
+            result = apc.detect_coverage_drop()
+        assert result is None
+
+    def test_detect_coverage_drop_parse_overall_format(self, tmp_path):
+        """'Overall coverage: 70.0%' format should parse correctly."""
+        _write(tmp_path / "reports" / "COVERAGE_REPORT_20260402.md",
+               "Overall coverage: 70.0%\n")
+        with patch("agent_pr_creator.REPO_ROOT", tmp_path):
+            result = apc.detect_coverage_drop()
+        assert result is None
+
+    def test_detect_coverage_drop_parse_summary_format(self, tmp_path):
+        """'Coverage 60.0%' format should parse and return warning."""
+        _write(tmp_path / "reports" / "COVERAGE_REPORT_20260402.md",
+               "Coverage 60.0%\n")
+        with patch("agent_pr_creator.REPO_ROOT", tmp_path):
+            result = apc.detect_coverage_drop()
+        assert result is not None
+        assert "60.0%" in result
+
+    def test_detect_coverage_drop_invalid_content(self, tmp_path):
+        """Report with no numbers should return None."""
+        _write(tmp_path / "reports" / "COVERAGE_REPORT_20260402.md",
+               "no numbers here\n")
+        with patch("agent_pr_creator.REPO_ROOT", tmp_path):
+            result = apc.detect_coverage_drop()
+        assert result is None
+
+    def test_detect_coverage_drop_returns_string_on_fail(self, tmp_path):
+        """Below threshold should return a string."""
+        _write(tmp_path / "reports" / "COVERAGE_REPORT_20260402.md",
+               "Overall coverage: 30.0%\n")
+        with patch("agent_pr_creator.REPO_ROOT", tmp_path):
+            result = apc.detect_coverage_drop()
+        assert isinstance(result, str)

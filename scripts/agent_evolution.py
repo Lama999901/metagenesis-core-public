@@ -343,7 +343,7 @@ def check_branch_sync():
 def check_coverage():
     section("CODE COVERAGE — Genetor Analysis")
     import re
-    THRESHOLD = 49.0
+    THRESHOLD = 65.0
     out, code = run("python scripts/agent_coverage.py --summary")
     if code != 0:
         warn(f"Coverage tool failed — {out.strip()}")
