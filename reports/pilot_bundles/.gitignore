@@ -1,0 +1,3 @@
+# Pilot bundles contain signing keys -- do not commit
+*
+!.gitignore
