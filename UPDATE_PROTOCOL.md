@@ -1,5 +1,5 @@
 # MetaGenesis Core — Update Protocol
-> Version 1.1 — 2026-03-18
+> Version 1.1 — 2026-04-02
 > Mandatory checklist for every significant change.
 > Goal: repo, site, docs, and Project Knowledge always in sync.
 
@@ -69,6 +69,7 @@ Select-String "OLD_N claims" index.html, README.md, llms.txt, CONTEXT_SNAPSHOT.m
 
 ```
 [ ] system_manifest.json → test_count update
+[ ] check_stale_docs.py → required strings update (MANDATORY in same PR)
 [ ] reports/known_faults.yaml → # Last updated date
 [ ] README.md → badge + verification state count
 [ ] AGENTS.md → Step 6 Verify count

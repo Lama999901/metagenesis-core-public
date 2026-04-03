@@ -2,7 +2,7 @@
 
 > Read this file first if you are an AI agent starting a new session.
 > This is the authoritative snapshot of what has been done and what is next.
-> Updated: 2026-03-21
+> Updated: 2026-04-02
 
 ---
 
@@ -18,17 +18,19 @@
 
 ---
 
-## Verified state (2026-03-31)
+## Verified state (2026-04-02)
 
 | Parameter | Value |
 |---|---|
-| Tests | **1313 passing** |
+| Tests | **1321 passing** |
 | steward_audit | PASS |
 | CI | GREEN |
 | Active claims | **20** |
 | Verification layers | 5 (integrity + semantic + step chain + bundle signing + temporal commitment) |
 | Innovations | 8 (5 PPA + HMAC signing + Ed25519 signing + temporal commitment) |
 | Domains | 8 |
+| Agent checks | 19 (agent_evolution.py) |
+| Coverage | 81.2% |
 | GitHub Release | v0.8.0 |
 | Adversarial tests | CERT-05 (5 attacks) + CERT-06 (5 scenarios) + CERT-07 (signing) + CERT-08 (reproducibility) + CERT-09 (Ed25519 attacks) + CERT-10 (temporal attacks) + CERT-11 (coordinated multi-vector) + CERT-12 (encoding attacks) |
 
@@ -56,8 +58,10 @@
 | MTR-4 | Materials — Titanium Ti-6Al-4V | `rel_err ≤ 0.01` | E = 114 GPa ⚓ |
 | MTR-5 | Materials — Stainless Steel SS316L | `rel_err ≤ 0.01` | E = 193 GPa ⚓ |
 | MTR-6 | Materials — Copper Conductivity | `rel_err ≤ 0.02` | k = 401 W/(m·K) ⚓ |
+| PHYS-01 | Fundamental Physics — Boltzmann | `rel_err ≤ 1e-9` | kB = 1.380649e-23 J/K ⚓ SI2019 |
+| PHYS-02 | Fundamental Physics — Avogadro | `rel_err ≤ 1e-8` | NA = 6.02214076e23 mol^-1 ⚓ SI2019 |
 
-Physical anchor scope (SCOPE_001): MTR-1/2/3/4/5/6, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP-01 only.
+Physical anchor scope (SCOPE_001): MTR-1/2/3/4/5/6, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP-01, PHYS-01, PHYS-02 only.
 
 ---
 
@@ -96,7 +100,7 @@ Physical anchor scope (SCOPE_001): MTR-1/2/3/4/5/6, DT-FEM-01, DRIFT-01, DT-CALI
 
 ```bash
 python scripts/steward_audit.py          # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q               # → 1313 passed
+python -m pytest tests/ -q               # → 1321 passed
 python scripts/deep_verify.py            # → ALL 13 TESTS PASSED
 python demos/open_data_demo_01/run_demo.py  # → PASS PASS
 
@@ -109,15 +113,13 @@ python -m pytest tests/steward/test_cert06_real_world_scenarios.py -v
 
 ## What is next
 
-- [x] system_manifest.json test_count → updated to 608
-- [ ] Site crisis section → add adversarial attacks (Attack 1–5)
+- [ ] First paying customer ($299 via email) -- TOP PRIORITY
+- [ ] Wave-2 outreach: Chollet, LMArena, Percy Liang (drafts ready)
 - [ ] Non-provisional patent attorney (deadline 2027-03-05)
-- [ ] First paying customer ($299 via email)
-- [ ] r/MachineLearning post, MLOps Community Slack
-- [ ] GitHub Sponsors setup
-- [ ] NLnet NGI0 (deadline 2026-04-01)
+- [ ] Zenodo DOI (metadata ready in .zenodo.json)
+- [ ] JOSS resubmission (Sep 2026, 6 months public history required)
 - [ ] YC S26 (deadline 2026-05-04)
-- [ ] Follow-up all 21 outreach with CERT-05 gauntlet link
+- [ ] r/MachineLearning post, MLOps Community Slack
 
 ---
 
@@ -159,4 +161,4 @@ python -m pytest tests/steward/test_cert06_real_world_scenarios.py -v
 
 ---
 
-*Updated: 2026-03-21 | Next update: first response or first client*
+*Updated: 2026-04-02 | Next update: first response or first client*

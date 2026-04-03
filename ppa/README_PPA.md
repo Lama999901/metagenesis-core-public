@@ -42,7 +42,7 @@ in the non-provisional application.
 | MTR-5 (Stainless Steel SS316L) | 2026-03-29 | Physical anchor E=193 GPa (NIST) |
 | MTR-6 (Copper Conductivity) | 2026-03-29 | Physical anchor k=401 W/(m·K) (NIST) |
 
-**Current state (2026-03-29):** 20 claims, 1313 tests, 5 layers, 8 innovations.
+**Current state (2026-03-29):** 20 claims, 1321 tests, 5 layers, 8 innovations.
 Live state: reports/canonical_state.md
 
 ---
@@ -165,3 +165,14 @@ reports/canonical_state.md
 
 *PPA README v2.1. Scope: verification core only.
 No invented features. Every section traceable to passing tests.*
+
+## Current verification state (auto-updated)
+
+| Parameter | Value |
+|---|---|
+| Tests | 1321 |
+| Claims | 20 |
+| Innovations | 8 |
+| Agent checks | 19 |
+| Coverage | 81.2% |
+| Version | v0.8.0 |

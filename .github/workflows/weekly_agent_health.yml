@@ -6,7 +6,7 @@ on:
   workflow_dispatch:       # Manual trigger
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   agent-health:
@@ -61,3 +61,11 @@ jobs:
       - name: Agent learning (observe and record)
         run: |
           python scripts/agent_learn.py observe
+
+      - name: Auto-commit agent reports
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add reports/ .agent_memory/ || true
+          git diff --cached --quiet || git commit -m "chore: auto-commit agent health reports [skip ci]"
+          git push || true
