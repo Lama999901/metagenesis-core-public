@@ -12,7 +12,7 @@
 **Site:** https://metagenesis-core.dev
 **Contact:** yehor@metagenesis-core.dev
 **PPA:** USPTO #63/996,819 -- filed 2026-03-05  
-**Version:** v0.8.0 | 20 claims | 1321 tests | 19 agent checks | 21/21 tasks done
+**Version:** v0.8.0 | 20 claims | 1321 tests | 19 agent checks | 27/27 tasks done
 
 ---
 

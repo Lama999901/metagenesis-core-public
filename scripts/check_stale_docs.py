@@ -120,7 +120,7 @@ CONTENT_CHECKS = {
         "required": ["five independent layers"],
     },
     "README.md": {
-        "banned": ["295 passing", "511 passing", "526 passing", "544 passing", "595 passing", "601 passing", "601", "6 innovations", "7 innovations", "14 agent checks", "17 agent checks", "18 agent checks", "The 14 Checks", "The 17 Checks", "The 18 Checks", "ALL 14 CHECKS PASSED", "ALL 17 CHECKS PASSED", "ALL 18 CHECKS PASSED", "10 automated", "18 verified claims", "17 autonomous", "15 Active Verification", "Tests-608%20passing", "Tests-651%20passing", "Tests-734%20passing", "Tests-906%20passing", "906 passing", "Tests-966%20passing", "966 passing", "Tests-1050%20passing", "1050 passing", "Tests-1125%20passing", "1125 passing", "Tests-1273%20passing", "Tests-1313%20passing", "1273 passing", "1313 passing"],
+        "banned": ["295 passing", "511 passing", "526 passing", "544 passing", "595 passing", "601 passing", "601", "6 innovations", "7 innovations", "14 agent checks", "17 agent checks", "18 agent checks", "The 14 Checks", "The 17 Checks", "The 18 Checks", "ALL 14 CHECKS PASSED", "ALL 17 CHECKS PASSED", "ALL 18 CHECKS PASSED", "10 automated", "18 verified claims", "17 autonomous", "15 Active Verification", "Tests-608%20passing", "Tests-651%20passing", "Tests-734%20passing", "Tests-906%20passing", "906 passing", "Tests-966%20passing", "966 passing", "Tests-1050%20passing", "1050 passing", "Tests-1125%20passing", "1125 passing", "Tests-1273%20passing", "Tests-1313%20passing", "1273 passing", "1313 passing", "21/21"],
         "required": ["1321", "8 innovations", "19 agent checks", "The 19 Checks", "ALL 19 CHECKS PASSED", "20 claims", "PHYS-01", "PHYS-02", "Tests-1321%20passing"],
     },
     "index.html": {
@@ -128,8 +128,8 @@ CONTENT_CHECKS = {
         "required": ["<span>17</span>", "20 active domain claims", "Twenty</span> claims", "hv\">v0.8.0"],
     },
     "paper.md": {
-        "banned": ["389 adversarial", "511 adversarial", "526 adversarial", "544 adversarial", "595 adversarial", "601 adversarial", "906 adversarial", "966 adversarial", "1050 adversarial", "1125 adversarial", "1198 adversarial", "1273 adversarial", "1313 adversarial", "17 March 2026"],
-        "required": ["1321 adversarial", "18 March 2026"],
+        "banned": ["389 adversarial", "511 adversarial", "526 adversarial", "544 adversarial", "595 adversarial", "601 adversarial", "906 adversarial", "966 adversarial", "1050 adversarial", "1125 adversarial", "1198 adversarial", "1273 adversarial", "1313 adversarial", "17 March 2026", "7 domains", "6.022e23"],
+        "required": ["1321 adversarial", "18 March 2026", "8 domains"],
     },
     "reports/known_faults.yaml": {
         "banned": ["282 tests", "295 passed", "295 tests", "511 tests", "511 passed", "526 tests", "544 tests", "544 passed", "595 tests", "595 passed", "601 tests", "601 passed", "906 tests", "906 passed", "966 tests", "966 passed", "1050 tests", "1050 passed", "1125 tests", "1125 passed", "1273 tests", "1273 passed"],
