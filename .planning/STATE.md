@@ -1,31 +1,16 @@
 ---
 gsd_state_version: 1.0
-milestone: v0.5
-milestone_name: milestone
-status: completed
-stopped_at: Completed quick task 260318-jpb (fix stale docs)
-last_updated: "2026-03-18T22:16:34Z"
-last_activity: 2026-03-18 -- Phase 8 Plan 02 index.html counter updates complete
+milestone: v0.5.0
+milestone_name: Coverage Hardening
+status: verifying
+stopped_at: Completed 11-01-PLAN.md
+last_updated: "2026-04-03T23:36:15.243Z"
+last_activity: 2026-04-03
 progress:
   total_phases: 4
-  completed_phases: 4
-  total_plans: 9
-  completed_plans: 9
----
-
----
-gsd_state_version: 1.0
-milestone: v0.5
-milestone_name: milestone
-status: completed
-stopped_at: Completed quick task 260317-vsv (CLAUDE.md update)
-last_updated: "2026-03-18T06:58:10.927Z"
-last_activity: 2026-03-18 -- Phase 8 Plan 02 index.html counter updates complete
-progress:
-  total_phases: 4
-  completed_phases: 4
-  total_plans: 9
-  completed_plans: 9
+  completed_phases: 0
+  total_plans: 3
+  completed_plans: 5
   percent: 100
 ---
 
@@ -42,14 +27,15 @@ See: .planning/PROJECT.md (updated 2026-03-18)
 
 Phase: 8 of 8 (Counter Updates)
 Plan: 2 of 2 complete
-Status: Completed
-Last activity: 2026-04-01 - Completed quick task 260402-nzr: coverage boost v10 (1198->1273 tests)
+Status: Phase complete — ready for verification
+Last activity: 2026-04-03
 
 Progress: [██████████] 9/9 plans complete (100%)
 
 ## Performance Metrics
 
 **Velocity:**
+
 - Total plans completed: 8
 - Average duration: 3.5min
 - Total execution time: ~28 min
@@ -63,6 +49,7 @@ Progress: [██████████] 9/9 plans complete (100%)
 | Phase 07 | 2 | 5min | 2.5min |
 
 **Recent Trend (from v0.4.0):**
+
 - Last 5 plans: 5min, 4min, 3min, 6min
 - Trend: Stable
 
@@ -75,6 +62,7 @@ Progress: [██████████] 9/9 plans complete (100%)
 | Phase 07 P02 | 3min | 1 tasks | 1 files |
 | Phase 08 P01 | 3min | 1 tasks | 6 files |
 | Phase 08 P02 | 3min | 2 tasks | 1 files |
+| Phase 11 P01 | 232s | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -97,6 +85,9 @@ Recent decisions affecting current work:
 - [08-01]: Updated CLAUDE.md layer count 3->5 and innovations 6->8 to reflect actual state
 - [08-02]: Updated innovation count 7->8 in index.html origin stats to match system_manifest.json
 - [08-02]: Layer 5 added as pipeline row 05 in protocol section; CERT-11/12 placed before CI line in proof strip
+- [Phase 11]: Domain detection via keyword scoring with ML as safe default
+- [Phase 11]: Pilot bundles gitignored to prevent signing key leakage
+- [Phase 11]: File-based email drafts for manual review before sending
 
 ### Pending Todos
 
@@ -149,6 +140,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-01T20:00:00Z
-Stopped at: Completed quick task 260402-nzr (coverage boost v10: 1198->1273 tests)
+Last session: 2026-04-03T23:36:15.239Z
+Stopped at: Completed 11-01-PLAN.md
 Resume file: None
