@@ -213,7 +213,7 @@ class TestCheckBranchSync:
 class TestCheckCoverage:
     def test_check_coverage_pass(self):
         with patch("agent_evolution.run",
-                    return_value=("Coverage 56.0% | 50 zero-cov | 53 files", 0)):
+                    return_value=("Coverage 81.0% | 50 zero-cov | 53 files", 0)):
             assert ae.check_coverage() is True
 
     def test_check_coverage_advisory(self):

@@ -23,7 +23,7 @@ python mg.py verify --pack arc_eval_bundle.zip  ->  PASS / FAIL
 
 What makes this different from checksums: we anchor verification to physical constants. The Boltzmann constant kB = 1.380649x10^-23 J/K (SI 2019, exact by definition, zero uncertainty) serves as an immutable reference point in every verification chain. Change any computation step -- the cryptographic hash chain breaks.
 
-Current state: 20 verified claims across 8 domains, 1313 adversarial tests, 5 independent verification layers. MIT licensed. USPTO PPA #63/996,819.
+Current state: 20 verified claims across 8 domains, 1321 adversarial tests, 5 independent verification layers. MIT licensed. USPTO PPA #63/996,819.
 
 I would love to run a free pilot with ARC Prize evaluation data -- no integration needed, just your existing result files.
 
@@ -53,7 +53,7 @@ For Arena specifically: each anonymous battle could produce a verification bundl
 python mg.py verify --pack arena_battle_42.zip  ->  PASS / FAIL
 ```
 
-5 independent verification layers. 1313 adversarial tests proving each layer catches attacks the others miss. MIT licensed.
+5 independent verification layers. 1321 adversarial tests proving each layer catches attacks the others miss. MIT licensed.
 
 I would welcome a free pilot with LMArena evaluation data.
 
@@ -83,7 +83,7 @@ python mg.py verify --pack helm_eval_bundle.zip  ->  PASS / FAIL
 
 The verification chain is anchored to SI 2019 exact constants (kB = 1.380649x10^-23 J/K, NA = 6.02214076x10^23 mol^-1) -- physical constants with zero measurement uncertainty. This is the strongest possible verification anchor: defined by international agreement, immutable, universally reproducible.
 
-5 independent verification layers, each proven to catch attacks the other four miss. 20 verified claims across 8 domains. 1313 adversarial tests. MIT licensed. USPTO PPA #63/996,819.
+5 independent verification layers, each proven to catch attacks the other four miss. 20 verified claims across 8 domains. 1321 adversarial tests. MIT licensed. USPTO PPA #63/996,819.
 
 I would be glad to run a free pilot with HELM evaluation outputs -- no integration work needed on your side.
 

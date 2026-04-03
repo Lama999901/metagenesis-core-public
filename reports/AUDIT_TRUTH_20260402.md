@@ -19,7 +19,7 @@
 | Check | Result | Output |
 |-------|--------|--------|
 | 1.1 steward_audit.py | PASS | STEWARD AUDIT: PASS |
-| 1.2 pytest tests/ -q | PASS | 1313 passed, 2 skipped in 16.29s |
+| 1.2 pytest tests/ -q | PASS | 1321 passed, 2 skipped in 16.29s |
 | 1.3 deep_verify.py | PASS | ALL 13 TESTS PASSED |
 | 1.4 agent_evolution.py --summary | PARTIAL | 18/19 CHECKS PASSED (1 fail: semantic_audit demo scenarios verify=False) |
 | 1.5 agent_pr_creator.py --summary | PASS | No auto-pr needed -- system current |
@@ -54,7 +54,7 @@
 | FINRISK-01 | abs(delta_VaR) <= tolerance | pass=True | PASS |
 | AGENT-DRIFT-01 | composite_drift <= 20% | pass=True (via test suite) | PASS |
 
-**All 20 claims produce PASS at documented thresholds.** Verified both directly and via 1313 passing tests.
+**All 20 claims produce PASS at documented thresholds.** Verified both directly and via 1321 passing tests.
 
 ---
 
@@ -116,9 +116,9 @@
 
 | Check | Result |
 |-------|--------|
-| 7.1 index.html test count = 1313 | PASS |
+| 7.1 index.html test count = 1321 | PASS |
 | 7.2 index.html claims count = 20 | PASS |
-| 7.3 system_manifest.json test_count = 1313 = actual | PASS |
+| 7.3 system_manifest.json test_count = 1321 = actual | PASS |
 | 7.4 README.md subtitle correct | PASS |
 | 7.5 README.md no Mechanicus Parallel table | PASS |
 
