@@ -5,14 +5,14 @@
 [![Steward Audit](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml/badge.svg)](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Patent Pending](https://img.shields.io/badge/Patent-Pending%20%2363%2F996%2C819-orange.svg)](ppa/README_PPA.md)
-[![Tests](https://img.shields.io/badge/Tests-1321%20passing-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-1634%20passing-brightgreen.svg)](tests/)
 [![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.9.0-blueviolet.svg)](docs/PROTOCOL.md)
 [![Sponsor](https://img.shields.io/badge/Sponsor-❤️-pink.svg)](https://github.com/sponsors/Lama999901)
 
 **Site:** https://metagenesis-core.dev
 **Contact:** yehor@metagenesis-core.dev
 **PPA:** USPTO #63/996,819 -- filed 2026-03-05  
-**Version:** v0.9.0 | 20 claims | 1321 tests | 81.2% coverage | 19 agent checks | 27/27 tasks done
+**Version:** v0.9.0 | 20 claims | 1634 tests | 88% coverage | 19 agent checks | 27/27 tasks done
 
 ---
 
@@ -166,7 +166,7 @@ Today, the answer is almost always: **no**.
 - Like git became the standard for code
 - MetaGenesis Core could become the standard for computational results
 
-The technology is ready. The adversarial proof suite (1321 tests) demonstrates it works.
+The technology is ready. The adversarial proof suite (1634 tests) demonstrates it works.
 The patent is pending. The protocol is MIT licensed.
 What happens next depends on adoption.
 
@@ -191,7 +191,7 @@ Built by **one person**. Yehor Bazhynov. Inventor, USPTO #63/996,819.
 
 Built after hours, without a team, without funding, using **Claude (Anthropic)** as the primary development tool. Every AI-generated output verified by the project's own test suite. The protocol verifies the protocol.
 
-The result: **20 verified claims across 8 domains. 1321 adversarial tests. 81.2% code coverage. 5 verification layers. 8 innovations. 19 autonomous checks running daily. 82 agent sessions recorded. Level 3 autonomous forge confirmed. Built in 28 days.**
+The result: **20 verified claims across 8 domains. 1634 adversarial tests. 88% code coverage. 5 verification layers. 8 innovations. 19 autonomous checks running daily. 82 agent sessions recorded. Level 3 autonomous forge confirmed. Built in 28 days.**
 
 ---
 
@@ -282,7 +282,7 @@ Every claim in this protocol is backed by adversarial tests that attempt to brea
 
 ```bash
 python -m pytest tests/ -q
-# -> 1321 passed
+# -> 1634 passed
 ```
 
 The summary test in CERT-05 explicitly proves all five layers are necessary -- no single layer catches all attacks. CERT-11 constructs coordinated attacks where each layer catches what the other four miss. This is not a claim. It is a mathematical proof backed by executable tests.
@@ -327,7 +327,7 @@ MetaGenesis Core includes an autonomous agent monitoring system -- 19 checks tha
 | # | Check | What it verifies |
 |---|-------|-----------------|
 | 1 | `steward` | `steward_audit.py` passes -- governance rules enforced |
-| 2 | `tests` | All 1321 tests pass |
+| 2 | `tests` | All 1634 tests pass |
 | 3 | `deep` | `deep_verify.py` -- 13 independent proof tests |
 | 4 | `docs` | Stale documentation detection via `check_stale_docs.py` |
 | 5 | `manifest` | `system_manifest.json` matches actual repo state |
@@ -346,7 +346,7 @@ MetaGenesis Core includes an autonomous agent monitoring system -- 19 checks tha
 | 18 | `auto_pr` | Level 3 autonomous PR queue -- agents create PRs, Yehor approves |
 | 19 | `semantic_audit` | Project coherence -- physical anchors, claim matrix, innovations, patent integrity |
 
-**Coverage floor locked:** 81.2% achieved in v0.9.0. Check #11 enforces minimum 65%. Any PR dropping below 65% is automatically blocked.
+**Coverage floor locked:** 88% achieved in v0.9.0. Check #11 enforces minimum 65%. Any PR dropping below 65% is automatically blocked.
 
 ### How it works
 
@@ -551,7 +551,7 @@ For ML accuracy (ML_BENCH-01/02/03), data pipelines (DATA-PIPE-01), pharma (PHAR
 
 ### ENV_001 -- Test Environment
 
-All 1321 tests pass in the reference environment (Python 3.11+, stdlib only). No database dependencies. No external services. No network required. Local environment deviations may require matching Python version.
+All 1634 tests pass in the reference environment (Python 3.11+, stdlib only). No database dependencies. No external services. No network required. Local environment deviations may require matching Python version.
 
 **Why this limitation exists:** The protocol is designed to work offline with zero external dependencies. This is a feature, not a limitation -- but it means the test suite assumes a clean Python environment.
 
@@ -577,7 +577,7 @@ python scripts/steward_audit.py
 # -> STEWARD AUDIT: PASS
 
 python -m pytest tests/ -q
-# -> 1321 passed
+# -> 1634 passed
 
 # Full proof-not-trust verification (13 tests):
 python scripts/deep_verify.py
@@ -626,7 +626,7 @@ Read these files in order:
 ```
 1. CLAUDE.md                    <- PRIMARY: mission, traps, technical rules
 2. AGENTS.md                    <- hard rules, forbidden terms, protected files
-3. CONTEXT_SNAPSHOT.md          <- current state, 20 claims, 1321 tests
+3. CONTEXT_SNAPSHOT.md          <- current state, 20 claims, 1634 tests
 4. reports/canonical_state.md   <- authoritative claims list
 5. reports/known_faults.yaml    <- known limitations (SCOPE_001 + ENV_001)
 ```

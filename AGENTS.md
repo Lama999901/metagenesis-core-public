@@ -1,6 +1,6 @@
 # AGENTS.md — Rules for AI Agents Working in This Repo
 
-> v0.9.0 | 20 claims | 1321 tests | 19 agent checks
+> v0.9.0 | 20 claims | 1634 tests | 19 agent checks
 > This file tells Cursor, Claude, Copilot, and any AI agent the rules of this repo.
 > Read CLAUDE.md first — it is always more current and wins all conflicts.
 
@@ -68,8 +68,8 @@ FORBIDDEN → CORRECT
 "blockchain" → "cryptographic hash chain"
 "unforgeable" → don't use
 "GPT-5" → doesn't exist
-"100% test success" → "1321 tests PASS"
-"595 tests" / "601 tests" → "1321 tests"
+"100% test success" → "1634 tests PASS"
+"595 tests" / "601 tests" → "1634 tests"
 "v0.6" / "v0.7" → "v0.9.0"
 ```
 
@@ -125,7 +125,7 @@ Step 5 — Tests: tests/<domain>/test_<claim_id_lower>.py
 Step 6 — Update ALL counters AND check_stale_docs.py required strings (same PR):
 ```bash
 python scripts/steward_audit.py  # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q       # → 1321 passed
+python -m pytest tests/ -q       # → 1634 passed
 python scripts/deep_verify.py    # → ALL 13 TESTS PASSED
 python scripts/agent_pr_creator.py --summary  # → No auto-pr needed
 ```
@@ -163,7 +163,7 @@ python scripts/agent_pr_creator.py --summary  # → No auto-pr needed
 
 ```bash
 python scripts/steward_audit.py      # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q           # → 1321 passed
+python -m pytest tests/ -q           # → 1634 passed
 python scripts/deep_verify.py        # → ALL 13 TESTS PASSED
 python scripts/agent_pr_creator.py --summary  # → No auto-pr needed
 grep -r "tamper-proof\|GPT-5\|19x\|VacuumGenesis\|blockchain" docs/ scripts/ backend/ tests/
