@@ -1,7 +1,7 @@
 # MetaGenesis Core — Context for AI Agents (GSD)
 
 > Loaded automatically by all GSD agents via CLAUDE.md.
-> Last updated: 2026-03-31 | v0.8.0 LIVE | 20 claims | 1321 tests
+> Last updated: 2026-03-31 | v0.9.0 LIVE | 20 claims | 1321 tests
 
 ---
 
@@ -85,7 +85,7 @@ auditable offline. One command: `python scripts/mg.py verify --pack bundle.zip �
 **Inventor:** Yehor Bazhynov | **PPA:** USPTO #63/996,819
 **Repo:** https://github.com/Lama999901/metagenesis-core-public
 **Site:** https://metagenesis-core.dev
-**Release:** v0.8.0 LIVE | **JOSS paper:** paper.md in main (resubmit Sep 2026)
+**Release:** v0.9.0 LIVE | **JOSS paper:** paper.md in main (resubmit Sep 2026)
 **Ed25519:** scripts/mg_ed25519.py DONE | **Temporal:** scripts/mg_temporal.py DONE
 **CERT-09:** Ed25519 attacks | **CERT-10:** temporal attacks
 **CERT-11:** coordinated multi-vector | **CERT-12:** encoding attacks
@@ -117,7 +117,7 @@ scripts/mg.py                                    ← core verifier, modify caref
 "GPT-5"             → doesn't exist
 "100% test success" → "1321 tests PASS"
 any stale test count → always use current count from system_manifest.json
-any stale version    → always use v0.8.0
+any stale version    → always use v0.9.0
 ```
 
 ---
@@ -154,7 +154,7 @@ git push origin feat/description
 
 ---
 
-## CURRENT STATE (v0.8.0)
+## CURRENT STATE (v0.9.0)
 
 ```
 Claims:      20 active (all have 4-step Step Chain)
@@ -163,7 +163,7 @@ Layers:      5 verification (integrity + semantic + step chain + signing + tempo
 Innovations: 8 (5 PPA + HMAC + Ed25519 + Temporal)
 Domains:     8 (materials, sysid, data, ml, digital_twin, pharma, finance, physics)
 Checks:      19 Mechanicus (agent_evolution.py)
-Release:     v0.8.0 LIVE
+Release:     v0.9.0 LIVE
 Coverage:    ~40% (target 65%)
 agent_pr_creator: REAL (203 lines, 3 detectors) — catches stale counters automatically
 ```
@@ -426,6 +426,6 @@ This shows recurring issues + auto-fix hints from 57 sessions.
 
 ---
 
-*CLAUDE.md v2.0 — 2026-03-31 — MetaGenesis Core v0.8.0 LIVE*
+*CLAUDE.md v2.0 — 2026-03-31 — MetaGenesis Core v0.9.0 LIVE*
 *1321 tests | 20 claims | 19 checks | Level 3 autonomous forge ACTIVE*
 *Mission: notary for computations. First client = history.*
