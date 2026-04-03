@@ -165,3 +165,14 @@ reports/canonical_state.md
 
 *PPA README v2.1. Scope: verification core only.
 No invented features. Every section traceable to passing tests.*
+
+## Current verification state (auto-updated)
+
+| Parameter | Value |
+|---|---|
+| Tests | 1313 |
+| Claims | 20 |
+| Innovations | 8 |
+| Agent checks | 19 |
+| Coverage | 81.2% |
+| Version | v0.8.0 |
