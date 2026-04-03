@@ -1,0 +1,33 @@
+{
+  "entries": [
+    {
+      "bundle_path": "C:\\Users\\999ye\\Downloads\\metagenesis-core-public\\.claude\\worktrees\\agent-ad05a9d0\\reports\\pilot_bundles\\alice_test_2026-04-03",
+      "company": "TestCorp",
+      "date": "2026-04-03",
+      "domain_description": "We need ML model accuracy verification",
+      "domain_detected": "ml",
+      "draft_path": "C:\\Users\\999ye\\Downloads\\metagenesis-core-public\\.claude\\worktrees\\agent-ad05a9d0\\reports\\pilot_drafts\\alice_test_2026-04-03.txt",
+      "email": "alice@example.com",
+      "flagged_for_review": false,
+      "name": "Alice Test",
+      "processed_at": "2026-04-03T23:34:10.000378+00:00",
+      "sent_at": "2026-04-03T23:34:32.436177+00:00",
+      "status": "sent",
+      "verified": true
+    },
+    {
+      "bundle_path": "C:\\Users\\999ye\\Downloads\\metagenesis-core-public\\.claude\\worktrees\\agent-ad05a9d0\\reports\\pilot_bundles\\bob_demo_2026-04-03",
+      "company": "DemoCo",
+      "date": "2026-04-03",
+      "domain_description": "Steel material calibration needed",
+      "domain_detected": "materials",
+      "draft_path": "C:\\Users\\999ye\\Downloads\\metagenesis-core-public\\.claude\\worktrees\\agent-ad05a9d0\\reports\\pilot_drafts\\bob_demo_2026-04-03.txt",
+      "email": "bob@example.com",
+      "flagged_for_review": false,
+      "name": "Bob Demo",
+      "processed_at": "2026-04-03T23:34:10.050623+00:00",
+      "status": "processed",
+      "verified": true
+    }
+  ]
+}

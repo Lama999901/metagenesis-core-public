@@ -1,0 +1,24 @@
+Subject: MetaGenesis Core -- Verification Bundle Ready
+
+Hi Bob Demo,
+
+Your MetaGenesis Core pilot verification is complete.
+
+Company: DemoCo
+Domain: materials
+Result: PASS
+Bundle: C:\Users\999ye\Downloads\metagenesis-core-public\.claude\worktrees\agent-ad05a9d0\reports\pilot_bundles\bob_demo_2026-04-03
+
+Your verified bundle proves that the computation produced exactly this
+result, at exactly this time, in exactly this way. It is independently
+auditable offline -- no trust required.
+
+Next step: Secure your full MetaGenesis Core license for $299:
+https://buy.stripe.com/14AcN57qH19R1qN3QQ6Na00
+
+Questions? Reply to this email.
+
+Best,
+Yehor Bazhynov
+MetaGenesis Core
+yehor@metagenesis-core.dev
