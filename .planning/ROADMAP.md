@@ -42,7 +42,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [ ] **Phase 9: Academic Infrastructure** - Zenodo DOI metadata, CITATION.cff currency, README badge, paper.md cross-references
 - [x] **Phase 10: Coverage Hardening** - Dedicated tests for check_stale_docs, agent_evolve_self, agent_research, agent_coverage to reach 90%+ (completed 2026-04-03)
-- [ ] **Phase 11: Client Onboarding Automation** - agent_pilot.py end-to-end: form ingestion, domain detection, bundle generation, email draft, queue tracking
+- [x] **Phase 11: Client Onboarding Automation** - agent_pilot.py end-to-end: form ingestion, domain detection, bundle generation, email draft, queue tracking (completed 2026-04-03)
 - [ ] **Phase 12: Agent Evolution** - Pilot queue staleness detector (#5) in agent_pr_creator.py with tests
 - [ ] **Phase 13: System Hardening** - Gap analysis, counter consistency, all verification gates green
 
@@ -86,7 +86,7 @@ Plans:
   3. agent_pilot.py generates a response email draft file containing the PASS result, bundle summary, and next-steps language pointing to the $299 Stripe link
   4. reports/pilot_queue.json tracks every submission with status (pending/processed/sent), timestamps, and domain detected
   5. Running `python scripts/agent_pilot.py --help` displays usage information including all flags
-**Plans:** 2 plans
+**Plans:** 1/2 plans complete
 Plans:
 - [ ] 11-01-PLAN.md -- Core agent_pilot.py: CSV ingestion, domain detection, bundle generation, email drafts, queue state
 - [ ] 11-02-PLAN.md -- Test suite for agent_pilot.py: domain detection, CSV parsing, bundle gen, drafts, queue, CLI
@@ -124,7 +124,7 @@ Phases execute in numeric order: 9 -> 10 -> 11 -> 12 -> 13
 | 8. Counter Updates | 2/2 | Complete | 2026-03-18 |
 | 9. Academic Infrastructure | 0/1 | Planned | - |
 | 10. Coverage Hardening | 0/2 | Complete    | 2026-04-03 |
-| 11. Client Onboarding Automation | 0/2 | Planned | - |
+| 11. Client Onboarding Automation | 0/2 | Complete    | 2026-04-03 |
 | 12. Agent Evolution | 0/TBD | Not started | - |
 | 13. System Hardening | 0/TBD | Not started | - |
 
