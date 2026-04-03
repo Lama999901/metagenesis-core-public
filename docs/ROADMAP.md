@@ -3,8 +3,8 @@
 This roadmap reflects planned development directions.
 All items are subject to change based on community feedback and priorities.
 
-**Current version:** 0.8.0
-**Protocol:** MetaGenesis Verification Protocol (MVP) v0.8
+**Current version:** 0.9.0
+**Protocol:** MetaGenesis Verification Protocol (MVP) v0.9
 
 **Core principle:** MetaGenesis Core verifies that computational results
 agree with physical reality — not just that numbers weren't changed.
@@ -46,6 +46,20 @@ This is traceability to physical measurement, not threshold compliance.
 - [x] CERT-05 Adversarial Gauntlet (5 attack scenarios documented and caught)
 - [x] CERT-06 Real-World Scenarios (5 proof stories end-to-end)
 - [x] GitHub Sponsors configured
+
+---
+
+## v0.9.0 — Technical Perfection (2026-04-02)
+
+- Coverage: 49.2% to 81.2% (+32pp, 1321 tests from 906)
+- All 27 agent tasks complete (0 pending)
+- Coverage governance locked at 65% minimum
+- 4 autonomous PR detectors (stale counter, manifest sync, diff review, coverage drop)
+- CI auto-commits agent reports
+- Wave-2 outreach drafts ready (Chollet, LMArena, Percy Liang)
+- Full Technical Truth Audit: 45/46 checks PASS
+- Zenodo DOI metadata ready (.zenodo.json)
+- Physical anchor: kB/NA = SI 2019 exact, zero uncertainty
 
 ---
 

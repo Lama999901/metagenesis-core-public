@@ -281,8 +281,8 @@ def check_claude_md(actual_count):
     if str(actual_count) not in content and actual_count > 0:
         issues.append(f"CLAUDE.md doesn't mention {actual_count} tests")
 
-    if "v0.8.0" not in content:
-        issues.append("CLAUDE.md doesn't mention v0.8.0")
+    if "v0.9.0" not in content:
+        issues.append("CLAUDE.md doesn't mention v0.9.0")
 
     if "<<<<<<" in content or ">>>>>>>" in content or "\n=======" in content:
         issues.append("CLAUDE.md has merge conflict markers!")
@@ -496,7 +496,7 @@ def main():
     print(f"\n{BOLD}{'═'*60}{RESET}")
     print(f"{BOLD}  MetaGenesis Core — Agent Evolution Check{RESET}")
     info("Servo-skull patrol initiated (HEALTH_CHECK_START)")
-    print(f"  {datetime.now().strftime('%Y-%m-%d %H:%M')} | v0.8.0")
+    print(f"  {datetime.now().strftime('%Y-%m-%d %H:%M')} | v0.9.0")
     print(f"{BOLD}{'═'*60}{RESET}")
 
     results = {}
@@ -574,7 +574,7 @@ def main():
         print(f"  {RED}The Machine Spirit is troubled (FAIL){RESET}")
         print()
         print(f"  Run after fixing:")
-        print(f"  /gsd:quick \"Update CLAUDE.md to reflect current state: {count} tests, v0.8.0\"")
+        print(f"  /gsd:quick \"Update CLAUDE.md to reflect current state: {count} tests, v0.9.0\"")
         if stale:
             print(f"  /gsd:quick \"Fix stale documentation: {', '.join(stale[:3])}\"")
         code = 1 if strict else 0
