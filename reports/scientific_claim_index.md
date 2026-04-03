@@ -431,4 +431,4 @@ before beacon) prevents backdating.
 
 ---
 
-*Index authority: MetaGenesis Core / SCI-01 v0.9 — 20 claims, 1321 tests. Append new claims as sections.*
+*Index authority: MetaGenesis Core / SCI-01 v0.9 — 20 claims, 1466 tests. Append new claims as sections.*
