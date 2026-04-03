@@ -267,4 +267,4 @@ DT-FEM-01 and DRIFT-01 support anchor_hash for Cross-Claim Chain.
 
 ---
 
-*Architecture v0.8 — 2026-03-31 — MetaGenesis Core*
+*Architecture v0.9 — 2026-03-31 — MetaGenesis Core*

@@ -31,7 +31,7 @@
 | Domains | 8 |
 | Agent checks | 19 (agent_evolution.py) |
 | Coverage | 81.2% |
-| GitHub Release | v0.8.0 |
+| GitHub Release | v0.9.0 |
 | Adversarial tests | CERT-05 (5 attacks) + CERT-06 (5 scenarios) + CERT-07 (signing) + CERT-08 (reproducibility) + CERT-09 (Ed25519 attacks) + CERT-10 (temporal attacks) + CERT-11 (coordinated multi-vector) + CERT-12 (encoding attacks) |
 
 ---

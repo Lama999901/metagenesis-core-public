@@ -1,5 +1,5 @@
 Open verification protocol for computational claims.
-Implements the MetaGenesis Verification Protocol (MVP) v0.8.
+Implements the MetaGenesis Verification Protocol (MVP) v0.9.
 
 Any computational result — ML accuracy, calibration output, FEM simulation,
 ADMET prediction, VaR estimate, IoT sensor stream — can be packaged into a
@@ -117,7 +117,7 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 - HN post live: https://news.ycombinator.com/item?id=47335416
 - PPA filed: 2026-03-05 — non-provisional deadline 2027-03-05
 - Payment: $299/bundle — bank transfer / crypto (BTC/ETH/USDC) / invoice — yehor@metagenesis-core.dev
-- GitHub Release: v0.8.0 — https://github.com/Lama999901/metagenesis-core-public/releases/tag/v0.8.0
+- GitHub Release: v0.9.0 — https://github.com/Lama999901/metagenesis-core-public/releases/tag/v0.9.0
 - Outreach sent: Tongqi Wen, Giovanni Pizzi, Brian Nosek (follow-up), Peter Coveney (follow-up),
   Arvind Narayanan (follow-up), Jeffrey Ip, Elena Samuylova (resent with subject),
   Anand Kannappan, Vikram Chatterji, Woody Sherman, Jonathan Godwin,
@@ -129,8 +129,8 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 ## Key files
 
 - README.md — problem, solution, quickstart
-- docs/PROTOCOL.md — v0.8 protocol specification (5 layers + Cross-Claim Chain)
-- docs/ARCHITECTURE.md — v0.8 architecture diagrams
+- docs/PROTOCOL.md — v0.9 protocol specification (5 layers + Cross-Claim Chain)
+- docs/ARCHITECTURE.md — v0.9 architecture diagrams
 - docs/ROADMAP.md — planned expansion
 - reports/scientific_claim_index.md — all 20 claims with thresholds
 - reports/canonical_state.md — authoritative claims list
