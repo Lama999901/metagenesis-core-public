@@ -1,103 +1,93 @@
-# Requirements: MetaGenesis Core v0.5.0
+# Requirements: MetaGenesis Core v1.0.0
 
-**Defined:** 2026-03-17
+**Defined:** 2026-04-03
 **Core Value:** Every verification claim must be independently auditable offline with cryptographic proof of integrity, provenance, and temporal commitment.
 
-## v1 Requirements
+## v1.0.0 Requirements
 
-### Step Chain Coverage
+### Client Onboarding
 
-- [x] **CHAIN-01**: All 14 claims have dedicated structural step chain tests (genesis hash, hash linkage, root hash equality)
-- [x] **CHAIN-02**: Step chain verifier rejects traces with wrong step ordering (1,3,2,4)
-- [x] **CHAIN-03**: Step chain verifier rejects traces with duplicate step numbers
-- [x] **CHAIN-04**: Step chain verifier rejects traces with extra steps beyond 4
+- [ ] **PILOT-01**: agent_pilot.py reads pilot form submissions (CSV or JSON) and auto-detects domain from description
+- [ ] **PILOT-02**: agent_pilot.py runs mg_client.py for detected domain and generates verified bundle
+- [ ] **PILOT-03**: agent_pilot.py generates response email draft with PASS result and bundle summary
+- [ ] **PILOT-04**: agent_pilot.py saves processing state to reports/pilot_queue.json with status tracking
+- [ ] **PILOT-05**: agent_pilot.py provides --help showing usage and --process for batch processing
 
-### Adversarial Proofs
+### Coverage Hardening
 
-- [x] **ADV-01**: CERT-11 proves attacker who rebuilds Layer 1 + fakes Layer 2 is caught by Layer 2
-- [x] **ADV-02**: CERT-11 proves attacker who rebuilds Layers 1+2 + forges Layer 3 is caught by Layer 3
-- [x] **ADV-03**: CERT-11 proves stolen signing key with tampered evidence is caught by Layers 1-3
-- [x] **ADV-04**: CERT-11 proves coordinated 3-layer bypass still fails at remaining layers
-- [x] **ADV-05**: CERT-12 proves BOM-prefixed files are detected or handled safely
-- [x] **ADV-06**: CERT-12 proves null bytes / truncated JSON / Unicode homoglyphs are caught
-- [x] **ADV-07**: Manifest version rollback (old protocol_version) is rejected by verifier
+- [ ] **COV-01**: Dedicated tests for check_stale_docs.py (currently no dedicated test file)
+- [ ] **COV-02**: Tests for agent_evolve_self.py analyze() and report generation paths
+- [ ] **COV-03**: Tests for agent_research.py write_report() and uncovered branches
+- [ ] **COV-04**: Tests for agent_coverage.py run() function (20% covered)
+- [ ] **COV-05**: Overall coverage reaches 90%+ (excluding deep_verify.py load_module)
 
-### Layer Hardening
+### Academic Infrastructure
 
-- [x] **SEM-01**: Layer 2 rejects partial evidence (some fields present, some missing)
-- [x] **SEM-02**: Layer 2 handles extra unexpected fields without false acceptance
-- [x] **SEM-03**: Layer 2 rejects semantically meaningless values (empty strings, zero values)
-- [x] **CASCADE-01**: Cross-claim test covers full anchor chain MTR-1→DRIFT-01→DT-CALIB-LOOP-01
-- [x] **CASCADE-02**: Failed upstream claim (MTR-1) propagates correctly through entire anchor chain
-- [x] **CASCADE-03**: Cross-claim chain detects tampered anchor hash at any hop
+- [ ] **DOI-01**: .zenodo.json updated with correct test count (1634) and current state
+- [ ] **DOI-02**: CITATION.cff verified complete and current (v0.9.0, 1634 tests)
+- [ ] **DOI-03**: README.md updated with DOI badge placeholder for Zenodo
+- [ ] **DOI-04**: paper.md cross-references updated if stale
 
-### Error Paths & Governance
+### Agent Evolution
 
-- [x] **ERR-01**: Runner rejects unknown JOB_KIND with clear error
-- [x] **ERR-02**: Runner handles mid-computation exceptions gracefully
-- [x] **ERR-03**: Runner handles None/empty/wrong-type input data
-- [x] **GOV-01**: Meta-test detects drift between scientific_claim_index.md and actual claim implementations
-- [x] **GOV-02**: Meta-test detects drift between known_faults.yaml and current code state
-- [x] **GOV-03**: Meta-test validates counter consistency across documentation files
+- [ ] **AGENT-01**: agent_pr_creator.py detector #5: detect_pilot_queue_stale() -- flags pending entries older than 24h
+- [ ] **AGENT-02**: agent_pr_creator.py tests updated for new detector
 
-### Documentation & Counters
+### System Hardening
 
-- [x] **DOCS-01**: All counter updates across index.html, README.md, AGENTS.md, llms.txt, system_manifest.json, CONTEXT_SNAPSHOT.md reflect new test count
+- [ ] **HARD-01**: Full gap analysis run -- any missing tests, stale counters, or broken paths identified and fixed
+- [ ] **HARD-02**: All counters consistent across docs (test count, version, claim count, innovation count)
+- [ ] **HARD-03**: All verification gates pass: steward_audit, pytest, deep_verify, check_stale_docs, agent_diff_review
 
 ## v2 Requirements
 
-### Advanced Coverage
+### Advanced Client Features
 
-- **COV-V2-01**: Race condition tests for concurrent pack/sign operations (TOCTOU)
-- **COV-V2-02**: Key lifecycle tests (expired keys, key rotation, invalid curve points)
-- **COV-V2-03**: Property-based testing for step chain invariants (hypothesis library)
-- **COV-V2-04**: Temporal commitment edge cases (clock skew, impossible beacon values)
+- **CLIENT-V2-01**: Zoho Mail API integration for automated email sending (currently file-based drafts)
+- **CLIENT-V2-02**: Web dashboard for pilot queue management
+- **CLIENT-V2-03**: Automatic Stripe invoice generation per pilot conversion
 
 ## Out of Scope
 
 | Feature | Reason |
 |---------|--------|
-| Production code changes | Tests-only milestone — no changes to scripts/, backend/, core modules unless required for testability |
-| Race condition tests (TOCTOU) | Concurrent pack/sign is not a realistic attack vector for single-user CLI |
-| Key lifecycle tests | Key metadata does not currently include expiry; deferred to v0.6.0 |
-| Property-based testing | Would require hypothesis library, violating stdlib-only constraint |
-| Fuzz testing | Excessive for deterministic protocol; targeted encoding attacks (CERT-12) suffice |
-| New claim domains | Not adding claims 15+, this is coverage hardening only |
+| New verification layers | Testing and automating what exists |
+| New claim domains (21+) | Client onboarding uses existing 20 claims |
+| Modifying steward_audit.py | Sealed, CI-locked |
+| Real-time Zoho Mail API | File-based drafts sufficient for v1.0.0 |
+| Pricing changes | $299 fixed, Stripe link live |
+| Mobile/web dashboard | CLI-first, deferred to v2 |
+| deep_verify.py coverage | load_module uses subprocess, untestable without refactor |
 
 ## Traceability
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CHAIN-01 | Phase 5 | Complete |
-| CHAIN-02 | Phase 5 | Complete |
-| CHAIN-03 | Phase 5 | Complete |
-| CHAIN-04 | Phase 5 | Complete |
-| ADV-01 | Phase 7 | Complete |
-| ADV-02 | Phase 7 | Complete |
-| ADV-03 | Phase 7 | Complete |
-| ADV-04 | Phase 7 | Complete |
-| ADV-05 | Phase 7 | Complete |
-| ADV-06 | Phase 7 | Complete |
-| ADV-07 | Phase 6 | Complete |
-| SEM-01 | Phase 6 | Complete |
-| SEM-02 | Phase 6 | Complete |
-| SEM-03 | Phase 6 | Complete |
-| CASCADE-01 | Phase 6 | Complete |
-| CASCADE-02 | Phase 6 | Complete |
-| CASCADE-03 | Phase 6 | Complete |
-| ERR-01 | Phase 5 | Complete |
-| ERR-02 | Phase 5 | Complete |
-| ERR-03 | Phase 5 | Complete |
-| GOV-01 | Phase 5 | Complete |
-| GOV-02 | Phase 5 | Complete |
-| GOV-03 | Phase 5 | Complete |
-| DOCS-01 | Phase 8 | Complete |
+| DOI-01 | Phase 9 | Pending |
+| DOI-02 | Phase 9 | Pending |
+| DOI-03 | Phase 9 | Pending |
+| DOI-04 | Phase 9 | Pending |
+| COV-01 | Phase 10 | Pending |
+| COV-02 | Phase 10 | Pending |
+| COV-03 | Phase 10 | Pending |
+| COV-04 | Phase 10 | Pending |
+| COV-05 | Phase 10 | Pending |
+| PILOT-01 | Phase 11 | Pending |
+| PILOT-02 | Phase 11 | Pending |
+| PILOT-03 | Phase 11 | Pending |
+| PILOT-04 | Phase 11 | Pending |
+| PILOT-05 | Phase 11 | Pending |
+| AGENT-01 | Phase 12 | Pending |
+| AGENT-02 | Phase 12 | Pending |
+| HARD-01 | Phase 13 | Pending |
+| HARD-02 | Phase 13 | Pending |
+| HARD-03 | Phase 13 | Pending |
 
 **Coverage:**
-- v1 requirements: 24 total
-- Mapped to phases: 24
+- v1.0.0 requirements: 19 total
+- Mapped to phases: 19
 - Unmapped: 0
 
 ---
-*Requirements defined: 2026-03-17*
-*Last updated: 2026-03-17 after roadmap creation*
+*Requirements defined: 2026-04-03*
+*Last updated: 2026-04-03 after roadmap creation*
