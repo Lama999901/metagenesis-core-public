@@ -71,7 +71,10 @@ Plans:
   3. tests/test_agent_research.py exercises write_report() and uncovered decision branches
   4. tests/test_agent_coverage.py exercises the run() function end-to-end, raising coverage from 20% to 80%+
   5. Running `python -m pytest tests/ -q` reports 90%+ overall coverage (excluding deep_verify.py load_module)
-**Plans**: TBD
+**Plans:** 2 plans
+Plans:
+- [ ] 10-01-PLAN.md -- High-impact coverage: check_stale_docs main flow, agent_coverage analyze(), agent_evolve_self analyze()
+- [ ] 10-02-PLAN.md -- Remaining coverage: agent_research write_report, agent_diff_review main, agent_pr_creator detectors, agent_learn commands
 
 ### Phase 11: Client Onboarding Automation
 **Goal**: A pilot form submission is automatically processed into a verified bundle with email draft, requiring only human review before sending
@@ -117,11 +120,11 @@ Phases execute in numeric order: 9 -> 10 -> 11 -> 12 -> 13
 | 7. Flagship Proofs | 2/2 | Complete | 2026-03-18 |
 | 8. Counter Updates | 2/2 | Complete | 2026-03-18 |
 | 9. Academic Infrastructure | 0/1 | Planned | - |
-| 10. Coverage Hardening | 0/TBD | Not started | - |
+| 10. Coverage Hardening | 0/2 | Planned | - |
 | 11. Client Onboarding Automation | 0/TBD | Not started | - |
 | 12. Agent Evolution | 0/TBD | Not started | - |
 | 13. System Hardening | 0/TBD | Not started | - |
 
 ---
 *Roadmap created: 2026-03-17*
-*Last updated: 2026-04-03 -- Phase 9 planned (1 plan)*
+*Last updated: 2026-04-03 -- Phase 10 planned (2 plans)*
