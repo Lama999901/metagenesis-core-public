@@ -125,7 +125,7 @@ Step 5 — Tests: tests/<domain>/test_<claim_id_lower>.py
 Step 6 — Update ALL counters AND check_stale_docs.py required strings (same PR):
 ```bash
 python scripts/steward_audit.py  # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q       # → 608+ passed
+python -m pytest tests/ -q       # → 1198 passed
 python scripts/deep_verify.py    # → ALL 13 TESTS PASSED
 python scripts/agent_pr_creator.py --summary  # → No auto-pr needed
 ```
