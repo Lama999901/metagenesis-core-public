@@ -90,4 +90,4 @@ AGENT-DRIFT-01, PHYS-01, PHYS-02
 
 ---
 
-*docs/AGENT_SYSTEM.md -- v0.8.0 -- MetaGenesis Core*
+*docs/AGENT_SYSTEM.md -- v0.9.0 -- MetaGenesis Core*
