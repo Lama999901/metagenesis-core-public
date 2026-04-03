@@ -6,13 +6,13 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Patent Pending](https://img.shields.io/badge/Patent-Pending%20%2363%2F996%2C819-orange.svg)](ppa/README_PPA.md)
 [![Tests](https://img.shields.io/badge/Tests-1321%20passing-brightgreen.svg)](tests/)
-[![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.8.0-blueviolet.svg)](docs/PROTOCOL.md)
+[![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.9.0-blueviolet.svg)](docs/PROTOCOL.md)
 [![Sponsor](https://img.shields.io/badge/Sponsor-❤️-pink.svg)](https://github.com/sponsors/Lama999901)
 
 **Site:** https://metagenesis-core.dev
 **Contact:** yehor@metagenesis-core.dev
 **PPA:** USPTO #63/996,819 -- filed 2026-03-05  
-**Version:** v0.8.0 | 20 claims | 1321 tests | 19 agent checks | 27/27 tasks done
+**Version:** v0.9.0 | 20 claims | 1321 tests | 81.2% coverage | 19 agent checks | 27/27 tasks done
 
 ---
 
@@ -191,7 +191,7 @@ Built by **one person**. Yehor Bazhynov. Inventor, USPTO #63/996,819.
 
 Built after hours, without a team, without funding, using **Claude (Anthropic)** as the primary development tool. Every AI-generated output verified by the project's own test suite. The protocol verifies the protocol.
 
-The result: **20 verified claims across 8 domains. 1321 adversarial tests. 5 verification layers. 8 innovations. 19 autonomous agent monitoring checks running daily in CI.**
+The result: **20 verified claims across 8 domains. 1321 adversarial tests. 81.2% code coverage. 5 verification layers. 8 innovations. 19 autonomous checks running daily. 82 agent sessions recorded. Level 3 autonomous forge confirmed. Built in 28 days.**
 
 ---
 
@@ -267,6 +267,7 @@ Every claim in this protocol is backed by adversarial tests that attempt to brea
 
 | Certificate | What it proves | Result |
 |---|---|---|
+| **CERT-01** | SHA-256 integrity -- any file modification, bit flip, or truncation | CAUGHT by Layer 1 |
 | **CERT-02** | Semantic bypass -- strip evidence, recompute hashes | CAUGHT by Layer 2 |
 | **CERT-03** | Step chain tamper -- change inputs, rebuild trace | CAUGHT by Layer 3 |
 | **CERT-04** | Cross-claim chain -- break upstream anchor | CAUGHT by Layer 3 |
@@ -343,6 +344,9 @@ MetaGenesis Core includes an autonomous agent monitoring system -- 19 checks tha
 | 16 | `impact` | Dependencies from UPDATE_PROTOCOL.md checked |
 | 17 | `diff_review` | AST structural diff review |
 | 18 | `auto_pr` | Level 3 autonomous PR queue -- agents create PRs, Yehor approves |
+| 19 | `semantic_audit` | Project coherence -- physical anchors, claim matrix, innovations, patent integrity |
+
+**Coverage floor locked:** 81.2% achieved in v0.9.0. Check #11 enforces minimum 65%. Any PR dropping below 65% is automatically blocked.
 
 ### How it works
 
@@ -629,4 +633,28 @@ Read these files in order:
 
 ---
 
-*MetaGenesis Core -- MVP v0.8 -- Inventor: Yehor Bazhynov -- Patent Pending #63/996,819*
+### The Road to v1.0.0
+
+v1.0.0 is triggered by any of the following -- whichever comes first:
+
+**Commercial:**
+- First paying client ($299 pilot or larger) -- any domain, any size
+
+**Technical expansion:**
+- First custom claim domain added for a real use case
+- Coverage reaches 90%+ (system knows itself completely)
+- New verification layer or innovation added beyond v0.9.0
+
+**External recognition:**
+- JOSS paper accepted
+- Wave-2 response leading to integration (Chollet, LMArena, Percy Liang)
+- Academic citation or public endorsement
+
+One criterion satisfied = v1.0.0 ships.
+
+Everything technical that v1.0.0 requires is already in v0.9.0.
+The protocol is complete. What remains is the world discovering it exists.
+
+---
+
+*MetaGenesis Core -- MVP v0.9 -- Inventor: Yehor Bazhynov -- Patent Pending #63/996,819*
