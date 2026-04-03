@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MetaGenesis Core — Verification Protocol</title>
+<title>MetaGenesis Core â€” Verification Protocol</title>
 
-<!-- â”€â”€ SEO + Social Preview â”€â”€ -->
-<meta name="description" content="Any computational result — ML accuracy, FEM simulation, pipeline output — packaged into a tamper-evident evidence bundle. Any third party verifies offline with one command. PASS or FAIL.">
+<!-- Ã¢â€â‚¬Ã¢â€â‚¬ SEO + Social Preview Ã¢â€â‚¬Ã¢â€â‚¬ -->
+<meta name="description" content="Any computational result â€” ML accuracy, FEM simulation, pipeline output â€” packaged into a tamper-evident evidence bundle. Any third party verifies offline with one command. PASS or FAIL.">
 <meta name="keywords" content="verification protocol, reproducibility, ML benchmark, computational claims, tamper-evident, audit, MetaGenesis">
 <meta name="author" content="Yehor Bazhynov">
 <meta name="robots" content="index, follow">
@@ -14,7 +14,7 @@
 <!-- Open Graph -->
 <meta property="og:type"        content="website">
 <meta property="og:url"         content="https://metagenesis-core.dev/">
-<meta property="og:title"       content="MetaGenesis Core — Proof, Not Trust">
+<meta property="og:title"       content="MetaGenesis Core â€” Proof, Not Trust">
 <meta property="og:description" content="Any computational result packaged into a tamper-evident evidence bundle. One command. PASS or FAIL. No trust required.">
 <meta property="og:image"       content="https://metagenesis-core.dev/og-image.png">
 <meta property="og:image:width"  content="1200">
@@ -26,7 +26,7 @@
 <!-- Twitter Card -->
 <meta name="twitter:card"        content="summary_large_image">
 <meta name="twitter:url"         content="https://metagenesis-core.dev/">
-<meta name="twitter:title"       content="MetaGenesis Core — Proof, Not Trust">
+<meta name="twitter:title"       content="MetaGenesis Core â€” Proof, Not Trust">
 <meta name="twitter:description" content="Any computational result packaged into a tamper-evident evidence bundle. One command. PASS or FAIL.">
 <meta name="twitter:image"       content="https://metagenesis-core.dev/og-image.png">
 
@@ -70,14 +70,14 @@ body{
   -moz-osx-font-smoothing:grayscale;
   text-rendering:optimizeLegibility;
 }
-/* Prose bloom — subtle luminous glow on all body text */
+/* Prose bloom â€” subtle luminous glow on all body text */
 p, li, .cmp-feat, .faq-a, .faq-a p,
 .uc p, .ppc p, .reg p, .reg li,
 .seg-step-txt, .price-feat li,
 .proto-rule, .note-block, .origin-step {
   text-shadow: var(--glow);
 }
-/* â•â• CURSOR SYSTEM â•â• */
+/* Ã¢â€¢ÂÃ¢â€¢Â CURSOR SYSTEM Ã¢â€¢ÂÃ¢â€¢Â */
 :root{--cc:#00e5ff;--cc2:rgba(0,229,255,.55)}
 body.cur-hover{--cc:#00ff99;--cc2:rgba(0,255,223,.55)}
 /* Center diamond */
@@ -149,17 +149,17 @@ nav::before{content:'';position:absolute;inset:0;background:rgba(3,6,13,.92);bac
 .hero-stage{display:flex;flex-direction:column;justify-content:center;padding:0 52px;position:relative;z-index:11;overflow:hidden}
 .hline{display:block;overflow:hidden}
 .hspan{display:block;font-family:var(--fd);font-size:clamp(76px,10.8vw,184px);font-weight:900;line-height:.88;letter-spacing:-.04em}
-/* â”€â”€ PROOF: Ð²ÐµÑ€Ð¸Ñ„Ð¸ÐºÐ°Ñ†Ð¸Ð¾Ð½Ð½Ð°Ñ Ñ€Ð°Ð·Ð²Ñ‘Ñ€Ñ‚ÐºÐ° ÑÐ²ÐµÑ€Ñ…Ñƒ Ð²Ð½Ð¸Ð· â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ PROOF: ÃÂ²ÃÂµÃ‘â‚¬ÃÂ¸Ã‘â€žÃÂ¸ÃÂºÃÂ°Ã‘â€ ÃÂ¸ÃÂ¾ÃÂ½ÃÂ½ÃÂ°Ã‘Â Ã‘â‚¬ÃÂ°ÃÂ·ÃÂ²Ã‘â€˜Ã‘â‚¬Ã‘â€šÃÂºÃÂ° Ã‘ÂÃÂ²ÃÂµÃ‘â‚¬Ã‘â€¦Ã‘Æ’ ÃÂ²ÃÂ½ÃÂ¸ÃÂ· Ã¢â€â‚¬Ã¢â€â‚¬ */
 .word-proof .hspan{color:#00ff99;position:relative;overflow:hidden;animation:proofglow 4s 3s ease-in-out infinite;text-shadow:0 0 60px rgba(0,255,223,.35),0 0 120px rgba(0,255,223,.15)}
 .word-proof .hspan::after{content:'';position:absolute;left:-3%;width:106%;top:-5%;height:2px;background:linear-gradient(90deg,transparent,rgba(0,255,223,.85) 25%,rgba(0,255,223,1) 50%,rgba(0,255,223,.85) 75%,transparent);box-shadow:0 0 12px rgba(0,255,223,.6),0 0 28px rgba(0,255,223,.25);animation:proofscan 3.8s 1.6s ease-in-out infinite;pointer-events:none}
 @keyframes proofscan{0%{top:-5%;opacity:0}7%{opacity:1}78%{top:110%;opacity:.7}88%,100%{top:110%;opacity:0}}
-/* â”€â”€ NOT: Ñ†Ð²ÐµÑ‚Ð½Ð¾Ð¹ Ð³Ð»Ð¸Ñ‚Ñ‡-Ð´ÑƒÐ±Ð»Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ NOT: Ã‘â€ ÃÂ²ÃÂµÃ‘â€šÃÂ½ÃÂ¾ÃÂ¹ ÃÂ³ÃÂ»ÃÂ¸Ã‘â€šÃ‘â€¡-ÃÂ´Ã‘Æ’ÃÂ±ÃÂ»ÃÂ¸Ã‘â‚¬ÃÂ¾ÃÂ²ÃÂ°ÃÂ½ÃÂ¸ÃÂµ Ã¢â€â‚¬Ã¢â€â‚¬ */
 .word-not   .hspan{color:rgba(0,229,255,.82);position:relative;animation:notglow 5s 2s ease-in-out infinite;text-shadow:0 0 50px rgba(0,229,255,.28),0 0 100px rgba(0,229,255,.10)}
 .word-not .hspan::before{content:attr(data-t);position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;font-family:var(--fd);font-size:inherit;font-weight:900;line-height:inherit;letter-spacing:inherit;color:#ff4060;clip-path:polygon(0 11%,100% 11%,100% 36%,0 36%);opacity:0;animation:gl1 4.8s 3.4s infinite}
 .word-not .hspan::after{content:attr(data-t);position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;font-family:var(--fd);font-size:inherit;font-weight:900;line-height:inherit;letter-spacing:inherit;color:#00ff99;clip-path:polygon(0 57%,100% 57%,100% 80%,0 80%);opacity:0;animation:gl2 4.8s 3.55s infinite}
 @keyframes gl1{0%,91%,100%{opacity:0;transform:none}92%{opacity:.78;transform:translateX(-5px) skewX(-1.5deg)}94%{opacity:.78;transform:translateX(3.5px)}95.5%{opacity:0}}
 @keyframes gl2{0%,91%,100%{opacity:0;transform:none}92%{opacity:.78;transform:translateX(5px) skewX(1.5deg)}94%{opacity:.78;transform:translateX(-2.5px)}95.5%{opacity:0}}
-/* â”€â”€ TRUST: Ð¿ÐµÑ€ÐµÑ‡Ñ‘Ñ€ÐºÐ¸Ð²Ð°Ð½Ð¸Ðµ â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ TRUST: ÃÂ¿ÃÂµÃ‘â‚¬ÃÂµÃ‘â€¡Ã‘â€˜Ã‘â‚¬ÃÂºÃÂ¸ÃÂ²ÃÂ°ÃÂ½ÃÂ¸ÃÂµ Ã¢â€â‚¬Ã¢â€â‚¬ */
 .word-trust .hspan{color:rgba(255,50,80,.42);position:relative;text-shadow:0 0 60px rgba(255,50,80,.25),0 0 120px rgba(255,50,80,.10)}
 @keyframes proofglow{0%,100%{text-shadow:0 0 40px rgba(0,255,223,.15),0 0 80px rgba(0,255,223,.07)}50%{text-shadow:0 0 80px rgba(0,255,223,.5),0 0 200px rgba(0,255,223,.2)}}
 @keyframes notglow{0%,100%{text-shadow:0 0 50px rgba(0,229,255,.20),0 0 100px rgba(0,229,255,.08)}50%{text-shadow:0 0 80px rgba(0,229,255,.45),0 0 160px rgba(0,229,255,.18)}}
@@ -222,14 +222,14 @@ a.htbadge:hover{color:rgba(238,247,251,.72);border-color:rgba(238,247,251,.28)}
 .tl{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3)}
 .w{position:relative;z-index:10;max-width:1280px;margin:0 auto;padding:0 52px}
 .sec{padding:120px 0}
-/* Reading backdrop — subtle dark panel under text sections */
+/* Reading backdrop â€” subtle dark panel under text sections */
 .w > .sec{
   position:relative;
 }
 .w > .sec::before{
   content:'';
   position:absolute;
-  /* no negative top — prevent bleeding into ticker */
+  /* no negative top â€” prevent bleeding into ticker */
   top:0;
   bottom:0;
   left:-60px;
@@ -274,10 +274,10 @@ a.htbadge:hover{color:rgba(238,247,251,.72);border-color:rgba(238,247,251,.28)}
   flex-shrink:0;
 }
 h2{font-family:var(--fd);font-size:clamp(36px,4vw,64px);font-weight:900;line-height:1;letter-spacing:-.03em;margin-bottom:20px;position:relative}
-/* â”€â”€ h2 SEMANTIC COLOUR SPANS â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ h2 SEMANTIC COLOUR SPANS Ã¢â€â‚¬Ã¢â€â‚¬ */
 h2 .hc{color:var(--c)}
 h2 .hg{color:var(--ok)}
-/* â”€â”€ .hr: ÐºÑ€Ð°ÑÐ½Ñ‹Ðµ ÑÐ»Ð¾Ð²Ð° — Ð·ÐµÐ»Ñ‘Ð½Ð¾Ðµ Ð¿ÐµÑ€ÐµÑ‡Ñ‘Ñ€ÐºÐ¸Ð²Ð°Ð½Ð¸Ðµ Ð¿Ð¾ÑÐ²Ð»ÑÐµÑ‚ÑÑ Ð¸ Ð¸ÑÑ‡ÐµÐ·Ð°ÐµÑ‚ â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ .hr: ÃÂºÃ‘â‚¬ÃÂ°Ã‘ÂÃÂ½Ã‘â€¹ÃÂµ Ã‘ÂÃÂ»ÃÂ¾ÃÂ²ÃÂ° â€” ÃÂ·ÃÂµÃÂ»Ã‘â€˜ÃÂ½ÃÂ¾ÃÂµ ÃÂ¿ÃÂµÃ‘â‚¬ÃÂµÃ‘â€¡Ã‘â€˜Ã‘â‚¬ÃÂºÃÂ¸ÃÂ²ÃÂ°ÃÂ½ÃÂ¸ÃÂµ ÃÂ¿ÃÂ¾Ã‘ÂÃÂ²ÃÂ»Ã‘ÂÃÂµÃ‘â€šÃ‘ÂÃ‘Â ÃÂ¸ ÃÂ¸Ã‘ÂÃ‘â€¡ÃÂµÃÂ·ÃÂ°ÃÂµÃ‘â€š Ã¢â€â‚¬Ã¢â€â‚¬ */
 h2 .hr{
   color:var(--err);
   position:relative;
@@ -309,7 +309,7 @@ h2:nth-of-type(11) .hr::after{animation-delay:0.4s}
   100%{transform:scaleX(0);opacity:0}
 }
 
-/* â”€â”€ .hw: Ð±ÐµÐ»Ñ‹Ðµ Ð¿Ð¾Ð»ÑƒÐ¿Ñ€Ð¾Ð·Ñ€Ð°Ñ‡Ð½Ñ‹Ðµ — ghostly signal shimmer â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ .hw: ÃÂ±ÃÂµÃÂ»Ã‘â€¹ÃÂµ ÃÂ¿ÃÂ¾ÃÂ»Ã‘Æ’ÃÂ¿Ã‘â‚¬ÃÂ¾ÃÂ·Ã‘â‚¬ÃÂ°Ã‘â€¡ÃÂ½Ã‘â€¹ÃÂµ â€” ghostly signal shimmer Ã¢â€â‚¬Ã¢â€â‚¬ */
 h2 .hw{
   color:rgba(238,247,251,.18);
   position:relative;
@@ -326,7 +326,7 @@ h2.vis .hw{
   70%    {color:rgba(238,247,251,.22);text-shadow:none}
 }
 h2 .ha{color:#ffb84d}
-/* gradient — wider so shimmer has room to travel */
+/* gradient â€” wider so shimmer has room to travel */
 h2 .hgrad-cy, h3.hgrad-cy{
   background:linear-gradient(95deg,var(--c) 0%,#00ff99 30%,var(--c) 55%,#00ff99 100%);
   background-size:220% 100%;
@@ -344,7 +344,7 @@ h2 .hgrad-gn, h3.hgrad-gn{
   50%{background-position:100% 50%}
 }
 
-/* â”€â”€ .hg (green) — Ñ‚Ð¾Ñ‡Ð½Ð°Ñ ÐºÐ¾Ð¿Ð¸Ñ PROOF scan Ð¸Ð· Ñ…ÐµÐ´ÐµÑ€Ð° â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ .hg (green) â€” Ã‘â€šÃÂ¾Ã‘â€¡ÃÂ½ÃÂ°Ã‘Â ÃÂºÃÂ¾ÃÂ¿ÃÂ¸Ã‘Â PROOF scan ÃÂ¸ÃÂ· Ã‘â€¦ÃÂµÃÂ´ÃÂµÃ‘â‚¬ÃÂ° Ã¢â€â‚¬Ã¢â€â‚¬ */
 h2.vis .hg{
   position:relative; display:inline-block; overflow:hidden;
   animation:hg-glow 4s 1s ease-in-out infinite;
@@ -373,7 +373,7 @@ h2.vis .hg::after{
   88%,100%{top:110%;opacity:0}
 }
 
-/* â”€â”€ .hc (cyan) — NOT glitch duplication â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ .hc (cyan) â€” NOT glitch duplication Ã¢â€â‚¬Ã¢â€â‚¬ */
 h2.vis .hc{
   position:relative; display:inline-block;
   animation:hc-glow 5.5s ease-in-out infinite;
@@ -417,12 +417,12 @@ h2.vis .hc::after{
   93.5%{opacity:0}
 }
 
-/* â”€â”€ .hr (red) — strike-through line grows left-to-right, then pulsing glow â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ .hr (red) â€” strike-through line grows left-to-right, then pulsing glow Ã¢â€â‚¬Ã¢â€â‚¬ */
 h2.vis .hr{
   position:relative; display:inline-block;
   animation:hr-glow 3.8s ease-in-out infinite;
 }
-/* h2.vis .hr::after — override: use looping animation from above */
+/* h2.vis .hr::after â€” override: use looping animation from above */
 h2.vis .hr::after{
   animation:hr-strike 5.5s ease-in-out infinite;
 }
@@ -449,9 +449,9 @@ h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
   margin-bottom:60px;
   letter-spacing:.012em;
 }
-/* override .rv only for sdesc — word animation takes full control */
+/* override .rv only for sdesc â€” word animation takes full control */
 .sdesc.rv{opacity:1!important;transform:none!important}
-/* stag own animation — override .rv */
+/* stag own animation â€” override .rv */
 .stag.rv{opacity:0!important;transform:translateY(6px)!important}
 .stag.rv.vis{opacity:1!important;transform:none!important}
 /* per-word span */
@@ -566,9 +566,9 @@ h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
 .cband::before{content:'';position:absolute;top:50%;left:50%;width:600px;height:600px;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(0,229,255,.07) 0%,transparent 65%);pointer-events:none}
 .cband p{font-size:15px;color:var(--txt2);margin-bottom:40px;line-height:1.7}
 .cmeta{font-size:10px;color:var(--txt3);margin-top:28px;letter-spacing:.08em}
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
    FINALE SECTION
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
 #finale{
   position:relative;
   min-height:100vh;
@@ -594,7 +594,7 @@ h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
   text-align:center;
   gap:0;
 }
-/* PROOF NOT TRUST — same scale as hero */
+/* PROOF NOT TRUST â€” same scale as hero */
 .fn-pnt{
   display:flex;
   flex-direction:column;
@@ -611,7 +611,7 @@ h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
   letter-spacing:-.04em;
   line-height:.88;
 }
-/* PROOF — green + scan */
+/* PROOF â€” green + scan */
 .fn-proof .fn-span{
   color:#00ff99;
   position:relative; overflow:hidden;
@@ -625,7 +625,7 @@ h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
   animation:proofscan 3.8s 1.6s ease-in-out infinite;
   pointer-events:none;
 }
-/* NOT — cyan + glitch */
+/* NOT â€” cyan + glitch */
 .fn-not .fn-span{
   color:var(--c);
   position:relative;
@@ -653,7 +653,7 @@ h2.vis{animation:h2glitch 38s linear var(--h2d,0s) infinite}
   animation:gl2 4.8s 3.55s infinite;
   pointer-events:none;
 }
-/* TRUST — dim + green strikethrough */
+/* TRUST â€” dim + green strikethrough */
 .fn-trust .fn-span{
   color:rgba(238,247,251,.22);
   position:relative;
@@ -702,46 +702,46 @@ footer{position:relative;z-index:10;padding:40px 52px;display:flex;align-items:c
 .flinks{display:flex;gap:28px}
 .flinks a{font-size:11px;color:var(--txt3);text-decoration:none;letter-spacing:.06em;transition:color .2s}
 .flinks a:hover{color:var(--txt)}
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
    FILE LINK COLOR SYSTEM
-   .py  → cyan   .json → amber  .yaml → coral
-   .md  → violet  tests/ → green  demos/ → teal
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+   .py  â†’ cyan   .json â†’ amber  .yaml â†’ coral
+   .md  â†’ violet  tests/ â†’ green  demos/ â†’ teal
+Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
 a[href*="github.com/Lama999901"]{
   text-decoration:none;
   transition:color .18s,opacity .18s,border-color .18s,background .18s;
 }
-/* Python scripts → cyan */
+/* Python scripts â†’ cyan */
 a[href*=".py"]{
   color:var(--c);
   border-bottom:1px solid rgba(0,229,255,.25);
 }
 a[href*=".py"]:hover{border-bottom-color:var(--c);opacity:.82}
-/* Test files → green (overrides .py) */
+/* Test files â†’ green (overrides .py) */
 a[href*="/tests/"]{
   color:var(--ok);
   border-bottom:1px solid rgba(0,255,223,.25);
 }
 a[href*="/tests/"]:hover{border-bottom-color:var(--ok)}
-/* JSON → amber */
+/* JSON â†’ amber */
 a[href*=".json"]{
   color:#ffb347;
   border-bottom:1px solid rgba(255,179,71,.25);
 }
 a[href*=".json"]:hover{border-bottom-color:#ffb347}
-/* YAML → coral */
+/* YAML â†’ coral */
 a[href*=".yaml"]{
   color:#ff8c6b;
   border-bottom:1px solid rgba(255,140,107,.25);
 }
 a[href*=".yaml"]:hover{border-bottom-color:#ff8c6b}
-/* Markdown docs → soft violet */
+/* Markdown docs â†’ soft violet */
 a[href*=".md"]{
   color:#b8a4ff;
   border-bottom:1px solid rgba(184,164,255,.25);
 }
 a[href*=".md"]:hover{border-bottom-color:#b8a4ff}
-/* Demos/bundles → teal */
+/* Demos/bundles â†’ teal */
 a[href*="/demos/"]{
   color:#5dd8d8;
   border-bottom:1px solid rgba(93,216,216,.25);
@@ -776,10 +776,10 @@ a[href*="/demos/"]:hover{border-bottom-color:#5dd8d8}
 /* Segment step code links */
 .seg-step a{color:var(--c);border-bottom:1px solid rgba(0,229,255,.22)}
 .seg-step a:hover{border-bottom-color:var(--c)}
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   PROSE FONT — Inter (readable body text)
+/* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
+   PROSE FONT â€” Inter (readable body text)
    Mono stays for code/labels/numbers
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
 p,li,.cmp-feat,.faq-a,.faq-a p,.uc p,.ppc p,.reg p,.reg li,
 .seg-step-txt,.seg-step p,.price-feat li,.proto-rule,
 .note-block,.sdesc-plain,.origin-step,.verifier-note,
@@ -828,7 +828,7 @@ p,li,.cmp-feat,.faq-a,.faq-a p,.uc p,.ppc p,.reg p,.reg li,
   font-size:15.5px;
   line-height:1.72;
 }
-/* External links in table (.cmp-feat) — violet like .md links + subtle arrow */
+/* External links in table (.cmp-feat) â€” violet like .md links + subtle arrow */
 .cmp-feat a[target="_blank"]{
   color:#b8a4ff;
   border-bottom:1px solid rgba(184,164,255,.3);
@@ -838,14 +838,14 @@ p,li,.cmp-feat,.faq-a,.faq-a p,.uc p,.ppc p,.reg p,.reg li,
   border-bottom-color:#b8a4ff;
   opacity:.85;
 }
-/* Claim ID links in grid — keep cyan, inherit pill style */
+/* Claim ID links in grid â€” keep cyan, inherit pill style */
 .claimid a{color:var(--c);border-bottom:none;font-family:inherit;font-size:inherit;font-weight:inherit;letter-spacing:inherit}
 .claimid a:hover{opacity:.75}
-/* Site-map overlay links — keep as-is, no file styling */
+/* Site-map overlay links â€” keep as-is, no file styling */
 .mo-col a{border-bottom:none}
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   CURSOR — precision crosshair, no lag
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
+   CURSOR â€” precision crosshair, no lag
+Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
 *{cursor:none!important}
 #mg-cur{
   position:fixed;top:0;left:0;
@@ -951,7 +951,7 @@ a.soon-chip{border-bottom:none!important}
   .cband>div{flex-direction:column;align-items:stretch}.cband .btn-c,.cband .btn-g{text-align:center}
   footer{padding:28px 20px;flex-direction:column;gap:24px;align-items:flex-start}.flinks{flex-wrap:wrap;gap:16px}
   h2{font-size:clamp(28px,7vw,48px)!important}
-  /* â•â•â• MOBILE FIXES â•â•â• */
+  /* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â MOBILE FIXES Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
 
   /* FIX 1: inventor name */
   .hbottom-meta{flex-direction:column;align-items:flex-start;gap:6px;padding:12px 0 36px}
@@ -981,7 +981,7 @@ a.soon-chip{border-bottom:none!important}
   .pdesc code{white-space:normal!important;word-break:break-word}
   .pstat{display:none}
 
-  /* FIX 5: compare table — all 5 cols, no horizontal scroll */
+  /* FIX 5: compare table â€” all 5 cols, no horizontal scroll */
   .cmptable{overflow:visible}
   .cmp-head,.cmp-row{grid-template-columns:1fr 40px 40px 40px 40px!important;min-width:0}
   .cmp-col:nth-child(4),.cmp-col:nth-child(5),
@@ -990,21 +990,21 @@ a.soon-chip{border-bottom:none!important}
   .cmp-col{padding:10px 2px;font-size:10px;letter-spacing:0;min-width:0}
   .cyes{font-size:14px}.cno{font-size:14px}.cpart{font-size:8px;letter-spacing:.02em}
 
-  /* backdrop — mobile: dark bg only behind readable text, not visuals */
+  /* backdrop â€” mobile: dark bg only behind readable text, not visuals */
   .sec{background:rgba(4,8,26,.82);position:relative}
   .w > .sec::before{display:none}
 
-  /* Verifier claim buttons — wrap and scroll on mobile */
+  /* Verifier claim buttons â€” wrap and scroll on mobile */
   .vrf-claim-btns{flex-wrap:wrap;gap:6px}
   .vrf-claim-btn{font-size:9px;padding:8px 10px;min-width:0;flex:1 1 auto}
 
-  /* Verticals grid — 2 columns on tablet */
+  /* Verticals grid â€” 2 columns on tablet */
   .ucg{grid-template-columns:1fr 1fr;gap:16px}
 
-  /* Compare table — horizontal scroll on mobile */
+  /* Compare table â€” horizontal scroll on mobile */
   .cmptable{overflow-x:auto;-webkit-overflow-scrolling:touch}
 
-  /* FAQ items — full width readable */
+  /* FAQ items â€” full width readable */
   .faq-q{font-size:14px;padding:16px 14px}
 }
 @media(max-width:480px){
@@ -1039,8 +1039,8 @@ a.soon-chip{border-bottom:none!important}
 .cyes{color:var(--ok);font-size:16px}
 .cno{color:var(--err);font-size:16px}
 .cpart{color:var(--txt3);font-size:10px;letter-spacing:.06em}
-/* mobile compare table — handled by FIX 5 above */
-/* sec-dark — ÑƒÑÐ¸Ð»ÐµÐ½Ð½Ñ‹Ð¹ backdrop Ð´Ð»Ñ pitch Ð¸ regulatory */
+/* mobile compare table â€” handled by FIX 5 above */
+/* sec-dark â€” Ã‘Æ’Ã‘ÂÃÂ¸ÃÂ»ÃÂµÃÂ½ÃÂ½Ã‘â€¹ÃÂ¹ backdrop ÃÂ´ÃÂ»Ã‘Â pitch ÃÂ¸ regulatory */
 .sec-dark{
   position:relative;
 }
@@ -1094,8 +1094,8 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 .price-list li::before{content:'\2192';position:absolute;left:0;color:var(--c);font-size:11px}
 .price-pay-options{display:flex;flex-direction:column;gap:8px;margin-top:auto}
 .price-pay-note{font-family:var(--fm);font-size:10px;letter-spacing:.06em;color:var(--txt3);text-align:center;padding-top:2px}
-.price-pay-note::before{content:'âŽ¯âŽ¯  ';opacity:.4}
-.price-pay-note::after{content:'  âŽ¯âŽ¯';opacity:.4}
+.price-pay-note::before{content:'Ã¢Å½Â¯Ã¢Å½Â¯  ';opacity:.4}
+.price-pay-note::after{content:'  Ã¢Å½Â¯Ã¢Å½Â¯';opacity:.4}
 .price-btn-primary,.price-btn-secondary{display:inline-block;padding:14px 24px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;font-family:var(--fd);font-weight:700;text-align:center;transition:all .2s;margin-top:8px}
 .price-btn-primary{background:var(--c);color:#000}
 .price-btn-primary:hover{background:#fff}
@@ -1110,7 +1110,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 .faq-a{font-size:13px;color:var(--txt2);line-height:1.8;font-weight:300}
 .faq-a code{font-family:var(--fm);font-size:11px;color:var(--c);background:var(--ink2);padding:2px 6px;border:1px solid var(--ln)}
 @media(max-width:768px){.faq-item{padding:24px 20px}.faq-q{font-size:14px}}
-/* â”€â”€ Segment Selector â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Segment Selector Ã¢â€â‚¬Ã¢â€â‚¬ */
 .seg-wrap{border:1px solid var(--ln);overflow:hidden}
 .seg-tabs{display:grid;grid-template-columns:repeat(4,1fr);background:var(--ink2);border-bottom:1px solid var(--ln)}
 .seg-tab{background:none;border:none;border-right:1px solid var(--ln);padding:20px 24px;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:6px;transition:background .2s;position:relative}
@@ -1148,7 +1148,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 .seg-btn-secondary:hover{border-color:var(--c);color:var(--c)}
 @media(max-width:900px){.seg-tabs{grid-template-columns:repeat(2,1fr)}.seg-tab{border-bottom:1px solid var(--ln)}}
 @media(max-width:600px){.seg-tabs{grid-template-columns:1fr}.seg-panel{padding:32px 20px;gap:24px}.seg-cta-row{flex-direction:column}}
-/* â”€â”€ Live Verifier â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Live Verifier Ã¢â€â‚¬Ã¢â€â‚¬ */
 .vrf-wrap{border:1px solid var(--ln);overflow:hidden}
 .vrf-selector{padding:28px 36px;background:var(--ink2);border-bottom:1px solid var(--ln)}
 .vrf-selector-label{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);margin-bottom:14px}
@@ -1194,7 +1194,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 .vrf-result-fail{margin-top:12px;padding:14px 18px;border:1px solid rgba(255,64,96,.3);background:rgba(255,64,96,.06);color:var(--err);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
 @media(max-width:900px){.vrf-body{grid-template-columns:1fr}.vrf-claim-btns{width:100%;flex-wrap:wrap}.vrf-claim-btn{min-width:calc(50% - 1px)}}
 @media(max-width:600px){.vrf-selector{padding:20px}.vrf-inputs{padding:24px}.vrf-term-body{min-height:240px}}
-/* â”€â”€ Pilot Form â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Pilot Form Ã¢â€â‚¬Ã¢â€â‚¬ */
 .pilot-wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:1px;background:var(--ln);border:1px solid var(--ln)}
 .pilot-form-col{background:var(--ink);padding:48px 44px}
 .pilot-info-col{background:var(--ink2);padding:48px 40px}
@@ -1234,11 +1234,11 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 .ndmenu a{display:block;padding:8px 18px;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:rgba(238,247,251,.72);letter-spacing:.06em;text-decoration:none;white-space:nowrap;transition:color .15s,background .15s}
 .ndmenu a:hover{color:#00e5ff;background:rgba(0,229,255,.07)}
 .ndmenu .ndiv{height:1px;background:rgba(0,229,255,.1);margin:4px 10px}
-/* â”€â”€ SITE MAP BUTTON â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ SITE MAP BUTTON Ã¢â€â‚¬Ã¢â€â‚¬ */
 #navmap-btn{display:inline-flex;align-items:center;gap:5px;background:none;border:1px solid rgba(0,229,255,.25);color:rgba(0,229,255,.7);font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.12em;padding:5px 11px;cursor:pointer;border-radius:3px;transition:all .2s;vertical-align:middle;}
 #navmap-btn:hover{border-color:#00e5ff;color:#00e5ff;background:rgba(0,229,255,.07)}
 
-/* â”€â”€ MEGA OVERLAY â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ MEGA OVERLAY Ã¢â€â‚¬Ã¢â€â‚¬ */
 #megaover{display:none;position:fixed;inset:0;z-index:8888;background:rgba(3,6,13,.97);backdrop-filter:blur(14px);overflow-y:auto;padding:80px 60px 60px;}
 #megaover.open{display:block}
 .mm-section-link{display:block;width:100%;text-align:left;padding:16px 0;font-family:'Unbounded','Impact',sans-serif;font-size:16px;font-weight:700;letter-spacing:.1em;color:rgba(238,247,251,.55);text-decoration:none;text-transform:uppercase;border-bottom:1px solid rgba(0,229,255,.08);box-sizing:border-box}
@@ -1255,7 +1255,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 .mo-title{text-align:center;margin-bottom:48px;}
 .mo-title h2{font-family:'Unbounded','Impact',sans-serif;font-size:1.1rem;letter-spacing:.2em;color:rgba(238,247,251,.42);text-transform:uppercase;margin:0;}
 
-/* â”€â”€ MOBILE ACCORDION â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ MOBILE ACCORDION Ã¢â€â‚¬Ã¢â€â‚¬ */
 @media(max-width:768px){
   #mmclose{position:absolute;top:20px;right:20px;background:none;border:1px solid rgba(0,229,255,.35);color:#00e5ff;font-size:1rem;width:38px;height:38px;border-radius:50%;cursor:pointer;z-index:900;display:flex;align-items:center;justify-content:center;transition:background .2s}
   #mmclose:hover{background:rgba(0,229,255,.12)}
@@ -1338,25 +1338,25 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 .origin-steps::before{content:'';position:absolute;left:13px;top:14px;bottom:80px;width:1px;background:linear-gradient(rgba(255,64,96,.35) 0%,rgba(255,64,96,.15) 65%,rgba(0,255,223,.6) 100%);z-index:0}
 .origin-step{display:flex;align-items:flex-start;gap:16px;padding:18px 0;border-bottom:1px solid var(--ln);opacity:0;transform:translateX(-14px);transition:opacity .5s ease,transform .5s ease;position:relative;z-index:1}
 .origin-step.on{opacity:1;transform:none}
-/* steps 01-03 — failed attempts */
+/* steps 01-03 â€” failed attempts */
 .origin-step:nth-child(1) .origin-step-n,
 .origin-step:nth-child(2) .origin-step-n,
 .origin-step:nth-child(3) .origin-step-n{border-color:rgba(255,64,96,.25);color:rgba(238,247,251,.2)}
 .origin-step:nth-child(1) .origin-step-txt,
 .origin-step:nth-child(2) .origin-step-txt,
 .origin-step:nth-child(3) .origin-step-txt{color:rgba(238,247,251,.28);text-decoration:line-through;text-decoration-color:rgba(255,64,96,.35)}
-/* step 04 — THE solution */
+/* step 04 â€” THE solution */
 .origin-step.active{border:1px solid rgba(0,229,255,.2)!important;border-bottom:1px solid rgba(0,229,255,.2)!important;background:rgba(0,229,255,.04);padding:18px 16px;margin-top:10px;position:relative}
-.origin-step.active::before{content:'→ SOLUTION';position:absolute;top:-10px;left:16px;font-size:9px;letter-spacing:.18em;color:var(--ok);background:var(--ink1);padding:0 8px}
+.origin-step.active::before{content:'â†’ SOLUTION';position:absolute;top:-10px;left:16px;font-size:9px;letter-spacing:.18em;color:var(--ok);background:var(--ink1);padding:0 8px}
 .origin-step.active .origin-step-n{border-color:var(--ok)!important;color:var(--ok)!important;background:rgba(0,255,223,.08)!important;box-shadow:0 0 16px rgba(0,255,223,.25)}
 .origin-step.active .origin-step-txt{color:var(--txt)!important;font-size:14px!important;text-decoration:none!important}
 .origin-step-n{flex-shrink:0;width:28px;height:28px;border:1px solid var(--ln2);display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:10px;color:var(--txt3);margin-top:2px;transition:all .4s ease}
 .origin-step-txt{font-size:13px;color:var(--txt3);line-height:1.65;font-weight:300;transition:all .4s ease}
 @media(max-width:900px){.origin-inner{grid-template-columns:1fr;gap:48px;padding:64px 32px}}
 @media(max-width:768px){.origin-inner{padding:48px 20px}}
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   #PITCH — Built for one. Became universal.
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
+   #PITCH â€” Built for one. Became universal.
+Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
 .pitch-grid{display:grid;grid-template-columns:1fr 48px 1fr;gap:0;border:1px solid var(--ln);overflow:hidden;background:var(--ink)}
 .pitch-col{padding:48px 44px;display:flex;flex-direction:column;gap:20px}
 .pitch-col-left{border-right:none;background:rgba(255,64,96,.03)}
@@ -1378,7 +1378,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 @media(max-width:900px){
   .pitch-grid{grid-template-columns:1fr}
   .pitch-arrow{display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--txt3);background:var(--ink2);border:none;border-top:1px solid var(--ln);border-bottom:1px solid var(--ln);width:100%;height:40px;font-size:0}
-  .pitch-arrow::after{content:'â†“';font-size:20px}
+  .pitch-arrow::after{content:'Ã¢â€ â€œ';font-size:20px}
   .pitch-col-left{border-right:none}
   .pitch-col-left,.pitch-col-right{padding:32px 28px}
   .pitch-banner{flex-direction:column;align-items:flex-start;gap:10px;border-top:none}
@@ -1388,7 +1388,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
   .pitch-banner{padding:16px 20px;gap:8px}
 }
 
-/* â”€â”€ Founder block â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Founder block Ã¢â€â‚¬Ã¢â€â‚¬ */
 .founder-block{margin-top:48px;padding-top:36px;border-top:1px solid var(--ln)}
 .founder-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--c);margin-bottom:20px;display:flex;align-items:center;gap:10px}
 .founder-label::before{content:'';width:20px;height:1px;background:var(--c)}
@@ -1402,7 +1402,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
   .founder-block{margin-top:32px;padding-top:24px}
   .founder-body p{font-size:14px}
 }
-/* â”€â”€ Plain language block â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Plain language block Ã¢â€â‚¬Ã¢â€â‚¬ */
 .plain-lang{border:1px solid var(--ln);background:rgba(0,229,255,.02);padding:44px 48px;margin-bottom:64px;border-radius:2px}
 .plain-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--c);margin-bottom:20px;display:flex;align-items:center;gap:10px}
 .plain-label::before{content:'';width:20px;height:1px;background:var(--c)}
@@ -1438,8 +1438,8 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
   </a>
   <div class="ndot">AUDIT: PASS</div>
   <div class="nlinks">
-    <a href="#protocol">Protocol</a><span class="ndrop"><a href="#claims">Claims</a><div class="ndmenu"><a href="#claims" onclick="document.querySelectorAll('.cid')[0]?.scrollIntoView()">MTR-1 — Young's Modulus</a><a href="#claims" onclick="document.querySelectorAll('.cid')[1]?.scrollIntoView()">MTR-2 — Thermal Conductivity</a><a href="#claims" onclick="document.querySelectorAll('.cid')[2]?.scrollIntoView()">MTR-3 — Multilayer Contact</a><div class="ndiv"></div><a href="#claims">SYSID-01 — ARX Calibration</a><a href="#claims">DATA-PIPE-01 — Quality Cert</a><a href="#claims">DRIFT-01 — Drift Monitor</a><a href="#claims">ML_BENCH-01 — Accuracy Cert</a><a href="#claims">DT-FEM-01 — FEM Verification</a><div class="ndiv"></div><a href="#claims">MTR-4 — Ti Young&#8217;s Modulus</a><a href="#claims">MTR-5 — Steel Young&#8217;s Modulus</a><a href="#claims">MTR-6 — Copper Conductivity</a><a href="#claims">PHYS-01 — Boltzmann Constant</a><a href="#claims">PHYS-02 — Avogadro Constant</a></div></span><a href="#verticals">Verticals</a><span class="ndrop"><a href="#segments">For You</a><div class="ndmenu"><a href="#segments" onclick="document.querySelector('[data-seg=ml]')?.click()">ML / AI Teams</a><a href="#segments" onclick="document.querySelector('[data-seg=pharma]')?.click()">Pharma / Biotech</a><a href="#segments" onclick="document.querySelector('[data-seg=finance]')?.click()">Finance / Quant</a><a href="#segments" onclick="document.querySelector('[data-seg=research]')?.click()">Research Labs</a></div></span><a href="#verifier">Verify</a><a href="#pilot">Free Pilot</a>
-    <button id="navmap-btn" onclick="document.getElementById('megaover').classList.add('open')">⊞ SITE MAP</button>
+    <a href="#protocol">Protocol</a><span class="ndrop"><a href="#claims">Claims</a><div class="ndmenu"><a href="#claims" onclick="document.querySelectorAll('.cid')[0]?.scrollIntoView()">MTR-1 â€” Young's Modulus</a><a href="#claims" onclick="document.querySelectorAll('.cid')[1]?.scrollIntoView()">MTR-2 â€” Thermal Conductivity</a><a href="#claims" onclick="document.querySelectorAll('.cid')[2]?.scrollIntoView()">MTR-3 â€” Multilayer Contact</a><div class="ndiv"></div><a href="#claims">SYSID-01 â€” ARX Calibration</a><a href="#claims">DATA-PIPE-01 â€” Quality Cert</a><a href="#claims">DRIFT-01 â€” Drift Monitor</a><a href="#claims">ML_BENCH-01 â€” Accuracy Cert</a><a href="#claims">DT-FEM-01 â€” FEM Verification</a><div class="ndiv"></div><a href="#claims">MTR-4 â€” Ti Young&#8217;s Modulus</a><a href="#claims">MTR-5 â€” Steel Young&#8217;s Modulus</a><a href="#claims">MTR-6 â€” Copper Conductivity</a><a href="#claims">PHYS-01 â€” Boltzmann Constant</a><a href="#claims">PHYS-02 â€” Avogadro Constant</a></div></span><a href="#verticals">Verticals</a><span class="ndrop"><a href="#segments">For You</a><div class="ndmenu"><a href="#segments" onclick="document.querySelector('[data-seg=ml]')?.click()">ML / AI Teams</a><a href="#segments" onclick="document.querySelector('[data-seg=pharma]')?.click()">Pharma / Biotech</a><a href="#segments" onclick="document.querySelector('[data-seg=finance]')?.click()">Finance / Quant</a><a href="#segments" onclick="document.querySelector('[data-seg=research]')?.click()">Research Labs</a></div></span><a href="#verifier">Verify</a><a href="#pilot">Free Pilot</a>
+    <button id="navmap-btn" onclick="document.getElementById('megaover').classList.add('open')">âŠž SITE MAP</button>
     <a href="https://github.com/Lama999901/metagenesis-core-public" class="ngit">GITHUB &#8594;</a>
   </div>
   <button class="hamburger" id="hbtn" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -1458,8 +1458,8 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 </div>
 
 <div id="megaover">
-  <button class="mo-close" onclick="document.getElementById('megaover').classList.remove('open');return false;">✕ CLOSE</button>
-  <div class="mo-title"><h2>— SITE NAVIGATION —</h2></div>
+  <button class="mo-close" onclick="document.getElementById('megaover').classList.remove('open');return false;">âœ• CLOSE</button>
+  <div class="mo-title"><h2>â€” SITE NAVIGATION â€”</h2></div>
   <div class="mo-grid">
     <div class="mo-col">
       <h3>Protocol</h3>
@@ -1471,15 +1471,15 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
     </div>
     <div class="mo-col">
       <h3>Claims &#8212; 20 active</h3>
-      <a href=”#claims” onclick=”document.getElementById('megaover').classList.remove('open')”>MTR-1<span>Young's Modulus — Aluminum</span></a>
-      <a href=”#claims” onclick=”document.getElementById('megaover').classList.remove('open')”>MTR-2<span>Thermal Conductivity</span></a>
-      <a href=”#claims” onclick=”document.getElementById('megaover').classList.remove('open')”>MTR-3<span>Multilayer Contact</span></a>
-      <a href=”#claims” onclick=”document.getElementById('megaover').classList.remove('open')”>MTR-4<span>Young's Modulus — Titanium</span></a>
-      <a href=”#claims” onclick=”document.getElementById('megaover').classList.remove('open')”>MTR-5<span>Young's Modulus — Steel SS316L</span></a>
-      <a href=”#claims” onclick=”document.getElementById('megaover').classList.remove('open')”>MTR-6<span>Thermal Conductivity — Copper</span></a>
-      <a href=”#claims” onclick=”document.getElementById('megaover').classList.remove('open')”>PHYS-01<span>Boltzmann Constant &mdash; k&#x1D2C;=1.380649&times;10&#x207B;&#xB2;&#xB3; J/K</span></a>
-      <a href=”#claims” onclick=”document.getElementById('megaover').classList.remove('open')”>PHYS-02<span>Avogadro Constant &mdash; N&#x2090;=6.022&times;10&#xB2;&#xB3; mol&#x207B;&#xB9;</span></a>
-      <a href=”#claims” onclick=”document.getElementById('megaover').classList.remove('open')”>SYSID-01<span>ARX System Identification</span></a>
+      <a href=â€#claimsâ€ onclick=â€document.getElementById('megaover').classList.remove('open')â€>MTR-1<span>Young's Modulus â€” Aluminum</span></a>
+      <a href=â€#claimsâ€ onclick=â€document.getElementById('megaover').classList.remove('open')â€>MTR-2<span>Thermal Conductivity</span></a>
+      <a href=â€#claimsâ€ onclick=â€document.getElementById('megaover').classList.remove('open')â€>MTR-3<span>Multilayer Contact</span></a>
+      <a href=â€#claimsâ€ onclick=â€document.getElementById('megaover').classList.remove('open')â€>MTR-4<span>Young's Modulus â€” Titanium</span></a>
+      <a href=â€#claimsâ€ onclick=â€document.getElementById('megaover').classList.remove('open')â€>MTR-5<span>Young's Modulus â€” Steel SS316L</span></a>
+      <a href=â€#claimsâ€ onclick=â€document.getElementById('megaover').classList.remove('open')â€>MTR-6<span>Thermal Conductivity â€” Copper</span></a>
+      <a href=â€#claimsâ€ onclick=â€document.getElementById('megaover').classList.remove('open')â€>PHYS-01<span>Boltzmann Constant &mdash; k&#x1D2C;=1.380649&times;10&#x207B;&#xB2;&#xB3; J/K</span></a>
+      <a href=â€#claimsâ€ onclick=â€document.getElementById('megaover').classList.remove('open')â€>PHYS-02<span>Avogadro Constant &mdash; N&#x2090;=6.022&times;10&#xB2;&#xB3; mol&#x207B;&#xB9;</span></a>
+      <a href=â€#claimsâ€ onclick=â€document.getElementById('megaover').classList.remove('open')â€>SYSID-01<span>ARX System Identification</span></a>
       <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">DATA-PIPE-01<span>Data Quality Certificate</span></a>
       <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">DRIFT-01<span>Drift Monitor</span></a>
       <a href="#claims" onclick="document.getElementById('megaover').classList.remove('open')">ML_BENCH-01<span>ML Accuracy Certificate</span></a>
@@ -1501,7 +1501,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
     <div class="mo-col">
       <h3>Evidence</h3>
       <a href="#compare" onclick="document.getElementById('megaover').classList.remove('open')">vs SHA-256 only<span>Why hashes aren't enough</span></a>
-      <a href="#compare" onclick="document.getElementById('megaover').classList.remove('open')">Adversarial Proof<span>test_cert02 — attack caught</span></a>
+      <a href="#compare" onclick="document.getElementById('megaover').classList.remove('open')">Adversarial Proof<span>test_cert02 â€” attack caught</span></a>
       <a href="#crisis" onclick="document.getElementById('megaover').classList.remove('open')">Reproducibility Crisis<span>The problem we solve</span></a>
       <a href="#regulatory" onclick="document.getElementById('megaover').classList.remove('open')">EU AI Act<span>Article 9 compliance</span></a>
       <a href="#regulatory" onclick="document.getElementById('megaover').classList.remove('open')">FDA 2025<span>Reproducible model artifacts</span></a>
@@ -1524,7 +1524,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
     </div>
     <div class="mo-col">
       <h3>Get Started</h3>
-      <a href="#pricing" onclick="document.getElementById('megaover').classList.remove('open')">Pricing<span>Open Source Â· Pilot Â· Enterprise</span></a>
+      <a href="#pricing" onclick="document.getElementById('megaover').classList.remove('open')">Pricing<span>Open Source Ã‚Â· Pilot Ã‚Â· Enterprise</span></a>
       <a href="#pilot" onclick="document.getElementById('megaover').classList.remove('open')">Free Pilot<span>Send your claim, get bundle</span></a>
       <a href="/cdn-cgi/l/email-protection#c7bea2afa8b587aaa2b3a6a0a2a9a2b4aeb4eaa4a8b5a2e9a3a2b1">Contact<span><span class="__cf_email__" data-cfemail="ccb5a9a4a3be8ca1a9b8adaba9a2a9bfa5bfe1afa3bea9e2a8a9ba">[email&#160;protected]</span></span></a>
     </div>
@@ -1532,15 +1532,15 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 </div>
 
 <div class="mobile-menu" id="mmenu">
-    <button id="mmclose" aria-label="Close menu" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">✕</button>
+    <button id="mmclose" aria-label="Close menu" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">âœ•</button>
     <a href="#protocol" class="mmlink" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">Protocol</a>
     <div class="mm-acc">
       <div class="mm-acc-head" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('open')">
         <span class="mm-label">CLAIMS</span>      </div>
       <div class="mm-acc-body">
-        <a href="#claims" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">MTR-1 — Young's Modulus</a>
-        <a href="#claims" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">MTR-2 — Thermal Conductivity</a>
-        <a href="#claims" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">MTR-3 — Multilayer Contact</a>
+        <a href="#claims" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">MTR-1 â€” Young's Modulus</a>
+        <a href="#claims" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">MTR-2 â€” Thermal Conductivity</a>
+        <a href="#claims" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">MTR-3 â€” Multilayer Contact</a>
         <div class="mm-acc-divider"></div>
         <a href="#claims" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">SYSID-01</a>
         <a href="#claims" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">DATA-PIPE-01</a>
@@ -1576,7 +1576,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
     <a href="#pricing" class="mmlink" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">Pricing</a>
     <a href="#faq" class="mmlink" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">FAQ</a>
     <a href="#pilot" class="mmlink" onclick="document.querySelector('.mobile-menu').classList.remove('open');document.getElementById('hbtn').classList.remove('open')">Free Pilot</a>
-    <a href="https://github.com/Lama999901/metagenesis-core-public" class="mgit mmlink">GitHub →</a>
+    <a href="https://github.com/Lama999901/metagenesis-core-public" class="mgit mmlink">GitHub â†’</a>
 </div>
 
 <section class="hero">
@@ -1674,14 +1674,14 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 <div class="w"><section class="sec sec-dark">
   <div class="stag rv">The Verification Gap</div>
   <h2 class="rv d1" style="--h2d:0s" data-glitch="The entire field runs on unverifiable numbers.">The entire field runs on<br><span class="hr">unverifiable numbers.</span></h2>
-  <p class="sdesc rv d2">ML benchmarks. Simulation outputs. Regulatory submissions. Financial model results. <strong>None of them produce a verifiable artifact</strong> — a third party cannot confirm the claimed number without re-running everything from scratch. $28 billion wasted annually on irreproducible research. 294 ML papers with inflated results. Carbon markets approaching $2 trillion backed by unverifiable models. <strong>There has never been a standard for computational proof. Until now.</strong></p>
+  <p class="sdesc rv d2">ML benchmarks. Simulation outputs. Regulatory submissions. Financial model results. <strong>None of them produce a verifiable artifact</strong> â€” a third party cannot confirm the claimed number without re-running everything from scratch. $28 billion wasted annually on irreproducible research. 294 ML papers with inflated results. Carbon markets approaching $2 trillion backed by unverifiable models. <strong>There has never been a standard for computational proof. Until now.</strong></p>
 
   <div class="pp rv d3">
 
     <div class="ppc ppc-x">
       <span class="ppchip x">The mechanism of the problem</span>
       <h3>A number in a report.<br>Zero verifiable proof.</h3>
-      <p>When any computational result is produced — an ML accuracy score, a FEM displacement, a VaR estimate, an ADMET prediction — <strong>no verifiable artifact is generated</strong>. The result exists as a number in a PDF, a log file, or a dashboard. A reviewer who wants to verify it faces one choice: rebuild the entire environment, data, and compute from scratch. That is not verification. That is reproduction — and most reviewers never attempt it.</p>
+      <p>When any computational result is produced â€” an ML accuracy score, a FEM displacement, a VaR estimate, an ADMET prediction â€” <strong>no verifiable artifact is generated</strong>. The result exists as a number in a PDF, a log file, or a dashboard. A reviewer who wants to verify it faces one choice: rebuild the entire environment, data, and compute from scratch. That is not verification. That is reproduction â€” and most reviewers never attempt it.</p>
       <div class="pp-rows">
         <div class="pp-row">
           <span class="pp-domain">ML accuracy: 94.3%</span>
@@ -1707,9 +1707,9 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
     </div>
 
     <div class="ppc ppc-v">
-      <span class="ppchip v">MetaGenesis Core — the standard</span>
+      <span class="ppchip v">MetaGenesis Core â€” the standard</span>
       <h3>One command.<br>Cryptographic proof.</h3>
-      <p>Every computation produces a <strong>tamper-evident evidence bundle</strong>: SHA-256 integrity, semantic invariant verification, and a Step Chain execution trace across 4 cryptographic steps. Any third party verifies offline with one command — no model access, no environment, no trust. This is not logging. This is <strong>machine-verifiable proof</strong>.</p>
+      <p>Every computation produces a <strong>tamper-evident evidence bundle</strong>: SHA-256 integrity, semantic invariant verification, and a Step Chain execution trace across 4 cryptographic steps. Any third party verifies offline with one command â€” no model access, no environment, no trust. This is not logging. This is <strong>machine-verifiable proof</strong>.</p>
       <div class="pp-rows">
         <div class="pp-row">
           <a class="pp-domain pp-claim-link" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank">ML_BENCH-01</a>
@@ -1789,7 +1789,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 
     <div class="crisis-stat">
       <div class="crisis-n">294</div>
-      <div class="crisis-label">ML papers across 17 scientific disciplines contained data leakage silently inflating accuracy claims — discovered only after publication</div>
+      <div class="crisis-label">ML papers across 17 scientific disciplines contained data leakage silently inflating accuracy claims â€” discovered only after publication</div>
       <div class="crisis-src">Kapoor &amp; Narayanan &middot; <em>Science</em> &middot; 2023</div>
     </div>
 
@@ -1808,24 +1808,24 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
   </div>
 
   <div class="crisis-closes rv d4">
-    <div class="crisis-closes-title">What MetaGenesis Core closes — <span class="hg">with executable proof</span></div>
+    <div class="crisis-closes-title">What MetaGenesis Core closes â€” <span class="hg">with executable proof</span></div>
     <div class="crisis-closes-sub">Every row below maps to running code. Clone the repo and verify in 60 seconds.</div>
     <div class="crisis-closes-grid">
 
       <div class="ccl-row">
         <div class="ccl-problem">Accuracy claim with no third-party proof</div>
-        <div class="ccl-arrow">→</div>
+        <div class="ccl-arrow">â†’</div>
         <div class="ccl-solution">
           <span class="ccl-badge">CLOSED</span>
           <span class="ccl-claim">ML_BENCH-01</span>
           <a class="ccl-path" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank">mlbench1_accuracy_certificate.py</a>
-          <span class="ccl-threshold">&Delta;accuracy ≤ 0.02 &middot; semantic PASS</span>
+          <span class="ccl-threshold">&Delta;accuracy â‰¤ 0.02 &middot; semantic PASS</span>
         </div>
       </div>
 
       <div class="ccl-row">
         <div class="ccl-problem">Data leakage inflating benchmark results (294 papers)</div>
-        <div class="ccl-arrow">→</div>
+        <div class="ccl-arrow">â†’</div>
         <div class="ccl-solution">
           <span class="ccl-badge">CLOSED</span>
           <span class="ccl-claim">DATA-PIPE-01</span>
@@ -1836,33 +1836,33 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 
       <div class="ccl-row">
         <div class="ccl-problem">FEM/CFD simulation outputs unverifiable by engineering auditors</div>
-        <div class="ccl-arrow">→</div>
+        <div class="ccl-arrow">â†’</div>
         <div class="ccl-solution">
           <span class="ccl-badge">CLOSED</span>
           <span class="ccl-claim">DT-FEM-01</span>
           <a class="ccl-path" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtfem1_displacement_verification.py" target="_blank">dtfem1_displacement_verification.py</a>
-          <span class="ccl-threshold">rel_err ≤ 0.02 vs physical reference &middot; ISO/ASME V&amp;V&nbsp;10</span>
+          <span class="ccl-threshold">rel_err â‰¤ 0.02 vs physical reference &middot; ISO/ASME V&amp;V&nbsp;10</span>
         </div>
       </div>
 
       <div class="ccl-row">
         <div class="ccl-problem">Calibration drift undetected between model versions</div>
-        <div class="ccl-arrow">→</div>
+        <div class="ccl-arrow">â†’</div>
         <div class="ccl-solution">
           <span class="ccl-badge">CLOSED</span>
           <span class="ccl-claim">DRIFT-01 &middot; MTR-1/2/3</span>
           <a class="ccl-path" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank">drift_monitor.py</a>
-          <span class="ccl-threshold">drift_threshold 5.0% &middot; rel_err ≤ 0.01â€“0.03</span>
+          <span class="ccl-threshold">drift_threshold 5.0% &middot; rel_err â‰¤ 0.01Ã¢â‚¬â€œ0.03</span>
         </div>
       </div>
 
       <div class="ccl-row">
         <div class="ccl-problem">Regulatory submissions with no offline-verifiable audit trail</div>
-        <div class="ccl-arrow">→</div>
+        <div class="ccl-arrow">â†’</div>
         <div class="ccl-solution">
           <span class="ccl-badge">CLOSED</span>
           <span class="ccl-claim">All 20 claims</span>
-          <a class="ccl-path" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/mg.py" target="_blank">mg.py verify --pack bundle.zip → PASS</a>
+          <a class="ccl-path" href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/mg.py" target="_blank">mg.py verify --pack bundle.zip â†’ PASS</a>
           <span class="ccl-threshold">offline &middot; no model access &middot; 60 seconds</span>
         </div>
       </div>
@@ -1975,12 +1975,12 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 <div class="w"><section class="sec" id="pitch">
   <div class="stag rv">How It Started</div>
   <h2 class="rv d1" style="--h2d:1.6s" data-glitch="Built for one thing. Became universal."><span class="hw">Built for one thing.</span><br><span class="hgrad-cy">Became universal.</span></h2>
-  <p class="sdesc rv d2">MetaGenesis Core started as a materials simulation verifier. Then the protocol worked for ML accuracy. Then data pipelines. Then risk models. The same 4-step structure handles every computational claim — because the problem is always the same: <em style="color:var(--c);font-style:normal">proof, not trust.</em></p>
+  <p class="sdesc rv d2">MetaGenesis Core started as a materials simulation verifier. Then the protocol worked for ML accuracy. Then data pipelines. Then risk models. The same 4-step structure handles every computational claim â€” because the problem is always the same: <em style="color:var(--c);font-style:normal">proof, not trust.</em></p>
 
   <div class="pitch-grid rv d3">
 
     <div class="pitch-col pitch-col-left">
-      <div class="pitch-origin-tag">Version 0.1 — origin</div>
+      <div class="pitch-origin-tag">Version 0.1 â€” origin</div>
       <h3 class="pitch-title">Materials science verifier</h3>
       <p class="pitch-body">Young's modulus. Thermal conductivity. Multilayer contact. Three claims, one physicist, one problem: simulation results that couldn't be independently verified by any external party.</p>
       <div class="pitch-claims">
@@ -1993,9 +1993,9 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
     <div class="pitch-arrow">&#8594;</div>
 
     <div class="pitch-col pitch-col-right">
-      <div class="pitch-origin-tag pitch-origin-tag-ok">Today — universal protocol</div>
+      <div class="pitch-origin-tag pitch-origin-tag-ok">Today â€” universal protocol</div>
       <h3 class="pitch-title hgrad-cy">Verification engine for any domain</h3>
-      <p class="pitch-body">The same 4-step pipeline — run, index, pack, verify — works for ML benchmarks, system identification, data pipelines, drift monitoring. Any computational claim. Any domain. One command. PASS or FAIL.</p>
+      <p class="pitch-body">The same 4-step pipeline â€” run, index, pack, verify â€” works for ML benchmarks, system identification, data pipelines, drift monitoring. Any computational claim. Any domain. One command. PASS or FAIL.</p>
       <div class="pitch-claims">
         <span class="pitch-chip pitch-chip-ok">ML_BENCH-01</span>
         <span class="pitch-chip pitch-chip-ok">SYSID-01</span>
@@ -2022,7 +2022,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
     <div class="plain-label">In plain language</div>
     <div class="plain-text">
       <p>Think of it like a <strong>certificate of conformity</strong> for computation.</p>
-      <p>When a product gets certified, the certifier doesn’t rebuild it from scratch — they verify it meets the documented spec. That certificate is then trusted by anyone, anywhere, without repeating the test.</p>
+      <p>When a product gets certified, the certifier doesnâ€™t rebuild it from scratch â€” they verify it meets the documented spec. That certificate is then trusted by anyone, anywhere, without repeating the test.</p>
       <p>MetaGenesis Core does the same for computational results. <strong>The bundle is the proof.</strong></p>
       <p>And where a physical constant exists &#8212; E&nbsp;=&nbsp;70&nbsp;GPa for aluminum (NIST, ~1% uncertainty), or k<sub>B</sub>&nbsp;=&nbsp;1.380649&times;10<sup>&#8209;23</sup>&nbsp;J/K by SI&nbsp;2019 definition (exact, zero uncertainty) &#8212; the verification chain is anchored to <strong>physical reality itself</strong>. NIST-measured material constants. SI fundamental constants. This is traceability, not compliance.</p>
       <p style="opacity:.8;font-size:.92em;">Physical constants (E=70&nbsp;GPa, k<sub>B</sub>, N<sub>A</sub> from NIST/SI&nbsp;2019) anchor materials and physics claims. ML, Finance, and Pharma claims use domain-specific verification thresholds &#8212; a different but documented level of traceability. Scope documented in <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/known_faults.yaml" target="_blank" style="color:var(--c)">reports/known_faults.yaml</a>.</p>
@@ -2094,7 +2094,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 <div class="w"><section class="sec">
   <div class="stag rv">Live Demo</div>
   <h2 class="rv d1" style="--h2d:3.2s" data-glitch="Five minutes from zero to proof."><span class="hc">Five minutes</span><br>from zero to <span class="hg">proof.</span></h2>
-<p class="sdesc rv d2">Clone the repo. Run one command. Your result is now cryptographically anchored, semantically verified, and independently auditable by anyone — offline, without trusting you.</p>
+<p class="sdesc rv d2">Clone the repo. Run one command. Your result is now cryptographically anchored, semantically verified, and independently auditable by anyone â€” offline, without trusting you.</p>
   <div class="term rv d2">
     <div class="termh"><div class="thdot"></div><div class="thdot"></div><div class="thdot"></div><span class="thtit">bash &#8212; metagenesis-core-public</span></div>
     <div class="termbody">
@@ -2159,14 +2159,14 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 
 <div class="div"></div>
 <div class="w"><section class="sec" id="demo-physics">
-  <div class="stag rv">Under the Hood — Real Example</div>
+  <div class="stag rv">Under the Hood â€” Real Example</div>
   <h2 class="rv d1" style="--h2d:3.6s" data-glitch="Real physics. Real data. Real proof."><span class="hc" data-t="Real physics.">Real physics.</span><br>Real data. <span class="hg">Real proof.</span></h2>
-  <p class="sdesc rv d2">The open demo isn't synthetic. It runs a real physics calibration against a real dataset — then packages everything into a verifiable bundle. Here's exactly what happens, step by step.</p>
+  <p class="sdesc rv d2">The open demo isn't synthetic. It runs a real physics calibration against a real dataset â€” then packages everything into a verifiable bundle. Here's exactly what happens, step by step.</p>
   <div class="phys-flow rv d3">
     <div class="phys-step">
       <div class="phys-step-n">01</div>
       <div class="phys-step-body">
-        <div class="phys-step-label">Real dataset — Al6061 aluminium alloy</div>
+        <div class="phys-step-label">Real dataset â€” Al6061 aluminium alloy</div>
         <div class="phys-step-code"><span class="phys-cm">strain,stress</span><span class="phys-cm">0.000040 &rarr; 2,861,142 Pa</span><span class="phys-cm">0.000081 &rarr; 5,722,285 Pa</span><span class="phys-cm">0.000122 &rarr; 8,583,428 Pa</span><span class="phys-dim">... 49 data points, elastic region only</span></div>
         <div class="phys-step-note">Fingerprinted with SHA-256 at packaging time &mdash; cannot be substituted after the fact.</div>
       </div>
@@ -2439,7 +2439,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 <div class="w"><section class="sec sec-dark" id="regulatory">
   <div class="stag rv">Regulatory Alignment</div>
   <h2 class="rv d1" style="--h2d:8.8s" data-glitch="Three deadlines. One protocol."><span class="hw">Three deadlines.</span><br><span class="hc">One protocol.</span></h2>
-  <p class="sdesc rv d2">Three major frameworks — EU AI Act, FDA 21 CFR Part 11, Basel III/IV — all require the same thing: <strong>independently auditable computational evidence</strong>. MetaGenesis bundles satisfy that requirement with a single offline-verifiable artifact.</p>
+  <p class="sdesc rv d2">Three major frameworks â€” EU AI Act, FDA 21 CFR Part 11, Basel III/IV â€” all require the same thing: <strong>independently auditable computational evidence</strong>. MetaGenesis bundles satisfy that requirement with a single offline-verifiable artifact.</p>
 
   <div class="regrid rv d3">
 
@@ -2543,16 +2543,16 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
       <div class="price-badge">Most popular</div>
       <div class="price-name">Verification Bundle</div>
       <div class="price-amount">$299</div>
-      <div class="price-desc">Your result → tamper-evident bundle in 48h. Any third party verifies offline with one command.</div>
+      <div class="price-desc">Your result â†’ tamper-evident bundle in 48h. Any third party verifies offline with one command.</div>
       <ul class="price-list">
         <li>Your specific claim packaged &amp; signed</li>
-        <li>mg.py verify → PASS or FAIL</li>
+        <li>mg.py verify â†’ PASS or FAIL</li>
         <li>Any reviewer verifies offline, no access to your code</li>
         <li>Patent-pending protocol (USPTO #63/996,819)</li>
         <li>Delivered within 48 hours</li>
       </ul>
       <div class="price-pay-options">
-        <a href="mailto:yehor@metagenesis-core.dev?subject=MetaGenesis%20Core%20%E2%80%94%20Verification%20Bundle%20%24299&body=Hi%20Yehor%2C%0A%0AUse%20case%3A%20%5Bdescribe%20your%20claim%20type%5D%0APreferred%20payment%3A%20%5BBank%20transfer%20%2F%20Crypto%20%2F%20Invoice%5D%0A" class="price-btn-primary">Order Bundle — $299 &#8594;</a>
+        <a href="mailto:yehor@metagenesis-core.dev?subject=MetaGenesis%20Core%20%E2%80%94%20Verification%20Bundle%20%24299&body=Hi%20Yehor%2C%0A%0AUse%20case%3A%20%5Bdescribe%20your%20claim%20type%5D%0APreferred%20payment%3A%20%5BBank%20transfer%20%2F%20Crypto%20%2F%20Invoice%5D%0A" class="price-btn-primary">Order Bundle â€” $299 &#8594;</a>
         <div class="price-pay-note">Bank transfer &middot; Crypto (BTC&nbsp;/&nbsp;ETH&nbsp;/&nbsp;USDC) &middot; Invoice &mdash; reply by email</div>
       </div>
     </div>
@@ -2602,7 +2602,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 
     <div class="faq-item">
       <div class="faq-q">Can a sophisticated attacker fake a passing bundle?</div>
-      <div class="faq-a">A sufficiently sophisticated adversary with full codebase access could potentially construct a passing fake bundle. MetaGenesis is tamper-evident — not a guarantee against all threat models. The semantic layer catches attacks that survive SHA-256 recomputation — proven by <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/tests/steward/test_cert02_pack_includes_evidence_and_semantic_verify.py" target="_blank"><code>test_cert02</code></a>. The Step Chain layer catches execution-order tampering — proven by <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/tests/steward/test_cert03_step_chain_verify.py" target="_blank"><code>test_cert03</code></a>. Known limitations are in <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/known_faults.yaml" target="_blank"><code>reports/known_faults.yaml</code></a>. The verifier (<code>mg.py</code>) is MIT-licensed open source &#8212; any third party can read, audit, or independently re-implement it. The trust model requires trusting open-source code, not any single party.</div>
+      <div class="faq-a">A sufficiently sophisticated adversary with full codebase access could potentially construct a passing fake bundle. MetaGenesis is tamper-evident â€” not a guarantee against all threat models. The semantic layer catches attacks that survive SHA-256 recomputation â€” proven by <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/tests/steward/test_cert02_pack_includes_evidence_and_semantic_verify.py" target="_blank"><code>test_cert02</code></a>. The Step Chain layer catches execution-order tampering â€” proven by <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/tests/steward/test_cert03_step_chain_verify.py" target="_blank"><code>test_cert03</code></a>. Known limitations are in <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/known_faults.yaml" target="_blank"><code>reports/known_faults.yaml</code></a>. The verifier (<code>mg.py</code>) is MIT-licensed open source &#8212; any third party can read, audit, or independently re-implement it. The trust model requires trusting open-source code, not any single party.</div>
     </div>
 
     <div class="faq-item">
@@ -2663,29 +2663,29 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
       <div class="seg-panel active" data-seg="ml">
         <div class="seg-pain">
           <span class="seg-pain-label">The problem</span>
-          <p>Your model achieves 94.3% accuracy. Your client wants proof — not a screenshot, not a PDF, not a Docker container they have to run. They want an answer they can verify themselves in 60 seconds.</p>
+          <p>Your model achieves 94.3% accuracy. Your client wants proof â€” not a screenshot, not a PDF, not a Docker container they have to run. They want an answer they can verify themselves in 60 seconds.</p>
         </div>
         <div class="seg-scenario">
           <span class="seg-scenario-label">Your scenario</span>
           <div class="seg-flow">
-            <div class="seg-step"><span class="seg-step-n">1</span><span>You run ML_BENCH-01 → <a href="https://github.com/Lama999901/metagenesis-core-public/tree/main/demos/open_data_demo_01" target="_blank">bundle</a> contains predictions CSV + SHA-256 fingerprint + semantic proof</span></div>
+            <div class="seg-step"><span class="seg-step-n">1</span><span>You run ML_BENCH-01 â†’ <a href="https://github.com/Lama999901/metagenesis-core-public/tree/main/demos/open_data_demo_01" target="_blank">bundle</a> contains predictions CSV + SHA-256 fingerprint + semantic proof</span></div>
             <div class="seg-step"><span class="seg-step-n">2</span><span>Client runs <code>mg.py verify --pack bundle.zip</code> on their laptop</span></div>
-            <div class="seg-step"><span class="seg-step-n">3</span><span>They see <span class="seg-pass">PASS</span> — your claimed accuracy is verified. No model access. No GPU. No trust required.</span></div>
+            <div class="seg-step"><span class="seg-step-n">3</span><span>They see <span class="seg-pass">PASS</span> â€” your claimed accuracy is verified. No model access. No GPU. No trust required.</span></div>
           </div>
         </div>
         <div class="seg-claims-row">
           <span class="seg-claims-label">Relevant claims</span>
           <div class="seg-claim-chips">
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-01 — classification accuracy</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench2_regression_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-02 — regression RMSE</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench3_timeseries_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-03 — time-series MAPE</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank"><span class="seg-chip active-chip">DATA-PIPE-01 — pipeline quality</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="seg-chip active-chip">DRIFT-01 — model drift monitor</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-01 â€” classification accuracy</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench2_regression_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-02 â€” regression RMSE</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench3_timeseries_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-03 â€” time-series MAPE</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank"><span class="seg-chip active-chip">DATA-PIPE-01 â€” pipeline quality</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="seg-chip active-chip">DRIFT-01 â€” model drift monitor</span></a>
           </div>
         </div>
         <div class="seg-cta-row">
-          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" class="seg-btn-secondary">View ML_BENCH-01 on GitHub →</a>
-          <a href="#pilot" class="seg-btn-primary">Request Free Pilot →</a>
+          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" class="seg-btn-secondary">View ML_BENCH-01 on GitHub â†’</a>
+          <a href="#pilot" class="seg-btn-primary">Request Free Pilot â†’</a>
         </div>
       </div>
 
@@ -2697,50 +2697,50 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         <div class="seg-scenario">
           <span class="seg-scenario-label">Your scenario</span>
           <div class="seg-flow">
-            <div class="seg-step"><span class="seg-step-n">1</span><span>Your calibration pipeline runs → MTR series + DATA-PIPE-01 produce evidence bundles with full provenance chain</span></div>
-            <div class="seg-step"><span class="seg-step-n">2</span><span>Regulatory reviewer runs verification offline — no access to your environment or proprietary data</span></div>
+            <div class="seg-step"><span class="seg-step-n">1</span><span>Your calibration pipeline runs â†’ MTR series + DATA-PIPE-01 produce evidence bundles with full provenance chain</span></div>
+            <div class="seg-step"><span class="seg-step-n">2</span><span>Regulatory reviewer runs verification offline â€” no access to your environment or proprietary data</span></div>
             <div class="seg-step"><span class="seg-step-n">3</span><span>Audit trail is SHA-256 + semantically verified. Every deviation surfaces as <span class="seg-fail">FAIL</span> with specific reason.</span></div>
           </div>
         </div>
         <div class="seg-claims-row">
           <span class="seg-claims-label">Relevant claims</span>
           <div class="seg-claim-chips">
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank"><span class="seg-chip active-chip">DATA-PIPE-01 — data integrity</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="seg-chip active-chip">DRIFT-01 — calibration anchor</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/scientific_claim_index.md" target="_blank"><span class="seg-chip active-chip">MTR-1/2/3 — calibration certificates</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/ROADMAP.md" target="_blank"><span class="seg-chip active-chip">PHARMA-01 — ADMET certificate</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank"><span class="seg-chip active-chip">DATA-PIPE-01 â€” data integrity</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="seg-chip active-chip">DRIFT-01 â€” calibration anchor</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/scientific_claim_index.md" target="_blank"><span class="seg-chip active-chip">MTR-1/2/3 â€” calibration certificates</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/ROADMAP.md" target="_blank"><span class="seg-chip active-chip">PHARMA-01 â€” ADMET certificate</span></a>
           </div>
         </div>
         <div class="seg-cta-row">
-          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/PROTOCOL.md" class="seg-btn-secondary">Read Protocol Spec →</a>
-          <a href="#pilot" class="seg-btn-primary">Request Free Pilot →</a>
+          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/PROTOCOL.md" class="seg-btn-secondary">Read Protocol Spec â†’</a>
+          <a href="#pilot" class="seg-btn-primary">Request Free Pilot â†’</a>
         </div>
       </div>
 
       <div class="seg-panel" data-seg="finance">
         <div class="seg-pain">
           <span class="seg-pain-label">The problem</span>
-          <p>SR 11-7 and Basel III/IV require independent validation of risk model outputs. Your VaR models, credit scoring pipelines, and stress test results need a verifiable evidence trail — without handing over your proprietary model to the validator.</p>
+          <p>SR 11-7 and Basel III/IV require independent validation of risk model outputs. Your VaR models, credit scoring pipelines, and stress test results need a verifiable evidence trail â€” without handing over your proprietary model to the validator.</p>
         </div>
         <div class="seg-scenario">
           <span class="seg-scenario-label">Your scenario</span>
           <div class="seg-flow">
-            <div class="seg-step"><span class="seg-step-n">1</span><span>Risk model runs → bundle contains output fingerprint + claimed metrics + governance-enforced evidence index</span></div>
-            <div class="seg-step"><span class="seg-step-n">2</span><span>Independent validator verifies bundle offline — no model access, no proprietary data exposure</span></div>
+            <div class="seg-step"><span class="seg-step-n">1</span><span>Risk model runs â†’ bundle contains output fingerprint + claimed metrics + governance-enforced evidence index</span></div>
+            <div class="seg-step"><span class="seg-step-n">2</span><span>Independent validator verifies bundle offline â€” no model access, no proprietary data exposure</span></div>
             <div class="seg-step"><span class="seg-step-n">3</span><span>Semantic layer catches any post-hoc modification. Evidence chain is audit-ready for Basel model risk documentation.</span></div>
           </div>
         </div>
         <div class="seg-claims-row">
           <span class="seg-claims-label">Relevant claims</span>
           <div class="seg-claim-chips">
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-01 — model accuracy</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank"><span class="seg-chip active-chip">DATA-PIPE-01 — pipeline integrity</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/ROADMAP.md" target="_blank"><span class="seg-chip active-chip">FINRISK-01 — VaR certificate</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-01 â€” model accuracy</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/datapipe1_quality_certificate.py" target="_blank"><span class="seg-chip active-chip">DATA-PIPE-01 â€” pipeline integrity</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/docs/ROADMAP.md" target="_blank"><span class="seg-chip active-chip">FINRISK-01 â€” VaR certificate</span></a>
           </div>
         </div>
         <div class="seg-cta-row">
-          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/COMMERCIAL.md" class="seg-btn-secondary">Commercial Licensing →</a>
-          <a href="#pilot" class="seg-btn-primary">Request Free Pilot →</a>
+          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/COMMERCIAL.md" class="seg-btn-secondary">Commercial Licensing â†’</a>
+          <a href="#pilot" class="seg-btn-primary">Request Free Pilot â†’</a>
         </div>
       </div>
 
@@ -2752,25 +2752,25 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         <div class="seg-scenario">
           <span class="seg-scenario-label">Your scenario</span>
           <div class="seg-flow">
-            <div class="seg-step"><span class="seg-step-n">1</span><span>Your computation runs → evidence bundle contains result + dataset SHA-256 fingerprint + semantic proof. No raw data included.</span></div>
+            <div class="seg-step"><span class="seg-step-n">1</span><span>Your computation runs â†’ evidence bundle contains result + dataset SHA-256 fingerprint + semantic proof. No raw data included.</span></div>
             <div class="seg-step"><span class="seg-step-n">2</span><span>Reviewer downloads bundle from your supplementary materials. Runs one command on their laptop.</span></div>
-            <div class="seg-step"><span class="seg-step-n">3</span><span>They see <span class="seg-pass">PASS</span> — your results are independently verified. No environment, no GPU, no trust required.</span></div>
+            <div class="seg-step"><span class="seg-step-n">3</span><span>They see <span class="seg-pass">PASS</span> â€” your results are independently verified. No environment, no GPU, no trust required.</span></div>
           </div>
         </div>
         <div class="seg-claims-row">
           <span class="seg-claims-label">Relevant claims</span>
           <div class="seg-claim-chips">
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/scientific_claim_index.md" target="_blank"><span class="seg-chip active-chip">MTR-1/2/3 — materials calibration</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/sysid1_arx_calibration.py" target="_blank"><span class="seg-chip active-chip">SYSID-01 — system identification</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-01 — ML results</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="seg-chip active-chip">DRIFT-01 — baseline comparison</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench2_regression_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-02 — regression certificate</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench3_timeseries_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-03 — time-series certificate</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/reports/scientific_claim_index.md" target="_blank"><span class="seg-chip active-chip">MTR-1/2/3 â€” materials calibration</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/sysid1_arx_calibration.py" target="_blank"><span class="seg-chip active-chip">SYSID-01 â€” system identification</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench1_accuracy_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-01 â€” ML results</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="seg-chip active-chip">DRIFT-01 â€” baseline comparison</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench2_regression_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-02 â€” regression certificate</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mlbench3_timeseries_certificate.py" target="_blank"><span class="seg-chip active-chip">ML_BENCH-03 â€” time-series certificate</span></a>
           </div>
         </div>
         <div class="seg-cta-row">
-          <a href="https://github.com/Lama999901/metagenesis-core-public#try-it-in-5-minutes" class="seg-btn-secondary">Clone & Try in 5 min →</a>
-          <a href="#pilot" class="seg-btn-primary">Request Free Pilot →</a>
+          <a href="https://github.com/Lama999901/metagenesis-core-public#try-it-in-5-minutes" class="seg-btn-secondary">Clone & Try in 5 min â†’</a>
+          <a href="#pilot" class="seg-btn-primary">Request Free Pilot â†’</a>
         </div>
       </div>
 
@@ -2778,29 +2778,29 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
       <div class="seg-panel" data-seg="femdt">
         <div class="seg-pain">
           <span class="seg-pain-label">The problem</span>
-          <p>Your ANSYS, FEniCS, or OpenFOAM simulation produces displacement results. Your engineering client needs machine-verifiable proof that the output matches physical reference data — not a PDF report, not a screenshot. A certificate any auditor can check offline.</p>
+          <p>Your ANSYS, FEniCS, or OpenFOAM simulation produces displacement results. Your engineering client needs machine-verifiable proof that the output matches physical reference data â€” not a PDF report, not a screenshot. A certificate any auditor can check offline.</p>
         </div>
         <div class="seg-scenario">
           <span class="seg-scenario-label">Your scenario</span>
           <div class="seg-flow">
-            <div class="seg-step"><span class="seg-step-n">1</span><span>Your FEM solver runs → DT-FEM-01 verifies output against physical reference → bundle contains displacement result + SHA-256 fingerprint + semantic proof</span></div>
+            <div class="seg-step"><span class="seg-step-n">1</span><span>Your FEM solver runs â†’ DT-FEM-01 verifies output against physical reference â†’ bundle contains displacement result + SHA-256 fingerprint + semantic proof</span></div>
             <div class="seg-step"><span class="seg-step-n">2</span><span>Client runs <code>mg.py verify --pack bundle.zip</code> on their machine</span></div>
-            <div class="seg-step"><span class="seg-step-n">3</span><span>They see <span class="seg-pass">PASS</span> — rel_err ≤ 0.02 verified. No solver access. No environment. No trust required.</span></div>
+            <div class="seg-step"><span class="seg-step-n">3</span><span>They see <span class="seg-pass">PASS</span> â€” rel_err â‰¤ 0.02 verified. No solver access. No environment. No trust required.</span></div>
           </div>
         </div>
         <div class="seg-claims-row">
           <span class="seg-claims-label">Relevant claims</span>
           <div class="seg-claim-chips">
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtfem1_displacement_verification.py" target="_blank"><span class="seg-chip active-chip">DT-FEM-01 — FEM displacement verification</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mtr1_calibration.py" target="_blank"><span class="seg-chip active-chip">MTR-1 — Young's modulus anchor</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="seg-chip active-chip">DRIFT-01 — baseline drift monitor</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtsensor1_iot_certificate.py" target="_blank"><span class="seg-chip active-chip">DT-SENSOR-01 — IoT sensor integrity</span></a>
-            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtcalib1_convergence_certificate.py" target="_blank"><span class="seg-chip active-chip">DT-CALIB-LOOP-01 — calibration convergence</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtfem1_displacement_verification.py" target="_blank"><span class="seg-chip active-chip">DT-FEM-01 â€” FEM displacement verification</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/mtr1_calibration.py" target="_blank"><span class="seg-chip active-chip">MTR-1 â€” Young's modulus anchor</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/drift_monitor.py" target="_blank"><span class="seg-chip active-chip">DRIFT-01 â€” baseline drift monitor</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtsensor1_iot_certificate.py" target="_blank"><span class="seg-chip active-chip">DT-SENSOR-01 â€” IoT sensor integrity</span></a>
+            <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtcalib1_convergence_certificate.py" target="_blank"><span class="seg-chip active-chip">DT-CALIB-LOOP-01 â€” calibration convergence</span></a>
           </div>
         </div>
         <div class="seg-cta-row">
-          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtfem1_displacement_verification.py" class="seg-btn-secondary">View DT-FEM-01 on GitHub →</a>
-          <a href="#pilot" class="seg-btn-primary">Request Free Pilot →</a>
+          <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/backend/progress/dtfem1_displacement_verification.py" class="seg-btn-secondary">View DT-FEM-01 on GitHub â†’</a>
+          <a href="#pilot" class="seg-btn-primary">Request Free Pilot â†’</a>
         </div>
       </div>
 
@@ -2831,14 +2831,14 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 
         <div class="vrf-input-group active" data-claim="ml">
           <div class="vrf-field">
-            <label class="vrf-label" for="ml-claimed">claimed_accuracy <span class="vrf-unit">0.00 â€“ 1.00</span></label>
+            <label class="vrf-label" for="ml-claimed">claimed_accuracy <span class="vrf-unit">0.00 Ã¢â‚¬â€œ 1.00</span></label>
             <input class="vrf-input" id="ml-claimed" type="number" min="0" max="1" step="0.01" value="0.94" placeholder="0.94">
           </div>
           <div class="vrf-field">
-            <label class="vrf-label" for="ml-actual">actual_accuracy <span class="vrf-unit">0.00 â€“ 1.00</span></label>
+            <label class="vrf-label" for="ml-actual">actual_accuracy <span class="vrf-unit">0.00 Ã¢â‚¬â€œ 1.00</span></label>
             <input class="vrf-input" id="ml-actual" type="number" min="0" max="1" step="0.01" value="0.93" placeholder="0.93">
           </div>
-          <div class="vrf-threshold">threshold: |actual − claimed| ≤ 0.02</div>
+          <div class="vrf-threshold">threshold: |actual âˆ’ claimed| â‰¤ 0.02</div>
         </div>
 
         <div class="vrf-input-group" data-claim="mtr">
@@ -2850,21 +2850,21 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
             <label class="vrf-label" for="mtr-actual">actual_value <span class="vrf-unit">GPa</span></label>
             <input class="vrf-input" id="mtr-actual" type="number" min="0" step="0.1" value="201.5" placeholder="201.5">
           </div>
-          <div class="vrf-threshold">threshold: |actual − claimed| / claimed ≤ 0.01</div>
+          <div class="vrf-threshold">threshold: |actual âˆ’ claimed| / claimed â‰¤ 0.01</div>
         </div>
 
         <div class="vrf-input-group" data-claim="data">
           <div class="vrf-check-group">
             <label class="vrf-check-label">
               <input type="checkbox" id="data-schema" checked class="vrf-checkbox">
-              <span>schema_valid — all required columns present</span>
+              <span>schema_valid â€” all required columns present</span>
             </label>
             <label class="vrf-check-label">
               <input type="checkbox" id="data-range" checked class="vrf-checkbox">
-              <span>range_valid — all values within expected bounds</span>
+              <span>range_valid â€” all values within expected bounds</span>
             </label>
           </div>
-          <div class="vrf-threshold">threshold: schema_valid AND range_valid → PASS</div>
+          <div class="vrf-threshold">threshold: schema_valid AND range_valid â†’ PASS</div>
         </div>
 
         <div class="vrf-input-group" data-claim="drift">
@@ -2876,7 +2876,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
             <label class="vrf-label" for="drift-current">current_value <span class="vrf-unit">new measurement</span></label>
             <input class="vrf-input" id="drift-current" type="number" step="0.01" value="103.2" placeholder="103.2">
           </div>
-          <div class="vrf-threshold">threshold: |current − baseline| / baseline ≤ 0.05 (5%)</div>
+          <div class="vrf-threshold">threshold: |current âˆ’ baseline| / baseline â‰¤ 0.05 (5%)</div>
         </div>
 
         <div class="vrf-input-group" data-claim="dtfem">
@@ -2888,11 +2888,11 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
             <label class="vrf-label" for="dtfem-reference">reference_displacement <span class="vrf-unit">mm (physical)</span></label>
             <input class="vrf-input" id="dtfem-reference" type="number" step="0.001" value="2.500" placeholder="2.500">
           </div>
-          <div class="vrf-threshold">threshold: |simulated − reference| / reference ≤ 0.02</div>
+          <div class="vrf-threshold">threshold: |simulated âˆ’ reference| / reference â‰¤ 0.02</div>
         </div>
 
         <button class="vrf-run-btn" id="vrf-run">
-          <span id="vrf-run-label">â–¶ VERIFY</span>
+          <span id="vrf-run-label">Ã¢â€“Â¶ VERIFY</span>
         </button>
       </div>
 
@@ -2903,7 +2903,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         </div>
         <div class="vrf-term-body" id="vrf-output">
           <div class="vrf-line dim">$ python scripts/mg.py verify --pack bundle.zip</div>
-          <div class="vrf-line dim">→ awaiting input...</div>
+          <div class="vrf-line dim">â†’ awaiting input...</div>
         </div>
       </div>
     </div>
@@ -2914,7 +2914,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 <div class="w"><section class="sec" id="pilot">
   <div class="stag rv">Free Pilot</div>
   <h2 class="rv d1" style="--h2d:12.8s" data-glitch="Send your result. Get proof back.">Send your result.<br>Get <span class="hg">proof</span> back.</h2>
-  <p class="sdesc rv d2">Share a computational result — any domain. We build a verification bundle for it at no charge. You see PASS or FAIL before any commercial conversation. No strings attached. Response within 48 hours.</p>
+  <p class="sdesc rv d2">Share a computational result â€” any domain. We build a verification bundle for it at no charge. You see PASS or FAIL before any commercial conversation. No strings attached. Response within 48 hours.</p>
 
   <div class="pilot-wrap rv d3">
     <div class="pilot-form-col">
@@ -2933,53 +2933,53 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
           <label class="pilot-label" for="pf-segment">Domain</label>
           <select class="pilot-input pilot-select" id="pf-segment" name="segment" required>
             <option value="" disabled selected>Select your domain</option>
-            <option value="ml-ai">ML / AI — model accuracy or benchmark certification</option>
-            <option value="pharma">Pharma / Biotech — regulatory submission or calibration</option>
-            <option value="finance">Financial / Risk — model validation or audit trail</option>
-            <option value="research">Research — reproducibility or peer review</option>
-            <option value="femdt">Digital Twin / FEM — simulation output verification</option>
-            <option value="other">Other — describe below</option>
+            <option value="ml-ai">ML / AI â€” model accuracy or benchmark certification</option>
+            <option value="pharma">Pharma / Biotech â€” regulatory submission or calibration</option>
+            <option value="finance">Financial / Risk â€” model validation or audit trail</option>
+            <option value="research">Research â€” reproducibility or peer review</option>
+            <option value="femdt">Digital Twin / FEM â€” simulation output verification</option>
+            <option value="other">Other â€” describe below</option>
           </select>
         </div>
         <div class="pilot-domain-hint" id="pf-domain-hint" style="display:none">
           <div class="pdh-inner" id="pdh-ml-ai" style="display:none">
             <span class="pdh-claim">ML_BENCH-01</span>
-            <span class="pdh-text">Your model claims 94% accuracy. Your client wants proof they can verify in 60 seconds — no model access, no GPU. We package your result into a tamper-evident bundle. <code>mg.py verify --pack bundle.zip → PASS</code></span>
+            <span class="pdh-text">Your model claims 94% accuracy. Your client wants proof they can verify in 60 seconds â€” no model access, no GPU. We package your result into a tamper-evident bundle. <code>mg.py verify --pack bundle.zip â†’ PASS</code></span>
           </div>
           <div class="pdh-inner" id="pdh-pharma" style="display:none">
-            <span class="pdh-claim">DATA-PIPE-01 Â· MTR series</span>
-            <span class="pdh-text">FDA 21 CFR Part 11 requires electronic records with audit trails. We package your ADMET predictions or calibration outputs into a verifiable bundle any regulator can check offline — no proprietary model access required.</span>
+            <span class="pdh-claim">DATA-PIPE-01 Ã‚Â· MTR series</span>
+            <span class="pdh-text">FDA 21 CFR Part 11 requires electronic records with audit trails. We package your ADMET predictions or calibration outputs into a verifiable bundle any regulator can check offline â€” no proprietary model access required.</span>
           </div>
           <div class="pdh-inner" id="pdh-finance" style="display:none">
-            <span class="pdh-claim">ML_BENCH-01 Â· DATA-PIPE-01</span>
-            <span class="pdh-text">Basel III/IV SR 11-7 requires independent model validation. We package your VaR or credit scoring outputs into a verifiable evidence bundle — your model validator gets proof without touching your proprietary code.</span>
+            <span class="pdh-claim">ML_BENCH-01 Ã‚Â· DATA-PIPE-01</span>
+            <span class="pdh-text">Basel III/IV SR 11-7 requires independent model validation. We package your VaR or credit scoring outputs into a verifiable evidence bundle â€” your model validator gets proof without touching your proprietary code.</span>
           </div>
           <div class="pdh-inner" id="pdh-research" style="display:none">
-            <span class="pdh-claim">MTR-1/2/3 Â· SYSID-01 Â· ML_BENCH-01</span>
-            <span class="pdh-text">Your reviewer can't reproduce your simulation without your exact environment. We package your result into a bundle they verify in 60 seconds on their laptop — no environment, no GPU, no trust required.</span>
+            <span class="pdh-claim">MTR-1/2/3 Ã‚Â· SYSID-01 Ã‚Â· ML_BENCH-01</span>
+            <span class="pdh-text">Your reviewer can't reproduce your simulation without your exact environment. We package your result into a bundle they verify in 60 seconds on their laptop â€” no environment, no GPU, no trust required.</span>
           </div>
           <div class="pdh-inner" id="pdh-femdt" style="display:none">
-            <span class="pdh-claim">DT-FEM-01 Â· MTR-1 Â· DRIFT-01</span>
-            <span class="pdh-text">Your ANSYS, FEniCS, or OpenFOAM output needs machine-verifiable proof against a physical reference. We package your displacement result as a tamper-evident bundle — rel_err ≤ 0.02 certified, verifiable offline by any engineering auditor.</span>
+            <span class="pdh-claim">DT-FEM-01 Ã‚Â· MTR-1 Ã‚Â· DRIFT-01</span>
+            <span class="pdh-text">Your ANSYS, FEniCS, or OpenFOAM output needs machine-verifiable proof against a physical reference. We package your displacement result as a tamper-evident bundle â€” rel_err â‰¤ 0.02 certified, verifiable offline by any engineering auditor.</span>
           </div>
           <div class="pdh-inner" id="pdh-other" style="display:none">
             <span class="pdh-claim">Custom claim</span>
-            <span class="pdh-text">Any computational output can be verified. Describe your result below — we'll assess which claim domain fits and build a bundle for it. If your domain isn't covered yet, we'll tell you honestly.</span>
+            <span class="pdh-text">Any computational output can be verified. Describe your result below â€” we'll assess which claim domain fits and build a bundle for it. If your domain isn't covered yet, we'll tell you honestly.</span>
           </div>
         </div>
         <div class="pilot-field">
-          <label class="pilot-label" for="pf-desc">Describe your use case <span class="pilot-optional">— what result do you want to verify?</span></label>
+          <label class="pilot-label" for="pf-desc">Describe your use case <span class="pilot-optional">â€” what result do you want to verify?</span></label>
           <textarea class="pilot-input pilot-textarea" id="pf-desc" name="description" rows="4" placeholder="E.g. We have an ML model claiming 94% accuracy on a held-out test set. We want to provide our client with a verifiable bundle they can check offline..." required></textarea>
         </div>
         <div class="pilot-footer">
           <button class="pilot-submit" type="submit" id="pilot-submit">
-            <span id="pilot-submit-label">Request Free Pilot →</span>
+            <span id="pilot-submit-label">Request Free Pilot â†’</span>
           </button>
           <p class="pilot-note">No account. No credit card. Response within 48 hours.</p>
         </div>
       </form>
       <div class="pilot-success" id="pilot-success" style="display:none">
-        <div class="pilot-success-icon">✔</div>
+        <div class="pilot-success-icon">âœ”</div>
         <div class="pilot-success-title">Request received.</div>
         <div class="pilot-success-text">We'll review your use case and reply within 48 hours with a working verification bundle or a specific question. Check your inbox at the email you provided.</div>
       </div>
@@ -2987,7 +2987,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
     <div class="pilot-info-col">
       <div class="pilot-what">
         <div class="pilot-what-title">What happens next</div>
-        <div class="pilot-what-step"><span class="pilot-what-n">01</span><div><strong>You describe your result</strong><p>Any computational output — ML accuracy, calibration data, pipeline certificate, simulation output.</p></div></div>
+        <div class="pilot-what-step"><span class="pilot-what-n">01</span><div><strong>You describe your result</strong><p>Any computational output â€” ML accuracy, calibration data, pipeline certificate, simulation output.</p></div></div>
         <div class="pilot-what-step"><span class="pilot-what-n">02</span><div><strong>We build the bundle</strong><p>We implement the verification claim for your domain and generate a tamper-evident evidence bundle.</p></div></div>
         <div class="pilot-what-step"><span class="pilot-what-n">03</span><div><strong>You verify it yourself</strong><p>Run <a href="https://github.com/Lama999901/metagenesis-core-public/blob/main/scripts/mg.py" target="_blank"><code>mg.py verify --pack bundle.zip</code></a> on your machine. See PASS or FAIL. No trust required.</p></div></div>
         <div class="pilot-what-step"><span class="pilot-what-n">04</span><div><strong>Then we talk</strong><p>If it solves your problem, we discuss next steps. If it doesn't fit, we tell you honestly.</p></div></div>
@@ -3051,7 +3051,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
     });
   }
 
-  /* old #cur/#ring removed — replaced by #cur-dot/#cur-ring system */
+  /* old #cur/#ring removed â€” replaced by #cur-dot/#cur-ring system */
 
   var cv=document.getElementById('bg'),ctx=cv?cv.getContext('2d'):null;
   if(ctx){
@@ -3094,17 +3094,17 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
     var _lastFrame=0;
     (function fr(){
       if(!document.hidden) requestAnimationFrame(fr);
-      // Throttle to ~30fps — imperceptible for background, halves CPU cost
+      // Throttle to ~30fps â€” imperceptible for background, halves CPU cost
       var now=performance.now();
       if(now-_lastFrame < 28){return;}
       _lastFrame=now;
       ctx.clearRect(0,0,W,H);
       t+=0.0036;
 
-      // Ñ†ÐµÐ½Ñ‚Ñ€ ÑÐºÑ€Ð°Ð½Ð° — Ñ„Ð¾Ð½ Ð·Ð°Ñ‚ÑƒÑ…Ð°ÐµÑ‚ Ñƒ ÐºÐ¾Ð½Ñ‚ÐµÐ½Ñ‚Ð°, Ð¶Ð¸Ð²Ñ‘Ñ‚ Ð¿Ð¾ ÐºÑ€Ð°ÑÐ¼
+      // Ã‘â€ ÃÂµÃÂ½Ã‘â€šÃ‘â‚¬ Ã‘ÂÃÂºÃ‘â‚¬ÃÂ°ÃÂ½ÃÂ° â€” Ã‘â€žÃÂ¾ÃÂ½ ÃÂ·ÃÂ°Ã‘â€šÃ‘Æ’Ã‘â€¦ÃÂ°ÃÂµÃ‘â€š Ã‘Æ’ ÃÂºÃÂ¾ÃÂ½Ã‘â€šÃÂµÃÂ½Ã‘â€šÃÂ°, ÃÂ¶ÃÂ¸ÃÂ²Ã‘â€˜Ã‘â€š ÃÂ¿ÃÂ¾ ÃÂºÃ‘â‚¬ÃÂ°Ã‘ÂÃÂ¼
       var cx = W*0.5, cy = H*0.5;
 
-      // Set text props once per frame — not per hex
+      // Set text props once per frame â€” not per hex
       ctx.textAlign='center'; ctx.textBaseline='middle';
       hexes.forEach(function(h){
         h.rot  += h.rspd;
@@ -3113,17 +3113,17 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 
         var x=h.x, y=h.y;
 
-        // Ñ€Ð°ÑÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð¾Ñ‚ Ñ†ÐµÐ½Ñ‚Ñ€Ð° ÑÐºÑ€Ð°Ð½Ð°, Ð½Ð¾Ñ€Ð¼Ð°Ð»Ð¸Ð·Ð¾Ð²Ð°Ð½Ð¾ 0..1
+        // Ã‘â‚¬ÃÂ°Ã‘ÂÃ‘ÂÃ‘â€šÃÂ¾Ã‘ÂÃÂ½ÃÂ¸ÃÂµ ÃÂ¾Ã‘â€š Ã‘â€ ÃÂµÃÂ½Ã‘â€šÃ‘â‚¬ÃÂ° Ã‘ÂÃÂºÃ‘â‚¬ÃÂ°ÃÂ½ÃÂ°, ÃÂ½ÃÂ¾Ã‘â‚¬ÃÂ¼ÃÂ°ÃÂ»ÃÂ¸ÃÂ·ÃÂ¾ÃÂ²ÃÂ°ÃÂ½ÃÂ¾ 0..1
         var dx=(x-cx)/W, dy=(y-cy)/H;
         var distC = Math.min(Math.sqrt(dx*dx*1.8+dy*dy*2.2), 1.0);
-        // Ð±Ð»Ð¸Ð·ÐºÐ¾ Ðº Ñ†ÐµÐ½Ñ‚Ñ€Ñƒ — dim=0.35 Ð¼Ð¸Ð½Ð¸Ð¼ÑƒÐ¼, Ð¿Ð¾ ÐºÑ€Ð°ÑÐ¼ — dim=1 (Ð¿Ð¾Ð»Ð½Ð°Ñ ÑÑ€ÐºÐ¾ÑÑ‚ÑŒ)
+        // ÃÂ±ÃÂ»ÃÂ¸ÃÂ·ÃÂºÃÂ¾ ÃÂº Ã‘â€ ÃÂµÃÂ½Ã‘â€šÃ‘â‚¬Ã‘Æ’ â€” dim=0.35 ÃÂ¼ÃÂ¸ÃÂ½ÃÂ¸ÃÂ¼Ã‘Æ’ÃÂ¼, ÃÂ¿ÃÂ¾ ÃÂºÃ‘â‚¬ÃÂ°Ã‘ÂÃÂ¼ â€” dim=1 (ÃÂ¿ÃÂ¾ÃÂ»ÃÂ½ÃÂ°Ã‘Â Ã‘ÂÃ‘â‚¬ÃÂºÃÂ¾Ã‘ÂÃ‘â€šÃ‘Å’)
         var dim = 0.35 + Math.pow(distC, 1.4) * 0.65;
 
-        // 3 Ð±ÐµÐ³ÑƒÑ‰Ð¸Ñ… Ð²Ð¾Ð»Ð½Ñ‹ — Ð¿Ð»Ð°Ð²Ð½Ð°Ñ Ð¸Ð½Ñ‚ÐµÑ€Ñ„ÐµÑ€ÐµÐ½Ñ†Ð¸Ñ
+        // 3 ÃÂ±ÃÂµÃÂ³Ã‘Æ’Ã‘â€°ÃÂ¸Ã‘â€¦ ÃÂ²ÃÂ¾ÃÂ»ÃÂ½Ã‘â€¹ â€” ÃÂ¿ÃÂ»ÃÂ°ÃÂ²ÃÂ½ÃÂ°Ã‘Â ÃÂ¸ÃÂ½Ã‘â€šÃÂµÃ‘â‚¬Ã‘â€žÃÂµÃ‘â‚¬ÃÂµÃÂ½Ã‘â€ ÃÂ¸Ã‘Â
         var w1 = Math.sin(t*1.20 + h.wx*6.28*2.2)*0.5+0.5;
         var w2 = Math.sin(t*0.76 + (h.wx+h.wy)*6.28*1.6 + 1.9)*0.5+0.5;
         var w3 = Math.sin(t*0.50 + h.wd*6.28*2.8 + 3.7)*0.5+0.5;
-        // Ð´Ð¾Ð±Ð°Ð²Ð»ÑÐµÐ¼ Ð¼ÐµÐ´Ð»ÐµÐ½Ð½Ð¾Ðµ Ð´Ñ‹Ñ…Ð°Ð½Ð¸Ðµ Ñ†ÐµÐ½Ñ‚Ñ€Ð° (Ð¿ÑƒÐ»ÑŒÑ Ð¾Ñ‚ Ñ†ÐµÐ½Ñ‚Ñ€Ð°)
+        // ÃÂ´ÃÂ¾ÃÂ±ÃÂ°ÃÂ²ÃÂ»Ã‘ÂÃÂµÃÂ¼ ÃÂ¼ÃÂµÃÂ´ÃÂ»ÃÂµÃÂ½ÃÂ½ÃÂ¾ÃÂµ ÃÂ´Ã‘â€¹Ã‘â€¦ÃÂ°ÃÂ½ÃÂ¸ÃÂµ Ã‘â€ ÃÂµÃÂ½Ã‘â€šÃ‘â‚¬ÃÂ° (ÃÂ¿Ã‘Æ’ÃÂ»Ã‘Å’Ã‘Â ÃÂ¾Ã‘â€š Ã‘â€ ÃÂµÃÂ½Ã‘â€šÃ‘â‚¬ÃÂ°)
         var wRadial = Math.sin(t*0.32 - distC*6.28*1.4)*0.5+0.5;
         var flow = w1*0.42 + w2*0.28 + w3*0.16 + wRadial*0.14;
 
@@ -3133,26 +3133,26 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         var life = flow*0.62 + pulse*0.22 + pulse2*0.16;
         var crest = Math.pow(flow, 3.2);
 
-        // Ñ†Ð²ÐµÑ‚: Ñ‡Ð¸ÑÑ‚Ñ‹Ð¹ Ñ†Ð¸Ð°Ð½
+        // Ã‘â€ ÃÂ²ÃÂµÃ‘â€š: Ã‘â€¡ÃÂ¸Ã‘ÂÃ‘â€šÃ‘â€¹ÃÂ¹ Ã‘â€ ÃÂ¸ÃÂ°ÃÂ½
         var gv = Math.min(160 + life*48 + crest*18, 238);
         var bv = Math.min(190 + life*40 + crest*12, 248);
 
-        // dim: Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð´Ð»Ñ glow/ÑÐ¸Ð¼Ð²Ð¾Ð»Ð¾Ð² — ÑÐµÑ‚ÐºÐ° ÐÐ• Ð·Ð°Ñ‚ÑƒÑ…Ð°ÐµÑ‚
-        // stroke ÑÐµÑ‚ÐºÐ¸ Ð²ÑÐµÐ³Ð´Ð° Ð²Ð¸Ð´ÐµÐ½, Ð¿Ñ€Ð¾ÑÑ‚Ð¾ Ñ‡ÑƒÑ‚ÑŒ Ñ‚Ð¸ÑˆÐµ Ð² Ñ†ÐµÐ½Ñ‚Ñ€Ðµ
+        // dim: Ã‘â€šÃÂ¾ÃÂ»Ã‘Å’ÃÂºÃÂ¾ ÃÂ´ÃÂ»Ã‘Â glow/Ã‘ÂÃÂ¸ÃÂ¼ÃÂ²ÃÂ¾ÃÂ»ÃÂ¾ÃÂ² â€” Ã‘ÂÃÂµÃ‘â€šÃÂºÃÂ° ÃÂÃâ€¢ ÃÂ·ÃÂ°Ã‘â€šÃ‘Æ’Ã‘â€¦ÃÂ°ÃÂµÃ‘â€š
+        // stroke Ã‘ÂÃÂµÃ‘â€šÃÂºÃÂ¸ ÃÂ²Ã‘ÂÃÂµÃÂ³ÃÂ´ÃÂ° ÃÂ²ÃÂ¸ÃÂ´ÃÂµÃÂ½, ÃÂ¿Ã‘â‚¬ÃÂ¾Ã‘ÂÃ‘â€šÃÂ¾ Ã‘â€¡Ã‘Æ’Ã‘â€šÃ‘Å’ Ã‘â€šÃÂ¸Ã‘Ë†ÃÂµ ÃÂ² Ã‘â€ ÃÂµÃÂ½Ã‘â€šÃ‘â‚¬ÃÂµ
 
-        // â•â•â• OUTER HEX â•â•â•
-        // fill glow — flat fill (no gradient for perf)
+        // Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â OUTER HEX Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
+        // fill glow â€” flat fill (no gradient for perf)
         var ca = (life*life*0.08 + crest*0.10) * (0.12 + dim*0.88);
         ctx.fillStyle = 'rgba(0,'+gv+','+bv+','+Math.min(ca*0.55,0.07)+')';
 
-        // stroke ÑÐµÑ‚ÐºÐ¸: Ð¿Ð¾ÑÑ‚Ð¾ÑÐ½Ð½Ð°Ñ Ð±Ð°Ð·Ð° + Ð²Ð¾Ð»Ð½Ð°, Ð‘Ð•Ð— dim-Ð¼Ð½Ð¾Ð¶Ð¸Ñ‚ÐµÐ»Ñ
+        // stroke Ã‘ÂÃÂµÃ‘â€šÃÂºÃÂ¸: ÃÂ¿ÃÂ¾Ã‘ÂÃ‘â€šÃÂ¾Ã‘ÂÃÂ½ÃÂ½ÃÂ°Ã‘Â ÃÂ±ÃÂ°ÃÂ·ÃÂ° + ÃÂ²ÃÂ¾ÃÂ»ÃÂ½ÃÂ°, Ãâ€˜Ãâ€¢Ãâ€” dim-ÃÂ¼ÃÂ½ÃÂ¾ÃÂ¶ÃÂ¸Ã‘â€šÃÂµÃÂ»Ã‘Â
         var sa = 0.060 + flow*0.115 + crest*0.092 + pulse*0.020;
         var lw = 0.25 + flow*0.68 + crest*0.45;
         ctx.strokeStyle = 'rgba(0,'+gv+','+bv+','+Math.min(sa,0.22)+')';
         ctx.lineWidth = lw;
         hp(x,y,h.rad,0); ctx.fill(); ctx.stroke();
 
-        // â•â•â• Ð£ÐÐ˜ÐšÐÐ›Ð¬ÐÐÐ¯ Ð”ÐÐš — Ñ‚Ð¸Ñ…Ð°Ñ, Ð²Ñ‹Ñ€Ð¾Ð²Ð½ÐµÐ½Ð½Ð°Ñ â•â•â•
+        // Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â ÃÂ£ÃÂÃËœÃÅ¡ÃÂÃâ€ºÃÂ¬ÃÂÃÂÃÂ¯ Ãâ€ÃÂÃÅ¡ â€” Ã‘â€šÃÂ¸Ã‘â€¦ÃÂ°Ã‘Â, ÃÂ²Ã‘â€¹Ã‘â‚¬ÃÂ¾ÃÂ²ÃÂ½ÃÂµÃÂ½ÃÂ½ÃÂ°Ã‘Â Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
         var ir = h.rad * 0.44;
         var ia = 0.10 + pulse*0.14 + pulse2*0.07 + crest*0.10;
         ia = Math.min(ia, 0.40);
@@ -3160,13 +3160,13 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         ctx.lineWidth = 0.45 + pulse*0.32 + crest*0.16;
 
         if(h.dna===0){
-        // Ð”ÐÐš-0: Ð·Ð²ÐµÐ·Ð´Ð° Ð”Ð°Ð²Ð¸Ð´Ð° (Ð´Ð²Ð° Ñ‚Ñ€ÐµÑƒÐ³Ð¾Ð»ÑŒÐ½Ð¸ÐºÐ°)
+        // Ãâ€ÃÂÃÅ¡-0: ÃÂ·ÃÂ²ÃÂµÃÂ·ÃÂ´ÃÂ° Ãâ€ÃÂ°ÃÂ²ÃÂ¸ÃÂ´ÃÂ° (ÃÂ´ÃÂ²ÃÂ° Ã‘â€šÃ‘â‚¬ÃÂµÃ‘Æ’ÃÂ³ÃÂ¾ÃÂ»Ã‘Å’ÃÂ½ÃÂ¸ÃÂºÃÂ°)
         ctx.fillStyle='rgba(0,0,0,0)';
         hp(x,y,ir,h.rot);            ctx.fill(); ctx.stroke();
         hp(x,y,ir*0.68,h.rot+Math.PI/6);         ctx.stroke();
 
         }else if(h.dna===1){
-        // Ð”ÐÐš-1: Ñ‚Ñ€ÐµÑƒÐ³Ð¾Ð»ÑŒÐ½Ð¸Ðº + Ð¾Ð´Ð½Ð° Ð¾Ñ€Ð±Ð¸Ñ‚Ð½Ð°Ñ Ñ‚Ð¾Ñ‡ÐºÐ°
+        // Ãâ€ÃÂÃÅ¡-1: Ã‘â€šÃ‘â‚¬ÃÂµÃ‘Æ’ÃÂ³ÃÂ¾ÃÂ»Ã‘Å’ÃÂ½ÃÂ¸ÃÂº + ÃÂ¾ÃÂ´ÃÂ½ÃÂ° ÃÂ¾Ã‘â‚¬ÃÂ±ÃÂ¸Ã‘â€šÃÂ½ÃÂ°Ã‘Â Ã‘â€šÃÂ¾Ã‘â€¡ÃÂºÃÂ°
         ctx.beginPath();
         for(var i=0;i<3;i++){var a3=Math.PI*2/3*i+h.rot;i?ctx.lineTo(x+ir*Math.cos(a3),y+ir*Math.sin(a3)):ctx.moveTo(x+ir*Math.cos(a3),y+ir*Math.sin(a3));}
         ctx.closePath(); ctx.fillStyle='rgba(0,0,0,0)'; ctx.fill(); ctx.stroke();
@@ -3175,16 +3175,16 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         ctx.fillStyle='rgba(0,'+gv+','+bv+','+(0.30+pulse2*0.18)+')'; ctx.fill();
 
         }else if(h.dna===2){
-        // Ð”ÐÐš-2: Ð¾Ð´Ð½Ð¾ Ð°ÐºÐºÑƒÑ€Ð°Ñ‚Ð½Ð¾Ðµ ÐºÐ¾Ð»ÑŒÑ†Ð¾ Ñ Ð·Ð°Ð·Ð¾Ñ€Ð¾Ð¼
+        // Ãâ€ÃÂÃÅ¡-2: ÃÂ¾ÃÂ´ÃÂ½ÃÂ¾ ÃÂ°ÃÂºÃÂºÃ‘Æ’Ã‘â‚¬ÃÂ°Ã‘â€šÃÂ½ÃÂ¾ÃÂµ ÃÂºÃÂ¾ÃÂ»Ã‘Å’Ã‘â€ ÃÂ¾ Ã‘Â ÃÂ·ÃÂ°ÃÂ·ÃÂ¾Ã‘â‚¬ÃÂ¾ÃÂ¼
         var r2a=ir*0.80;
         var gapA=0.55+pulse*0.12;
         ctx.beginPath(); ctx.arc(x,y,r2a, h.rot+gapA/2, h.rot+Math.PI*2-gapA/2); ctx.stroke();
-        // ÐºÐ¾Ñ€Ð¾Ñ‚ÐºÐ°Ñ Ð²Ð½ÑƒÑ‚Ñ€ÐµÐ½Ð½ÑÑ Ð´ÑƒÐ³Ð°
+        // ÃÂºÃÂ¾Ã‘â‚¬ÃÂ¾Ã‘â€šÃÂºÃÂ°Ã‘Â ÃÂ²ÃÂ½Ã‘Æ’Ã‘â€šÃ‘â‚¬ÃÂµÃÂ½ÃÂ½Ã‘ÂÃ‘Â ÃÂ´Ã‘Æ’ÃÂ³ÃÂ°
         ctx.strokeStyle='rgba(0,'+gv+','+bv+','+(ia*0.48)+')';
         ctx.beginPath(); ctx.arc(x,y,r2a*0.55, h.rot+Math.PI+gapA, h.rot+Math.PI*2-gapA/2); ctx.stroke();
 
         }else if(h.dna===3){
-        // Ð”ÐÐš-3: ÑÐ½ÐµÐ¶Ð¸Ð½ÐºÐ° — 6 Ð»ÑƒÑ‡ÐµÐ¹
+        // Ãâ€ÃÂÃÅ¡-3: Ã‘ÂÃÂ½ÃÂµÃÂ¶ÃÂ¸ÃÂ½ÃÂºÃÂ° â€” 6 ÃÂ»Ã‘Æ’Ã‘â€¡ÃÂµÃÂ¹
         for(var i=0;i<6;i++){
         var as=Math.PI/3*i+h.rot;
         ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+ir*0.74*Math.cos(as),y+ir*0.74*Math.sin(as));
@@ -3193,16 +3193,16 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         }
 
         }else if(h.dna===4){
-        // Ð”ÐÐš-4: Ð¼Ð°Ð»Ñ‹Ð¹ Ð³ÐµÐºÑÐ°Ð³Ð¾Ð½ Ð±ÐµÐ· Ñ‚Ð¾Ñ‡ÐµÐº
+        // Ãâ€ÃÂÃÅ¡-4: ÃÂ¼ÃÂ°ÃÂ»Ã‘â€¹ÃÂ¹ ÃÂ³ÃÂµÃÂºÃ‘ÂÃÂ°ÃÂ³ÃÂ¾ÃÂ½ ÃÂ±ÃÂµÃÂ· Ã‘â€šÃÂ¾Ã‘â€¡ÃÂµÃÂº
         ctx.fillStyle='rgba(0,0,0,0)';
         hp(x,y,ir*0.62,h.rot2); ctx.fill(); ctx.stroke();
-        // Ñ‚Ð¾Ð½ÐºÐ¸Ð¹ Ð²Ð½ÐµÑˆÐ½Ð¸Ð¹ ÐºÐ¾Ð½Ñ‚ÑƒÑ€
+        // Ã‘â€šÃÂ¾ÃÂ½ÃÂºÃÂ¸ÃÂ¹ ÃÂ²ÃÂ½ÃÂµÃ‘Ë†ÃÂ½ÃÂ¸ÃÂ¹ ÃÂºÃÂ¾ÃÂ½Ã‘â€šÃ‘Æ’Ã‘â‚¬
         ctx.strokeStyle='rgba(0,'+gv+','+bv+','+(ia*0.30)+')';
         ctx.lineWidth=0.20;
         hp(x,y,ir*0.90,h.rot2+Math.PI/6); ctx.stroke();
 
         }else if(h.dna===5){
-          // Ð”ÐÐš-5: Ð´Ð²Ð° Ñ‡Ð¸ÑÑ‚Ñ‹Ñ… ÐºÐ¾Ð½Ñ†ÐµÐ½Ñ‚Ñ€Ð¸Ñ‡ÐµÑÐºÐ¸Ñ… ÐºÐ¾Ð»ÑŒÑ†Ð°
+          // Ãâ€ÃÂÃÅ¡-5: ÃÂ´ÃÂ²ÃÂ° Ã‘â€¡ÃÂ¸Ã‘ÂÃ‘â€šÃ‘â€¹Ã‘â€¦ ÃÂºÃÂ¾ÃÂ½Ã‘â€ ÃÂµÃÂ½Ã‘â€šÃ‘â‚¬ÃÂ¸Ã‘â€¡ÃÂµÃ‘ÂÃÂºÃÂ¸Ã‘â€¦ ÃÂºÃÂ¾ÃÂ»Ã‘Å’Ã‘â€ ÃÂ°
           ctx.strokeStyle='rgba(0,'+gv+','+bv+','+ia+')';
           ctx.lineWidth=0.38+pulse*0.18;
           var r5a=ir*0.82;
@@ -3215,7 +3215,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         ctx.beginPath(); ctx.arc(x,y,r5b, -h.rot2+gapInner, -h.rot2+Math.PI*2-gapInner); ctx.stroke();
 
         }else if(h.dna===6){
-        // Ð”ÐÐš-6: ÐºÑ€ÐµÑÑ‚ + Ð´Ð¸Ð°Ð³Ð¾Ð½Ð°Ð»ÑŒÐ½Ñ‹Ð¹ Ð¿ÐµÑ€ÐµÐºÑ€Ñ‘ÑÑ‚ (hash #)
+        // Ãâ€ÃÂÃÅ¡-6: ÃÂºÃ‘â‚¬ÃÂµÃ‘ÂÃ‘â€š + ÃÂ´ÃÂ¸ÃÂ°ÃÂ³ÃÂ¾ÃÂ½ÃÂ°ÃÂ»Ã‘Å’ÃÂ½Ã‘â€¹ÃÂ¹ ÃÂ¿ÃÂµÃ‘â‚¬ÃÂµÃÂºÃ‘â‚¬Ã‘â€˜Ã‘ÂÃ‘â€š (hash #)
         var hl=ir*0.70;
         [0,Math.PI/2,Math.PI/4,Math.PI*3/4].forEach(function(ang,idx){
           ctx.beginPath();
@@ -3225,7 +3225,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         });
 
         }else if(h.dna===7){
-        // Ð”ÐÐš-7: 6 Ñ‚Ð¾Ñ‡ÐµÐº Ð¿Ð¾ ÐºÐ¾Ð»ÑŒÑ†Ñƒ (Ñ€Ð°Ð²Ð½Ð¾Ð¼ÐµÑ€Ð½Ð¾, Ð½Ðµ Ð±Ð¸Ñ‚Ñ‹)
+        // Ãâ€ÃÂÃÅ¡-7: 6 Ã‘â€šÃÂ¾Ã‘â€¡ÃÂµÃÂº ÃÂ¿ÃÂ¾ ÃÂºÃÂ¾ÃÂ»Ã‘Å’Ã‘â€ Ã‘Æ’ (Ã‘â‚¬ÃÂ°ÃÂ²ÃÂ½ÃÂ¾ÃÂ¼ÃÂµÃ‘â‚¬ÃÂ½ÃÂ¾, ÃÂ½ÃÂµ ÃÂ±ÃÂ¸Ã‘â€šÃ‘â€¹)
         for(var i=0;i<6;i++){
           var ab=Math.PI/3*i+h.rot2;
         var br=ir*0.70;
@@ -3234,15 +3234,15 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         }
 
         }else if(h.dna===8){
-        // Ð”ÐÐš-8: Ð¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð°Ñ Ð´Ð²Ð¾Ð¹Ð½Ð°Ñ ÑÐ¿Ð¸Ñ€Ð°Ð»ÑŒ — Ñ‚Ð¾Ñ‡ÐºÐ¸ Ð½Ð° Ð´Ð²ÑƒÑ… ÑÐ¸Ð½ÑƒÑÐ¾Ð¸Ð´Ð°Ñ…
+        // Ãâ€ÃÂÃÅ¡-8: ÃÂ¿Ã‘â‚¬ÃÂ°ÃÂ²ÃÂ¸ÃÂ»Ã‘Å’ÃÂ½ÃÂ°Ã‘Â ÃÂ´ÃÂ²ÃÂ¾ÃÂ¹ÃÂ½ÃÂ°Ã‘Â Ã‘ÂÃÂ¿ÃÂ¸Ã‘â‚¬ÃÂ°ÃÂ»Ã‘Å’ â€” Ã‘â€šÃÂ¾Ã‘â€¡ÃÂºÃÂ¸ ÃÂ½ÃÂ° ÃÂ´ÃÂ²Ã‘Æ’Ã‘â€¦ Ã‘ÂÃÂ¸ÃÂ½Ã‘Æ’Ã‘ÂÃÂ¾ÃÂ¸ÃÂ´ÃÂ°Ã‘â€¦
         var stepsD=6;
         for(var i=0;i<=stepsD;i++){
         var t2=i/stepsD;
         var angle=h.rot+t2*Math.PI*2;
         var r8=ir*0.55;
-        // Ð¿ÐµÑ€Ð²Ð°Ñ Ð½Ð¸Ñ‚ÑŒ
+        // ÃÂ¿ÃÂµÃ‘â‚¬ÃÂ²ÃÂ°Ã‘Â ÃÂ½ÃÂ¸Ã‘â€šÃ‘Å’
           var px1=x+r8*Math.cos(angle),  py1=y+r8*Math.sin(angle);
-            // Ð²Ñ‚Ð¾Ñ€Ð°Ñ Ð½Ð¸Ñ‚ÑŒ (ÑÐ´Ð²Ð¸Ð³ Ð½Ð° Ï€)
+            // ÃÂ²Ã‘â€šÃÂ¾Ã‘â‚¬ÃÂ°Ã‘Â ÃÂ½ÃÂ¸Ã‘â€šÃ‘Å’ (Ã‘ÂÃÂ´ÃÂ²ÃÂ¸ÃÂ³ ÃÂ½ÃÂ° Ãâ‚¬)
             var px2=x+r8*Math.cos(angle+Math.PI), py2=y+r8*Math.sin(angle+Math.PI);
           if(i>0){
             ctx.beginPath(); ctx.moveTo(ppx1,ppy1); ctx.lineTo(px1,py1);
@@ -3258,59 +3258,59 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         }
         }
 
-        // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-        // Ð¡Ð˜ÐœÐ’ÐžÐ›Ð¬ÐÐ«Ð™ Ð¡Ð›ÐžÐ™
-        // Ð½ÐµÑ‚ shadowBlur, Ñ‡Ð¸ÑÑ‚Ñ‹Ð¹ Ð¿ÑƒÐ»: Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð±ÐµÐ·Ð¾Ð¿Ð°ÑÐ½Ñ‹Ðµ Unicode
-        // ÑÐ¸Ð¼Ð²Ð¾Ð»Ñ‹ ÑÑ€Ñ‡Ðµ Ñƒ ÐºÑ€Ð°Ñ‘Ð², Ñ‚Ð¸Ñ…Ð¾ Ð² Ñ†ÐµÐ½Ñ‚Ñ€Ðµ
-        // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+        // Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
+        // ÃÂ¡ÃËœÃÅ“Ãâ€™ÃÅ¾Ãâ€ºÃÂ¬ÃÂÃÂ«Ãâ„¢ ÃÂ¡Ãâ€ºÃÅ¾Ãâ„¢
+        // ÃÂ½ÃÂµÃ‘â€š shadowBlur, Ã‘â€¡ÃÂ¸Ã‘ÂÃ‘â€šÃ‘â€¹ÃÂ¹ ÃÂ¿Ã‘Æ’ÃÂ»: Ã‘â€šÃÂ¾ÃÂ»Ã‘Å’ÃÂºÃÂ¾ ÃÂ±ÃÂµÃÂ·ÃÂ¾ÃÂ¿ÃÂ°Ã‘ÂÃÂ½Ã‘â€¹ÃÂµ Unicode
+        // Ã‘ÂÃÂ¸ÃÂ¼ÃÂ²ÃÂ¾ÃÂ»Ã‘â€¹ Ã‘ÂÃ‘â‚¬Ã‘â€¡ÃÂµ Ã‘Æ’ ÃÂºÃ‘â‚¬ÃÂ°Ã‘â€˜ÃÂ², Ã‘â€šÃÂ¸Ã‘â€¦ÃÂ¾ ÃÂ² Ã‘â€ ÃÂµÃÂ½Ã‘â€šÃ‘â‚¬ÃÂµ
+        // Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
         if(!h._sP){
-          // Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐµÐ½Ð½Ñ‹Ðµ Unicode ÑÐ¸Ð¼Ð²Ð¾Ð»Ñ‹, Ð½ÐµÑ‚ Ð¼Ð½Ð¾Ð³Ð¾ÑÐ¸Ð¼Ð²Ð¾Ð»ÑŒÐ½Ñ‹Ñ… ÑÑ‚Ñ€Ð¾Ðº
+          // Ã‘â€šÃÂ¾ÃÂ»Ã‘Å’ÃÂºÃÂ¾ ÃÂ¿Ã‘â‚¬ÃÂ¾ÃÂ²ÃÂµÃ‘â‚¬ÃÂµÃÂ½ÃÂ½Ã‘â€¹ÃÂµ Unicode Ã‘ÂÃÂ¸ÃÂ¼ÃÂ²ÃÂ¾ÃÂ»Ã‘â€¹, ÃÂ½ÃÂµÃ‘â€š ÃÂ¼ÃÂ½ÃÂ¾ÃÂ³ÃÂ¾Ã‘ÂÃÂ¸ÃÂ¼ÃÂ²ÃÂ¾ÃÂ»Ã‘Å’ÃÂ½Ã‘â€¹Ã‘â€¦ Ã‘ÂÃ‘â€šÃ‘â‚¬ÃÂ¾ÃÂº
           h._sP=[
-            // SI 2019 physical constants — the PHYS-01/02 anchors
-            'kB','NA','ℏ','c₀','e⁻',
-            // Physical values — NIST anchors (MTR-1..6)
+            // SI 2019 physical constants â€” the PHYS-01/02 anchors
+            'kB','NA','â„','câ‚€','eâ»',
+            // Physical values â€” NIST anchors (MTR-1..6)
             '70G','114G','193G','401W',
             // Greek physics alphabet
-            'α','β','γ','δ','ε','η','θ','λ','μ','ν','ξ','π','ρ','σ','τ','φ','χ','ψ','ω',
-            'Δ','Γ','Λ','Σ','Φ','Ψ','Ω',
+            'Î±','Î²','Î³','Î´','Îµ','Î·','Î¸','Î»','Î¼','Î½','Î¾','Ï€','Ï','Ïƒ','Ï„','Ï†','Ï‡','Ïˆ','Ï‰',
+            'Î”','Î“','Î›','Î£','Î¦','Î¨','Î©',
             // Differential geometry & calculus
-            '∂','∇','∞','∑','∏','√','∫','∮',
-            // Logic & proof theory — verification layer
-            '⊢','⊨','∀','∃','◻','◇','∧','∨','¬','⊥',
+            'âˆ‚','âˆ‡','âˆž','âˆ‘','âˆ','âˆš','âˆ«','âˆ®',
+            // Logic & proof theory â€” verification layer
+            'âŠ¢','âŠ¨','âˆ€','âˆƒ','â—»','â—‡','âˆ§','âˆ¨','Â¬','âŠ¥',
             // Equality & comparison
-            '≡','≠','≤','≥','≈','∈','∉',
+            'â‰¡','â‰ ','â‰¤','â‰¥','â‰ˆ','âˆˆ','âˆ‰',
             // Cryptographic layer
             'SHA','256','H(x)','r(x)',
-            // Science tokens — material & physics
-            'E₀','ΔT','dσ','dε','dF','Δk','R²','εᵣ',
+            // Science tokens â€” material & physics
+            'Eâ‚€','Î”T','dÏƒ','dÎµ','dF','Î”k','RÂ²','Îµáµ£',
             // Verification protocol tokens
-            'PASS','FAIL','⊕','→','↔',
+            'PASS','FAIL','âŠ•','â†’','â†”',
             // Imaginary & complex
-            'ℏ','ℓ²','ℝ','ℂ','ℤ','±'
+            'â„','â„“Â²','â„','â„‚','â„¤','Â±'
           ];
           h._sI = Math.floor(Math.abs(Math.sin(h.ph*17+h.wx*53))*h._sP.length) % h._sP.length;
           h._sN = (h._sI+3+Math.floor(h.ph*11)) % h._sP.length;
           h._sT = Math.random(); // start at random phase so no sync
           h._sSp= 0.00035 + Math.random()*0.00045; // faster cycle, no freezing
         }
-        // symbol speed follows wave — faster at crests, slower in troughs
+        // symbol speed follows wave â€” faster at crests, slower in troughs
         h._sT += h._sSp * (0.5 + flow*0.8);
         if(h._sT>=1){ h._sT-=1; h._sI=h._sN; h._sN=(h._sN+2+Math.floor(h.ph*7))%h._sP.length; }
 
-        // S-curve crossfade — continuous across reset boundary
+        // S-curve crossfade â€” continuous across reset boundary
         // 0..0.72: A fully visible, B invisible
         // 0.72..1.0: A fades OUT, B fades IN (sine ease)
-        // at reset _sT=0: A=old_B (alpha=1), new B=0 → no jump
+        // at reset _sT=0: A=old_B (alpha=1), new B=0 â†’ no jump
         var _t01 = h._sT;
         var _hold = 0.72;
         var _cfA, _cfB;
         if(_t01 < _hold){
           _cfA = 1.0; _cfB = 0.0;
         } else {
-          var _xf = (_t01 - _hold) / (1.0 - _hold); // 0→1
-          var _ease = 0.5 - 0.5*Math.cos(_xf * Math.PI); // S-curve 0→1
-          _cfA = 1.0 - _ease; // 1→0
-          _cfB = _ease;       // 0→1
+          var _xf = (_t01 - _hold) / (1.0 - _hold); // 0â†’1
+          var _ease = 0.5 - 0.5*Math.cos(_xf * Math.PI); // S-curve 0â†’1
+          _cfA = 1.0 - _ease; // 1â†’0
+          _cfB = _ease;       // 0â†’1
         }
 
         var _s  = h._sP[h._sI];
@@ -3343,7 +3343,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
 
       });
 
-      // Ð²Ð¸Ð½ÑŒÐµÑ‚ÐºÐ°: Ñ†ÐµÐ½Ñ‚Ñ€ Ð¿Ð¾Ð»ÑƒÐ¿Ñ€Ð¾Ð·Ñ€Ð°Ñ‡Ð½Ñ‹Ð¹ (ÐºÐ¾Ð½Ñ‚ÐµÐ½Ñ‚), ÐºÑ€Ð°Ñ Ñ‚Ñ‘Ð¼Ð½Ñ‹Ðµ
+      // ÃÂ²ÃÂ¸ÃÂ½Ã‘Å’ÃÂµÃ‘â€šÃÂºÃÂ°: Ã‘â€ ÃÂµÃÂ½Ã‘â€šÃ‘â‚¬ ÃÂ¿ÃÂ¾ÃÂ»Ã‘Æ’ÃÂ¿Ã‘â‚¬ÃÂ¾ÃÂ·Ã‘â‚¬ÃÂ°Ã‘â€¡ÃÂ½Ã‘â€¹ÃÂ¹ (ÃÂºÃÂ¾ÃÂ½Ã‘â€šÃÂµÃÂ½Ã‘â€š), ÃÂºÃ‘â‚¬ÃÂ°Ã‘Â Ã‘â€šÃ‘â€˜ÃÂ¼ÃÂ½Ã‘â€¹ÃÂµ
       var vg=ctx.createRadialGradient(W*0.5,H*0.45,H*0.10,W*0.5,H*0.5,H*0.72);
       vg.addColorStop(0,   'rgba(4,8,26,0)');
       vg.addColorStop(0.45,'rgba(4,8,26,0.03)');
@@ -3391,12 +3391,12 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         btn.classList.add('active');
         var grp=document.querySelector('.vrf-input-group[data-claim="'+currentClaim+'"]');
         if(grp)grp.classList.add('active');
-        if(output){output.innerHTML='<div class="vrf-line dim">$ python scripts/mg.py verify --pack bundle.zip</div><div class="vrf-line dim">→ awaiting input...</div>';}
+        if(output){output.innerHTML='<div class="vrf-line dim">$ python scripts/mg.py verify --pack bundle.zip</div><div class="vrf-line dim">â†’ awaiting input...</div>';}
       });
     });
 
     function resetOutput(){
-      if(output)output.innerHTML='<div class="vrf-line dim">$ python scripts/mg.py verify --pack bundle.zip</div><div class="vrf-line dim">→ awaiting input...</div>';
+      if(output)output.innerHTML='<div class="vrf-line dim">$ python scripts/mg.py verify --pack bundle.zip</div><div class="vrf-line dim">â†’ awaiting input...</div>';
     }
 
     function addLine(cls,text,delay){
@@ -3418,7 +3418,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
       if(runBtn.classList.contains('running'))return;
       runBtn.classList.add('running');
       var lbl=document.getElementById('vrf-run-label');
-      if(lbl)lbl.textContent='â–¶ VERIFYING...';
+      if(lbl)lbl.textContent='Ã¢â€“Â¶ VERIFYING...';
       output.innerHTML='';
       var pass=false;var reason='';
 
@@ -3427,30 +3427,30 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         var ac=parseFloat(document.getElementById('ml-actual')?document.getElementById('ml-actual').value:0)||0;
         var delta=Math.abs(ac-cl);
         pass=delta<=0.02;
-        reason=pass?'accuracy delta '+delta.toFixed(4)+' ≤ 0.02':'accuracy delta '+delta.toFixed(4)+' > 0.02 — threshold exceeded';
+        reason=pass?'accuracy delta '+delta.toFixed(4)+' â‰¤ 0.02':'accuracy delta '+delta.toFixed(4)+' > 0.02 â€” threshold exceeded';
       } else if(currentClaim==='mtr'){
         var cl2=parseFloat(document.getElementById('mtr-claimed')?document.getElementById('mtr-claimed').value:0)||0;
         var ac2=parseFloat(document.getElementById('mtr-actual')?document.getElementById('mtr-actual').value:0)||0;
         var re=cl2>0?Math.abs(ac2-cl2)/cl2:1;
         pass=re<=0.01;
-        reason=pass?'relative_error '+re.toFixed(5)+' ≤ 0.01':'relative_error '+re.toFixed(5)+' > 0.01 — threshold exceeded';
+        reason=pass?'relative_error '+re.toFixed(5)+' â‰¤ 0.01':'relative_error '+re.toFixed(5)+' > 0.01 â€” threshold exceeded';
       } else if(currentClaim==='data'){
         var sv=document.getElementById('data-schema')?document.getElementById('data-schema').checked:false;
         var rv=document.getElementById('data-range')?document.getElementById('data-range').checked:false;
         pass=sv&&rv;
-        reason=pass?'schema_valid: true Â· range_valid: true':(!sv?'schema_valid: false — required columns missing':'range_valid: false — values out of bounds');
+        reason=pass?'schema_valid: true Ã‚Â· range_valid: true':(!sv?'schema_valid: false â€” required columns missing':'range_valid: false â€” values out of bounds');
       } else if(currentClaim==='drift'){
         var bl=parseFloat(document.getElementById('drift-baseline')?document.getElementById('drift-baseline').value:0)||0;
         var cu=parseFloat(document.getElementById('drift-current')?document.getElementById('drift-current').value:0)||0;
         var dr=bl>0?Math.abs(cu-bl)/bl:1;
         pass=dr<=0.05;
-        reason=pass?'drift '+(dr*100).toFixed(2)+'% ≤ 5.00%':'drift '+(dr*100).toFixed(2)+'% > 5.00% — calibration drift detected';
+        reason=pass?'drift '+(dr*100).toFixed(2)+'% â‰¤ 5.00%':'drift '+(dr*100).toFixed(2)+'% > 5.00% â€” calibration drift detected';
       } else if(currentClaim==='dtfem'){
         var sim=parseFloat(document.getElementById('dtfem-simulated')?document.getElementById('dtfem-simulated').value:0)||0;
         var ref=parseFloat(document.getElementById('dtfem-reference')?document.getElementById('dtfem-reference').value:0)||0;
         var fe=ref>0?Math.abs(sim-ref)/ref:1;
         pass=fe<=0.02;
-        reason=pass?'rel_err '+fe.toFixed(5)+' ≤ 0.02 — FEM output verified':'rel_err '+fe.toFixed(5)+' > 0.02 — FEM displacement exceeds threshold';
+        reason=pass?'rel_err '+fe.toFixed(5)+' â‰¤ 0.02 â€” FEM output verified':'rel_err '+fe.toFixed(5)+' > 0.02 â€” FEM displacement exceeds threshold';
       }
 
       var seq=[
@@ -3472,11 +3472,11 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
       }).then(function(){
         var rd=document.createElement('div');
         rd.className=pass?'vrf-result-pass':'vrf-result-fail';
-        rd.textContent=pass?'✔ VERIFICATION: PASS':'âœ— VERIFICATION: FAIL — '+reason;
+        rd.textContent=pass?'âœ” VERIFICATION: PASS':'Ã¢Å“â€” VERIFICATION: FAIL â€” '+reason;
         output.appendChild(rd);
         output.scrollTop=output.scrollHeight;
         runBtn.classList.remove('running');
-        if(lbl)lbl.textContent='â–¶ VERIFY';
+        if(lbl)lbl.textContent='Ã¢â€“Â¶ VERIFY';
       });
     }
 
@@ -3497,19 +3497,19 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
       fetch(pf.action,{method:'POST',body:data,headers:{'Accept':'application/json'}})
         .then(function(r){
           if(r.ok){pf.style.display='none';if(ps)ps.style.display='flex';}
-          else{if(psl)psl.textContent='Error — try email';if(psb)psb.disabled=false;}
+          else{if(psl)psl.textContent='Error â€” try email';if(psb)psb.disabled=false;}
         })
-        .catch(function(){if(psl)psl.textContent='Error — try email';if(psb)psb.disabled=false;});
+        .catch(function(){if(psl)psl.textContent='Error â€” try email';if(psb)psb.disabled=false;});
     });
   }
 })();
 </script>
 <script>
 /* FINALE CANVAS removed */
-if(false){/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   FINALE CANVAS — concentric verification rings
+if(false){/* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
+   FINALE CANVAS â€” concentric verification rings
    + particles + pulse from center
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
 (function(){
   var cv=document.getElementById('fnc');
   if(!cv)return;
@@ -3518,7 +3518,7 @@ if(false){/* â•â•â•â•â•â•â•â•â•â�
   function sz(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight;cx=W/2;cy=H/2;}
   var ro=new ResizeObserver(sz); ro.observe(cv); sz();
 
-  /* — rings config — */
+  /* â€” rings config â€” */
   var RINGS=[
     {r:0.08,spd:0.0006,col:'0,255,223',  lw:1.5,gap:0.18,dash:0},     /* inner green */
     {r:0.14,spd:-0.0004,col:'0,229,255', lw:1.0,gap:0.28,dash:0},    /* cyan */
@@ -3531,7 +3531,7 @@ if(false){/* â•â•â•â•â•â•â•â•â•â�
   ];
   RINGS.forEach(function(r){r.rot=Math.random()*Math.PI*2;});
 
-  /* — expanding pulse rings — */
+  /* â€” expanding pulse rings â€” */
   var pulses=[];
   function spawnPulse(){
     pulses.push({r:0,alpha:0.7,col:Math.random()<0.6?'0,255,223':'0,229,255'});
@@ -3539,7 +3539,7 @@ if(false){/* â•â•â•â•â•â•â•â•â•â�
   }
   spawnPulse();
 
-  /* — orbit particles — */
+  /* â€” orbit particles â€” */
   var PARTS=24;
   var parts=[];
   for(var i=0;i<PARTS;i++){
@@ -3553,7 +3553,7 @@ if(false){/* â•â•â•â•â•â•â•â•â•â�
     });
   }
 
-  /* — hex markers on rings — */
+  /* â€” hex markers on rings â€” */
   var HEX_R=5;
   function hex(x,y,r,rot){
     c.beginPath();
@@ -3568,7 +3568,7 @@ if(false){/* â•â•â•â•â•â•â•â•â•â�
 
     var maxR=Math.min(W,H)*0.5;
 
-    /* — pulse rings — */
+    /* â€” pulse rings â€” */
     pulses=pulses.filter(function(p){
       p.r+=0.008;
       p.alpha-=0.008;
@@ -3581,7 +3581,7 @@ if(false){/* â•â•â•â•â•â•â•â•â•â�
       return true;
     });
 
-    /* — static rings — */
+    /* â€” static rings â€” */
     RINGS.forEach(function(ring){
       ring.rot+=ring.spd;
       var R=ring.r*maxR;
@@ -3617,7 +3617,7 @@ if(false){/* â•â•â•â•â•â•â•â•â•â�
       c.setLineDash([]);
     });
 
-    /* — orbit particles — */
+    /* â€” orbit particles â€” */
     parts.forEach(function(p){
       p.angle+=p.speed;
       var r=p.orb*maxR;
@@ -3631,7 +3631,7 @@ if(false){/* â•â•â•â•â•â•â•â•â•â�
 
 
   }
-  /* — pause RAF when canvas not visible — saves CPU/GPU entirely — */
+  /* â€” pause RAF when canvas not visible â€” saves CPU/GPU entirely â€” */
   var isVisible = false;
   var rafId = null;
 
@@ -3653,7 +3653,7 @@ if(false){/* â•â•â•â•â•â•â•â•â•â�
   }, {threshold: 0.01});
   visObs.observe(cv);
 
-  /* — slide-in trigger — */
+  /* â€” slide-in trigger â€” */
   var io=new IntersectionObserver(function(entries){
     if(entries[0].isIntersecting){
       document.getElementById('finale').classList.add('fn-vis');
@@ -3664,7 +3664,7 @@ if(false){/* â•â•â•â•â•â•â•â•â•â�
 })();
 */ }
 </script>
-<button id="page-totop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">â†‘</button>
+<button id="page-totop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Ã¢â€ â€˜</button>
 <script>
 (function(){
   var btn=document.getElementById('page-totop');
@@ -3703,16 +3703,16 @@ if(false){/* â•â•â•â•â•â•â•â•â•â�
 })();
 </script>
 <script>
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
    SDESC WORD-BY-WORD REVEAL
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
 (function(){
-  /* â”€â”€ .hc glitch: set data-t = text content so ::before/::after can duplicate â”€â”€ */
+  /* Ã¢â€â‚¬Ã¢â€â‚¬ .hc glitch: set data-t = text content so ::before/::after can duplicate Ã¢â€â‚¬Ã¢â€â‚¬ */
   document.querySelectorAll('h2 .hc').forEach(function(s){
     s.setAttribute('data-t', s.textContent);
   });
 
-  /* â”€â”€ .stag reveal â”€â”€ */
+  /* Ã¢â€â‚¬Ã¢â€â‚¬ .stag reveal Ã¢â€â‚¬Ã¢â€â‚¬ */
   var stags = document.querySelectorAll('.stag');
   if(stags.length){
     var stagIO = new IntersectionObserver(function(entries){
@@ -3723,7 +3723,7 @@ if(false){/* â•â•â•â•â•â•â•â•â•â�
     stags.forEach(function(el){ stagIO.observe(el); });
   }
 
-  /* â”€â”€ .sdesc word reveal â”€â”€ */
+  /* Ã¢â€â‚¬Ã¢â€â‚¬ .sdesc word reveal Ã¢â€â‚¬Ã¢â€â‚¬ */
   var els = document.querySelectorAll('.sdesc');
   if(!els.length) return;
 
@@ -3756,9 +3756,9 @@ if(false){/* â•â•â•â•â•â•â•â•â•â�
 })();
 </script>
 <script>
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   CURSOR — direct follow, no lerp
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
+   CURSOR â€” direct follow, no lerp
+Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
 (function(){
   var cur=document.getElementById('mg-cur');
   if(!cur)return;
@@ -3785,10 +3785,10 @@ if(false){/* â•â•â•â•â•â•â•â•â•â�
 </script>
 
 <style>
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   .hw — semi-transparent white words
-   Subtle pulse only — NO blur, always readable
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
+   .hw â€” semi-transparent white words
+   Subtle pulse only â€” NO blur, always readable
+   Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
 h2 .hw,
 h2.vis .hw {
   color: rgba(238,247,251,.30) !important;
@@ -3809,9 +3809,9 @@ h2:nth-of-type(2n)   .hw { animation-delay: 0s !important; }
 h2:nth-of-type(2n+1) .hw { animation-delay: 2.5s !important; }
 h2:nth-of-type(3n)   .hw { animation-delay: 1.3s !important; }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
    PROOF STRIP
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
 .proof-strip{
   margin-top:48px;
   padding:28px 36px;
@@ -3859,9 +3859,9 @@ a.proof-strip-item:hover{border-color:rgba(0,255,223,.4);background:rgba(0,255,2
 @media(max-width:768px){.proof-strip-items{flex-direction:column}.proof-strip{padding:20px 16px}}
 
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
    ORIGIN STATS + EXTRAS
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
 .origin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln);margin-top:40px}
 .origin-stat-item{background:var(--ink2);padding:20px 16px;text-align:center}
 .osi-num{font-family:var(--fd);font-size:clamp(28px,3vw,40px);font-weight:900;color:var(--c);line-height:1;letter-spacing:-.03em}
@@ -3870,7 +3870,7 @@ p.origin-final{color:rgba(238,247,251,.85);font-style:italic;margin-top:20px;pad
 .origin-steps-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--c);margin-bottom:24px;display:flex;align-items:center;gap:10px}
 .origin-steps-label::before{content:'';width:20px;height:1px;background:var(--c)}
 @media(max-width:900px){.origin-stats{grid-template-columns:repeat(2,1fr)}}
-/* â”€â”€ Agent top banner â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Agent top banner Ã¢â€â‚¬Ã¢â€â‚¬ */
 #agent-topbar{display:flex;align-items:center;gap:14px;padding:7px 32px;background:rgba(0,10,22,.96);border-bottom:1px solid rgba(0,229,255,.15);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;overflow-x:auto;white-space:nowrap}
 .atb-label{color:var(--c);font-weight:500;letter-spacing:.15em;font-size:9px;text-transform:uppercase}
 .atb-sep{color:rgba(0,229,255,.2)}
@@ -3880,7 +3880,7 @@ p.origin-final{color:rgba(238,247,251,.85);font-style:italic;margin-top:20px;pad
 .atb-clone:hover{color:#00e5ff!important;border-color:rgba(0,229,255,.5)!important;background:rgba(0,229,255,.05)}
 @media(max-width:768px){#agent-topbar{padding:5px 16px;gap:10px}.atb-label{display:none}}
 
-/* â”€â”€ Agent orientation bar â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Agent orientation bar Ã¢â€â‚¬Ã¢â€â‚¬ */
 .agent-bar{margin-top:64px;padding:40px 48px;border:1px solid rgba(0,229,255,.35);background:rgba(3,8,20,.92);border-radius:2px}
 .agent-bar-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--c);margin-bottom:18px;display:flex;align-items:center;gap:10px}
 .agent-bar-label::before{content:'';width:20px;height:1px;background:var(--c)}
@@ -3902,13 +3902,13 @@ p.origin-final{color:rgba(238,247,251,.85);font-style:italic;margin-top:20px;pad
   .agent-bar-files{grid-template-columns:1fr}
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
    PURE WHITE main h2 text (no class)
    Precision glitch-scan: text always readable
    Subtle scan line + occasional digit-glitch
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+   Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
 
-/* â•â• PHYSICS DEMO SECTION â•â• */
+/* Ã¢â€¢ÂÃ¢â€¢Â PHYSICS DEMO SECTION Ã¢â€¢ÂÃ¢â€¢Â */
 .phys-flow{display:flex;flex-direction:column;gap:0;border:1px solid var(--ln);overflow:hidden;background:rgba(4,8,26,.92)}
 .phys-step{display:grid;grid-template-columns:72px 1fr;border-bottom:1px solid var(--ln);transition:background .2s;background:rgba(4,8,26,.88)}
 .phys-step:last-child{border-bottom:none}
@@ -3962,7 +3962,7 @@ p.origin-final{color:rgba(238,247,251,.85);font-style:italic;margin-top:20px;pad
   .phys-step-n{padding:20px 0}
 }
 
-/* â”€â”€ Compare cards upgrade â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Compare cards upgrade Ã¢â€â‚¬Ã¢â€â‚¬ */
 .pp-rows{
   margin-top:16px;
   display:flex;
@@ -4023,7 +4023,7 @@ a.pp-claim-link:hover{color:#fff}
   font-weight:700;
 }
 
-/* â”€â”€ Crisis closes block â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Crisis closes block Ã¢â€â‚¬Ã¢â€â‚¬ */
 .crisis-closes{
   margin-top:56px;
   border-top:1px solid var(--ln2);
@@ -4120,7 +4120,7 @@ a.pp-claim-link:hover{color:#fff}
   .ccl-threshold{margin-left:0;white-space:normal}
 }
 
-/* â”€â”€ Pilot domain hint â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Pilot domain hint Ã¢â€â‚¬Ã¢â€â‚¬ */
 .pilot-domain-hint{
   margin:12px 0 4px;
   animation:pdhIn .25s ease;
@@ -4159,7 +4159,7 @@ a.pp-claim-link:hover{color:#fff}
   border-radius:4px;
 }
 
-/* â”€â”€ PHYSICAL ANCHOR CHAIN â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ PHYSICAL ANCHOR CHAIN Ã¢â€â‚¬Ã¢â€â‚¬ */
 .anchor-chain{border:1px solid rgba(0,255,223,.22);background:rgba(3,8,20,.96);padding:48px 52px;margin-bottom:64px;position:relative;overflow:hidden;box-shadow:0 0 60px rgba(0,255,223,.04) inset,0 0 0 1px rgba(0,255,223,.06)}
 .anchor-chain::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(0,255,223,.7) 30%,rgba(0,255,223,1) 50%,rgba(0,255,223,.7) 70%,transparent 100%)}
 .anchor-chain::after{content:'';position:absolute;inset:8px;border:1px solid rgba(0,255,223,.06);pointer-events:none}
@@ -4223,7 +4223,7 @@ a.pp-claim-link:hover{color:#fff}
   });
 })();
 
-/* â”€â”€ Pilot domain hint â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Pilot domain hint Ã¢â€â‚¬Ã¢â€â‚¬ */
 (function(){
   var sel = document.getElementById('pf-segment');
   var hint = document.getElementById('pf-domain-hint');
@@ -4259,6 +4259,7 @@ a.pp-claim-link:hover{color:#fff}
 </script>
 </body>
 </html>
+
 
 
 
