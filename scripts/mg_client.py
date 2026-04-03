@@ -91,7 +91,7 @@ DOMAIN_CONFIG = {
     "materials": {
         "claim": "MTR-1",
         "module": "backend.progress.mtr1_calibration",
-        "func": "run_certificate",
+        "func": "run_calibration",
         "description": "Young's modulus calibration (E=70GPa aluminum)",
         "defaults": {
             "seed": 42,
