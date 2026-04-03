@@ -41,7 +41,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 ### v1.0.0 First Client
 
 - [ ] **Phase 9: Academic Infrastructure** - Zenodo DOI metadata, CITATION.cff currency, README badge, paper.md cross-references
-- [ ] **Phase 10: Coverage Hardening** - Dedicated tests for check_stale_docs, agent_evolve_self, agent_research, agent_coverage to reach 90%+
+- [x] **Phase 10: Coverage Hardening** - Dedicated tests for check_stale_docs, agent_evolve_self, agent_research, agent_coverage to reach 90%+ (completed 2026-04-03)
 - [ ] **Phase 11: Client Onboarding Automation** - agent_pilot.py end-to-end: form ingestion, domain detection, bundle generation, email draft, queue tracking
 - [ ] **Phase 12: Agent Evolution** - Pilot queue staleness detector (#5) in agent_pr_creator.py with tests
 - [ ] **Phase 13: System Hardening** - Gap analysis, counter consistency, all verification gates green
@@ -71,7 +71,7 @@ Plans:
   3. tests/test_agent_research.py exercises write_report() and uncovered decision branches
   4. tests/test_agent_coverage.py exercises the run() function end-to-end, raising coverage from 20% to 80%+
   5. Running `python -m pytest tests/ -q` reports 90%+ overall coverage (excluding deep_verify.py load_module)
-**Plans:** 2 plans
+**Plans:** 1/2 plans complete
 Plans:
 - [ ] 10-01-PLAN.md -- High-impact coverage: check_stale_docs main flow, agent_coverage analyze(), agent_evolve_self analyze()
 - [ ] 10-02-PLAN.md -- Remaining coverage: agent_research write_report, agent_diff_review main, agent_pr_creator detectors, agent_learn commands
@@ -120,7 +120,7 @@ Phases execute in numeric order: 9 -> 10 -> 11 -> 12 -> 13
 | 7. Flagship Proofs | 2/2 | Complete | 2026-03-18 |
 | 8. Counter Updates | 2/2 | Complete | 2026-03-18 |
 | 9. Academic Infrastructure | 0/1 | Planned | - |
-| 10. Coverage Hardening | 0/2 | Planned | - |
+| 10. Coverage Hardening | 0/2 | Complete    | 2026-04-03 |
 | 11. Client Onboarding Automation | 0/TBD | Not started | - |
 | 12. Agent Evolution | 0/TBD | Not started | - |
 | 13. System Hardening | 0/TBD | Not started | - |
