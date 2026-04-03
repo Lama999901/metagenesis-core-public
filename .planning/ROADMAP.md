@@ -43,7 +43,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 9: Academic Infrastructure** - Zenodo DOI metadata, CITATION.cff currency, README badge, paper.md cross-references
 - [x] **Phase 10: Coverage Hardening** - Dedicated tests for check_stale_docs, agent_evolve_self, agent_research, agent_coverage to reach 90%+ (completed 2026-04-03)
 - [x] **Phase 11: Client Onboarding Automation** - agent_pilot.py end-to-end: form ingestion, domain detection, bundle generation, email draft, queue tracking (completed 2026-04-03)
-- [ ] **Phase 12: Agent Evolution** - Pilot queue staleness detector (#5) in agent_pr_creator.py with tests
+- [x] **Phase 12: Agent Evolution** - Pilot queue staleness detector (#5) in agent_pr_creator.py with tests (completed 2026-04-03)
 - [ ] **Phase 13: System Hardening** - Gap analysis, counter consistency, all verification gates green
 
 ## Phase Details
@@ -125,7 +125,7 @@ Phases execute in numeric order: 9 -> 10 -> 11 -> 12 -> 13
 | 9. Academic Infrastructure | 0/1 | Planned | - |
 | 10. Coverage Hardening | 0/2 | Complete    | 2026-04-03 |
 | 11. Client Onboarding Automation | 0/2 | Complete    | 2026-04-03 |
-| 12. Agent Evolution | 0/TBD | Not started | - |
+| 12. Agent Evolution | 0/TBD | Complete    | 2026-04-03 |
 | 13. System Hardening | 0/TBD | Not started | - |
 
 ---
