@@ -8,7 +8,7 @@
 
 ```
 CONTEXT: MetaGenesis Core — verification protocol layer for computational claims.
-v0.9.0 | 20 claims | 1321 tests | 5 layers | 8 innovations
+v0.9.0 | 20 claims | 1634 tests | 5 layers | 8 innovations
   PPA #63/996,819. Repo: https://github.com/Lama999901/metagenesis-core-public
 
 NEVER TOUCH these files under any circumstances:
@@ -26,7 +26,7 @@ BANNED TERMS — never write these anywhere:
   Instead use: "tamper-evident under trusted verifier assumptions"
 
 CURRENT STATE:
-20 claims / 1321 tests / 5 verification layers / MVP v0.9
+20 claims / 1634 tests / 5 verification layers / MVP v0.9
   steward_audit: PASS / deep_verify: ALL 13 TESTS PASSED
 ```
 
@@ -76,7 +76,7 @@ DO NOT TOUCH:
 
 After all changes:
   python scripts/steward_audit.py   # → STEWARD AUDIT: PASS
-  python -m pytest tests/ -q        # → 1321 passed (or more)
+  python -m pytest tests/ -q        # → 1634 passed (or more)
   python scripts/deep_verify.py     # → ALL 13 TESTS PASSED
 ```
 
@@ -167,7 +167,7 @@ BASE URL: `https://github.com/Lama999901/metagenesis-core-public/blob/main/`
 
 ```
 <nav>     Protocol | Claims | Verticals | For You | Verify | Free Pilot | GitHub
-#hero     — 20 claims, 1321 tests, AUDIT: PASS
+#hero     — 20 claims, 1634 tests, AUDIT: PASS
 #protocol — "Not a tool. A standard." — 4 innovations + Step Chain
 #claims   — 14 claim cards with links
 #verticals — 6 verticals
@@ -183,7 +183,7 @@ BASE URL: `https://github.com/Lama999901/metagenesis-core-public/blob/main/`
 <footer>
 ```
 
-**Hero badge:** `18 active claims | 1321 tests | PASS | patent pending`
+**Hero badge:** `18 active claims | 1634 tests | PASS | patent pending`
 
 ---
 
