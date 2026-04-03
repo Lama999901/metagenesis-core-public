@@ -191,7 +191,7 @@ Built by **one person**. Yehor Bazhynov. Inventor, USPTO #63/996,819.
 
 Built after hours, without a team, without funding, using **Claude (Anthropic)** as the primary development tool. Every AI-generated output verified by the project's own test suite. The protocol verifies the protocol.
 
-The result: **20 verified claims across 8 domains. 1198 adversarial tests. 5 verification layers. 8 innovations. 18 autonomous agent monitoring checks running daily in CI.**
+The result: **20 verified claims across 8 domains. 1198 adversarial tests. 5 verification layers. 8 innovations. 19 autonomous agent monitoring checks running daily in CI.**
 
 ---
 
@@ -319,7 +319,7 @@ python -m pytest tests/steward/test_cert12_encoding_attacks.py -v
 
 ## The Agent Evolution System
 
-MetaGenesis Core includes an autonomous agent monitoring system -- 18 checks that run daily in CI, ensuring the protocol and its documentation remain consistent, complete, and correct.
+MetaGenesis Core includes an autonomous agent monitoring system -- 19 checks that run daily in CI, ensuring the protocol and its documentation remain consistent, complete, and correct.
 
 ### The 19 Checks
 
@@ -579,7 +579,7 @@ python -m pytest tests/ -q
 python scripts/deep_verify.py
 # -> ALL 13 TESTS PASSED
 
-# Agent evolution system (18 checks):
+# Agent evolution system (19 checks):
 python scripts/agent_evolution.py --summary
 # -> ALL 19 CHECKS PASSED -- system healthy
 ```

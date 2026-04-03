@@ -147,7 +147,7 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 
 ## Agent evolution system
 
-Embedded agent governance with 18 evolution checks (`scripts/agent_evolution.py`)
+Embedded agent governance with 19 evolution checks (`scripts/agent_evolution.py`)
 and 8 daily CI agents enforcing documentation consistency, test coverage,
 manifest accuracy, forbidden terms, and branch synchronization automatically.
 Includes cumulative learning (`scripts/agent_learn.py`) that records recurring
