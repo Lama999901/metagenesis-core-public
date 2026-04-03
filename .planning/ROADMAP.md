@@ -41,7 +41,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 ### v1.0.0 First Client
 
 - [ ] **Phase 9: Academic Infrastructure** - Zenodo DOI metadata, CITATION.cff currency, README badge, paper.md cross-references
-- [x] **Phase 10: Coverage Hardening** - Dedicated tests for check_stale_docs, agent_evolve_self, agent_research, agent_coverage to reach 90%+ (completed 2026-04-03)
+- [x] **Phase 10: Coverage Hardening** - Dedicated tests for check_stale_docs, agent_evolve_self, agent_research, agent_coverage to reach 90%+ (completed 2026-04-03)
 - [ ] **Phase 11: Client Onboarding Automation** - agent_pilot.py end-to-end: form ingestion, domain detection, bundle generation, email draft, queue tracking
 - [ ] **Phase 12: Agent Evolution** - Pilot queue staleness detector (#5) in agent_pr_creator.py with tests
 - [ ] **Phase 13: System Hardening** - Gap analysis, counter consistency, all verification gates green
@@ -86,7 +86,10 @@ Plans:
   3. agent_pilot.py generates a response email draft file containing the PASS result, bundle summary, and next-steps language pointing to the $299 Stripe link
   4. reports/pilot_queue.json tracks every submission with status (pending/processed/sent), timestamps, and domain detected
   5. Running `python scripts/agent_pilot.py --help` displays usage information including all flags
-**Plans**: TBD
+**Plans:** 2 plans
+Plans:
+- [ ] 11-01-PLAN.md -- Core agent_pilot.py: CSV ingestion, domain detection, bundle generation, email drafts, queue state
+- [ ] 11-02-PLAN.md -- Test suite for agent_pilot.py: domain detection, CSV parsing, bundle gen, drafts, queue, CLI
 
 ### Phase 12: Agent Evolution
 **Goal**: agent_pr_creator.py autonomously detects stale pilot queue entries and flags them for action
@@ -121,10 +124,10 @@ Phases execute in numeric order: 9 -> 10 -> 11 -> 12 -> 13
 | 8. Counter Updates | 2/2 | Complete | 2026-03-18 |
 | 9. Academic Infrastructure | 0/1 | Planned | - |
 | 10. Coverage Hardening | 0/2 | Complete    | 2026-04-03 |
-| 11. Client Onboarding Automation | 0/TBD | Not started | - |
+| 11. Client Onboarding Automation | 0/2 | Planned | - |
 | 12. Agent Evolution | 0/TBD | Not started | - |
 | 13. System Hardening | 0/TBD | Not started | - |
 
 ---
 *Roadmap created: 2026-03-17*
-*Last updated: 2026-04-03 -- Phase 10 planned (2 plans)*
+*Last updated: 2026-04-03 -- Phase 11 planned (2 plans)*
