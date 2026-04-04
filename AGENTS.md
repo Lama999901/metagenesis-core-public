@@ -1,6 +1,6 @@
 # AGENTS.md — Rules for AI Agents Working in This Repo
 
-> v0.9.0 | 20 claims | 1753 tests | 19 agent checks
+> v0.9.0 | 20 claims | 2012 tests | 20 agent checks
 > This file tells Cursor, Claude, Copilot, and any AI agent the rules of this repo.
 > Read CLAUDE.md first — it is always more current and wins all conflicts.
 
@@ -68,8 +68,8 @@ FORBIDDEN → CORRECT
 "blockchain" → "cryptographic hash chain"
 "unforgeable" → don't use
 "GPT-5" → doesn't exist
-"100% test success" → "1753 tests PASS"
-"595 tests" / "601 tests" → "1753 tests"
+"100% test success" → "2012 tests PASS"
+"595 tests" / "601 tests" → "2012 tests"
 "v0.6" / "v0.7" → "v0.9.0"
 ```
 
@@ -125,7 +125,7 @@ Step 5 — Tests: tests/<domain>/test_<claim_id_lower>.py
 Step 6 — Update ALL counters AND check_stale_docs.py required strings (same PR):
 ```bash
 python scripts/steward_audit.py  # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q       # → 1753 passed
+python -m pytest tests/ -q       # → 2012 passed
 python scripts/deep_verify.py    # → ALL 13 TESTS PASSED
 python scripts/agent_pr_creator.py --summary  # → No auto-pr needed
 ```
@@ -163,7 +163,7 @@ python scripts/agent_pr_creator.py --summary  # → No auto-pr needed
 
 ```bash
 python scripts/steward_audit.py      # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q           # → 1753 passed
+python -m pytest tests/ -q           # → 2012 passed
 python scripts/deep_verify.py        # → ALL 13 TESTS PASSED
 python scripts/agent_pr_creator.py --summary  # → No auto-pr needed
 grep -r "tamper-proof\|GPT-5\|19x\|VacuumGenesis\|blockchain" docs/ scripts/ backend/ tests/
@@ -182,5 +182,5 @@ independent layers: (1) SHA-256 integrity, (2) semantic verification,
 (5) temporal commitment NIST Beacon → PASS or FAIL with specific reason.
 Physical chain: MTR-1 → DT-FEM-01 → DRIFT-01 cryptographically linked via anchor_hash.
 Steward_audit enforces bidirectional coverage on every PR.
-agent_evolution.py runs 18 Mechanicus checks after every merge.
+agent_evolution.py runs 20 Mechanicus checks after every merge.
 agent_pr_creator.py autonomously creates PRs for detected issues.

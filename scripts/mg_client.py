@@ -414,6 +414,27 @@ def _print_layer_results(results: list):
     print(f"  {'=' * 60}")
 
 
+def _print_receipt(claim_result: dict, bundle_dir: Path = None):
+    """Print and optionally save a verification receipt after PASS."""
+    try:
+        from scripts.mg_receipt import format_receipt, generate_receipt
+        receipt_text = format_receipt(claim_result)
+        print(f"\n{receipt_text}")
+
+        # Save receipt to reports/receipts/ if bundle_dir provided
+        if bundle_dir is not None:
+            trace_root = claim_result.get("trace_root_hash", "unknown")
+            receipts_dir = REPO_ROOT / "reports" / "receipts"
+            receipts_dir.mkdir(parents=True, exist_ok=True)
+            receipt_filename = f"{trace_root[:16]}_receipt.txt"
+            receipt_path = receipts_dir / receipt_filename
+            receipt_path.write_text(receipt_text, encoding="utf-8")
+            print(f"  {DIM}Receipt saved: {receipt_path}{X}")
+    except Exception as e:
+        # Receipt generation is best-effort; don't break the main flow
+        print(f"  {DIM}(Receipt generation skipped: {e}){X}")
+
+
 def _print_summary(domain: str, claim_result: dict, bundle_dir: Path, all_passed: bool):
     claim_id = claim_result.get("mtr_phase", "?")
     result = claim_result.get("result", {})
@@ -533,6 +554,10 @@ def demo_pipeline() -> int:
     _print_layer_results(layer_results)
     _print_summary("ml", result, bundle_dir, all_passed)
 
+    # Generate verification receipt on PASS
+    if all_passed:
+        _print_receipt(result)
+
     # Clean up demo bundle
     if bundle_dir.exists():
         shutil.rmtree(bundle_dir)
@@ -581,6 +606,10 @@ def cmd_domain(args) -> int:
     _print_layer_results(layer_results)
     _print_summary(domain, result, bundle_dir, all_passed)
 
+    # Generate verification receipt on PASS
+    if all_passed:
+        _print_receipt(result, bundle_dir)
+
     return 0 if all_passed else 1
 
 
@@ -601,6 +630,12 @@ def cmd_verify(args) -> int:
     if all_passed:
         print(f"\n  {G}{B}  VERIFICATION: PASS  {X}")
         print(f"  {DIM}All layers verified. Bundle is tamper-evident.{X}")
+
+        # Generate verification receipt on PASS
+        evidence_path = bundle_dir / "evidence.json"
+        if evidence_path.exists():
+            claim_result = json.loads(evidence_path.read_text(encoding="utf-8"))
+            _print_receipt(claim_result, bundle_dir)
     else:
         print(f"\n  {R}{B}  VERIFICATION: FAIL  {X}")
         for name, ok, detail in layer_results:

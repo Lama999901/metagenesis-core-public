@@ -54,7 +54,7 @@ tampering any link invalidates all downstream hashes.
 
 The protocol ships with 20 active verification claims across 8 domains
 (materials science, ML/AI, system identification, data pipelines, digital
-twin, pharma/biotech, and financial risk), 1753 adversarial tests, and
+twin, pharma/biotech, and financial risk), 2012 adversarial tests, and
 governance enforcement that prevents any registered claim from existing
 without a corresponding implementation — and vice versa.
 
@@ -248,14 +248,14 @@ provenance only. This distinction is formalized in `reports/known_faults.yaml ::
 
 MetaGenesis Core ships with an embedded agent governance system that enforces
 documentation consistency automatically. Anyone who clones the repository
-receives an 18-check health monitoring suite (`scripts/agent_evolution.py`),
+receives a 20-check health monitoring suite (`scripts/agent_evolution.py`),
 post-phase validation hooks, and a cumulative learning system
 (`scripts/agent_learn.py`) that records recurring patterns and auto-fix hints
 across sessions.
 
 The system includes:
 
-- **Agent Evolution Runner** — 16 automated checks covering steward audit,
+- **Agent Evolution Runner** — 20 automated checks covering steward audit,
   test suite, deep verification, stale documentation, manifest consistency,
   forbidden terms, coverage gaps, CLAUDE.md freshness, watchlist coverage,
   and branch synchronization.
@@ -359,7 +359,7 @@ Claude (Anthropic) was used as the primary development tool throughout
 this project: architecture decisions, code implementation, patent
 application drafting, and documentation. All AI-generated outputs were
 verified by the author through the project's own adversarial test suite
-(1753 tests), steward audit, and 13-test deep verification script.
+(2012 tests), steward audit, and 13-test deep verification script.
 Quality was ensured by governance-enforced bidirectional coverage — every
 claim must have tests and every test must correspond to a claim — and
 5-layer tamper-evident verification where each layer catches attacks the

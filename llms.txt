@@ -101,13 +101,13 @@ Enforced by: python scripts/steward_audit.py → must output STEWARD AUDIT: PASS
 ## How to verify everything works
 
 python scripts/steward_audit.py                              # PASS
-python -m pytest tests/ -q                                   # 1753 passed
+python -m pytest tests/ -q                                   # 2012 passed
 python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 
 ## Current state (2026-03-31)
 
 - Claims: 20
-- Tests: 1753 passing
+- Tests: 2012 passing
 - Verification layers: 5 (integrity + semantic + step chain + bundle signing + temporal commitment)
 - Domains: 8 (materials, sysid, data, ml, digital_twin, pharma_biotech, financial_risk, fundamental_physics)
 - Cross-Claim Chain: MTR-1 → DT-FEM-01 → DRIFT-01 cryptographically linked via anchor_hash
@@ -147,7 +147,7 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 
 ## Agent evolution system
 
-Embedded agent governance with 19 evolution checks (`scripts/agent_evolution.py`)
+Embedded agent governance with 20 evolution checks (`scripts/agent_evolution.py`)
 and 8 daily CI agents enforcing documentation consistency, test coverage,
 manifest accuracy, forbidden terms, and branch synchronization automatically.
 Includes cumulative learning (`scripts/agent_learn.py`) that records recurring
