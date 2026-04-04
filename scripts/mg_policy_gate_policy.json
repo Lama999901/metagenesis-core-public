@@ -7,7 +7,7 @@
     "allow_globs": "List of glob patterns for ALLOWED modifications"
   },
   "version": "1.0.0",
-  "last_updated": "2026-03-15",
+  "last_updated": "2026-04-04",
   "locked_paths": [
     "demos/open_data_demo_01/evidence_index.json",
     "scripts/steward_audit.py"
@@ -50,6 +50,9 @@
     "*.cff",
     "reports/pilot_drafts/**",
     "reports/pilot_bundles/**",
+    "reports/receipts/**",
+    "reports/response_drafts/**",
+    "reports/response_bundles/**",
     ".planning/**"
   ],
   "_notes": {
