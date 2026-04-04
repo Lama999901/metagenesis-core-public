@@ -19,6 +19,10 @@ if str(REPO_ROOT) not in sys.path:
 
 MINIMUM_PROTOCOL_VERSION = 1
 
+# WHY 5 LAYERS: Each layer catches attacks the other four miss. CERT-11 proves
+# no subset of four layers is sufficient. Removing any one creates a specific
+# attack vector that passes all remaining layers.
+
 
 def _run(cmd: list[str], passthrough: bool = True) -> int:
     result = subprocess.run(
@@ -148,6 +152,8 @@ def _verify_pack(pack_dir: Path) -> tuple[bool, str, dict]:
         report["checks"].append({"name": "semantic_evidence", "status": "skip"})
 
     # Layer 5: Temporal commitment (independent of Layers 1-3)
+    # WHY NIST BEACON: Proves WHEN a bundle was signed. Without temporal commitment,
+    # an attacker can backdate a bundle to before a known vulnerability was discovered.
     try:
         from scripts.mg_temporal import verify_temporal_commitment
         tc_ok, tc_msg = verify_temporal_commitment(pack_dir)
@@ -174,6 +180,9 @@ _EXPECTED_DOMAIN_KEYS = {
 }
 
 
+# WHY SEMANTIC LAYER: Integrity (Layer 1) proves files weren't modified.
+# But an attacker can strip evidence, recompute hashes, and pass integrity.
+# Semantic verification catches this by checking content meaning, not just hashes.
 def _verify_semantic(pack_dir: Path, evidence_index_path: Path) -> tuple[bool, str, list]:
     """Semantic verification of evidence bundles. Returns (ok, message, errors_list)."""
     warnings: list[str] = []
@@ -268,6 +277,9 @@ def _verify_semantic(pack_dir: Path, evidence_index_path: Path) -> tuple[bool, s
                     msg = f"Run artifact {run_rel} uncertainty: stability_score must be in [0,1]"
                     return False, msg, [msg]
             # --- Step Chain Verification (PPA #63/996,819) ---
+            # WHY STEP CHAIN: Integrity + semantic prove WHAT was computed. Step chain proves
+            # HOW -- the exact sequence, inputs, and intermediate results. Reordering steps
+            # or skipping a step breaks the chain even if the final result looks correct.
             # If execution_trace is present, verify structural integrity:
             # trace_root_hash must equal the hash stored in the final chain step.
             # The manifest SHA-256 ensures the artifact file was not modified;
@@ -599,6 +611,8 @@ def main():
     claim_run.set_defaults(func=cmd_claim_run_mtr1)
 
     # --- sign subcommand (Innovation #6) ---
+    # WHY ED25519: Asymmetric signing allows anyone to verify without the private key.
+    # HMAC requires shared secrets. Ed25519 enables true third-party verification.
     sign_cmd = sub.add_parser("sign", help="Bundle signing (Innovation #6)")
     sign_sub = sign_cmd.add_subparsers(dest="command", required=True)
 
