@@ -182,5 +182,5 @@ independent layers: (1) SHA-256 integrity, (2) semantic verification,
 (5) temporal commitment NIST Beacon → PASS or FAIL with specific reason.
 Physical chain: MTR-1 → DT-FEM-01 → DRIFT-01 cryptographically linked via anchor_hash.
 Steward_audit enforces bidirectional coverage on every PR.
-agent_evolution.py runs 18 Mechanicus checks after every merge.
+agent_evolution.py runs 20 Mechanicus checks after every merge.
 agent_pr_creator.py autonomously creates PRs for detected issues.
