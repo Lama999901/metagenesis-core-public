@@ -164,8 +164,9 @@ Innovations: 8 (5 PPA + HMAC + Ed25519 + Temporal)
 Domains:     8 (materials, sysid, data, ml, digital_twin, pharma, finance, physics)
 Checks:      19 Mechanicus (agent_evolution.py)
 Release:     v0.9.0 LIVE
-Coverage:    ~40% (target 65%)
-agent_pr_creator: REAL (203 lines, 3 detectors) — catches stale counters automatically
+Coverage:    91.9% (excluding deep_verify.py — see ENV_002 in known_faults.yaml)
+agent_pr_creator: REAL (280+ lines, 5 detectors) — catches stale counters + pilot queue
+agent_pilot: REAL (443 lines) — CSV → domain detect → bundle → email draft → queue
 ```
 
 ---
@@ -351,8 +352,9 @@ scripts/mg_temporal.py      ← NIST Beacon temporal commitment Innovation #8 (L
 scripts/steward_audit.py    ← governance (SEALED)
 scripts/deep_verify.py      ← 13-test proof script
 scripts/agent_evolution.py  ← 19 Mechanicus checks
-scripts/agent_pr_creator.py ← Level 3 autonomous PR (203 lines, 3 detectors)
-scripts/agent_learn.py      ← session memory (57 sessions, 15 patterns)
+scripts/agent_pr_creator.py ← Level 3 autonomous PR (280+ lines, 5 detectors)
+scripts/agent_pilot.py      ← pilot onboarding automation (443 lines)
+scripts/agent_learn.py      ← session memory (88 sessions, 15 patterns)
 scripts/check_stale_docs.py ← documentation currency checker
 backend/progress/runner.py  ← job dispatch (20 claims)
 reports/scientific_claim_index.md  ← claim registry
