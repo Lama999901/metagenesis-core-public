@@ -1,7 +1,7 @@
 {
   "version": "1.0",
-  "created": "2026-04-04T05:13:40.542689+00:00",
-  "updated": "2026-04-04T06:14:47.635096+00:00",
+  "created": "2026-04-04T06:34:50.515366+00:00",
+  "updated": "2026-04-04T06:34:50.515366+00:00",
   "scripts": {
     "scripts/mg.py": {
       "hash": "e9a312201254e0b6ad47685882e359b73653412a6cc4653188fd1ba911a1cfa1",
@@ -16,8 +16,8 @@
       "size": 25597
     },
     "scripts/check_stale_docs.py": {
-      "hash": "2dfef34caf60a058d3cacffb2b6cab065570b7c504b913a6028124b2eb1950b1",
-      "size": 19455
+      "hash": "5cd72f242edf136d0443257076a66acf243a8d4aed9b0ad2d1309372b919b69b",
+      "size": 19846
     },
     "scripts/mg_ed25519.py": {
       "hash": "67cf2f86aa7ce02bb2e12af6d974bf645d493259bf28ffb5724ab1c2e211641a",
@@ -36,6 +36,6 @@
       "size": 14440
     }
   },
-  "signature": "3f1ae8c4ed0459d61bc2453a8e4b8da3363a55b6f4f3e599a9331cb5242174f547d86f262ba221f0092fd9a3745f96da3197ba3ba81fa97f5a13ab2f04d8ed07",
+  "signature": "c320f940b93f4effb3f92e3da859dd257e935d2f7226ccad9f1bf0db456a907c1f15aaf4df36cfc85b374f27a49c8c3226bdb7ac4f82a4d211651552fffe4a0f",
   "public_key": "57bf0c19f93899e0c727a2979e019d32ce0c159d7bb59c27b1e4b6767f18a807"
 }
