@@ -57,8 +57,10 @@ See `.planning/milestones/v1.0.0-ROADMAP.md` for full phase details.
 **Milestone Goal:** Transform MetaGenesis Core from a protocol into a self-verifying, client-ready standard with response infrastructure, recursive integrity, and architectural seeds for the future.
 
 - [x] **Phase 14: Health Check and Coverage Foundation** - Verify all gates green, confirm ENV_002, update policy gate allow_globs for new output directories (completed 2026-04-04)
-- [x] **Phase 15: Protocol Self-Audit** - mg_self_audit.py with Ed25519-signed baseline for 8 core scripts and Check #20 in agent_evolution.py (completed 2026-04-04)
-- [x] **Phase 16: Verification Receipt** - mg_receipt.py generates human-readable proof for clients and auditors, integrated into mg_client.py (completed 2026-04-04)
+- [x] **Phase 15: Protocol Self-Audit** - mg_self_audit.py with Ed25519-signed baseline for 8 core scripts and Check #20 in agent_evolution.py
+ (completed 2026-04-04)
+- [x] **Phase 16: Verification Receipt** - mg_receipt.py generates human-readable proof for clients and auditors, integrated into mg_client.py
+ (completed 2026-04-04)
 - [x] **Phase 17: Response Infrastructure** - agent_responder.py with 7 domain mappings, draft generation, and queue management for 60-second reply kits (completed 2026-04-04)
 - [ ] **Phase 18: Evolution Council** - agent_evolution_council.py reads 6 data sources and produces ranked improvement proposals
 - [ ] **Phase 19: Agent Charter and Governance** - docs/AGENT_CHARTER.md with constitutional governance for autonomous agents

@@ -199,7 +199,7 @@ Auto-processed by `scripts/agent_research.py`. First PENDING task gets executed 
   1.1 Run: python scripts/steward_audit.py → must output "STEWARD AUDIT: PASS"
   1.2 Run: python -m pytest tests/ -q --tb=short → count passed tests, record exact number
   1.3 Run: python scripts/deep_verify.py → must output "ALL 13 TESTS PASSED"
-  1.4 Run: python scripts/agent_evolution.py --summary → must output "ALL 18 CHECKS PASSED"
+  1.4 Run: python scripts/agent_evolution.py --summary → must output "ALL 20 CHECKS PASSED"
   1.5 Run: python scripts/agent_pr_creator.py --summary → must output "No auto-pr needed"
   1.6 Run: python scripts/check_stale_docs.py --strict → must exit 0
 
@@ -264,7 +264,7 @@ Auto-processed by `scripts/agent_research.py`. First PENDING task gets executed 
   6.1 Verify agent_learn.py recall runs without error, shows session count >= 58
   6.2 Verify .agent_memory/patterns.json exists and has >= 15 patterns
   6.3 Verify agent_pr_creator.py is real (>100 lines), not stub
-  6.4 Verify agent_evolution.py has exactly 18 check functions
+  6.4 Verify agent_evolution.py has exactly 20 check functions
 
   SECTION 7 — SITE vs CODE CONSISTENCY
   7.1 Read index.html: verify "608" appears in test count positions

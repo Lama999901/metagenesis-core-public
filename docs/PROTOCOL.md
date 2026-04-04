@@ -142,6 +142,17 @@ number (NA = 6.02214076 x 10^23 mol^-1). These are defined values
 with zero uncertainty — they will never be revised. A verification
 chain anchored to these constants is anchored to something permanent.
 
+We anchor every computation to a physical constant that humanity defined
+in 2019 and will never redefine. kB = 1.380649e-23 J/K -- the Boltzmann
+constant. This is not a threshold we chose. It is physical reality. Any
+chain that starts here cannot be disputed.
+
+Avogadro's number (NA = 6.02214076e23 mol-1) carries the same permanence.
+These constants were not measured -- they were defined by international
+agreement. Their uncertainty is exactly zero. A verification chain anchored
+to these values is anchored to something that will outlast any institution,
+any company, any government.
+
 **What this does NOT apply to:** ML accuracy, financial risk models,
 pharma predictions, and other domains where thresholds are human
 conventions (|accuracy change| <= 0.02 is a choice, not physics).

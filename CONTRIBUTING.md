@@ -9,12 +9,12 @@ verification claims.
 Run the acceptance suite to confirm your environment is clean:
 ```bash
 python scripts/steward_audit.py  # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q       # → 1753 passed
+python -m pytest tests/ -q       # → 2012 passed
 python scripts/deep_verify.py    # → ALL 13 TESTS PASSED
 ```
 All three must pass before and after any change.
 
-**Current state:** 20 claims, 1753 tests, 5 verification layers.
+**Current state:** 20 claims, 2012 tests, 5 verification layers.
 
 ## Git Workflow
 
@@ -142,7 +142,7 @@ Run the deep verification script before any major release or claim:
 python scripts/deep_verify.py
 # → ALL 13 TESTS PASSED
 ```
-This script verifies: governance, 1753 tests, 20 JOB_KINDs in runner,
+This script verifies: governance, 2012 tests, 20 JOB_KINDs in runner,
 Step Chain in all 20 claims, Cross-Claim Chain, forbidden terms,
 site numbers, demo end-to-end, bypass attack caught, verify-chain CLI,
 Ed25519 signing integrity, Ed25519 reproducibility, temporal commitment.

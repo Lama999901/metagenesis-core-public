@@ -2,7 +2,7 @@
 
 > Read this file first if you are an AI agent starting a new session.
 > This is the authoritative snapshot of what has been done and what is next.
-> Updated: 2026-04-02
+> Updated: 2026-04-04
 
 ---
 
@@ -18,19 +18,19 @@
 
 ---
 
-## Verified state (2026-04-02)
+## Verified state (2026-04-04)
 
 | Parameter | Value |
 |---|---|
-| Tests | **1753 passing** |
+| Tests | **2012 passing** |
 | steward_audit | PASS |
 | CI | GREEN |
 | Active claims | **20** |
 | Verification layers | 5 (integrity + semantic + step chain + bundle signing + temporal commitment) |
 | Innovations | 8 (5 PPA + HMAC signing + Ed25519 signing + temporal commitment) |
 | Domains | 8 |
-| Agent checks | 19 (agent_evolution.py) |
-| Coverage | 81.2% |
+| Agent checks | 20 (agent_evolution.py) |
+| Coverage | 87.8% |
 | GitHub Release | v0.9.0 |
 | Adversarial tests | CERT-05 (5 attacks) + CERT-06 (5 scenarios) + CERT-07 (signing) + CERT-08 (reproducibility) + CERT-09 (Ed25519 attacks) + CERT-10 (temporal attacks) + CERT-11 (coordinated multi-vector) + CERT-12 (encoding attacks) |
 
@@ -100,7 +100,7 @@ Physical anchor scope (SCOPE_001): MTR-1/2/3/4/5/6, DT-FEM-01, DRIFT-01, DT-CALI
 
 ```bash
 python scripts/steward_audit.py          # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q               # → 1753 passed
+python -m pytest tests/ -q               # → 2012 passed
 python scripts/deep_verify.py            # → ALL 13 TESTS PASSED
 python demos/open_data_demo_01/run_demo.py  # → PASS PASS
 
@@ -161,4 +161,4 @@ python -m pytest tests/steward/test_cert06_real_world_scenarios.py -v
 
 ---
 
-*Updated: 2026-04-02 | Next update: first response or first client*
+*Updated: 2026-04-04 | Next update: first response or first client*
