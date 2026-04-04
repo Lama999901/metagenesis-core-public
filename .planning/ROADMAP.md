@@ -1,13 +1,14 @@
-# Roadmap: MetaGenesis Core v0.5.0 Coverage Hardening
+# Roadmap: MetaGenesis Core
 
 ## Overview
 
-This milestone closes all 10 test coverage gaps identified in the v0.4.0 gap analysis, bringing the test suite from 391 to 450+ tests. The work flows in strict dependency order: step chain structural tests and error paths first (foundation for all subsequent testing), then semantic edge cases and cascade failures (characterize individual layers), then flagship adversarial proofs CERT-11 and CERT-12 (synthesize all prior work into coordinated attack gauntlets), and finally counter updates (require final test count). Phase numbering continues from v0.4.0 which ended at Phase 4.
+This roadmap covers two milestones. v0.5.0 hardened coverage from 391 to 526+ tests with adversarial proof suites CERT-11 and CERT-12. v1.0.0 makes MetaGenesis Core client-ready by adding academic citation infrastructure, boosting coverage to 90%+, automating pilot onboarding end-to-end, upgrading autonomous agents with a pilot queue staleness detector, and running a final hardening pass to ensure zero gaps before the first $299 client.
 
 ## Milestones
 
 - **v0.4.0 Protocol Hardening** - Phases 1-4 (shipped 2026-03-18)
-- **v0.5.0 Coverage Hardening** - Phases 5-8 (in progress)
+- **v0.5.0 Coverage Hardening** - Phases 5-8 (shipped 2026-03-18)
+- **v1.0.0 First Client** - Phases 9-13 (in progress)
 
 ## Phases
 
@@ -27,87 +28,106 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 </details>
 
-### v0.5.0 Coverage Hardening
+<details>
+<summary>v0.5.0 Coverage Hardening (Phases 5-8) - SHIPPED 2026-03-18</summary>
 
-- [x] **Phase 5: Foundation** - Step chain structural tests for all 14 claims, runner error paths, governance meta-tests (2026-03-18)
-- [x] **Phase 6: Layer Hardening** - Semantic edge cases, cross-claim cascade failures, manifest rollback attack (2026-03-18)
-- [x] **Phase 7: Flagship Proofs** - CERT-11 coordinated multi-vector attack, CERT-12 encoding attacks (completed 2026-03-18)
-- [x] **Phase 8: Counter Updates** - All documentation counters reflect final test count (completed 2026-03-18)
+- [x] **Phase 5: Foundation** - Step chain structural tests for all 14 claims, runner error paths, governance meta-tests
+- [x] **Phase 6: Layer Hardening** - Semantic edge cases, cross-claim cascade failures, manifest rollback attack
+- [x] **Phase 7: Flagship Proofs** - CERT-11 coordinated multi-vector attack, CERT-12 encoding attacks
+- [x] **Phase 8: Counter Updates** - All documentation counters reflect final test count
+
+</details>
+
+### v1.0.0 First Client
+
+- [ ] **Phase 9: Academic Infrastructure** - Zenodo DOI metadata, CITATION.cff currency, README badge, paper.md cross-references
+- [x] **Phase 10: Coverage Hardening** - Dedicated tests for check_stale_docs, agent_evolve_self, agent_research, agent_coverage to reach 90%+ (completed 2026-04-03)
+- [x] **Phase 11: Client Onboarding Automation** - agent_pilot.py end-to-end: form ingestion, domain detection, bundle generation, email draft, queue tracking (completed 2026-04-03)
+- [x] **Phase 12: Agent Evolution** - Pilot queue staleness detector (#5) in agent_pr_creator.py with tests (completed 2026-04-03)
+- [x] **Phase 13: System Hardening** - Gap analysis, counter consistency, all verification gates green (completed 2026-04-03)
 
 ## Phase Details
 
-### Phase 5: Foundation
-**Goal**: Every claim has verified step chain structure, every runner error path is tested, and governance drift detection is active for all subsequent phases
-**Depends on**: Phase 4 (v0.4.0 complete, 391 tests baseline)
-**Requirements**: CHAIN-01, CHAIN-02, CHAIN-03, CHAIN-04, ERR-01, ERR-02, ERR-03, GOV-01, GOV-02, GOV-03
+### Phase 9: Academic Infrastructure
+**Goal**: MetaGenesis Core has complete academic citation infrastructure ready for Zenodo DOI minting and JOSS resubmission
+**Depends on**: Phase 8 (v0.5.0 complete, 1634 tests baseline)
+**Requirements**: DOI-01, DOI-02, DOI-03, DOI-04
 **Success Criteria** (what must be TRUE):
-  1. Running pytest on step chain tests shows all 14 claims pass structural assertions (genesis hash, hash linkage, 4-step count, root hash equality)
-  2. Step chain verifier rejects a trace with misordered steps (1,3,2,4), duplicate step numbers, or extra steps beyond 4
-  3. Runner produces a clear error message when given an unknown JOB_KIND, and does not crash on None/empty/wrong-type input or mid-computation exceptions
-  4. Governance meta-tests detect when scientific_claim_index.md, known_faults.yaml, or documentation counters drift from actual code state
-  5. All 391 existing tests continue to pass (zero regressions)
-**Plans**: 3 plans
-
+  1. .zenodo.json contains correct metadata including test count 1634, version v0.9.0, and all author/license fields required by Zenodo
+  2. CITATION.cff passes validation (cffconvert or manual review) with current version and date
+  3. README.md contains a DOI badge placeholder that will resolve once the Zenodo deposit is created
+  4. paper.md cross-references (test count, claim count, layer count, innovation count) match current project state
+**Plans:** 1 plan
 Plans:
-- [x] 05-01: Step chain structural tests for 7 missing claims (CHAIN-01)
-- [x] 05-02: Step chain ordering, duplicate, and extra-step rejection tests (CHAIN-02, CHAIN-03, CHAIN-04)
-- [x] 05-03: Runner error paths and governance meta-tests (ERR-01, ERR-02, ERR-03, GOV-01, GOV-02, GOV-03)
+- [x] 09-01-PLAN.md -- Fix .zenodo.json stale count, add DOI badge to README, verify CITATION.cff and paper.md
 
-### Phase 6: Layer Hardening
-**Goal**: Layer 2 semantic verification is hardened against edge cases, cross-claim cascade failures propagate correctly through the full anchor chain, and manifest rollback attacks are rejected
-**Depends on**: Phase 5
-**Requirements**: SEM-01, SEM-02, SEM-03, CASCADE-01, CASCADE-02, CASCADE-03, ADV-07
+### Phase 10: Coverage Hardening
+**Goal**: Test coverage reaches 90%+ by filling gaps in the four least-covered agent scripts
+**Depends on**: Phase 9
+**Requirements**: COV-01, COV-02, COV-03, COV-04, COV-05
 **Success Criteria** (what must be TRUE):
-  1. Layer 2 rejects evidence bundles with partial fields, extra unexpected fields, and semantically meaningless values (empty strings, zero values where physical quantities are expected)
-  2. Cross-claim test covers the full anchor chain MTR-1 to DRIFT-01 to DT-CALIB-LOOP-01, and a failed upstream claim propagates failure through every downstream hop
-  3. Cross-claim chain detects a tampered anchor hash at any position in the chain
-  4. Verifier rejects a bundle with a rolled-back manifest protocol_version
-**Plans**: 2 plans
-
+  1. tests/test_check_stale_docs.py exists and exercises both PASS and FAIL paths of check_stale_docs.py
+  2. tests/test_agent_evolve_self.py exercises analyze() and report generation, covering previously untested branches
+  3. tests/test_agent_research.py exercises write_report() and uncovered decision branches
+  4. tests/test_agent_coverage.py exercises the run() function end-to-end, raising coverage from 20% to 80%+
+  5. Running `python -m pytest tests/ -q` reports 90%+ overall coverage (excluding deep_verify.py load_module)
+**Plans:** 1/2 plans complete
 Plans:
-- [x] 06-01: Layer 2 semantic edge case tests (SEM-01, SEM-02, SEM-03)
-- [x] 06-02: Cross-claim cascade failure and manifest rollback tests (CASCADE-01, CASCADE-02, CASCADE-03, ADV-07)
+- [ ] 10-01-PLAN.md -- High-impact coverage: check_stale_docs main flow, agent_coverage analyze(), agent_evolve_self analyze()
+- [ ] 10-02-PLAN.md -- Remaining coverage: agent_research write_report, agent_diff_review main, agent_pr_creator detectors, agent_learn commands
 
-### Phase 7: Flagship Proofs
-**Goal**: CERT-11 proves the 5-layer independence thesis under coordinated multi-vector attack, and CERT-12 proves encoding attacks (BOM, null bytes, homoglyphs, truncated JSON) are caught
-**Depends on**: Phase 6
-**Requirements**: ADV-01, ADV-02, ADV-03, ADV-04, ADV-05, ADV-06
+### Phase 11: Client Onboarding Automation
+**Goal**: A pilot form submission is automatically processed into a verified bundle with email draft, requiring only human review before sending
+**Depends on**: Phase 10
+**Requirements**: PILOT-01, PILOT-02, PILOT-03, PILOT-04, PILOT-05
 **Success Criteria** (what must be TRUE):
-  1. CERT-11 proves an attacker who rebuilds Layer 1 and fakes Layer 2 is caught specifically by Layer 2 (not trivially by Layer 1)
-  2. CERT-11 proves an attacker who bypasses Layers 1+2 and forges Layer 3 is caught specifically by Layer 3
-  3. CERT-11 proves a stolen signing key with tampered evidence is caught by Layers 1-3, and a coordinated 3-layer bypass still fails at remaining layers
-  4. CERT-12 proves BOM-prefixed files, null bytes, truncated JSON, and Unicode homoglyphs are detected or handled safely
-**Plans**: 2 plans
-
+  1. Running `python scripts/agent_pilot.py --process submissions.csv` reads form data and auto-detects the domain (e.g., ML, pharma, materials) from the description text
+  2. For each submission, agent_pilot.py calls mg_client.py for the detected domain and produces a verified bundle that passes `python scripts/mg.py verify --pack`
+  3. agent_pilot.py generates a response email draft file containing the PASS result, bundle summary, and next-steps language pointing to the $299 Stripe link
+  4. reports/pilot_queue.json tracks every submission with status (pending/processed/sent), timestamps, and domain detected
+  5. Running `python scripts/agent_pilot.py --help` displays usage information including all flags
+**Plans:** 1/2 plans complete
 Plans:
-- [x] 07-01: CERT-11 coordinated multi-vector attack gauntlet (ADV-01, ADV-02, ADV-03, ADV-04)
-- [x] 07-02: CERT-12 encoding and partial corruption attacks (ADV-05, ADV-06)
+- [ ] 11-01-PLAN.md -- Core agent_pilot.py: CSV ingestion, domain detection, bundle generation, email drafts, queue state
+- [ ] 11-02-PLAN.md -- Test suite for agent_pilot.py: domain detection, CSV parsing, bundle gen, drafts, queue, CLI
 
-### Phase 8: Counter Updates
-**Goal**: All documentation and site files reflect the final v0.5.0 test count, maintaining counter consistency across the project
-**Depends on**: Phase 7
-**Requirements**: DOCS-01
+### Phase 12: Agent Evolution
+**Goal**: agent_pr_creator.py autonomously detects stale pilot queue entries and flags them for action
+**Depends on**: Phase 11 (pilot_queue.json must exist)
+**Requirements**: AGENT-01, AGENT-02
 **Success Criteria** (what must be TRUE):
-  1. Running pytest reports the final test count and all counters in index.html (11 places), README.md, AGENTS.md, llms.txt, system_manifest.json, and CONTEXT_SNAPSHOT.md match that count
-  2. Governance meta-tests from Phase 5 pass with the updated counters (no drift detected)
-**Plans**: 2 plans
+  1. Running agent_pr_creator.py with a pilot_queue.json containing an entry older than 24 hours produces a warning or PR recommendation flagging the stale entry
+  2. Running agent_pr_creator.py with all entries processed within 24 hours produces no pilot-queue-related warnings
+  3. Tests for detect_pilot_queue_stale() cover both stale and fresh scenarios
+**Plans**: TBD
 
-Plans:
-- [ ] 08-01-PLAN.md -- Counter and version propagation across documentation files (DOCS-01)
-- [ ] 08-02-PLAN.md -- index.html content overhaul: counters, Layer 5, CERT-11/12, feature matrix (DOCS-01)
+### Phase 13: System Hardening
+**Goal**: Every counter, path, and verification gate is consistent and green -- the project is release-ready for v1.0.0
+**Depends on**: Phase 12
+**Requirements**: HARD-01, HARD-02, HARD-03
+**Success Criteria** (what must be TRUE):
+  1. A full gap analysis finds zero missing tests, zero stale counters, and zero broken file paths across the project
+  2. Test count, version (v1.0.0), claim count (20), and innovation count (8) are consistent in index.html, README.md, AGENTS.md, llms.txt, system_manifest.json, CONTEXT_SNAPSHOT.md, and CLAUDE.md
+  3. All five verification gates pass in sequence: steward_audit, pytest, deep_verify, check_stale_docs, agent_diff_review
+**Plans**: TBD
 
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 5 -> 6 -> 7 -> 8
+Phases execute in numeric order: 9 -> 10 -> 11 -> 12 -> 13
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 5. Foundation | 3/3 | Complete | 2026-03-18 |
 | 6. Layer Hardening | 2/2 | Complete | 2026-03-18 |
-| 7. Flagship Proofs | 2/2 | Complete   | 2026-03-18 |
-| 8. Counter Updates | 2/2 | Complete   | 2026-03-18 |
+| 7. Flagship Proofs | 2/2 | Complete | 2026-03-18 |
+| 8. Counter Updates | 2/2 | Complete | 2026-03-18 |
+| 9. Academic Infrastructure | 0/1 | Planned | - |
+| 10. Coverage Hardening | 0/2 | Complete    | 2026-04-03 |
+| 11. Client Onboarding Automation | 0/2 | Complete    | 2026-04-03 |
+| 12. Agent Evolution | 0/TBD | Complete    | 2026-04-03 |
+| 13. System Hardening | 0/TBD | Complete    | 2026-04-03 |
 
 ---
 *Roadmap created: 2026-03-17*
-*Last updated: 2026-03-18*
+*Last updated: 2026-04-03 -- Phase 11 planned (2 plans)*

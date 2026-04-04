@@ -5,11 +5,12 @@ MetaGenesis Core -- Agent PR Creator (Autonomous Forge)
 Level 3 autonomous agent: scans for auto-fixable issues,
 creates branches/PRs for stale counters when safe.
 
-Four detectors:
-  1. Stale counter  -- system_manifest.json test_count vs actual
-  2. Forbidden terms -- banned words in docs/scripts/backend
-  3. Manifest sync   -- version vs latest git tag
-  4. Coverage drop   -- code coverage below 65% threshold
+Five detectors:
+  1. Stale counter       -- system_manifest.json test_count vs actual
+  2. Forbidden terms     -- banned words in docs/scripts/backend
+  3. Manifest sync       -- version vs latest git tag
+  4. Coverage drop       -- code coverage below 65% threshold
+  5. Pilot queue stale   -- pending pilot submissions older than 24h
 
 Usage:
     python scripts/agent_pr_creator.py              # full scan + auto-fix
@@ -21,7 +22,7 @@ import json
 import re
 import subprocess
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -186,6 +187,51 @@ def detect_coverage_drop():
 
 
 # ---------------------------------------------------------------------------
+# 5. Pilot queue stale detection
+# ---------------------------------------------------------------------------
+def detect_pilot_queue_stale():
+    """Flag pending/processed pilot submissions older than 24 hours."""
+    queue_path = REPO_ROOT / "reports" / "pilot_queue.json"
+    if not queue_path.exists():
+        return []
+
+    try:
+        with open(queue_path, "r", encoding="utf-8") as f:
+            queue = json.load(f)
+    except (json.JSONDecodeError, OSError):
+        return []
+
+    if not isinstance(queue, list):
+        return []
+
+    now = datetime.now(timezone.utc)
+    stale = []
+    for entry in queue:
+        status = entry.get("status", "")
+        if status not in ("pending", "processed"):
+            continue
+        ts_str = entry.get("processed_at") or entry.get("submitted_at", "")
+        if not ts_str:
+            continue
+        try:
+            ts = datetime.fromisoformat(ts_str.replace("Z", "+00:00"))
+            if ts.tzinfo is None:
+                ts = ts.replace(tzinfo=timezone.utc)
+            age_hours = (now - ts).total_seconds() / 3600
+            if age_hours > 24:
+                email = entry.get("email", "unknown")
+                domain = entry.get("domain_detected", "?")
+                stale.append(
+                    f"STALE ({age_hours:.0f}h): {email} [{domain}] "
+                    f"status={status}"
+                )
+        except (ValueError, TypeError):
+            continue
+
+    return stale
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 def main():
@@ -225,8 +271,17 @@ def main():
     else:
         print("  Coverage: OK")
 
+    # 5. Pilot queue stale
+    pilot_stale = detect_pilot_queue_stale()
+    if pilot_stale:
+        print(f"  PILOT QUEUE STALE: {len(pilot_stale)} entry/entries")
+        for ps in pilot_stale:
+            print(f"    - {ps}")
+    else:
+        print("  Pilot queue: OK")
+
     # Summary
-    issues = stale["stale"] or len(forbidden) > 0 or not sync["synced"] or coverage_warning
+    issues = stale["stale"] or len(forbidden) > 0 or not sync["synced"] or coverage_warning or pilot_stale
     if not issues:
         print("No auto-pr needed -- system current")
 
