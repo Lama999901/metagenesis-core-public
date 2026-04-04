@@ -65,7 +65,13 @@ Payment:     yehor@metagenesis-core.dev | Stripe link in COMMERCIAL.md
 Free pilot:  metagenesis-core.dev/#pilot (Formspree xlgpdwop)
 Pipeline:    Free pilot → bundle → Stripe → $299 → case study → next client
 
-Wave-2 outreach PENDING: Chollet, LMArena, Percy Liang
+Wave-2 outreach (9 contacts):
+  ML/AI:     Chollet (Keras/ARC), LMArena (chatbot-arena), Percy Liang (Stanford HELM)
+  Science:   Papers with Code, COS (Center for Open Science)
+  Pharma:    FDA CDER computational submissions
+  Finance:   Basel III compliance teams
+  Digital Twin: NIST digital twin consortium
+  Climate:   Carbon credit registries (Verra, Gold Standard)
 Angle: kB/NA = SI 2019 exact constants = strongest verification anchor possible
 ```
 
@@ -162,7 +168,7 @@ Tests:       1753 passing (2 skipped)
 Layers:      5 verification (integrity + semantic + step chain + signing + temporal)
 Innovations: 8 (5 PPA + HMAC + Ed25519 + Temporal)
 Domains:     8 (materials, sysid, data, ml, digital_twin, pharma, finance, physics)
-Checks:      19 Mechanicus (agent_evolution.py)
+Checks:      20 Mechanicus (agent_evolution.py)
 Release:     v0.9.0 LIVE
 Coverage:    91.9% (excluding deep_verify.py — see ENV_002 in known_faults.yaml)
 agent_pr_creator: REAL (280+ lines, 5 detectors) — catches stale counters + pilot queue
@@ -351,10 +357,14 @@ scripts/mg_ed25519.py       ← Ed25519 asymmetric signing Innovation #7
 scripts/mg_temporal.py      ← NIST Beacon temporal commitment Innovation #8 (Layer 5)
 scripts/steward_audit.py    ← governance (SEALED)
 scripts/deep_verify.py      ← 13-test proof script
-scripts/agent_evolution.py  ← 19 Mechanicus checks
+scripts/agent_evolution.py  ← 20 Mechanicus checks
 scripts/agent_pr_creator.py ← Level 3 autonomous PR (280+ lines, 5 detectors)
 scripts/agent_pilot.py      ← pilot onboarding automation (443 lines)
 scripts/agent_learn.py      ← session memory (88 sessions, 15 patterns)
+scripts/mg_self_audit.py    ← recursive integrity verifier (self-verification)
+scripts/mg_receipt.py       ← human-readable verification receipt generator
+scripts/agent_responder.py  ← outreach response kit builder (7 domain mappings)
+scripts/agent_evolution_council.py ← evidence-based improvement proposals
 scripts/check_stale_docs.py ← documentation currency checker
 backend/progress/runner.py  ← job dispatch (20 claims)
 reports/scientific_claim_index.md  ← claim registry
@@ -362,6 +372,8 @@ reports/canonical_state.md  ← authoritative list (LOCKED)
 reports/known_faults.yaml   ← known limitations (SCOPE_001 + ENV_001)
 paper.md + paper.bib        ← JOSS paper (resubmit Sep 2026)
 index.html                  ← site (1753 tests/20 claims/5 layers/8 innovations)
+docs/AGENT_CHARTER.md       ← agent behavioral charter and constraints
+docs/ROADMAP_VISION.md      ← long-term protocol roadmap (Phase 22)
 CONTEXT_SNAPSHOT.md         ← live state for AI agents
 ```
 
@@ -429,5 +441,5 @@ This shows recurring issues + auto-fix hints from 57 sessions.
 ---
 
 *CLAUDE.md v2.0 — 2026-03-31 — MetaGenesis Core v0.9.0 LIVE*
-*1753 tests | 20 claims | 19 checks | Level 3 autonomous forge ACTIVE*
+*1753 tests | 20 claims | 20 checks | Level 3 autonomous forge ACTIVE*
 *Mission: notary for computations. First client = history.*
