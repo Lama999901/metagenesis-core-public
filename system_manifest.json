@@ -45,7 +45,7 @@
     "bundle_signing_hmac_sha256",
     "temporal_commitment_nist_beacon"
   ],
-  "test_count": 1753,
+  "test_count": 2012,
   "steward_audit": "PASS",
   "ppa_filed": "2026-03-05",
   "ppa_number": "63/996,819",

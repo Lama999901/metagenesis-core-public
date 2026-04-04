@@ -5,7 +5,7 @@
 [![Steward Audit](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml/badge.svg)](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Patent Pending](https://img.shields.io/badge/Patent-Pending%20%2363%2F996%2C819-orange.svg)](ppa/README_PPA.md)
-[![Tests](https://img.shields.io/badge/Tests-1753%20passing-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-2012%20passing-brightgreen.svg)](tests/)
 [![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.9.0-blueviolet.svg)](docs/PROTOCOL.md)
 [![Sponsor](https://img.shields.io/badge/Sponsor-❤️-pink.svg)](https://github.com/sponsors/Lama999901)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.PLACEHOLDER.svg)](https://doi.org/10.5281/zenodo.PLACEHOLDER)
@@ -13,7 +13,7 @@
 **Site:** https://metagenesis-core.dev
 **Contact:** yehor@metagenesis-core.dev
 **PPA:** USPTO #63/996,819 -- filed 2026-03-05  
-**Version:** v0.9.0 | 20 claims | 1753 tests | 88% coverage | 19 agent checks | 27/27 tasks done
+**Version:** v0.9.0 | 20 claims | 2012 tests | 88% coverage | 20 agent checks | 27/27 tasks done
 
 ---
 
@@ -167,7 +167,7 @@ Today, the answer is almost always: **no**.
 - Like git became the standard for code
 - MetaGenesis Core could become the standard for computational results
 
-The technology is ready. The adversarial proof suite (1753 tests) demonstrates it works.
+The technology is ready. The adversarial proof suite (2012 tests) demonstrates it works.
 The patent is pending. The protocol is MIT licensed.
 What happens next depends on adoption.
 
@@ -192,7 +192,7 @@ Built by **one person**. Yehor Bazhynov. Inventor, USPTO #63/996,819.
 
 Built after hours, without a team, without funding, using **Claude (Anthropic)** as the primary development tool. Every AI-generated output verified by the project's own test suite. The protocol verifies the protocol.
 
-The result: **20 verified claims across 8 domains. 1753 adversarial tests. 88% code coverage. 5 verification layers. 8 innovations. 19 autonomous checks running daily. 82 agent sessions recorded. Level 3 autonomous forge confirmed. Built in 28 days.**
+The result: **20 verified claims across 8 domains. 2012 adversarial tests. 88% code coverage. 5 verification layers. 8 innovations. 20 autonomous checks running daily. 82 agent sessions recorded. Level 3 autonomous forge confirmed. Built in 28 days.**
 
 ---
 
@@ -283,7 +283,7 @@ Every claim in this protocol is backed by adversarial tests that attempt to brea
 
 ```bash
 python -m pytest tests/ -q
-# -> 1753 passed
+# -> 2012 passed
 ```
 
 The summary test in CERT-05 explicitly proves all five layers are necessary -- no single layer catches all attacks. CERT-11 constructs coordinated attacks where each layer catches what the other four miss. This is not a claim. It is a mathematical proof backed by executable tests.
@@ -321,14 +321,14 @@ python -m pytest tests/steward/test_cert12_encoding_attacks.py -v
 
 ## The Agent Evolution System
 
-MetaGenesis Core includes an autonomous agent monitoring system -- 19 checks that run daily in CI, ensuring the protocol and its documentation remain consistent, complete, and correct.
+MetaGenesis Core includes an autonomous agent monitoring system -- 20 checks that run daily in CI, ensuring the protocol and its documentation remain consistent, complete, and correct.
 
-### The 19 Checks
+### The 20 Checks
 
 | # | Check | What it verifies |
 |---|-------|-----------------|
 | 1 | `steward` | `steward_audit.py` passes -- governance rules enforced |
-| 2 | `tests` | All 1753 tests pass |
+| 2 | `tests` | All 2012 tests pass |
 | 3 | `deep` | `deep_verify.py` -- 13 independent proof tests |
 | 4 | `docs` | Stale documentation detection via `check_stale_docs.py` |
 | 5 | `manifest` | `system_manifest.json` matches actual repo state |
@@ -353,7 +353,7 @@ MetaGenesis Core includes an autonomous agent monitoring system -- 19 checks tha
 
 ```bash
 python scripts/agent_evolution.py --summary
-# -> ALL 19 CHECKS PASSED -- system healthy
+# -> ALL 20 CHECKS PASSED -- system healthy
 ```
 
 The system runs automatically on every CI merge via `.github/workflows/total_audit_guard.yml`. When a check fails, the merge is blocked. No human override. The protocol protects itself.
@@ -552,7 +552,7 @@ For ML accuracy (ML_BENCH-01/02/03), data pipelines (DATA-PIPE-01), pharma (PHAR
 
 ### ENV_001 -- Test Environment
 
-All 1753 tests pass in the reference environment (Python 3.11+, stdlib only). No database dependencies. No external services. No network required. Local environment deviations may require matching Python version.
+All 2012 tests pass in the reference environment (Python 3.11+, stdlib only). No database dependencies. No external services. No network required. Local environment deviations may require matching Python version.
 
 **Why this limitation exists:** The protocol is designed to work offline with zero external dependencies. This is a feature, not a limitation -- but it means the test suite assumes a clean Python environment.
 
@@ -578,15 +578,15 @@ python scripts/steward_audit.py
 # -> STEWARD AUDIT: PASS
 
 python -m pytest tests/ -q
-# -> 1753 passed
+# -> 2012 passed
 
 # Full proof-not-trust verification (13 tests):
 python scripts/deep_verify.py
 # -> ALL 13 TESTS PASSED
 
-# Agent evolution system (19 checks):
+# Agent evolution system (20 checks):
 python scripts/agent_evolution.py --summary
-# -> ALL 19 CHECKS PASSED -- system healthy
+# -> ALL 20 CHECKS PASSED -- system healthy
 ```
 
 **Active claims:** MTR-1, MTR-2, MTR-3, SYSID-01, DATA-PIPE-01, DRIFT-01, ML_BENCH-01, DT-FEM-01, ML_BENCH-02, ML_BENCH-03, PHARMA-01, FINRISK-01, DT-SENSOR-01, DT-CALIB-LOOP-01, AGENT-DRIFT-01, MTR-4, MTR-5, MTR-6, PHYS-01, PHYS-02
@@ -627,7 +627,7 @@ Read these files in order:
 ```
 1. CLAUDE.md                    <- PRIMARY: mission, traps, technical rules
 2. AGENTS.md                    <- hard rules, forbidden terms, protected files
-3. CONTEXT_SNAPSHOT.md          <- current state, 20 claims, 1753 tests
+3. CONTEXT_SNAPSHOT.md          <- current state, 20 claims, 2012 tests
 4. reports/canonical_state.md   <- authoritative claims list
 5. reports/known_faults.yaml    <- known limitations (SCOPE_001 + ENV_001)
 ```
