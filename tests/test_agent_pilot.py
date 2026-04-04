@@ -22,7 +22,6 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT))
 
 from scripts.agent_pilot import (
-    STRIPE_LINK,
     _find_entry_by_email,
     _sanitize_name,
     detect_domain,
@@ -327,12 +326,12 @@ class TestEmailDrafts:
         content = draft_path.read_text(encoding="utf-8")
         assert "PASS" in content
 
-    def test_draft_contains_stripe_link(self, tmp_path, monkeypatch):
+    def test_draft_contains_questions_line(self, tmp_path, monkeypatch):
         monkeypatch.setattr("scripts.agent_pilot.DRAFTS_DIR", tmp_path / "drafts")
         entry = self._make_entry()
         draft_path = generate_draft(entry, self._make_claim_result(), tmp_path / "bundle", True)
         content = draft_path.read_text(encoding="utf-8")
-        assert STRIPE_LINK in content
+        assert "Questions? Reply to this email." in content
 
     def test_draft_contains_greeting(self, tmp_path, monkeypatch):
         monkeypatch.setattr("scripts.agent_pilot.DRAFTS_DIR", tmp_path / "drafts")
@@ -356,12 +355,12 @@ class TestEmailDrafts:
         assert "FAIL" in content
         assert "manual review" in content.lower()
 
-    def test_draft_fail_still_has_stripe(self, tmp_path, monkeypatch):
+    def test_draft_fail_still_has_questions(self, tmp_path, monkeypatch):
         monkeypatch.setattr("scripts.agent_pilot.DRAFTS_DIR", tmp_path / "drafts")
         entry = self._make_entry()
         draft_path = generate_draft(entry, self._make_claim_result(), tmp_path / "bundle", False)
         content = draft_path.read_text(encoding="utf-8")
-        assert STRIPE_LINK in content
+        assert "Questions? Reply to this email." in content
 
 
 # ---------------------------------------------------------------------------

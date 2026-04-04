@@ -44,8 +44,6 @@ QUEUE_PATH = REPO_ROOT / "reports" / "pilot_queue.json"
 DRAFTS_DIR = REPO_ROOT / "reports" / "pilot_drafts"
 BUNDLES_DIR = REPO_ROOT / "reports" / "pilot_bundles"
 
-STRIPE_LINK = "https://buy.stripe.com/14AcN57qH19R1qN3QQ6Na00"
-
 # ---- Domain detection (PILOT-01) -------------------------------------------
 
 DOMAIN_KEYWORDS = {
@@ -202,9 +200,6 @@ def generate_draft(entry: dict, claim_result: dict, bundle_dir: Path, verified: 
         "Your verified bundle proves that the computation produced exactly this",
         "result, at exactly this time, in exactly this way. It is independently",
         "auditable offline -- no trust required.",
-        "",
-        f"Next step: Secure your full MetaGenesis Core license for $299:",
-        STRIPE_LINK,
         "",
         "Questions? Reply to this email.",
         "",

@@ -46,7 +46,11 @@
     "*.json",
     "*.bib",
     "index.html",
-    "CITATION.cff"
+    "CITATION.cff",
+    "*.cff",
+    "reports/pilot_drafts/**",
+    "reports/pilot_bundles/**",
+    ".planning/**"
   ],
   "_notes": {
     "locked_paths_purpose": "HARD BLOCK any modifications to sealed evidence artifacts",
