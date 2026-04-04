@@ -1,17 +1,17 @@
 ---
 gsd_state_version: 1.0
-milestone: v2.0.0
-milestone_name: Autonomous Evolution
-status: complete
-stopped_at: v2.0.0 closed — requirements synced with ROADMAP.md, all gates green.
-last_updated: "2026-04-04T16:40:00.000Z"
+milestone: v3.0.0
+milestone_name: Client-Ready Foundation
+status: defined
+stopped_at: v3.0.0 defined — 4 phases (23-26), 7 requirements
+last_updated: "2026-04-04T16:45:00.000Z"
 last_activity: 2026-04-04
 progress:
-  total_phases: 9
-  completed_phases: 6
-  total_plans: 2
-  completed_plans: 2
-  percent: 100
+  total_phases: 4
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
+  percent: 0
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-04)
 
 **Core value:** Every verification claim must be independently auditable offline with cryptographic proof of integrity, provenance, and temporal commitment.
-**Current focus:** v2.0.0 complete — defining v3.0.0
+**Current focus:** v3.0.0 Client-Ready Foundation — Phase 23 Guided Onboarding
 
 ## Current Position
 
-Phase: 22 (v2.0.0 final)
-Plan: Complete
-Status: v2.0.0 closed. Phases 14-17, 21-22 complete. Phases 18-20 deferred to v3.0.0.
-Last activity: 2026-04-04 — v2.0.0 closed, requirements synced with ROADMAP.md
+Phase: 23 (first phase of v3.0.0)
+Plan: Not started
+Status: v3.0.0 defined. Ready to plan Phase 23.
+Last activity: 2026-04-04 — v3.0.0 defined with 4 phases (23-26)
 
-Progress: [██████████] 100%
+Progress: [░░░░░░░░░░] 0%
 
 ## Performance Metrics
 

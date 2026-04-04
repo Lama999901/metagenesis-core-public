@@ -9,7 +9,8 @@ This roadmap tracks MetaGenesis Core milestones. v0.4.0 added Ed25519 signing an
 - **v0.4.0 Protocol Hardening** - Phases 1-4 (shipped 2026-03-18)
 - **v0.5.0 Coverage Hardening** - Phases 5-8 (shipped 2026-03-18)
 - **v1.0.0 First Client** - Phases 9-13 (shipped 2026-04-04)
-- **v2.0.0 Autonomous Evolution** - Phases 14-22 (in progress)
+- **v2.0.0 Autonomous Evolution** - Phases 14-22 (shipped 2026-04-04, 6/9 phases, 3 deferred)
+- **v3.0.0 Client-Ready Foundation** - Phases 23-26 (in progress)
 
 ## Phases
 
@@ -63,8 +64,8 @@ See `.planning/milestones/v1.0.0-ROADMAP.md` for full phase details.
 - [ ] **Phase 18: Evolution Council** - agent_evolution_council.py reads 6 data sources and produces ranked improvement proposals
 - [ ] **Phase 19: Agent Charter and Governance** - docs/AGENT_CHARTER.md with constitutional governance for autonomous agents
 - [ ] **Phase 20: Protocol Hardening** - PROTOCOL.md deepening, mg.py inline WHY comments, CLAUDE.md updates for new scripts and counts
-- [ ] **Phase 21: Hidden Potential Audit** - 8-lens investigation of untapped system capabilities, build most important finding
-- [ ] **Phase 22: Vision Seeds and Counter Sync** - docs/ROADMAP_VISION.md with 4 evolution levels, final counter sync across all docs
+- [x] **Phase 21: Hidden Potential Audit** - 8-lens investigation of untapped system capabilities, build most important finding (completed 2026-04-04)
+- [x] **Phase 22: Vision Seeds and Counter Sync** - docs/ROADMAP_VISION.md with 4 evolution levels, final counter sync across all docs (completed 2026-04-04)
 
 ## Phase Details
 
@@ -181,9 +182,68 @@ Plans:
 | 18. Evolution Council | v2.0.0 | 0/0 | Not started | - |
 | 19. Agent Charter and Governance | v2.0.0 | 0/0 | Not started | - |
 | 20. Protocol Hardening | v2.0.0 | 0/0 | Not started | - |
-| 21. Hidden Potential Audit | v2.0.0 | 0/0 | Not started | - |
-| 22. Vision Seeds and Counter Sync | v2.0.0 | 0/0 | Not started | - |
+| 21. Hidden Potential Audit | v2.0.0 | 0/0 | Complete    | 2026-04-04 |
+| 22. Vision Seeds and Counter Sync | v2.0.0 | 0/0 | Complete    | 2026-04-04 |
+
+### v3.0.0 Client-Ready Foundation (Phases 23-26)
+
+**Milestone Goal:** Remove every barrier between interest and first verified bundle. Any person: zero to PASS in under 10 minutes.
+
+- [ ] **Phase 23: Guided Onboarding** - mg_onboard.py interactive first experience, clear error messages in mg.py verify, docs/QUICKSTART.md
+- [ ] **Phase 24: Client-Facing Receipt** - mg_receipt.py output readable by auditor/regulator, no jargon, includes verify command
+- [ ] **Phase 25: REST API** - scripts/mg_api.py FastAPI wrapper: POST /verify, GET /health, GET /claims — local, no auth
+- [ ] **Phase 26: Response Readiness** - docs/CLIENT_SCENARIOS.md playbook for all 13 contacts, agent_responder.py verified for all 13
+
+## Phase Details (v3.0.0)
+
+### Phase 23: Guided Onboarding
+**Goal**: Any person goes from zero to verified bundle in under 10 minutes
+**Depends on**: v2.0.0 complete
+**Requirements**: ONBOARD-01, ONBOARD-02, ONBOARD-03
+**Success Criteria**:
+  1. Running `python scripts/mg_onboard.py` walks user through creating their first bundle interactively
+  2. Error messages in `mg.py verify` explain what went wrong in plain English (not stack traces)
+  3. `docs/QUICKSTART.md` has 3 steps to first verified bundle
+**Plans**: TBD
+
+### Phase 24: Client-Facing Receipt
+**Goal**: Verification output is readable by auditors and regulators without technical background
+**Depends on**: Phase 23
+**Requirements**: RECEIPT-01
+**Success Criteria**:
+  1. `mg_receipt.py` output includes: what was verified, result, timestamp, verify command — no jargon
+  2. Receipt is self-contained: auditor can reproduce verification from receipt alone
+**Plans**: TBD
+
+### Phase 25: REST API
+**Goal**: Verification is accessible programmatically without CLI knowledge
+**Depends on**: Phase 24
+**Requirements**: API-01
+**Success Criteria**:
+  1. `python scripts/mg_api.py` starts a local FastAPI server
+  2. `POST /verify` accepts bundle.zip and returns JSON result
+  3. `GET /health` returns status, `GET /claims` returns active claims list
+  4. No auth required, runs locally only
+**Plans**: TBD
+
+### Phase 26: Response Readiness
+**Goal**: Every outreach contact has a prepared response playbook and verified response kit
+**Depends on**: Phase 25
+**Requirements**: SCENARIO-01, RESPONSE-01
+**Success Criteria**:
+  1. `docs/CLIENT_SCENARIOS.md` has domain-specific playbook for all 13 outreach contacts
+  2. `agent_responder.py` maps and generates kits for all 13 contacts
+**Plans**: TBD
+
+## Progress (v3.0.0)
+
+| Phase | Milestone | Plans | Status | Completed |
+|-------|-----------|-------|--------|-----------|
+| 23. Guided Onboarding | v3.0.0 | 0/0 | Not started | - |
+| 24. Client-Facing Receipt | v3.0.0 | 0/0 | Not started | - |
+| 25. REST API | v3.0.0 | 0/0 | Not started | - |
+| 26. Response Readiness | v3.0.0 | 0/0 | Not started | - |
 
 ---
 *Roadmap created: 2026-03-17*
-*Last updated: 2026-04-04 -- Phase 17 Response Infrastructure complete*
+*Last updated: 2026-04-04 -- v2.0.0 closed, v3.0.0 defined*

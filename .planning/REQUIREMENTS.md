@@ -39,7 +39,28 @@
 - [x] **HARD-02**: All counters consistent across docs (test count, version, claim count, innovation count)
 - [x] **HARD-03**: All verification gates pass: steward_audit, pytest, deep_verify, check_stale_docs, agent_diff_review
 
-## v2 Requirements
+## v3.0.0 Requirements (Client-Ready Foundation)
+
+### Guided Onboarding (Phase 23)
+
+- [ ] **ONBOARD-01**: scripts/mg_onboard.py interactive flow — walks user from zero to first verified bundle
+- [ ] **ONBOARD-02**: Plain English error messages in mg.py verify (no stack traces for common errors)
+- [ ] **ONBOARD-03**: docs/QUICKSTART.md — 3 steps to first bundle
+
+### Client-Facing Receipt (Phase 24)
+
+- [ ] **RECEIPT-01**: mg_receipt.py produces auditor-readable output — no jargon, includes verify command
+
+### REST API (Phase 25)
+
+- [ ] **API-01**: scripts/mg_api.py FastAPI wrapper — POST /verify, GET /health, GET /claims, local only
+
+### Response Readiness (Phase 26)
+
+- [ ] **SCENARIO-01**: docs/CLIENT_SCENARIOS.md — domain-specific playbook for all 13 outreach contacts
+- [ ] **RESPONSE-01**: agent_responder.py verified and mapped for all 13 outreach contacts
+
+## v2 Requirements (deferred from v2.0.0)
 
 ### Advanced Client Features
 
