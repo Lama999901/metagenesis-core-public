@@ -115,8 +115,41 @@ All five layers run on every `mg.py verify --pack bundle.zip`.
 
 ## Physical Anchor Chain (Cross-Claim Cryptographic Chain)
 
-For physical domains, individual claim verification is extended to
-end-to-end chain verification.
+### Why this matters
+
+Most verification systems prove consistency: "this number hasn't changed."
+That is necessary but insufficient. A number can be consistently wrong.
+
+The physical anchor chain proves something stronger: the computation
+agrees with physical reality itself. Not with an internally chosen
+threshold. Not with a model's own output. With a property of the
+universe that has been measured independently in thousands of
+laboratories worldwide and, since the 2019 SI redefinition, is
+defined exactly — with zero uncertainty.
+
+**Example in plain language:** aluminum has a Young's Modulus of
+approximately 70 GPa. This is not an opinion or a convention. It is
+a measured property of the physical universe. When MetaGenesis Core
+verifies a finite element simulation of an aluminum part, it traces
+the verification chain back to this physical constant. If the
+simulation disagrees with physical reality beyond the accepted
+measurement uncertainty, the verification fails. No amount of hash
+manipulation can make 70 GPa equal 80 GPa.
+
+The strongest anchors in the protocol are the SI 2019 exact constants:
+Boltzmann's constant (kB = 1.380649 x 10^-23 J/K) and Avogadro's
+number (NA = 6.02214076 x 10^23 mol^-1). These are defined values
+with zero uncertainty — they will never be revised. A verification
+chain anchored to these constants is anchored to something permanent.
+
+**What this does NOT apply to:** ML accuracy, financial risk models,
+pharma predictions, and other domains where thresholds are human
+conventions (|accuracy change| <= 0.02 is a choice, not physics).
+For these domains, the protocol provides tamper-evident provenance
+only. This distinction is documented as SCOPE_001 in known_faults.yaml
+and is central to the protocol's intellectual honesty.
+
+### How it works
 
 Each claim's `trace_root_hash` can be embedded as `anchor_hash` in the
 next claim's Step Chain. This cryptographically links the entire chain
@@ -124,11 +157,11 @@ from physical measurement to simulation output to drift monitoring:
 
 ```
 Physical reality:  E = 70 GPa  (aluminum — measured in thousands of labs)
-        ↓
+        |
 MTR-1   trace_root_hash: "abc..."  (calibration against physical constant)
-        ↓  anchor_hash="abc..." baked into DT-FEM-01 Step 1
+        |  anchor_hash="abc..." baked into DT-FEM-01 Step 1
 DT-FEM-01  trace_root_hash: "def..."  (FEM output vs physical reference)
-        ↓  anchor_hash="def..." baked into DRIFT-01 Step 1
+        |  anchor_hash="def..." baked into DRIFT-01 Step 1
 DRIFT-01   trace_root_hash: "ghi..."  (drift against verified anchor)
 ```
 
@@ -286,6 +319,42 @@ To extend MVP to a new computational domain:
 Physical anchor applies to: MTR-1/2/3/4/5/6, PHYS-01/02, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP-01.
 Tamper-evident provenance: all 20 claims (SCOPE_001).
 Documented in `reports/known_faults.yaml` :: SCOPE_001.
+
+---
+
+## Threat model and honest limitations
+
+The protocol is tamper-evident under the following assumptions:
+
+1. **Trusted verifier software.** The party running `mg.py verify` uses
+   an unmodified copy of the verification code. If the verifier itself is
+   compromised, PASS/FAIL results are meaningless. This is analogous to
+   any notary system: the notary stamp is only as trustworthy as the
+   entity stamping. Mitigation: the verifier is open-source (MIT licensed),
+   deterministic, and can be audited by any party before use.
+
+2. **SHA-256 collision resistance.** If SHA-256 is broken, Layers 1 and 3
+   can be bypassed. This is a shared assumption with git, TLS, and every
+   cryptographic system in use today. Mitigation: when SHA-256 is broken,
+   the hash algorithm in the Step Chain can be upgraded without changing
+   the protocol structure.
+
+3. **Signing key secrecy.** Layer 4 assumes the signing key has not been
+   stolen. A stolen key allows forging signatures on tampered bundles, but
+   Layers 1-3 still detect content tampering. CERT-11 ADV-03 proves this:
+   even with a stolen key, the content layers catch the attack.
+
+4. **NIST Beacon availability.** Layer 5 requires the NIST Randomness
+   Beacon for temporal commitment. If the beacon is unavailable, temporal
+   verification degrades gracefully to local timestamps. This is documented
+   behavior, not a failure mode.
+
+What the protocol explicitly **does not claim**:
+- It does not verify algorithm correctness — only execution integrity
+- It does not verify data quality — only that the stated data was used
+- It does not prevent an adversary with source code access from
+  constructing a valid-looking bundle from scratch (but the temporal
+  commitment and signing layers make this detectable in practice)
 
 ---
 

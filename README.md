@@ -242,7 +242,7 @@ Not a distributed ledger. No network. No tokens. Works offline.
 Five-layer verification ensures the bundle and computation haven't been modified. Applies to all 20 claims.
 
 **Pillar 2 -- Physical anchor traceability**
-The verification chain is grounded in physical constants -- not arbitrary thresholds. MTR-1's anchor is E = 70 GPa for aluminum: measured independently in thousands of laboratories worldwide.
+Most verification systems prove consistency: "this number hasn't changed." MetaGenesis Core proves something stronger for physical domains: the computation agrees with reality itself. Aluminum has a stiffness of 70 GPa -- that's not an opinion, it's a measured property of the universe. When we verify a simulation of an aluminum part, we trace the chain back to that physical constant. No amount of hash manipulation can make 70 GPa equal 80 GPa. For the Boltzmann constant and Avogadro's number (SI 2019 exact definitions), the anchor is permanent -- it will never be revised.
 
 The full physical anchor chain:
 ```
