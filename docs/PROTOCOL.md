@@ -115,8 +115,41 @@ All five layers run on every `mg.py verify --pack bundle.zip`.
 
 ## Physical Anchor Chain (Cross-Claim Cryptographic Chain)
 
-For physical domains, individual claim verification is extended to
-end-to-end chain verification.
+### Why this matters
+
+Most verification systems prove consistency: "this number hasn't changed."
+That is necessary but insufficient. A number can be consistently wrong.
+
+The physical anchor chain proves something stronger: the computation
+agrees with physical reality itself. Not with an internally chosen
+threshold. Not with a model's own output. With a property of the
+universe that has been measured independently in thousands of
+laboratories worldwide and, since the 2019 SI redefinition, is
+defined exactly — with zero uncertainty.
+
+**Example in plain language:** aluminum has a Young's Modulus of
+approximately 70 GPa. This is not an opinion or a convention. It is
+a measured property of the physical universe. When MetaGenesis Core
+verifies a finite element simulation of an aluminum part, it traces
+the verification chain back to this physical constant. If the
+simulation disagrees with physical reality beyond the accepted
+measurement uncertainty, the verification fails. No amount of hash
+manipulation can make 70 GPa equal 80 GPa.
+
+The strongest anchors in the protocol are the SI 2019 exact constants:
+Boltzmann's constant (kB = 1.380649 x 10^-23 J/K) and Avogadro's
+number (NA = 6.02214076 x 10^23 mol^-1). These are defined values
+with zero uncertainty — they will never be revised. A verification
+chain anchored to these constants is anchored to something permanent.
+
+**What this does NOT apply to:** ML accuracy, financial risk models,
+pharma predictions, and other domains where thresholds are human
+conventions (|accuracy change| <= 0.02 is a choice, not physics).
+For these domains, the protocol provides tamper-evident provenance
+only. This distinction is documented as SCOPE_001 in known_faults.yaml
+and is central to the protocol's intellectual honesty.
+
+### How it works
 
 Each claim's `trace_root_hash` can be embedded as `anchor_hash` in the
 next claim's Step Chain. This cryptographically links the entire chain
@@ -124,11 +157,11 @@ from physical measurement to simulation output to drift monitoring:
 
 ```
 Physical reality:  E = 70 GPa  (aluminum — measured in thousands of labs)
-        ↓
+        |
 MTR-1   trace_root_hash: "abc..."  (calibration against physical constant)
-        ↓  anchor_hash="abc..." baked into DT-FEM-01 Step 1
+        |  anchor_hash="abc..." baked into DT-FEM-01 Step 1
 DT-FEM-01  trace_root_hash: "def..."  (FEM output vs physical reference)
-        ↓  anchor_hash="def..." baked into DRIFT-01 Step 1
+        |  anchor_hash="def..." baked into DRIFT-01 Step 1
 DRIFT-01   trace_root_hash: "ghi..."  (drift against verified anchor)
 ```
 
