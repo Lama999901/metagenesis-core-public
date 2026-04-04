@@ -48,6 +48,9 @@ signing_key*.json
 private_key*.json
 test_mg_sign_hmac.json
 
+# Self-audit baseline (environment-specific, generated via --init)
+reports/core_integrity.json
+
 # Local runtime artifacts (do not commit)
 reports/ledger_v1.jsonl
 reports/ledger_snapshots/
