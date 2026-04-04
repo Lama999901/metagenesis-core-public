@@ -322,6 +322,42 @@ Documented in `reports/known_faults.yaml` :: SCOPE_001.
 
 ---
 
+## Threat model and honest limitations
+
+The protocol is tamper-evident under the following assumptions:
+
+1. **Trusted verifier software.** The party running `mg.py verify` uses
+   an unmodified copy of the verification code. If the verifier itself is
+   compromised, PASS/FAIL results are meaningless. This is analogous to
+   any notary system: the notary stamp is only as trustworthy as the
+   entity stamping. Mitigation: the verifier is open-source (MIT licensed),
+   deterministic, and can be audited by any party before use.
+
+2. **SHA-256 collision resistance.** If SHA-256 is broken, Layers 1 and 3
+   can be bypassed. This is a shared assumption with git, TLS, and every
+   cryptographic system in use today. Mitigation: when SHA-256 is broken,
+   the hash algorithm in the Step Chain can be upgraded without changing
+   the protocol structure.
+
+3. **Signing key secrecy.** Layer 4 assumes the signing key has not been
+   stolen. A stolen key allows forging signatures on tampered bundles, but
+   Layers 1-3 still detect content tampering. CERT-11 ADV-03 proves this:
+   even with a stolen key, the content layers catch the attack.
+
+4. **NIST Beacon availability.** Layer 5 requires the NIST Randomness
+   Beacon for temporal commitment. If the beacon is unavailable, temporal
+   verification degrades gracefully to local timestamps. This is documented
+   behavior, not a failure mode.
+
+What the protocol explicitly **does not claim**:
+- It does not verify algorithm correctness — only execution integrity
+- It does not verify data quality — only that the stated data was used
+- It does not prevent an adversary with source code access from
+  constructing a valid-looking bundle from scratch (but the temporal
+  commitment and signing layers make this detectable in practice)
+
+---
+
 ## Language policy
 
 **Use:** "tamper-evident under trusted verifier assumptions"
