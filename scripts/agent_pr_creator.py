@@ -201,6 +201,8 @@ def detect_pilot_queue_stale():
     except (json.JSONDecodeError, OSError):
         return []
 
+    if isinstance(queue, dict):
+        queue = queue.get("entries", [])
     if not isinstance(queue, list):
         return []
 

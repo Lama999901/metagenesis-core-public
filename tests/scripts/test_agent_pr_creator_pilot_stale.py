@@ -17,9 +17,10 @@ def _patch_repo_root(monkeypatch, tmp_path):
 
 
 def _write_queue(tmp_path, entries):
+    """Write queue in the same dict format that agent_pilot.py produces."""
     queue_path = tmp_path / "reports" / "pilot_queue.json"
     with open(queue_path, "w", encoding="utf-8") as f:
-        json.dump(entries, f)
+        json.dump({"entries": entries}, f)
 
 
 class TestDetectPilotQueueStale:
