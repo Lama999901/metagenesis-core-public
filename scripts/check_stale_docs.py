@@ -68,24 +68,24 @@ CRITICAL_FILES = {
 # ── Content validation — banned/required strings per file ──────────────────
 CONTENT_CHECKS = {
     "llms.txt": {
-        "banned": ["595 passing", "595 passed", "16 evolution checks", "Claims: 18", "Domains: 7 (", "906 passed", "906 tests", "966 passed", "966 tests", "1050 passed", "1050 tests", "1125 passed", "1125 tests", "1273 passed", "1273 tests", "1313 passed", "1313 tests", "1634 passed", "1634 tests"],
-        "required": ["1750", "v0.9", "20 active claims", "PHYS-01", "PHYS-02"],
+        "banned": ["595 passing", "595 passed", "16 evolution checks", "Claims: 18", "Domains: 7 (", "906 passed", "906 tests", "966 passed", "966 tests", "1050 passed", "1050 tests", "1125 passed", "1125 tests", "1273 passed", "1273 tests", "1313 passed", "1313 tests", "1634 passed", "1634 tests", "1750 passed", "1750 tests"],
+        "required": ["1753", "v0.9", "20 active claims", "PHYS-01", "PHYS-02"],
     },
     "CONTEXT_SNAPSHOT.md": {
-        "banned": ["595 passing", "595 passed", "v0.6.0", "Domains | 7", "906 passed", "906 tests", "966 passed", "966 tests", "1050 passed", "1050 tests", "1125 passed", "1125 tests", "1273 passed", "1273 tests", "1313 passed", "1313 tests", "1634 passed", "1634 tests"],
-        "required": ["1750", "v0.9"],
+        "banned": ["595 passing", "595 passed", "v0.6.0", "Domains | 7", "906 passed", "906 tests", "966 passed", "966 tests", "1050 passed", "1050 tests", "1125 passed", "1125 tests", "1273 passed", "1273 tests", "1313 passed", "1313 tests", "1634 passed", "1634 tests", "1750 passed", "1750 tests"],
+        "required": ["1753", "v0.9"],
     },
     "AGENTS.md": {
-        "banned": ["16 agent checks", "17 agent checks", "18 agent checks", "906 tests", "906 passed", "966 tests", "966 passed", "1050 tests", "1050 passed", "1125 tests", "1125 passed", "1273 tests", "1273 passed", "1634 tests", "1634 passed"],
-        "required": ["1750", "v0.9.0", "20 claims", "19 agent checks"],
+        "banned": ["16 agent checks", "17 agent checks", "18 agent checks", "906 tests", "906 passed", "966 tests", "966 passed", "1050 tests", "1050 passed", "1125 tests", "1125 passed", "1273 tests", "1273 passed", "1634 tests", "1634 passed", "1750 tests", "1750 passed"],
+        "required": ["1753", "v0.9.0", "20 claims", "19 agent checks"],
     },
     "CONTRIBUTING.md": {
-        "banned": ["223 passed", "295 passed", "511 passed", "526 passed", "544 passed", "586 passed", "595 passed", "601 passed", "839 passed", "906 passed", "966 passed", "1050 passed", "1125 passed", "1198 passed", "1273 passed", "1634 passed", "601", "ALL 10 TESTS", "3 verification layers"],
-        "required": ["1750", "ALL 13 TESTS", "5 verification layers"],
+        "banned": ["223 passed", "295 passed", "511 passed", "526 passed", "544 passed", "586 passed", "595 passed", "601 passed", "839 passed", "906 passed", "966 passed", "1050 passed", "1125 passed", "1198 passed", "1273 passed", "1634 passed", "1750 passed", "601", "ALL 10 TESTS", "3 verification layers"],
+        "required": ["1753", "ALL 13 TESTS", "5 verification layers"],
     },
     "CITATION.cff": {
-        "banned": ["version: 0.2", "version: 0.3", "version: 0.4", "version: 0.5", "version: 0.6", "version: 0.7", "three independent", "601", "966 adversarial", "1050 adversarial", "1125 adversarial", "1273 adversarial", "1313 adversarial", "1634 adversarial"],
-        "required": ["version: 0.9", "five independent", "1750"],
+        "banned": ["version: 0.2", "version: 0.3", "version: 0.4", "version: 0.5", "version: 0.6", "version: 0.7", "three independent", "601", "966 adversarial", "1050 adversarial", "1125 adversarial", "1273 adversarial", "1313 adversarial", "1634 adversarial", "1750 adversarial"],
+        "required": ["version: 0.9", "five independent", "1753"],
     },
     "docs/PROTOCOL.md": {
         "banned": ["MVP v0.2", "MVP v0.3", "MVP v0.4", "MVP v0.5", "Three verification layers", "5 patentable"],
@@ -96,16 +96,16 @@ CONTENT_CHECKS = {
         "required": ["Level 1", "Level 2", "Level 3", "AGENT-DRIFT-01", "19 checks"],
     },
     "docs/ARCHITECTURE.md": {
-        "banned": ["282 tests", "511 tests", "544 tests", "595 tests", "601 tests", "906 tests", "966 tests", "1050 tests", "1125 tests", "1198 tests", "1273 tests", "1634 tests", "Architecture v0.2", "Three verification layers"],
-        "required": ["1750 tests", "Five verification layers"],
+        "banned": ["282 tests", "511 tests", "544 tests", "595 tests", "601 tests", "906 tests", "966 tests", "1050 tests", "1125 tests", "1198 tests", "1273 tests", "1634 tests", "1750 tests", "Architecture v0.2", "Three verification layers"],
+        "required": ["1753 tests", "Five verification layers"],
     },
     "docs/ROADMAP.md": {
-        "banned": ["Current version: 0.2", "Current version: 0.3", "Current version: 0.4", "282 adversarial", "595 adversarial", "601 adversarial", "906 adversarial", "966 adversarial", "1050 adversarial", "1125 adversarial", "1273 adversarial", "1313 adversarial", "1634 adversarial"],
-        "required": ["0.9.0", "1750 adversarial"],
+        "banned": ["Current version: 0.2", "Current version: 0.3", "Current version: 0.4", "282 adversarial", "595 adversarial", "601 adversarial", "906 adversarial", "966 adversarial", "1050 adversarial", "1125 adversarial", "1273 adversarial", "1313 adversarial", "1634 adversarial", "1750 adversarial"],
+        "required": ["0.9.0", "1753 adversarial"],
     },
     "ppa/README_PPA.md": {
-        "banned": ["282 tests", "511 tests", "544 tests", "595 tests", "601 tests", "906 tests", "966 tests", "1050 tests", "1125 tests", "1198 tests", "1273 tests", "1634 tests", "Current state (2026-03-17)"],
-        "required": ["1750 tests", "8 innovations"],
+        "banned": ["282 tests", "511 tests", "544 tests", "595 tests", "601 tests", "906 tests", "966 tests", "1050 tests", "1125 tests", "1198 tests", "1273 tests", "1634 tests", "1750 tests", "Current state (2026-03-17)"],
+        "required": ["1753 tests", "8 innovations"],
     },
     "COMMERCIAL.md": {
         "banned": ["5 innovations"],
@@ -120,48 +120,48 @@ CONTENT_CHECKS = {
         "required": ["five independent layers"],
     },
     "README.md": {
-        "banned": ["295 passing", "511 passing", "526 passing", "544 passing", "595 passing", "601 passing", "601", "6 innovations", "7 innovations", "14 agent checks", "17 agent checks", "18 agent checks", "The 14 Checks", "The 17 Checks", "The 18 Checks", "ALL 14 CHECKS PASSED", "ALL 17 CHECKS PASSED", "ALL 18 CHECKS PASSED", "10 automated", "18 verified claims", "17 autonomous", "15 Active Verification", "Tests-608%20passing", "Tests-651%20passing", "Tests-734%20passing", "Tests-906%20passing", "906 passing", "Tests-966%20passing", "966 passing", "Tests-1050%20passing", "1050 passing", "Tests-1125%20passing", "1125 passing", "Tests-1273%20passing", "Tests-1313%20passing", "1273 passing", "1313 passing", "Tests-1634%20passing", "1634 passing", "21/21"],
-        "required": ["1750", "8 innovations", "19 agent checks", "The 19 Checks", "ALL 19 CHECKS PASSED", "20 claims", "PHYS-01", "PHYS-02", "Tests-1750%20passing"],
+        "banned": ["295 passing", "511 passing", "526 passing", "544 passing", "595 passing", "601 passing", "601", "6 innovations", "7 innovations", "14 agent checks", "17 agent checks", "18 agent checks", "The 14 Checks", "The 17 Checks", "The 18 Checks", "ALL 14 CHECKS PASSED", "ALL 17 CHECKS PASSED", "ALL 18 CHECKS PASSED", "10 automated", "18 verified claims", "17 autonomous", "15 Active Verification", "Tests-608%20passing", "Tests-651%20passing", "Tests-734%20passing", "Tests-906%20passing", "906 passing", "Tests-966%20passing", "966 passing", "Tests-1050%20passing", "1050 passing", "Tests-1125%20passing", "1125 passing", "Tests-1273%20passing", "Tests-1313%20passing", "1273 passing", "1313 passing", "Tests-1634%20passing", "1634 passing", "Tests-1750%20passing", "1750 passing", "21/21"],
+        "required": ["1753", "8 innovations", "19 agent checks", "The 19 Checks", "ALL 19 CHECKS PASSED", "20 claims", "PHYS-01", "PHYS-02", "Tests-1753%20passing"],
     },
     "index.html": {
         "banned": ["<span>10</span>", "14 active domain claims", "Fourteen</span> claims", "Fifteen</span> claims", "15 active domain claims", "18 active domain claims", "Eighteen</span> claims", "hv\">v0.7.0", "hv\">v0.8.0"],
         "required": ["<span>17</span>", "20 active domain claims", "Twenty</span> claims", "hv\">v0.9.0"],
     },
     "paper.md": {
-        "banned": ["389 adversarial", "511 adversarial", "526 adversarial", "544 adversarial", "595 adversarial", "601 adversarial", "906 adversarial", "966 adversarial", "1050 adversarial", "1125 adversarial", "1198 adversarial", "1273 adversarial", "1313 adversarial", "1634 adversarial", "17 March 2026", "7 domains", "6.022e23"],
-        "required": ["1750 adversarial", "18 March 2026", "8 domains"],
+        "banned": ["389 adversarial", "511 adversarial", "526 adversarial", "544 adversarial", "595 adversarial", "601 adversarial", "906 adversarial", "966 adversarial", "1050 adversarial", "1125 adversarial", "1198 adversarial", "1273 adversarial", "1313 adversarial", "1634 adversarial", "1750 adversarial", "17 March 2026", "7 domains", "6.022e23"],
+        "required": ["1753 adversarial", "18 March 2026", "8 domains"],
     },
     "reports/known_faults.yaml": {
-        "banned": ["282 tests", "295 passed", "295 tests", "511 tests", "511 passed", "526 tests", "544 tests", "544 passed", "595 tests", "595 passed", "601 tests", "601 passed", "906 tests", "906 passed", "966 tests", "966 passed", "1050 tests", "1050 passed", "1125 tests", "1125 passed", "1273 tests", "1273 passed", "1634 tests", "1634 passed"],
-        "required": ["1750 tests", "1750 passed"],
+        "banned": ["282 tests", "295 passed", "295 tests", "511 tests", "511 passed", "526 tests", "544 tests", "544 passed", "595 tests", "595 passed", "601 tests", "601 passed", "906 tests", "906 passed", "966 tests", "966 passed", "1050 tests", "1050 passed", "1125 tests", "1125 passed", "1273 tests", "1273 passed", "1634 tests", "1634 passed", "1750 tests", "1750 passed"],
+        "required": ["1753 tests", "1753 passed"],
     },
     "CLAUDE.md": {
-        "banned": ["10-test proof", "12 counters", "15 claims", "16 claims", "17 claims", "18 claims", "19 claims", "601 tests", "906 tests", "966 tests", "1050 tests", "1125 tests", "1273 tests", "1634 tests"],
-        "required": ["13-test proof", "8 innovations", "20 claims", "1750 tests"],
+        "banned": ["10-test proof", "12 counters", "15 claims", "16 claims", "17 claims", "18 claims", "19 claims", "601 tests", "906 tests", "966 tests", "1050 tests", "1125 tests", "1273 tests", "1634 tests", "1750 tests"],
+        "required": ["13-test proof", "8 innovations", "20 claims", "1753 tests"],
     },
     "UPDATE_PROTOCOL.md": {
         "banned": ["ALL 10 PASSED", "ALL 10 TESTS PASSED", "v1.0 — 2026-03-16"],
         "required": ["ALL 13 PASSED", "v1.1"],
     },
     "CURSOR_MASTER_PROMPT_v2_3.md": {
-        "banned": ["271 tests", "295 tests", "526 tests", "544 tests", "595 tests", "601 tests", "906 tests", "966 tests", "1050 tests", "1125 tests", "1198 tests", "1273 tests", "1634 tests", "3 verification layers", "MVP v0.2", "ALL 10 TESTS", "MVP v0.6"],
-        "required": ["1750 tests", "5 verification layers", "MVP v0.9", "ALL 13 TESTS"],
+        "banned": ["271 tests", "295 tests", "526 tests", "544 tests", "595 tests", "601 tests", "906 tests", "966 tests", "1050 tests", "1125 tests", "1198 tests", "1273 tests", "1634 tests", "1750 tests", "3 verification layers", "MVP v0.2", "ALL 10 TESTS", "MVP v0.6"],
+        "required": ["1753 tests", "5 verification layers", "MVP v0.9", "ALL 13 TESTS"],
     },
     "docs/HOW_TO_ADD_CLAIM.md": {
         "banned": ["ALL 10", "271", "282", "295", "389", "601", "v0.2", "v0.3", "v0.4", "v0.6"],
-        "required": ["1750", "v0.9"],
+        "required": ["1753", "v0.9"],
     },
     "docs/REAL_DATA_GUIDE.md": {
         "banned": ["ALL 10", "271", "282", "295", "389", "601", "v0.2", "v0.3", "v0.4", "v0.6"],
-        "required": ["1750", "v0.9"],
+        "required": ["1753", "v0.9"],
     },
     "docs/USE_CASES.md": {
         "banned": ["ALL 10", "271", "282", "295", "389", "601", "v0.2", "v0.3", "v0.4", "v0.6"],
-        "required": ["1750", "v0.9"],
+        "required": ["1753", "v0.9"],
     },
     "reports/scientific_claim_index.md": {
         "banned": ["282", "295", "601"],
-        "required": ["20 claims", "1750"],
+        "required": ["20 claims", "1753"],
     },
     "CODE_OF_CONDUCT.md": {
         "banned": [],
