@@ -521,13 +521,26 @@ def write_proposals_md(proposals, sources_data):
 # Main
 # ---------------------------------------------------------------------------
 
-def collect_all_sources():
-    """Read all 6 data sources. Returns dict of source_name -> (items, success)."""
+def collect_all_sources(skip_coverage=False, skip_slow=False):
+    """Read all 6 data sources. Returns dict of source_name -> (items, success).
+
+    Args:
+        skip_coverage: Skip the slow pytest --cov source.
+        skip_slow: Skip all subprocess-heavy sources (coverage, agent_evolution, agent_learn).
+    """
     sources = {}
-    sources["agent_learn"] = read_agent_learn()
-    sources["coverage"] = read_coverage()
+    if skip_slow:
+        sources["agent_learn"] = ([], False)
+        sources["coverage"] = ([], False)
+        sources["agent_evolution"] = ([], False)
+    else:
+        sources["agent_learn"] = read_agent_learn()
+        if skip_coverage:
+            sources["coverage"] = ([], False)
+        else:
+            sources["coverage"] = read_coverage()
+        sources["agent_evolution"] = read_agent_evolution()
     sources["known_faults"] = read_known_faults()
-    sources["agent_evolution"] = read_agent_evolution()
     sources["response_queue"] = read_response_queue()
     sources["git_log"] = read_git_hotspots()
     return sources
@@ -552,8 +565,10 @@ def print_summary(proposals):
 def main():
     summary_only = "--summary" in sys.argv
     json_output = "--json" in sys.argv
+    skip_coverage = "--skip-coverage" in sys.argv or os.environ.get("EVOL_SKIP_COVERAGE") == "1"
+    skip_slow = "--fast" in sys.argv or os.environ.get("EVOL_FAST") == "1"
 
-    sources = collect_all_sources()
+    sources = collect_all_sources(skip_coverage=skip_coverage, skip_slow=skip_slow)
     proposals = generate_proposals(sources)
 
     if json_output:

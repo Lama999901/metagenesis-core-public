@@ -428,27 +428,29 @@ class TestSummaryOutput:
 
 class TestCLIIntegration:
     def test_summary_flag_runs(self):
-        """Verify --summary runs without error."""
+        """Verify --summary runs without error (using --fast to skip slow subprocess sources)."""
         env = os.environ.copy()
         env["PYTHONIOENCODING"] = "utf-8"
+        env["EVOL_FAST"] = "1"  # skip slow subprocess sources
         r = subprocess.run(
             [sys.executable, str(REPO_ROOT / "scripts" / "agent_evolution_council.py"), "--summary"],
             capture_output=True, text=True, cwd=str(REPO_ROOT),
             env=env, encoding="utf-8", errors="replace",
-            timeout=120,
+            timeout=60,
         )
         assert r.returncode == 0
         assert "Evolution Council" in r.stdout or "No proposals" in r.stdout
 
     def test_json_flag_runs(self):
-        """Verify --json runs and produces valid JSON."""
+        """Verify --json runs and produces valid JSON (using --fast to skip slow subprocess sources)."""
         env = os.environ.copy()
         env["PYTHONIOENCODING"] = "utf-8"
+        env["EVOL_FAST"] = "1"  # skip slow subprocess sources
         r = subprocess.run(
             [sys.executable, str(REPO_ROOT / "scripts" / "agent_evolution_council.py"), "--json"],
             capture_output=True, text=True, cwd=str(REPO_ROOT),
             env=env, encoding="utf-8", errors="replace",
-            timeout=120,
+            timeout=60,
         )
         assert r.returncode == 0
         data = json.loads(r.stdout)
