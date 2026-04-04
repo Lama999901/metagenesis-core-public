@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "created": "2026-04-04T05:13:40.542689+00:00",
-  "updated": "2026-04-04T05:13:40.542689+00:00",
+  "updated": "2026-04-04T06:14:47.635096+00:00",
   "scripts": {
     "scripts/mg.py": {
-      "hash": "ee01a99b62ace9c2e2f6476c467b7880c2c47a811512601a488db6d624b758d1",
-      "size": 30576
+      "hash": "e9a312201254e0b6ad47685882e359b73653412a6cc4653188fd1ba911a1cfa1",
+      "size": 31635
     },
     "scripts/steward_audit.py": {
       "hash": "53594fc4f9d6a81dcc8cdafcd549c1c9318b0730730f6b6e9968a8ad60b6d311",
@@ -36,6 +36,6 @@
       "size": 14440
     }
   },
-  "signature": "e4e76fd847eb790d1de072bc71b28e40941b80db6ab35cd3ca1f96381c1b9c3ae25268e8bf2dc51b255c41c83c8270fac8a2d4d13d328520b40a06cc21a61301",
+  "signature": "3f1ae8c4ed0459d61bc2453a8e4b8da3363a55b6f4f3e599a9331cb5242174f547d86f262ba221f0092fd9a3745f96da3197ba3ba81fa97f5a13ab2f04d8ed07",
   "public_key": "57bf0c19f93899e0c727a2979e019d32ce0c159d7bb59c27b1e4b6767f18a807"
 }
