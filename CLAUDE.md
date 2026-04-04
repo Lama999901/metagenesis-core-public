@@ -356,7 +356,15 @@ scripts/agent_pr_creator.py ← Level 3 autonomous PR (280+ lines, 5 detectors)
 scripts/agent_pilot.py      ← pilot onboarding automation (443 lines)
 scripts/agent_learn.py      ← session memory (88 sessions, 15 patterns)
 scripts/check_stale_docs.py ← documentation currency checker
+scripts/mg_self_audit.py    ← protocol self-audit (Ed25519-signed baseline, 8 core scripts)
+scripts/mg_receipt.py       ← human-readable verification receipt generator
+scripts/mg_verify_standalone.py ← zero-dependency standalone verifier (single-file)
+scripts/agent_responder.py  ← response kit generator (draft + bundle + queue)
+scripts/agent_evolution_council.py ← self-analysis, ranked improvement proposals
+scripts/mg_client.py        ← client CLI (demo, bundle, verify, receipt)
 backend/progress/runner.py  ← job dispatch (20 claims)
+docs/AGENT_CHARTER.md       ← autonomous agent governance (7 sections)
+docs/ROADMAP_VISION.md      ← 4-level evolution path
 reports/scientific_claim_index.md  ← claim registry
 reports/canonical_state.md  ← authoritative list (LOCKED)
 reports/known_faults.yaml   ← known limitations (SCOPE_001 + ENV_001)
