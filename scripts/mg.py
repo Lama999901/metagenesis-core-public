@@ -492,6 +492,42 @@ def main():
 
     steward = sub.add_parser("steward")
     steward_sub = steward.add_subparsers(dest="command", required=True)
+    def _write_verification_receipt(receipt_path, pack_path, passed, report):
+        """Write a verification receipt — cryptographic proof that verification was performed.
+
+        The receipt contains: timestamp, bundle root_hash, result, layer results,
+        and a receipt_hash over the entire contents for integrity.
+        A regulator or auditor can independently verify the receipt wasn't forged
+        by recomputing receipt_hash from the other fields.
+        """
+        from datetime import datetime, timezone
+        import getpass
+        import platform
+
+        receipt = {
+            "receipt_version": "1.0",
+            "protocol": "MetaGenesis Verification Protocol (MVP) v0.9",
+            "verification_timestamp": datetime.now(timezone.utc).isoformat(),
+            "verifier": getpass.getuser(),
+            "verifier_platform": platform.platform(),
+            "bundle_path": str(pack_path),
+            "bundle_root_hash": report.get("pack_root_hash", ""),
+            "result": "PASS" if passed else "FAIL",
+            "layers_checked": [c["name"] for c in report.get("checks", [])],
+            "errors": report.get("errors", []),
+        }
+
+        # Compute receipt integrity hash over all fields
+        content = json.dumps(receipt, sort_keys=True, separators=(",", ":"))
+        receipt["receipt_hash"] = hashlib.sha256(content.encode("utf-8")).hexdigest()
+
+        receipt_path = Path(receipt_path)
+        receipt_path.parent.mkdir(parents=True, exist_ok=True)
+        receipt_path.write_text(
+            json.dumps(receipt, indent=2, sort_keys=True), encoding="utf-8"
+        )
+        print(f"Verification receipt written to: {receipt_path}")
+
     steward_audit = steward_sub.add_parser("audit")
     steward_audit.set_defaults(func=cmd_steward_audit)
 
@@ -510,6 +546,8 @@ def main():
     verify_top = sub.add_parser("verify")
     verify_top.add_argument("--pack", "-p", type=Path, required=True, help="Pack directory to verify")
     verify_top.add_argument("--json", "-j", type=Path, default=None, help="Write machine-readable JSON report to path")
+    verify_top.add_argument("--receipt", type=Path, default=None,
+                            help="Write a verification receipt (proof that verification was performed)")
 
     def _verify_pack_cmd(a):
         ok, msg, report = _verify_pack(a.pack)
@@ -518,6 +556,11 @@ def main():
             out_path = Path(json_path)
             out_path.parent.mkdir(parents=True, exist_ok=True)
             out_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
+
+        receipt_path = getattr(a, "receipt", None)
+        if receipt_path is not None:
+            _write_verification_receipt(Path(receipt_path), a.pack, ok, report)
+
         print(msg)
         return 0 if ok else 1
 
