@@ -22,8 +22,9 @@ known_faults:
     description: >
       Physical anchor traceability (verification grounded in measured physical constants)
       applies ONLY to domains with known physical constants:
-      materials science (MTR-1/2/3), thermodynamics, structural mechanics (DT-FEM-01),
-      and drift monitoring against a physical baseline (DRIFT-01).
+      materials science (MTR-1/2/3/4/5/6), fundamental physics (PHYS-01/02),
+      structural mechanics (DT-FEM-01), drift monitoring (DRIFT-01),
+      and calibration convergence (DT-CALIB-LOOP-01).
       For ML accuracy (ML_BENCH-01), data pipelines (DATA-PIPE-01), and financial risk
       models, the protocol provides tamper-evident provenance only — not physical anchoring.
       Thresholds in these domains (e.g. |Δaccuracy| ≤ 0.02) are chosen conventions,
@@ -31,7 +32,7 @@ known_faults:
     affected_claims: ["ML_BENCH-01", "ML_BENCH-02", "ML_BENCH-03", "DATA-PIPE-01", "SYSID-01", "PHARMA-01", "FINRISK-01", "DT-SENSOR-01", "AGENT-DRIFT-01"]
     status: "FAULT_EXPECTED"
     ticket_ref: "https://github.com/Lama999901/metagenesis-core-public/issues"
-    mitigation: "Use physical anchor chain (MTR-1 -> DT-FEM-01 -> DRIFT-01 -> DT-CALIB-LOOP-01) for domains requiring traceability to physical reality."
+    mitigation: "Use physical anchor chain (MTR-1/2/3/4/5/6 -> DT-FEM-01 -> DRIFT-01 -> DT-CALIB-LOOP-01, PHYS-01/02) for domains requiring traceability to physical reality."
 
   - fault_id: "ENV_002"
     category: "TEST_COVERAGE_CEILING"

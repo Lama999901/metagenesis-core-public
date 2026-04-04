@@ -346,6 +346,7 @@ MetaGenesis Core includes an autonomous agent monitoring system -- 20 checks tha
 | 17 | `diff_review` | AST structural diff review |
 | 18 | `auto_pr` | Level 3 autonomous PR queue -- agents create PRs, Yehor approves |
 | 19 | `semantic_audit` | Project coherence -- physical anchors, claim matrix, innovations, patent integrity |
+| 20 | `self_audit` | Recursive integrity verification of all core scripts |
 
 **Coverage floor locked:** 88% achieved in v0.9.0. Check #11 enforces minimum 65%. Any PR dropping below 65% is automatically blocked.
 

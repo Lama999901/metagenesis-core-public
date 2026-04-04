@@ -2,7 +2,7 @@
 
 > Read this file first if you are an AI agent starting a new session.
 > This is the authoritative snapshot of what has been done and what is next.
-> Updated: 2026-04-02
+> Updated: 2026-04-04
 
 ---
 
@@ -18,7 +18,7 @@
 
 ---
 
-## Verified state (2026-04-02)
+## Verified state (2026-04-04)
 
 | Parameter | Value |
 |---|---|
@@ -29,8 +29,8 @@
 | Verification layers | 5 (integrity + semantic + step chain + bundle signing + temporal commitment) |
 | Innovations | 8 (5 PPA + HMAC signing + Ed25519 signing + temporal commitment) |
 | Domains | 8 |
-| Agent checks | 19 (agent_evolution.py) |
-| Coverage | 81.2% |
+| Agent checks | 20 (agent_evolution.py) |
+| Coverage | 87.8% |
 | GitHub Release | v0.9.0 |
 | Adversarial tests | CERT-05 (5 attacks) + CERT-06 (5 scenarios) + CERT-07 (signing) + CERT-08 (reproducibility) + CERT-09 (Ed25519 attacks) + CERT-10 (temporal attacks) + CERT-11 (coordinated multi-vector) + CERT-12 (encoding attacks) |
 
@@ -161,4 +161,4 @@ python -m pytest tests/steward/test_cert06_real_world_scenarios.py -v
 
 ---
 
-*Updated: 2026-04-02 | Next update: first response or first client*
+*Updated: 2026-04-04 | Next update: first response or first client*
