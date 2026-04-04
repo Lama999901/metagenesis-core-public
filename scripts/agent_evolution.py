@@ -488,6 +488,25 @@ def check_semantic_audit():
         return False
 
 
+# ── 20. Self-Audit ──────────────────────────────────────────────────────────
+def check_self_audit():
+    section("SELF-AUDIT — Recursive Inquisitor")
+    out, code = run("python scripts/mg_self_audit.py")
+    if code == 0:
+        if "ADVISORY" in out:
+            warn("No baseline found (advisory — run --init to create)")
+            ok("Self-audit skipped — no baseline (SELFAUDIT_ADVISORY)")
+        else:
+            ok("All core scripts verified — integrity intact (SELFAUDIT_PASS)")
+        return True
+    else:
+        err("Self-audit FAILED — core script integrity compromised (SELFAUDIT_FAIL)")
+        for line in out.splitlines():
+            if "FAIL" in line or "ALERT" in line:
+                info(line.strip()[:100])
+        return False
+
+
 # ── Main ─────────────────────────────────────────────────────────────────────
 def main():
     strict = "--strict" in sys.argv
@@ -523,6 +542,7 @@ def main():
     results["diff_review"] = check_diff_review()
     results["auto_pr"]    = check_auto_pr()
     results["semantic_audit"] = check_semantic_audit()
+    results["self_audit"] = check_self_audit()
 
     # ── Summary ──
     section("SUMMARY — Omnissiah's Verdict")
@@ -549,6 +569,7 @@ def main():
         "diff_review":   ("Logic Arbiter satisfied",          "DIFF"),
         "auto_pr":       ("Autonomous Forge current",         "AUTOPR"),
         "semantic_audit": ("Project semantically coherent",    "SEMANTIC"),
+        "self_audit":     ("Recursive Inquisitor verified",     "SELFAUDIT"),
     }
 
     for check, ok_val in results.items():
