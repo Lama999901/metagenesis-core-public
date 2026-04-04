@@ -5,7 +5,7 @@
 [![Steward Audit](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml/badge.svg)](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Patent Pending](https://img.shields.io/badge/Patent-Pending%20%2363%2F996%2C819-orange.svg)](ppa/README_PPA.md)
-[![Tests](https://img.shields.io/badge/Tests-1753%20passing-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-2012%20passing-brightgreen.svg)](tests/)
 [![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.9.0-blueviolet.svg)](docs/PROTOCOL.md)
 [![Sponsor](https://img.shields.io/badge/Sponsor-Support-pink.svg)](https://github.com/sponsors/Lama999901)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.PLACEHOLDER.svg)](https://doi.org/10.5281/zenodo.PLACEHOLDER)
@@ -13,7 +13,7 @@
 **Site:** https://metagenesis-core.dev
 **Contact:** yehor@metagenesis-core.dev
 **PPA:** USPTO #63/996,819 -- filed 2026-03-05
-**Version:** v0.9.0 | 20 claims | 1753 tests | 8 innovations | 88% coverage | 19 agent checks
+**Version:** v0.9.0 | 20 claims | 2012 tests | 8 innovations | 87.8% coverage | 20 agent checks
 
 ---
 
@@ -151,7 +151,7 @@ Every claim is backed by adversarial tests that attempt to break it. Every test 
 
 ```bash
 python -m pytest tests/ -q
-# -> 1753 passed
+# -> 2012 passed
 ```
 
 ### 5 Attack Classes (CERT-05)
@@ -250,14 +250,14 @@ All 20 claims have Step Chain (execution_trace + trace_root_hash). Physical anch
 
 ## The Agent Evolution System
 
-MetaGenesis Core includes an autonomous agent monitoring system -- 19 checks that run daily in CI, ensuring the protocol and its documentation remain consistent, complete, and correct.
+MetaGenesis Core includes an autonomous agent monitoring system -- 20 checks that run daily in CI, ensuring the protocol and its documentation remain consistent, complete, and correct.
 
-### The 19 Checks
+### The 20 Checks
 
 | # | Check | What it verifies |
 |---|-------|-----------------|
 | 1 | `steward` | `steward_audit.py` passes -- governance rules enforced |
-| 2 | `tests` | All 1753 tests pass |
+| 2 | `tests` | All 2012 tests pass |
 | 3 | `deep` | `deep_verify.py` -- 13 independent proof tests |
 | 4 | `docs` | Stale documentation detection via `check_stale_docs.py` |
 | 5 | `manifest` | `system_manifest.json` matches actual repo state |
@@ -275,12 +275,13 @@ MetaGenesis Core includes an autonomous agent monitoring system -- 19 checks tha
 | 17 | `diff_review` | AST structural diff review |
 | 18 | `auto_pr` | Level 3 autonomous PR queue -- agents create PRs, Yehor approves |
 | 19 | `semantic_audit` | Project coherence -- physical anchors, claim matrix, innovations, patent integrity |
+| 20 | `self_audit` | Recursive integrity verification of all core scripts |
 
 **Coverage floor locked:** 88% achieved in v0.9.0. Check #11 enforces minimum 65%. Any PR dropping below 65% is automatically blocked.
 
 ```bash
 python scripts/agent_evolution.py --summary
-# -> ALL 19 CHECKS PASSED -- system healthy
+# -> ALL 20 CHECKS PASSED -- system healthy
 ```
 
 The system runs automatically on every CI merge via `.github/workflows/total_audit_guard.yml`. When a check fails, the merge is blocked.
@@ -316,7 +317,7 @@ Why: thresholds like `|Dacc| <= 0.02` are chosen conventions, not physical const
 
 ### ENV_001 -- Test Environment
 
-All 1753 tests pass in the reference environment (Python 3.11+, stdlib only). No database dependencies. No external services. No network required.
+All 2012 tests pass in the reference environment (Python 3.11+, stdlib only). No database dependencies. No external services. No network required.
 
 ### What MetaGenesis Core Does NOT Claim
 
@@ -344,13 +345,13 @@ python scripts/steward_audit.py
 # -> STEWARD AUDIT: PASS
 
 python -m pytest tests/ -q
-# -> 1753 passed
+# -> 2012 passed
 
 python scripts/deep_verify.py
 # -> ALL 13 TESTS PASSED
 
 python scripts/agent_evolution.py --summary
-# -> ALL 19 CHECKS PASSED -- system healthy
+# -> ALL 20 CHECKS PASSED -- system healthy
 ```
 
 ---
@@ -401,7 +402,7 @@ Read these files in order:
 ```
 1. CLAUDE.md                    <- PRIMARY: mission, traps, technical rules
 2. AGENTS.md                    <- hard rules, forbidden terms, protected files
-3. CONTEXT_SNAPSHOT.md          <- current state, 20 claims, 1753 tests
+3. CONTEXT_SNAPSHOT.md          <- current state, 20 claims, 2012 tests
 4. reports/canonical_state.md   <- authoritative claims list
 5. reports/known_faults.yaml    <- known limitations (SCOPE_001 + ENV_001)
 ```
