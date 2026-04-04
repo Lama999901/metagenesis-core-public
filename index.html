@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -3255,8 +3255,8 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
         }
         }
 
-        // Symbols — only for selected hexes (max MAX_SYMS)
-        if(!h.sym){ctx.globalAlpha=1;return;}
+        // Symbols — only for selected hexes (max MAX_SYMS), wait for fonts
+        if(!h.sym || !document.body.classList.contains('mg-ready')){ctx.globalAlpha=1;return;}
         if(!h._sP){
           // Unicode
           h._sP=[
@@ -3323,7 +3323,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
           var _sc  = _len<=2 ? 1.10 : _len<=4 ? 0.72 : 0.58;
           var _fw2 = _len<=2 ? '700' : _len<=4 ? '800' : '500';
           var _fs  = Math.max(10, Math.floor(_sc*ir + flow*ir*0.06));
-          var _fstr= _fw2+' '+_fs+'px "IBM Plex Mono",monospace';
+          var _fstr= _fw2+' '+_fs+'px "IBM Plex Mono","Courier New","DejaVu Sans Mono",monospace';
           if(ctx.font!==_fstr){ctx.font=_fstr;}
           ctx.globalAlpha = Math.min(alpha, 0.85);
           ctx.fillStyle = 'rgb(0,'+_sgv+','+_sbv+')';
