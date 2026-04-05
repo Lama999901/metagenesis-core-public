@@ -156,13 +156,14 @@ class TestMain:
 
     def test_main_no_auto_pr_needed(self, capsys):
         """main() prints 'No auto-pr needed' when all detectors pass."""
-        stale_result = {"stale": False, "manifest_count": 1634, "actual_count": 1634}
+        stale_result = {"stale": False, "manifest_count": 2012, "actual_count": 2012}
         sync_result = {"synced": True, "manifest_version": "0.9.0", "tag_version": "0.9.0"}
 
         with patch.object(agent_pr_creator, "detect_stale_counters", return_value=stale_result), \
              patch.object(agent_pr_creator, "detect_forbidden_terms", return_value=[]), \
              patch.object(agent_pr_creator, "detect_manifest_sync", return_value=sync_result), \
              patch.object(agent_pr_creator, "detect_coverage_drop", return_value=None), \
+             patch.object(agent_pr_creator, "detect_pilot_queue_stale", return_value=[]), \
              patch("sys.argv", ["agent_pr_creator.py", "--summary"]):
             result = agent_pr_creator.main()
 
