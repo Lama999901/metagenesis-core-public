@@ -163,6 +163,7 @@ class TestMain:
              patch.object(agent_pr_creator, "detect_forbidden_terms", return_value=[]), \
              patch.object(agent_pr_creator, "detect_manifest_sync", return_value=sync_result), \
              patch.object(agent_pr_creator, "detect_coverage_drop", return_value=None), \
+             patch.object(agent_pr_creator, "detect_pilot_queue_stale", return_value=[]), \
              patch("sys.argv", ["agent_pr_creator.py", "--summary"]):
             result = agent_pr_creator.main()
 
