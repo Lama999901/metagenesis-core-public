@@ -69,7 +69,7 @@ CRITICAL_FILES = {
 CONTENT_CHECKS = {
     "llms.txt": {
         "banned": ["595 passing", "595 passed", "16 evolution checks", "Claims: 18", "Domains: 7 (", "906 passed", "906 tests", "966 passed", "966 tests", "1050 passed", "1050 tests", "1125 passed", "1125 tests", "1273 passed", "1273 tests", "1313 passed", "1313 tests", "1634 passed", "1634 tests", "1750 passed", "1750 tests", "1753 passed", "1753 tests"],
-        "required": ["2063", "v0.9", "20 active claims", "PHYS-01", "PHYS-02"],
+        "required": ["2063", "v0.9", "20 domain verification templates", "PHYS-01", "PHYS-02"],
     },
     "CONTEXT_SNAPSHOT.md": {
         "banned": ["595 passing", "595 passed", "v0.6.0", "Domains | 7", "906 passed", "906 tests", "966 passed", "966 tests", "1050 passed", "1050 tests", "1125 passed", "1125 tests", "1273 passed", "1273 tests", "1313 passed", "1313 tests", "1634 passed", "1634 tests", "1750 passed", "1750 tests", "1753 passed", "1753 tests"],
@@ -121,7 +121,7 @@ CONTENT_CHECKS = {
     },
     "README.md": {
         "banned": ["295 passing", "511 passing", "526 passing", "544 passing", "595 passing", "601 passing", "601", "6 innovations", "7 innovations", "14 agent checks", "17 agent checks", "18 agent checks", "19 agent checks", "The 14 Checks", "The 17 Checks", "The 18 Checks", "The 19 Checks", "ALL 14 CHECKS PASSED", "ALL 17 CHECKS PASSED", "ALL 18 CHECKS PASSED", "ALL 19 CHECKS PASSED", "10 automated", "18 verified claims", "17 autonomous", "15 Active Verification", "Tests-608%20passing", "Tests-651%20passing", "Tests-734%20passing", "Tests-906%20passing", "906 passing", "Tests-966%20passing", "966 passing", "Tests-1050%20passing", "1050 passing", "Tests-1125%20passing", "1125 passing", "Tests-1273%20passing", "Tests-1313%20passing", "1273 passing", "1313 passing", "Tests-1634%20passing", "1634 passing", "Tests-1750%20passing", "1750 passing", "Tests-1753%20passing", "1753 passing", "21/21"],
-        "required": ["2063", "8 innovations", "20 agent checks", "The 20 Checks", "ALL 20 CHECKS PASSED", "20 claims", "PHYS-01", "PHYS-02", "Tests-2012%20passing"],
+        "required": ["2063", "8 innovations", "20 agent checks", "The 20 Checks", "ALL 20 CHECKS PASSED", "20 claims", "PHYS-01", "PHYS-02", "Tests-2063%20passing"],
     },
     "index.html": {
         "banned": ["<span>10</span>", "14 active domain claims", "Fourteen</span> claims", "Fifteen</span> claims", "15 active domain claims", "18 active domain claims", "Eighteen</span> claims", "hv\">v0.7.0", "hv\">v0.8.0"],
