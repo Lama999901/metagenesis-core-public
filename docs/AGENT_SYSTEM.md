@@ -23,7 +23,7 @@ Key properties:
 
 Scripts: mg.py, mg_sign.py, mg_ed25519.py, mg_temporal.py, deep_verify.py
 Purpose: 5-layer verification of computational claims.
-Autonomy: Low -- verified against 2012 adversarial tests before any change.
+Autonomy: Low -- verified against 2063 adversarial tests before any change.
 
 Layers:
 1. SHA-256 integrity (pack_manifest.json)
@@ -59,7 +59,7 @@ AGENT-DRIFT-01 uses the same step chain mechanism as all 20 claims.
 
 ## Claim Coverage
 
-All 20 active claims verified through 4-step hash chains:
+All 20 domain templates verified through 4-step hash chains:
 MTR-1, MTR-2, MTR-3, MTR-4, MTR-5, MTR-6,
 SYSID-01, DATA-PIPE-01, DRIFT-01,
 ML_BENCH-01, DT-FEM-01, ML_BENCH-02, ML_BENCH-03,

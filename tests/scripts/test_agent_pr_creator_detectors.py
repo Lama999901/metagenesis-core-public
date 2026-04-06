@@ -156,7 +156,7 @@ class TestMain:
 
     def test_main_no_auto_pr_needed(self, capsys):
         """main() prints 'No auto-pr needed' when all detectors pass."""
-        stale_result = {"stale": False, "manifest_count": 1634, "actual_count": 1634}
+        stale_result = {"stale": False, "manifest_count": 2063, "actual_count": 2063}
         sync_result = {"synced": True, "manifest_version": "0.9.0", "tag_version": "0.9.0"}
 
         with patch.object(agent_pr_creator, "detect_stale_counters", return_value=stale_result), \

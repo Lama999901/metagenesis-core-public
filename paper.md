@@ -52,9 +52,9 @@ measured in thousands of laboratories worldwide) through calibration, FEM
 simulation, and drift monitoring. Each link is cryptographically committed;
 tampering any link invalidates all downstream hashes.
 
-The protocol ships with 20 active verification claims across 8 domains
+The protocol ships with 20 domain verification templates across 8 domains
 (materials science, ML/AI, system identification, data pipelines, digital
-twin, pharma/biotech, and financial risk), 2012 adversarial tests, and
+twin, pharma/biotech, and financial risk), 2063 adversarial tests, and
 governance enforcement that prevents any registered claim from existing
 without a corresponding implementation — and vice versa.
 
@@ -359,7 +359,7 @@ Claude (Anthropic) was used as the primary development tool throughout
 this project: architecture decisions, code implementation, patent
 application drafting, and documentation. All AI-generated outputs were
 verified by the author through the project's own adversarial test suite
-(2012 tests), steward audit, and 13-test deep verification script.
+(2063 tests), steward audit, and 13-test deep verification script.
 Quality was ensured by governance-enforced bidirectional coverage — every
 claim must have tests and every test must correspond to a claim — and
 5-layer tamper-evident verification where each layer catches attacks the

@@ -507,6 +507,40 @@ def check_self_audit():
         return False
 
 
+# ── 21. Real vs Synthetic Ratio ─────────────────────────────────────────────
+def check_real_vs_synthetic():
+    section("REAL VS SYNTHETIC — Proof Library Audit")
+    index_path = REPO_ROOT / "proof_library" / "index.json"
+    if not index_path.exists():
+        err("No proof_library/index.json — PROOF_LIBRARY_EXISTS = false")
+        info("Run: python scripts/mg_claim_builder.py to create first real verification")
+        return False
+
+    try:
+        entries = json.loads(index_path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        err("proof_library/index.json is corrupt")
+        return False
+
+    real_count = sum(1 for e in entries if not e.get("is_synthetic", True))
+    synthetic_baseline = 20  # the 20 domain templates
+    total = real_count + synthetic_baseline
+    ratio = real_count / total if total > 0 else 0.0
+
+    info(f"Real verifications: {real_count} | Synthetic templates: {synthetic_baseline} | Ratio: {ratio:.1%}")
+
+    if real_count == 0:
+        err(f"No external computation verified yet. REAL_VERIFICATIONS = 0")
+        info("Run: python scripts/mg_claim_builder.py --input <data> --script <cmd> --output <result> --domain <domain> --label <id>")
+        return False
+    elif ratio < 0.20:
+        warn(f"Real verifications: {real_count}/{total}. Target: >20% real.")
+        return True  # WARN but pass
+    else:
+        ok(f"Real/Synthetic ratio: {ratio:.1%} ({real_count} real / {synthetic_baseline} synthetic)")
+        return True
+
+
 # ── Main ─────────────────────────────────────────────────────────────────────
 def main():
     strict = "--strict" in sys.argv
@@ -543,6 +577,7 @@ def main():
     results["auto_pr"]    = check_auto_pr()
     results["semantic_audit"] = check_semantic_audit()
     results["self_audit"] = check_self_audit()
+    results["real_ratio"] = check_real_vs_synthetic()
 
     # ── Summary ──
     section("SUMMARY — Omnissiah's Verdict")
@@ -570,6 +605,7 @@ def main():
         "auto_pr":       ("Autonomous Forge current",         "AUTOPR"),
         "semantic_audit": ("Project semantically coherent",    "SEMANTIC"),
         "self_audit":     ("Recursive Inquisitor verified",     "SELFAUDIT"),
+        "real_ratio":     ("Proof Library audited",              "REALRATIO"),
     }
 
     for check, ok_val in results.items():
