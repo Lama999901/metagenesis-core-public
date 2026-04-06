@@ -1,0 +1,17 @@
+[
+  {
+    "id": "mg-tests-baseline-20260406T015900Z",
+    "date": "2026-04-06T01:59:27.612076+00:00",
+    "domain": "internal test verification",
+    "is_synthetic": false,
+    "input_hash": "44c85d8cb24607c0201067cd29274f6274106a6e1be764c71682b2e446cb51d7",
+    "script_hash": "352cf8b53bfcc1645ad20d95cca807b1020c1228481709cab897efd9f63d1791",
+    "output_hash": "976afcc999cdfa593c6986ea6335c29b1aecfef21b2e5fd83a3d8312fb9161a1",
+    "exit_code": 0,
+    "duration_ms": 26943,
+    "what_proved": "Determinism of 'python -m pytest tests/ --tb=no -q' on 'tests' → 'stdout'",
+    "what_not_proved": "Correctness or physical validity of the result",
+    "trace_root_hash": "32ae6ea00c8e222e1b6a5c22bda2335329ef6e55a84c8c2e9e604afd46fc6054",
+    "bundle_path": "proof_library\\bundles\\mg-tests-baseline_20260406T015900Z.zip"
+  }
+]

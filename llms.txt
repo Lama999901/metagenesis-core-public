@@ -23,7 +23,7 @@ A governance + evidence + verification protocol. An open standard.
 4. Detects drift against verified calibration anchors
 5. Cross-Claim Chain: MTR-1 → DT-FEM-01 → DRIFT-01 cryptographically linked end-to-end
 
-## 20 active claims
+## 20 domain verification templates
 
 MTR-1        mtr1_youngs_modulus_calibration          (materials — physical anchor E=70GPa)
 MTR-2        mtr2_thermal_paste_conductivity_calibration (materials — physical anchor)
@@ -101,13 +101,13 @@ Enforced by: python scripts/steward_audit.py → must output STEWARD AUDIT: PASS
 ## How to verify everything works
 
 python scripts/steward_audit.py                              # PASS
-python -m pytest tests/ -q                                   # 2012 passed
+python -m pytest tests/ -q                                   # 2063 passed
 python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 
 ## Current state (2026-03-31)
 
 - Claims: 20
-- Tests: 2012 passing
+- Tests: 2063 passing
 - Verification layers: 5 (integrity + semantic + step chain + bundle signing + temporal commitment)
 - Domains: 8 (materials, sysid, data, ml, digital_twin, pharma_biotech, financial_risk, fundamental_physics)
 - Cross-Claim Chain: MTR-1 → DT-FEM-01 → DRIFT-01 cryptographically linked via anchor_hash

@@ -13,7 +13,7 @@ Physical anchor in SI 2019 exact constants.
 
 **What it does:**
 - 5-layer verification (integrity, semantic, step chain, signing, temporal)
-- 20 active claims across 8 computational domains
+- 20 domain verification templates across 8 computational domains
 - Physical anchor chain from kB/NA to simulation outputs
 - Standalone verifier: one Python file, zero dependencies
 
@@ -52,7 +52,7 @@ Verified bundle → agent_registry.py → Zenodo API → DOI minted
 
 ## Level 3 — AGENT ECONOMY (v3.0)
 
-Autonomous agents verify each other's outputs.
+Automated policy enforcement verifies outputs.
 AI model produces result → Verification agent checks via MetaGenesis → Archive agent stores bundle permanently.
 The protocol becomes the trust layer between autonomous systems.
 
