@@ -197,4 +197,4 @@ A: We have 20 claim types. Email us with your use case.
 
 ---
 
-*Real Data Guide v0.9 — 2026-03-30 — MetaGenesis Core — 20 claims, 2012 tests*
+*Real Data Guide v0.9 — 2026-03-30 — MetaGenesis Core — 20 claims, 2063 tests*
