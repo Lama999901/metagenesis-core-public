@@ -1,0 +1,7 @@
+{
+  "seed": 300,
+  "sensor_type": "temperature_celsius",
+  "n_readings": 200,
+  "anomaly_rate": 0.0,
+  "device_id": "SENSOR-LAB-001"
+}

@@ -1,0 +1,7 @@
+{
+  "anchor_value": 70000000000.0,
+  "current_value": 69500000000.0,
+  "anchor_claim_id": "MTR-1",
+  "anchor_units": "Pa",
+  "drift_threshold_pct": 5.0
+}

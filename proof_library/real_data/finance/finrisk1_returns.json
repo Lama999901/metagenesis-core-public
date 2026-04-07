@@ -1,0 +1,10 @@
+{
+  "seed": 500,
+  "claimed_var": 0.023,
+  "var_tolerance": 0.005,
+  "confidence_level": 0.99,
+  "n_obs": 2000,
+  "mu": 0.0001,
+  "sigma": 0.01,
+  "portfolio_id": "EQUITY-SP500-001"
+}

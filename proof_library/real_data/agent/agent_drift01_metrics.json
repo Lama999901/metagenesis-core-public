@@ -1,0 +1,15 @@
+{
+  "baseline": {
+    "tests_per_phase": 47,
+    "pass_rate": 1.0,
+    "regressions": 0,
+    "verifier_iterations": 1.2
+  },
+  "current": {
+    "tests_per_phase": 50,
+    "pass_rate": 1.0,
+    "regressions": 0,
+    "verifier_iterations": 1.1
+  },
+  "drift_threshold_pct": 20.0
+}

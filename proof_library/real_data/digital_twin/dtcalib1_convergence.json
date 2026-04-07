@@ -1,0 +1,9 @@
+{
+  "seed": 301,
+  "n_iterations": 15,
+  "initial_drift_pct": 18.0,
+  "convergence_rate": 0.35,
+  "convergence_threshold": 2.5,
+  "noise_scale": 0.08,
+  "twin_id": "TWIN-FEM-001"
+}
