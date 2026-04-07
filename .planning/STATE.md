@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v3.0.0
 milestone_name: Client-Ready Protocol
 status: executing
-stopped_at: Completed 23-02-PLAN.md (batch runner + 20 bundles, ratio 51.2%)
-last_updated: "2026-04-07T05:31:16.885Z"
+stopped_at: Completed 23-03-PLAN.md
+last_updated: "2026-04-07T05:46:07.564Z"
 last_activity: 2026-04-07
 progress:
   total_phases: 4
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 3
-  completed_plans: 2
-  percent: 67
+  completed_plans: 3
+  percent: 100
 ---
 
 # Project State
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-04-06)
 ## Current Position
 
 Phase: 23 (Real Verification) -- first of 4 phases (23-26)
-Plan: 2 of 3 complete
+Plan: 3 of 3 complete
 Status: Ready to execute
 Last activity: 2026-04-07
 
@@ -59,6 +59,7 @@ Progress: [###.......] 33%
 Decisions logged in PROJECT.md Key Decisions table.
 
 - [Phase 23-real-verification]: Fixed mg_claim_builder.py pack_manifest format to match mg.py verify expectations (protocol_version + list-of-dicts files)
+- [Phase 23-real-verification]: Compute ratio from index.json instead of system_manifest.json due to side-effect corruption from other test suites
 
 ### Pending Todos
 
@@ -72,6 +73,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-04-07T05:31:16.882Z
-Stopped at: Completed 23-02-PLAN.md (batch runner + 20 bundles, ratio 51.2%)
+Last session: 2026-04-07T05:46:07.560Z
+Stopped at: Completed 23-03-PLAN.md
 Resume file: None
