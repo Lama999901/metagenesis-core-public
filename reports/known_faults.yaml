@@ -1,20 +1,20 @@
 ---
 # Known Faults Registry
 # Authority: MetaGenesis Core / STEW-01
-# Last updated: 2026-03-19 (steward_audit PASS, 2063 tests PASS)
+# Last updated: 2026-03-19 (steward_audit PASS, 2078 tests PASS)
 
 known_faults:
   - fault_id: "ENV_001"
     category: "TEST_ENVIRONMENT"
     severity: "EXPECTED"
     description: >
-      All 2063 tests pass in the reference environment (Python 3.11+, stdlib only).
+      All 2078 tests pass in the reference environment (Python 3.11+, stdlib only).
       No database dependencies. No external services. No network required.
       Local environment deviations may require matching Python version.
     affected_claims: []
     status: "FAULT_EXPECTED"
     ticket_ref: "https://github.com/Lama999901/metagenesis-core-public/issues"
-    mitigation: "Run: python -m pytest tests/ -q  # → 2063 passed"
+    mitigation: "Run: python -m pytest tests/ -q  # → 2078 passed"
 
   - fault_id: "SCOPE_001"
     category: "PROTOCOL_SCOPE"
@@ -45,7 +45,7 @@ known_faults:
       Testing this via pytest would require pytest testing itself through a
       subprocess chain, which is circular and produces no additional confidence.
       The 13 proof tests that deep_verify.py orchestrates ARE the tests —
-      they run directly in the main test suite (2063 tests) and are verified
+      they run directly in the main test suite (2078 tests) and are verified
       by CERT-02 through CERT-12. Excluding deep_verify.py, code coverage
       is 91.9%. This is the honest ceiling. Reporting 88% overall (including
       the untestable orchestrator) would misrepresent the actual state of
@@ -66,4 +66,4 @@ audit_metadata:
   critical_faults: 0
   expected_faults: 3
   system_impact: "NONE — no external dependencies, stdlib only"
-  ci_impact: "NONE — 2063 tests pass, steward_audit PASS"
+  ci_impact: "NONE — 2078 tests pass, steward_audit PASS"
