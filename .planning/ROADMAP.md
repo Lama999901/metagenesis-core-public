@@ -104,7 +104,9 @@ Plans:
   1. User runs one command, picks a domain, and sees claims run, bundle created, verification PASS, and human-readable receipt printed
   2. Each domain demo produces a receipt file via mg_receipt.py that a non-technical person can read and understand
   3. Demo completes fully with no network access (temporal layer degrades gracefully)
-**Plans**: TBD
+**Plans:** 1 plan
+Plans:
+- [ ] 24-01-PLAN.md -- mg_demo.py script + tests (domain picker, bundle verification, receipt generation)
 
 ### Phase 25: Client-Facing Documentation
 **Goal**: A prospective client finds answers to "how much does it cost," "is it secure," and "how does the protocol work" without reading source code
@@ -135,7 +137,7 @@ Plans:
 | 9-13 | v1.0.0 | - | Complete | 2026-04-04 |
 | 14-22 | v2.0.0 | - | Complete | 2026-04-04 |
 | 23. Real Verification | v3.0.0 | 3/3 | Complete   | 2026-04-07 |
-| 24. Client Demo Flow | v3.0.0 | 0/TBD | Not started | - |
+| 24. Client Demo Flow | v3.0.0 | 0/1 | Planned | - |
 | 25. Client-Facing Docs | v3.0.0 | 0/TBD | Not started | - |
 | 26. Counter Sync + Gates | v3.0.0 | 0/TBD | Not started | - |
 
