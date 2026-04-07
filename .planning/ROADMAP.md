@@ -75,8 +75,8 @@ See `.planning/milestones/v2.0.0-ROADMAP.md` for full phase details.
 **Milestone Goal:** Push real_ratio from 4.8% to 50% by verifying all 20 active claims with real external data, delivering end-to-end client demo flow, and hardening all gates for ship.
 
 - [x] **Phase 23: Real Verification** - Run all 20 active claims with real external data via mg_claim_builder.py, produce signed bundles grouped by domain (completed 2026-04-07)
-- [x] **Phase 24: Client Demo Flow** - Single-command demo script: pick domain, run claims, bundle, verify, receipt -- works offline (completed 2026-04-07)
-- [ ] **Phase 25: Client-Facing Documentation** - COMMERCIAL.md, SECURITY.md, docs/PROTOCOL.md for client trust
+- [x] **Phase 24: Client Demo Flow** - Single-command demo script: pick domain, run claims, bundle, verify, receipt -- works offline (completed 2026-04-07)
+- [x] **Phase 25: Client-Facing Documentation** - COMMERCIAL.md, SECURITY.md, docs/PROTOCOL.md for client trust (completed 2026-04-07)
 - [ ] **Phase 26: Counter Sync and Gate Hardening** - All counters consistent, check_stale_docs rules updated, all 5 gates green at ship
 
 ## Phase Details
@@ -116,7 +116,9 @@ Plans:
   1. COMMERCIAL.md exists with pricing ($299), pilot flow description, and Stripe payment link
   2. SECURITY.md exists with threat model and explanation of how each of the 5 verification layers defends against specific attack classes
   3. docs/PROTOCOL.md exists with protocol specification prose that explains the verification flow end-to-end
-**Plans**: TBD
+**Plans:** 1/1 plans complete
+Plans:
+- [x] 25-01-PLAN.md — Update COMMERCIAL.md (Stripe link, pilot flow) and SECURITY.md (attack class table, threat model)
 
 ### Phase 26: Counter Sync and Gate Hardening
 **Goal**: Every counter, every gate, and every stale-docs rule is consistent and green -- the project ships clean
@@ -138,9 +140,9 @@ Plans:
 | 14-22 | v2.0.0 | - | Complete | 2026-04-04 |
 | 23. Real Verification | v3.0.0 | 3/3 | Complete   | 2026-04-07 |
 | 24. Client Demo Flow | v3.0.0 | 1/1 | Complete   | 2026-04-07 |
-| 25. Client-Facing Docs | v3.0.0 | 0/TBD | Not started | - |
+| 25. Client-Facing Docs | v3.0.0 | 1/1 | Complete   | 2026-04-07 |
 | 26. Counter Sync + Gates | v3.0.0 | 0/TBD | Not started | - |
 
 ---
 *Roadmap created: 2026-03-17*
-*Last updated: 2026-04-06 -- Phase 23 planned: 3 plans in 3 waves*
+*Last updated: 2026-04-07 -- Phase 25 planned: 1 plan in 1 wave*

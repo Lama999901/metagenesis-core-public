@@ -59,9 +59,9 @@
 
 - [ ] **DOCS-01**: All counters consistent (index.html, README, AGENTS, llms.txt, system_manifest, CONTEXT_SNAPSHOT)
 - [ ] **DOCS-02**: check_stale_docs.py rules updated to match final counts in same PR
-- [ ] **DOCS-03**: COMMERCIAL.md created (pricing, pilot flow, Stripe link)
-- [ ] **DOCS-04**: SECURITY.md created (threat model, 5-layer defense)
-- [ ] **DOCS-05**: docs/PROTOCOL.md created (protocol specification prose)
+- [x] **DOCS-03**: COMMERCIAL.md created (pricing, pilot flow, Stripe link)
+- [x] **DOCS-04**: SECURITY.md created (threat model, 5-layer defense)
+- [x] **DOCS-05**: docs/PROTOCOL.md created (protocol specification prose)
 
 ### Gate Hardening
 
@@ -129,9 +129,9 @@
 | DEMO-03 | Phase 24 | Complete |
 | DOCS-01 | Phase 26 | Pending |
 | DOCS-02 | Phase 26 | Pending |
-| DOCS-03 | Phase 25 | Pending |
-| DOCS-04 | Phase 25 | Pending |
-| DOCS-05 | Phase 25 | Pending |
+| DOCS-03 | Phase 25 | Complete |
+| DOCS-04 | Phase 25 | Complete |
+| DOCS-05 | Phase 25 | Complete |
 | GATE-01 | Phase 26 | Pending |
 | GATE-02 | Phase 26 | Pending |
 | GATE-03 | Phase 26 | Pending |
