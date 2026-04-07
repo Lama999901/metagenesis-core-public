@@ -39,32 +39,47 @@
 - [x] **HARD-02**: All counters consistent across docs (test count, version, claim count, innovation count)
 - [x] **HARD-03**: All verification gates pass: steward_audit, pytest, deep_verify, check_stale_docs, agent_diff_review
 
-## v3.0.0 Requirements (Client-Ready Foundation)
+## v3.0.0 Requirements (Client-Ready Protocol)
 
-### Guided Onboarding (Phase 23)
+### Real Verification
 
-- [ ] **ONBOARD-01**: scripts/mg_onboard.py interactive flow — walks user from zero to first verified bundle
-- [ ] **ONBOARD-02**: Plain English error messages in mg.py verify (no stack traces for common errors)
-- [ ] **ONBOARD-03**: docs/QUICKSTART.md — 3 steps to first bundle
+- [ ] **REAL-01**: All 20 active claims verified with real external data via mg_claim_builder.py
+- [ ] **REAL-02**: Each verified claim produces a signed bundle in proof_library/bundles/
+- [x] **REAL-03**: Bundles grouped by domain (ML, pharma, finance, digital_twin, materials, physics)
+- [ ] **REAL-04**: real_ratio reaches 50% (20 real / 40 total) — check #21 shows PASS
+- [ ] **REAL-05**: All 20 bundles pass `mg.py verify --pack` independently
 
-### Client-Facing Receipt (Phase 24)
+### Client Demo
 
-- [ ] **RECEIPT-01**: mg_receipt.py produces auditor-readable output — no jargon, includes verify command
+- [ ] **DEMO-01**: Single-command demo script: pick domain → run claims → bundle → verify → receipt
+- [ ] **DEMO-02**: Demo produces human-readable receipt (mg_receipt.py) for each domain bundle
+- [ ] **DEMO-03**: Demo works offline (no network dependency except optional temporal layer)
 
-### REST API (Phase 25)
+### Documentation
 
-- [ ] **API-01**: scripts/mg_api.py FastAPI wrapper — POST /verify, GET /health, GET /claims, local only
+- [ ] **DOCS-01**: All counters consistent (index.html, README, AGENTS, llms.txt, system_manifest, CONTEXT_SNAPSHOT)
+- [ ] **DOCS-02**: check_stale_docs.py rules updated to match final counts in same PR
+- [ ] **DOCS-03**: COMMERCIAL.md created (pricing, pilot flow, Stripe link)
+- [ ] **DOCS-04**: SECURITY.md created (threat model, 5-layer defense)
+- [ ] **DOCS-05**: docs/PROTOCOL.md created (protocol specification prose)
 
-### Response Readiness (Phase 26)
+### Gate Hardening
 
-- [ ] **SCENARIO-01**: docs/CLIENT_SCENARIOS.md — domain-specific playbook for all 13 outreach contacts
-- [ ] **RESPONSE-01**: agent_responder.py verified and mapped for all 13 outreach contacts
+- [ ] **GATE-01**: steward_audit.py → PASS at ship
+- [ ] **GATE-02**: pytest ≥2063 passed at ship
+- [ ] **GATE-03**: deep_verify.py → ALL 13 TESTS PASSED at ship
+- [ ] **GATE-04**: agent_evolution.py → ALL 21 CHECKS PASSED at ship
+- [ ] **GATE-05**: agent_diff_review.py → PASS at ship
 
-## v2 Requirements (deferred from v2.0.0)
+## Future Requirements (deferred)
 
-### Advanced Client Features
+### v4.0.0
 
-- **CLIENT-V2-01**: Zoho Mail API integration for automated email sending (currently file-based drafts)
+- **FUTURE-01**: Web dashboard for bundle verification (CLI-first for now)
+- **FUTURE-02**: Real-time Zoho Mail API integration (file-based drafts for now)
+- **FUTURE-03**: New claim domains beyond existing 20
+- **FUTURE-04**: Mobile verification app
+- **CLIENT-V2-01**: Zoho Mail API integration for automated email sending
 - **CLIENT-V2-02**: Web dashboard for pilot queue management
 - **CLIENT-V2-03**: Automatic Stripe invoice generation per pilot conversion
 
@@ -72,13 +87,14 @@
 
 | Feature | Reason |
 |---------|--------|
-| New verification layers | Testing and automating what exists |
-| New claim domains (21+) | Client onboarding uses existing 20 claims |
+| New verification layers or innovations | v3.0.0 validates what exists, not new architecture |
+| New claim domains beyond 20 | Proving existing 20 with real data is the priority |
 | Modifying steward_audit.py | Sealed, CI-locked |
-| Real-time Zoho Mail API | File-based drafts sufficient for v1.0.0 |
 | Pricing changes | $299 fixed, Stripe link live |
-| Mobile/web dashboard | CLI-first, deferred to v2 |
-| deep_verify.py coverage | load_module uses subprocess, untestable without refactor |
+| Mobile/web dashboard | CLI-first, deferred to v4.0.0 |
+| deep_verify.py coverage refactor | load_module uses subprocess, untestable without refactor |
+| REST API wrapper | Deferred — CLI-first for v3.0.0 |
+| Guided onboarding wizard | Deferred — demo script covers v3.0.0 |
 
 ## Traceability
 
@@ -103,12 +119,31 @@
 | HARD-01 | Phase 13 | Complete |
 | HARD-02 | Phase 13 | Complete |
 | HARD-03 | Phase 13 | Complete |
+| REAL-01 | Phase 23 | Pending |
+| REAL-02 | Phase 23 | Pending |
+| REAL-03 | Phase 23 | Complete |
+| REAL-04 | Phase 23 | Pending |
+| REAL-05 | Phase 23 | Pending |
+| DEMO-01 | Phase 24 | Pending |
+| DEMO-02 | Phase 24 | Pending |
+| DEMO-03 | Phase 24 | Pending |
+| DOCS-01 | Phase 26 | Pending |
+| DOCS-02 | Phase 26 | Pending |
+| DOCS-03 | Phase 25 | Pending |
+| DOCS-04 | Phase 25 | Pending |
+| DOCS-05 | Phase 25 | Pending |
+| GATE-01 | Phase 26 | Pending |
+| GATE-02 | Phase 26 | Pending |
+| GATE-03 | Phase 26 | Pending |
+| GATE-04 | Phase 26 | Pending |
+| GATE-05 | Phase 26 | Pending |
 
 **Coverage:**
-- v1.0.0 requirements: 19 total
-- Complete: 19
-- Unmapped: 0 ✓
+- v1.0.0 requirements: 19 total -- 19 complete
+- v3.0.0 requirements: 18 total
+- Mapped to phases: 18/18
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-04-03*
-*Last updated: 2026-04-04 after v2.0.0 close — synced with ROADMAP.md reality*
+*Last updated: 2026-04-06 after v3.0.0 roadmap created -- all 18 requirements mapped to phases 23-26*
