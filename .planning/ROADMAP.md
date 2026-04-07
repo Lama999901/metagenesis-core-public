@@ -90,10 +90,10 @@ See `.planning/milestones/v2.0.0-ROADMAP.md` for full phase details.
   2. Bundles are organized in proof_library/bundles/ grouped by domain (ML, pharma, finance, digital_twin, materials, physics)
   3. Every bundle passes `python scripts/mg.py verify --pack <bundle>` independently
   4. `python scripts/agent_evolution.py` check #21 (real_ratio) shows 50% (20 real / 40 total) and reports PASS
-**Plans:** 1/3 plans executed
+**Plans:** 2/3 plans executed
 Plans:
 - [x] 23-01-PLAN.md — Create 20 real input data files and run_single_claim.py helper
-- [ ] 23-02-PLAN.md — Create batch runner and execute all 20 claim verifications
+- [x] 23-02-PLAN.md — Create batch runner and execute all 20 claim verifications
 - [ ] 23-03-PLAN.md — Tests and final verification (all bundles PASS, check #21 PASS)
 
 ### Phase 24: Client Demo Flow
@@ -134,7 +134,7 @@ Plans:
 | 5-8 | v0.5.0 | - | Complete | 2026-03-18 |
 | 9-13 | v1.0.0 | - | Complete | 2026-04-04 |
 | 14-22 | v2.0.0 | - | Complete | 2026-04-04 |
-| 23. Real Verification | v3.0.0 | 1/3 | In Progress|  |
+| 23. Real Verification | v3.0.0 | 2/3 | In Progress|  |
 | 24. Client Demo Flow | v3.0.0 | 0/TBD | Not started | - |
 | 25. Client-Facing Docs | v3.0.0 | 0/TBD | Not started | - |
 | 26. Counter Sync + Gates | v3.0.0 | 0/TBD | Not started | - |

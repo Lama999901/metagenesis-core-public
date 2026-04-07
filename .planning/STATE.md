@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v3.0.0
 milestone_name: Client-Ready Protocol
 status: executing
-stopped_at: Completed 23-01-PLAN.md (20 real data files + run_single_claim.py)
-last_updated: "2026-04-07T05:23:29Z"
-last_activity: 2026-04-07 -- Plan 23-01 complete
+stopped_at: Completed 23-02-PLAN.md (batch runner + 20 bundles, ratio 51.2%)
+last_updated: "2026-04-07T05:31:16.885Z"
+last_activity: 2026-04-07
 progress:
   total_phases: 4
   completed_phases: 0
   total_plans: 3
-  completed_plans: 1
-  percent: 33
+  completed_plans: 2
+  percent: 67
 ---
 
 # Project State
@@ -26,9 +26,9 @@ See: .planning/PROJECT.md (updated 2026-04-06)
 ## Current Position
 
 Phase: 23 (Real Verification) -- first of 4 phases (23-26)
-Plan: 1 of 3 complete
-Status: Executing
-Last activity: 2026-04-07 -- Plan 23-01 complete (20 data files + run_single_claim.py)
+Plan: 2 of 3 complete
+Status: Ready to execute
+Last activity: 2026-04-07
 
 Progress: [###.......] 33%
 
@@ -58,6 +58,8 @@ Progress: [###.......] 33%
 
 Decisions logged in PROJECT.md Key Decisions table.
 
+- [Phase 23-real-verification]: Fixed mg_claim_builder.py pack_manifest format to match mg.py verify expectations (protocol_version + list-of-dicts files)
+
 ### Pending Todos
 
 - Zenodo DOI minting (manual, 5 min at zenodo.org)
@@ -70,6 +72,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-04-07
-Stopped at: Completed 23-01-PLAN.md (20 real data files + run_single_claim.py)
+Last session: 2026-04-07T05:31:16.882Z
+Stopped at: Completed 23-02-PLAN.md (batch runner + 20 bundles, ratio 51.2%)
 Resume file: None

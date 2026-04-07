@@ -43,10 +43,10 @@
 
 ### Real Verification
 
-- [ ] **REAL-01**: All 20 active claims verified with real external data via mg_claim_builder.py
-- [ ] **REAL-02**: Each verified claim produces a signed bundle in proof_library/bundles/
+- [x] **REAL-01**: All 20 active claims verified with real external data via mg_claim_builder.py
+- [x] **REAL-02**: Each verified claim produces a signed bundle in proof_library/bundles/
 - [x] **REAL-03**: Bundles grouped by domain (ML, pharma, finance, digital_twin, materials, physics)
-- [ ] **REAL-04**: real_ratio reaches 50% (20 real / 40 total) — check #21 shows PASS
+- [x] **REAL-04**: real_ratio reaches 50% (20 real / 40 total) — check #21 shows PASS
 - [ ] **REAL-05**: All 20 bundles pass `mg.py verify --pack` independently
 
 ### Client Demo
@@ -119,10 +119,10 @@
 | HARD-01 | Phase 13 | Complete |
 | HARD-02 | Phase 13 | Complete |
 | HARD-03 | Phase 13 | Complete |
-| REAL-01 | Phase 23 | Pending |
-| REAL-02 | Phase 23 | Pending |
+| REAL-01 | Phase 23 | Complete |
+| REAL-02 | Phase 23 | Complete |
 | REAL-03 | Phase 23 | Complete |
-| REAL-04 | Phase 23 | Pending |
+| REAL-04 | Phase 23 | Complete |
 | REAL-05 | Phase 23 | Pending |
 | DEMO-01 | Phase 24 | Pending |
 | DEMO-02 | Phase 24 | Pending |
