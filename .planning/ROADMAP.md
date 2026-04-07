@@ -78,6 +78,7 @@ See `.planning/milestones/v2.0.0-ROADMAP.md` for full phase details.
 - [x] **Phase 24: Client Demo Flow** - Single-command demo script: pick domain, run claims, bundle, verify, receipt -- works offline (completed 2026-04-07)
 - [x] **Phase 25: Client-Facing Documentation** - COMMERCIAL.md, SECURITY.md, docs/PROTOCOL.md for client trust (completed 2026-04-07)
 - [x] **Phase 26: Counter Sync and Gate Hardening** - All counters consistent, check_stale_docs rules updated, all 5 gates green at ship (completed 2026-04-07)
+- [ ] **Phase 27: Polish and Debt Cleanup** - Fix receipt reproduce commands, system_manifest ratio regression, receipt Result field fidelity, re-run gates
 
 ## Phase Details
 
@@ -132,6 +133,20 @@ Plans:
 Plans:
 - [x] 26-01-PLAN.md — Counter sync across all documentation files + check_stale_docs.py rules
 - [x] 26-02-PLAN.md — Run all 5 verification gates and fix failures
+
+### Phase 27: Polish and Debt Cleanup
+**Goal**: Fix integration gap (receipt reproduce commands) and tech debt (system_manifest ratio, receipt Result field) identified by milestone audit
+**Depends on**: Phase 26 (all phases complete, audit done)
+**Requirements**: Gap closure — no new REQ-IDs
+**Gap Closure**: Closes gaps from v3.0.0-MILESTONE-AUDIT.md
+**Success Criteria** (what must be TRUE):
+  1. Receipt reproduce commands work: `python scripts/mg.py verify --pack <bundle.zip>` succeeds (or receipt shows correct extraction step)
+  2. system_manifest.json shows real_to_synthetic_ratio >= 0.50 (matches index.json reality)
+  3. Receipt Result field shows domain-specific metric instead of "See bundle for details"
+  4. All 5 verification gates still pass after fixes
+**Plans:** 1 plan
+Plans:
+- [ ] 27-01-PLAN.md — Fix receipt reproduce commands, system_manifest ratio, receipt Result field
 
 ## Progress
 
