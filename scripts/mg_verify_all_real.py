@@ -22,7 +22,8 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT))
 
 # Force UTF-8 on Windows to avoid cp1252 encoding errors
-if sys.platform == "win32":
+# Guard under __name__ == "__main__" to avoid breaking pytest's capture mechanism
+if sys.platform == "win32" and __name__ == "__main__":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
