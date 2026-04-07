@@ -40,6 +40,10 @@ def tmp_proof_library(tmp_path, monkeypatch):
     monkeypatch.setattr(mod, "PROOF_LIBRARY", lib)
     monkeypatch.setattr(mod, "BUNDLES_DIR", lib / "bundles")
     monkeypatch.setattr(mod, "INDEX_PATH", lib / "index.json")
+
+    # Redirect REPO_ROOT so _update_manifest writes to temp, not real manifest
+    (tmp_path / "system_manifest.json").write_text("{}", encoding="utf-8")
+    monkeypatch.setattr(mod, "REPO_ROOT", tmp_path)
     return lib
 
 

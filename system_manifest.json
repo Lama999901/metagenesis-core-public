@@ -52,11 +52,11 @@
   "inventor": "Yehor Bazhynov",
   "github_release": "v0.9.0",
   "joss_paper": "paper.md",
-  "real_verifications_count": 1,
+  "real_verifications_count": 21,
   "external_input_supported": true,
   "proof_library_exists": true,
-  "real_to_synthetic_ratio": 0.0476,
-  "last_session_date": "2026-04-06",
-  "last_session_summary": "Built mg_claim_builder.py (283 lines) + 51 tests + proof_library + check #21 real_ratio + session_close.py + language fixes. Tests: 2078. Ratio: 4.8%. Door is open.",
-  "next_priority": "Verify a real external computation (not internal tests) to push ratio toward 20%. Pick ML benchmarking domain."
+  "real_to_synthetic_ratio": 1.0,
+  "last_session_date": "2026-04-07",
+  "last_session_summary": "Phase 27: Fixed receipt reproduce commands, system_manifest ratio (21 real, 1.0), receipt Result field domain metrics. Tests: 2078.",
+  "next_priority": "First paying customer at $299. Wave-2 outreach pending."
 }
