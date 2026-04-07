@@ -77,7 +77,7 @@ See `.planning/milestones/v2.0.0-ROADMAP.md` for full phase details.
 - [x] **Phase 23: Real Verification** - Run all 20 active claims with real external data via mg_claim_builder.py, produce signed bundles grouped by domain (completed 2026-04-07)
 - [x] **Phase 24: Client Demo Flow** - Single-command demo script: pick domain, run claims, bundle, verify, receipt -- works offline (completed 2026-04-07)
 - [x] **Phase 25: Client-Facing Documentation** - COMMERCIAL.md, SECURITY.md, docs/PROTOCOL.md for client trust (completed 2026-04-07)
-- [ ] **Phase 26: Counter Sync and Gate Hardening** - All counters consistent, check_stale_docs rules updated, all 5 gates green at ship
+- [x] **Phase 26: Counter Sync and Gate Hardening** - All counters consistent, check_stale_docs rules updated, all 5 gates green at ship (completed 2026-04-07)
 
 ## Phase Details
 
@@ -128,10 +128,10 @@ Plans:
   1. All counters match across index.html, README.md, AGENTS.md, llms.txt, system_manifest.json, and CONTEXT_SNAPSHOT.md
   2. check_stale_docs.py rules are updated to match final counts and `python scripts/check_stale_docs.py --strict` passes
   3. All 5 verification gates pass: steward_audit PASS, pytest passes with current count, deep_verify 13/13, agent_evolution 21/21 checks, agent_diff_review PASS
-**Plans:** 1/2 plans executed
+**Plans:** 2/2 plans complete
 Plans:
 - [x] 26-01-PLAN.md — Counter sync across all documentation files + check_stale_docs.py rules
-- [ ] 26-02-PLAN.md — Run all 5 verification gates and fix failures
+- [x] 26-02-PLAN.md — Run all 5 verification gates and fix failures
 
 ## Progress
 
@@ -144,7 +144,7 @@ Plans:
 | 23. Real Verification | v3.0.0 | 3/3 | Complete   | 2026-04-07 |
 | 24. Client Demo Flow | v3.0.0 | 1/1 | Complete   | 2026-04-07 |
 | 25. Client-Facing Docs | v3.0.0 | 1/1 | Complete   | 2026-04-07 |
-| 26. Counter Sync + Gates | v3.0.0 | 1/2 | In Progress|  |
+| 26. Counter Sync + Gates | v3.0.0 | 2/2 | Complete   | 2026-04-07 |
 
 ---
 *Roadmap created: 2026-03-17*
