@@ -57,8 +57,8 @@
 
 ### Documentation
 
-- [ ] **DOCS-01**: All counters consistent (index.html, README, AGENTS, llms.txt, system_manifest, CONTEXT_SNAPSHOT)
-- [ ] **DOCS-02**: check_stale_docs.py rules updated to match final counts in same PR
+- [x] **DOCS-01**: All counters consistent (index.html, README, AGENTS, llms.txt, system_manifest, CONTEXT_SNAPSHOT)
+- [x] **DOCS-02**: check_stale_docs.py rules updated to match final counts in same PR
 - [x] **DOCS-03**: COMMERCIAL.md created (pricing, pilot flow, Stripe link)
 - [x] **DOCS-04**: SECURITY.md created (threat model, 5-layer defense)
 - [x] **DOCS-05**: docs/PROTOCOL.md created (protocol specification prose)
@@ -127,8 +127,8 @@
 | DEMO-01 | Phase 24 | Complete |
 | DEMO-02 | Phase 24 | Complete |
 | DEMO-03 | Phase 24 | Complete |
-| DOCS-01 | Phase 26 | Pending |
-| DOCS-02 | Phase 26 | Pending |
+| DOCS-01 | Phase 26 | Complete |
+| DOCS-02 | Phase 26 | Complete |
 | DOCS-03 | Phase 25 | Complete |
 | DOCS-04 | Phase 25 | Complete |
 | DOCS-05 | Phase 25 | Complete |
