@@ -204,8 +204,8 @@ Tests:           2078 passing (3 skipped — platform-specific)
 Real ratio:      51.2% (21 verified against real external data / 41 total)
 Claims:          20 active across 8 domains
 Layers:          5 independent (proven by CERT-11)
-Innovations:     8 (patent pending)
-Agent checks:    21 (CI-enforced)
+Innovations:     8 innovations (patent pending)
+Agent checks:    21 agent checks (CI-enforced)
 Coverage:        87.8%
 Bundles:         21 signed and independently verifiable
 Dependencies:    Python 3.11+ stdlib only (zero external dependencies)
@@ -257,11 +257,28 @@ USPTO Provisional Patent Application #63/996,819 | Filed 2026-03-05 | Inventor: 
 
 ## Built By
 
-Yehor Bazhynov — inventor, patent holder, sole developer.
-Built with Claude (Anthropic) as the primary development tool.
-Every AI-generated output verified by the project's own test suite.
+Yehor Bazhynov — inventor, USPTO #63/996,819.
 
-The protocol verifies the protocol.
+Construction worker by day. Built this after shifts and weekends. No CS degree. No team. No funding.
+
+2078 tests. Patent filed. 60 days.
+
+There is a deeper paradox here.
+
+AI systems hallucinate. They confabulate. They produce results that sound right but cannot be verified. That is a known weakness.
+
+This project exists because one person looked at that weakness and built the solution using the very tool that has the weakness — then made the tool verify every output it produced.
+
+AI built the verification protocol for AI. Every line generated was tested against itself. Every claim verified by the protocol it was building.
+
+The weakness became the foundation.
+
+If this is possible, what isn't?
+
+Built with Claude (Anthropic). Every AI output verified by the project's own test suite.
+
+**The protocol verifies the protocol.**
+**The builder verifies the builder.**
 
 **Site:** https://metagenesis-core.dev
 **Email:** yehor@metagenesis-core.dev
