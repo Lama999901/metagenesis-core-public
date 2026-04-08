@@ -1,412 +1,368 @@
 # MetaGenesis Core
 
-**The open standard for verifiable computation.**
+**A notary for computations.**
 
-[![Steward Audit](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml/badge.svg)](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Patent Pending](https://img.shields.io/badge/Patent-Pending%20%2363%2F996%2C819-orange.svg)](ppa/README_PPA.md)
 [![Tests](https://img.shields.io/badge/Tests-2078%20passing-brightgreen.svg)](tests/)
-[![Protocol](https://img.shields.io/badge/Protocol-MVP%20v0.9.0-blueviolet.svg)](docs/PROTOCOL.md)
-[![Sponsor](https://img.shields.io/badge/Sponsor-Support-pink.svg)](https://github.com/sponsors/Lama999901)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.PLACEHOLDER.svg)](https://doi.org/10.5281/zenodo.PLACEHOLDER)
-
-**Site:** https://metagenesis-core.dev
-**Contact:** yehor@metagenesis-core.dev
-**PPA:** USPTO #63/996,819 -- filed 2026-03-05
-**Version:** v0.9.0 | 20 claims | 2078 tests | 8 innovations | 87.8% coverage | 20 agent checks
+[![Real Ratio](https://img.shields.io/badge/Real%20Verified-51.2%25-blue.svg)](proof_library/)
+[![Patent Pending](https://img.shields.io/badge/Patent-Pending%20%2363%2F996%2C819-orange.svg)](ppa/README_PPA.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Steward Audit](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml/badge.svg)](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml)
 
 ---
 
-## What is this?
+Like a notary certifies a document, MetaGenesis Core certifies that a computer produced exactly this result, at exactly this time, in exactly this way.
 
-MetaGenesis Core proves that a computation produced exactly the result it claims -- without trusting anyone.
-
-A researcher reports accuracy = 0.94. Today, a reviewer must re-run the entire environment to verify. With MetaGenesis Core, they run one command and get PASS or FAIL in 60 seconds.
+Without access to the computer. Without trusting anyone. In 60 seconds.
 
 ```bash
-git clone https://github.com/Lama999901/metagenesis-core-public
-cd metagenesis-core-public
-pip install -r requirements.txt && python demos/open_data_demo_01/run_demo.py
+python scripts/mg.py verify --pack bundle.zip
+# PASS  or  FAIL: <specific layer and reason>
 ```
-
-No GPU. No model access. No network. Works offline on any machine with Python 3.11+.
 
 ---
 
 ## The Problem
 
-Computational science has a verification crisis:
+Every day, billions of computations produce numbers that everyone must simply trust.
 
-- **Nature 2016:** 70% of scientists cannot reproduce each other's results. Over 50% cannot reproduce their own.
-- **Kapoor & Narayanan 2023:** 294 ML papers from top venues contained inflated results from data leakage -- undetected through peer review.
-- **FDA 2025:** New credibility framework for AI/ML in drug development -- existing validation methods are insufficient.
-- **Basel III/IV:** Financial institutions cannot independently verify VaR model outputs without re-running proprietary code.
+An ML model reports 94% accuracy. A simulation says the bridge holds. A drug calculation passes. A risk model says all clear. A carbon credit is issued. A digital twin says the turbine is calibrated.
 
-The root cause: there is no standard way to prove that a number came from the computation that claims to have produced it. MetaGenesis Core closes that gap.
+Who checks?
 
-```bash
-python scripts/mg.py verify --pack bundle.zip
-# -> PASS  or  FAIL: <specific layer and reason>
-```
+**Nature 2016:** 70% of scientists cannot reproduce each other's results.
+**Kapoor & Narayanan 2023:** 294 ML papers from top venues had undetected inflated results.
+**FDA 2025:** Existing AI/ML validation methods declared insufficient for drug development.
+**Basel III/IV:** Banks cannot independently verify risk model outputs without re-running proprietary code.
 
----
-
-## How It Works -- 4 Steps
-
-```
-1. runner.run_job()
-   Executes computation -> produces run_artifact.json with execution_trace + trace_root_hash
-
-2. evidence_index.json
-   Maps run artifacts to registered claims with provenance chain
-
-3. mg.py pack build
-   Bundles artifacts + SHA-256 manifest + root_hash into submission pack
-
-4. mg.py verify -- five independent layers:
-   Layer 1 -- integrity:    SHA-256 root_hash over all bundle files
-   Layer 2 -- semantic:     job_snapshot present, payload.kind correct, canary_mode consistent
-   Layer 3 -- step chain:   trace_root_hash == final execution step hash
-   Layer 4 -- signing:      HMAC-SHA256 or Ed25519 bundle signature verification
-   Layer 5 -- temporal:     NIST Beacon pre-commitment proves WHEN signed
-   -> PASS or FAIL with specific reason and layer
-```
+There is no standard of proof for computation. MetaGenesis Core is that standard.
 
 ---
 
-## Why SHA-256 Alone Is Not Enough
+## The Physical Anchor
 
-Most integrity tools answer: *was this file modified?* That is necessary but not sufficient. Each layer below catches attacks that all previous layers miss:
+This is not just a verification tool. It is a trust layer anchored to physical reality.
 
-**Semantic Bypass (caught by Layer 2):** Attacker removes evidence, recomputes all SHA-256 hashes. Layer 1 says PASS. Layer 2 catches the missing evidence.
+```
+kB = 1.380649e-23 J/K    (SI 2019, exact by definition — defines the kelvin)
+NA = 6.02214076e23 mol-1  (SI 2019, exact by definition — defines the mole)
+```
 
-**Step Chain Tamper (caught by Layer 3):** Attacker changes inputs (accuracy 0.94 to 0.95), preserves semantic structure and rebuilds hashes. Layers 1-2 say PASS. Layer 3 catches the trace mismatch.
+These constants were fixed in 2019. They will never change. They are properties of the universe, not decisions of any institution.
 
-**Signing Attack (caught by Layer 4):** Attacker rebuilds entire bundle with correct hashes, semantics, and step chain -- but lacks the signing key. Layers 1-3 say PASS. Layer 4 catches the invalid signature.
+Every verification chain that starts here outlasts every company, every government, every standard body. When we verify that a simulation of an aluminum part agrees with E = 70 GPa (measured independently in thousands of laboratories worldwide), we are not checking against a threshold someone chose. We are checking against physical reality.
 
-**Backdating Attack (caught by Layer 5):** Attacker creates a valid signed bundle but claims it was created last month. Layers 1-4 say PASS. Layer 5 catches the NIST Beacon timestamp mismatch.
+```
+Physical reality:  E = 70 GPa  (aluminum, measured)
+        ↓
+MTR-1:  Calibration    → rel_err ≤ 1%     → PASS
+        ↓  anchor_hash baked in
+DT-FEM-01: FEM solver  → rel_err ≤ 2%     → PASS
+        ↓  anchor_hash baked in
+DRIFT-01: Monitoring    → drift ≤ 5%       → PASS
+```
 
-CERT-11 proves all five layers are independently necessary -- no subset of four catches all attacks. This is not a claim; it is an executable proof that runs in CI on every merge.
+Change any link in the chain. The cryptographic hash breaks everywhere downstream.
 
 ---
 
-## The Five Verification Layers
+## Five Independent Layers
 
-### Layer 1 -- SHA-256 Integrity
-Catches any file modified after packaging. Proof: `tests/steward/test_cert05_adversarial_gauntlet.py`
+Each layer catches attacks that all previous layers miss. This is not a claim. It is an executable proof (CERT-11) that runs in CI on every merge.
 
-### Layer 2 -- Semantic Verification
-Catches evidence stripped and hashes recomputed. Proof: `tests/steward/test_cert02_semantic_layer_bypass.py`
+| Layer | Catches | Proof |
+|-------|---------|-------|
+| **1. SHA-256 Integrity** | Any file modified after packaging | CERT-01 |
+| **2. Semantic** | Evidence stripped, hashes recomputed | CERT-02 |
+| **3. Step Chain** | Inputs changed, steps reordered, results fabricated | CERT-03 |
+| **4. Signing** (HMAC + Ed25519) | Unauthorized bundle creator, forged signatures | CERT-07, CERT-09 |
+| **5. Temporal** (NIST Beacon) | Backdated bundles | CERT-10 |
 
-### Layer 3 -- Step Chain (Cryptographic Hash Chain)
-Catches computation inputs changed, steps reordered, or results fabricated. The 4-step cryptographic hash chain over `init_params -> compute -> metrics -> threshold_check` breaks if anything changes. Proof: `tests/steward/test_cert03_step_chain_verify.py`
-
-### Layer 4 -- Bundle Signing (HMAC-SHA256 + Ed25519)
-Catches unauthorized bundle creators and signature forging. Dual-algorithm: HMAC-SHA256 for shared-secret scenarios, Ed25519 for asymmetric third-party auditor verification. Proof: `tests/steward/test_cert07_bundle_signing.py` + `tests/steward/test_cert09_ed25519_attacks.py`
-
-### Layer 5 -- Temporal Commitment (NIST Randomness Beacon)
-Catches backdated bundles. Pre-commitment scheme: SHA-256(root_hash) committed before NIST Beacon value fetched, then bound together. Proves WHEN a bundle was created. Proof: `tests/steward/test_cert10_temporal_attacks.py`
-
-### Two Pillars
-
-**Pillar 1 -- Tamper-evident provenance:** Five-layer verification ensures the bundle and computation have not been modified. Applies to all 20 claims.
-
-**Pillar 2 -- Physical anchor traceability:** For physical domains, the computation is traced back to measured physical constants. Aluminum has a stiffness of 70 GPa -- that is a measured property of the universe. When we verify a simulation of an aluminum part, we trace the chain back to that constant. For the Boltzmann constant and Avogadro's number (SI 2019 exact definitions), the anchor is permanent.
-
-```
-Physical reality:  E = 70 GPa  (measured, not assumed)
-        |  MTR-1: rel_err <= 1% vs. physical constant -> PASS
-        |  anchor_hash baked into DT-FEM-01 Step 1
-DT-FEM-01: FEM solver output -> rel_err <= 2% -> PASS
-        |  anchor_hash baked into DRIFT-01 Step 1
-DRIFT-01:  ongoing deviation -> drift <= 5% -> PASS
-```
-
-Verify end-to-end:
-```bash
-python scripts/mg.py verify-chain bundle_mtr1/ bundle_dtfem/ bundle_drift/
-# -> CHAIN PASS
-```
+No subset of four layers catches all attacks. CERT-11 proves this with coordinated multi-vector attacks. CERT-12 adds encoding attacks: BOM injection, null bytes, homoglyphs, truncated JSON.
 
 ---
 
-## Proof: The Adversarial Gauntlet
+## How It Works
+
+```
+1. Compute          runner.run_job() executes the computation
+                    → produces execution_trace + trace_root_hash
+
+2. Package          mg.py pack bundles artifacts + SHA-256 manifest
+                    → self-contained .zip with root_hash
+
+3. Sign             mg_ed25519.py signs the bundle (WHO created it)
+                    mg_temporal.py binds to NIST Beacon (WHEN it was created)
+
+4. Verify           mg.py verify --pack checks all 5 layers
+                    → PASS or FAIL with specific layer and reason
+```
+
+The bundle is the proof. It travels with the result. Anyone verifies it. Offline. Any machine.
+
+---
+
+## The Adversarial Gauntlet
 
 Every claim is backed by adversarial tests that attempt to break it. Every test runs in CI on every merge.
 
-| Certificate | What it proves | Result |
-|---|---|---|
-| **CERT-01** | SHA-256 integrity -- any file modification, bit flip, or truncation | CAUGHT by Layer 1 |
-| **CERT-02** | Semantic bypass -- strip evidence, recompute hashes | CAUGHT by Layer 2 |
-| **CERT-03** | Step chain tamper -- change inputs, rebuild trace | CAUGHT by Layer 3 |
-| **CERT-04** | Cross-claim chain -- break upstream anchor | CAUGHT by Layer 3 |
-| **CERT-05** | 5-attack gauntlet -- strip, bit-flip, cross-domain, canary, anchor reversal | ALL CAUGHT |
-| **CERT-06** | 5 real-world scenarios -- honest team, cherry-picker, physical chain, audit, reproducibility | ALL CAUGHT |
-| **CERT-07** | Bundle signing -- 13 attack vectors on HMAC-SHA256 | ALL CAUGHT |
-| **CERT-08** | Reproducibility -- 10 determinism proofs across all claims | ALL PASS |
-| **CERT-09** | Ed25519 attacks -- key manipulation, signature forging | ALL CAUGHT |
-| **CERT-10** | Temporal attacks -- backdating, beacon manipulation | ALL CAUGHT |
-| **CERT-11** | Coordinated multi-vector -- all 5 layers proven independently necessary | PROVEN |
-| **CERT-12** | Encoding attacks -- BOM injection, null bytes, homoglyphs, truncated JSON | ALL CAUGHT |
+| Certificate | What it proves | Attacks |
+|-------------|---------------|---------|
+| **CERT-02** | Semantic bypass detection | Strip evidence, recompute hashes |
+| **CERT-03** | Step chain integrity | Change inputs, rebuild trace |
+| **CERT-05** | 5-attack gauntlet | Strip, bit-flip, cross-domain, canary, anchor reversal |
+| **CERT-06** | 5 real-world scenarios | Honest team, cherry-picker, physical chain, audit, reproducibility |
+| **CERT-07** | Bundle signing | 13 attack vectors on HMAC-SHA256 |
+| **CERT-08** | Reproducibility | 10 determinism proofs across all claims |
+| **CERT-09** | Ed25519 attacks | Key manipulation, signature forging |
+| **CERT-10** | Temporal attacks | Backdating, beacon manipulation |
+| **CERT-11** | 5-layer independence | Coordinated multi-vector — proves all layers necessary |
+| **CERT-12** | Encoding attacks | BOM injection, null bytes, homoglyphs, truncated JSON |
+
+These are not unit tests. They are adversarial proofs. Each one simulates a real attacker with a specific strategy. Each one fails without the layer it tests.
+
+---
+
+## Try It Now
 
 ```bash
-python -m pytest tests/ -q
-# -> 2078 passed
+git clone https://github.com/Lama999901/metagenesis-core-public
+cd metagenesis-core-public
+pip install -r requirements.txt
+
+# Run a domain demo with real verified bundles
+python scripts/mg_demo.py --domain materials
 ```
 
-### 5 Attack Classes (CERT-05)
+Expected output: 6 materials claims verified through all 5 layers. PASS for each. Human-readable receipt saved to `demos/receipts/materials_receipt.txt`.
 
-| Attack | What adversary does | Layer that catches |
-|--------|--------------------|--------------------|
-| Strip & Recompute | Remove evidence, rebuild all SHA-256 | Layer 2 (semantic) |
-| Single-Bit Manipulation | Change accuracy 0.94->0.95 | Layer 3 (step chain) |
-| Cross-Domain Substitution | Submit ML bundle for PHARMA claim | Layer 2 (job_kind) |
-| Canary Laundering | Non-authoritative run as authoritative | Layer 2 (canary_mode) |
-| Anchor Chain Reversal | Skip DT-FEM-01, connect MTR-1->DRIFT-01 | Layer 3 (hash mismatch) |
+No GPU. No model access. No network. Works offline on any machine with Python 3.11+.
 
----
+**Verify a single bundle yourself:**
+```bash
+python scripts/mg.py verify --pack demos/open_data_demo_01/
+# PASS PASS
+```
 
-## 8 Innovations (USPTO PPA #63/996,819)
-
-### 1 -- Governance-Enforced Bidirectional Claim Coverage
-Every PR: every registered claim has an implementation, every implementation has a registered claim. Enforced by static analysis.
-`Evidence: scripts/steward_audit.py :: _claim_coverage_bidirectional()`
-
-### 2 -- Tamper-Evident Bundle with Semantic Verification Layer
-Three independent verification layers, each proven by adversarial tests.
-`Evidence: scripts/mg.py :: _verify_pack() + _verify_semantic()`
-
-### 3 -- Policy-Gate Immutable Evidence Anchors
-CI gate blocks any PR modifying locked evidence paths. No key custody. Works offline.
-`Evidence: scripts/mg_policy_gate_policy.json + .github/workflows/mg_policy_gate.yml`
-
-### 4 -- Dual-Mode Canary Execution Pipeline
-One interface. Two modes. Identical computation. Authority isolated to metadata only.
-`Evidence: backend/progress/runner.py :: run_job(canary_mode=True/False)`
-
-### 5 -- Step Chain + Cross-Claim Cryptographic Chain
-Every claim produces a 4-step cryptographic execution trace. Upstream `trace_root_hash` embeds as `anchor_hash` in downstream claims -- linking MTR-1 -> DT-FEM-01 -> DRIFT-01 end-to-end.
-`Evidence: all 20 claims :: execution_trace + trace_root_hash`
-
-### 6 -- Bundle Signing (HMAC-SHA256 + Ed25519)
-Cryptographic proof of WHO created the bundle. Dual-algorithm: HMAC-SHA256 for shared-secret, Ed25519 for asymmetric third-party verification.
-`Evidence: scripts/mg_sign.py + scripts/mg_ed25519.py`
-
-### 7 -- Temporal Commitment (NIST Randomness Beacon)
-Cryptographic proof of WHEN a bundle was signed. Pre-commitment scheme using NIST Randomness Beacon 2.0.
-`Evidence: scripts/mg_temporal.py`
-
-### 8 -- 5-Layer Independence Proof (CERT-11 + CERT-12)
-Formal proof that all five verification layers are independently necessary. Each layer catches attacks the other four miss.
-`Evidence: tests/steward/test_cert11_* + tests/steward/test_cert12_*`
+**Or use the standalone verifier — one file, zero dependencies:**
+```bash
+python scripts/mg_verify_standalone.py demos/open_data_demo_01/
+# PASS
+```
 
 ---
 
-## 20 Active Verification Claims
+## The Killer Application: Drift Detection
 
-| Claim | Domain | Threshold | Physical Anchor |
-|---|---|---|---|
-| MTR-1 | Materials -- Young's Modulus | `rel_err <= 0.01` | E = 70 GPa (aluminum) |
-| MTR-2 | Materials -- Thermal Conductivity | `rel_err <= 0.02` | Physical constant |
-| MTR-3 | Materials -- Multilayer Contact | `rel_err_k <= 0.03` | Physical constant |
-| MTR-4 | Materials -- Young's Modulus (Ti-6Al-4V) | `rel_err <= 0.01` | E = 114 GPa (NIST) |
-| MTR-5 | Materials -- Young's Modulus (SS316L) | `rel_err <= 0.01` | E = 193 GPa (NIST) |
-| MTR-6 | Materials -- Thermal Conductivity (Cu) | `rel_err <= 0.02` | k = 401 W/(m*K) (NIST) |
-| PHYS-01 | Fundamental Physics -- Thermodynamics | `rel_err <= 1e-9` | kB = 1.380649e-23 J/K (SI 2019, exact) |
-| PHYS-02 | Fundamental Physics -- Molecular Mass | `rel_err <= 1e-8` | NA = 6.02214076e23 mol-1 (SI 2019, exact) |
-| SYSID-01 | System Identification -- ARX | `rel_err_a/b <= 0.03` | -- |
-| DATA-PIPE-01 | Data Pipelines | schema pass / range pass | -- |
-| DRIFT-01 | Drift Monitoring | `drift <= 5.0%` | MTR-1 anchor |
-| ML_BENCH-01 | ML -- Classification Accuracy | `\|Dacc\| <= 0.02` + Step Chain | -- |
-| ML_BENCH-02 | ML -- Regression (RMSE, MAE, R2) | `\|DRMSE\| <= 0.02` | -- |
-| ML_BENCH-03 | ML -- Time-Series Forecast (MAPE) | `\|DMAPE\| <= 0.02` | -- |
-| DT-FEM-01 | Digital Twin / FEM | `rel_err <= 0.02` | MTR-1 anchor |
-| DT-SENSOR-01 | Digital Twin -- IoT Sensor Integrity | schema + range + temporal | -- |
-| DT-CALIB-LOOP-01 | Digital Twin -- Calibration Convergence | `drift decreasing + final <= threshold` | DRIFT-01 anchor |
-| PHARMA-01 | Pharma -- ADMET (5 properties) | `\|Dprop\| <= tolerance` | -- (FDA 21 CFR Part 11) |
-| FINRISK-01 | Finance -- VaR Model | `\|DVaR\| <= tolerance` | -- (Basel III/IV) |
-| AGENT-DRIFT-01 | Agent Quality -- Recursive Self-Verification | `composite_drift <= 20%` | -- |
+Compare a verification bundle from today against one from a year ago.
 
-All 20 claims have Step Chain (execution_trace + trace_root_hash). Physical anchor applies to: MTR-1/2/3/4/5/6, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP-01, PHYS-01, PHYS-02. See `reports/known_faults.yaml` :: SCOPE_001.
-
----
-
-## 8 Domains -- One Protocol
-
-| Domain | Claims | Regulatory alignment |
-|---|---|---|
-| **Materials / Engineering** | MTR-1, MTR-2, MTR-3, MTR-4, MTR-5, MTR-6 | NIST physical constants |
-| **System Identification** | SYSID-01 | -- |
-| **Data Pipelines** | DATA-PIPE-01 | FDA 21 CFR Part 11 |
-| **ML / AI** | ML_BENCH-01/02/03, DRIFT-01 | EU AI Act Article 12 |
-| **Digital Twin** | DT-FEM-01, DT-SENSOR-01, DT-CALIB-LOOP-01 | -- |
-| **Pharma / Biotech** | PHARMA-01 | FDA 21 CFR Part 11 |
-| **Finance / Risk** | FINRISK-01 | Basel III/IV |
-| **Fundamental Physics** | PHYS-01, PHYS-02 | SI 2019 exact constants |
-
-> MetaGenesis Core does not constitute legal or regulatory compliance advice. It provides technical infrastructure that supports compliance workflows.
-
----
-
-## The Agent Evolution System
-
-MetaGenesis Core includes an autonomous agent monitoring system -- 20 checks that run daily in CI, ensuring the protocol and its documentation remain consistent, complete, and correct.
-
-### The 20 Checks
-
-| # | Check | What it verifies |
-|---|-------|-----------------|
-| 1 | `steward` | `steward_audit.py` passes -- governance rules enforced |
-| 2 | `tests` | All 2078 tests pass |
-| 3 | `deep` | `deep_verify.py` -- 13 independent proof tests |
-| 4 | `docs` | Stale documentation detection via `check_stale_docs.py` |
-| 5 | `manifest` | `system_manifest.json` matches actual repo state |
-| 6 | `forbidden` | No banned terms in codebase |
-| 7 | `gaps` | Every claim has tests, every test has a claim |
-| 8 | `claude_md` | `CLAUDE.md` reflects current counters and state |
-| 9 | `watchlist` | Content checks across 53 files for stale counters |
-| 10 | `branch_sync` | Branch is synchronized with origin/main |
-| 11 | `coverage` | Code coverage analysis and dead code detection |
-| 12 | `self_improve` | Self-improvement recommendations from codebase analysis |
-| 13 | `signals` | GitHub stars, forks, issues -- external signal monitoring |
-| 14 | `chronicle` | Version snapshot -- records state diff between releases |
-| 15 | `pr_review` | New .py files have corresponding tests |
-| 16 | `impact` | Dependencies from UPDATE_PROTOCOL.md checked |
-| 17 | `diff_review` | AST structural diff review |
-| 18 | `auto_pr` | Level 3 autonomous PR queue -- agents create PRs, Yehor approves |
-| 19 | `semantic_audit` | Project coherence -- physical anchors, claim matrix, innovations, patent integrity |
-| 20 | `self_audit` | Recursive integrity verification of all core scripts |
-
-**Coverage floor locked:** 88% achieved in v0.9.0. Check #11 enforces minimum 65%. Any PR dropping below 65% is automatically blocked.
+Same system. Same claim. Different result. Caught automatically.
 
 ```bash
-python scripts/agent_evolution.py --summary
-# -> ALL 20 CHECKS PASSED -- system healthy
+python scripts/mg.py verify-chain bundle_jan2026/ bundle_jan2027/
+# CHAIN FAIL: drift exceeds 5% from verified anchor
 ```
 
-The system runs automatically on every CI merge via `.github/workflows/total_audit_guard.yml`. When a check fails, the merge is blocked.
+No existing tool does this. Experiment tracking records what happened. MetaGenesis proves whether it still agrees with physical reality.
 
-### The Self-Improvement Loop
+A digital twin that was calibrated last year — is it still calibrated today? A model that passed validation — does it still pass with new data? A simulation that met regulatory thresholds — does it still meet them after the code was updated?
 
-1. **`agent_learn.py`** -- Memory across agent lifetimes. Each agent records what it learned; the next agent reads it.
-2. **`agent_research.py`** -- Gap analysis. Identifies missing tests, uncovered attack vectors, stale documentation.
-3. **`agent_coverage.py`** -- Coverage analysis. Finds which code paths lack tests.
-4. **`agent_evolve_self.py`** -- Recursive self-improvement. Analyzes the agent system itself.
-5. **`AGENT-DRIFT-01`** -- Monitors agent quality. If composite drift exceeds 20%, correction is triggered.
+One command. Offline. Cryptographic proof.
+
+---
+
+## Eight Domains. One Protocol.
+
+| Domain | Claims | What it verifies |
+|--------|--------|-----------------|
+| **Materials Science** | MTR-1 through MTR-6 | Young's modulus, thermal conductivity against NIST constants |
+| **Fundamental Physics** | PHYS-01, PHYS-02 | Boltzmann constant (kB), Avogadro's number (NA) — SI 2019 exact |
+| **Digital Twin** | DT-FEM-01, DT-SENSOR-01, DT-CALIB-LOOP-01 | FEM displacement, IoT sensor integrity, calibration convergence |
+| **ML / AI** | ML_BENCH-01/02/03 | Classification accuracy, regression RMSE, time-series MAPE |
+| **Pharma / Biotech** | PHARMA-01 | ADMET property prediction (FDA 21 CFR Part 11) |
+| **Finance / Risk** | FINRISK-01 | Value-at-Risk model validation (Basel III/IV) |
+| **Data Pipelines** | DATA-PIPE-01 | Schema and range validation certificates |
+| **System Identification** | SYSID-01 | ARX model calibration |
+
+20 claims. 21 verified bundles. 51.2% verified against real external data.
+
+---
+
+## The Evolution
+
+MetaGenesis Core is not a product. It is infrastructure. Four levels, each building on the last.
+
+### Level 1 — Protocol *(shipped, v0.9.0)*
+
+Any computation verified in 60 seconds. 5 layers. 20 claims. Physical anchors. Offline.
+*Trigger to next level: first paying client.*
+
+### Level 2 — Registry
+
+Every verified bundle gets a persistent DOI via Zenodo. Scientists publish the proof alongside the paper. "Was this computation verified?" becomes a searchable question with a cryptographic answer.
+*Trigger to next level: 5 paying clients across 2 verticals.*
+
+### Level 3 — Agent Economy
+
+AI agents verify each other's outputs through the protocol. Agent A produces a result. Agent B verifies it. Neither trusts the other. Both trust the physics.
+*Trigger to next level: 100+ bundles verified, institutional adoption.*
+
+### Level 4 — Self-Evolution
+
+The protocol verifies its own development. Every code change passes through MetaGenesis before merging. The system that certifies others is itself certified — recursively.
+
+| Level | What it proves | Who trusts it |
+|-------|---------------|---------------|
+| Protocol | This computation was not tampered with | One client |
+| Registry | This computation has a permanent, citable record | Journals |
+| Agent Economy | Autonomous systems can trust each other's outputs | AI labs |
+| Self-Evolution | The verification system itself is verified | Everyone |
+
+---
+
+## The Deeper Vision
+
+Every simulation is a claim about physical reality.
+
+Molecular dynamics says this material behaves this way. FEM says this structure holds under this load. A digital twin says the turbine is still calibrated. A drug calculation says this compound has these properties.
+
+Boeing builds in digital before metal. Rolls-Royce runs engines in simulation before they exist. Quantum chemistry calculates molecules before synthesis. The infrastructure for verified digital reality already exists.
+
+What was missing: trust. Every simulation is an assertion that anyone must simply accept — or re-run the entire environment to check. There was no standard of proof.
+
+MetaGenesis Core is that standard. The notary layer between digital and physical reality.
+
+When every simulation is anchored to SI 2019 constants — when aluminum in a digital model is cryptographically proven to behave like aluminum in the physical world — we stop simulating reality and start proving it.
+
+Verified digital laboratories. Zero-cost experiments. Digital twins that cannot lie. Science that proves itself.
+
+kB = 1.380649e-23 J/K. Defined 2019. Will never change. Build on that, and what you build outlasts everything.
 
 ---
 
 ## Honest Limitations
 
-MetaGenesis Core is transparent about what it does not do. These are documented in `reports/known_faults.yaml`.
+These make the protocol more credible, not less.
 
-### Physical Anchor Hierarchy
+**Physical anchors apply only where physics exists.** ML accuracy, financial risk, pharma properties — these use chosen thresholds, not physical constants. For those domains, MetaGenesis provides tamper-evident provenance. It proves the computation happened as claimed. It does not anchor it to physical reality. (Documented: `reports/known_faults.yaml` :: SCOPE_001)
 
-| Level | Example | Uncertainty | Claims |
-|-------|---------|-------------|--------|
-| **SI 2019 exact** | kB = 1.380649e-23 J/K, NA = 6.02214076e23 mol-1 | **0 -- exact** | PHYS-01, PHYS-02 |
-| **NIST-measured** | E = 70 GPa (Al), 114 GPa (Ti), 193 GPa (SS316L), k = 401 W/(m*K) Cu | ~1% | MTR-1..6, DT-FEM-01, DRIFT-01 |
+**Tamper-evident, not tamper-proof.** The protocol detects modification. It does not prevent it. A determined attacker who controls the entire computation environment can produce a fraudulent-but-consistent bundle. The protocol catches post-hoc tampering, not pre-hoc fraud.
 
-SI 2019 fundamental constants are exact by definition -- they define the SI units themselves. kB defines the kelvin. NA defines the mole. Any computation using these constants can be anchored to the laws of physics with zero uncertainty.
+**Correctness is not verified.** If your algorithm is wrong but deterministic, the bundle will PASS. That is correct behavior. The protocol certifies that this computation produced this result — not that the result is scientifically correct.
 
-### SCOPE_001 -- Physical Anchor Scope
-
-Physical anchor traceability applies **only** to domains with known physical constants (MTR-1/2/3/4/5/6, PHYS-01, PHYS-02, DT-FEM-01, DRIFT-01, DT-CALIB-LOOP-01). For ML, data pipelines, pharma, finance, system identification, IoT sensors, and agent monitoring, the protocol provides **tamper-evident provenance only** -- not physical anchoring.
-
-Why: thresholds like `|Dacc| <= 0.02` are chosen conventions, not physical constants. There is no "E = 70 GPa equivalent" for ML accuracy.
-
-### ENV_001 -- Test Environment
-
-All 2078 tests pass in the reference environment (Python 3.11+, stdlib only). No database dependencies. No external services. No network required.
-
-### What MetaGenesis Core Does NOT Claim
-
-- Does **not** verify algorithm correctness -- only evidence integrity and computation provenance. If your algorithm is wrong but deterministic, the bundle will PASS. That is correct behavior.
-- Does **not** prevent all attacks -- the protocol is tamper-**evident**, meaning tampering is detectable, not impossible.
-- Does **not** validate training data quality or bias. Data leakage and distribution shift are upstream problems.
-- Does **not** prevent p-hacking or result selection. The protocol catches post-hoc modification, not pre-hoc selection.
-- Does **not** replace peer review -- it gives reviewers a verification tool they did not have before.
-- Does **not** guarantee that a passing bundle means the science is correct -- it guarantees the computation was executed as claimed.
+**Not a replacement for peer review.** It gives reviewers a tool they did not have before. The science still needs to be evaluated by humans.
 
 Full limitations: `reports/known_faults.yaml` and `SECURITY.md`
 
 ---
 
-## Founder
+## The Numbers
 
-Built by Yehor Bazhynov (inventor, USPTO #63/996,819) using Claude (Anthropic) as the primary development tool. Every AI-generated output verified by the project's own test suite. The protocol verifies the protocol.
-
----
-
-## Verification State
+```
+Tests:           2078 passing (3 skipped — platform-specific)
+Real ratio:      51.2% (21 verified against real external data / 41 total)
+Claims:          20 active across 8 domains
+Layers:          5 independent (proven by CERT-11)
+Innovations:     8 innovations (patent pending)
+Agent checks:    21 agent checks (CI-enforced)
+Coverage:        87.8%
+Bundles:         21 signed and independently verifiable
+Dependencies:    Python 3.11+ stdlib only (zero external dependencies)
+```
 
 ```bash
-python scripts/steward_audit.py
-# -> STEWARD AUDIT: PASS
-
-python -m pytest tests/ -q
-# -> 2078 passed
-
-python scripts/deep_verify.py
-# -> ALL 13 TESTS PASSED
-
-python scripts/agent_evolution.py --summary
-# -> ALL 20 CHECKS PASSED -- system healthy
+python scripts/steward_audit.py         # STEWARD AUDIT: PASS
+python -m pytest tests/ -q              # 2078 passed
+python scripts/deep_verify.py           # ALL 13 TESTS PASSED
+python scripts/agent_evolution.py       # ALL 21 CHECKS PASSED
 ```
 
 ---
 
-## Try It
+## For Organizations
 
-**Run the demo:**
-```bash
-git clone https://github.com/Lama999901/metagenesis-core-public
-cd metagenesis-core-public
-pip install -r requirements.txt
-python demos/open_data_demo_01/run_demo.py
-```
-Expected output: `PASS PASS`
+**Free pilot:** Send your computational result. We build a verification bundle. You decide if it's useful.
+https://metagenesis-core.dev/#pilot — no obligation, 24-48 hours.
 
-**Run all 4 client scenario demos** (ML/AI, Pharma, Finance, Digital Twin):
-```bash
-python demos/client_scenarios/run_all_scenarios.py
-```
-Expected output: `4/4 PASS`
+**If you're in ML/AI:** Your benchmark claims become independently verifiable without exposing models or data. EU AI Act Article 12 requires audit trails.
 
-**Free pilot** -- send your computational result, we build a verification bundle:
-https://metagenesis-core.dev/#pilot
+**If you're in pharma:** Your computational submissions become FDA 21 CFR Part 11 compatible audit artifacts. A $299 bundle vs. a $47M raise to prove credibility.
+
+**If you're in finance:** Your VaR model outputs become independently verifiable by regulators. Basel III/IV compliance without re-running proprietary code.
+
+**If you're in engineering:** Your FEM/CFD simulation results are anchored to physical constants. Clients verify offline. Digital twin calibration is cryptographically proven.
+
+**Price:** $299 per verification bundle | Pipeline integration: $2,000-5,000 | Ongoing: $500-2,000/month
+Full details: `COMMERCIAL.md`
+
+**Security model:** `SECURITY.md` | **Protocol spec:** `docs/PROTOCOL.md` | **Contact:** yehor@metagenesis-core.dev
 
 ---
 
-## Resources
+## 8 Patent-Pending Innovations
 
-- **Protocol spec:** `docs/PROTOCOL.md`
-- **Architecture:** `docs/ARCHITECTURE.md`
-- **Security policy:** `SECURITY.md`
-- **Commercial licensing:** `COMMERCIAL.md`
+| # | Innovation | What it does |
+|---|-----------|-------------|
+| 1 | Bidirectional Claim Coverage | Every claim has an implementation. Every implementation has a claim. Enforced by static analysis. |
+| 2 | Semantic Verification Layer | Catches evidence-strip attacks that bypass SHA-256 integrity. |
+| 3 | Policy-Gate Immutable Anchors | CI blocks modification of locked evidence paths. No key custody. |
+| 4 | Dual-Mode Canary Pipeline | One interface, two modes, identical computation. Authority isolated to metadata. |
+| 5 | Step Chain + Cross-Claim Chain | 4-step cryptographic trace per claim. Upstream hashes embed in downstream claims. |
+| 6 | Bundle Signing (HMAC + Ed25519) | Proves WHO created the bundle. Dual-algorithm for shared-secret and asymmetric scenarios. |
+| 7 | Temporal Commitment (NIST Beacon) | Proves WHEN a bundle was signed. Pre-commitment prevents backdating. |
+| 8 | 5-Layer Independence Proof | Formal proof that no subset of four layers catches all attacks. |
+
+USPTO Provisional Patent Application #63/996,819 | Filed 2026-03-05 | Inventor: Yehor Bazhynov
+
+---
+
+## Built By
+
+Yehor Bazhynov — inventor, USPTO #63/996,819.
+
+Construction worker by day. Built this after shifts and weekends. No CS degree. No team. No funding.
+
+2078 tests. Patent filed. 60 days.
+
+There is a deeper paradox here.
+
+AI systems hallucinate. They confabulate. They produce results that sound right but cannot be verified. That is a known weakness.
+
+This project exists because one person looked at that weakness and built the solution using the very tool that has the weakness — then made the tool verify every output it produced.
+
+AI built the verification protocol for AI. Every line generated was tested against itself. Every claim verified by the protocol it was building.
+
+The weakness became the foundation.
+
+If this is possible, what isn't?
+
+Built with Claude (Anthropic). Every AI output verified by the project's own test suite.
+
+**The protocol verifies the protocol.**
+**The builder verifies the builder.**
+
+**Site:** https://metagenesis-core.dev
+**Email:** yehor@metagenesis-core.dev
+**Sponsor:** https://github.com/sponsors/Lama999901
 
 ---
 
 ## License
 
-MIT -- free to use, modify, deploy.
-Patent pending: USPTO #63/996,819 covers protocol innovations.
+MIT — free to use, modify, deploy.
+Patent pending: protocol innovations are protected.
 Commercial licensing available for organizations building on the protocol.
 
 ---
 
-## For AI Agents and LLMs Working In This Repo
-
-Read these files in order:
+## For AI Agents
 
 ```
-1. CLAUDE.md                    <- PRIMARY: mission, traps, technical rules
-2. AGENTS.md                    <- hard rules, forbidden terms, protected files
-3. CONTEXT_SNAPSHOT.md          <- current state, 20 claims, 2078 tests
-4. reports/canonical_state.md   <- authoritative claims list
-5. reports/known_faults.yaml    <- known limitations (SCOPE_001 + ENV_001)
+1. CLAUDE.md              ← mission, rules, traps
+2. AGENTS.md              ← hard rules, protected files
+3. CONTEXT_SNAPSHOT.md    ← current state
+4. reports/known_faults.yaml ← limitations
 ```
 
 ---
 
-*MetaGenesis Core v0.9.0 -- Inventor: Yehor Bazhynov -- Patent Pending #63/996,819*
+*MetaGenesis Core v0.9.0 | 2078 tests | 51.2% real | Patent Pending #63/996,819*
