@@ -78,7 +78,7 @@ See `.planning/milestones/v2.0.0-ROADMAP.md` for full phase details.
 - [x] **Phase 24: Client Demo Flow** - Single-command demo script: pick domain, run claims, bundle, verify, receipt -- works offline (completed 2026-04-07)
 - [x] **Phase 25: Client-Facing Documentation** - COMMERCIAL.md, SECURITY.md, docs/PROTOCOL.md for client trust (completed 2026-04-07)
 - [x] **Phase 26: Counter Sync and Gate Hardening** - All counters consistent, check_stale_docs rules updated, all 5 gates green at ship (completed 2026-04-07)
-- [ ] **Phase 27: Polish and Debt Cleanup** - Fix receipt reproduce commands, system_manifest ratio regression, receipt Result field fidelity, re-run gates
+- [x] **Phase 27: Polish and Debt Cleanup** - Fix receipt reproduce commands, system_manifest ratio regression, receipt Result field fidelity, re-run gates (completed 2026-04-07)
 
 ## Phase Details
 
@@ -144,9 +144,9 @@ Plans:
   2. system_manifest.json shows real_to_synthetic_ratio >= 0.50 (matches index.json reality)
   3. Receipt Result field shows domain-specific metric instead of "See bundle for details"
   4. All 5 verification gates still pass after fixes
-**Plans:** 1 plan
+**Plans:** 1/1 plans complete
 Plans:
-- [ ] 27-01-PLAN.md — Fix receipt reproduce commands, system_manifest ratio, receipt Result field
+- [x] 27-01-PLAN.md — Fix receipt reproduce commands, system_manifest ratio, receipt Result field
 
 ## Progress
 

@@ -105,8 +105,7 @@ def _update_manifest() -> None:
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     entries = _load_index()
     real_count = sum(1 for e in entries if not e.get("is_synthetic", True))
-    synthetic_count = 20  # the 20 domain templates
-    total = real_count + synthetic_count
+    total = len(entries)
     ratio = real_count / total if total > 0 else 0.0
 
     manifest["real_verifications_count"] = real_count

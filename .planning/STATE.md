@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v3.0.0
 milestone_name: Client-Ready Protocol
 status: verifying
-stopped_at: Completed 26-02-PLAN.md
-last_updated: "2026-04-07T22:44:30.416Z"
+stopped_at: Completed 27-01-PLAN.md
+last_updated: "2026-04-07T23:40:36.169Z"
 last_activity: 2026-04-07
 progress:
-  total_phases: 4
-  completed_phases: 4
-  total_plans: 7
-  completed_plans: 7
+  total_phases: 5
+  completed_phases: 5
+  total_plans: 8
+  completed_plans: 8
   percent: 100
 ---
 
@@ -64,6 +64,8 @@ Decisions logged in PROJECT.md Key Decisions table.
 - [Phase 25-client-facing-documentation]: Used PLACEHOLDER for Stripe link to avoid hardcoding payment URL in public repo
 - [Phase 26-counter-sync-and-gate-hardening]: Used pytest count 2078 as single source of truth for all counter files
 - [Phase 26-counter-sync-and-gate-hardening]: All 5 verification gates passed on first run after plan 01 counter sync -- zero fixes needed
+- [Phase 27]: Fixed _update_manifest ratio formula to use real/total_in_index instead of real/(real+hardcoded_20)
+- [Phase 27]: Monkeypatched REPO_ROOT in test_mg_claim_builder fixture to prevent test side-effects on real system_manifest.json
 
 ### Pending Todos
 
@@ -77,6 +79,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-04-07T22:44:30.413Z
-Stopped at: Completed 26-02-PLAN.md
+Last session: 2026-04-07T23:40:36.166Z
+Stopped at: Completed 27-01-PLAN.md
 Resume file: None
