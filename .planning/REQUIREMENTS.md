@@ -57,19 +57,19 @@
 
 ### Documentation
 
-- [ ] **DOCS-01**: All counters consistent (index.html, README, AGENTS, llms.txt, system_manifest, CONTEXT_SNAPSHOT)
-- [ ] **DOCS-02**: check_stale_docs.py rules updated to match final counts in same PR
-- [ ] **DOCS-03**: COMMERCIAL.md created (pricing, pilot flow, Stripe link)
-- [ ] **DOCS-04**: SECURITY.md created (threat model, 5-layer defense)
-- [ ] **DOCS-05**: docs/PROTOCOL.md created (protocol specification prose)
+- [x] **DOCS-01**: All counters consistent (index.html, README, AGENTS, llms.txt, system_manifest, CONTEXT_SNAPSHOT)
+- [x] **DOCS-02**: check_stale_docs.py rules updated to match final counts in same PR
+- [x] **DOCS-03**: COMMERCIAL.md created (pricing, pilot flow, Stripe link)
+- [x] **DOCS-04**: SECURITY.md created (threat model, 5-layer defense)
+- [x] **DOCS-05**: docs/PROTOCOL.md created (protocol specification prose)
 
 ### Gate Hardening
 
-- [ ] **GATE-01**: steward_audit.py → PASS at ship
-- [ ] **GATE-02**: pytest ≥2063 passed at ship
-- [ ] **GATE-03**: deep_verify.py → ALL 13 TESTS PASSED at ship
-- [ ] **GATE-04**: agent_evolution.py → ALL 21 CHECKS PASSED at ship
-- [ ] **GATE-05**: agent_diff_review.py → PASS at ship
+- [x] **GATE-01**: steward_audit.py → PASS at ship
+- [x] **GATE-02**: pytest ≥2063 passed at ship
+- [x] **GATE-03**: deep_verify.py → ALL 13 TESTS PASSED at ship
+- [x] **GATE-04**: agent_evolution.py → ALL 21 CHECKS PASSED at ship
+- [x] **GATE-05**: agent_diff_review.py → PASS at ship
 
 ## Future Requirements (deferred)
 
@@ -127,16 +127,16 @@
 | DEMO-01 | Phase 24 | Complete |
 | DEMO-02 | Phase 24 | Complete |
 | DEMO-03 | Phase 24 | Complete |
-| DOCS-01 | Phase 26 | Pending |
-| DOCS-02 | Phase 26 | Pending |
-| DOCS-03 | Phase 25 | Pending |
-| DOCS-04 | Phase 25 | Pending |
-| DOCS-05 | Phase 25 | Pending |
-| GATE-01 | Phase 26 | Pending |
-| GATE-02 | Phase 26 | Pending |
-| GATE-03 | Phase 26 | Pending |
-| GATE-04 | Phase 26 | Pending |
-| GATE-05 | Phase 26 | Pending |
+| DOCS-01 | Phase 26 | Complete |
+| DOCS-02 | Phase 26 | Complete |
+| DOCS-03 | Phase 25 | Complete |
+| DOCS-04 | Phase 25 | Complete |
+| DOCS-05 | Phase 25 | Complete |
+| GATE-01 | Phase 26 | Complete |
+| GATE-02 | Phase 26 | Complete |
+| GATE-03 | Phase 26 | Complete |
+| GATE-04 | Phase 26 | Complete |
+| GATE-05 | Phase 26 | Complete |
 
 **Coverage:**
 - v1.0.0 requirements: 19 total -- 19 complete
