@@ -75,7 +75,7 @@ See `.planning/milestones/v2.0.0-ROADMAP.md` for full phase details.
 **Milestone Goal:** Push real_ratio from 4.8% to 50% by verifying all 20 active claims with real external data, delivering end-to-end client demo flow, and hardening all gates for ship.
 
 - [x] **Phase 23: Real Verification** - Run all 20 active claims with real external data via mg_claim_builder.py, produce signed bundles grouped by domain (completed 2026-04-07)
-- [x] **Phase 24: Client Demo Flow** - Single-command demo script: pick domain, run claims, bundle, verify, receipt -- works offline (completed 2026-04-07)
+- [ ] **Phase 24: Client Demo Flow** - Single-command demo script: pick domain, run claims, bundle, verify, receipt -- works offline
 - [ ] **Phase 25: Client-Facing Documentation** - COMMERCIAL.md, SECURITY.md, docs/PROTOCOL.md for client trust
 - [ ] **Phase 26: Counter Sync and Gate Hardening** - All counters consistent, check_stale_docs rules updated, all 5 gates green at ship
 
@@ -104,9 +104,9 @@ Plans:
   1. User runs one command, picks a domain, and sees claims run, bundle created, verification PASS, and human-readable receipt printed
   2. Each domain demo produces a receipt file via mg_receipt.py that a non-technical person can read and understand
   3. Demo completes fully with no network access (temporal layer degrades gracefully)
-**Plans:** 1/1 plans complete
+**Plans:** 1 plan
 Plans:
-- [x] 24-01-PLAN.md -- mg_demo.py script + tests (domain picker, bundle verification, receipt generation)
+- [ ] 24-01-PLAN.md -- mg_demo.py script + tests (domain picker, bundle verification, receipt generation)
 
 ### Phase 25: Client-Facing Documentation
 **Goal**: A prospective client finds answers to "how much does it cost," "is it secure," and "how does the protocol work" without reading source code
@@ -137,7 +137,7 @@ Plans:
 | 9-13 | v1.0.0 | - | Complete | 2026-04-04 |
 | 14-22 | v2.0.0 | - | Complete | 2026-04-04 |
 | 23. Real Verification | v3.0.0 | 3/3 | Complete   | 2026-04-07 |
-| 24. Client Demo Flow | v3.0.0 | 1/1 | Complete   | 2026-04-07 |
+| 24. Client Demo Flow | v3.0.0 | 0/1 | Planned | - |
 | 25. Client-Facing Docs | v3.0.0 | 0/TBD | Not started | - |
 | 26. Counter Sync + Gates | v3.0.0 | 0/TBD | Not started | - |
 

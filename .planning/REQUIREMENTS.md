@@ -51,9 +51,9 @@
 
 ### Client Demo
 
-- [x] **DEMO-01**: Single-command demo script: pick domain → run claims → bundle → verify → receipt
-- [x] **DEMO-02**: Demo produces human-readable receipt (mg_receipt.py) for each domain bundle
-- [x] **DEMO-03**: Demo works offline (no network dependency except optional temporal layer)
+- [ ] **DEMO-01**: Single-command demo script: pick domain → run claims → bundle → verify → receipt
+- [ ] **DEMO-02**: Demo produces human-readable receipt (mg_receipt.py) for each domain bundle
+- [ ] **DEMO-03**: Demo works offline (no network dependency except optional temporal layer)
 
 ### Documentation
 
@@ -124,9 +124,9 @@
 | REAL-03 | Phase 23 | Complete |
 | REAL-04 | Phase 23 | Complete |
 | REAL-05 | Phase 23 | Complete |
-| DEMO-01 | Phase 24 | Complete |
-| DEMO-02 | Phase 24 | Complete |
-| DEMO-03 | Phase 24 | Complete |
+| DEMO-01 | Phase 24 | Pending |
+| DEMO-02 | Phase 24 | Pending |
+| DEMO-03 | Phase 24 | Pending |
 | DOCS-01 | Phase 26 | Pending |
 | DOCS-02 | Phase 26 | Pending |
 | DOCS-03 | Phase 25 | Pending |
