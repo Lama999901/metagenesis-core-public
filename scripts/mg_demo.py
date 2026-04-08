@@ -100,7 +100,7 @@ def _entries_for_domain(index: list, domain_key: str) -> list:
 
 def _resolve_bundle_path(entry: dict) -> Path:
     """Resolve bundle_path from index entry (handles backslash paths)."""
-    raw = entry.get("bundle_path", "")
+    raw = entry.get("bundle_path", "").replace("\\", "/")
     resolved = REPO_ROOT / Path(raw)
     return resolved
 
