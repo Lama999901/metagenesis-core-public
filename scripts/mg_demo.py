@@ -100,7 +100,7 @@ def _entries_for_domain(index: list, domain_key: str) -> list:
 
 def _resolve_bundle_path(entry: dict) -> Path:
     """Resolve bundle_path from index entry (handles backslash paths)."""
-    raw = entry.get("bundle_path", "")
+    raw = entry.get("bundle_path", "").replace("\\", "/")
     resolved = REPO_ROOT / Path(raw)
     return resolved
 
@@ -149,7 +149,7 @@ def _find_bundle_root(extract_dir: Path) -> Path:
 
 
 def _extract_and_verify(bundle_zip: Path) -> tuple:
-    """Extract a bundle ZIP, verify it, return (passed, results, evidence, claim_output, tmp_dir).
+    """Extract a bundle ZIP, verify it, return (passed, results, evidence, tmp_dir).
 
     Caller must clean up tmp_dir.
     """
@@ -160,7 +160,7 @@ def _extract_and_verify(bundle_zip: Path) -> tuple:
             for member in zf.namelist():
                 if not _safe_zip_member(member):
                     shutil.rmtree(tmp_dir, ignore_errors=True)
-                    return False, [("ZIP Security", False, f"Unsafe path: {member}")], None, None, None
+                    return False, [("ZIP Security", False, f"Unsafe path: {member}")], None, None
             zf.extractall(str(tmp_dir))
 
         bundle_root = _find_bundle_root(tmp_dir)
@@ -172,17 +172,10 @@ def _extract_and_verify(bundle_zip: Path) -> tuple:
         if evidence_path.exists():
             evidence = json.loads(evidence_path.read_text(encoding="utf-8"))
 
-        # Load claim output for domain metrics (richer than evidence.json)
-        claim_output = None
-        for f in bundle_root.iterdir():
-            if f.name.endswith("_output.json") and f.name != "evidence.json":
-                claim_output = json.loads(f.read_text(encoding="utf-8"))
-                break
-
-        return passed, results, evidence, claim_output, tmp_dir
+        return passed, results, evidence, tmp_dir
     except Exception as exc:
         shutil.rmtree(tmp_dir, ignore_errors=True)
-        return False, [("Extraction", False, str(exc))], None, None, None
+        return False, [("Extraction", False, str(exc))], None, None
 
 
 def _print_layer_results(results: list):
@@ -245,7 +238,7 @@ def run_domain_demo(domain_key: str, output_dir: Path) -> bool:
 
         print(f"\n  {C}[{i}/{len(entries)}]{X} Verifying {entry['id']}...")
 
-        passed, results, evidence, claim_output, tmp_dir = _extract_and_verify(bundle_zip)
+        passed, results, evidence, tmp_dir = _extract_and_verify(bundle_zip)
 
         _print_layer_results(results)
 
@@ -255,21 +248,19 @@ def run_domain_demo(domain_key: str, output_dir: Path) -> bool:
             desc = get_claim_description(claim_tag_from_evidence)
             anchor = get_anchor_line(claim_tag_from_evidence)
 
-            # Use claim output (has domain metrics) for receipt if available
-            receipt_data = claim_output if claim_output else dict(evidence)
-            receipt_data["mtr_phase"] = claim_tag_from_evidence
-            receipt_text = format_receipt(receipt_data)
+            # Print individual receipt (use short claim ID for proper lookup)
+            receipt_evidence = dict(evidence)
+            receipt_evidence["mtr_phase"] = claim_tag_from_evidence
+            receipt_text = format_receipt(receipt_evidence)
             print(f"\n{receipt_text}")
 
-            # Use claim output result for summary hash
-            trace_root = (claim_output or evidence).get("trace_root_hash", "")
             claim_summaries.append({
                 "claim_id": claim_tag_from_evidence,
                 "description": desc,
                 "anchor": anchor,
                 "passed": passed,
                 "bundle_zip": str(bundle_zip.relative_to(REPO_ROOT)),
-                "trace_root_hash": trace_root,
+                "trace_root_hash": evidence.get("trace_root_hash", ""),
             })
 
             bundle_paths_for_receipt.append(
@@ -329,13 +320,11 @@ def run_domain_demo(domain_key: str, output_dir: Path) -> bool:
 
     lines.append("How to Reproduce")
     lines.append("----------------")
-    lines.append("  Extract each bundle ZIP, then verify the extracted directory:")
+    lines.append("  Run these commands from the repository root:")
     lines.append("")
     for bp in bundle_paths_for_receipt:
-        name_stem = Path(bp).stem  # e.g. MTR-1_materials_20260407T052827Z
-        lines.append(f"  unzip {bp} -d {name_stem}/")
-        lines.append(f"  python scripts/mg.py verify --pack {name_stem}/")
-        lines.append("")
+        lines.append(f"  python scripts/mg.py verify --pack {bp}")
+    lines.append("")
     lines.append("  Offline. Any machine. No trust required.")
     lines.append("")
     lines.append("============================================================")
