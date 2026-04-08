@@ -81,6 +81,47 @@ No subset of four layers catches all attacks. CERT-11 proves this with coordinat
 
 ---
 
+## How It Works
+
+```
+1. Compute          runner.run_job() executes the computation
+                    → produces execution_trace + trace_root_hash
+
+2. Package          mg.py pack bundles artifacts + SHA-256 manifest
+                    → self-contained .zip with root_hash
+
+3. Sign             mg_ed25519.py signs the bundle (WHO created it)
+                    mg_temporal.py binds to NIST Beacon (WHEN it was created)
+
+4. Verify           mg.py verify --pack checks all 5 layers
+                    → PASS or FAIL with specific layer and reason
+```
+
+The bundle is the proof. It travels with the result. Anyone verifies it. Offline. Any machine.
+
+---
+
+## The Adversarial Gauntlet
+
+Every claim is backed by adversarial tests that attempt to break it. Every test runs in CI on every merge.
+
+| Certificate | What it proves | Attacks |
+|-------------|---------------|---------|
+| **CERT-02** | Semantic bypass detection | Strip evidence, recompute hashes |
+| **CERT-03** | Step chain integrity | Change inputs, rebuild trace |
+| **CERT-05** | 5-attack gauntlet | Strip, bit-flip, cross-domain, canary, anchor reversal |
+| **CERT-06** | 5 real-world scenarios | Honest team, cherry-picker, physical chain, audit, reproducibility |
+| **CERT-07** | Bundle signing | 13 attack vectors on HMAC-SHA256 |
+| **CERT-08** | Reproducibility | 10 determinism proofs across all claims |
+| **CERT-09** | Ed25519 attacks | Key manipulation, signature forging |
+| **CERT-10** | Temporal attacks | Backdating, beacon manipulation |
+| **CERT-11** | 5-layer independence | Coordinated multi-vector — proves all layers necessary |
+| **CERT-12** | Encoding attacks | BOM injection, null bytes, homoglyphs, truncated JSON |
+
+These are not unit tests. They are adversarial proofs. Each one simulates a real attacker with a specific strategy. Each one fails without the layer it tests.
+
+---
+
 ## Try It Now
 
 ```bash
@@ -92,7 +133,21 @@ pip install -r requirements.txt
 python scripts/mg_demo.py --domain materials
 ```
 
+Expected output: 6 materials claims verified through all 5 layers. PASS for each. Human-readable receipt saved to `demos/receipts/materials_receipt.txt`.
+
 No GPU. No model access. No network. Works offline on any machine with Python 3.11+.
+
+**Verify a single bundle yourself:**
+```bash
+python scripts/mg.py verify --pack demos/open_data_demo_01/
+# PASS PASS
+```
+
+**Or use the standalone verifier — one file, zero dependencies:**
+```bash
+python scripts/mg_verify_standalone.py demos/open_data_demo_01/
+# PASS
+```
 
 ---
 
@@ -139,14 +194,17 @@ MetaGenesis Core is not a product. It is infrastructure. Four levels, each build
 ### Level 1 — Protocol *(shipped, v0.9.0)*
 
 Any computation verified in 60 seconds. 5 layers. 20 claims. Physical anchors. Offline.
+*Trigger to next level: first paying client.*
 
 ### Level 2 — Registry
 
 Every verified bundle gets a persistent DOI via Zenodo. Scientists publish the proof alongside the paper. "Was this computation verified?" becomes a searchable question with a cryptographic answer.
+*Trigger to next level: 5 paying clients across 2 verticals.*
 
 ### Level 3 — Agent Economy
 
 AI agents verify each other's outputs through the protocol. Agent A produces a result. Agent B verifies it. Neither trusts the other. Both trust the physics.
+*Trigger to next level: 100+ bundles verified, institutional adoption.*
 
 ### Level 4 — Self-Evolution
 
@@ -222,19 +280,21 @@ python scripts/agent_evolution.py       # ALL 21 CHECKS PASSED
 
 ## For Organizations
 
-**Free pilot:** Send your computational result, receive a verified bundle.
-https://metagenesis-core.dev/#pilot
+**Free pilot:** Send your computational result. We build a verification bundle. You decide if it's useful.
+https://metagenesis-core.dev/#pilot — no obligation, 24-48 hours.
 
-**Price:** $299 per verification bundle.
+**If you're in ML/AI:** Your benchmark claims become independently verifiable without exposing models or data. EU AI Act Article 12 requires audit trails.
+
+**If you're in pharma:** Your computational submissions become FDA 21 CFR Part 11 compatible audit artifacts. A $299 bundle vs. a $47M raise to prove credibility.
+
+**If you're in finance:** Your VaR model outputs become independently verifiable by regulators. Basel III/IV compliance without re-running proprietary code.
+
+**If you're in engineering:** Your FEM/CFD simulation results are anchored to physical constants. Clients verify offline. Digital twin calibration is cryptographically proven.
+
+**Price:** $299 per verification bundle | Pipeline integration: $2,000-5,000 | Ongoing: $500-2,000/month
 Full details: `COMMERCIAL.md`
 
-**Security model:** 5-layer defense with 12 adversarial proof certificates.
-Full details: `SECURITY.md`
-
-**Protocol specification:** End-to-end technical description.
-Full details: `docs/PROTOCOL.md`
-
-**Contact:** yehor@metagenesis-core.dev
+**Security model:** `SECURITY.md` | **Protocol spec:** `docs/PROTOCOL.md` | **Contact:** yehor@metagenesis-core.dev
 
 ---
 
