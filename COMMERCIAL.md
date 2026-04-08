@@ -57,7 +57,16 @@ The recipient runs `mg.py verify --pack bundle.zip` and gets PASS or FAIL.
 - Any team needing third-party verifiable proof of a computational claim
 
 **Price:** $299 per bundle.
-Payment by bank transfer, crypto (BTC / ETH / USDC), or invoice.
+
+<!-- Replace PLACEHOLDER with your live Stripe payment link -->
+**Pay now:** [Stripe Payment Link](https://buy.stripe.com/PLACEHOLDER)
+
+**What you receive:**
+- A self-contained `.zip` evidence bundle
+- Human-readable verification receipt (PDF-printable)
+- Instructions: `python scripts/mg.py verify --pack bundle.zip` -- any third party verifies independently
+
+Payment also available by bank transfer, crypto (BTC / ETH / USDC), or invoice.
 Email yehor@metagenesis-core.dev to order.
 
 ---
@@ -133,13 +142,25 @@ industrial digital twin providers.
 
 ---
 
-## Free pilot
+## Free pilot -- how it works
 
-If you have a specific computational result you want to verify, contact
-me. I will build a verification bundle for it at no charge.
+1. **Submit your result** -- visit https://metagenesis-core.dev/#pilot or email yehor@metagenesis-core.dev with your computational result (CSV, JSON, or description of what you need verified).
+2. **Domain detection** -- we identify which of the 8 verification domains your result belongs to (ML/AI, materials, pharma, finance, digital twin, physics, data pipelines, system identification).
+3. **Bundle creation** -- we run your data through the verification protocol, producing a self-contained evidence bundle with 5-layer verification.
+4. **Verification receipt** -- you receive the bundle plus a human-readable receipt showing PASS/FAIL for each verification layer.
+5. **Your decision** -- if the bundle proves useful, the full service is $299 per bundle. No obligation. No strings attached.
 
-This is how I determine whether the protocol fits your use case before
-any commercial conversation. No strings attached.
+**Timeline:** 24-48 hours from submission to verified bundle.
+**What you need:** Your computational result and a brief description of what it claims.
+
+---
+
+## How to pay
+
+- **Stripe:** [Pay $299](https://buy.stripe.com/PLACEHOLDER)
+- **Bank transfer:** Email yehor@metagenesis-core.dev for wire details
+- **Crypto:** BTC / ETH / USDC accepted -- email for wallet address
+- **Invoice:** Available on request for organizations
 
 ---
 

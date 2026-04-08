@@ -45,18 +45,18 @@
     "bundle_signing_hmac_sha256",
     "temporal_commitment_nist_beacon"
   ],
-  "test_count": 2063,
+  "test_count": 2078,
   "steward_audit": "PASS",
   "ppa_filed": "2026-03-05",
   "ppa_number": "63/996,819",
   "inventor": "Yehor Bazhynov",
   "github_release": "v0.9.0",
   "joss_paper": "paper.md",
-  "real_verifications_count": 1,
+  "real_verifications_count": 21,
   "external_input_supported": true,
   "proof_library_exists": true,
-  "real_to_synthetic_ratio": 0.0476,
+  "real_to_synthetic_ratio": 0.5122,
   "last_session_date": "2026-04-06",
-  "last_session_summary": "Built mg_claim_builder.py (283 lines) + 51 tests + proof_library + check #21 real_ratio + session_close.py + language fixes. Tests: 2063. Ratio: 4.8%. Door is open.",
+  "last_session_summary": "Built mg_claim_builder.py (283 lines) + 51 tests + proof_library + check #21 real_ratio + session_close.py + language fixes. Tests: 2078. Ratio: 4.8%. Door is open.",
   "next_priority": "Verify a real external computation (not internal tests) to push ratio toward 20%. Pick ML benchmarking domain."
 }

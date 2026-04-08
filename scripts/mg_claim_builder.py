@@ -105,8 +105,7 @@ def _update_manifest() -> None:
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     entries = _load_index()
     real_count = sum(1 for e in entries if not e.get("is_synthetic", True))
-    synthetic_count = 20  # the 20 domain templates
-    total = real_count + synthetic_count
+    total = len(entries)
     ratio = real_count / total if total > 0 else 0.0
 
     manifest["real_verifications_count"] = real_count
@@ -280,21 +279,25 @@ def build_claim(
                 shutil.copytree(output_p, bundle_dir / output_p.name)
 
         # Build pack manifest (Layer 1)
-        manifest_files = {}
+        # Format must match mg.py _verify_pack: list of {relpath, sha256} dicts
+        manifest_files = []
         for f in sorted(bundle_dir.rglob("*")):
             if f.is_file():
                 rel = f.relative_to(bundle_dir).as_posix()
-                manifest_files[rel] = hashlib.sha256(f.read_bytes()).hexdigest()
+                sha = hashlib.sha256(f.read_bytes()).hexdigest()
+                manifest_files.append({"relpath": rel, "sha256": sha})
 
-        manifest_content = json.dumps(
-            {"files": manifest_files, "trace_root_hash": trace_root_hash},
-            sort_keys=True,
-            separators=(",", ":"),
+        # root_hash computation must match mg.py line 130-131:
+        # lines = "\n".join(f"{e['relpath']}:{e['sha256']}" for e in sorted(...))
+        lines = "\n".join(
+            f"{e['relpath']}:{e['sha256']}"
+            for e in sorted(manifest_files, key=lambda x: x["relpath"])
         )
-        root_hash = hashlib.sha256(manifest_content.encode("utf-8")).hexdigest()
+        root_hash = hashlib.sha256(lines.encode("utf-8")).hexdigest()
 
         pack_manifest = {
             "version": 1,
+            "protocol_version": 1,
             "created": datetime.now(timezone.utc).isoformat(),
             "root_hash": root_hash,
             "files": manifest_files,
