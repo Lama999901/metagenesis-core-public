@@ -54,7 +54,8 @@
     "reports/receipts/**",
     "reports/response_drafts/**",
     "reports/response_bundles/**",
-    ".planning/**"
+    ".planning/**",
+    "proof_library/**"
   ],
   "_notes": {
     "locked_paths_purpose": "HARD BLOCK any modifications to sealed evidence artifacts",

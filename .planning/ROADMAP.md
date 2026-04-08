@@ -2,14 +2,15 @@
 
 ## Overview
 
-This roadmap tracks MetaGenesis Core milestones. v0.4.0 added Ed25519 signing and temporal commitment. v0.5.0 hardened coverage with adversarial proof suites CERT-11/12. v1.0.0 made the project client-ready with pilot onboarding automation, 91.9% coverage, and academic citation infrastructure. v2.0.0 transforms the protocol into a self-verifying, client-ready standard with response infrastructure, recursive integrity, and architectural seeds for the future.
+This roadmap tracks MetaGenesis Core milestones. v0.4.0 added Ed25519 signing and temporal commitment. v0.5.0 hardened coverage with adversarial proof suites CERT-11/12. v1.0.0 made the project client-ready with pilot onboarding automation, 91.9% coverage, and academic citation infrastructure. v2.0.0 transforms the protocol into a self-verifying, client-ready standard with response infrastructure, recursive integrity, and architectural seeds for the future. v3.0.0 pushes real_ratio to 50% by verifying all 20 claims with real external data and delivering end-to-end client demo flow.
 
 ## Milestones
 
 - **v0.4.0 Protocol Hardening** - Phases 1-4 (shipped 2026-03-18)
 - **v0.5.0 Coverage Hardening** - Phases 5-8 (shipped 2026-03-18)
 - **v1.0.0 First Client** - Phases 9-13 (shipped 2026-04-04)
-- **v2.0.0 Autonomous Evolution** - Phases 14-22 (in progress)
+- **v2.0.0 Autonomous Evolution** - Phases 14-22 (shipped 2026-04-04)
+- **v3.0.0 Client-Ready Protocol** - Phases 23-26 (in progress)
 
 ## Phases
 
@@ -52,140 +53,94 @@ See `.planning/milestones/v1.0.0-ROADMAP.md` for full phase details.
 
 </details>
 
-### v2.0.0 Autonomous Evolution (Phases 14-22)
+<details>
+<summary>v2.0.0 Autonomous Evolution (Phases 14-22) - SHIPPED 2026-04-04</summary>
 
-**Milestone Goal:** Transform MetaGenesis Core from a protocol into a self-verifying, client-ready standard with response infrastructure, recursive integrity, and architectural seeds for the future.
+- [x] **Phase 14: Health Check and Coverage Foundation** — gates green, ENV_002, policy gate (completed 2026-04-04)
+- [x] **Phase 15: Protocol Self-Audit** — mg_self_audit.py Ed25519-signed baseline, Check #20 (completed 2026-04-04)
+- [x] **Phase 16: Verification Receipt** — mg_receipt.py human-readable proof (completed 2026-04-04)
+- [x] **Phase 17: Response Infrastructure** — agent_responder.py 60-second reply kits (completed 2026-04-04)
+- [x] **Phase 18: Evolution Council** — agent_evolution_council.py self-analysis, 40 tests (completed 2026-04-04)
+- [x] **Phase 19: Agent Charter and Governance** — docs/AGENT_CHARTER.md 7-section governance (completed 2026-04-04)
+- [x] **Phase 20: Protocol Hardening** — PROTOCOL.md prose, mg.py WHY comments, CLAUDE.md updates (completed 2026-04-04)
+- [x] **Phase 21: Hidden Potential Audit** — mg_verify_standalone.py zero-dependency verifier (completed 2026-04-04)
+- [x] **Phase 22: Vision Seeds and Counter Sync** — docs/ROADMAP_VISION.md, counter sync (completed 2026-04-04)
 
-- [x] **Phase 14: Health Check and Coverage Foundation** - Verify all gates green, confirm ENV_002, update policy gate allow_globs for new output directories (completed 2026-04-04)
-- [x] **Phase 15: Protocol Self-Audit** - mg_self_audit.py with Ed25519-signed baseline for 8 core scripts and Check #20 in agent_evolution.py
- (completed 2026-04-04)
-- [x] **Phase 16: Verification Receipt** - mg_receipt.py generates human-readable proof for clients and auditors, integrated into mg_client.py
- (completed 2026-04-04)
-- [x] **Phase 17: Response Infrastructure** - agent_responder.py with 7 domain mappings, draft generation, and queue management for 60-second reply kits (completed 2026-04-04)
-- [ ] **Phase 18: Evolution Council** - agent_evolution_council.py reads 6 data sources and produces ranked improvement proposals
-- [ ] **Phase 19: Agent Charter and Governance** - docs/AGENT_CHARTER.md with constitutional governance for autonomous agents
-- [ ] **Phase 20: Protocol Hardening** - PROTOCOL.md deepening, mg.py inline WHY comments, CLAUDE.md updates for new scripts and counts
-- [ ] **Phase 21: Hidden Potential Audit** - 8-lens investigation of untapped system capabilities, build most important finding
-- [ ] **Phase 22: Vision Seeds and Counter Sync** - docs/ROADMAP_VISION.md with 4 evolution levels, final counter sync across all docs
+See `.planning/milestones/v2.0.0-ROADMAP.md` for full phase details.
+
+</details>
+
+### v3.0.0 Client-Ready Protocol (In Progress)
+
+**Milestone Goal:** Push real_ratio from 4.8% to 50% by verifying all 20 active claims with real external data, delivering end-to-end client demo flow, and hardening all gates for ship.
+
+- [x] **Phase 23: Real Verification** - Run all 20 active claims with real external data via mg_claim_builder.py, produce signed bundles grouped by domain (completed 2026-04-07)
+- [ ] **Phase 24: Client Demo Flow** - Single-command demo script: pick domain, run claims, bundle, verify, receipt -- works offline
+- [ ] **Phase 25: Client-Facing Documentation** - COMMERCIAL.md, SECURITY.md, docs/PROTOCOL.md for client trust
+- [ ] **Phase 26: Counter Sync and Gate Hardening** - All counters consistent, check_stale_docs rules updated, all 5 gates green at ship
 
 ## Phase Details
 
-### Phase 14: Health Check and Coverage Foundation
-**Goal**: All verification gates are green and infrastructure is ready for new output directories
-**Depends on**: Phase 13 (v1.0.0 complete)
-**Requirements**: HARD-03, HARD-05
+### Phase 23: Real Verification
+**Goal**: All 20 active claims are verified with real external data, producing signed bundles that any auditor can independently verify offline
+**Depends on**: Phase 22 (v2.0.0 complete)
+**Requirements**: REAL-01, REAL-02, REAL-03, REAL-04, REAL-05
 **Success Criteria** (what must be TRUE):
-  1. All 5 verification gates pass (steward_audit, pytest, deep_verify, check_stale_docs, agent_diff_review)
-  2. known_faults.yaml contains ENV_002 entry documenting deep_verify.py coverage exclusion
-  3. mg_policy_gate_policy.json allow_globs includes reports/receipts/**, reports/response_drafts/**, reports/response_bundles/**
-**Plans**: 1 plan
+  1. Running `mg_claim_builder.py` with real external data produces a signed bundle for each of the 20 active claims
+  2. Bundles are organized in proof_library/bundles/ grouped by domain (ML, pharma, finance, digital_twin, materials, physics)
+  3. Every bundle passes `python scripts/mg.py verify --pack <bundle>` independently
+  4. `python scripts/agent_evolution.py` check #21 (real_ratio) shows 50% (20 real / 40 total) and reports PASS
+**Plans:** 3/3 plans complete
 Plans:
-- [ ] 14-01-PLAN.md -- Verify gates, confirm ENV_002, add policy gate allow_globs, coverage baseline
+- [x] 23-01-PLAN.md — Create 20 real input data files and run_single_claim.py helper
+- [x] 23-02-PLAN.md — Create batch runner and execute all 20 claim verifications
+- [x] 23-03-PLAN.md — Tests and final verification (all bundles PASS, check #21 PASS)
 
-### Phase 15: Protocol Self-Audit
-**Goal**: The protocol can verify its own integrity by detecting tampered core scripts
-**Depends on**: Phase 14
-**Requirements**: SELF-01, SELF-02, SELF-03, SELF-04, SELF-05, SELF-06
+### Phase 24: Client Demo Flow
+**Goal**: A prospective client can run a single command to see the full verification flow for any domain -- from data to bundle to receipt
+**Depends on**: Phase 23 (bundles exist to demo)
+**Requirements**: DEMO-01, DEMO-02, DEMO-03
 **Success Criteria** (what must be TRUE):
-  1. Running `mg_self_audit.py --init` creates an Ed25519-signed hash baseline of 8 core scripts
-  2. Modifying any core script and running `mg_self_audit.py` produces SELF-AUDIT FAIL with the changed file identified
-  3. Running `mg_self_audit.py --update` re-baselines after intentional changes with a confirmation prompt
-  4. `python scripts/agent_evolution.py` reports Check #20 "self_audit" as PASS when baseline exists and scripts are unmodified
-  5. 15+ tests pass covering tamper detection, signature validation, update workflow, missing baseline, missing file, and edge cases
+  1. User runs one command, picks a domain, and sees claims run, bundle created, verification PASS, and human-readable receipt printed
+  2. Each domain demo produces a receipt file via mg_receipt.py that a non-technical person can read and understand
+  3. Demo completes fully with no network access (temporal layer degrades gracefully)
+**Plans:** 1 plan
+Plans:
+- [ ] 24-01-PLAN.md -- mg_demo.py script + tests (domain picker, bundle verification, receipt generation)
+
+### Phase 25: Client-Facing Documentation
+**Goal**: A prospective client finds answers to "how much does it cost," "is it secure," and "how does the protocol work" without reading source code
+**Depends on**: Phase 23 (real bundles inform documentation claims)
+**Requirements**: DOCS-03, DOCS-04, DOCS-05
+**Success Criteria** (what must be TRUE):
+  1. COMMERCIAL.md exists with pricing ($299), pilot flow description, and Stripe payment link
+  2. SECURITY.md exists with threat model and explanation of how each of the 5 verification layers defends against specific attack classes
+  3. docs/PROTOCOL.md exists with protocol specification prose that explains the verification flow end-to-end
 **Plans**: TBD
 
-### Phase 16: Verification Receipt
-**Goal**: Clients and auditors receive human-readable proof after every successful verification
-**Depends on**: Phase 15
-**Requirements**: RCPT-01, RCPT-02, RCPT-03, RCPT-04, RCPT-05, RCPT-06
+### Phase 26: Counter Sync and Gate Hardening
+**Goal**: Every counter, every gate, and every stale-docs rule is consistent and green -- the project ships clean
+**Depends on**: Phase 23, Phase 24, Phase 25 (all work complete, final counts known)
+**Requirements**: DOCS-01, DOCS-02, GATE-01, GATE-02, GATE-03, GATE-04, GATE-05
 **Success Criteria** (what must be TRUE):
-  1. Running `mg_receipt.py --pack bundle.zip` prints a human-readable receipt and saves it to reports/receipts/{trace_id}_receipt.txt
-  2. Receipts for anchored claims (MTR, PHYS, DT-FEM, DRIFT) display the physical anchor line with the constant and its source
-  3. Receipts for non-anchored claims display "Tamper-evident provenance only" with SCOPE_001 reference
-  4. FAIL bundles produce a clear error message and no receipt file
-  5. mg_client.py automatically generates a receipt after every PASS verification
-**Plans**: TBD
-
-### Phase 17: Response Infrastructure
-**Goal**: Any outreach reply can be answered with a complete response kit (draft + bundle + queue entry) in 60 seconds
-**Depends on**: Phase 16
-**Requirements**: RESP-01, RESP-02, RESP-03, RESP-04, RESP-05, RESP-06, RESP-07
-**Success Criteria** (what must be TRUE):
-  1. Running `agent_responder.py --prepare <contact>` produces a response draft, domain-specific bundle, and queue entry in under 60 seconds
-  2. All 7 domain mappings resolve correctly (Patronus, BV, Chollet, Percy Liang, IQVIA, LMArena, South Pole)
-  3. Draft text reads naturally without AI markers, special unicode, or em-dashes
-  4. response_queue.json tracks status flow: prepared, reviewed, bundle_sent, replied, converted
-  5. Running `--status` shows all pending kits with age; `--list-domains` shows available mappings
-**Plans**: TBD
-
-### Phase 18: Evolution Council
-**Goal**: The system can analyze itself and produce evidence-based improvement proposals ranked by impact
-**Depends on**: Phase 17
-**Requirements**: EVOL-01, EVOL-02, EVOL-03, EVOL-04
-**Success Criteria** (what must be TRUE):
-  1. agent_evolution_council.py reads all 6 data sources (agent_learn recall, coverage report, known_faults, agent_evolution, response_queue, git log)
-  2. Running the script produces .planning/EVOLUTION_PROPOSALS.md with up to 10 proposals sorted by impact/effort ratio
-  3. Running `--summary` prints the top 3 proposals to stdout
-  4. 15+ tests pass covering analysis logic, proposal generation, ranking, empty sources, and edge cases
-**Plans**: TBD
-
-### Phase 19: Agent Charter and Governance
-**Goal**: Autonomous agent boundaries are formally documented with clear permission/escalation rules
-**Depends on**: Phase 18
-**Requirements**: GOVN-01, GOVN-02, GOVN-03
-**Success Criteria** (what must be TRUE):
-  1. docs/AGENT_CHARTER.md exists with all 7 sections: permissions, approvals, communication, escalation, memory, prime directive, banned terms
-  2. The charter draws a clear boundary between autonomous agent actions and human-approval-required actions
-  3. The prime directive is documented: every agent action must make the verification protocol more trustworthy
-**Plans**: TBD
-
-### Phase 20: Protocol Hardening
-**Goal**: Protocol documentation is deepened with plain-language explanations and inline code rationale
-**Depends on**: Phase 19
-**Requirements**: HARD-01, HARD-02, HARD-04
-**Success Criteria** (what must be TRUE):
-  1. PROTOCOL.md Physical Anchor section includes plain-language prose explaining kB and SI 2019 significance
-  2. mg.py contains inline WHY comments for 5 key design decisions (5 layers, semantic layer, Ed25519, NIST Beacon, step chain)
-  3. CLAUDE.md file map includes all new v2.0.0 scripts, check count reflects 20 (was 19), and references agent charter and vision doc
-**Plans**: TBD
-
-### Phase 21: Hidden Potential Audit
-**Goal**: Untapped system capabilities are identified through systematic investigation and the most valuable finding is built
-**Depends on**: Phase 20
-**Requirements**: HUNT-01, HUNT-02, HUNT-03
-**Success Criteria** (what must be TRUE):
-  1. 8-lens investigation completed (first user, regulator, attacker, researcher 2075, client sim, pattern detective, semantic coverage, synthesis)
-  2. .planning/HIDDEN_POTENTIAL.md exists with all 8 sections and findings
-  3. The most important finding for a real client receiving their first bundle is implemented and tested
-**Plans**: TBD
-
-### Phase 22: Vision Seeds and Counter Sync
-**Goal**: The long-term evolution path is documented and all documentation counters are consistent
-**Depends on**: Phase 21
-**Requirements**: VISN-01, VISN-02
-**Success Criteria** (what must be TRUE):
-  1. docs/ROADMAP_VISION.md documents 4 evolution levels: Protocol, Registry, Agent Economy, Self-Evolution
-  2. Each level includes minimum viable pilot, first identifiable client, academic publication, and estimated duration
-  3. All documentation counters (test count, claim count, check count, script references) are consistent across every file checked by check_stale_docs.py
+  1. All counters match across index.html, README.md, AGENTS.md, llms.txt, system_manifest.json, and CONTEXT_SNAPSHOT.md
+  2. check_stale_docs.py rules are updated to match final counts and `python scripts/check_stale_docs.py --strict` passes
+  3. All 5 verification gates pass: steward_audit PASS, pytest passes with current count, deep_verify 13/13, agent_evolution 21/21 checks, agent_diff_review PASS
 **Plans**: TBD
 
 ## Progress
 
-| Phase | Milestone | Plans | Status | Completed |
-|-------|-----------|-------|--------|-----------|
-| 1-4 | v0.4.0 | 7/7 | Complete | 2026-03-18 |
-| 5-8 | v0.5.0 | 9/9 | Complete | 2026-03-18 |
-| 9-13 | v1.0.0 | 5/5 | Complete | 2026-04-04 |
-| 14. Health Check and Coverage Foundation | v2.0.0 | 0/1 | Complete    | 2026-04-04 |
-| 15. Protocol Self-Audit | v2.0.0 | 0/0 | Complete    | 2026-04-04 |
-| 16. Verification Receipt | v2.0.0 | 0/0 | Complete    | 2026-04-04 |
-| 17. Response Infrastructure | v2.0.0 | 1/1 | Complete    | 2026-04-04 |
-| 18. Evolution Council | v2.0.0 | 0/0 | Not started | - |
-| 19. Agent Charter and Governance | v2.0.0 | 0/0 | Not started | - |
-| 20. Protocol Hardening | v2.0.0 | 0/0 | Not started | - |
-| 21. Hidden Potential Audit | v2.0.0 | 0/0 | Not started | - |
-| 22. Vision Seeds and Counter Sync | v2.0.0 | 0/0 | Not started | - |
+| Phase | Milestone | Plans Complete | Status | Completed |
+|-------|-----------|----------------|--------|-----------|
+| 1-4 | v0.4.0 | - | Complete | 2026-03-18 |
+| 5-8 | v0.5.0 | - | Complete | 2026-03-18 |
+| 9-13 | v1.0.0 | - | Complete | 2026-04-04 |
+| 14-22 | v2.0.0 | - | Complete | 2026-04-04 |
+| 23. Real Verification | v3.0.0 | 3/3 | Complete   | 2026-04-07 |
+| 24. Client Demo Flow | v3.0.0 | 0/1 | Planned | - |
+| 25. Client-Facing Docs | v3.0.0 | 0/TBD | Not started | - |
+| 26. Counter Sync + Gates | v3.0.0 | 0/TBD | Not started | - |
 
 ---
 *Roadmap created: 2026-03-17*
-*Last updated: 2026-04-04 -- Phase 17 Response Infrastructure complete*
+*Last updated: 2026-04-06 -- Phase 23 planned: 3 plans in 3 waves*

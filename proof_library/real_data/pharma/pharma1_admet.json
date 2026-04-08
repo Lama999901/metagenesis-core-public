@@ -1,0 +1,8 @@
+{
+  "seed": 400,
+  "property_name": "solubility",
+  "claimed_value": -3.5,
+  "tolerance": 0.5,
+  "noise_scale": 0.15,
+  "compound_id": "ASPIRIN-001"
+}
