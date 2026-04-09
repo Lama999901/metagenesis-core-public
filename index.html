@@ -2612,6 +2612,16 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
       <div class="faq-a">No &#8212; MetaGenesis Core is complementary to MLflow and DVC, not a replacement. Experiment tracking tools record what you ran and when. MetaGenesis Core answers a different question: can any third party verify the result independently, offline, without access to your environment? The two layers work together: MLflow tracks the experiment, MetaGenesis Core packages the result as a verifiable evidence artifact for external reviewers, auditors, and regulators.</div>
     </div>
 
+    <div class="faq-item">
+      <div class="faq-q">Is a MetaGenesis bundle legally binding?</div>
+      <div class="faq-a">A bundle is cryptographic evidence, not a legal contract. It proves what was computed, when, and that results haven&#8217;t been modified &#8212; the same way a notarized document proves a signature is real without making the document itself &#8220;legal.&#8221; Courts, regulators, and auditors can use bundles as evidence of computational integrity. The protocol is open-source (MIT), patent-pending, and designed to complement existing compliance frameworks like FDA 21 CFR Part 11 and Basel III SR 11-7.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">What happens if MetaGenesis Core goes away?</div>
+      <div class="faq-a">Nothing changes. The protocol is open-source (MIT license), the code is on GitHub, and verification requires only Python &#8212; no server, no API key, no subscription. Your bundles remain independently verifiable forever. The cryptographic proofs are self-contained: SHA-256 hashes, Ed25519 signatures, and NIST Beacon timestamps are all standard algorithms. Even if this repository disappeared tomorrow, anyone with a copy of <code>mg.py</code> (or the standalone verifier) can verify any bundle ever created.</div>
+    </div>
+
   </div>
 </section></div>
 

@@ -311,6 +311,14 @@ CONTENT_CHECKS = {
         "banned": [],
         "required": ["PHYS-02", "AVOGADRO_N"],
     },
+    "docs/QUICKSTART.md": {
+        "banned": [],
+        "required": ["v0.9.0"],
+    },
+    "docs/EXECUTIVE_SUMMARY.md": {
+        "banned": [],
+        "required": ["v0.9.0"],
+    },
 }
 
 

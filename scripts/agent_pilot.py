@@ -68,6 +68,18 @@ DOMAIN_KEYWORDS = {
         "fem", "sensor", "twin", "iot", "displacement",
         "calibration", "simulation", "digital twin", "actuator",
     ],
+    "physics": [
+        "physics", "constant", "boltzmann", "avogadro", "si",
+        "fundamental", "planck", "kelvin", "mole",
+    ],
+    "systems": [
+        "system identification", "arx", "transfer function", "sysid",
+        "state space", "impulse response", "control",
+    ],
+    "agent": [
+        "agent", "drift", "monitoring", "composite",
+        "autonomous", "self-audit", "evolution",
+    ],
 }
 
 
