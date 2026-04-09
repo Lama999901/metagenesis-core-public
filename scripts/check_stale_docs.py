@@ -311,13 +311,13 @@ CONTENT_CHECKS = {
         "banned": [],
         "required": ["PHYS-02", "AVOGADRO_N"],
     },
-    "docs/API_CONTRACT.md": {
+    "docs/QUICKSTART.md": {
         "banned": [],
-        "required": ["v0.9.0", "verify"],
+        "required": ["v0.9.0"],
     },
-    "docs/ERROR_HANDLING_STANDARD.md": {
+    "docs/EXECUTIVE_SUMMARY.md": {
         "banned": [],
-        "required": ["trace_root_hash"],
+        "required": ["v0.9.0"],
     },
 }
 

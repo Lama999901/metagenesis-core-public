@@ -105,6 +105,29 @@ It does not mean modifications are impossible.
 
 For the complete verification algorithm, bundle structure, and claim lifecycle, see [docs/PROTOCOL.md](docs/PROTOCOL.md).
 
+## Regulatory Compliance Mapping
+
+MetaGenesis Core provides the cryptographic evidence layer for regulatory compliance. The following tables map protocol capabilities to specific regulatory requirements.
+
+### FDA 21 CFR Part 11
+
+| Requirement | MetaGenesis Layer | How |
+|---|---|---|
+| Audit trail | L1 SHA-256 + L3 Step Chain | Every computation step hashed; chain breaks on modification |
+| Electronic signatures | L4 Ed25519 Bundle Signing | Asymmetric cryptographic signature on bundle |
+| Record integrity | L2 Semantic Verification | Detects evidence stripping even when hashes recomputed |
+| Timestamp | L5 Temporal Commitment | NIST Beacon binding (graceful offline degradation) |
+
+### Basel III/IV SR 11-7
+
+| Requirement | MetaGenesis Layer | How |
+|---|---|---|
+| Independent model validation | L1-L5 full stack | Offline verification, no model access needed |
+| Documentation of model changes | L3 Step Chain | Cryptographic diff between computation states |
+| Reproducibility | L1 + L3 | Hash equality = proof of identical computation |
+
+**Note:** MetaGenesis Core provides the cryptographic evidence layer. Organizational compliance (access controls, SOPs, training) remains the responsibility of the implementing organization.
+
 ## Reporting security issues
 
 If you find a way to construct a bundle that passes verification but contains incorrect or missing evidence, please report it responsibly:

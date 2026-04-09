@@ -9,7 +9,7 @@ Usage:
     python scripts/mg_client.py --domain ml --data results.json
     python scripts/mg_client.py --verify bundle/
 
-Supports: ml, pharma, finance, materials, digital_twin
+Supports: ml, pharma, finance, materials, digital_twin, physics, systems, agent
 Pure stdlib. No external dependencies.
 
 PPA: USPTO #63/996,819
@@ -105,6 +105,49 @@ DOMAIN_CONFIG = {
         "description": "FEM displacement verification",
         "defaults": {
             "seed": 42,
+        },
+    },
+    "physics": {
+        "claim": "PHYS-01",
+        "module": "backend.progress.phys01_boltzmann",
+        "func": "run_verification",
+        "description": "Boltzmann constant verification (SI 2019 exact)",
+        "defaults": {
+            "T": 300.0,
+        },
+    },
+    "systems": {
+        "claim": "SYSID-01",
+        "module": "backend.progress.sysid1_arx_calibration",
+        "func": "run_calibration",
+        "description": "ARX system identification calibration",
+        "defaults": {
+            "seed": 42,
+            "a_true": 0.9,
+            "b_true": 0.5,
+            "n_steps": 50,
+            "u_max": 1.0,
+        },
+    },
+    "agent": {
+        "claim": "AGENT-DRIFT-01",
+        "module": "backend.progress.agent_drift_monitor",
+        "func": "run_agent_drift_monitor",
+        "description": "Agent drift monitoring (composite drift check)",
+        "defaults": {
+            "baseline": {
+                "tests_per_phase": 47.0,
+                "pass_rate": 1.0,
+                "regressions": 0.0,
+                "verifier_iterations": 1.0,
+            },
+            "current": {
+                "tests_per_phase": 47.0,
+                "pass_rate": 1.0,
+                "regressions": 0.0,
+                "verifier_iterations": 1.0,
+            },
+            "drift_threshold_pct": 20.0,
         },
     },
 }
