@@ -104,15 +104,17 @@ python scripts/steward_audit.py                              # PASS
 python -m pytest tests/ -q                                   # 2078 passed
 python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 
-## Current state (2026-03-31)
+## Current state (2026-04-08)
 
 - Claims: 20
 - Tests: 2078 passing
 - Verification layers: 5 (integrity + semantic + step chain + bundle signing + temporal commitment)
 - Domains: 8 (materials, sysid, data, ml, digital_twin, pharma_biotech, financial_risk, fundamental_physics)
+- Agent checks: 21 (agent_evolution.py)
+- Real ratio: 51.2% (21 real / 20 synthetic)
 - Cross-Claim Chain: MTR-1 → DT-FEM-01 → DRIFT-01 cryptographically linked via anchor_hash
 - steward_audit: PASS
-- known_faults: 2 entries (ENV_001 + SCOPE_001)
+- known_faults: 3 entries (ENV_001 + SCOPE_001 + ENV_002)
 - Site: metagenesis-core.dev — deployed on Vercel, auto-deploys from main
 - HN post live: https://news.ycombinator.com/item?id=47335416
 - PPA filed: 2026-03-05 — non-provisional deadline 2027-03-05
@@ -147,7 +149,7 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 
 ## Agent evolution system
 
-Embedded agent governance with 20 evolution checks (`scripts/agent_evolution.py`)
+Embedded agent governance with 21 evolution checks (`scripts/agent_evolution.py`)
 and 8 daily CI agents enforcing documentation consistency, test coverage,
 manifest accuracy, forbidden terms, and branch synchronization automatically.
 Includes cumulative learning (`scripts/agent_learn.py`) that records recurring
