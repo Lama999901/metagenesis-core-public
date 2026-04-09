@@ -3,7 +3,7 @@
 > **START HERE:** `python scripts/session_close.py --read` → shows full current state in 5 lines
 
 > Loaded automatically by all GSD agents via CLAUDE.md.
-> Last updated: 2026-04-06 | v0.9.0 LIVE | 20 templates | 2078 tests
+> Last updated: 2026-04-08 | v0.9.0 LIVE | 20 templates | 2078 tests
 
 ---
 
@@ -159,14 +159,14 @@ git push origin feat/description
 ## CURRENT STATE (v0.9.0)
 
 ```
-Date:        2026-04-06
+Date:        2026-04-08
 Tests:       2078 passing
-Real ratio:  4.8% (1 real / 20 synthetic)
+Real ratio:  51.2% (21 real / 20 synthetic)
 Templates:   20 domain templates (all have 4-step Step Chain)
 Layers:      5 verification (integrity + semantic + step chain + signing + temporal)
 Checks:      21 (agent_evolution.py)
-Last:        Built mg_claim_builder.py (283 lines) + 51 tests + proof_library + check #21 real_ratio + session_cl
-Next:        Verify a real external computation (not internal tests) to push ratio toward 20%. Pick ML benchmarki
+Last:        v3.0.0 fully merged. README masterpiece 48/50. All 5 PRs merged. 2078 tests. 51.2% real ratio. Built
+Next:        Merge feat/readme-masterpiece PR on GitHub. Check Zoho inbox (SPAM too). First client $299.
 ```
 
 ---
@@ -351,7 +351,7 @@ scripts/mg_ed25519.py       ← Ed25519 asymmetric signing Innovation #7
 scripts/mg_temporal.py      ← NIST Beacon temporal commitment Innovation #8 (Layer 5)
 scripts/steward_audit.py    ← governance (SEALED)
 scripts/deep_verify.py      ← 13-test proof script
-scripts/agent_evolution.py  ← 20 Mechanicus checks
+scripts/agent_evolution.py  ← 21 Mechanicus checks
 scripts/agent_pr_creator.py ← Level 3 autonomous PR (280+ lines, 5 detectors)
 scripts/agent_pilot.py      ← pilot onboarding automation (443 lines)
 scripts/agent_learn.py      ← session memory (88 sessions, 15 patterns)
@@ -436,6 +436,6 @@ This shows recurring issues + auto-fix hints from 57 sessions.
 
 ---
 
-*CLAUDE.md v2.0 — 2026-03-31 — MetaGenesis Core v0.9.0 LIVE*
-*2078 tests | 20 claims | 20 checks | Level 3 autonomous forge ACTIVE*
+*CLAUDE.md v2.1 — 2026-04-08 — MetaGenesis Core v0.9.0 LIVE*
+*2078 tests | 20 claims | 21 checks | Level 3 autonomous forge ACTIVE*
 *Mission: notary for computations. First client = history.*

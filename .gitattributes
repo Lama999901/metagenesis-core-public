@@ -1,0 +1,3 @@
+# Merge strategies to reduce conflicts on frequently-updated files
+index.html merge=union
+.planning/** merge=ours

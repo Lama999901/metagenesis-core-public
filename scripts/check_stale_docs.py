@@ -124,8 +124,8 @@ CONTENT_CHECKS = {
         "required": ["2078", "8 innovations", "21 agent checks", "ALL 21 CHECKS PASSED", "20 claims", "PHYS-01", "PHYS-02", "Tests-2078%20passing"],
     },
     "index.html": {
-        "banned": ["<span>10</span>", "14 active domain claims", "Fourteen</span> claims", "Fifteen</span> claims", "15 active domain claims", "18 active domain claims", "Eighteen</span> claims", "hv\">v0.7.0", "hv\">v0.8.0"],
-        "required": ["<span>17</span>", "20 active domain claims", "Twenty</span> claims", "hv\">v0.9.0"],
+        "banned": ["<span>10</span>", "<span>17</span>", "14 active domain claims", "Fourteen</span> claims", "Fifteen</span> claims", "15 active domain claims", "18 active domain claims", "Eighteen</span> claims", "hv\">v0.7.0", "hv\">v0.8.0"],
+        "required": ["<span>21</span>", "20 active domain claims", "Twenty</span> claims", "hv\">v0.9.0"],
     },
     "paper.md": {
         "banned": ["389 adversarial", "511 adversarial", "526 adversarial", "544 adversarial", "595 adversarial", "601 adversarial", "906 adversarial", "966 adversarial", "1050 adversarial", "1125 adversarial", "1198 adversarial", "1273 adversarial", "1313 adversarial", "1634 adversarial", "1750 adversarial", "1753 adversarial", "2063 adversarial", "17 March 2026", "7 domains", "6.022e23"],
@@ -310,6 +310,14 @@ CONTENT_CHECKS = {
     "backend/progress/phys02_avogadro.py": {
         "banned": [],
         "required": ["PHYS-02", "AVOGADRO_N"],
+    },
+    "docs/QUICKSTART.md": {
+        "banned": [],
+        "required": ["v0.9.0"],
+    },
+    "docs/EXECUTIVE_SUMMARY.md": {
+        "banned": [],
+        "required": ["v0.9.0"],
     },
 }
 
