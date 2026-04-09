@@ -124,7 +124,7 @@ CONTENT_CHECKS = {
         "required": ["2078", "8 innovations", "21 agent checks", "ALL 21 CHECKS PASSED", "20 claims", "PHYS-01", "PHYS-02", "Tests-2078%20passing"],
     },
     "index.html": {
-        "banned": ["<span>10</span>", "14 active domain claims", "Fourteen</span> claims", "Fifteen</span> claims", "15 active domain claims", "18 active domain claims", "Eighteen</span> claims", "hv\">v0.7.0", "hv\">v0.8.0"],
+        "banned": ["<span>10</span>", "<span>17</span>", "14 active domain claims", "Fourteen</span> claims", "Fifteen</span> claims", "15 active domain claims", "18 active domain claims", "Eighteen</span> claims", "hv\">v0.7.0", "hv\">v0.8.0"],
         "required": ["<span>21</span>", "20 active domain claims", "Twenty</span> claims", "hv\">v0.9.0"],
     },
     "paper.md": {
