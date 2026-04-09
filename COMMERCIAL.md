@@ -59,7 +59,7 @@ The recipient runs `mg.py verify --pack bundle.zip` and gets PASS or FAIL.
 **Price:** $299 per bundle.
 
 <!-- Replace PLACEHOLDER with your live Stripe payment link -->
-**Pay now:** [Stripe Payment Link](https://buy.stripe.com/PLACEHOLDER)
+**Pay now:** [Stripe Payment Link](https://buy.stripe.com/14AcN57qH19R1qN3QQ6Na00)
 
 **What you receive:**
 - A self-contained `.zip` evidence bundle
@@ -157,7 +157,7 @@ industrial digital twin providers.
 
 ## How to pay
 
-- **Stripe:** [Pay $299](https://buy.stripe.com/PLACEHOLDER)
+- **Stripe:** [Pay $299](https://buy.stripe.com/14AcN57qH19R1qN3QQ6Na00)
 - **Bank transfer:** Email yehor@metagenesis-core.dev for wire details
 - **Crypto:** BTC / ETH / USDC accepted -- email for wallet address
 - **Invoice:** Available on request for organizations

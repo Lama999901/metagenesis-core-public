@@ -311,6 +311,14 @@ CONTENT_CHECKS = {
         "banned": [],
         "required": ["PHYS-02", "AVOGADRO_N"],
     },
+    "docs/API_CONTRACT.md": {
+        "banned": [],
+        "required": ["v0.9.0", "verify"],
+    },
+    "docs/ERROR_HANDLING_STANDARD.md": {
+        "banned": [],
+        "required": ["trace_root_hash"],
+    },
 }
 
 
