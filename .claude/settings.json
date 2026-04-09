@@ -26,6 +26,9 @@
       "Bash(tail:*)"
     ],
     "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(sudo:*)",
+      "Bash(chmod 777:*)",
       "Write(scripts/steward_audit.py)",
       "Write(scripts/mg_policy_gate_policy.json)",
       "Write(ppa/CLAIMS_DRAFT.md)",
