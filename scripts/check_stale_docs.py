@@ -125,7 +125,7 @@ CONTENT_CHECKS = {
     },
     "index.html": {
         "banned": ["<span>10</span>", "14 active domain claims", "Fourteen</span> claims", "Fifteen</span> claims", "15 active domain claims", "18 active domain claims", "Eighteen</span> claims", "hv\">v0.7.0", "hv\">v0.8.0"],
-        "required": ["<span>17</span>", "20 active domain claims", "Twenty</span> claims", "hv\">v0.9.0"],
+        "required": ["<span>21</span>", "20 active domain claims", "Twenty</span> claims", "hv\">v0.9.0"],
     },
     "paper.md": {
         "banned": ["389 adversarial", "511 adversarial", "526 adversarial", "544 adversarial", "595 adversarial", "601 adversarial", "906 adversarial", "966 adversarial", "1050 adversarial", "1125 adversarial", "1198 adversarial", "1273 adversarial", "1313 adversarial", "1634 adversarial", "1750 adversarial", "1753 adversarial", "2063 adversarial", "17 March 2026", "7 domains", "6.022e23"],
