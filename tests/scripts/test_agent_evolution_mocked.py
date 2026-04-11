@@ -333,3 +333,55 @@ class TestRunGapAnalysis:
              patch("agent_evolution.run", return_value=("0", 0)):
             result = ae.run_gap_analysis(100)
         assert isinstance(result, list)
+
+
+# -- check_client_contributions ------------------------------------------------
+
+class TestCheckClientContributions:
+    def test_no_contrib_dir(self, tmp_path):
+        """Missing directory is advisory, returns True."""
+        with patch("agent_evolution.REPO_ROOT", tmp_path):
+            assert ae.check_client_contributions() is True
+
+    def test_empty_contrib_dir(self, tmp_path):
+        contrib_dir = tmp_path / "reports" / "client_contributions"
+        contrib_dir.mkdir(parents=True)
+        with patch("agent_evolution.REPO_ROOT", tmp_path):
+            assert ae.check_client_contributions() is True
+
+    def test_contrib_with_reviewed_files(self, tmp_path):
+        contrib_dir = tmp_path / "reports" / "client_contributions"
+        contrib_dir.mkdir(parents=True)
+        data = {
+            "timestamp": "2026-04-10T00:00:00Z",
+            "value_score": 8,
+            "domain": "ml",
+        }
+        (contrib_dir / "contrib_001.json").write_text(
+            json.dumps(data), encoding="utf-8"
+        )
+        with patch("agent_evolution.REPO_ROOT", tmp_path):
+            assert ae.check_client_contributions() is True
+
+    def test_contrib_with_unreviewed_files(self, tmp_path):
+        contrib_dir = tmp_path / "reports" / "client_contributions"
+        contrib_dir.mkdir(parents=True)
+        for i in range(12):
+            data = {
+                "timestamp": "2026-04-01T00:00:00Z",
+                "value_score": None,
+                "domain": "ml",
+            }
+            (contrib_dir / f"contrib_{i:03d}.json").write_text(
+                json.dumps(data), encoding="utf-8"
+            )
+        with patch("agent_evolution.REPO_ROOT", tmp_path):
+            # Should still return True (advisory only) but warn
+            assert ae.check_client_contributions() is True
+
+    def test_contrib_with_corrupt_file(self, tmp_path):
+        contrib_dir = tmp_path / "reports" / "client_contributions"
+        contrib_dir.mkdir(parents=True)
+        (contrib_dir / "contrib_001.json").write_text("not json!", encoding="utf-8")
+        with patch("agent_evolution.REPO_ROOT", tmp_path):
+            assert ae.check_client_contributions() is True
