@@ -1,7 +1,7 @@
 {
   "title": "MetaGenesis Core: Governance-Enforced Verification Infrastructure for Computational Scientific Claims",
   "creators": [{"name": "Bazhynov, Yehor", "affiliation": "Independent Researcher"}],
-  "description": "Open-source verification protocol that makes computational claims tamper-evident, reproducible, and independently auditable offline. 20 verified claims across 8 domains (materials science, ML/AI, system identification, data pipelines, digital twin, pharma/biotech, financial risk, fundamental physics). 2132 adversarial tests. 5 verification layers. 8 innovations.",
+  "description": "Open-source verification protocol that makes computational claims tamper-evident, reproducible, and independently auditable offline. 20 verified claims across 8 domains (materials science, ML/AI, system identification, data pipelines, digital twin, pharma/biotech, financial risk, fundamental physics). 2358 adversarial tests. 5 verification layers. 8 innovations.",
   "keywords": ["verification", "reproducibility", "computational science", "tamper-evident", "physical anchor", "evidence bundle", "cryptographic"],
   "license": "MIT",
   "version": "0.9.0",

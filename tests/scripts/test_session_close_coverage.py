@@ -24,7 +24,7 @@ def sc_env(tmp_path, monkeypatch):
     )
     manifest = tmp_path / "system_manifest.json"
     manifest.write_text(
-        json.dumps({"version": "0.9.0", "test_count": 2132}, indent=2),
+        json.dumps({"version": "0.9.0", "test_count": 2358}, indent=2),
         encoding="utf-8",
     )
     proof_lib = tmp_path / "proof_library"
@@ -78,7 +78,7 @@ def test_get_test_count_timeout(sc_env, monkeypatch):
         mock.Mock(side_effect=subprocess.TimeoutExpired(cmd="pytest", timeout=60)),
     )
     count = mod._get_test_count()
-    assert count == 2132  # from manifest
+    assert count == 2358  # from manifest
 
 
 def test_get_test_count_os_error(sc_env, monkeypatch):
@@ -88,7 +88,7 @@ def test_get_test_count_os_error(sc_env, monkeypatch):
         mock.Mock(side_effect=OSError("no such executable")),
     )
     count = mod._get_test_count()
-    assert count == 2132
+    assert count == 2358
 
 
 # ---- print_state tests -------------------------------------------------------
@@ -97,7 +97,7 @@ def test_get_test_count_os_error(sc_env, monkeypatch):
 def test_print_state_basic(sc_env, capsys):
     state = {
         "version": "0.9.0",
-        "tests": 2132,
+        "tests": 2358,
         "real_verifications": 21,
         "ratio": 0.512,
         "last_session": "test session",
@@ -106,7 +106,7 @@ def test_print_state_basic(sc_env, capsys):
     mod.print_state(state)
     out = capsys.readouterr().out
     assert "v0.9.0" in out
-    assert "2132" in out
+    assert "2358" in out
     assert "51.2%" in out
     assert "test session" in out
     assert "next thing" in out
@@ -141,7 +141,7 @@ def test_print_state_door_closed(sc_env, capsys, monkeypatch):
 def test_main_read_flag(sc_env, monkeypatch, capsys):
     monkeypatch.setattr(sys, "argv", ["session_close.py", "--read"])
     with mock.patch.object(mod, "read_state", return_value={
-        "version": "0.9.0", "tests": 2132, "real_verifications": 21,
+        "version": "0.9.0", "tests": 2358, "real_verifications": 21,
         "ratio": 0.512, "last_session": "test", "next_priority": "next",
     }):
         ret = mod.main()
@@ -156,7 +156,7 @@ def test_main_summary_flag(sc_env, monkeypatch, capsys):
         ["session_close.py", "--summary", "Did something great"],
     )
     with mock.patch.object(mod, "close_session", return_value={
-        "version": "0.9.0", "tests": 2132, "real_verifications": 21,
+        "version": "0.9.0", "tests": 2358, "real_verifications": 21,
         "ratio": 0.512, "last_session": "Did something great", "next_priority": "next",
     }) as m:
         ret = mod.main()
