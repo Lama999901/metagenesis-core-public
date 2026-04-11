@@ -3,7 +3,7 @@
 > **START HERE:** `python scripts/session_close.py --read` → shows full current state in 5 lines
 
 > Loaded automatically by all GSD agents via CLAUDE.md.
-> Last updated: 2026-04-08 | v0.9.0 LIVE | 20 templates | 2358 tests
+> Last updated: 2026-04-11 | v0.9.0 LIVE | 20 templates | 2358 tests
 
 ---
 
@@ -159,14 +159,14 @@ git push origin feat/description
 ## CURRENT STATE (v0.9.0)
 
 ```
-Date:        2026-04-08
+Date:        2026-04-11
 Tests:       2358 passing
 Real ratio:  51.2% (21 real / 20 synthetic)
 Templates:   20 domain templates (all have 4-step Step Chain)
 Layers:      5 verification (integrity + semantic + step chain + signing + temporal)
 Checks:      22 (agent_evolution.py)
-Last:        v3.0.0 fully merged. README masterpiece 48/50. All 5 PRs merged. 2358 tests. 51.2% real ratio. Built
-Next:        Merge feat/readme-masterpiece PR on GitHub. Check Zoho inbox (SPAM too). First client $299.
+Last:        README 3 additions (80-year gap tagline, Talk to Protocol section, Q&A section). Branch docs/readme-
+Next:        Merge docs/readme-additions-260411 PR. Check Zoho SPAM. First client $299. Zenodo DOI minting.
 ```
 
 ---
