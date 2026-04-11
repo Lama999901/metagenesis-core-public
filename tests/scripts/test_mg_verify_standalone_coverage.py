@@ -517,3 +517,283 @@ def test_format_receipt_fail_verdict(tmp_path):
     ]
     receipt = format_receipt(tmp_path, results, None)
     assert "FAIL" in receipt
+
+
+# ---- verify_layer1_integrity tests -------------------------------------------
+
+
+from scripts.mg_verify_standalone import verify_layer1_integrity, verify_bundle
+
+
+def test_layer1_no_manifest(tmp_path):
+    ok, msg, manifest = verify_layer1_integrity(tmp_path)
+    assert ok is False
+    assert "not found" in msg
+
+
+def test_layer1_invalid_manifest_json(tmp_path):
+    (tmp_path / "pack_manifest.json").write_text("bad json!", encoding="utf-8")
+    ok, msg, manifest = verify_layer1_integrity(tmp_path)
+    assert ok is False
+    assert "Failed to load" in msg
+
+
+def test_layer1_missing_required_key(tmp_path):
+    (tmp_path / "pack_manifest.json").write_text(
+        json.dumps({"files": []}), encoding="utf-8"
+    )
+    ok, msg, manifest = verify_layer1_integrity(tmp_path)
+    assert ok is False
+    assert "missing required key" in msg
+
+
+def test_layer1_missing_protocol_version(tmp_path):
+    (tmp_path / "pack_manifest.json").write_text(
+        json.dumps({"files": [], "root_hash": "abc"}), encoding="utf-8"
+    )
+    ok, msg, manifest = verify_layer1_integrity(tmp_path)
+    assert ok is False
+    assert "protocol_version" in msg
+
+
+def test_layer1_protocol_version_not_int(tmp_path):
+    (tmp_path / "pack_manifest.json").write_text(
+        json.dumps({"files": [], "root_hash": "abc", "protocol_version": "1"}),
+        encoding="utf-8",
+    )
+    ok, msg, manifest = verify_layer1_integrity(tmp_path)
+    assert ok is False
+    assert "must be integer" in msg
+
+
+def test_layer1_path_traversal(tmp_path):
+    manifest = {
+        "files": [{"relpath": "../etc/passwd", "sha256": "abc"}],
+        "root_hash": "abc",
+        "protocol_version": 1,
+    }
+    (tmp_path / "pack_manifest.json").write_text(
+        json.dumps(manifest), encoding="utf-8"
+    )
+    ok, msg, _ = verify_layer1_integrity(tmp_path)
+    assert ok is False
+    assert "Invalid path" in msg
+
+
+def test_layer1_missing_file(tmp_path):
+    manifest = {
+        "files": [{"relpath": "missing.txt", "sha256": "abc"}],
+        "root_hash": "abc",
+        "protocol_version": 1,
+    }
+    (tmp_path / "pack_manifest.json").write_text(
+        json.dumps(manifest), encoding="utf-8"
+    )
+    ok, msg, _ = verify_layer1_integrity(tmp_path)
+    assert ok is False
+    assert "File missing" in msg
+
+
+def test_layer1_sha_mismatch(tmp_path):
+    (tmp_path / "data.txt").write_text("hello", encoding="utf-8")
+    manifest = {
+        "files": [{"relpath": "data.txt", "sha256": "wrong_hash"}],
+        "root_hash": "abc",
+        "protocol_version": 1,
+    }
+    (tmp_path / "pack_manifest.json").write_text(
+        json.dumps(manifest), encoding="utf-8"
+    )
+    ok, msg, _ = verify_layer1_integrity(tmp_path)
+    assert ok is False
+    assert "SHA-256 mismatch" in msg
+
+
+def test_layer1_valid_bundle(tmp_path):
+    content = b"test content"
+    (tmp_path / "data.txt").write_bytes(content)
+    sha = hashlib.sha256(content).hexdigest()
+    root_line = f"data.txt:{sha}"
+    root_hash = hashlib.sha256(root_line.encode("utf-8")).hexdigest()
+    manifest = {
+        "files": [{"relpath": "data.txt", "sha256": sha}],
+        "root_hash": root_hash,
+        "protocol_version": 1,
+    }
+    (tmp_path / "pack_manifest.json").write_text(
+        json.dumps(manifest), encoding="utf-8"
+    )
+    ok, msg, m = verify_layer1_integrity(tmp_path)
+    assert ok is True
+    assert m is not None
+
+
+def test_layer1_root_hash_mismatch(tmp_path):
+    content = b"test content"
+    (tmp_path / "data.txt").write_bytes(content)
+    sha = hashlib.sha256(content).hexdigest()
+    manifest = {
+        "files": [{"relpath": "data.txt", "sha256": sha}],
+        "root_hash": "wrong_root",
+        "protocol_version": 1,
+    }
+    (tmp_path / "pack_manifest.json").write_text(
+        json.dumps(manifest), encoding="utf-8"
+    )
+    ok, msg, _ = verify_layer1_integrity(tmp_path)
+    assert ok is False
+    assert "Root hash mismatch" in msg
+
+
+# ---- verify_bundle full pipeline test ----------------------------------------
+
+
+def test_verify_bundle_full_pass(tmp_path):
+    """Full verify_bundle with a valid minimal bundle."""
+    trace, root = _make_trace()
+    evidence = {
+        "mtr_phase": "MTR-1",
+        "execution_trace": trace,
+        "trace_root_hash": root,
+        "result": {"relative_error": 0.001},
+    }
+    evidence_bytes = json.dumps(evidence).encode("utf-8")
+    (tmp_path / "evidence.json").write_bytes(evidence_bytes)
+
+    sha_ev = hashlib.sha256(evidence_bytes).hexdigest()
+    root_line = f"evidence.json:{sha_ev}"
+    root_hash = hashlib.sha256(root_line.encode("utf-8")).hexdigest()
+
+    manifest = {
+        "files": [{"relpath": "evidence.json", "sha256": sha_ev}],
+        "root_hash": root_hash,
+        "protocol_version": 1,
+    }
+    (tmp_path / "pack_manifest.json").write_text(
+        json.dumps(manifest), encoding="utf-8"
+    )
+
+    all_passed, results = verify_bundle(tmp_path)
+    assert all_passed is True
+    assert len(results) == 5
+
+
+# ---- layer3 with evidence_index format test ----------------------------------
+
+
+def test_layer3_with_evidence_index(tmp_path):
+    """Layer 3 step chain via evidence_index.json."""
+    trace, root = _make_trace()
+    runs_dir = tmp_path / "progress_runs"
+    runs_dir.mkdir()
+    run_art = {
+        "trace_id": "t1",
+        "job_snapshot": {
+            "result": {
+                "mtr_phase": "MTR-1",
+                "execution_trace": trace,
+                "trace_root_hash": root,
+            }
+        },
+        "canary_mode": False,
+    }
+    (runs_dir / "run_001.json").write_text(
+        json.dumps(run_art), encoding="utf-8"
+    )
+    index = {
+        "MTR-1": {
+            "job_kind": "calibration",
+            "normal": {
+                "run_relpath": "progress_runs/run_001.json",
+                "ledger_relpath": "ledger.jsonl",
+            },
+        },
+    }
+    (tmp_path / "evidence_index.json").write_text(
+        json.dumps(index), encoding="utf-8"
+    )
+    ok, msg = verify_layer3_step_chain(tmp_path)
+    assert ok is True
+
+
+# ---- main() CLI tests --------------------------------------------------------
+
+
+from scripts.mg_verify_standalone import main as standalone_main
+
+
+def _build_valid_bundle(tmp_path):
+    """Create a minimal valid bundle for CLI testing."""
+    trace, root = _make_trace()
+    evidence = {
+        "mtr_phase": "MTR-1",
+        "execution_trace": trace,
+        "trace_root_hash": root,
+        "result": {"relative_error": 0.001},
+    }
+    evidence_bytes = json.dumps(evidence).encode("utf-8")
+    (tmp_path / "evidence.json").write_bytes(evidence_bytes)
+
+    sha_ev = hashlib.sha256(evidence_bytes).hexdigest()
+    root_line = f"evidence.json:{sha_ev}"
+    root_hash = hashlib.sha256(root_line.encode("utf-8")).hexdigest()
+    manifest = {
+        "files": [{"relpath": "evidence.json", "sha256": sha_ev}],
+        "root_hash": root_hash,
+        "protocol_version": 1,
+    }
+    (tmp_path / "pack_manifest.json").write_text(
+        json.dumps(manifest), encoding="utf-8"
+    )
+
+
+def test_main_pass(tmp_path, monkeypatch):
+    _build_valid_bundle(tmp_path)
+    monkeypatch.setattr("sys.argv", ["mg_verify_standalone", str(tmp_path)])
+    rc = standalone_main()
+    assert rc == 0
+
+
+def test_main_fail_no_manifest(tmp_path, monkeypatch):
+    monkeypatch.setattr("sys.argv", ["mg_verify_standalone", str(tmp_path)])
+    rc = standalone_main()
+    assert rc == 1
+
+
+def test_main_bundle_not_found(tmp_path, monkeypatch):
+    missing = tmp_path / "nonexistent"
+    monkeypatch.setattr("sys.argv", ["mg_verify_standalone", str(missing)])
+    rc = standalone_main()
+    assert rc == 1
+
+
+def test_main_not_a_directory(tmp_path, monkeypatch):
+    f = tmp_path / "file.txt"
+    f.write_text("hi", encoding="utf-8")
+    monkeypatch.setattr("sys.argv", ["mg_verify_standalone", str(f)])
+    rc = standalone_main()
+    assert rc == 1
+
+
+def test_main_json_report(tmp_path, monkeypatch):
+    _build_valid_bundle(tmp_path)
+    report_path = tmp_path / "report.json"
+    monkeypatch.setattr("sys.argv", [
+        "mg_verify_standalone", str(tmp_path), "--json", str(report_path)
+    ])
+    rc = standalone_main()
+    assert rc == 0
+    assert report_path.exists()
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    assert report["result"] == "PASS"
+
+
+def test_main_receipt(tmp_path, monkeypatch, capsys):
+    _build_valid_bundle(tmp_path)
+    monkeypatch.setattr("sys.argv", [
+        "mg_verify_standalone", str(tmp_path), "--receipt"
+    ])
+    rc = standalone_main()
+    assert rc == 0
+    captured = capsys.readouterr()
+    assert "VERIFICATION RECEIPT" in captured.out
