@@ -142,7 +142,7 @@ Tests:       {state['tests']} passing
 Real ratio:  {state['ratio']:.1%} ({state['real_verifications']} real / 20 synthetic)
 Templates:   20 domain templates (all have 4-step Step Chain)
 Layers:      5 verification (integrity + semantic + step chain + signing + temporal)
-Checks:      21 (agent_evolution.py)
+Checks:      22 (agent_evolution.py)
 Last:        {summary[:100]}
 Next:        {next_priority[:100]}
 ```"""

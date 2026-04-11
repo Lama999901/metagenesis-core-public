@@ -58,6 +58,10 @@ jobs:
         run: |
           python scripts/agent_evolve_self.py --summary || true
 
+      - name: Agent pattern promoter (recursive governance)
+        run: |
+          python scripts/agent_pattern_promoter.py || true
+
       - name: Agent learning (observe and record)
         run: |
           python scripts/agent_learn.py observe
