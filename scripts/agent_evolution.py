@@ -16,7 +16,7 @@ import sys
 import json
 import io
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 
 # Fix Windows cp1252 encoding
 if sys.stdout.encoding != 'utf-8':
@@ -541,6 +541,53 @@ def check_real_vs_synthetic():
         return True
 
 
+# ── 22. Client Contributions ─────────────────────────────────────────────────
+def check_client_contributions():
+    section("CLIENT CONTRIBUTIONS — Evolution Feedback Loop")
+    contrib_dir = REPO_ROOT / "reports" / "client_contributions"
+    if not contrib_dir.exists():
+        warn("No client contributions directory yet — create with mg_contribute.py")
+        info("Run: python scripts/mg_contribute.py --stats")
+        return True  # advisory only
+
+    files = list(contrib_dir.glob("contrib_*.json"))
+    if not files:
+        info("Contribution directory exists but empty (CLIENT_CONTRIB_EMPTY)")
+        return True
+
+    # Count unreviewed (value_score is null)
+    unreviewed = 0
+    oldest_unreviewed = None
+    for f in files:
+        try:
+            data = json.loads(f.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            continue
+        if data.get("value_score") is None:
+            unreviewed += 1
+            ts = data.get("timestamp", "")
+            if oldest_unreviewed is None or ts < oldest_unreviewed:
+                oldest_unreviewed = ts
+
+    info(f"Total contributions: {len(files)}  |  Unreviewed: {unreviewed}")
+
+    if unreviewed > 10 and oldest_unreviewed:
+        try:
+            oldest_dt = datetime.fromisoformat(oldest_unreviewed.replace("Z", "+00:00"))
+            age_days = (datetime.now(timezone.utc) - oldest_dt).days
+            if age_days > 7:
+                warn(f"{unreviewed} unreviewed contributions, oldest is {age_days} days old")
+                info("Run: python scripts/mg_contribute.py --review")
+                return True
+        except (ValueError, TypeError):
+            pass
+        warn(f"{unreviewed} unreviewed contributions pending human review")
+        info("Run: python scripts/mg_contribute.py --review")
+    else:
+        ok(f"Client feedback loop healthy ({len(files)} total, {unreviewed} pending)")
+    return True
+
+
 # ── Main ─────────────────────────────────────────────────────────────────────
 def main():
     strict = "--strict" in sys.argv
@@ -578,6 +625,7 @@ def main():
     results["semantic_audit"] = check_semantic_audit()
     results["self_audit"] = check_self_audit()
     results["real_ratio"] = check_real_vs_synthetic()
+    results["client_contrib"] = check_client_contributions()
 
     # ── Summary ──
     section("SUMMARY — Omnissiah's Verdict")
@@ -606,6 +654,7 @@ def main():
         "semantic_audit": ("Project semantically coherent",    "SEMANTIC"),
         "self_audit":     ("Recursive Inquisitor verified",     "SELFAUDIT"),
         "real_ratio":     ("Proof Library audited",              "REALRATIO"),
+        "client_contrib": ("Client evolution loop active",         "CLIENTCONTRIB"),
     }
 
     for check, ok_val in results.items():
