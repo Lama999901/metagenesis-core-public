@@ -1,6 +1,7 @@
 """Tests for scripts/run_single_claim.py -- single-claim dispatcher."""
 
 import json
+import os
 import sys
 from pathlib import Path
 from unittest import mock
@@ -147,6 +148,7 @@ def test_dispatch_unknown_claim():
 
 def test_main_success(tmp_path, monkeypatch):
     monkeypatch.setattr(mod, "REPO_ROOT", tmp_path)
+    monkeypatch.setattr(os, "chdir", lambda _: None)  # prevent cwd pollution
     input_file = tmp_path / "input.json"
     input_file.write_text("{}", encoding="utf-8")
     output_file = tmp_path / "out.json"
@@ -171,6 +173,7 @@ def test_main_bad_argc(monkeypatch):
 
 def test_main_dispatch_exception(tmp_path, monkeypatch):
     monkeypatch.setattr(mod, "REPO_ROOT", tmp_path)
+    monkeypatch.setattr(os, "chdir", lambda _: None)  # prevent cwd pollution
     input_file = tmp_path / "input.json"
     input_file.write_text("{}", encoding="utf-8")
     output_file = tmp_path / "out.json"
