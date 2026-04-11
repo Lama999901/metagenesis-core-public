@@ -2,7 +2,7 @@
 """
 MetaGenesis Core -- Agent Evolution Council
 ============================================
-Reads 6 data sources, synthesizes evidence-based improvement proposals,
+Reads 7 data sources, synthesizes evidence-based improvement proposals,
 and ranks them by impact/effort ratio.
 
 Data sources:
@@ -11,7 +11,8 @@ Data sources:
   3. known_faults.yaml       -- documented but unmitigated faults
   4. agent_evolution.py      -- non-PASS checks
   5. response_queue.json     -- client pain points
-  6. git log --oneline -30   -- hot spots (most changed files)
+  6. client_contributions/   -- client feedback patterns (3+ occurrences)
+  7. git log --oneline -30   -- hot spots (most changed files)
 
 Output:
   .planning/EVOLUTION_PROPOSALS.md  -- up to 10 ranked proposals
@@ -248,6 +249,68 @@ def read_response_queue():
 # Source 6: git log --oneline -30 -- hot spots
 # ---------------------------------------------------------------------------
 
+def read_client_contributions():
+    """Read client contributions and identify patterns (3+ occurrences)."""
+    insights = []
+    contrib_dir = REPO_ROOT / "reports" / "client_contributions"
+    if not contrib_dir.exists():
+        return insights, False
+
+    files = list(contrib_dir.glob("contrib_*.json"))
+    if not files:
+        return insights, True
+
+    # Count by type and domain
+    type_counts = Counter()
+    domain_counts = Counter()
+    domain_ideas = []
+
+    for f in files:
+        try:
+            data = json.loads(f.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            continue
+        ctype = data.get("type", "unknown")
+        domain = data.get("domain", "unknown")
+        type_counts[ctype] += 1
+        domain_counts[domain] += 1
+        if ctype == "domain_idea":
+            domain_ideas.append(data.get("content", "")[:100])
+
+    # Generate insights for patterns appearing 3+ times
+    for domain, count in domain_counts.most_common():
+        if count >= 3:
+            insights.append({
+                "source": "client_contributions",
+                "domain": domain,
+                "count": count,
+                "description": f"{count} client contributions about '{domain}' domain",
+            })
+
+    for ctype, count in type_counts.most_common():
+        if count >= 3:
+            insights.append({
+                "source": "client_contributions",
+                "type": ctype,
+                "count": count,
+                "description": f"{count} client '{ctype}' contributions received",
+            })
+
+    # Surface domain ideas that appear multiple times
+    if len(domain_ideas) >= 3:
+        insights.append({
+            "source": "client_contributions",
+            "count": len(domain_ideas),
+            "description": f"{len(domain_ideas)} new domain ideas from clients -- review for new claim candidates",
+        })
+
+    return insights, True
+
+
+# ---------------------------------------------------------------------------
+# Source 7: git log --oneline -30 -- hot spots (was Source 6)
+# ---------------------------------------------------------------------------
+
 def read_git_hotspots():
     """Analyze recent git log for frequently changed files."""
     hotspots = []
@@ -292,6 +355,11 @@ def _classify_impact(item):
     desc = item.get("description", "").lower()
 
     # Client-facing issues are CRITICAL
+    if source == "client_contributions":
+        count = item.get("count", 0)
+        if count >= 5:
+            return "CRITICAL"
+        return "HIGH"
     if source == "response_queue":
         return "HIGH"
     # Evolution check failures are HIGH
@@ -338,6 +406,8 @@ def _classify_effort(item):
         return "MEDIUM"
     if source == "agent_evolution":
         return "MEDIUM"
+    if source == "client_contributions":
+        return "LOW"
     if source == "response_queue":
         return "LOW"
     if source == "git_log":
@@ -361,6 +431,12 @@ def _generate_solution(item):
         return f"Address fault {item.get('fault_id', '?')}: {item.get('mitigation', 'See known_faults.yaml')}"
     if source == "agent_evolution":
         return "Fix the failing evolution check to bring all 20 checks to PASS"
+    if source == "client_contributions":
+        domain = item.get("domain", "unknown")
+        ctype = item.get("type", "feedback")
+        if ctype == "domain_idea":
+            return f"Evaluate new domain ideas from clients for potential new claims"
+        return f"Address client {ctype} pattern in {domain} domain"
     if source == "response_queue":
         domain = item.get("domain", "unknown")
         return f"Strengthen {domain} domain documentation and demo bundles for prospects"
@@ -383,6 +459,8 @@ def _risk_assessment(item):
         return "steward_audit.py + deep_verify.py catch structural regressions"
     if source == "agent_evolution":
         return "agent_evolution.py 20 checks + pytest suite catch regressions"
+    if source == "client_contributions":
+        return "Human review of contributions before any action; mg_contribute.py sanitization"
     if source == "response_queue":
         return "Bundle verification (mg.py verify) catches any broken bundles"
     if source == "git_log":
@@ -452,6 +530,10 @@ def _make_title(item):
         return f"Address known fault {item.get('fault_id', '?')}"
     if source == "agent_evolution":
         return "Fix failing evolution check"
+    if source == "client_contributions":
+        domain = item.get("domain", "unknown")
+        count = item.get("count", 0)
+        return f"Act on {count} client contributions for {domain}"
     if source == "response_queue":
         domain = item.get("domain", "unknown")
         return f"Strengthen {domain} domain for client outreach"
@@ -472,6 +554,8 @@ def _make_evidence(item):
         return f"reports/known_faults.yaml :: {item.get('fault_id', '?')}"
     if source == "agent_evolution":
         return f"agent_evolution.py --summary output: {item.get('description', '?')[:100]}"
+    if source == "client_contributions":
+        return f"reports/client_contributions/: domain={item.get('domain','?')} count={item.get('count',0)}"
     if source == "response_queue":
         return f"response_queue/pilot_queue: domain={item.get('domain','?')} count={item.get('count',0)}"
     if source == "git_log":
@@ -542,6 +626,7 @@ def collect_all_sources(skip_coverage=False, skip_slow=False):
         sources["agent_evolution"] = read_agent_evolution()
     sources["known_faults"] = read_known_faults()
     sources["response_queue"] = read_response_queue()
+    sources["client_contributions"] = read_client_contributions()
     sources["git_log"] = read_git_hotspots()
     return sources
 
@@ -582,7 +667,7 @@ def main():
         print_summary(proposals)
     else:
         successful = sum(1 for _, (_, ok) in sources.items() if ok)
-        print(f"Evolution Council analyzed {successful}/6 sources")
+        print(f"Evolution Council analyzed {successful}/7 sources")
         print(f"Generated {len(proposals)} proposals -> {out_path}")
         print()
         print_summary(proposals)

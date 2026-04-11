@@ -34,7 +34,7 @@ This is traceability to physical measurement, not threshold compliance.
 - [x] FINRISK-01 — VaR model certificate (Basel III/IV)
 - [x] DT-SENSOR-01 — IoT sensor data integrity certificate
 - [x] DT-CALIB-LOOP-01 — calibration convergence certificate
-- [x] 2078 adversarial tests, steward_audit PASS
+- [x] 2132 adversarial tests, steward_audit PASS
 - [x] CERT-07 Bundle Signing (HMAC + Ed25519)
 - [x] CERT-08 Reproducibility as cryptographic property
 - [x] CERT-09 Ed25519 attacks
@@ -51,7 +51,7 @@ This is traceability to physical measurement, not threshold compliance.
 
 ## v0.9.0 — Technical Perfection (2026-04-02)
 
-- Coverage: 49.2% to 81.2% (+32pp, 2078 tests from 906)
+- Coverage: 49.2% to 81.2% (+32pp, 2132 tests from 906)
 - All 27 agent tasks complete (0 pending)
 - Coverage governance locked at 65% minimum
 - 4 autonomous PR detectors (stale counter, manifest sync, diff review, coverage drop)
@@ -111,7 +111,7 @@ scientific claims. Digital twin calibration is the highest-value
 application: every step from physical measurement to simulation output
 to drift monitoring becomes independently verifiable.
 
-**DT-FEM-01, DT-SENSOR-01, DT-CALIB-LOOP-01** are live (2078 tests PASS).
+**DT-FEM-01, DT-SENSOR-01, DT-CALIB-LOOP-01** are live (2132 tests PASS).
 
 Next claims in the digital twin path:
 

@@ -55,6 +55,7 @@
     "reports/receipts/**",
     "reports/response_drafts/**",
     "reports/response_bundles/**",
+    "reports/client_contributions/**",
     ".planning/**",
     "proof_library/**"
   ],
