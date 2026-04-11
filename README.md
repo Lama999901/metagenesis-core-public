@@ -2,6 +2,8 @@
 
 **A notary for computations.**
 
+*The first cryptographic standard that closes the 80-year gap in digital computation: any result, provably real, anchored to physical law.*
+
 [![Tests](https://img.shields.io/badge/Tests-2358%20passing-brightgreen.svg)](tests/)
 [![Real Ratio](https://img.shields.io/badge/Real%20Verified-51.2%25-blue.svg)](proof_library/)
 [![Patent Pending](https://img.shields.io/badge/Patent-Pending%20%2363%2F996%2C819-orange.svg)](ppa/README_PPA.md)
@@ -151,6 +153,31 @@ python scripts/mg_verify_standalone.py demos/open_data_demo_01/
 
 ---
 
+## Talk to the Protocol
+
+Any person. Any language. Any domain.
+
+Clone the repo. Bring your own Claude API key (anthropic.com/api).
+Run one command:
+
+```bash
+python scripts/mg_onboard.py --api-key YOUR_KEY
+```
+
+The system detects your language. Understands what you compute.
+Runs live verification. Explains the result. In your language.
+
+A materials scientist in Tokyo.
+A pharma researcher in Madrid.
+A quant in London.
+A student curious about cryptography.
+
+All get the same protocol. All get the same proof.
+
+Your API key. Your conversation. Your data stays yours.
+
+---
+
 ## The Killer Application: Drift Detection
 
 Compare a verification bundle from today against one from a year ago.
@@ -236,6 +263,31 @@ When every simulation is anchored to SI 2019 constants — when aluminum in a di
 Verified digital laboratories. Zero-cost experiments. Digital twins that cannot lie. Science that proves itself.
 
 kB = 1.380649e-23 J/K. Defined 2019. Will never change. Build on that, and what you build outlasts everything.
+
+---
+
+## Questions the Protocol Answers
+
+**"Did this computation really produce this result?"**
+→ PASS: yes, cryptographically proven.
+→ FAIL: here is which layer broke and why.
+
+**"Was this result fabricated after the fact?"**
+→ NIST Beacon proves the exact moment of creation.
+
+**"Who created this bundle?"**
+→ Ed25519 signature proves the creator.
+
+**"Is this simulation still calibrated after a year?"**
+→ Drift monitoring against verified anchor answers continuously.
+
+**"Can a regulator verify this without seeing our model?"**
+→ Yes. Bundle contains proof, not the model.
+→ One command. Offline. No model access needed.
+
+**"What if MetaGenesis Core disappears tomorrow?"**
+→ Nothing changes. MIT license. Zero dependencies.
+→ mg_verify_standalone.py is one file that verifies forever.
 
 ---
 
