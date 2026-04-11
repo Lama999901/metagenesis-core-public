@@ -3,7 +3,7 @@
 > **START HERE:** `python scripts/session_close.py --read` → shows full current state in 5 lines
 
 > Loaded automatically by all GSD agents via CLAUDE.md.
-> Last updated: 2026-04-11 | v0.9.0 LIVE | 20 templates | 2358 tests
+> Last updated: 2026-04-11 | v0.9.0 LIVE | 20 templates | 2380 tests
 
 ---
 
@@ -117,7 +117,7 @@ scripts/mg.py                                    ← core verifier, modify caref
 "blockchain"        → "cryptographic hash chain"
 "unforgeable"       → don't use
 "GPT-5"             → doesn't exist
-"100% test success" → "2358 tests PASS"
+"100% test success" → "2380 tests PASS"
 any stale test count → always use current count from system_manifest.json
 any stale version    → always use v0.9.0
 ```
@@ -128,7 +128,7 @@ any stale version    → always use v0.9.0
 
 ```bash
 python scripts/steward_audit.py      # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q           # → 2358 passed
+python -m pytest tests/ -q           # → 2380 passed
 python scripts/deep_verify.py        # → ALL 13 TESTS PASSED
 python scripts/check_stale_docs.py   # → All critical documentation is current
 python scripts/agent_diff_review.py  # → DIFF REVIEW PASSED
@@ -160,13 +160,13 @@ git push origin feat/description
 
 ```
 Date:        2026-04-11
-Tests:       2358 passing
+Tests:       2380 passing
 Real ratio:  51.2% (21 real / 20 synthetic)
 Templates:   20 domain templates (all have 4-step Step Chain)
 Layers:      5 verification (integrity + semantic + step chain + signing + temporal)
 Checks:      22 (agent_evolution.py)
-Last:        README 3 additions (80-year gap tagline, Talk to Protocol section, Q&A section). Branch docs/readme-
-Next:        Merge docs/readme-additions-260411 PR. Check Zoho SPAM. First client $299. Zenodo DOI minting.
+Last:        Recursive evolution: pattern promoter, 22 new tests, recursion analysis, CI integration
+Next:        Merge docs/readme-additions-260411 PR. Sync test count 2380 across docs. First client $299.
 ```
 
 ---
@@ -369,7 +369,7 @@ reports/scientific_claim_index.md  ← claim registry
 reports/canonical_state.md  ← authoritative list (LOCKED)
 reports/known_faults.yaml   ← known limitations (SCOPE_001 + ENV_001)
 paper.md + paper.bib        ← JOSS paper (resubmit Sep 2026)
-index.html                  ← site (2358 tests/20 claims/5 layers/8 innovations)
+index.html                  ← site (2380 tests/20 claims/5 layers/8 innovations)
 CONTEXT_SNAPSHOT.md         ← live state for AI agents
 ```
 
@@ -437,5 +437,5 @@ This shows recurring issues + auto-fix hints from 57 sessions.
 ---
 
 *CLAUDE.md v2.1 — 2026-04-08 — MetaGenesis Core v0.9.0 LIVE*
-*2358 tests | 20 claims | 22 checks | Level 3 autonomous forge ACTIVE*
+*2380 tests | 20 claims | 22 checks | Level 3 autonomous forge ACTIVE*
 *Mission: notary for computations. First client = history.*
