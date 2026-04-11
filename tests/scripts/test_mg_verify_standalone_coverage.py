@@ -282,3 +282,238 @@ def test_evidence_index_run_missing_required_key(tmp_path):
     ok, msg, info = _verify_evidence_index(tmp_path, index_path)
     assert ok is False
     assert "missing" in msg.lower()
+
+
+# ---- Additional coverage: verify_layer2_semantic, layer4, layer5, format_receipt --
+
+
+from scripts.mg_verify_standalone import (
+    _verify_evidence_json,
+    verify_layer2_semantic,
+    verify_layer4_signature,
+    verify_layer5_temporal,
+    format_receipt,
+)
+
+
+# ---- _verify_evidence_json tests ----------------------------------------------
+
+
+def test_verify_evidence_json_valid(tmp_path):
+    trace, root = _make_trace()
+    evidence = {
+        "mtr_phase": "MTR-1",
+        "execution_trace": trace,
+        "trace_root_hash": root,
+    }
+    ep = tmp_path / "evidence.json"
+    ep.write_text(json.dumps(evidence), encoding="utf-8")
+    ok, msg, info = _verify_evidence_json(ep)
+    assert ok is True
+    assert info["claim_id"] == "MTR-1"
+
+
+def test_verify_evidence_json_missing_key(tmp_path):
+    ep = tmp_path / "evidence.json"
+    ep.write_text(json.dumps({"mtr_phase": "X"}), encoding="utf-8")
+    ok, msg, info = _verify_evidence_json(ep)
+    assert ok is False
+    assert "missing required key" in msg
+
+
+def test_verify_evidence_json_invalid_json(tmp_path):
+    ep = tmp_path / "evidence.json"
+    ep.write_text("not json!", encoding="utf-8")
+    ok, msg, info = _verify_evidence_json(ep)
+    assert ok is False
+    assert "Invalid" in msg
+
+
+# ---- verify_layer2_semantic tests --------------------------------------------
+
+
+def test_layer2_with_evidence_json(tmp_path):
+    trace, root = _make_trace()
+    evidence = {
+        "mtr_phase": "MTR-1",
+        "execution_trace": trace,
+        "trace_root_hash": root,
+    }
+    (tmp_path / "evidence.json").write_text(json.dumps(evidence), encoding="utf-8")
+    ok, msg, info = verify_layer2_semantic(tmp_path)
+    assert ok is True
+
+
+def test_layer2_no_evidence(tmp_path):
+    ok, msg, info = verify_layer2_semantic(tmp_path)
+    assert ok is True
+    assert "skip" in msg.lower()
+
+
+# ---- verify_layer4_signature tests -------------------------------------------
+
+
+def test_layer4_no_signature_file(tmp_path):
+    ok, msg = verify_layer4_signature(tmp_path, None)
+    assert ok is True
+    assert "skip" in msg.lower()
+
+
+def test_layer4_with_signature_matching(tmp_path):
+    import hmac as _hmac
+    root_hash = "a" * 64
+    key_hex = "deadbeef" * 8
+    key_bytes = bytes.fromhex(key_hex)
+    sig = _hmac.new(key_bytes, root_hash.encode("utf-8"), hashlib.sha256).hexdigest()
+    fp = hashlib.sha256(key_bytes).hexdigest()
+
+    sig_data = {
+        "signed_root_hash": root_hash,
+        "signature": sig,
+        "key_fingerprint": fp,
+    }
+    (tmp_path / "bundle_signature.json").write_text(
+        json.dumps(sig_data), encoding="utf-8"
+    )
+    key_data = {"key_hex": key_hex}
+    (tmp_path / "signing_key.json").write_text(
+        json.dumps(key_data), encoding="utf-8"
+    )
+    manifest = {"root_hash": root_hash}
+    ok, msg = verify_layer4_signature(tmp_path, manifest)
+    assert ok is True
+    assert "HMAC-SHA256 valid" in msg
+
+
+def test_layer4_signature_root_mismatch(tmp_path):
+    sig_data = {
+        "signed_root_hash": "a" * 64,
+        "signature": "b" * 64,
+        "key_fingerprint": "c" * 64,
+    }
+    (tmp_path / "bundle_signature.json").write_text(
+        json.dumps(sig_data), encoding="utf-8"
+    )
+    manifest = {"root_hash": "d" * 64}
+    ok, msg = verify_layer4_signature(tmp_path, manifest)
+    assert ok is False
+    assert "does not match" in msg
+
+
+def test_layer4_signature_no_key(tmp_path):
+    """Signature present but no signing key -- returns pass with fingerprint."""
+    sig_data = {
+        "signed_root_hash": "a" * 64,
+        "signature": "b" * 64,
+        "key_fingerprint": "c" * 64,
+    }
+    (tmp_path / "bundle_signature.json").write_text(
+        json.dumps(sig_data), encoding="utf-8"
+    )
+    ok, msg = verify_layer4_signature(tmp_path, {"root_hash": "a" * 64})
+    assert ok is True
+    assert "fingerprint" in msg.lower()
+
+
+# ---- verify_layer5_temporal tests --------------------------------------------
+
+
+def test_layer5_no_temporal(tmp_path):
+    ok, msg = verify_layer5_temporal(tmp_path, None)
+    assert ok is True
+    assert "skip" in msg.lower()
+
+
+def test_layer5_beacon_unavailable(tmp_path):
+    tc = {
+        "pre_commitment_hash": hashlib.sha256(("a" * 64).encode()).hexdigest(),
+        "beacon_status": "unavailable",
+        "local_timestamp": "2026-04-11T00:00:00Z",
+    }
+    (tmp_path / "temporal_commitment.json").write_text(
+        json.dumps(tc), encoding="utf-8"
+    )
+    manifest = {"root_hash": "a" * 64}
+    ok, msg = verify_layer5_temporal(tmp_path, manifest)
+    assert ok is True
+    assert "Local timestamp" in msg
+
+
+def test_layer5_pre_commitment_mismatch(tmp_path):
+    tc = {
+        "pre_commitment_hash": "wrong_hash",
+        "beacon_status": "unavailable",
+        "local_timestamp": "2026-04-11T00:00:00Z",
+    }
+    (tmp_path / "temporal_commitment.json").write_text(
+        json.dumps(tc), encoding="utf-8"
+    )
+    manifest = {"root_hash": "a" * 64}
+    ok, msg = verify_layer5_temporal(tmp_path, manifest)
+    assert ok is False
+    assert "mismatch" in msg.lower()
+
+
+def test_layer5_full_beacon_valid(tmp_path):
+    root_hash = "a" * 64
+    pre = hashlib.sha256(root_hash.encode()).hexdigest()
+    beacon_output = "b" * 64
+    beacon_ts = "2026-04-11T00:00:00Z"
+    binding = hashlib.sha256(
+        (pre + beacon_output + beacon_ts).encode()
+    ).hexdigest()
+    tc = {
+        "pre_commitment_hash": pre,
+        "beacon_output_value": beacon_output,
+        "beacon_timestamp": beacon_ts,
+        "temporal_binding": binding,
+    }
+    (tmp_path / "temporal_commitment.json").write_text(
+        json.dumps(tc), encoding="utf-8"
+    )
+    manifest = {"root_hash": root_hash}
+    ok, msg = verify_layer5_temporal(tmp_path, manifest)
+    assert ok is True
+    assert "NIST Beacon verified" in msg
+
+
+# ---- format_receipt tests ----------------------------------------------------
+
+
+def test_format_receipt_with_claim_info(tmp_path):
+    results = [
+        ("Layer 1 -- SHA-256 Integrity", True, "All verified"),
+        ("Layer 2 -- Semantic", True, "Claim MTR-1 verified"),
+        ("Layer 3 -- Step Chain", True, "4-step chain verified"),
+        ("Layer 4 -- Bundle Signature", True, "HMAC valid"),
+        ("Layer 5 -- Temporal", True, "NIST Beacon verified"),
+    ]
+    claim_info = {
+        "claim_id": "MTR-1",
+        "evidence": {
+            "result": {"relative_error": 0.001, "pass": True},
+            "trace_root_hash": "a" * 64,
+        },
+    }
+    receipt = format_receipt(tmp_path, results, claim_info)
+    assert "MTR-1" in receipt
+    assert "PASS" in receipt
+    assert "relative_error" in receipt
+    assert "70 GPa" in receipt  # physical anchor for MTR-1
+
+
+def test_format_receipt_without_claim_info(tmp_path):
+    results = [
+        ("Layer 1", True, "OK"),
+    ]
+    receipt = format_receipt(tmp_path, results, None)
+    assert "PASS" in receipt
+    assert "VERIFICATION RECEIPT" in receipt
+
+
+def test_format_receipt_fail_verdict(tmp_path):
+    results = [
+        ("Layer 1", False, "SHA mismatch"),
+    ]
+    receipt = format_receipt(tmp_path, results, None)
+    assert "FAIL" in receipt

@@ -182,3 +182,104 @@ def test_main_dispatch_exception(tmp_path, monkeypatch):
     with pytest.raises(SystemExit) as exc_info:
         mod.main()
     assert exc_info.value.code == 1
+
+
+# ---- Additional dispatch coverage for uncovered branches ----------------------
+
+
+def test_dispatch_sysid01(tmp_path, monkeypatch):
+    monkeypatch.setattr(mod, "REPO_ROOT", tmp_path)
+    input_file = tmp_path / "input.json"
+    input_file.write_text('{"na": 3, "nb": 2}', encoding="utf-8")
+    fake_result = {"mtr_phase": "SYSID-01", "result": {"rel_err": 0.01}}
+    with mock.patch(
+        "backend.progress.sysid1_arx_calibration.run_calibration",
+        return_value=fake_result,
+    ) as m:
+        result = mod.dispatch("SYSID-01", str(input_file))
+        assert result["mtr_phase"] == "SYSID-01"
+        m.assert_called_once()
+
+
+def test_dispatch_data_pipe_01(tmp_path, monkeypatch):
+    monkeypatch.setattr(mod, "REPO_ROOT", tmp_path)
+    input_file = tmp_path / "input.json"
+    input_file.write_text("{}", encoding="utf-8")
+    fake_result = {"mtr_phase": "DATA-PIPE-01", "result": {"pass": True}}
+    with mock.patch(
+        "backend.progress.datapipe1_quality_certificate.run_certificate",
+        return_value=fake_result,
+    ) as m:
+        result = mod.dispatch("DATA-PIPE-01", str(input_file))
+        assert result["mtr_phase"] == "DATA-PIPE-01"
+        m.assert_called_once()
+
+
+def test_dispatch_drift01(tmp_path, monkeypatch):
+    monkeypatch.setattr(mod, "REPO_ROOT", tmp_path)
+    input_file = tmp_path / "input.json"
+    input_file.write_text('{"seed": 42}', encoding="utf-8")
+    fake_result = {"mtr_phase": "DRIFT-01", "result": {"drift": 0.02}}
+    with mock.patch(
+        "backend.progress.drift_monitor.run_drift_monitor",
+        return_value=fake_result,
+    ) as m:
+        result = mod.dispatch("DRIFT-01", str(input_file))
+        assert result["mtr_phase"] == "DRIFT-01"
+        m.assert_called_once()
+
+
+def test_dispatch_agent_drift_01(tmp_path, monkeypatch):
+    monkeypatch.setattr(mod, "REPO_ROOT", tmp_path)
+    input_file = tmp_path / "input.json"
+    input_file.write_text('{"seed": 42}', encoding="utf-8")
+    fake_result = {"mtr_phase": "AGENT-DRIFT-01", "result": {"composite_drift": 0.05}}
+    with mock.patch(
+        "backend.progress.agent_drift_monitor.run_agent_drift_monitor",
+        return_value=fake_result,
+    ) as m:
+        result = mod.dispatch("AGENT-DRIFT-01", str(input_file))
+        assert result["mtr_phase"] == "AGENT-DRIFT-01"
+        m.assert_called_once()
+
+
+def test_dispatch_dt_sensor_01(tmp_path, monkeypatch):
+    monkeypatch.setattr(mod, "REPO_ROOT", tmp_path)
+    input_file = tmp_path / "input.json"
+    input_file.write_text('{"seed": 42}', encoding="utf-8")
+    fake_result = {"mtr_phase": "DT-SENSOR-01", "result": {"pass": True}}
+    with mock.patch(
+        "backend.progress.dtsensor1_iot_certificate.run_certificate",
+        return_value=fake_result,
+    ) as m:
+        result = mod.dispatch("DT-SENSOR-01", str(input_file))
+        assert result["mtr_phase"] == "DT-SENSOR-01"
+        m.assert_called_once()
+
+
+def test_dispatch_dt_calib_loop_01(tmp_path, monkeypatch):
+    monkeypatch.setattr(mod, "REPO_ROOT", tmp_path)
+    input_file = tmp_path / "input.json"
+    input_file.write_text('{"seed": 42}', encoding="utf-8")
+    fake_result = {"mtr_phase": "DT-CALIB-LOOP-01", "result": {"converging": True}}
+    with mock.patch(
+        "backend.progress.dtcalib1_convergence_certificate.run_certificate",
+        return_value=fake_result,
+    ) as m:
+        result = mod.dispatch("DT-CALIB-LOOP-01", str(input_file))
+        assert result["mtr_phase"] == "DT-CALIB-LOOP-01"
+        m.assert_called_once()
+
+
+def test_dispatch_pharma01(tmp_path, monkeypatch):
+    monkeypatch.setattr(mod, "REPO_ROOT", tmp_path)
+    input_file = tmp_path / "input.json"
+    input_file.write_text('{"seed": 42}', encoding="utf-8")
+    fake_result = {"mtr_phase": "PHARMA-01", "result": {"pass": True}}
+    with mock.patch(
+        "backend.progress.pharma1_admet_certificate.run_certificate",
+        return_value=fake_result,
+    ) as m:
+        result = mod.dispatch("PHARMA-01", str(input_file))
+        assert result["mtr_phase"] == "PHARMA-01"
+        m.assert_called_once()
