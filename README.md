@@ -7,6 +7,7 @@
 [![Tests](https://img.shields.io/badge/Tests-2380%20passing-brightgreen.svg)](tests/)
 [![Real Ratio](https://img.shields.io/badge/Real%20Verified-51.2%25-blue.svg)](proof_library/)
 [![Patent Pending](https://img.shields.io/badge/Patent-Pending%20%2363%2F996%2C819-orange.svg)](ppa/README_PPA.md)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19521091.svg)](https://doi.org/10.5281/zenodo.19521091)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Steward Audit](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml/badge.svg)](https://github.com/Lama999901/metagenesis-core-public/actions/workflows/total_audit_guard.yml)
 
