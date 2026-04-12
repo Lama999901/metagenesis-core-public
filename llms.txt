@@ -1,5 +1,5 @@
 Open verification protocol for computational claims.
-Implements the MetaGenesis Verification Protocol (MVP) v0.9.
+Implements the MetaGenesis Verification Protocol (MVP) v1.0.
 
 Any computational result — ML accuracy, calibration output, FEM simulation,
 ADMET prediction, VaR estimate, IoT sensor stream — can be packaged into a
@@ -101,13 +101,13 @@ Enforced by: python scripts/steward_audit.py → must output STEWARD AUDIT: PASS
 ## How to verify everything works
 
 python scripts/steward_audit.py                              # PASS
-python -m pytest tests/ -q                                   # 2380 passed
+python -m pytest tests/ -q                                   # 2405 passed
 python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 
 ## Current state (2026-04-08)
 
 - Claims: 20
-- Tests: 2380 passing
+- Tests: 2405 passing
 - Verification layers: 5 (integrity + semantic + step chain + bundle signing + temporal commitment)
 - Domains: 8 (materials, sysid, data, ml, digital_twin, pharma_biotech, financial_risk, fundamental_physics)
 - Agent checks: 22 (agent_evolution.py)
@@ -119,7 +119,7 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 - HN post live: https://news.ycombinator.com/item?id=47335416
 - PPA filed: 2026-03-05 — non-provisional deadline 2027-03-05
 - Payment: $299/bundle — bank transfer / crypto (BTC/ETH/USDC) / invoice — yehor@metagenesis-core.dev
-- GitHub Release: v0.9.0 — https://github.com/Lama999901/metagenesis-core-public/releases/tag/v0.9.0
+- GitHub Release: v1.0.0-rc1 — https://github.com/Lama999901/metagenesis-core-public/releases/tag/v1.0.0-rc1
 - Outreach sent: Tongqi Wen, Giovanni Pizzi, Brian Nosek (follow-up), Peter Coveney (follow-up),
   Arvind Narayanan (follow-up), Jeffrey Ip, Elena Samuylova (resent with subject),
   Anand Kannappan, Vikram Chatterji, Woody Sherman, Jonathan Godwin,
@@ -131,8 +131,8 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 ## Key files
 
 - README.md — problem, solution, quickstart
-- docs/PROTOCOL.md — v0.9 protocol specification (5 layers + Cross-Claim Chain)
-- docs/ARCHITECTURE.md — v0.9 architecture diagrams
+- docs/PROTOCOL.md — v1.0 protocol specification (5 layers + Cross-Claim Chain)
+- docs/ARCHITECTURE.md — v1.0 architecture diagrams
 - docs/ROADMAP.md — planned expansion
 - reports/scientific_claim_index.md — all 20 claims with thresholds
 - reports/canonical_state.md — authoritative claims list

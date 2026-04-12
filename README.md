@@ -4,7 +4,7 @@
 
 *The first cryptographic standard that closes the 80-year gap in digital computation: any result, provably real, anchored to physical law.*
 
-[![Tests](https://img.shields.io/badge/Tests-2380%20passing-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-2405%20passing-brightgreen.svg)](tests/)
 [![Real Ratio](https://img.shields.io/badge/Real%20Verified-51.2%25-blue.svg)](proof_library/)
 [![Patent Pending](https://img.shields.io/badge/Patent-Pending%20%2363%2F996%2C819-orange.svg)](ppa/README_PPA.md)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19521091.svg)](https://doi.org/10.5281/zenodo.19521091)
@@ -219,7 +219,7 @@ One command. Offline. Cryptographic proof.
 
 MetaGenesis Core is not a product. It is infrastructure. Four levels, each building on the last.
 
-### Level 1 — Protocol *(shipped, v0.9.0)*
+### Level 1 — Protocol *(shipped, v1.0.0-rc1)*
 
 Any computation verified in 60 seconds. 5 layers. 20 claims. Physical anchors. Offline.
 *Trigger to next level: first paying client.*
@@ -311,7 +311,7 @@ Full limitations: `reports/known_faults.yaml` and `SECURITY.md`
 ## The Numbers
 
 ```
-Tests:           2380 passing (3 skipped — platform-specific)
+Tests:           2405 passing (3 skipped — platform-specific)
 Real ratio:      51.2% (21 verified against real external data / 41 total)
 Claims:          20 active across 8 domains
 Layers:          5 independent (proven by CERT-11)
@@ -324,7 +324,7 @@ Dependencies:    Python 3.11+ stdlib only (zero external dependencies)
 
 ```bash
 python scripts/steward_audit.py         # STEWARD AUDIT: PASS
-python -m pytest tests/ -q              # 2380 passed
+python -m pytest tests/ -q              # 2405 passed
 python scripts/deep_verify.py           # ALL 13 TESTS PASSED
 python scripts/agent_evolution.py       # ALL 22 CHECKS PASSED
 ```
@@ -374,7 +374,7 @@ Yehor Bazhynov — inventor, USPTO #63/996,819.
 
 Construction worker by day. Built this after shifts and weekends. No CS degree. No team. No funding.
 
-2380 tests. Patent filed. 60 days.
+2405 tests. Patent filed. 60 days.
 
 There is a deeper paradox here.
 
@@ -418,4 +418,4 @@ Commercial licensing available for organizations building on the protocol.
 
 ---
 
-*MetaGenesis Core v0.9.0 | 2380 tests | 51.2% real | Patent Pending #63/996,819*
+*MetaGenesis Core v1.0.0-rc1 | 2405 tests | 51.2% real | Patent Pending #63/996,819*

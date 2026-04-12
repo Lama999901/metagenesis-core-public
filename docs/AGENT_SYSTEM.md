@@ -23,7 +23,7 @@ Key properties:
 
 Scripts: mg.py, mg_sign.py, mg_ed25519.py, mg_temporal.py, deep_verify.py
 Purpose: 5-layer verification of computational claims.
-Autonomy: Low -- verified against 2380 adversarial tests before any change.
+Autonomy: Low -- verified against 2405 adversarial tests before any change.
 
 Layers:
 1. SHA-256 integrity (pack_manifest.json)
@@ -90,4 +90,4 @@ AGENT-DRIFT-01, PHYS-01, PHYS-02
 
 ---
 
-*docs/AGENT_SYSTEM.md -- v0.9.0 -- MetaGenesis Core*
+*docs/AGENT_SYSTEM.md -- v1.0.0-rc1 -- MetaGenesis Core*

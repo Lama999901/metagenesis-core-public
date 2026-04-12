@@ -1,8 +1,8 @@
 {
   "project": "MetaGenesis Core",
-  "version": "0.9.0",
+  "version": "1.0.0-rc1",
   "description": "Open verification protocol for computational claims. Any computation — ML model accuracy, calibration result, data pipeline output — packaged into a tamper-evident bundle verifiable offline by any third party with one command.",
-  "protocol": "MetaGenesis Verification Protocol (MVP) v0.9",
+  "protocol": "MetaGenesis Verification Protocol (MVP) v1.0",
   "active_claims": [
     "MTR-1",
     "MTR-2",
@@ -45,12 +45,12 @@
     "bundle_signing_hmac_sha256",
     "temporal_commitment_nist_beacon"
   ],
-  "test_count": 2380,
+  "test_count": 2405,
   "steward_audit": "PASS",
   "ppa_filed": "2026-03-05",
   "ppa_number": "63/996,819",
   "inventor": "Yehor Bazhynov",
-  "github_release": "v0.9.0",
+  "github_release": "v1.0.0-rc1",
   "joss_paper": "paper.md",
   "real_verifications_count": 21,
   "external_input_supported": true,
@@ -59,5 +59,7 @@
   "last_session_date": "2026-04-11",
   "last_session_summary": "Recursive evolution: pattern promoter, council proposals, recursion analysis, coverage 90%+, README enhanced",
   "next_priority": "Merge fix/state-md-counters-260411 PR. Zenodo DOI minting. First client $299.",
-  "zenodo_doi": "10.5281/zenodo.19521091"
+  "zenodo_doi": "10.5281/zenodo.19521091",
+  "sdk_exists": true,
+  "github_action_exists": true
 }

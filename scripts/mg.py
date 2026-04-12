@@ -518,7 +518,7 @@ def main():
 
         receipt = {
             "receipt_version": "1.0",
-            "protocol": "MetaGenesis Verification Protocol (MVP) v0.9",
+            "protocol": "MetaGenesis Verification Protocol (MVP) v1.0",
             "verification_timestamp": datetime.now(timezone.utc).isoformat(),
             "verifier": getpass.getuser(),
             "verifier_platform": platform.platform(),

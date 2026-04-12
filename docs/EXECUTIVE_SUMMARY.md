@@ -1,6 +1,6 @@
 # MetaGenesis Core -- Executive Summary
 
-**Version:** v0.9.0 | **Patent:** USPTO #63/996,819 (provisional)
+**Version:** v1.0.0-rc1 | **Patent:** USPTO #63/996,819 (provisional)
 
 ---
 
@@ -12,7 +12,7 @@ Every industry relies on computational results that cannot be independently veri
 
 MetaGenesis Core is a verification protocol that packages computational results into tamper-evident evidence bundles. One command -- `python scripts/mg.py verify --pack bundle.zip` -- returns `PASS` or `FAIL`. No model access required. No GPU. No network. No trust.
 
-Five independent verification layers detect: file modification, evidence stripping, input tampering, unauthorized creators, and backdating. Each layer catches attacks the other four miss -- proven by 2380 adversarial tests.
+Five independent verification layers detect: file modification, evidence stripping, input tampering, unauthorized creators, and backdating. Each layer catches attacks the other four miss -- proven by 2405 adversarial tests.
 
 ## Domains
 
@@ -27,7 +27,7 @@ Five independent verification layers detect: file modification, evidence strippi
 
 ## Evidence
 
-- **2380 tests** passing in CI (adversarial, functional, determinism)
+- **2405 tests** passing in CI (adversarial, functional, determinism)
 - **20 domain verification claims** across 6 industries
 - **5 independent verification layers** (proven independent by CERT-11)
 - **Physical anchoring** to SI 2019 exact constants (Boltzmann, Avogadro)

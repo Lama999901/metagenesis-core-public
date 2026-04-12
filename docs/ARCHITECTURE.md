@@ -263,8 +263,8 @@ DT-FEM-01 and DRIFT-01 support anchor_hash for Cross-Claim Chain.
 | `test_cert05_adversarial_gauntlet.py` | 5 attacks: Strip+Recompute, Single-Bit, Cross-Domain, Canary Laundering, Chain Reversal |
 | `test_cert06_real_world_scenarios.py` | 5 real-world proofs: honest team, cherry-picker, physical anchor, audit trail, reproducibility crisis |
 
-2380 tests total. steward_audit PASS.
+2405 tests total. steward_audit PASS.
 
 ---
 
-*Architecture v0.9 — 2026-03-31 — MetaGenesis Core*
+*Architecture v1.0 — 2026-03-31 — MetaGenesis Core*

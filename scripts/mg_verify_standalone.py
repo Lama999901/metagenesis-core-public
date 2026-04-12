@@ -22,7 +22,7 @@ Verifies:
 
 Exit code: 0 = PASS, 1 = FAIL
 
-Protocol: MetaGenesis Verification Protocol (MVP) v0.9
+Protocol: MetaGenesis Verification Protocol (MVP) v1.0
 PPA: USPTO #63/996,819 | Inventor: Yehor Bazhynov
 """
 
@@ -492,7 +492,7 @@ def main():
             "  python mg_verify_standalone.py bundle/ --json report.json\n"
             "  python mg_verify_standalone.py bundle/ --receipt\n"
             "\n"
-            "Protocol: MetaGenesis Verification Protocol (MVP) v0.9\n"
+            "Protocol: MetaGenesis Verification Protocol (MVP) v1.0\n"
             "PPA: USPTO #63/996,819\n"
             "https://metagenesis-core.dev\n"
         ),

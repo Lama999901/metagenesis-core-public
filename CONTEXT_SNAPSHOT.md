@@ -22,7 +22,7 @@
 
 | Parameter | Value |
 |---|---|
-| Tests | **2380 passing** |
+| Tests | **2405 passing** |
 | steward_audit | PASS |
 | CI | GREEN |
 | Active claims | **20** |
@@ -32,7 +32,7 @@
 | Agent checks | 21 (agent_evolution.py) |
 | Real ratio | 51.2% (21 real / 20 synthetic) |
 | Coverage | 87.8% |
-| GitHub Release | v0.9.0 |
+| GitHub Release | v1.0.0-rc1 |
 | Adversarial tests | CERT-05 (5 attacks) + CERT-06 (5 scenarios) + CERT-07 (signing) + CERT-08 (reproducibility) + CERT-09 (Ed25519 attacks) + CERT-10 (temporal attacks) + CERT-11 (coordinated multi-vector) + CERT-12 (encoding attacks) |
 
 ---
@@ -101,7 +101,7 @@ Physical anchor scope (SCOPE_001): MTR-1/2/3/4/5/6, DT-FEM-01, DRIFT-01, DT-CALI
 
 ```bash
 python scripts/steward_audit.py          # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q               # → 2380 passed
+python -m pytest tests/ -q               # → 2405 passed
 python scripts/deep_verify.py            # → ALL 13 TESTS PASSED
 python demos/open_data_demo_01/run_demo.py  # → PASS PASS
 

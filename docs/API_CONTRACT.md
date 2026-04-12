@@ -1,4 +1,4 @@
-# MetaGenesis Core -- API Contract (v0.9.0)
+# MetaGenesis Core -- API Contract (v1.0.0-rc1)
 
 CLI entry point: `python scripts/mg.py <group> <command> [options]`
 
@@ -154,4 +154,4 @@ Verify a bundle signature. Use `--key` for HMAC, `--fingerprint` for Ed25519.
 
 ---
 
-*API Contract v0.9.0 -- MetaGenesis Core*
+*API Contract v1.0.0-rc1 -- MetaGenesis Core*

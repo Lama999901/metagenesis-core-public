@@ -1,6 +1,6 @@
 # Client Security & Privacy
 
-MetaGenesis Core v0.9.0 | PPA: USPTO #63/996,819
+MetaGenesis Core v1.0.0-rc1 | PPA: USPTO #63/996,819
 
 ---
 
@@ -65,7 +65,7 @@ MetaGenesis Core is open source. You can verify every aspect:
 git clone https://github.com/Lama999901/metagenesis-core-public.git
 cd metagenesis-core-public
 
-# Run the full test suite (2380 tests)
+# Run the full test suite (2405 tests)
 python -m pytest tests/ -q
 
 # Run the deep verification (13 proofs)
@@ -97,4 +97,4 @@ Questions about security or privacy: yehor@metagenesis-core.dev
 
 ---
 
-*CLIENT_SECURITY.md v1.0 -- 2026-04-10 -- MetaGenesis Core v0.9.0*
+*CLIENT_SECURITY.md v1.0 -- 2026-04-10 -- MetaGenesis Core v1.0.0-rc1*

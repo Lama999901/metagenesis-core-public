@@ -19,12 +19,12 @@ def sc_env(tmp_path, monkeypatch):
     """Redirect all file paths to temp dir (same pattern as test_session_close.py)."""
     claude_md = tmp_path / "CLAUDE.md"
     claude_md.write_text(
-        '# Test\n\n> Last updated: 2026-01-01\n\n---\n\n## CURRENT STATE (v0.9.0)\n\n```\nTests: 100\n```\n\n---\n',
+        '# Test\n\n> Last updated: 2026-01-01\n\n---\n\n## CURRENT STATE (v1.0.0-rc1)\n\n```\nTests: 100\n```\n\n---\n',
         encoding="utf-8",
     )
     manifest = tmp_path / "system_manifest.json"
     manifest.write_text(
-        json.dumps({"version": "0.9.0", "test_count": 2358}, indent=2),
+        json.dumps({"version": "1.0.0-rc1", "test_count": 2358}, indent=2),
         encoding="utf-8",
     )
     proof_lib = tmp_path / "proof_library"
@@ -96,7 +96,7 @@ def test_get_test_count_os_error(sc_env, monkeypatch):
 
 def test_print_state_basic(sc_env, capsys):
     state = {
-        "version": "0.9.0",
+        "version": "1.0.0-rc1",
         "tests": 2358,
         "real_verifications": 21,
         "ratio": 0.512,
@@ -105,7 +105,7 @@ def test_print_state_basic(sc_env, capsys):
     }
     mod.print_state(state)
     out = capsys.readouterr().out
-    assert "v0.9.0" in out
+    assert "v1.0.0-rc1" in out
     assert "2358" in out
     assert "51.2%" in out
     assert "test session" in out
@@ -115,7 +115,7 @@ def test_print_state_basic(sc_env, capsys):
 def test_print_state_door_open(sc_env, capsys):
     """When PROOF_INDEX exists, door should be OPEN."""
     state = {
-        "version": "0.9.0", "tests": 100, "real_verifications": 0,
+        "version": "1.0.0-rc1", "tests": 100, "real_verifications": 0,
         "ratio": 0.0, "last_session": "x", "next_priority": "y",
     }
     mod.print_state(state)
@@ -127,7 +127,7 @@ def test_print_state_door_closed(sc_env, capsys, monkeypatch):
     """When PROOF_INDEX does not exist, door should be CLOSED."""
     monkeypatch.setattr(mod, "PROOF_INDEX", sc_env / "nonexistent" / "index.json")
     state = {
-        "version": "0.9.0", "tests": 100, "real_verifications": 0,
+        "version": "1.0.0-rc1", "tests": 100, "real_verifications": 0,
         "ratio": 0.0, "last_session": "x", "next_priority": "y",
     }
     mod.print_state(state)
@@ -141,13 +141,13 @@ def test_print_state_door_closed(sc_env, capsys, monkeypatch):
 def test_main_read_flag(sc_env, monkeypatch, capsys):
     monkeypatch.setattr(sys, "argv", ["session_close.py", "--read"])
     with mock.patch.object(mod, "read_state", return_value={
-        "version": "0.9.0", "tests": 2358, "real_verifications": 21,
+        "version": "1.0.0-rc1", "tests": 2358, "real_verifications": 21,
         "ratio": 0.512, "last_session": "test", "next_priority": "next",
     }):
         ret = mod.main()
     assert ret == 0
     out = capsys.readouterr().out
-    assert "v0.9.0" in out
+    assert "v1.0.0-rc1" in out
 
 
 def test_main_summary_flag(sc_env, monkeypatch, capsys):
@@ -156,7 +156,7 @@ def test_main_summary_flag(sc_env, monkeypatch, capsys):
         ["session_close.py", "--summary", "Did something great"],
     )
     with mock.patch.object(mod, "close_session", return_value={
-        "version": "0.9.0", "tests": 2358, "real_verifications": 21,
+        "version": "1.0.0-rc1", "tests": 2358, "real_verifications": 21,
         "ratio": 0.512, "last_session": "Did something great", "next_priority": "next",
     }) as m:
         ret = mod.main()
@@ -169,10 +169,10 @@ def test_main_summary_flag(sc_env, monkeypatch, capsys):
 def test_main_default_shows_state(sc_env, monkeypatch, capsys):
     monkeypatch.setattr(sys, "argv", ["session_close.py"])
     with mock.patch.object(mod, "read_state", return_value={
-        "version": "0.9.0", "tests": 100, "real_verifications": 0,
+        "version": "1.0.0-rc1", "tests": 100, "real_verifications": 0,
         "ratio": 0.0, "last_session": "none", "next_priority": "start",
     }):
         ret = mod.main()
     assert ret == 0
     out = capsys.readouterr().out
-    assert "v0.9.0" in out
+    assert "v1.0.0-rc1" in out

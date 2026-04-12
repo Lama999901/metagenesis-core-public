@@ -1,6 +1,6 @@
 # AGENTS.md — Rules for AI Agents Working in This Repo
 
-> v0.9.0 | 20 claims | 2380 tests | 22 agent checks
+> v1.0.0-rc1 | 20 claims | 2405 tests | 22 agent checks
 > This file tells Cursor, Claude, Copilot, and any AI agent the rules of this repo.
 > Read CLAUDE.md first — it is always more current and wins all conflicts.
 
@@ -37,7 +37,7 @@ Before any task: `python scripts/agent_learn.py recall`
 ## What this repo is
 
 MetaGenesis Core is an open verification protocol layer.
-It implements the MetaGenesis Verification Protocol (MVP) v0.9.
+It implements the MetaGenesis Verification Protocol (MVP) v1.0.
 It makes computational claims tamper-evident, reproducible, and
 independently auditable offline by any third party.
 
@@ -68,9 +68,9 @@ FORBIDDEN → CORRECT
 "blockchain" → "cryptographic hash chain"
 "unforgeable" → don't use
 "GPT-5" → doesn't exist
-"100% test success" → "2380 tests PASS"
-"595 tests" / "601 tests" → "2380 tests"
-"v0.6" / "v0.7" → "v0.9.0"
+"100% test success" → "2405 tests PASS"
+"595 tests" / "601 tests" → "2405 tests"
+"v0.6" / "v0.7" → "v1.0.0-rc1"
 ```
 
 **4. Never add a claim without ALL components (use GSD).**
@@ -125,7 +125,7 @@ Step 5 — Tests: tests/<domain>/test_<claim_id_lower>.py
 Step 6 — Update ALL counters AND check_stale_docs.py required strings (same PR):
 ```bash
 python scripts/steward_audit.py  # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q       # → 2380 passed
+python -m pytest tests/ -q       # → 2405 passed
 python scripts/deep_verify.py    # → ALL 13 TESTS PASSED
 python scripts/agent_pr_creator.py --summary  # → No auto-pr needed
 ```
@@ -163,7 +163,7 @@ python scripts/agent_pr_creator.py --summary  # → No auto-pr needed
 
 ```bash
 python scripts/steward_audit.py      # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q           # → 2380 passed
+python -m pytest tests/ -q           # → 2405 passed
 python scripts/deep_verify.py        # → ALL 13 TESTS PASSED
 python scripts/agent_pr_creator.py --summary  # → No auto-pr needed
 grep -r "tamper-proof\|GPT-5\|19x\|VacuumGenesis\|blockchain" docs/ scripts/ backend/ tests/
