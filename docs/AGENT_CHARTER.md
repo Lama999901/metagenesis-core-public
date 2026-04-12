@@ -153,7 +153,7 @@ Protect it. Deepen it. Never dilute it.
 | "100% coverage" | impossible (see ENV_002) |
 | "100% test success" | use current count from system_manifest.json |
 | Any stale test count | always verify against system_manifest.json |
-| Any stale version | always use v0.9.0 (or current from system_manifest.json) |
+| Any stale version | always use v1.0.0-rc1 (or current from system_manifest.json) |
 | "GPT-5" | does not exist |
 
 **Enforcement:** `check_stale_docs.py` scans for banned patterns.
@@ -162,5 +162,5 @@ Violations block PR merges via CI.
 ---
 
 *Agent Charter v1.0 -- 2026-04-04*
-*MetaGenesis Core v0.9.0 | 20 claims | 5 layers | MIT License*
+*MetaGenesis Core v1.0.0-rc1 | 20 claims | 5 layers | MIT License*
 *Every agent action must make the protocol more trustworthy.*

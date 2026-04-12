@@ -3,7 +3,7 @@
 > **START HERE:** `python scripts/session_close.py --read` → shows full current state in 5 lines
 
 > Loaded automatically by all GSD agents via CLAUDE.md.
-> Last updated: 2026-04-11 | v0.9.0 LIVE | 20 templates | 2405 tests
+> Last updated: 2026-04-11 | v1.0.0-rc1 LIVE | 20 templates | 2405 tests
 
 ---
 
@@ -87,7 +87,7 @@ auditable offline. One command: `python scripts/mg.py verify --pack bundle.zip �
 **Inventor:** Yehor Bazhynov | **PPA:** USPTO #63/996,819
 **Repo:** https://github.com/Lama999901/metagenesis-core-public
 **Site:** https://metagenesis-core.dev
-**Release:** v0.9.0 LIVE | **JOSS paper:** paper.md in main (resubmit Sep 2026)
+**Release:** v1.0.0-rc1 LIVE | **JOSS paper:** paper.md in main (resubmit Sep 2026)
 **Ed25519:** scripts/mg_ed25519.py DONE | **Temporal:** scripts/mg_temporal.py DONE
 **CERT-09:** Ed25519 attacks | **CERT-10:** temporal attacks
 **CERT-11:** coordinated multi-vector | **CERT-12:** encoding attacks
@@ -119,7 +119,7 @@ scripts/mg.py                                    ← core verifier, modify caref
 "GPT-5"             → doesn't exist
 "100% test success" → "2405 tests PASS"
 any stale test count → always use current count from system_manifest.json
-any stale version    → always use v0.9.0
+any stale version    → always use v1.0.0-rc1
 ```
 
 ---
@@ -156,7 +156,7 @@ git push origin feat/description
 
 ---
 
-## CURRENT STATE (v0.9.0)
+## CURRENT STATE (v1.0.0-rc1)
 
 ```
 Date:        2026-04-11
@@ -442,6 +442,6 @@ This shows recurring issues + auto-fix hints from 57 sessions.
 
 ---
 
-*CLAUDE.md v2.1 — 2026-04-08 — MetaGenesis Core v0.9.0 LIVE*
+*CLAUDE.md v2.1 — 2026-04-08 — MetaGenesis Core v1.0.0-rc1 LIVE*
 *2405 tests | 20 claims | 22 checks | Level 3 autonomous forge ACTIVE*
 *Mission: notary for computations. First client = history.*

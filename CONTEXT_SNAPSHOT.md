@@ -32,7 +32,7 @@
 | Agent checks | 21 (agent_evolution.py) |
 | Real ratio | 51.2% (21 real / 20 synthetic) |
 | Coverage | 87.8% |
-| GitHub Release | v0.9.0 |
+| GitHub Release | v1.0.0-rc1 |
 | Adversarial tests | CERT-05 (5 attacks) + CERT-06 (5 scenarios) + CERT-07 (signing) + CERT-08 (reproducibility) + CERT-09 (Ed25519 attacks) + CERT-10 (temporal attacks) + CERT-11 (coordinated multi-vector) + CERT-12 (encoding attacks) |
 
 ---

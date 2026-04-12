@@ -31,12 +31,12 @@ def tmp_env(tmp_path, monkeypatch):
 
     claude_md = tmp_path / "CLAUDE.md"
     claude_md.write_text(
-        '# Test\n\n> Last updated: 2026-01-01\n\n---\n\n## CURRENT STATE (v0.9.0)\n\n```\nTests: 100\n```\n\n---\n',
+        '# Test\n\n> Last updated: 2026-01-01\n\n---\n\n## CURRENT STATE (v1.0.0-rc1)\n\n```\nTests: 100\n```\n\n---\n',
         encoding="utf-8",
     )
     manifest = tmp_path / "system_manifest.json"
     manifest.write_text(
-        json.dumps({"version": "0.9.0", "test_count": 2043}, indent=2),
+        json.dumps({"version": "1.0.0-rc1", "test_count": 2043}, indent=2),
         encoding="utf-8",
     )
     proof_lib = tmp_path / "proof_library"
@@ -61,7 +61,7 @@ def tmp_env(tmp_path, monkeypatch):
 class TestManifest:
     def test_read_manifest(self, tmp_env):
         m = _read_manifest()
-        assert m["version"] == "0.9.0"
+        assert m["version"] == "1.0.0-rc1"
         assert m["test_count"] == 2043
 
     def test_write_manifest_roundtrip(self, tmp_env):
@@ -132,7 +132,7 @@ class TestReadState:
 
     def test_version_from_manifest(self, tmp_env):
         state = read_state()
-        assert state["version"] == "0.9.0"
+        assert state["version"] == "1.0.0-rc1"
 
     def test_no_previous_session(self, tmp_env):
         state = read_state()
@@ -180,7 +180,7 @@ class TestSessionLog:
 class TestClaudeMdUpdate:
     def test_updates_current_state_section(self, tmp_env):
         import scripts.session_close as mod
-        state = {"version": "0.9.0", "tests": 2043, "ratio": 0.048, "real_verifications": 1}
+        state = {"version": "1.0.0-rc1", "tests": 2043, "ratio": 0.048, "real_verifications": 1}
         update_claude_md(state, "test session", "do next thing")
         text = mod.CLAUDE_MD.read_text(encoding="utf-8")
         assert "2043 passing" in text
@@ -189,7 +189,7 @@ class TestClaudeMdUpdate:
 
     def test_updates_header_date(self, tmp_env):
         import scripts.session_close as mod
-        state = {"version": "0.9.0", "tests": 2043, "ratio": 0.0, "real_verifications": 0}
+        state = {"version": "1.0.0-rc1", "tests": 2043, "ratio": 0.0, "real_verifications": 0}
         update_claude_md(state, "s", "n")
         text = mod.CLAUDE_MD.read_text(encoding="utf-8")
         assert "2026-04-" in text or "Last updated:" in text

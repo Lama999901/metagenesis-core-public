@@ -258,6 +258,6 @@ print('PASS' if r.passed else 'FAIL')
 
 ---
 
-Protocol: MetaGenesis Verification Protocol (MVP) v0.9
+Protocol: MetaGenesis Verification Protocol (MVP) v1.0
 PPA: USPTO #63/996,819 | Inventor: Yehor Bazhynov
 https://metagenesis-core.dev

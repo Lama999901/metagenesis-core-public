@@ -216,10 +216,10 @@ assert ">8<" in html,   f"{ERR} domains not 8 in HTML"
 manifest = json.loads((root / "system_manifest.json").read_text(encoding="utf-8"))
 manifest_tests = manifest["test_count"]
 assert len(manifest["active_claims"]) == 20
-assert "v0." in manifest["protocol"], f"{ERR} manifest protocol={manifest['protocol']}"
+assert "MVP" in manifest["protocol"], f"{ERR} manifest protocol={manifest['protocol']}"
 # Check site shows a test count (dynamic -- exact sync is a counter-update task)
 print(f"  {OK} site: 20 claims, {manifest_tests} tests, 5 layers, 8 domains")
-print(f"  {OK} system_manifest: 20 claims, {manifest_tests} tests, protocol v0.7")
+print(f"  {OK} system_manifest: 20 claims, {manifest_tests} tests, protocol v1.0")
 
 print("\n" + "=" * 60)
 print("TEST 8: Demo end-to-end PASS PASS")

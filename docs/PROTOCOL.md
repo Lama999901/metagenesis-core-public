@@ -1,4 +1,4 @@
-# MetaGenesis Verification Protocol (MVP) v0.9
+# MetaGenesis Verification Protocol (MVP) v1.0
 
 ## What this is
 
@@ -426,5 +426,5 @@ python scripts/mg.py verify-chain bundle_mtr1/ bundle_dtfem/ bundle_drift/
 
 ---
 
-*MetaGenesis Verification Protocol (MVP) v0.9 — 2026-03-31*
+*MetaGenesis Verification Protocol (MVP) v1.0 — 2026-03-31*
 *Inventor: Yehor Bazhynov — USPTO PPA #63/996,819*

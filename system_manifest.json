@@ -1,8 +1,8 @@
 {
   "project": "MetaGenesis Core",
-  "version": "0.9.0",
+  "version": "1.0.0-rc1",
   "description": "Open verification protocol for computational claims. Any computation — ML model accuracy, calibration result, data pipeline output — packaged into a tamper-evident bundle verifiable offline by any third party with one command.",
-  "protocol": "MetaGenesis Verification Protocol (MVP) v0.9",
+  "protocol": "MetaGenesis Verification Protocol (MVP) v1.0",
   "active_claims": [
     "MTR-1",
     "MTR-2",
@@ -50,7 +50,7 @@
   "ppa_filed": "2026-03-05",
   "ppa_number": "63/996,819",
   "inventor": "Yehor Bazhynov",
-  "github_release": "v0.9.0",
+  "github_release": "v1.0.0-rc1",
   "joss_paper": "paper.md",
   "real_verifications_count": 21,
   "external_input_supported": true,

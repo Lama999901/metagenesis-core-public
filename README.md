@@ -219,7 +219,7 @@ One command. Offline. Cryptographic proof.
 
 MetaGenesis Core is not a product. It is infrastructure. Four levels, each building on the last.
 
-### Level 1 — Protocol *(shipped, v0.9.0)*
+### Level 1 — Protocol *(shipped, v1.0.0-rc1)*
 
 Any computation verified in 60 seconds. 5 layers. 20 claims. Physical anchors. Offline.
 *Trigger to next level: first paying client.*
@@ -418,4 +418,4 @@ Commercial licensing available for organizations building on the protocol.
 
 ---
 
-*MetaGenesis Core v0.9.0 | 2405 tests | 51.2% real | Patent Pending #63/996,819*
+*MetaGenesis Core v1.0.0-rc1 | 2405 tests | 51.2% real | Patent Pending #63/996,819*

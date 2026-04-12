@@ -23,7 +23,7 @@ class TestDetectStaleCounters:
 
     def test_returns_not_stale_when_counts_match(self, tmp_path):
         """detect_stale_counters() returns stale=False when manifest matches actual."""
-        manifest = {"test_count": 1634, "version": "0.9.0"}
+        manifest = {"test_count": 1634, "version": "1.0.0-rc1"}
         manifest_path = tmp_path / "system_manifest.json"
         manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
 
@@ -40,7 +40,7 @@ class TestDetectStaleCounters:
 
     def test_returns_stale_when_counts_differ(self, tmp_path):
         """detect_stale_counters() returns stale=True when manifest != actual."""
-        manifest = {"test_count": 1634, "version": "0.9.0"}
+        manifest = {"test_count": 1634, "version": "1.0.0-rc1"}
         manifest_path = tmp_path / "system_manifest.json"
         manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
 
@@ -57,7 +57,7 @@ class TestDetectStaleCounters:
 
     def test_dry_run_does_not_call_auto_fix(self, tmp_path):
         """detect_stale_counters(dry_run=True) does not call _auto_fix_stale_counter."""
-        manifest = {"test_count": 1634, "version": "0.9.0"}
+        manifest = {"test_count": 1634, "version": "1.0.0-rc1"}
         manifest_path = tmp_path / "system_manifest.json"
         manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
 
@@ -73,7 +73,7 @@ class TestDetectStaleCounters:
 
     def test_actual_count_zero_means_not_stale(self, tmp_path):
         """detect_stale_counters() treats 0 actual count as not stale (pytest didn't run)."""
-        manifest = {"test_count": 1634, "version": "0.9.0"}
+        manifest = {"test_count": 1634, "version": "1.0.0-rc1"}
         manifest_path = tmp_path / "system_manifest.json"
         manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
 
@@ -97,12 +97,12 @@ class TestDetectManifestSync:
 
     def test_synced_when_versions_match(self, tmp_path):
         """detect_manifest_sync() returns synced=True when manifest version matches git tag."""
-        manifest = {"version": "0.9.0", "test_count": 1634}
+        manifest = {"version": "1.0.0-rc1", "test_count": 1634}
         manifest_path = tmp_path / "system_manifest.json"
         manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
 
         mock_proc = MagicMock()
-        mock_proc.stdout = "v0.9.0"
+        mock_proc.stdout = "v1.0.0-rc1"
         mock_proc.returncode = 0
 
         with patch.object(agent_pr_creator, "REPO_ROOT", tmp_path), \
@@ -110,12 +110,12 @@ class TestDetectManifestSync:
             result = agent_pr_creator.detect_manifest_sync()
 
         assert result["synced"] is True
-        assert result["manifest_version"] == "0.9.0"
-        assert result["tag_version"] == "0.9.0"
+        assert result["manifest_version"] == "1.0.0-rc1"
+        assert result["tag_version"] == "1.0.0-rc1"
 
     def test_not_synced_when_versions_differ(self, tmp_path):
         """detect_manifest_sync() returns synced=False when versions differ."""
-        manifest = {"version": "0.9.0", "test_count": 1634}
+        manifest = {"version": "1.0.0-rc1", "test_count": 1634}
         manifest_path = tmp_path / "system_manifest.json"
         manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
 
@@ -132,7 +132,7 @@ class TestDetectManifestSync:
 
     def test_no_tags_returns_unknown(self, tmp_path):
         """detect_manifest_sync() returns 'unknown' tag when git has no tags."""
-        manifest = {"version": "0.9.0", "test_count": 1634}
+        manifest = {"version": "1.0.0-rc1", "test_count": 1634}
         manifest_path = tmp_path / "system_manifest.json"
         manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
 
@@ -157,7 +157,7 @@ class TestMain:
     def test_main_no_auto_pr_needed(self, capsys):
         """main() prints 'No auto-pr needed' when all detectors pass."""
         stale_result = {"stale": False, "manifest_count": 2063, "actual_count": 2063}
-        sync_result = {"synced": True, "manifest_version": "0.9.0", "tag_version": "0.9.0"}
+        sync_result = {"synced": True, "manifest_version": "1.0.0-rc1", "tag_version": "1.0.0-rc1"}
 
         with patch.object(agent_pr_creator, "detect_stale_counters", return_value=stale_result), \
              patch.object(agent_pr_creator, "detect_forbidden_terms", return_value=[]), \

@@ -175,4 +175,4 @@ No invented features. Every section traceable to passing tests.*
 | Innovations | 8 |
 | Agent checks | 19 |
 | Coverage | 81.2% |
-| Version | v0.9.0 |
+| Version | v1.0.0-rc1 |
