@@ -4,7 +4,7 @@ This roadmap reflects planned development directions.
 All items are subject to change based on community feedback and priorities.
 
 **Current version:** 0.9.0
-**Protocol:** MetaGenesis Verification Protocol (MVP) v0.9
+**Protocol:** MetaGenesis Verification Protocol (MVP) v1.0
 
 **Core principle:** MetaGenesis Core verifies that computational results
 agree with physical reality — not just that numbers weren't changed.
@@ -49,7 +49,7 @@ This is traceability to physical measurement, not threshold compliance.
 
 ---
 
-## v0.9.0 — Technical Perfection (2026-04-02)
+## v1.0.0-rc1 — Technical Perfection (2026-04-02)
 
 - Coverage: 49.2% to 81.2% (+32pp, 2405 tests from 906)
 - All 27 agent tasks complete (0 pending)

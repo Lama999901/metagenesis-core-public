@@ -158,21 +158,21 @@ class TestCheckForbidden:
 class TestCheckClaudeMd:
     def test_check_claude_md_pass(self, tmp_path):
         (tmp_path / "CLAUDE.md").write_text(
-            "966 tests\nv0.9.0 version\n", encoding="utf-8"
+            "966 tests\nv1.0.0-rc1 version\n", encoding="utf-8"
         )
         with patch("agent_evolution.REPO_ROOT", tmp_path):
             assert ae.check_claude_md(966) is True
 
     def test_check_claude_md_fail_missing_count(self, tmp_path):
         (tmp_path / "CLAUDE.md").write_text(
-            "v0.9.0 but no test count here\n", encoding="utf-8"
+            "v1.0.0-rc1 but no test count here\n", encoding="utf-8"
         )
         with patch("agent_evolution.REPO_ROOT", tmp_path):
             assert ae.check_claude_md(966) is False
 
     def test_check_claude_md_fail_merge_conflict(self, tmp_path):
         (tmp_path / "CLAUDE.md").write_text(
-            "<<<<<<< HEAD\n966 tests\nv0.9.0\n", encoding="utf-8"
+            "<<<<<<< HEAD\n966 tests\nv1.0.0-rc1\n", encoding="utf-8"
         )
         with patch("agent_evolution.REPO_ROOT", tmp_path):
             assert ae.check_claude_md(966) is False

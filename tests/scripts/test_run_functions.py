@@ -656,7 +656,7 @@ class TestAgentPrCreator:
 
     def test_auto_fix_stale_counter(self, tmp_path):
         from scripts.agent_pr_creator import _auto_fix_stale_counter
-        manifest = {"test_count": 100, "version": "0.9.0"}
+        manifest = {"test_count": 100, "version": "1.0.0-rc1"}
         manifest_path = tmp_path / "system_manifest.json"
         manifest_path.write_text(json.dumps(manifest))
         with patch("scripts.agent_pr_creator.REPO_ROOT", tmp_path), \
@@ -687,11 +687,11 @@ class TestAgentPrCreator:
 
     def test_detect_manifest_sync(self, tmp_path):
         from scripts.agent_pr_creator import detect_manifest_sync
-        manifest = {"version": "0.9.0"}
+        manifest = {"version": "1.0.0-rc1"}
         (tmp_path / "system_manifest.json").write_text(json.dumps(manifest))
         with patch("scripts.agent_pr_creator.REPO_ROOT", tmp_path), \
              patch("scripts.agent_pr_creator.subprocess.run") as mock_sub:
-            mock_sub.return_value = _make_completed_process("v0.9.0", 0)
+            mock_sub.return_value = _make_completed_process("v1.0.0-rc1", 0)
             result = detect_manifest_sync()
             assert result["synced"] is True
 
@@ -704,14 +704,14 @@ class TestAgentPrCreator:
 
     def test_main_all_clean(self, tmp_path, capsys):
         from scripts.agent_pr_creator import main
-        manifest = {"test_count": 100, "version": "0.9.0"}
+        manifest = {"test_count": 100, "version": "1.0.0-rc1"}
         (tmp_path / "system_manifest.json").write_text(json.dumps(manifest))
         with patch("scripts.agent_pr_creator.REPO_ROOT", tmp_path), \
              patch("scripts.agent_pr_creator.detect_stale_counters",
                    return_value={"stale": False, "manifest_count": 100, "actual_count": 100}), \
              patch("scripts.agent_pr_creator.detect_forbidden_terms", return_value=[]), \
              patch("scripts.agent_pr_creator.detect_manifest_sync",
-                   return_value={"synced": True, "manifest_version": "0.9.0", "tag_version": "0.9.0"}), \
+                   return_value={"synced": True, "manifest_version": "1.0.0-rc1", "tag_version": "1.0.0-rc1"}), \
              patch("scripts.agent_pr_creator.detect_coverage_drop", return_value=None), \
              patch("sys.argv", ["agent_pr_creator.py", "--summary"]):
             result = main()
@@ -740,7 +740,7 @@ class TestAgentLearn:
             "sessions": [
                 {"timestamp": "2026-03-01T00:00:00", "issue_count": 0, "actual_test_count": 100},
             ],
-            "etalon": {"version": "0.9.0", "test_count": 100, "updated": "2026-01-01T00:00:00"},
+            "etalon": {"version": "1.0.0-rc1", "test_count": 100, "updated": "2026-01-01T00:00:00"},
         }
         with patch.object(agent_learn, "load_kb", return_value=kb), \
              patch.object(agent_learn, "load_patterns", return_value={}):
@@ -752,7 +752,7 @@ class TestAgentLearn:
         from scripts import agent_learn
         kb = {
             "sessions": [{"timestamp": "2026-03-01T00:00:00", "issue_count": 0}],
-            "etalon": {"version": "0.9.0", "test_count": 100, "updated": "2026-01-01"},
+            "etalon": {"version": "1.0.0-rc1", "test_count": 100, "updated": "2026-01-01"},
         }
         with patch.object(agent_learn, "load_kb", return_value=kb), \
              patch.object(agent_learn, "load_patterns", return_value={}):

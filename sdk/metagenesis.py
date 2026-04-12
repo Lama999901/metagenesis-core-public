@@ -16,7 +16,7 @@ Usage:
     print(result.reason)        # "PASS" or failure reason
 
 PPA: USPTO #63/996,819 | Inventor: Yehor Bazhynov
-Protocol: MetaGenesis Verification Protocol (MVP) v0.9
+Protocol: MetaGenesis Verification Protocol (MVP) v1.0
 """
 
 import hashlib
@@ -28,7 +28,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
 
-__version__ = "0.9.0"
+__version__ = "1.0.0-rc1"
 
 # Resolve repo root relative to this file
 _SDK_DIR = Path(__file__).resolve().parent

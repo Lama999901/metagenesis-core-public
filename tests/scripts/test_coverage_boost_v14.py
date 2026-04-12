@@ -59,7 +59,7 @@ class TestEvolutionChecks:
 
     def test_check_manifest_consistent(self, capsys, tmp_path):
         from scripts.agent_evolution import check_manifest
-        manifest = {"test_count": 100, "version": "0.9.0",
+        manifest = {"test_count": 100, "version": "1.0.0-rc1",
                     "active_claims": [f"C-{i}" for i in range(20)]}
         (tmp_path / "system_manifest.json").write_text(json.dumps(manifest))
         with patch("scripts.agent_evolution.REPO_ROOT", tmp_path):
@@ -67,7 +67,7 @@ class TestEvolutionChecks:
 
     def test_check_manifest_mismatch(self, capsys, tmp_path):
         from scripts.agent_evolution import check_manifest
-        manifest = {"test_count": 100, "version": "0.9.0",
+        manifest = {"test_count": 100, "version": "1.0.0-rc1",
                     "active_claims": [f"C-{i}" for i in range(20)]}
         (tmp_path / "system_manifest.json").write_text(json.dumps(manifest))
         with patch("scripts.agent_evolution.REPO_ROOT", tmp_path):
@@ -75,7 +75,7 @@ class TestEvolutionChecks:
 
     def test_check_manifest_wrong_claims(self, capsys, tmp_path):
         from scripts.agent_evolution import check_manifest
-        manifest = {"test_count": 100, "version": "0.9.0",
+        manifest = {"test_count": 100, "version": "1.0.0-rc1",
                     "active_claims": ["C-1"]}
         (tmp_path / "system_manifest.json").write_text(json.dumps(manifest))
         with patch("scripts.agent_evolution.REPO_ROOT", tmp_path):
@@ -153,7 +153,7 @@ class TestEvolutionChecks:
     def test_check_chronicle(self, capsys):
         from scripts.agent_evolution import check_chronicle
         with patch("scripts.agent_evolution.run",
-                   return_value=("v0.9.0 | 20 claims | 100 tests | 8 innovations", 0)):
+                   return_value=("v1.0.0-rc1 | 20 claims | 100 tests | 8 innovations", 0)):
             result = check_chronicle()
             assert isinstance(result, bool)
 
@@ -185,9 +185,9 @@ class TestAgentLearnObserve:
                 return ("100 passed", 0)
             return ("", 0)
 
-        kb = {"sessions": [], "etalon": {"version": "0.9.0", "test_count": 100, "updated": "2026-01-01"}}
+        kb = {"sessions": [], "etalon": {"version": "1.0.0-rc1", "test_count": 100, "updated": "2026-01-01"}}
         patterns = {}
-        manifest = {"version": "0.9.0", "test_count": 100}
+        manifest = {"version": "1.0.0-rc1", "test_count": 100}
 
         with patch.object(agent_learn, "run", side_effect=mock_run), \
              patch.object(agent_learn, "load_kb", return_value=kb), \
@@ -207,7 +207,7 @@ class TestAgentLearnObserve:
         with patch("scripts.agent_learn.LESSONS_FILE", lessons_file):
             session = {
                 "actual_test_count": 100,
-                "etalon_version": "0.9.0",
+                "etalon_version": "1.0.0-rc1",
                 "steward_pass": True,
                 "deep_verify_pass": True,
             }
@@ -222,7 +222,7 @@ class TestAgentLearnObserve:
         with patch("scripts.agent_learn.LESSONS_FILE", lessons_file):
             session = {
                 "actual_test_count": 100,
-                "etalon_version": "0.9.0",
+                "etalon_version": "1.0.0-rc1",
                 "steward_pass": True,
                 "deep_verify_pass": True,
             }
@@ -233,23 +233,23 @@ class TestAgentLearnObserve:
         from scripts.agent_learn import scan_file_for_stale
         f = tmp_path / "README.md"
         f.write_text("We have 100 tests passing.\n")
-        issues = scan_file_for_stale(f, 100, "0.9.0")
+        issues = scan_file_for_stale(f, 100, "1.0.0-rc1")
         assert isinstance(issues, list)
 
     def test_scan_file_for_stale_missing(self, tmp_path):
         from scripts.agent_learn import scan_file_for_stale
         f = tmp_path / "MISSING.md"
-        issues = scan_file_for_stale(f, 100, "0.9.0")
+        issues = scan_file_for_stale(f, 100, "1.0.0-rc1")
         assert any("MISSING" in i for i in issues)
 
     def test_check_critical_files(self, tmp_path):
         from scripts.agent_learn import check_critical_files
         # Create minimal critical files
-        (tmp_path / "README.md").write_text("100 tests v0.9.0")
-        (tmp_path / "CLAUDE.md").write_text("100 tests v0.9.0")
-        (tmp_path / "system_manifest.json").write_text('{"test_count":100,"version":"0.9.0"}')
+        (tmp_path / "README.md").write_text("100 tests v1.0.0-rc1")
+        (tmp_path / "CLAUDE.md").write_text("100 tests v1.0.0-rc1")
+        (tmp_path / "system_manifest.json").write_text('{"test_count":100,"version":"1.0.0-rc1"}')
         with patch("scripts.agent_learn.REPO_ROOT", tmp_path):
-            result = check_critical_files(100, "0.9.0")
+            result = check_critical_files(100, "1.0.0-rc1")
             assert isinstance(result, dict)
 
 
@@ -267,7 +267,7 @@ class TestAgentChronicleMain:
             with patch("scripts.agent_chronicle.REPO_ROOT", tmp_path):
                 (tmp_path / "reports").mkdir()
                 (tmp_path / "system_manifest.json").write_text(
-                    json.dumps({"version": "0.9.0", "test_count": 100,
+                    json.dumps({"version": "1.0.0-rc1", "test_count": 100,
                                 "active_claims": [], "innovations": []})
                 )
                 (tmp_path / "AGENT_TASKS.md").write_text("### TASK-001\n- **Status:** PENDING\n")
@@ -471,45 +471,45 @@ class TestAgentLearnObserveInternals:
         from scripts.agent_learn import scan_file_for_stale
         f = tmp_path / "conflict.md"
         f.write_text("<<<<<<< HEAD\nours\n=======\ntheirs\n>>>>>>> branch\n")
-        issues = scan_file_for_stale(f, 100, "0.9.0")
+        issues = scan_file_for_stale(f, 100, "1.0.0-rc1")
         assert any("MERGE CONFLICT" in i for i in issues)
 
     def test_scan_file_stale_count(self, tmp_path):
         from scripts.agent_learn import scan_file_for_stale
         f = tmp_path / "old.md"
         f.write_text("We had 295 tests passing.\n")
-        issues = scan_file_for_stale(f, 1600, "0.9.0")
+        issues = scan_file_for_stale(f, 1600, "1.0.0-rc1")
         assert any("STALE COUNT" in i for i in issues)
 
     def test_scan_file_stale_version(self, tmp_path):
         from scripts.agent_learn import scan_file_for_stale
         f = tmp_path / "old_ver.md"
         f.write_text("Current version is v0.2.0\n")
-        issues = scan_file_for_stale(f, 100, "0.9.0")
+        issues = scan_file_for_stale(f, 100, "1.0.0-rc1")
         assert any("STALE VERSION" in i for i in issues)
 
     def test_scan_file_wrong_innovation_count(self, tmp_path):
         from scripts.agent_learn import scan_file_for_stale
         f = tmp_path / "wrong_innov.md"
         f.write_text("We have 7 innovations in total.\n")
-        issues = scan_file_for_stale(f, 100, "0.9.0")
+        issues = scan_file_for_stale(f, 100, "1.0.0-rc1")
         assert any("INNOVATION" in i for i in issues)
 
     def test_check_critical_files_minimal(self, tmp_path):
         from scripts.agent_learn import check_critical_files
-        (tmp_path / "CLAUDE.md").write_text("100 tests\nv0.9.0\n")
-        (tmp_path / "README.md").write_text("100 tests\nv0.9.0\n")
-        (tmp_path / "AGENTS.md").write_text("100 tests v0.9.0")
-        (tmp_path / "llms.txt").write_text("100 tests v0.9.0")
-        (tmp_path / "CONTEXT_SNAPSHOT.md").write_text("100 tests v0.9.0")
-        (tmp_path / "system_manifest.json").write_text('{"test_count":100,"version":"0.9.0"}')
-        (tmp_path / "paper.md").write_text("100 tests v0.9.0")
+        (tmp_path / "CLAUDE.md").write_text("100 tests\nv1.0.0-rc1\n")
+        (tmp_path / "README.md").write_text("100 tests\nv1.0.0-rc1\n")
+        (tmp_path / "AGENTS.md").write_text("100 tests v1.0.0-rc1")
+        (tmp_path / "llms.txt").write_text("100 tests v1.0.0-rc1")
+        (tmp_path / "CONTEXT_SNAPSHOT.md").write_text("100 tests v1.0.0-rc1")
+        (tmp_path / "system_manifest.json").write_text('{"test_count":100,"version":"1.0.0-rc1"}')
+        (tmp_path / "paper.md").write_text("100 tests v1.0.0-rc1")
         (tmp_path / "ppa").mkdir()
-        (tmp_path / "ppa" / "README_PPA.md").write_text("100 tests v0.9.0")
+        (tmp_path / "ppa" / "README_PPA.md").write_text("100 tests v1.0.0-rc1")
         (tmp_path / "reports").mkdir()
-        (tmp_path / "reports" / "known_faults.yaml").write_text("v0.9.0")
+        (tmp_path / "reports" / "known_faults.yaml").write_text("v1.0.0-rc1")
         with patch("scripts.agent_learn.REPO_ROOT", tmp_path):
-            result = check_critical_files(100, "0.9.0")
+            result = check_critical_files(100, "1.0.0-rc1")
             assert isinstance(result, dict)
 
     def test_observe_with_issues(self, tmp_path):
@@ -525,7 +525,7 @@ class TestAgentLearnObserveInternals:
                 return ("100 passed", 0)
             return ("", 0)
 
-        kb = {"sessions": [], "etalon": {"version": "0.9.0", "test_count": 100, "updated": "2026-01-01"}}
+        kb = {"sessions": [], "etalon": {"version": "1.0.0-rc1", "test_count": 100, "updated": "2026-01-01"}}
         # Patterns with count >= 2 and no fix_hint trigger hint generation
         patterns = {
             "STALE COUNT in README.md": {"count": 3, "first_seen": "2026-01-01",
@@ -546,7 +546,7 @@ class TestAgentLearnObserveInternals:
              patch.object(agent_learn, "_write_lessons_log"), \
              patch.object(agent_learn, "REPO_ROOT", tmp_path), \
              patch.object(agent_learn, "get_test_count", return_value=100), \
-             patch.object(agent_learn, "get_manifest_version", return_value=("0.9.0", 100)), \
+             patch.object(agent_learn, "get_manifest_version", return_value=("1.0.0-rc1", 100)), \
              patch.object(agent_learn, "check_critical_files", return_value=issues_dict):
             result = agent_learn.observe()
             assert isinstance(result, bool)
@@ -571,7 +571,7 @@ class TestAgentLearnObserveInternals:
              patch.object(agent_learn, "_write_lessons_log"), \
              patch.object(agent_learn, "REPO_ROOT", tmp_path), \
              patch.object(agent_learn, "get_test_count", return_value=100), \
-             patch.object(agent_learn, "get_manifest_version", return_value=("0.9.0", 200)), \
+             patch.object(agent_learn, "get_manifest_version", return_value=("1.0.0-rc1", 200)), \
              patch.object(agent_learn, "check_critical_files", return_value={}):
             result = agent_learn.observe()
             assert isinstance(result, bool)  # exercises manifest mismatch path
@@ -581,7 +581,7 @@ class TestAgentLearnObserveInternals:
         lessons_file = tmp_path / "lessons.md"
         with patch("scripts.agent_learn.LESSONS_FILE", lessons_file):
             session = {
-                "actual_test_count": 100, "etalon_version": "0.9.0",
+                "actual_test_count": 100, "etalon_version": "1.0.0-rc1",
                 "steward_pass": True, "deep_verify_pass": True,
             }
             patterns = {
@@ -611,7 +611,7 @@ class TestAgentChronicleFull:
             "# Chronicle\nClaims: 18\nTests: 800\nInnovations: 7\n"
             "claims_count: 18\ntest_count: 800\ninnovation_count: 7\n"
         )
-        manifest = {"version": "0.9.0", "test_count": 1600,
+        manifest = {"version": "1.0.0-rc1", "test_count": 1600,
                     "active_claims": [f"C-{i}" for i in range(20)],
                     "verified_innovations": [f"I-{i}" for i in range(8)]}
         (tmp_path / "system_manifest.json").write_text(json.dumps(manifest))

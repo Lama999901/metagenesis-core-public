@@ -33,7 +33,7 @@ class TestCheckStaleDocsMainFlow:
     def test_stale_when_tracked_code_changed_but_doc_not(self, tmp_path, capsys):
         """Doc is STALE when code it tracks changed but doc itself did not."""
         # Create the doc file so it's not MISSING
-        (tmp_path / "AGENTS.md").write_text("1634 tests v0.9.0 20 claims 19 agent checks", encoding="utf-8")
+        (tmp_path / "AGENTS.md").write_text("1634 tests v1.0.0-rc1 20 claims 19 agent checks", encoding="utf-8")
 
         small_critical = {
             "AGENTS.md": {
@@ -56,7 +56,7 @@ class TestCheckStaleDocsMainFlow:
 
     def test_current_when_doc_in_changed_set(self, tmp_path, capsys):
         """Doc is CURRENT when it appears in the changed files set."""
-        (tmp_path / "AGENTS.md").write_text("1634 tests v0.9.0 20 claims 19 agent checks", encoding="utf-8")
+        (tmp_path / "AGENTS.md").write_text("1634 tests v1.0.0-rc1 20 claims 19 agent checks", encoding="utf-8")
 
         small_critical = {
             "AGENTS.md": {
@@ -80,7 +80,7 @@ class TestCheckStaleDocsMainFlow:
 
     def test_ok_when_neither_doc_nor_code_changed(self, tmp_path, capsys):
         """Doc is OK when neither it nor its tracked code changed."""
-        (tmp_path / "AGENTS.md").write_text("1634 tests v0.9.0 20 claims 19 agent checks", encoding="utf-8")
+        (tmp_path / "AGENTS.md").write_text("1634 tests v1.0.0-rc1 20 claims 19 agent checks", encoding="utf-8")
 
         small_critical = {
             "AGENTS.md": {
@@ -126,7 +126,7 @@ class TestCheckStaleDocsMainFlow:
 
     def test_strict_returns_false_when_stale(self, tmp_path, capsys):
         """strict=True returns False when stale files exist."""
-        (tmp_path / "AGENTS.md").write_text("1634 tests v0.9.0 20 claims 19 agent checks", encoding="utf-8")
+        (tmp_path / "AGENTS.md").write_text("1634 tests v1.0.0-rc1 20 claims 19 agent checks", encoding="utf-8")
 
         small_critical = {
             "AGENTS.md": {
@@ -169,7 +169,7 @@ class TestCheckStaleDocsMainFlow:
 
     def test_returns_true_when_everything_clean(self, tmp_path, capsys):
         """Returns True when no stale, no content issues."""
-        (tmp_path / "AGENTS.md").write_text("1634 tests v0.9.0 20 claims 19 agent checks", encoding="utf-8")
+        (tmp_path / "AGENTS.md").write_text("1634 tests v1.0.0-rc1 20 claims 19 agent checks", encoding="utf-8")
 
         small_critical = {
             "AGENTS.md": {

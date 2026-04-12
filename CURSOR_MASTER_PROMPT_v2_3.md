@@ -8,7 +8,7 @@
 
 ```
 CONTEXT: MetaGenesis Core — verification protocol layer for computational claims.
-v0.9.0 | 20 claims | 2405 tests | 5 layers | 8 innovations
+v1.0.0-rc1 | 20 claims | 2405 tests | 5 layers | 8 innovations
   PPA #63/996,819. Repo: https://github.com/Lama999901/metagenesis-core-public
 
 NEVER TOUCH these files under any circumstances:
@@ -26,7 +26,7 @@ BANNED TERMS — never write these anywhere:
   Instead use: "tamper-evident under trusted verifier assumptions"
 
 CURRENT STATE:
-20 claims / 2405 tests / 5 verification layers / MVP v0.9
+20 claims / 2405 tests / 5 verification layers / MVP v1.0
   steward_audit: PASS / deep_verify: ALL 13 TESTS PASSED
 ```
 

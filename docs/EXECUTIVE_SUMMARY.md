@@ -1,6 +1,6 @@
 # MetaGenesis Core -- Executive Summary
 
-**Version:** v0.9.0 | **Patent:** USPTO #63/996,819 (provisional)
+**Version:** v1.0.0-rc1 | **Patent:** USPTO #63/996,819 (provisional)
 
 ---
 

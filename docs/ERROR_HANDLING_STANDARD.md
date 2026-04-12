@@ -1,4 +1,4 @@
-# MetaGenesis Core -- Error Handling Standard (v0.9.0)
+# MetaGenesis Core -- Error Handling Standard (v1.0.0-rc1)
 
 ---
 
@@ -102,4 +102,4 @@ layer failed and why.
 
 ---
 
-*Error Handling Standard v0.9.0 -- MetaGenesis Core*
+*Error Handling Standard v1.0.0-rc1 -- MetaGenesis Core*
