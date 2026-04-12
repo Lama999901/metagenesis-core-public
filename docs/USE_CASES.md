@@ -250,4 +250,4 @@ The only thing that changes per domain is the claim type and V&V thresholds.
 
 ---
 
-*Use Cases v0.9 — 2026-03-30 — MetaGenesis Core — 20 claims, 2380 tests*
+*Use Cases v0.9 — 2026-03-30 — MetaGenesis Core — 20 claims, 2405 tests*
