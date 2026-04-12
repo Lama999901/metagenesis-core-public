@@ -55,6 +55,55 @@ known_faults:
     ticket_ref: "https://github.com/Lama999901/metagenesis-core-public/issues"
     mitigation: "deep_verify.py is validated by its output: ALL 13 TESTS PASSED. The orchestrator is tested by running it."
 
+  - fault_id: "FAULT_004"
+    category: "CRYPTOGRAPHIC_THREAT"
+    severity: "EXPECTED"
+    description: >
+      SHA-256 and Ed25519 are not quantum-resistant. A sufficiently powerful
+      quantum computer running Grover's algorithm could weaken SHA-256 from
+      256-bit to 128-bit security, and Shor's algorithm could break Ed25519
+      entirely. Timeline: NIST estimates 15-30 years for cryptographically
+      relevant quantum computers. Mitigation: protocol is designed for
+      algorithm substitution — SHA-256 can be replaced with SHA-3 or a
+      post-quantum hash, Ed25519 with CRYSTALS-Dilithium, without changing
+      the verification architecture. No action needed before 2035.
+    affected_claims: []
+    status: "FAULT_EXPECTED"
+    ticket_ref: "https://github.com/Lama999901/metagenesis-core-public/issues"
+    mitigation: "Monitor NIST PQC standardization. Protocol supports algorithm substitution without architectural change."
+
+  - fault_id: "FAULT_005"
+    category: "TRUST_MODEL"
+    severity: "EXPECTED"
+    description: >
+      The protocol operates under a trusted verifier assumption: the party
+      running mg_verify_standalone.py is assumed to have an unmodified copy
+      of the verifier. A compromised verifier could report PASS on tampered
+      bundles. This is analogous to trusting your compiler — it is a
+      fundamental assumption, not a defect. Mitigation: the standalone
+      verifier is a single file (~580 lines) that can be audited by
+      inspection. Its SHA-256 hash can be published and checked independently.
+    affected_claims: []
+    status: "FAULT_EXPECTED"
+    ticket_ref: "https://github.com/Lama999901/metagenesis-core-public/issues"
+    mitigation: "Publish verifier hash with each release. Single-file design enables manual audit."
+
+  - fault_id: "FAULT_006"
+    category: "PROTOCOL_SCOPE"
+    severity: "EXPECTED"
+    description: >
+      MetaGenesis Core proves WHAT was computed, HOW it was computed, and
+      WHEN it was computed — but not WHETHER the computation is correct.
+      If a claim template has a bug (e.g. wrong formula), the protocol
+      will faithfully certify the wrong result. Algorithm correctness is
+      the responsibility of the claim author, not the verification protocol.
+      This is by design: a notary certifies that a document was signed,
+      not that its contents are true.
+    affected_claims: []
+    status: "FAULT_EXPECTED"
+    ticket_ref: "https://github.com/Lama999901/metagenesis-core-public/issues"
+    mitigation: "Peer review claim templates independently. Protocol scope is provenance, not correctness."
+
 fault_classification:
   FAULT_EXPECTED: "Known issue that does not impact system operation"
   FAULT_RESOLVED: "Issue that has been fixed"
@@ -62,8 +111,8 @@ fault_classification:
 
 audit_metadata:
   generated: "2026-03-15"
-  total_faults: 3
+  total_faults: 6
   critical_faults: 0
-  expected_faults: 3
+  expected_faults: 6
   system_impact: "NONE — no external dependencies, stdlib only"
   ci_impact: "NONE — 2380 tests pass, steward_audit PASS"

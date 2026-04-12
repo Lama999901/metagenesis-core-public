@@ -59,5 +59,7 @@
   "last_session_date": "2026-04-11",
   "last_session_summary": "Recursive evolution: pattern promoter, council proposals, recursion analysis, coverage 90%+, README enhanced",
   "next_priority": "Merge fix/state-md-counters-260411 PR. Zenodo DOI minting. First client $299.",
-  "zenodo_doi": "10.5281/zenodo.19521091"
+  "zenodo_doi": "10.5281/zenodo.19521091",
+  "sdk_exists": true,
+  "github_action_exists": true
 }

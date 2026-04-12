@@ -1,0 +1,98 @@
+name: 'MetaGenesis Verify Bundle'
+description: 'Verify a MetaGenesis bundle through 5 independent verification layers. Zero dependencies.'
+author: 'Yehor Bazhynov'
+
+branding:
+  icon: 'shield'
+  color: 'blue'
+
+inputs:
+  bundle_path:
+    description: 'Path to the bundle directory to verify'
+    required: true
+  fail_on_fail:
+    description: 'Fail the step if verification fails (default: true)'
+    required: false
+    default: 'true'
+  python_version:
+    description: 'Python version to use (default: 3.11)'
+    required: false
+    default: '3.11'
+
+outputs:
+  passed:
+    description: 'Whether all verification layers passed (true/false)'
+    value: ${{ steps.verify.outputs.passed }}
+  reason:
+    description: 'Verification result reason'
+    value: ${{ steps.verify.outputs.reason }}
+  layers_json:
+    description: 'JSON object with per-layer results'
+    value: ${{ steps.verify.outputs.layers_json }}
+  receipt:
+    description: 'Human-readable verification receipt'
+    value: ${{ steps.verify.outputs.receipt }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python_version }}
+
+    - name: Download standalone verifier
+      shell: bash
+      run: |
+        # Download mg_verify_standalone.py from the repo (zero dependencies)
+        curl -sL "https://raw.githubusercontent.com/Lama999901/metagenesis-core-public/main/scripts/mg_verify_standalone.py" \
+          -o "${{ runner.temp }}/mg_verify_standalone.py"
+
+    - name: Verify bundle
+      id: verify
+      shell: bash
+      run: |
+        BUNDLE_PATH="${{ inputs.bundle_path }}"
+        VERIFIER="${{ runner.temp }}/mg_verify_standalone.py"
+        REPORT_JSON="${{ runner.temp }}/mg_report.json"
+
+        # Run verification with JSON output and receipt
+        python "$VERIFIER" "$BUNDLE_PATH" --json "$REPORT_JSON" --receipt > "${{ runner.temp }}/mg_output.txt" 2>&1
+        EXIT_CODE=$?
+
+        # Parse JSON report for structured outputs
+        if [ -f "$REPORT_JSON" ]; then
+          PASSED=$(python -c "import json; r=json.load(open('$REPORT_JSON')); print('true' if r['result']=='PASS' else 'false')")
+          REASON=$(python -c "import json; r=json.load(open('$REPORT_JSON')); print(r['result'])")
+          LAYERS_JSON=$(python -c "import json; r=json.load(open('$REPORT_JSON')); print(json.dumps({l['name']:l['status'] for l in r.get('layers',[])}))")
+        else
+          PASSED="false"
+          REASON="Verifier produced no JSON report"
+          LAYERS_JSON="{}"
+        fi
+
+        # Capture receipt from stdout
+        RECEIPT=$(cat "${{ runner.temp }}/mg_output.txt")
+
+        # Set outputs
+        echo "passed=$PASSED" >> "$GITHUB_OUTPUT"
+        echo "reason=$REASON" >> "$GITHUB_OUTPUT"
+        echo "layers_json=$LAYERS_JSON" >> "$GITHUB_OUTPUT"
+
+        # Receipt can be multiline — use heredoc
+        {
+          echo "receipt<<EOF_RECEIPT"
+          echo "$RECEIPT"
+          echo "EOF_RECEIPT"
+        } >> "$GITHUB_OUTPUT"
+
+        # Print results
+        echo "::group::MetaGenesis Verification Results"
+        cat "${{ runner.temp }}/mg_output.txt"
+        echo "::endgroup::"
+
+        # Fail if configured
+        if [ "$PASSED" = "false" ] && [ "${{ inputs.fail_on_fail }}" = "true" ]; then
+          echo "::error::MetaGenesis verification FAILED: $REASON"
+          exit 1
+        fi

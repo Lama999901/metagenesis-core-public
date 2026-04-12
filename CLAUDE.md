@@ -160,13 +160,16 @@ git push origin feat/description
 
 ```
 Date:        2026-04-11
-Tests:       2380 passing
+Tests:       2380 passing (+ 25 SDK tests)
 Real ratio:  51.2% (21 real / 20 synthetic)
 Templates:   20 domain templates (all have 4-step Step Chain)
 Layers:      5 verification (integrity + semantic + step chain + signing + temporal)
 Checks:      22 (agent_evolution.py)
-Last:        Recursive evolution: pattern promoter, 22 new tests, recursion analysis, CI integration
-Next:        Merge docs/readme-additions-260411 PR. Sync test count 2380 across docs. First client $299.
+SDK:         sdk/metagenesis.py — from sdk.metagenesis import MetaGenesisClient
+GH Action:   .github/actions/verify-bundle/action.yml — reusable by any repo
+Zenodo DOI:  10.5281/zenodo.19521091
+Last:        SDK + GitHub Action + stewardship — protocol becomes infrastructure
+Next:        First client $299. Wave-2 outreach. JOSS resubmit Sep 2026.
 ```
 
 ---
@@ -362,6 +365,9 @@ scripts/mg_verify_standalone.py ← zero-dependency standalone verifier (single-
 scripts/agent_responder.py  ← response kit generator (draft + bundle + queue)
 scripts/agent_evolution_council.py ← self-analysis, ranked improvement proposals
 scripts/mg_client.py        ← client CLI (demo, bundle, verify, receipt)
+sdk/metagenesis.py          ← SDK: MetaGenesisClient (verify, pack, sign, chain, receipt)
+sdk/examples/               ← SDK usage examples (ML, pharma, materials)
+.github/actions/verify-bundle/  ← reusable GitHub Action for any repo
 backend/progress/runner.py  ← job dispatch (20 claims)
 docs/AGENT_CHARTER.md       ← autonomous agent governance (7 sections)
 docs/ROADMAP_VISION.md      ← 4-level evolution path
@@ -417,21 +423,21 @@ This shows recurring issues + auto-fix hints from 57 sessions.
 1. First paying customer $299 ← TOP PRIORITY
    Free pilot → bundle → Stripe link → $299
    Contact: yehor@metagenesis-core.dev
+   NEW: SDK + GitHub Action ready — 5-minute integration path
 
 2. Wave-2 outreach (TASK-026 — CI agents drafting)
    Chollet / LMArena / Percy Liang
    Angle: PHYS-01/02 SI 2019 exact constants = strongest verification anchor
+   NEW: GitHub Action = one-line CI integration for prospects
 
-3. Stale docs (TASK-022..025 — CI agents working on these)
-   CONTEXT_SNAPSHOT.md, llms.txt, AGENTS.md, UPDATE_PROTOCOL v1.1
+3. JOSS resubmission — Sep 2026 (6 months public history required)
+   Zenodo DOI: 10.5281/zenodo.19521091 MINTED
 
-4. Zenodo DOI — 5 minutes at zenodo.org (for JOSS resubmit)
+4. Coverage 87% → maintain (agent_research.py generates tasks automatically)
 
-5. Coverage 40% → 65% (agent_research.py generates tasks automatically)
+5. Patent attorney engagement (deadline 2027-03-05, non-provisional)
 
-6. Patent attorney engagement (deadline 2027-03-05, non-provisional)
-
-7. JOSS resubmission — Sep 2026 (6 months public history required)
+6. v1.0.0 release — SDK + Action + 6 known faults documented
 ```
 
 ---
