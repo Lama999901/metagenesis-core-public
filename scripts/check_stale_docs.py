@@ -88,8 +88,8 @@ CONTENT_CHECKS = {
         "required": ["2380", "ALL 13 TESTS", "5 verification layers"],
     },
     "CITATION.cff": {
-        "banned": ["version: 0.2", "version: 0.3", "version: 0.4", "version: 0.5", "version: 0.6", "version: 0.7", "three independent", "601", "966 adversarial", "1050 adversarial", "1125 adversarial", "1273 adversarial", "1313 adversarial", "1634 adversarial", "1750 adversarial", "1753 adversarial", "2063 adversarial", "2078 adversarial"],
-        "required": ["version: 0.9", "five independent", "2380"],
+        "banned": ["version: 0.2", "version: 0.3", "version: 0.4", "version: 0.5", "version: 0.6", "version: 0.7", "version: 0.8", "three independent", "601", "966 adversarial", "1050 adversarial", "1125 adversarial", "1273 adversarial", "1313 adversarial", "1634 adversarial", "1750 adversarial", "1753 adversarial", "2063 adversarial", "2078 adversarial"],
+        "required": ["version: 1.0", "five independent", "2380"],
     },
     "docs/PROTOCOL.md": {
         "banned": ["MVP v0.2", "MVP v0.3", "MVP v0.4", "MVP v0.5", "Three verification layers", "5 patentable"],
