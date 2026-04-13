@@ -312,3 +312,60 @@ Auto-processed by `scripts/agent_research.py`. First PENDING task gets executed 
   CRITICAL: Do NOT summarize or skip. Run every check. Record every result.
   If a check fails, record the exact error and continue to next check.
   This audit is the formal proof that the protocol does what it claims.
+
+### TASK-028
+- **Title:** Memory synthesis — agent_learn.py synthesize command + strategic memory
+- **Status:** DONE (2026-04-12)
+- **Priority:** P1
+- **Output:** .agent_memory/strategic_memory.json, project_trajectory.json, resolved_patterns.json, security_learnings.json, verification_stats.json
+- **Description:** Add synthesize command to agent_learn.py. Process all 120 sessions. Resolve 15 ghost patterns. Create strategic_memory.json with north star, regulatory urgency, what-works. Create project_trajectory.json (511 to 2407 test evolution). Add strategic context to recall output.
+
+### TASK-029
+- **Title:** World-class documentation — VISION, PHILOSOPHICAL_FOUNDATION, EVOLUTIONARY_ARCHITECTURE, REGULATORY_GAPS
+- **Status:** DONE (2026-04-12)
+- **Priority:** P1
+- **Output:** docs/VISION.md, docs/PHILOSOPHICAL_FOUNDATION.md, docs/EVOLUTIONARY_ARCHITECTURE.md, docs/REGULATORY_GAPS.md
+- **Description:** Create four deep documents: VISION.md (civilizational scope of verification gap), PHILOSOPHICAL_FOUNDATION.md (epistemological foundation — proof not trust), EVOLUTIONARY_ARCHITECTURE.md (protocol that verifies itself — 4 levels), REGULATORY_GAPS.md (FDA Q2 2026, EU AI Act Aug 2026, Basel III assessment, SI 2019 expansion opportunities).
+
+### TASK-030
+- **Title:** Repository hygiene — README SDK/Action, ROADMAP 4-level vision, SDK 3 examples, known_faults FAULT_007-011
+- **Status:** DONE (2026-04-12)
+- **Priority:** P1
+- **Output:** README.md, docs/ROADMAP.md, docs/SDK.md, reports/known_faults.yaml, llms.txt, scripts/check_stale_docs.py
+- **Description:** Add SDK 3-line example and GitHub Action to README. Rewrite ROADMAP.md as 4-level vision (Protocol to Universal). Add 3 real-world examples to SDK.md. Add FAULT_007 (supply chain), FAULT_008 (social engineering), FAULT_009 (SI exact), FAULT_010 (cp1252 encoding), FAULT_011 (CRLF/LF hash). Update llms.txt with DOI, SDK, Action refs. Add watchlist entries for all new docs.
+
+### TASK-031
+- **Title:** First paying client $299
+- **Status:** PENDING
+- **Priority:** P1
+- **Description:** Target: ML/pharma/finance team needing verifiable computational artifacts. See COMMERCIAL.md for pipeline. $299 per verification bundle. Contact: yehor@metagenesis-core.dev. Unlocks: v1.0.0 final release.
+
+### TASK-032
+- **Title:** Wave-2 outreach — Chollet, LMArena, Percy Liang
+- **Status:** PENDING
+- **Priority:** P1
+- **Description:** Wave-2 outreach to benchmark integrity community. Drafts in reports/WAVE2_OUTREACH_DRAFTS.md. Send ONLY from yehor@metagenesis-core.dev via Zoho.
+
+### TASK-033
+- **Title:** Check Zoho SPAM every session — protocol rule
+- **Status:** PENDING
+- **Priority:** P1
+- **Description:** Outreach replies land in Zoho SPAM. Non-negotiable: check at every session start. Add to CLAUDE.md session checklist. This is not optional.
+
+### TASK-034
+- **Title:** Fix site footer JOSS claim
+- **Status:** PENDING
+- **Priority:** P2
+- **Description:** index.html says "JOSS paper submitted March 2026". Reality: rejected, resubmit Sep 2026. Fix to: "JOSS submission planned Sep 2026" or "JOSS resubmission Sep 2026".
+
+### TASK-035
+- **Title:** JOSS resubmission Sep 2026
+- **Status:** PENDING
+- **Priority:** P2
+- **Description:** Prerequisites met: 6+ months public history, DOI 10.5281/zenodo.19521091 minted. Update paper.md for v1.0.0-rc1 state (2407 tests, 20 claims, 5 layers, 8 innovations). Verify paper.bib references current. Submit to JOSS Sep 2026.
+
+### TASK-036
+- **Title:** Patent attorney — non-provisional filing
+- **Status:** PENDING
+- **Priority:** P2
+- **Description:** PPA #63/996,819 filed 2026-03-05. Non-provisional deadline: 2027-03-05. Budget: $3K-8K. Start attorney search Q3 2026. Need patent attorney experienced in software/protocol patents. Key innovations: 5-layer independence proof, physical anchor chain, semantic verification layer.

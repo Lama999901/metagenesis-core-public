@@ -180,6 +180,95 @@ jobs:
 | `layers_json` | JSON object with per-layer results |
 | `receipt` | Human-readable verification receipt |
 
+## Real-World Examples
+
+### Example 1 — ML Team (10 minutes to first verification)
+
+Your team trains a model and claims 94% accuracy. Prove it.
+
+```python
+from sdk.metagenesis import MetaGenesisClient
+
+client = MetaGenesisClient()
+
+# 1. Run your ML benchmark claim
+from backend.progress.mlbench1_accuracy_certificate import run_certificate
+job = run_certificate(
+    claimed_accuracy=0.94,
+    accuracy_tolerance=0.02,
+    dataset_relpath="data/test_predictions.csv",
+)
+
+# 2. Pack into a verifiable bundle
+bundle = client.pack(job, "output/ml_benchmark")
+
+# 3. Sign it (proves who created the bundle)
+client.sign(bundle, "signing_key.json")
+
+# 4. Verify — anyone can do this, offline, in 60 seconds
+result = client.verify(bundle)
+print(f"Passed: {result.passed}")   # True
+print(f"Layers: {result.layers}")   # All 5 layers verified
+print(f"Claim:  {result.claim_id}") # ML_BENCH-01
+```
+
+### Example 2 — GitHub Action (one line in your CI)
+
+Any repository can verify bundles automatically on every push:
+
+```yaml
+# .github/workflows/verify.yml
+name: Verify Computational Results
+on: [push]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run computation
+        run: python compute.py --output results/bundle
+      - name: Verify bundle
+        uses: Lama999901/metagenesis-core-public/.github/actions/verify-bundle@main
+        with:
+          bundle_path: ./results/bundle
+```
+
+### Example 3 — Pharma Researcher (FDA-ready artifact)
+
+A researcher runs an ADMET prediction and needs a verifiable artifact
+for regulatory filing documentation:
+
+```python
+from sdk.metagenesis import MetaGenesisClient
+
+client = MetaGenesisClient()
+
+# Verify the ADMET prediction bundle
+result = client.verify("admet_prediction_bundle/")
+
+if result.passed:
+    # Generate human-readable receipt for filing
+    receipt = client.receipt("admet_prediction_bundle/")
+    print(receipt)
+    # Receipt includes: timestamp, claim ID, all layer results,
+    # dataset SHA-256 fingerprint, and reproduce commands.
+    # This artifact is suitable for IND filing documentation.
+```
+
+### How to Add a Custom Domain Claim
+
+MetaGenesis supports any computational domain. To add a new claim:
+
+1. `backend/progress/<claim_id>.py` — implementation with 4-step Step Chain
+2. `backend/progress/runner.py` — add dispatch block
+3. `reports/scientific_claim_index.md` — register claim
+4. `reports/canonical_state.md` — add to current claims list
+5. `tests/<domain>/test_<claim_id>.py` — pass/fail/determinism tests
+6. Update all counters (see `docs/HOW_TO_ADD_CLAIM.md` for details)
+
+---
+
 ## Integration Patterns
 
 ### CI/CD Pipeline

@@ -372,10 +372,22 @@ def check_self_improvement():
     out, code = run("python scripts/agent_evolve_self.py --summary")
     if code == 0:
         ok(f"Self-improvement scan complete — {out.strip()}")
-        return True
     else:
         warn(f"Self-improvement scan issue — {out.strip()}")
-        return True
+
+    # Check for pending governance proposals in AGENT_TASKS.md
+    tasks_file = REPO_ROOT / "AGENT_TASKS.md"
+    if tasks_file.exists():
+        content = tasks_file.read_text(encoding="utf-8", errors="ignore")
+        gov_pending = content.count("Governance proposal:")
+        pending_count = sum(1 for line in content.splitlines()
+                          if "Governance proposal:" in line
+                          and "PENDING" in content[max(0, content.index(line)-200):content.index(line)+200]
+                          if line.strip().startswith("- **Title:**"))
+        if gov_pending > 0:
+            warn(f"GOVERNANCE PROPOSALS PENDING: {gov_pending} — review AGENT_TASKS.md")
+
+    return True
 
 
 # ── 13. External Signals ──────────────────────────────────────────────────

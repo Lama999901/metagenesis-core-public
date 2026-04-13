@@ -104,36 +104,37 @@ python scripts/steward_audit.py                              # PASS
 python -m pytest tests/ -q                                   # 2407 passed
 python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 
-## Current state (2026-04-08)
+## Current state (2026-04-12)
 
 - Claims: 20
-- Tests: 2407 passing
+- Tests: 2407 passing (1 skipped — platform-specific)
 - Verification layers: 5 (integrity + semantic + step chain + bundle signing + temporal commitment)
 - Domains: 8 (materials, sysid, data, ml, digital_twin, pharma_biotech, financial_risk, fundamental_physics)
 - Agent checks: 22 (agent_evolution.py)
 - Real ratio: 51.2% (21 real / 20 synthetic)
 - Cross-Claim Chain: MTR-1 → DT-FEM-01 → DRIFT-01 cryptographically linked via anchor_hash
 - steward_audit: PASS
-- known_faults: 3 entries (ENV_001 + SCOPE_001 + ENV_002)
+- known_faults: 9 entries (ENV_001 + SCOPE_001 + ENV_002 + FAULT_007/008/009)
+- DOI: 10.5281/zenodo.19521091 (Zenodo)
+- SDK: sdk/metagenesis.py — MetaGenesisClient (verify, pack, sign, chain, receipt)
+- GitHub Action: .github/actions/verify-bundle/ — one-line CI integration
 - Site: metagenesis-core.dev — deployed on Vercel, auto-deploys from main
-- HN post live: https://news.ycombinator.com/item?id=47335416
 - PPA filed: 2026-03-05 — non-provisional deadline 2027-03-05
-- Payment: $299/bundle — bank transfer / crypto (BTC/ETH/USDC) / invoice — yehor@metagenesis-core.dev
-- GitHub Release: v1.0.0-rc1 — https://github.com/Lama999901/metagenesis-core-public/releases/tag/v1.0.0-rc1
-- Outreach sent: Tongqi Wen, Giovanni Pizzi, Brian Nosek (follow-up), Peter Coveney (follow-up),
-  Arvind Narayanan (follow-up), Jeffrey Ip, Elena Samuylova (resent with subject),
-  Anand Kannappan, Vikram Chatterji, Woody Sherman, Jonathan Godwin,
-  Joelle Pineau, Stella Biderman, Koustuv Sinha, Victoria Stodden,
-  ailab@princeton.edu (MLRC), Papers With Code, Sayash Kapoor (sayashk@princeton.edu),
-  Jonah Cool (follow-up + Zoho + OSS program), Anthropic OSS program (form submitted),
-  Anthropic Partner Network (contact sales form submitted)
+- Payment: $299/bundle — yehor@metagenesis-core.dev
+- GitHub Release: v1.0.0-rc1
+- Agent memory: 120 sessions, 0 active issues, strategic_memory.json synthesized
+- JOSS paper: paper.md ready (resubmit Sep 2026)
 
 ## Key files
 
 - README.md — problem, solution, quickstart
 - docs/PROTOCOL.md — v1.0 protocol specification (5 layers + Cross-Claim Chain)
 - docs/ARCHITECTURE.md — v1.0 architecture diagrams
-- docs/ROADMAP.md — planned expansion
+- docs/VISION.md — why every computational result needs a tamper-evident artifact
+- docs/PHILOSOPHICAL_FOUNDATION.md — epistemological foundation (proof, not trust)
+- docs/EVOLUTIONARY_ARCHITECTURE.md — how the protocol verifies itself
+- docs/REGULATORY_GAPS.md — FDA, EU AI Act, Basel III coverage assessment
+- docs/ROADMAP.md — 4-level evolution: Protocol → Standard → Infrastructure → Universal
 - reports/scientific_claim_index.md — all 20 claims with thresholds
 - reports/canonical_state.md — authoritative claims list
 - reports/known_faults.yaml — known limitations (SCOPE_001 + ENV_001)

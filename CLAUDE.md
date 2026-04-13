@@ -63,7 +63,7 @@ regulatory submission updates, climate model iterations.
 #1 PRIORITY: First paying customer at $299
              Every technical improvement must serve this goal.
 
-Payment:     yehor@metagenesis-core.dev | Stripe link in COMMERCIAL.md
+Payment:     yehor@metagenesis-core.dev | bank transfer / crypto (BTC/ETH/USDC) / invoice
 Free pilot:  metagenesis-core.dev/#pilot (Formspree xlgpdwop)
 Pipeline:    Free pilot → bundle → Stripe → $299 → case study → next client
 
