@@ -84,6 +84,27 @@ No subset of four layers catches all attacks. CERT-11 proves this with coordinat
 
 ---
 
+## A Protocol That Verifies Itself
+
+A verification protocol that cannot verify its own evolution is incomplete. MetaGenesis Core applies its own discipline inward: every commit, every CI run, every documentation update passes through the same gates that external bundles pass through.
+
+The self-verification operates at four levels:
+
+```
+Level 1 — CI (every push)     22 automated checks block merge on failure
+Level 2 — Memory (post-merge)  agent_learn.py records what changed, what broke, what was fixed
+Level 3 — Synthesis (periodic) Patterns promoted to governance rules — human approves
+Level 4 — Intentionally absent A system that can rewrite its own rules provides no guarantees
+```
+
+Level 4 is missing on purpose. A notary cannot notarize their own documents. A verification system that autonomously adjusts its own success criteria would be circular: it passes because it decided it should pass. The human gate at Level 3 is not a weakness — it is the mechanism that makes everything below it trustworthy.
+
+The numbers are real: 122 agent learning sessions. 11 recurring failure patterns detected, root-caused, and structurally eliminated. Zero ghost patterns remaining. The system reads its own coverage reports and decides what to build next — but a human decides whether to change the rules.
+
+Full architecture: [docs/EVOLUTIONARY_ARCHITECTURE.md](docs/EVOLUTIONARY_ARCHITECTURE.md)
+
+---
+
 ## How It Works
 
 ```
@@ -104,24 +125,46 @@ The bundle is the proof. It travels with the result. Anyone verifies it. Offline
 
 ---
 
-## SDK — Three Lines to Verify
+## Integration: Not a Standalone Tool
+
+MetaGenesis Core is not a tool you run separately. It is infrastructure that embeds into existing workflows — MLflow, DVC, Evidently, GitHub Actions, or any CI pipeline.
+
+**GitHub Action — zero friction entry point:**
+
+```yaml
+# Add one step to any CI pipeline. That's it.
+- uses: Lama999901/metagenesis-core-public/.github/actions/verify-bundle@main
+  with:
+    bundle_path: ./results/bundle.zip
+```
+
+Every PR that touches computational results now produces a cryptographic proof. No configuration. No dependencies. No accounts.
+
+**SDK — programmatic verification:**
 
 ```python
 from sdk.metagenesis import MetaGenesisClient
 
-result = MetaGenesisClient().verify("bundle/")
-print("PASS" if result.passed else "FAIL")
+client = MetaGenesisClient()
+result = client.verify("bundle/")
+
+result.passed          # True
+result.layers          # {"integrity": True, "semantic": True, ...}
+result.reason          # "PASS"
+result.trace_root_hash # SHA-256 of computation chain
+result.claim_id        # "MTR-1"
 ```
 
-See [docs/SDK.md](docs/SDK.md) for full API reference, GitHub Action integration, and real-world examples.
+**Standalone verifier — one file, zero dependencies, works forever:**
 
-## GitHub Action — One Line in CI
-
-```yaml
-- uses: Lama999901/metagenesis-core-public/.github/actions/verify-bundle@main
-  with:
-    bundle_path: ./results/bundle
+```bash
+python scripts/mg_verify_standalone.py bundle/
+# PASS
 ```
+
+This single file (~580 lines, stdlib only) is the ultimate insurance policy. If MetaGenesis Core disappears tomorrow, this file still verifies every bundle ever created.
+
+Full API reference: [docs/SDK.md](docs/SDK.md)
 
 ---
 
@@ -167,12 +210,6 @@ python scripts/mg.py verify --pack demos/open_data_demo_01/
 # PASS PASS
 ```
 
-**Or use the standalone verifier — one file, zero dependencies:**
-```bash
-python scripts/mg_verify_standalone.py demos/open_data_demo_01/
-# PASS
-```
-
 ---
 
 ## Talk to the Protocol
@@ -200,22 +237,31 @@ Your API key. Your conversation. Your data stays yours.
 
 ---
 
-## The Killer Application: Drift Detection
+## Drift Calibration: The Category Shift
 
-Compare a verification bundle from today against one from a year ago.
+Most verification asks: *was this file changed?* MetaGenesis asks a different question: *is this computation still anchored to physical reality?*
 
-Same system. Same claim. Different result. Caught automatically.
+This is a qualitatively different capability. Without a verified anchor, you cannot know what your simulation is drifting *from*. Drift detection without an anchor is just noise monitoring.
+
+```
+January 2026:
+  MTR-1 verified:  E = 70 GPa  →  rel_err = 0.3%  →  PASS  →  trusted anchor
+  anchor_hash: 8a3f...c7d1
+
+July 2026:
+  Same system, same claim, new data:
+  E = 76 GPa  →  drift = 8.6%  →  correction_required: True
+  anchor_hash: 8a3f...c7d1 (unchanged — drift measured FROM this anchor)
+```
+
+The anchor hash from January is baked into July's verification. The protocol does not just detect that a number changed. It proves *how far* the number has moved from a physically anchored reference point. A digital twin that was calibrated last year — is it still calibrated today? A model that passed validation — does it still pass with the updated code? A simulation that met regulatory thresholds — does it still meet them?
 
 ```bash
-python scripts/mg.py verify-chain bundle_jan2026/ bundle_jan2027/
+python scripts/mg.py verify-chain bundle_jan2026/ bundle_jul2026/
 # CHAIN FAIL: drift exceeds 5% from verified anchor
 ```
 
-No existing tool does this. Experiment tracking records what happened. MetaGenesis proves whether it still agrees with physical reality.
-
-A digital twin that was calibrated last year — is it still calibrated today? A model that passed validation — does it still pass with new data? A simulation that met regulatory thresholds — does it still meet them after the code was updated?
-
-One command. Offline. Cryptographic proof.
+No existing tool does this. Experiment trackers record what happened. Docker reproduces an environment. MetaGenesis proves whether the result still agrees with physical reality. One command. Offline. Cryptographic proof.
 
 ---
 
@@ -233,38 +279,6 @@ One command. Offline. Cryptographic proof.
 | **System Identification** | SYSID-01 | ARX model calibration |
 
 20 claims. 21 verified bundles. 51.2% verified against real external data.
-
----
-
-## The Evolution
-
-MetaGenesis Core is not a product. It is infrastructure. Four levels, each building on the last.
-
-### Level 1 — Protocol *(shipped, v1.0.0-rc1)*
-
-Any computation verified in 60 seconds. 5 layers. 20 claims. Physical anchors. Offline.
-*Trigger to next level: first paying client.*
-
-### Level 2 — Registry
-
-Every verified bundle gets a persistent DOI via Zenodo. Scientists publish the proof alongside the paper. "Was this computation verified?" becomes a searchable question with a cryptographic answer.
-*Trigger to next level: 5 paying clients across 2 verticals.*
-
-### Level 3 — Agent Economy
-
-AI agents verify each other's outputs through the protocol. Agent A produces a result. Agent B verifies it. Neither trusts the other. Both trust the physics.
-*Trigger to next level: 100+ bundles verified, institutional adoption.*
-
-### Level 4 — Self-Evolution
-
-The protocol verifies its own development. Every code change passes through MetaGenesis before merging. The system that certifies others is itself certified — recursively.
-
-| Level | What it proves | Who trusts it |
-|-------|---------------|---------------|
-| Protocol | This computation was not tampered with | One client |
-| Registry | This computation has a permanent, citable record | Journals |
-| Agent Economy | Autonomous systems can trust each other's outputs | AI labs |
-| Self-Evolution | The verification system itself is verified | Everyone |
 
 ---
 
@@ -331,6 +345,8 @@ Full limitations: `reports/known_faults.yaml` and `SECURITY.md`
 
 ## The Numbers
 
+This is not a prototype.
+
 ```
 Tests:           2407 passing (3 skipped — platform-specific)
 Real ratio:      51.2% (21 verified against real external data / 41 total)
@@ -338,6 +354,7 @@ Claims:          20 active across 8 domains
 Layers:          5 independent (proven by CERT-11)
 Innovations:     8 innovations (patent pending)
 Agent checks:    22 agent checks (CI-enforced)
+Agent sessions:  122 learning sessions (institutional memory)
 Coverage:        87.8%
 Bundles:         21 signed and independently verifiable
 Dependencies:    Python 3.11+ stdlib only (zero external dependencies)
@@ -407,6 +424,8 @@ AI built the verification protocol for AI. Every line generated was tested again
 
 The weakness became the foundation.
 
+Today: 122 agent sessions. 11 failure patterns learned from the system's own mistakes, root-caused, and structurally eliminated. An evolution engine that watches itself build. Level 3 autonomous: the system reads its own coverage reports and decides what to build next. A human decides whether to change the rules.
+
 If this is possible, what isn't?
 
 Built with Claude (Anthropic). Every AI output verified by the project's own test suite.
@@ -417,6 +436,33 @@ Built with Claude (Anthropic). Every AI output verified by the project's own tes
 **Site:** https://metagenesis-core.dev
 **Email:** yehor@metagenesis-core.dev
 **Sponsor:** https://github.com/sponsors/Lama999901
+
+---
+
+## The World That Awaits
+
+Standards do not emerge because someone decides the world needs one. They emerge when three conditions coincide: a universal problem, a simple solution, and a moment of urgency.
+
+git became the standard for code. Before git — zip archives and trust. DOI became the standard for publications. Before DOI — URLs that break. HTTPS became the default for the web. Before Let's Encrypt — certificates were expensive and optional.
+
+The pattern is the same. The standard succeeds not because it is technically superior but because it introduces a primitive simple enough to be universal. `git commit` is one command. A DOI is one string. HTTPS is one protocol.
+
+`python scripts/mg.py verify --pack bundle.zip` is one command.
+
+The verification gap is universal: every domain produces computational claims that everyone must trust. The solution is simple: stdlib Python, 60 seconds, offline, zero dependencies. The urgency is real: FDA Q2 2026, EU AI Act August 2026, Basel III active now, reproducibility crisis measured and documented for a decade.
+
+All three conditions have coincided. The trajectory is not aspirational — it is structural:
+
+```
+Level 1 — Protocol (now)         Any result verified in 60 seconds
+Level 2 — Standard (2026)        Regulatory submissions include bundles
+Level 3 — Infrastructure (2027)  Expected, like DOI for papers
+Level 4 — Universal (2028+)      Default, like HTTPS for the web
+```
+
+The question will shift from "should we verify this result?" to "why wasn't this result verified?"
+
+Full roadmap: [docs/ROADMAP.md](docs/ROADMAP.md)
 
 ---
 
