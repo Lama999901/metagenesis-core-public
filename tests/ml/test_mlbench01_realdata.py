@@ -235,16 +235,23 @@ class TestRealDataErrors:
                 dataset_relpath="tests/fixtures/does_not_exist.csv",
             )
 
-    def test_too_few_rows_raises_valueerror(self, tmp_path):
+    def test_too_few_rows_raises_valueerror(self, tmp_path, monkeypatch):
         """
         CSV with fewer than 10 rows must raise ValueError.
         Ensures minimum dataset size for reliable certification.
         """
-        import os
-        tiny = tmp_path / "tiny.csv"
+        import backend.progress.mlbench1_accuracy_certificate as mod
+        csv_dir = tmp_path / "tests" / "fixtures"
+        csv_dir.mkdir(parents=True, exist_ok=True)
+        tiny = csv_dir / "tiny.csv"
         tiny.write_text("y_true,y_pred\n1,1\n0,0\n1,1\n", encoding="utf-8")
-        # Need to place in repo root relative path — skip if can't
-        pytest.skip("tiny file test requires repo-relative path; covered by unit tests")
+        monkeypatch.setattr(mod, "REPO_ROOT", tmp_path)
+        with pytest.raises(ValueError):
+            run_certificate(
+                claimed_accuracy=0.90,
+                accuracy_tolerance=0.02,
+                dataset_relpath="tests/fixtures/tiny.csv",
+            )
 
 
 # ── Real data mode does NOT produce execution_trace ───────────────────

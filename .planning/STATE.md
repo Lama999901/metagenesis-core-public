@@ -27,7 +27,7 @@ See: .planning/PROJECT.md (updated 2026-04-06)
 
 Milestone v3.0.0 (Client-Ready Protocol) — completed
 All 5 phases complete, all 8 plans complete.
-Last activity: 2026-04-11 - Completed quick task 260411-ifo: Three README.md additions (80-year gap + Talk to Protocol + Q&A)
+Last activity: 2026-04-13 - Completed quick task 260412-p78: Deep audit fix + counter sync 2405→2407 + watchlist cleanup
 
 Progress: [##########] 100%
 
@@ -87,9 +87,10 @@ None.
 | 260411-aif | Fix 3 ordering-dependent test failures | 2026-04-11 | 7d27261 | — |
 | 260411-aju | Sync test count 2132→2358 across all docs and gates | 2026-04-11 | 40fa9f9 | [260411-aju-sync-test-count](./quick/260411-aju-sync-test-count-2132-to-2358-across-all-/) |
 | 260411-ifo | Three README.md additions: 80-year gap + Talk to Protocol + Q&A | 2026-04-11 | edbec9d | [260411-ifo-three-readme-md-additions-80-year-gap-ta](./quick/260411-ifo-three-readme-md-additions-80-year-gap-ta/) |
+| 260412-p78 | Deep audit: fix 2 skipped tests, sync 2405→2407, clean watchlist, reset main | 2026-04-13 | 5decfb9 | [260412-p78-reset-local-main-update-session-state-to](./quick/260412-p78-reset-local-main-update-session-state-to/) |
 
 ## Session Continuity
 
-Last session: 2026-04-11T13:19:25Z
-Stopped at: Completed 260411-ifo-PLAN.md
+Last session: 2026-04-13T02:08:40Z
+Stopped at: Completed 260412-p78-SUMMARY.md
 Resume file: None

@@ -3,7 +3,7 @@
 > **START HERE:** `python scripts/session_close.py --read` → shows full current state in 5 lines
 
 > Loaded automatically by all GSD agents via CLAUDE.md.
-> Last updated: 2026-04-11 | v1.0.0-rc1 LIVE | 20 templates | 2405 tests
+> Last updated: 2026-04-12 | v1.0.0-rc1 LIVE | 20 templates | 2407 tests
 
 ---
 
@@ -117,7 +117,7 @@ scripts/mg.py                                    ← core verifier, modify caref
 "blockchain"        → "cryptographic hash chain"
 "unforgeable"       → don't use
 "GPT-5"             → doesn't exist
-"100% test success" → "2405 tests PASS"
+"100% test success" → "2407 tests PASS"
 any stale test count → always use current count from system_manifest.json
 any stale version    → always use v1.0.0-rc1
 ```
@@ -128,7 +128,7 @@ any stale version    → always use v1.0.0-rc1
 
 ```bash
 python scripts/steward_audit.py      # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q           # → 2405 passed
+python -m pytest tests/ -q           # → 2407 passed
 python scripts/deep_verify.py        # → ALL 13 TESTS PASSED
 python scripts/check_stale_docs.py   # → All critical documentation is current
 python scripts/agent_diff_review.py  # → DIFF REVIEW PASSED
@@ -159,17 +159,14 @@ git push origin feat/description
 ## CURRENT STATE (v1.0.0-rc1)
 
 ```
-Date:        2026-04-11
-Tests:       2405 passing (+ 25 SDK tests)
+Date:        2026-04-12
+Tests:       2407 passing
 Real ratio:  51.2% (21 real / 20 synthetic)
 Templates:   20 domain templates (all have 4-step Step Chain)
 Layers:      5 verification (integrity + semantic + step chain + signing + temporal)
 Checks:      22 (agent_evolution.py)
-SDK:         sdk/metagenesis.py — from sdk.metagenesis import MetaGenesisClient
-GH Action:   .github/actions/verify-bundle/action.yml — reusable by any repo
-Zenodo DOI:  10.5281/zenodo.19521091
-Last:        SDK + GitHub Action + stewardship — protocol becomes infrastructure
-Next:        First client $299. Wave-2 outreach. JOSS resubmit Sep 2026.
+Last:        v1.0.0-rc1: SDK, GitHub Action, Zenodo DOI, recursive evolution, 2407 tests, 22 checks, coverage 87%
+Next:        First client $299. Check Zoho SPAM. Update Project Knowledge files in Claude Projects.
 ```
 
 ---
@@ -375,7 +372,7 @@ reports/scientific_claim_index.md  ← claim registry
 reports/canonical_state.md  ← authoritative list (LOCKED)
 reports/known_faults.yaml   ← known limitations (SCOPE_001 + ENV_001)
 paper.md + paper.bib        ← JOSS paper (resubmit Sep 2026)
-index.html                  ← site (2405 tests/20 claims/5 layers/8 innovations)
+index.html                  ← site (2407 tests/20 claims/5 layers/8 innovations)
 CONTEXT_SNAPSHOT.md         ← live state for AI agents
 ```
 
@@ -443,5 +440,5 @@ This shows recurring issues + auto-fix hints from 57 sessions.
 ---
 
 *CLAUDE.md v2.1 — 2026-04-08 — MetaGenesis Core v1.0.0-rc1 LIVE*
-*2405 tests | 20 claims | 22 checks | Level 3 autonomous forge ACTIVE*
+*2407 tests | 20 claims | 22 checks | Level 3 autonomous forge ACTIVE*
 *Mission: notary for computations. First client = history.*

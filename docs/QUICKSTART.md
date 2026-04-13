@@ -2,7 +2,7 @@
 
 MetaGenesis Core is a verification protocol that makes computational results tamper-evident and independently auditable. One command tells you if an evidence bundle is authentic: `PASS` or `FAIL`.
 
-**Version:** v1.0.0-rc1 | **Tests:** 2405 | **Claims:** 20 | **License:** MIT | **Patent:** USPTO #63/996,819
+**Version:** v1.0.0-rc1 | **Tests:** 2407 | **Claims:** 20 | **License:** MIT | **Patent:** USPTO #63/996,819
 
 ---
 

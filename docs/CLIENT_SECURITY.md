@@ -65,7 +65,7 @@ MetaGenesis Core is open source. You can verify every aspect:
 git clone https://github.com/Lama999901/metagenesis-core-public.git
 cd metagenesis-core-public
 
-# Run the full test suite (2405 tests)
+# Run the full test suite (2407 tests)
 python -m pytest tests/ -q
 
 # Run the deep verification (13 proofs)
