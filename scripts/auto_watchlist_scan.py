@@ -37,13 +37,29 @@ EXCLUDE_DIRS = {
     "node_modules", ".venv", ".mypy_cache", ".pytest_cache",
     "ppa",  # frozen patent documents — never flag
     "pack",  # demos/open_data_demo_01/pack/ — generated artifacts
+    "client_scenarios",  # demos/client_scenarios/ — generated bundle artifacts
+    "receipts",  # demos/receipts/ — generated receipt files
+    "pilot_drafts",  # reports/pilot_drafts/ — generated pilot drafts
+    "bundle",  # any /bundle/ subdirectory — packed artifacts
 }
+
+# Files matching these prefixes in reports/ are auto-generated and excluded
+GENERATED_REPORT_PREFIXES = (
+    "SELF_IMPROVEMENT_", "COVERAGE_REPORT_", "CHRONICLE_",
+    "SIGNALS_", "AUDIT_SEMANTIC_", "AUDIT_TRUTH_", "EXPANDED_AUDIT_",
+    "AGENT_REPORT_2026", "WEEKLY_REPORT_", "STEWARD_REPORT_",
+)
 
 
 def _should_exclude(path: Path) -> bool:
-    """Check if any part of the path is in EXCLUDE_DIRS."""
+    """Check if any part of the path is in EXCLUDE_DIRS or is a generated report."""
     for part in path.parts:
         if part in EXCLUDE_DIRS:
+            return True
+    # Exclude auto-generated timestamped reports
+    if len(path.parts) >= 2 and path.parts[0] == "reports":
+        fname = path.name
+        if any(fname.startswith(prefix) for prefix in GENERATED_REPORT_PREFIXES):
             return True
     return False
 

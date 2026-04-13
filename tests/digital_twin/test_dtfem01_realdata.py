@@ -225,9 +225,22 @@ class TestDTFEM01RealDataErrors:
                 dataset_relpath="tests/fixtures/no_such_file.csv",
             )
 
-    def test_empty_csv_raises(self, tmp_path):
+    def test_empty_csv_raises(self, tmp_path, monkeypatch):
         """CSV with no valid rows raises ValueError."""
-        pytest.skip("Requires tmp file with repo-relative path")
+        import backend.progress.dtfem1_displacement_verification as mod
+        # Write empty CSV (header only, no data rows)
+        csv_dir = tmp_path / "tests" / "fixtures"
+        csv_dir.mkdir(parents=True, exist_ok=True)
+        empty_csv = csv_dir / "empty.csv"
+        empty_csv.write_text(
+            "fem_value,measured_value,quantity\n", encoding="utf-8"
+        )
+        monkeypatch.setattr(mod, "REPO_ROOT", tmp_path)
+        with pytest.raises(ValueError):
+            run_certificate(
+                seed=42,
+                dataset_relpath="tests/fixtures/empty.csv",
+            )
 
 
 # ── Real data mode structure ───────────────────────────────────────────
