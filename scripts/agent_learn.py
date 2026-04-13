@@ -440,9 +440,16 @@ def synthesize():
         print(f"  Test trajectory: {trajectory[0]['tests']} -> {trajectory[-1]['tests']}")
     print(f"  Created: project_trajectory.json, resolved_patterns.json")
 
+    # Update strategic_memory.json session count
     strategic = MEMORY_DIR / "strategic_memory.json"
     if strategic.exists():
-        print(f"  strategic_memory.json: exists")
+        sm = json.loads(strategic.read_text(encoding="utf-8"))
+        sm["synthesized_from_sessions"] = len(sessions)
+        sm["synthesis_date"] = datetime.now().strftime("%Y-%m-%d")
+        strategic.write_text(json.dumps(sm, indent=2, ensure_ascii=False), encoding="utf-8")
+        print(f"  strategic_memory.json: updated ({len(sessions)} sessions)")
+    else:
+        print(f"  strategic_memory.json: not found (run initial synthesis first)")
 
     print(f"\n{G}  SYNTHESIS COMPLETE{X}")
 

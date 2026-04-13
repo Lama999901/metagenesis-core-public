@@ -2,7 +2,7 @@
 
 > Read this file first if you are an AI agent starting a new session.
 > This is the authoritative snapshot of what has been done and what is next.
-> Updated: 2026-04-08
+> Updated: 2026-04-12
 
 ---
 
@@ -18,7 +18,7 @@
 
 ---
 
-## Verified state (2026-04-08)
+## Verified state (2026-04-12)
 
 | Parameter | Value |
 |---|---|
@@ -29,7 +29,7 @@
 | Verification layers | 5 (integrity + semantic + step chain + bundle signing + temporal commitment) |
 | Innovations | 8 (5 PPA + HMAC signing + Ed25519 signing + temporal commitment) |
 | Domains | 8 |
-| Agent checks | 21 (agent_evolution.py) |
+| Agent checks | 22 (agent_evolution.py) |
 | Real ratio | 51.2% (21 real / 20 synthetic) |
 | Coverage | 87.8% |
 | GitHub Release | v1.0.0-rc1 |

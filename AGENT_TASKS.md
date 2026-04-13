@@ -338,19 +338,19 @@ Auto-processed by `scripts/agent_research.py`. First PENDING task gets executed 
 - **Title:** First paying client $299
 - **Status:** PENDING
 - **Priority:** P1
-- **Description:** Target: Patronus AI, Confident AI, PsiThera, or any ML/pharma/finance team needing verifiable computational artifacts. Payment: bank transfer / crypto (BTC/ETH/USDC) / invoice. $299 per verification bundle. Contact: yehor@metagenesis-core.dev. Pipeline: free pilot at metagenesis-core.dev/#pilot, then bundle, then Stripe/invoice. Unlocks: v1.0.0 final release.
+- **Description:** Target: ML/pharma/finance team needing verifiable computational artifacts. See COMMERCIAL.md for pipeline. $299 per verification bundle. Contact: yehor@metagenesis-core.dev. Unlocks: v1.0.0 final release.
 
 ### TASK-032
 - **Title:** Wave-2 outreach — Chollet, LMArena, Percy Liang
 - **Status:** PENDING
 - **Priority:** P1
-- **Description:** Chollet (chollet@google.com) — ARC Prize benchmark integrity angle. LMArena (@laborforagi) — Leaderboard Illusion paper angle. Percy Liang (pliang@cs.stanford.edu) — HELM verification angle. Use SI 2019 kB/NA exact constants + SDK available now. Send ONLY from yehor@metagenesis-core.dev via Zoho. Check Zoho SPAM before sending.
+- **Description:** Wave-2 outreach to benchmark integrity community. Drafts in reports/WAVE2_OUTREACH_DRAFTS.md. Send ONLY from yehor@metagenesis-core.dev via Zoho.
 
 ### TASK-033
 - **Title:** Check Zoho SPAM every session — protocol rule
 - **Status:** PENDING
 - **Priority:** P1
-- **Description:** Brian Nosek reply was found in SPAM folder — missed for weeks. Non-negotiable protocol rule: check Zoho SPAM at start of every session. Add to CLAUDE.md session checklist. This is not optional.
+- **Description:** Outreach replies land in Zoho SPAM. Non-negotiable: check at every session start. Add to CLAUDE.md session checklist. This is not optional.
 
 ### TASK-034
 - **Title:** Fix site footer JOSS claim
