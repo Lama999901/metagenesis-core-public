@@ -320,6 +320,17 @@ def recall():
         for k, v in sorted_patterns[:5]:
             print(f"  [{v['count']}x] {k[:70]}")
 
+    # Strategic context from synthesis
+    strategic = MEMORY_DIR / "strategic_memory.json"
+    if strategic.exists():
+        sm = json.loads(strategic.read_text(encoding="utf-8"))
+        print(f"\n{C}STRATEGIC CONTEXT:{X}")
+        print(f"  North star: {sm.get('project_north_star', '?')}")
+        resolved = sm.get('resolved_forever', [])
+        print(f"  Resolved forever: {len(resolved)} ghost patterns")
+        active = sm.get('active_known_issues', [])
+        print(f"  Active issues: {len(active)}")
+
 
 # ── Brief — one-line summary for CLAUDE.md injection ─────────────────────────
 def brief():
@@ -355,12 +366,94 @@ def stats():
         print(f"  Trend:             {trend}")
 
 
+# ── Synthesize — full memory synthesis ──────────────────────────────────────
+def synthesize():
+    """Full memory synthesis -- process all sessions, resolve ghosts, create strategic files."""
+    print(f"\n{B}{C}== AGENT MEMORY: SYNTHESIZE =={X}")
+
+    kb = load_kb()
+    patterns = load_patterns()
+    sessions = kb.get("sessions", [])
+
+    # 1. Resolve ghost patterns
+    resolved_file = MEMORY_DIR / "resolved_patterns.json"
+    existing_resolved = json.loads(resolved_file.read_text(encoding="utf-8")) if resolved_file.exists() else {}
+
+    ghost_count = 0
+    for key, pat in list(patterns.items()):
+        last_seen = pat.get("last_seen", "")[:10]
+        if last_seen and last_seen < datetime.now().strftime("%Y-%m-%d"):
+            # Check if pattern appeared in last 5 sessions
+            recent = sessions[-5:] if len(sessions) >= 5 else sessions
+            still_active = False
+            for s in recent:
+                issues = s.get("file_issues", {})
+                if isinstance(issues, dict):
+                    all_issue_texts = []
+                    for v in issues.values():
+                        if isinstance(v, list):
+                            all_issue_texts.extend(v)
+                    if any(key[:30].lower() in str(i).lower() for i in all_issue_texts):
+                        still_active = True
+                        break
+                elif isinstance(issues, list):
+                    if any(key[:30].lower() in str(i).lower() for i in issues):
+                        still_active = True
+                        break
+            if not still_active:
+                pat["status"] = "resolved"
+                pat["resolution_date"] = last_seen
+                existing_resolved[key] = pat
+                ghost_count += 1
+
+    resolved_file.write_text(json.dumps(existing_resolved, indent=2, ensure_ascii=False), encoding="utf-8")
+
+    # Clear resolved from active patterns
+    active_patterns = {k: v for k, v in patterns.items()
+                       if k not in existing_resolved}
+    save_patterns(active_patterns)
+
+    # 2. Build trajectory
+    trajectory = []
+    seen_counts = set()
+    for s in sessions:
+        tc = s.get("actual_test_count") or s.get("manifest_test_count", 0)
+        ts = s.get("timestamp", "")[:10]
+        if tc and tc > 0 and tc not in seen_counts:
+            seen_counts.add(tc)
+            trajectory.append({"date": ts, "tests": tc})
+    trajectory.sort(key=lambda x: x["date"])
+
+    traj_file = MEMORY_DIR / "project_trajectory.json"
+    traj_data = {
+        "trajectory": trajectory,
+        "growth_rate": f"{trajectory[-1]['tests']/trajectory[0]['tests']:.1f}x in {len(set(t['date'] for t in trajectory))} snapshots" if trajectory else "no data",
+        "synthesized": datetime.now().strftime("%Y-%m-%d")
+    }
+    traj_file.write_text(json.dumps(traj_data, indent=2), encoding="utf-8")
+
+    # 3. Print summary
+    print(f"  Synthesized {len(sessions)} sessions")
+    print(f"  Resolved {ghost_count} ghost patterns")
+    print(f"  Active patterns: {len(active_patterns)}")
+    if trajectory:
+        print(f"  Test trajectory: {trajectory[0]['tests']} -> {trajectory[-1]['tests']}")
+    print(f"  Created: project_trajectory.json, resolved_patterns.json")
+
+    strategic = MEMORY_DIR / "strategic_memory.json"
+    if strategic.exists():
+        print(f"  strategic_memory.json: exists")
+
+    print(f"\n{G}  SYNTHESIS COMPLETE{X}")
+
+
 # ── Main ─────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "observe"
-    if cmd == "observe":  observe()
-    elif cmd == "recall": recall()
-    elif cmd == "brief":  brief()
-    elif cmd == "stats":  stats()
+    if cmd == "observe":      observe()
+    elif cmd == "recall":     recall()
+    elif cmd == "brief":      brief()
+    elif cmd == "stats":      stats()
+    elif cmd == "synthesize": synthesize()
     else:
-        print(f"Usage: agent_learn.py [observe|recall|brief|stats]")
+        print(f"Usage: agent_learn.py [observe|recall|brief|stats|synthesize]")
