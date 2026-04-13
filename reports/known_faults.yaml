@@ -104,6 +104,42 @@ known_faults:
     ticket_ref: "https://github.com/Lama999901/metagenesis-core-public/issues"
     mitigation: "Peer review claim templates independently. Protocol scope is provenance, not correctness."
 
+  - fault_id: "FAULT_007"
+    category: "SUPPLY_CHAIN"
+    severity: "HIGH"
+    description: >
+      Attacker replaces verifier script with one that always returns PASS.
+    affected_claims: []
+    status: "FAULT_EXPECTED"
+    ticket_ref: "https://github.com/Lama999901/metagenesis-core-public/issues"
+    mitigation: "mg.py is MIT open source — any verifier can independently re-implement from spec. Checksum mg.py before use in critical workflows. mg_self_audit.py provides Ed25519-signed baseline for core scripts."
+
+  - fault_id: "FAULT_008"
+    category: "HUMAN_PROCESS"
+    severity: "MEDIUM"
+    description: >
+      Human verifier skips running mg.py verify, trusts reported result
+      instead. This is outside protocol scope — the protocol cannot prevent
+      human decisions not to use it.
+    affected_claims: []
+    status: "FAULT_EXPECTED"
+    ticket_ref: "https://github.com/Lama999901/metagenesis-core-public/issues"
+    mitigation: "Protocol cannot prevent human decisions. Governance policies must mandate verification. Automated CI pipelines (GitHub Action) remove human from verification loop."
+
+  - fault_id: "FAULT_009"
+    category: "PROTOCOL_SCOPE"
+    severity: "INFO"
+    description: >
+      kB and NA are exact (zero uncertainty) because they are DEFINED by
+      SI 2019, not measured. This is a feature, not a limitation — but
+      should be documented. This makes PHYS-01 and PHYS-02 anchors
+      stronger than NIST-measured constants (MTR series), not weaker.
+      SI 2019 redefinition intentionally fixed these values.
+    affected_claims: ["PHYS-01", "PHYS-02"]
+    status: "FAULT_EXPECTED"
+    ticket_ref: "https://github.com/Lama999901/metagenesis-core-public/issues"
+    mitigation: "No action needed. SI 2019 exact definition strengthens the physical anchor. Documented for clarity."
+
 fault_classification:
   FAULT_EXPECTED: "Known issue that does not impact system operation"
   FAULT_RESOLVED: "Issue that has been fixed"
@@ -111,8 +147,8 @@ fault_classification:
 
 audit_metadata:
   generated: "2026-03-15"
-  total_faults: 6
+  total_faults: 9
   critical_faults: 0
-  expected_faults: 6
+  expected_faults: 9
   system_impact: "NONE — no external dependencies, stdlib only"
   ci_impact: "NONE — 2407 tests pass, steward_audit PASS"

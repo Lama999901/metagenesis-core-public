@@ -104,6 +104,27 @@ The bundle is the proof. It travels with the result. Anyone verifies it. Offline
 
 ---
 
+## SDK — Three Lines to Verify
+
+```python
+from sdk.metagenesis import MetaGenesisClient
+
+result = MetaGenesisClient().verify("bundle/")
+print("PASS" if result.passed else "FAIL")
+```
+
+See [docs/SDK.md](docs/SDK.md) for full API reference, GitHub Action integration, and real-world examples.
+
+## GitHub Action — One Line in CI
+
+```yaml
+- uses: Lama999901/metagenesis-core-public/.github/actions/verify-bundle@main
+  with:
+    bundle_path: ./results/bundle
+```
+
+---
+
 ## The Adversarial Gauntlet
 
 Every claim is backed by adversarial tests that attempt to break it. Every test runs in CI on every merge.
@@ -406,6 +427,17 @@ Patent pending: protocol innovations are protected.
 Commercial licensing available for organizations building on the protocol.
 
 ---
+
+## Deep Reading
+
+| Document | What it answers |
+|----------|----------------|
+| [The Verification Gap](docs/VISION.md) | Why every computational result needs a tamper-evident artifact |
+| [Proof, Not Trust](docs/PHILOSOPHICAL_FOUNDATION.md) | The epistemological foundation — why cryptographic proof is categorically different from trust |
+| [Evolutionary Architecture](docs/EVOLUTIONARY_ARCHITECTURE.md) | How the protocol verifies its own evolution |
+| [Roadmap](docs/ROADMAP.md) | Protocol → Standard → Infrastructure → Universal |
+| [Regulatory Gaps](docs/REGULATORY_GAPS.md) | FDA, EU AI Act, Basel III coverage assessment |
+| [SDK Reference](docs/SDK.md) | Full API, GitHub Action, real-world examples |
 
 ## For AI Agents
 

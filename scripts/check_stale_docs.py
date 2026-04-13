@@ -103,10 +103,6 @@ CONTENT_CHECKS = {
         "banned": ["282 tests", "511 tests", "544 tests", "595 tests", "601 tests", "906 tests", "966 tests", "1050 tests", "1125 tests", "1198 tests", "1273 tests", "1634 tests", "1750 tests", "1753 tests", "2063 tests", "Architecture v0.2", "Three verification layers"],
         "required": ["2407 tests", "Five verification layers"],
     },
-    "docs/ROADMAP.md": {
-        "banned": ["Current version: 0.2", "Current version: 0.3", "Current version: 0.4", "282 adversarial", "595 adversarial", "601 adversarial", "906 adversarial", "966 adversarial", "1050 adversarial", "1125 adversarial", "1273 adversarial", "1313 adversarial", "1634 adversarial", "1750 adversarial", "1753 adversarial", "2063 adversarial", "2078 adversarial"],
-        "required": ["0.9.0", "2407 adversarial"],
-    },
     "ppa/README_PPA.md": {
         "banned": ["282 tests", "511 tests", "544 tests", "595 tests", "601 tests", "906 tests", "966 tests", "1050 tests", "1125 tests", "1198 tests", "1273 tests", "1634 tests", "1750 tests", "1753 tests", "2063 tests", "Current state (2026-03-17)"],
         "required": ["2407 tests", "8 innovations"],
@@ -354,6 +350,26 @@ CONTENT_CHECKS = {
     "reports/WAVE2_OUTREACH_DRAFTS.md": {
         "banned": [],
         "required": [],
+    },
+    "docs/VISION.md": {
+        "banned": ["tamper-proof", "blockchain"],
+        "required": ["verification gap", "physical anchor"],
+    },
+    "docs/PHILOSOPHICAL_FOUNDATION.md": {
+        "banned": ["tamper-proof", "blockchain"],
+        "required": ["verifiability", "SCOPE_001"],
+    },
+    "docs/EVOLUTIONARY_ARCHITECTURE.md": {
+        "banned": [],
+        "required": ["agent_evolution.py", "22 checks"],
+    },
+    "docs/REGULATORY_GAPS.md": {
+        "banned": [],
+        "required": ["EU AI Act", "Basel III", "FDA"],
+    },
+    "docs/ROADMAP.md": {
+        "banned": ["Current version: 0.2", "Current version: 0.3", "Current version: 0.4", "282 adversarial", "595 adversarial", "601 adversarial", "906 adversarial", "966 adversarial", "1050 adversarial", "1125 adversarial", "1273 adversarial", "1313 adversarial", "1634 adversarial", "1750 adversarial", "1753 adversarial", "2063 adversarial", "2078 adversarial"],
+        "required": ["v1.0.0-rc1", "Level 1", "Level 2"],
     },
 }
 
