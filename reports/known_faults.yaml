@@ -140,6 +140,38 @@ known_faults:
     ticket_ref: "https://github.com/Lama999901/metagenesis-core-public/issues"
     mitigation: "No action needed. SI 2019 exact definition strengthens the physical anchor. Documented for clarity."
 
+  - fault_id: "FAULT_010"
+    category: "PLATFORM_COMPATIBILITY"
+    severity: "EXPECTED"
+    description: >
+      Windows default encoding (cp1252) causes UnicodeEncodeError when
+      scripts print Unicode characters (checkmarks, arrows, emoji).
+      Every Python script in the project includes a workaround:
+      io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace').
+      This is a Windows platform limitation, not a protocol defect.
+      Linux and macOS use UTF-8 by default and are unaffected.
+    affected_claims: []
+    status: "FAULT_EXPECTED"
+    ticket_ref: "https://github.com/Lama999901/metagenesis-core-public/issues"
+    mitigation: "All scripts include UTF-8 stdout wrapper. New scripts must include the same pattern. See CLAUDE.md BUG 4."
+
+  - fault_id: "FAULT_011"
+    category: "PLATFORM_COMPATIBILITY"
+    severity: "EXPECTED"
+    description: >
+      SHA-256 hashes are sensitive to line ending differences (CRLF on
+      Windows vs LF on Linux/macOS). A bundle created on one platform
+      could fail verification on another if raw file bytes are hashed.
+      The project provides fingerprint_file() in backend/progress/data_integrity.py
+      which normalizes line endings before hashing. Using hashlib.sha256()
+      directly on file bytes (without normalization) will produce
+      platform-dependent hashes. This is a known cross-platform issue,
+      not a protocol defect.
+    affected_claims: []
+    status: "FAULT_EXPECTED"
+    ticket_ref: "https://github.com/Lama999901/metagenesis-core-public/issues"
+    mitigation: "Always use fingerprint_file() from data_integrity.py instead of raw hashlib. See CLAUDE.md BUG 2."
+
 fault_classification:
   FAULT_EXPECTED: "Known issue that does not impact system operation"
   FAULT_RESOLVED: "Issue that has been fixed"
@@ -147,8 +179,8 @@ fault_classification:
 
 audit_metadata:
   generated: "2026-03-15"
-  total_faults: 9
+  total_faults: 11
   critical_faults: 0
-  expected_faults: 9
+  expected_faults: 11
   system_impact: "NONE — no external dependencies, stdlib only"
   ci_impact: "NONE — 2407 tests pass, steward_audit PASS"
