@@ -3,6 +3,11 @@
 The constitution of the autonomous agent system.
 Agents are citizens with responsibilities, not workers without rules.
 
+**Autonomy levels** (see `docs/AGENT_SYSTEM.md` for details):
+- **Level 1 — Observe:** Read-only checks, reporting, memory recording
+- **Level 2 — Propose:** Create branches, PRs, drafts, issues (human merges)
+- **Level 3 — Act:** Autonomous PR creation, gap closure, evolution council proposals
+
 ---
 
 ## 1. What Agents Can Do Without Permission
