@@ -231,6 +231,75 @@ def format_proposal(prop):
 
 
 # ── Commands ────────────────────────────────────────────────────────────────
+AGENT_TASKS_FILE = REPO_ROOT / "AGENT_TASKS.md"
+
+
+def _get_next_task_number():
+    """Find the highest TASK-NNN number in AGENT_TASKS.md and return next."""
+    if not AGENT_TASKS_FILE.exists():
+        return 1
+    content = AGENT_TASKS_FILE.read_text(encoding="utf-8", errors="ignore")
+    numbers = re.findall(r'TASK-(\d+)', content)
+    if numbers:
+        return max(int(n) for n in numbers) + 1
+    return 1
+
+
+def _promote_to_agent_tasks(patterns):
+    """Promote high-count recent patterns to AGENT_TASKS.md as PENDING governance proposals."""
+    if not AGENT_TASKS_FILE.exists():
+        return 0
+
+    content = AGENT_TASKS_FILE.read_text(encoding="utf-8", errors="ignore")
+    now = datetime.now()
+    promoted = 0
+
+    for key, data in patterns.items():
+        count = data.get("count", 0)
+        last_seen = data.get("last_seen", "")[:10]
+
+        # Only promote if count >= 5 AND last seen within 30 days
+        if count < 5:
+            continue
+        if not last_seen:
+            continue
+        try:
+            last_dt = datetime.strptime(last_seen, "%Y-%m-%d")
+            if (now - last_dt).days > 30:
+                continue
+        except ValueError:
+            continue
+
+        # Skip if already proposed in AGENT_TASKS.md
+        short_key = key[:40]
+        if short_key in content:
+            continue
+
+        task_num = _get_next_task_number() + promoted
+        fix_hint = data.get("fix_hint", "Review pattern and decide on governance action.")
+        first_seen = data.get("first_seen", "?")
+
+        entry = (
+            f"\n### TASK-{task_num:03d}\n"
+            f"- **Title:** Governance proposal: {key[:60]}\n"
+            f"- **Status:** PENDING\n"
+            f"- **Priority:** P2\n"
+            f"- **Description:** Pattern seen {count} times, "
+            f"first: {first_seen}, last: {last_seen}. "
+            f"Fix hint: {fix_hint[:200]}. "
+            f"Review and decide if this should become a check in agent_evolution.py.\n"
+        )
+
+        content += entry
+        promoted += 1
+
+    if promoted > 0:
+        AGENT_TASKS_FILE.write_text(content, encoding="utf-8")
+        print(f"  {G}Promoted {promoted} pattern(s) to AGENT_TASKS.md as PENDING governance proposals{X}")
+
+    return promoted
+
+
 def cmd_promote():
     """Run promotion -- find high-frequency patterns, write proposals."""
     print(f"\n{B}{C}== PATTERN PROMOTER -- Biologis Promotion Rite =={X}")
@@ -239,6 +308,7 @@ def cmd_promote():
     patterns = load_patterns()
     if not patterns:
         print(f"  {Y}No patterns found in {PATTERNS_FILE}{X}")
+        # Still check for governance task promotion (from resolved patterns re-emerging)
         return 0
 
     evo_source = load_evolution_source()
@@ -298,6 +368,9 @@ def cmd_promote():
         print(f"  PROP-{prop['number']:03d}: {prop['key'][:55]}")
     print(f"  The Biologis has spoken (PROMOTION_COMPLETE)")
     print(f"{'='*50}\n")
+
+    # Promote high-count patterns to AGENT_TASKS.md for visibility
+    _promote_to_agent_tasks(patterns)
 
     return 0
 

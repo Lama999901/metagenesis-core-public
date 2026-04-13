@@ -66,6 +66,12 @@ jobs:
         run: |
           python scripts/agent_learn.py observe
 
+      - name: Synthesize agent memory
+        run: |
+          python scripts/agent_learn.py synthesize
+          echo 'Memory synthesis complete'
+        continue-on-error: true
+
       - name: Auto-commit agent reports
         run: |
           git config user.name "github-actions[bot]"
