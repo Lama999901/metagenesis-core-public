@@ -95,3 +95,6 @@ check_*.py
 final_sweep.py
 phase_registry.json
 .agent_memory/
+
+# Vault source (private project knowledge — lives in Obsidian Brain)
+vault_source/

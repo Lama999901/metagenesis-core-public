@@ -439,6 +439,16 @@ This shows recurring issues + auto-fix hints from 57 sessions.
 
 ---
 
-*CLAUDE.md v2.1 — 2026-04-08 — MetaGenesis Core v1.0.0-rc1 LIVE*
+---
+
+## Knowledge Vault
+
+Private vault: `C:\Users\999ye\MetaGenesis-Brain\`
+Read `00-PRIMER.md` at session start for full context.
+Append to `01-sessions\YYYY-MM-DD.md` after each session.
+
+---
+
+*CLAUDE.md v2.2 — 2026-04-12 — MetaGenesis Core v1.0.0-rc1 LIVE*
 *2407 tests | 20 claims | 22 checks | Level 3 autonomous forge ACTIVE*
 *Mission: notary for computations. First client = history.*
