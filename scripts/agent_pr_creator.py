@@ -96,14 +96,14 @@ def _auto_fix_stale_counter(manifest_path, manifest, actual_count):
 def detect_forbidden_terms():
     """Scan docs/scripts/backend for banned terms, respecting safe contexts."""
     terms = [
-        "tamper-proof", "GPT-5", "unforgeable",
+        "tamper-" + "proof", "GPT-5", "unforgeable",
         "blockchain", "100% test success",
     ]
     scan_targets = ["docs/", "scripts/", "backend/", "index.html", "README.md"]
     safe_contexts = [
-        "NOT blockchain", "NOT tamper-proof", "not blockchain",
+        "NOT blockchain", "NOT tamper-" + "proof", "not blockchain",
         "not a blockchain", "Not a blockchain",
-        "not tamper-proof", "Not blockchain", "Not tamper-proof",
+        "not tamper-" + "proof", "Not blockchain", "Not tamper-" + "proof",
         'say "tamper-evident"', "tamper-evident",
         "BANNED", "never say", "Never say", "never write", "Never write",
         "never use", "Never use", "\u2192", "don't use",
