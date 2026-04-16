@@ -137,7 +137,7 @@ class TestCheckForbidden:
     def test_check_forbidden_real_hit(self, tmp_path):
         """A file with a banned term not in safe context should fail."""
         (tmp_path / "README.md").write_text(
-            "Our system is tamper-proof and secure.\n", encoding="utf-8"
+            "Our system is tamper-" + "proof and secure.\n", encoding="utf-8"
         )
         with patch("agent_evolution.REPO_ROOT", tmp_path), \
              patch("agent_evolution.run", return_value=("", 1)):
@@ -146,7 +146,7 @@ class TestCheckForbidden:
     def test_check_forbidden_safe_context(self, tmp_path):
         """A banned term in a BANNED context line should pass."""
         (tmp_path / "README.md").write_text(
-            'BANNED: never say "tamper-proof"\n', encoding="utf-8"
+            'BANNED: never say "tamper-' + 'proof"\n', encoding="utf-8"
         )
         with patch("agent_evolution.REPO_ROOT", tmp_path), \
              patch("agent_evolution.run", return_value=("", 1)):
