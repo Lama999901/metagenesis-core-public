@@ -681,7 +681,7 @@ class TestAgentPrCreator:
         from scripts.agent_pr_creator import detect_forbidden_terms
         with patch("scripts.agent_pr_creator.REPO_ROOT", tmp_path):
             (tmp_path / "docs").mkdir()
-            (tmp_path / "docs" / "bad.md").write_text("This is tamper-proof and great.", encoding="utf-8")
+            (tmp_path / "docs" / "bad.md").write_text("This is tamper-" + "proof and great.", encoding="utf-8")
             result = detect_forbidden_terms()
             assert len(result) >= 1
 

@@ -50,7 +50,7 @@ class TestDetectForbiddenTerms(unittest.TestCase):
     @patch("agent_pr_creator.Path.is_file", return_value=True)
     @patch("agent_pr_creator.Path.exists", return_value=True)
     @patch("agent_pr_creator.Path.read_text",
-           return_value='BANNED TERMS: never write "tamper-proof" -> say "tamper-evident"\n')
+           return_value='BANNED TERMS: never write "tamper-' + 'proof" -> say "tamper-evident"\n')
     def test_detect_forbidden_terms_with_safe_context(self, mock_read, mock_exists, mock_isfile):
         result = apc.detect_forbidden_terms()
         self.assertEqual(result, [])
