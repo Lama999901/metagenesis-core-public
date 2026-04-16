@@ -352,11 +352,11 @@ CONTENT_CHECKS = {
         "required": [],
     },
     "docs/VISION.md": {
-        "banned": ["tamper-proof", "blockchain"],
+        "banned": ["tamper-" + "proof", "blockchain"],
         "required": ["verification gap", "physical anchor"],
     },
     "docs/PHILOSOPHICAL_FOUNDATION.md": {
-        "banned": ["tamper-proof", "blockchain"],
+        "banned": ["tamper-" + "proof", "blockchain"],
         "required": ["verifiability", "SCOPE_001"],
     },
     "docs/EVOLUTIONARY_ARCHITECTURE.md": {
