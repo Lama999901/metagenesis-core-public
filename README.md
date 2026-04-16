@@ -481,9 +481,12 @@ Commercial licensing available for organizations building on the protocol.
 | [The Verification Gap](docs/VISION.md) | Why every computational result needs a tamper-evident artifact |
 | [Proof, Not Trust](docs/PHILOSOPHICAL_FOUNDATION.md) | The epistemological foundation — why cryptographic proof is categorically different from trust |
 | [Evolutionary Architecture](docs/EVOLUTIONARY_ARCHITECTURE.md) | How the protocol verifies its own evolution |
+| [Client Journey](docs/CLIENT_JOURNEY.md) | 6 persona journeys from trigger moment to integrated workflow |
 | [Roadmap](docs/ROADMAP.md) | Protocol → Standard → Infrastructure → Universal |
 | [Regulatory Gaps](docs/REGULATORY_GAPS.md) | FDA, EU AI Act, Basel III coverage assessment |
 | [SDK Reference](docs/SDK.md) | Full API, GitHub Action, real-world examples |
+| [Use Cases](docs/USE_CASES.md) | 14 domains × real incidents × exact regulatory citations × verified 3-step integration |
+| [Why Not Alternatives](docs/WHY_NOT_ALTERNATIVES.md) | Composability matrix (10 tools), CERT-02 walk-through, rerun-cost math |
 
 ## For AI Agents
 
