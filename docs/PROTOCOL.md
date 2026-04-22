@@ -386,37 +386,65 @@ no external dependencies.
 
 ---
 
-## 8 innovations (USPTO PPA #63/996,819)
+## 4 innovations filed in PPA #63/996,819 (2026-03-05)
 
-1. **Governance-Enforced Bidirectional Claim Coverage**
+These four innovations constitute the filed provisional patent scope. Each
+corresponds to a specific claim section in the PPA (§0020-0033).
+
+1. **Bidirectional Claim Coverage** — PPA §0020-0023
    `scripts/steward_audit.py :: _claim_coverage_bidirectional()`
+   Governance invariant: runner dispatch kinds ≡ claim_index kinds ≡
+   canonical_state claims. Violation blocks CI on every PR.
 
-2. **Tamper-Evident Bundle with Semantic Verification Layer**
+2. **Tamper-Evident Bundle with Semantic Verification** — PPA §0024-0027
    `scripts/mg.py :: _verify_pack() + _verify_semantic()`
-   Proven: `tests/steward/test_cert02_*`
+   Proven: `tests/steward/test_cert02_pack_includes_evidence_and_semantic_verify.py`
+   Catches strip-and-recompute attacks invisible to SHA-256-only integrity.
 
-3. **Policy-Gate Immutable Evidence Anchors**
-   `scripts/mg_policy_gate_policy.json` (locked_paths)
+3. **Policy-Gate Immutable Evidence Anchors** — PPA §0028-0030
+   `scripts/mg_policy_gate_policy.json` (locked_paths) +
    `.github/workflows/mg_policy_gate.yml`
+   CI-enforced immutability of locked paths; policy violations block merge.
 
-4. **Dual-Mode Canary Execution Pipeline**
+4. **Dual-Mode Canary Pipeline** — PPA §0031-0033
    `backend/progress/runner.py :: run_job(canary_mode=True/False)`
+   Same computation, different authority metadata; enables continuous health
+   verification without contaminating authoritative evidence.
+
+PPA §0034 explicitly confirms "four independent claims" in the filed application.
+
+---
+
+## 4 additional innovations (post-filing — to include in non-provisional by 2027-03-05)
+
+These four were added after the provisional filing and will be included in
+the non-provisional application before the 2027-03-05 deadline. They are
+not part of the filed PPA text.
 
 5. **Step Chain + Cross-Claim Cryptographic Chain**
    `backend/progress/mlbench1_accuracy_certificate.py :: _hash_step()`
    Proven: `tests/steward/test_cert03_*` + `tests/steward/test_cross_claim_chain.py`
+   4-step execution_trace with `trace_root_hash`; `anchor_hash` chains
+   claims across bundles (MTR-1 → DT-FEM-01 → DRIFT-01).
 
 6. **Bundle Signing (HMAC-SHA256 + Ed25519)**
    `scripts/mg_sign.py` + `scripts/mg_ed25519.py`
    Proven: `tests/steward/test_cert07_*` + `tests/steward/test_cert09_*`
+   Pure-Python Ed25519 (RFC 8032) plus HMAC fallback; no external crypto
+   dependencies.
 
 7. **Temporal Commitment (NIST Randomness Beacon)**
    `scripts/mg_temporal.py`
    Proven: `tests/steward/test_cert10_*`
+   Pre-commit → beacon fetch → binding hash; proves WHEN a bundle was signed.
 
 8. **5-Layer Independence Proof**
-   Each layer catches attacks the other four miss.
    Proven: `tests/steward/test_cert11_*` + `tests/steward/test_cert12_*`
+   Each layer catches attacks the other four miss; coordinated multi-vector
+   attacks are caught only by the composition.
+
+Non-provisional filing will consolidate all 8 innovations under the single
+unified "MetaGenesis Verification Protocol" claim family.
 
 Verify full chain end-to-end:
 ```bash

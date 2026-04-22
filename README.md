@@ -348,14 +348,14 @@ Full limitations: `reports/known_faults.yaml` and `SECURITY.md`
 This is not a prototype.
 
 ```
-Tests:           2407 passing (3 skipped — platform-specific)
+Tests:           2407 passing (1 skipped — platform-specific)
 Real ratio:      51.2% (21 verified against real external data / 41 total)
 Claims:          20 active across 8 domains
 Layers:          5 independent (proven by CERT-11)
-Innovations:     8 innovations (patent pending)
+Innovations:     8 innovations (4 filed PPA #63/996,819, 4 post-filing — patent pending)
 Agent checks:    22 agent checks (CI-enforced)
-Agent sessions:  122 learning sessions (institutional memory)
-Coverage:        87.8%
+Agent sessions:  125 learning sessions (institutional memory)
+Coverage:        86.2%
 Bundles:         21 signed and independently verifiable
 Dependencies:    Python 3.11+ stdlib only (zero external dependencies)
 ```

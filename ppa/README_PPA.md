@@ -170,9 +170,11 @@ No invented features. Every section traceable to passing tests.*
 
 | Parameter | Value |
 |---|---|
-| Tests | 2407 |
-| Claims | 20 |
-| Innovations | 8 |
-| Agent checks | 19 |
-| Coverage | 81.2% |
+| Tests | 2407 (1 skipped) |
+| Claims | 20 active across 8 domains |
+| Innovations | 8 (4 filed PPA #63/996,819 + 4 post-filing) |
+| Agent checks | 22 |
+| Coverage | 86.2% |
+| Agent sessions | 125 (2026-03-18 → 2026-04-16) |
+| Real ratio | 51.2% (21 real / 41 total) |
 | Version | v1.0.0-rc1 |
