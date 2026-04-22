@@ -31,11 +31,30 @@ Every verification claim must be independently auditable offline with cryptograp
 
 ### Active
 
-## Current Milestone: v2.0.0 Autonomous Evolution
+## Current Milestone: v3.1.0 Documentation Deep Pass
 
-**Goal:** Transform MetaGenesis Core from a protocol into a self-verifying, client-ready standard with response infrastructure, recursive integrity, and architectural seeds for the future.
+**Goal:** Expand domain coverage and produce century-level client-facing documentation so a domain expert reads once and immediately understands problem, solution, and next action — closing the gap between a technically complete protocol (v3.0.0) and a protocol that sells itself to a serious evaluator.
 
 **Target features:**
+- `docs/USE_CASES.md` rewritten — 12+ domains with real incidents, regulations, and 3-step integration path per domain
+- `docs/CLIENT_JOURNEY.md` created — 6 persona journeys (ML engineer, computational chemist, model risk manager, FEM engineer, quant analyst, research scientist)
+- `docs/WHY_NOT_ALTERNATIVES.md` created — comparison table vs SHA-256/Docker/MLflow/DVC/manual audit/signed PDF/git, strip-recompute attack walk-through, rerun-is-not-verification with compute-cost examples
+- `docs/REGULATORY_GAPS.md` updated — MiFID II Art.17, ISO 26262, IEC 62304, FDA 510(k), UN R155/R156, NIH DMP 2023, NIST FIPS 203/204/205
+- `README.md` Deep Reading table updated with new docs
+- Full 8-gate audit (steward, pytest 2407, deep_verify 13/13, check_stale_docs --strict, agent_evolution 22/22, client_scenarios 4/4, open_data_demo, SDK import)
+- `reports/READINESS_ASSESSMENT.md` — honest 7-section world-readiness verdict
+
+---
+
+## Previous Milestone: v3.0.0 Client-Ready Protocol (Shipped: 2026-04-11)
+
+Goal: Shipped client-ready protocol (mg_claim_builder + end-to-end client demo flow + hardened counters + 90%+ coverage).
+
+## Previous Milestone: v2.0.0 Autonomous Evolution (Shipped: 2026-04-04)
+
+Goal: Transformed MetaGenesis Core from a protocol into a self-verifying, client-ready standard with response infrastructure, recursive integrity, and architectural seeds for the future.
+
+**Shipped:**
 - Recursive self-audit (protocol verifies itself via Ed25519-signed hash baseline)
 - Verification receipts (human-readable proof for clients and auditors)
 - Response infrastructure (60-second reply kit for outreach contacts)
@@ -84,4 +103,4 @@ MetaGenesis Core v1.0.0 shipped 2026-04-04. 1753 tests pass, 91.9% coverage. Pil
 This document evolves at phase transitions and milestone boundaries.
 
 ---
-*Last updated: 2026-04-04 after v2.0.0 milestone started*
+*Last updated: 2026-04-16 after v3.1.0 Documentation Deep Pass milestone started*
