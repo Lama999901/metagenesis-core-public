@@ -78,8 +78,10 @@ write_ops.py
 
 # Claude Project Knowledge (internal — not for public repo)
 # These files are Claude session context, not public protocol docs
+# (EVOLUTION_LOG.md previously listed here under the "private notebook"
+# convention; reintroduced 2026-04-28 as a PUBLIC operational record per
+# the loss-event registration in PR feat/ws-a0-data-loss-registration-plus-innovations.)
 CLAUDE_PROJECT_MASTER*.md
-EVOLUTION_LOG.md
 NEXT_CHAT_HANDOFF.md
 NEXT_CHAT_PRIMER.md
 TRANSFER_PROMPT*.md
