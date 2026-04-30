@@ -352,9 +352,9 @@ Tests:           2407 passing (1 skipped — platform-specific)
 Real ratio:      51.2% (21 verified against real external data / 41 total)
 Claims:          20 active across 8 domains
 Layers:          5 independent (proven by CERT-11)
-Innovations:     8 innovations (4 filed PPA #63/996,819, 4 post-filing — patent pending)
+Innovations:     10 (4 filed PPA #63/996,819, 4 post-filing implemented, 2 architecturally designed — patent pending)
 Agent checks:    22 agent checks (CI-enforced)
-Agent sessions:  125 learning sessions (institutional memory)
+Agent sessions:  institutional memory rebuilt 2026-04-28 (see EVOLUTION_LOG.md)
 Coverage:        86.2%
 Bundles:         21 signed and independently verifiable
 Dependencies:    Python 3.11+ stdlib only (zero external dependencies)
@@ -389,20 +389,22 @@ Full details: `COMMERCIAL.md`
 
 ---
 
-## 8 Patent-Pending Innovations
+## 10 Innovations: 8 Patent-Pending + 2 Architecturally Designed
 
-| # | Innovation | What it does |
-|---|-----------|-------------|
-| 1 | Bidirectional Claim Coverage | Every claim has an implementation. Every implementation has a claim. Enforced by static analysis. |
-| 2 | Semantic Verification Layer | Catches evidence-strip attacks that bypass SHA-256 integrity. |
-| 3 | Policy-Gate Immutable Anchors | CI blocks modification of locked evidence paths. No key custody. |
-| 4 | Dual-Mode Canary Pipeline | One interface, two modes, identical computation. Authority isolated to metadata. |
-| 5 | Step Chain + Cross-Claim Chain | 4-step cryptographic trace per claim. Upstream hashes embed in downstream claims. |
-| 6 | Bundle Signing (HMAC + Ed25519) | Proves WHO created the bundle. Dual-algorithm for shared-secret and asymmetric scenarios. |
-| 7 | Temporal Commitment (NIST Beacon) | Proves WHEN a bundle was signed. Pre-commitment prevents backdating. |
-| 8 | 5-Layer Independence Proof | Formal proof that no subset of four layers catches all attacks. |
+| # | Innovation | What it does | Status |
+|---|-----------|-------------|--------|
+| 1 | Bidirectional Claim Coverage | Every claim has an implementation. Every implementation has a claim. Enforced by static analysis. | Filed in PPA |
+| 2 | Semantic Verification Layer | Catches evidence-strip attacks that bypass SHA-256 integrity. | Filed in PPA |
+| 3 | Policy-Gate Immutable Anchors | CI blocks modification of locked evidence paths. No key custody. | Filed in PPA |
+| 4 | Dual-Mode Canary Pipeline | One interface, two modes, identical computation. Authority isolated to metadata. | Filed in PPA |
+| 5 | Step Chain + Cross-Claim Chain | 4-step cryptographic trace per claim. Upstream hashes embed in downstream claims. | Post-filing implemented |
+| 6 | Bundle Signing (HMAC + Ed25519) | Proves WHO created the bundle. Dual-algorithm for shared-secret and asymmetric scenarios. | Post-filing implemented |
+| 7 | Temporal Commitment (NIST Beacon) | Proves WHEN a bundle was signed. Pre-commitment prevents backdating. | Post-filing implemented |
+| 8 | 5-Layer Independence Proof | Formal proof that no subset of four layers catches all attacks. | Post-filing implemented |
+| 9 | Self-Verifying Recursive Learning Layer | The protocol's own learning record is verified by the same 5-layer chain it applies to external claims. Loss or modification is mechanically detectable. | Architecturally designed — see [docs/INNOVATION_09_SELF_VERIFYING_LEARNING.md](docs/INNOVATION_09_SELF_VERIFYING_LEARNING.md) — v3.2.0 implementation target |
+| 10 | Federated Verification Registry | Multiple independent instances aggregate signed observations without trust in any central party. No consensus mechanism, no token, no chain-of-blocks. | Architecturally designed — see [docs/INNOVATION_10_FEDERATED_REGISTRY.md](docs/INNOVATION_10_FEDERATED_REGISTRY.md) — v4.0.0 vision |
 
-USPTO Provisional Patent Application #63/996,819 | Filed 2026-03-05 | Inventor: Yehor Bazhynov
+USPTO Provisional Patent Application #63/996,819 | Filed 2026-03-05 | Inventor: Yehor Bazhynov | Non-provisional deadline: 2027-03-05 (will consolidate all 10 under a single unified claim family)
 
 ---
 
@@ -424,7 +426,7 @@ AI built the verification protocol for AI. Every line generated was tested again
 
 The weakness became the foundation.
 
-Today: 125 agent sessions. 11 failure patterns learned from the system's own mistakes, root-caused, and structurally eliminated. An evolution engine that watches itself build. Level 3 autonomous: the system reads its own coverage reports and decides what to build next. A human decides whether to change the rules.
+Today: 30 days of structured agent collaboration (2026-03-18 → 2026-04-16), 137 PRs across 8 release tags. Patterns learned from the system's own mistakes, root-caused, and structurally eliminated. An evolution engine that watches itself build. Level 3 autonomous: the system reads its own coverage reports and decides what to build next. A human decides whether to change the rules. Session-level detail rebuilt 2026-04-28 — see EVOLUTION_LOG.md for the loss event and recovery audit.
 
 If this is possible, what isn't?
 

@@ -87,7 +87,7 @@ Enforced by: python scripts/steward_audit.py → must output STEWARD AUDIT: PASS
 - steward_audit.py must PASS after every change
 - known_faults.yaml is authoritative — do not contradict it
 
-## 8 innovations — 4 filed in PPA #63/996,819 + 4 post-filing
+## 10 innovations — 4 filed in PPA #63/996,819 + 4 post-filing implemented + 2 architecturally designed
 
 PPA filed 2026-03-05 (§0020-0033 — four independent claims):
 1. Bidirectional Claim Coverage (PPA §0020-0023) → steward_audit.py :: _claim_coverage_bidirectional()
@@ -95,13 +95,17 @@ PPA filed 2026-03-05 (§0020-0033 — four independent claims):
 3. Policy-Gate Immutable Evidence Anchors (PPA §0028-0030) → mg_policy_gate_policy.json + .github/workflows/mg_policy_gate.yml
 4. Dual-Mode Canary Pipeline (PPA §0031-0033) → runner.py :: run_job(canary_mode=True/False)
 
-Post-filing (to include in non-provisional by 2027-03-05 — not in filed PPA text):
+Post-filing implemented (to include in non-provisional by 2027-03-05 — not in filed PPA text):
 5. Step Chain + Cross-Claim Cryptographic Chain → all 20 claims + anchor_hash  [test_cert03 + test_cross_claim_chain]
 6. Bundle Signing (HMAC-SHA256 + Ed25519) → mg_sign.py + mg_ed25519.py  [test_cert07 + test_cert09]
 7. Temporal Commitment (NIST Randomness Beacon) → mg_temporal.py  [test_temporal + test_cert10]
 8. 5-Layer Independence Proof → test_cert11 (coordinated multi-vector) + test_cert12 (encoding attacks)  [proves each layer catches attacks others miss]
 
-Non-provisional filing will consolidate all 8 under a single unified claim family.
+Architecturally designed (committed in repo before non-provisional filing — implementation in progress):
+9. Self-Verifying Recursive Learning Layer (AGENT-LEARNING-01, v3.2.0 target) → docs/INNOVATION_09_SELF_VERIFYING_LEARNING.md  [the protocol's own learning record verified by the same 5-layer chain it applies to external claims]
+10. Federated Verification Registry (FVR, v4.0.0 vision) → docs/INNOVATION_10_FEDERATED_REGISTRY.md  [multiple independent instances aggregate signed observations without trust in any central party; no consensus, no token]
+
+Non-provisional filing will consolidate all 10 under a single unified claim family.
 
 ## How to verify everything works
 
@@ -127,7 +131,7 @@ python demos/open_data_demo_01/run_demo.py                   # PASS PASS
 - PPA filed: 2026-03-05 — non-provisional deadline 2027-03-05
 - Payment: $299/bundle — yehor@metagenesis-core.dev
 - GitHub Release: v1.0.0-rc1
-- Agent memory: 125 sessions recorded (2026-03-18 → 2026-04-16), 0 active issues, strategic_memory.json synthesized
+- Agent memory: session-level record rebuilt 2026-04-28 after a working-copy data-loss event (full audit: reports/AGENT_LEARN_FULL_AUDIT_2026_04_28.md; deeper validation: reports/AGENT_LEARN_DEEPER_VALIDATION_2026_04_28.md; event registered in EVOLUTION_LOG.md). Decision history of the 30-day pre-loss window preserved in commits, tags, weekly reports, and 47 quick-task slugs.
 - JOSS paper: paper.md ready (resubmit Sep 2026)
 
 ## Key files

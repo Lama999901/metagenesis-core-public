@@ -318,7 +318,7 @@ Auto-processed by `scripts/agent_research.py`. First PENDING task gets executed 
 - **Status:** DONE (2026-04-12)
 - **Priority:** P1
 - **Output:** .agent_memory/strategic_memory.json, project_trajectory.json, resolved_patterns.json, security_learnings.json, verification_stats.json
-- **Description:** Add synthesize command to agent_learn.py. Process all 120 sessions. Resolve 15 ghost patterns. Create strategic_memory.json with north star, regulatory urgency, what-works. Create project_trajectory.json (511 to 2407 test evolution). Add strategic context to recall output.
+- **Description:** Add synthesize command to agent_learn.py. Process accumulated sessions and resolve ghost patterns into resolved_patterns.json. Create strategic_memory.json with north star, regulatory urgency, what-works. Create project_trajectory.json (511 to 2407 test evolution). Add strategic context to recall output.
 
 ### TASK-029
 - **Title:** World-class documentation — VISION, PHILOSOPHICAL_FOUNDATION, EVOLUTIONARY_ARCHITECTURE, REGULATORY_GAPS

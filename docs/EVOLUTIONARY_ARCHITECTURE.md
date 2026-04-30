@@ -33,7 +33,7 @@ The critical property of Level 1 is that it cannot be bypassed. It runs in CI, n
 
 After every successful merge to main, two additional systems activate. `agent_learn.py observe` records the session's outcomes -- what changed, what broke, what was fixed, how long it took -- into a persistent knowledge base. `agent_impact.py` traces the dependency graph of the change, identifying which downstream files, claims, and documentation might be affected by the modification.
 
-Level 2 is where the system builds institutional memory. Over 120 sessions, the knowledge base has accumulated patterns: which types of changes tend to cause downstream breakage, which documentation files are most frequently stale, which test domains are most sensitive to refactoring. This memory is not stored in anyone's head; it is stored in `.agent_memory/knowledge_base.json`, queryable by any agent in any future session.
+Level 2 is where the system builds institutional memory. The knowledge base accumulates per-session patterns: which types of changes tend to cause downstream breakage, which documentation files are most frequently stale, which test domains are most sensitive to refactoring. This memory is not stored in anyone's head; it is stored in `.agent_memory/knowledge_base.json`, queryable by any agent in any future session. (Note: a 30-day pre-2026-04-28 window of this record was lost in a working-copy cleanup; the decision history of that window is preserved in commits, tags, and `EVOLUTION_LOG.md`.)
 
 The distinction between Level 1 and Level 2 is important. Level 1 is a gatekeeper: it prevents bad changes from entering the codebase. Level 2 is a historian: it ensures that the project learns from every change, good or bad, so that Level 1's checks can be improved over time.
 
@@ -41,7 +41,7 @@ The distinction between Level 1 and Level 2 is important. Level 1 is a gatekeepe
 
 Periodically, a human operator triggers `agent_learn.py synthesize` or `agent_pattern_promoter.py`. These tools analyze the accumulated knowledge base, identify recurring patterns, and propose changes to governance rules, check thresholds, or documentation standards. Crucially, these proposals are only proposals. A human must review and approve them before they take effect.
 
-Level 3 exists because pattern recognition across 120 sessions can surface insights that no single session reveals. For example, the knowledge base might show that every time a new claim is added, the developer forgets to update `check_stale_docs.py` required strings in the same PR, causing false PASS results on 13 documentation files until someone notices. This pattern was in fact detected, documented as the "STALE RULES TRAP," and codified into UPDATE_PROTOCOL v1.1 -- but only after a human reviewed the evidence and agreed that the pattern was real and the fix was correct.
+Level 3 exists because pattern recognition across the accumulated session history can surface insights that no single session reveals. For example, the knowledge base might show that every time a new claim is added, the developer forgets to update `check_stale_docs.py` required strings in the same PR, causing false PASS results on 13 documentation files until someone notices. This pattern was in fact detected, documented as the "STALE RULES TRAP," and codified into UPDATE_PROTOCOL v1.1 -- but only after a human reviewed the evidence and agreed that the pattern was real and the fix was correct.
 
 The human judgment requirement at Level 3 is not a concession to convenience; it is a design decision rooted in the protocol's own logic. Governance rules define what the system considers "correct." Modifying those rules is a meta-level operation that changes the meaning of correctness itself. Automating that operation would create a system that can redefine its own success criteria -- a property that is incompatible with trustworthy verification.
 
@@ -61,7 +61,7 @@ This is the same logic that prevents a notary from notarizing their own document
 
 MetaGenesis Core maintains a persistent memory across all agent sessions in the `.agent_memory/` directory. This is not a log dump; it is a structured, queryable record of everything the project has learned about itself. Each file serves a distinct purpose, and together they form a longitudinal record that no single session could produce.
 
-**knowledge_base.json** is the raw historical record. It contains 120 session entries, each recording the timestamp, the version at the time, the actual test count, whether steward audit and deep verify passed, which files had issues, and what security concerns were flagged. This file is append-only in practice: each new session adds an entry, and no entry is ever deleted. It is the closest thing the project has to a permanent, auditable log of its own evolution.
+**knowledge_base.json** is the raw historical record. Each entry records the timestamp, the version at the time, the actual test count, whether steward audit and deep verify passed, which files had issues, and what security concerns were flagged. This file is append-only in practice: each new session adds an entry, and no entry is ever deleted. It is the closest thing the project has to a permanent, auditable log of its own evolution. Append-only-by-cryptographic-enforcement (rather than by convention alone) is the architectural target of Innovation 9 — see `docs/INNOVATION_09_SELF_VERIFYING_LEARNING.md`.
 
 **strategic_memory.json** is the synthesized wisdom distilled from the knowledge base. Where `knowledge_base.json` says "session 47 had a stale count in llms.txt," `strategic_memory.json` says "stale counts in llms.txt have been resolved permanently as of counter sync." It records which issues are truly resolved (and should never be flagged again), which are still active, which security principles are non-negotiable, and what the project's north star remains. It is the institutional memory that prevents the project from re-learning lessons it already learned.
 
@@ -73,7 +73,7 @@ MetaGenesis Core maintains a persistent memory across all agent sessions in the 
 
 **verification_stats.json** and **client_sessions.json** round out the memory system with operational data: verification performance metrics and client interaction history, respectively.
 
-The memory system's most important property is that it is machine-readable and agent-accessible. Any AI agent starting a new session can run `python scripts/agent_learn.py recall` and immediately receive the project's accumulated wisdom: what has been tried, what has failed, what patterns to watch for, what traps to avoid. The agent does not start from zero. It starts from 120 sessions of institutional knowledge.
+The memory system's most important property is that it is machine-readable and agent-accessible. Any AI agent starting a new session can run `python scripts/agent_learn.py recall` and immediately receive the project's accumulated wisdom: what has been tried, what has failed, what patterns to watch for, what traps to avoid. The agent does not start from zero. It starts from the project's accumulated memory — replenished session-by-session and audited end-to-end via commit history, release tags, and `EVOLUTION_LOG.md`.
 
 ---
 
@@ -89,9 +89,9 @@ The memory system is not merely a record; it is evidence that the project has ge
 
 These three episodes share a common structure: a problem occurs, the memory system records it, analysis identifies the root cause, and a structural fix prevents recurrence. This is not a process that the project follows; it is a property that the architecture enforces. The memory system makes problems visible. The four-level governance structure ensures that visibility leads to action. And the prohibition on Level 4 autonomy ensures that the actions taken are reviewed by a human before they change the rules of the game.
 
-The result, after 120 sessions, is a project that knows itself. It knows which files are most fragile, which checks are most valuable, which patterns have been resolved, and which principles are non-negotiable. That knowledge is not stored in documentation that might go stale; it is stored in structured data that is validated on every CI run. The verification protocol verifies itself, and the proof is in the memory.
+The result is a project that knows itself: which files are most fragile, which checks are most valuable, which patterns have been resolved, and which principles are non-negotiable. That knowledge is not stored in documentation that might go stale; it is stored in structured data that is validated on every CI run. The verification protocol verifies itself, and the proof is in the memory.
 
 ---
 
 *EVOLUTIONARY_ARCHITECTURE.md v1.0 -- 2026-04-12*
-*MetaGenesis Core v1.0.0-rc1 | 2407 tests | 20 claims | 22 checks | 120 sessions*
+*MetaGenesis Core v1.0.0-rc1 | 2407 tests | 20 claims | 22 checks*
