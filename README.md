@@ -91,7 +91,7 @@ A verification protocol that cannot verify its own evolution is incomplete. Meta
 The self-verification operates at four levels:
 
 ```
-Level 1 — CI (every push)     22 automated checks block merge on failure
+Level 1 — CI (every push)     22 automated checks run as advisory gates (21/22 green; semantic_audit is a known pre-existing FAIL)
 Level 2 — Memory (post-merge)  agent_learn.py records what changed, what broke, what was fixed
 Level 3 — Synthesis (periodic) Patterns promoted to governance rules — human approves
 Level 4 — Intentionally absent A system that can rewrite its own rules provides no guarantees
@@ -99,7 +99,7 @@ Level 4 — Intentionally absent A system that can rewrite its own rules provide
 
 Level 4 is missing on purpose. A notary cannot notarize their own documents. A verification system that autonomously adjusts its own success criteria would be circular: it passes because it decided it should pass. The human gate at Level 3 is not a weakness — it is the mechanism that makes everything below it trustworthy.
 
-The numbers are real: 122 agent learning sessions. 11 recurring failure patterns detected, root-caused, and structurally eliminated. Zero ghost patterns remaining. The system reads its own coverage reports and decides what to build next — but a human decides whether to change the rules.
+The learning loop is real, and so is its honesty about its own limits: a pre-2026-04-28 window of the agent-memory record was lost in a working-copy cleanup (the 2026-04-28 data-loss event), and that learning history is unrecoverable. The decision history of that window survives in commits, tags, and `EVOLUTION_LOG.md`, and the verifiable claim surface — 20 claims, 2407 tests, the 5-layer chain — was 100% intact throughout. The gap was detected, audited, and registered rather than hidden, which is itself evidence the protocol's self-application works. The system reads its own coverage reports and decides what to build next — but a human decides whether to change the rules.
 
 Full architecture: [docs/EVOLUTIONARY_ARCHITECTURE.md](docs/EVOLUTIONARY_ARCHITECTURE.md)
 
