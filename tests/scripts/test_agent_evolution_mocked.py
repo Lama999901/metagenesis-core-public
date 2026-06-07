@@ -385,3 +385,142 @@ class TestCheckClientContributions:
         (contrib_dir / "contrib_001.json").write_text("not json!", encoding="utf-8")
         with patch("agent_evolution.REPO_ROOT", tmp_path):
             assert ae.check_client_contributions() is True
+
+
+# -- ANTI-CHEAT PROOF: check_forbidden must still catch real prose -------------
+# Every banned literal below is assembled from fragments so this test FILE never
+# contains a raw banned token (the repo forbidden-terms scan would otherwise trip
+# on the test source itself, and check_stale_docs would flag it).
+
+# Banned literals built at runtime (never written whole in source):
+_BANNED_TAMPER = "tamper-" + "proof"
+_BANNED_CHAIN = "block" + "chain"
+
+
+class TestForbiddenCatchesProse:
+    """Proves Task 3 hardening did NOT gut detection (anti-cheat §0)."""
+
+    def test_real_prose_banned_term_is_caught(self, tmp_path):
+        # Plain prose (no safe-context marker) with a real banned term must FAIL.
+        (tmp_path / "README.md").write_text(
+            "This system is " + _BANNED_TAMPER + " and reliable.\n",
+            encoding="utf-8",
+        )
+        # Neutralize the grep dir-branch so only the is_file README.md path runs.
+        with patch("agent_evolution.REPO_ROOT", tmp_path), \
+             patch("agent_evolution.run", return_value=("", 1)):
+            assert ae.check_forbidden() is False
+
+    def test_real_prose_banned_term_in_docs_dir_is_caught(self, tmp_path):
+        # Prove the grep dir-branch genuinely flags a real prose hit (not skipped).
+        docs = tmp_path / "docs"
+        docs.mkdir()
+        bad = docs / "MARKETING.md"
+        bad.write_text(
+            "Our protocol is " + _BANNED_CHAIN + "-based and modern.\n",
+            encoding="utf-8",
+        )
+        # Simulate grep -rl returning this real (non-skipped) doc file.
+        with patch("agent_evolution.REPO_ROOT", tmp_path), \
+             patch("agent_evolution.run", return_value=("docs/MARKETING.md", 0)):
+            assert ae.check_forbidden() is False
+
+    def test_denylist_table_row_is_safe(self, tmp_path):
+        # A banned-terms TABLE row (denylist meta-context) must NOT be flagged.
+        (tmp_path / "README.md").write_text(
+            '| "' + _BANNED_CHAIN + '" | "cryptographic hash chain" |\n',
+            encoding="utf-8",
+        )
+        with patch("agent_evolution.REPO_ROOT", tmp_path), \
+             patch("agent_evolution.run", return_value=("", 1)):
+            assert ae.check_forbidden() is True
+
+    def test_arrow_safe_context_is_safe(self, tmp_path):
+        # A "→" mapping line (banned → replacement) must NOT be flagged.
+        (tmp_path / "README.md").write_text(
+            '"' + _BANNED_TAMPER + '" → "tamper-evident"\n',
+            encoding="utf-8",
+        )
+        with patch("agent_evolution.REPO_ROOT", tmp_path), \
+             patch("agent_evolution.run", return_value=("", 1)):
+            assert ae.check_forbidden() is True
+
+    def test_pycache_binary_path_is_skipped(self, tmp_path):
+        # A compiled __pycache__/*.pyc path reported by grep must be skipped,
+        # never producing a false positive — even if it "contains" a banned term.
+        with patch("agent_evolution.REPO_ROOT", tmp_path), \
+             patch("agent_evolution.run",
+                    return_value=("scripts/__pycache__/foo.cpython-311.pyc", 0)):
+            assert ae.check_forbidden() is True
+
+    def test_denylist_definer_source_is_skipped(self, tmp_path):
+        # The denylist-DEFINING sources (e.g. check_stale_docs.py) must be skipped:
+        # their presence IS the denylist, not heresy.
+        with patch("agent_evolution.REPO_ROOT", tmp_path), \
+             patch("agent_evolution.run",
+                    return_value=("scripts/check_stale_docs.py", 0)):
+            assert ae.check_forbidden() is True
+
+
+# -- PLATFORM TOLERANCE: manifest count (exact OR +KNOWN_WIN32_SKIPS) ----------
+
+
+class TestManifestTolerance:
+    """Proves Task 4 tolerance is exactly ±KNOWN_WIN32_SKIPS, not a wildcard."""
+
+    def _write_manifest(self, tmp_path, count):
+        (tmp_path / "system_manifest.json").write_text(
+            json.dumps({
+                "test_count": count,
+                "version": "1.0.0-rc1",
+                "active_claims": ["c"] * 20,
+            }),
+            encoding="utf-8",
+        )
+
+    def test_manifest_exact_match_passes(self, tmp_path):
+        self._write_manifest(tmp_path, 2410)
+        with patch("agent_evolution.REPO_ROOT", tmp_path):
+            assert ae.check_manifest(2410) is True
+
+    def test_manifest_tolerated_by_one_passes(self, tmp_path):
+        # Windows runtime: manifest (canonical) == actual + 1 skip.
+        self._write_manifest(tmp_path, 2410)
+        with patch("agent_evolution.REPO_ROOT", tmp_path):
+            assert ae.check_manifest(2410 - ae.KNOWN_WIN32_SKIPS) is True
+
+    def test_manifest_off_by_five_fails(self, tmp_path):
+        # Genuinely wrong count must still FAIL (anti-cheat: tolerance is bounded).
+        self._write_manifest(tmp_path, 2410)
+        with patch("agent_evolution.REPO_ROOT", tmp_path):
+            assert ae.check_manifest(2410 - 5) is False
+
+
+# -- PLATFORM TOLERANCE: CLAUDE.md count --------------------------------------
+
+
+class TestClaudeMdTolerance:
+    """Proves Task 4 CLAUDE.md tolerance is exactly ±KNOWN_WIN32_SKIPS."""
+
+    def test_claude_md_exact_passes(self, tmp_path):
+        (tmp_path / "CLAUDE.md").write_text(
+            "2410 tests\nv1.0.0-rc1\n", encoding="utf-8"
+        )
+        with patch("agent_evolution.REPO_ROOT", tmp_path):
+            assert ae.check_claude_md(2410) is True
+
+    def test_claude_md_tolerated_by_one_passes(self, tmp_path):
+        # CLAUDE.md mentions only canonical (2410); Windows actual is 2409.
+        (tmp_path / "CLAUDE.md").write_text(
+            "2410 tests\nv1.0.0-rc1\n", encoding="utf-8"
+        )
+        with patch("agent_evolution.REPO_ROOT", tmp_path):
+            assert ae.check_claude_md(2410 - ae.KNOWN_WIN32_SKIPS) is True
+
+    def test_claude_md_off_by_five_fails(self, tmp_path):
+        # Mentions neither actual nor actual+1 → must FAIL.
+        (tmp_path / "CLAUDE.md").write_text(
+            "1234 tests\nv1.0.0-rc1\n", encoding="utf-8"
+        )
+        with patch("agent_evolution.REPO_ROOT", tmp_path):
+            assert ae.check_claude_md(2410 - 5) is False

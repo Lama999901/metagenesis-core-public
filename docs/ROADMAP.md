@@ -17,7 +17,7 @@ The protocol works. It is complete, tested, and independently verifiable.
 **What exists today:**
 - 20 domain verification templates across 8 domains
 - 5 independent verification layers (integrity, semantic, step chain, signing, temporal)
-- 2407 adversarial tests, 22 automated evolution checks
+- 2423 adversarial tests, 22 automated evolution checks
 - SDK: `from sdk.metagenesis import MetaGenesisClient` — verify in 3 lines
 - GitHub Action: one-line CI integration for any repository
 - Ed25519 bundle signing with temporal commitment (NIST Beacon)

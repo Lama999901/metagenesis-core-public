@@ -2,7 +2,7 @@
 
 **Audience:** Technical evaluators asking "why do I need this on top of the tools I already use?"
 **Stance:** Composability, not replacement. MetaGenesis Core adds a verification envelope around the tools already in your stack.
-**Last updated:** 2026-04-16 · MetaGenesis Core v1.0.0-rc1 · 2407 tests PASS · 20 claims · 5 layers
+**Last updated:** 2026-04-16 · MetaGenesis Core v1.0.0-rc1 · 2423 tests PASS · 20 claims · 5 layers
 
 ---
 

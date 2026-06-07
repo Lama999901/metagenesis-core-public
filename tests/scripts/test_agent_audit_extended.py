@@ -225,3 +225,69 @@ class TestCheckPatentEdge:
         with patch("agent_audit.REPO_ROOT", tmp_path):
             result = aa.check_patent_integrity(config)
         assert result is False
+
+
+# -- Check D run-then-verify (Task 2) -----------------------------------------
+
+
+class TestCheckDRunsThenVerifies:
+    """Proves Check D RUNS run_scenario.py fresh, then verifies the produced
+    report with the original genuine gate intact (anti-cheat §0)."""
+
+    def _make_demo(self, tmp_path, report_body):
+        """Create a demo dir whose run_scenario.py writes VERIFY_REPORT.json
+        next to itself with `report_body` (a dict). Returns the demo dir."""
+        demo = tmp_path / "demos" / "client_scenarios" / "01_x"
+        demo.mkdir(parents=True)
+        # Embed the report as a Python literal via repr() so it is valid Python
+        # (json.dumps would emit true/false/null which are not Python literals).
+        script = (
+            "import json, os\n"
+            "here = os.path.dirname(os.path.abspath(__file__))\n"
+            "report = " + repr(report_body) + "\n"
+            "with open(os.path.join(here, 'VERIFY_REPORT.json'), 'w', "
+            "encoding='utf-8') as f:\n"
+            "    json.dump(report, f)\n"
+        )
+        (demo / "run_scenario.py").write_text(script, encoding="utf-8")
+        return demo
+
+    def test_runs_then_verifies_pass(self, tmp_path):
+        demo = self._make_demo(
+            tmp_path,
+            {"manifest_ok": True, "semantic_ok": True, "errors": []},
+        )
+        report_path = demo / "VERIFY_REPORT.json"
+        # Report must NOT pre-exist — the run must create it.
+        assert not report_path.exists()
+        with patch("agent_audit.REPO_ROOT", tmp_path):
+            result = aa.check_demo_scenarios({})
+        assert result is True
+        # The run actually produced the report.
+        assert report_path.exists()
+
+    def test_bad_report_still_fails(self, tmp_path):
+        # run_scenario writes a report with errors -> gate must FAIL (not bypassed).
+        self._make_demo(
+            tmp_path,
+            {"manifest_ok": True, "semantic_ok": False, "errors": ["boom"]},
+        )
+        with patch("agent_audit.REPO_ROOT", tmp_path):
+            result = aa.check_demo_scenarios({})
+        assert result is False
+
+    def test_stale_passing_report_is_overwritten_by_fresh_fail(self, tmp_path):
+        # A pre-existing PASSING report must not save a scenario whose fresh run
+        # produces a FAILING report (proves we read the FRESH report, not stale).
+        demo = self._make_demo(
+            tmp_path,
+            {"manifest_ok": False, "semantic_ok": False, "errors": ["fresh-fail"]},
+        )
+        # Plant a stale passing report that the run will overwrite.
+        (demo / "VERIFY_REPORT.json").write_text(
+            json.dumps({"manifest_ok": True, "semantic_ok": True, "errors": []}),
+            encoding="utf-8",
+        )
+        with patch("agent_audit.REPO_ROOT", tmp_path):
+            result = aa.check_demo_scenarios({})
+        assert result is False

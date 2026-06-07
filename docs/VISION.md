@@ -102,7 +102,7 @@ SHA-256 and Ed25519 are not quantum-resistant. A sufficiently powerful quantum c
 
 Physical anchor traceability applies only to domains with known physical constants. For ML accuracy, financial risk, pharma predictions, and data quality claims, the protocol provides tamper-evident provenance only. The thresholds in those domains are chosen conventions, not physical constants. This boundary is documented in known_faults.yaml under SCOPE_001 and is enforced in the protocol's own documentation. MetaGenesis does not claim that "accuracy >= 94%" is anchored to physical reality. It claims that the computation reporting 94% has not been tampered with.
 
-All 2407 tests pass in the reference environment (Python 3.11+, stdlib only). No database dependencies. No external services. No network required for verification. Local environment deviations may produce different results due to floating-point behavior or operating system differences. This is documented under ENV_001.
+All 2423 tests pass in the reference environment (Python 3.11+, stdlib only). No database dependencies. No external services. No network required for verification. Local environment deviations may produce different results due to floating-point behavior or operating system differences. This is documented under ENV_001.
 
 These boundaries are not weaknesses. They are the mechanism by which MetaGenesis establishes trust. A system that claims to solve everything invites skepticism about whether it solves anything. A system that documents precisely what it does and does not verify invites confidence in the claims it does make. Honest limits are the strongest form of credibility.
 
@@ -126,5 +126,5 @@ The verification gap is a civilizational problem. The evidence bundle is a civil
 
 ---
 
-*MetaGenesis Core v1.0.0-rc1 | 2407 tests | 20 claims | 5 layers | 8 innovations*
+*MetaGenesis Core v1.0.0-rc1 | 2423 tests | 20 claims | 5 layers | 8 innovations*
 *USPTO #63/996,819 | DOI: 10.5281/zenodo.19521091 | MIT License*

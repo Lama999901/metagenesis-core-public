@@ -42,7 +42,7 @@ in the non-provisional application.
 | MTR-5 (Stainless Steel SS316L) | 2026-03-29 | Physical anchor E=193 GPa (NIST) |
 | MTR-6 (Copper Conductivity) | 2026-03-29 | Physical anchor k=401 W/(m·K) (NIST) |
 
-**Current state (2026-04-02):** 20 claims, 2407 tests, 5 layers, 8 innovations.
+**Current state (2026-04-02):** 20 claims, 2423 tests, 5 layers, 8 innovations.
 Live state: reports/canonical_state.md
 
 ---
@@ -170,7 +170,7 @@ No invented features. Every section traceable to passing tests.*
 
 | Parameter | Value |
 |---|---|
-| Tests | 2407 (1 skipped) |
+| Tests | 2423 (1 skipped) |
 | Claims | 20 active across 8 domains |
 | Innovations | 8 (4 filed PPA #63/996,819 + 4 post-filing) |
 | Agent checks | 22 |

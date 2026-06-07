@@ -25,7 +25,7 @@ MetaGenesis Core's self-governance is organized into four levels, each with a di
 
 The first level runs on every push and every pull request, without exception and without bypass. Its engine is `agent_evolution.py`, which executes 22 independent checks against the repository state. These checks are not suggestions; they are gates. A failure in any single check blocks the merge.
 
-The 22 checks span the full surface area of the project: test suite execution (all 2407 tests must pass), steward audit (sealed files unmodified), deep verification (13 cryptographic proof tests), documentation currency (no stale counts or versions), manifest consistency (system_manifest.json matches reality), forbidden term detection (no "tamper-proof," no "blockchain," no stale counts), gap analysis (no missing claim registrations), CLAUDE.md validation (primary context file accurate), watchlist monitoring (flagged patterns), branch synchronization, code coverage (must not regress), self-improvement signal detection, chronicle updates, PR review automation, impact analysis, diff review, autonomous PR creation, semantic audit, self-audit (Ed25519-signed baseline verification), real-to-synthetic data ratio tracking, and client contribution monitoring.
+The 22 checks span the full surface area of the project: test suite execution (all 2423 tests must pass), steward audit (sealed files unmodified), deep verification (13 cryptographic proof tests), documentation currency (no stale counts or versions), manifest consistency (system_manifest.json matches reality), forbidden term detection (no "tamper-proof," no "blockchain," no stale counts), gap analysis (no missing claim registrations), CLAUDE.md validation (primary context file accurate), watchlist monitoring (flagged patterns), branch synchronization, code coverage (must not regress), self-improvement signal detection, chronicle updates, PR review automation, impact analysis, diff review, autonomous PR creation, semantic audit, self-audit (Ed25519-signed baseline verification), real-to-synthetic data ratio tracking, and client contribution monitoring.
 
 The critical property of Level 1 is that it cannot be bypassed. It runs in CI, not on a developer's machine. It checks sealed files that no agent is permitted to modify. It validates cryptographic baselines that would require the Ed25519 private key to forge. A developer or an AI agent that attempts to skip these checks will simply be unable to merge their work. This is not a policy enforced by trust; it is a policy enforced by infrastructure.
 
@@ -94,4 +94,4 @@ The result is a project that knows itself: which files are most fragile, which c
 ---
 
 *EVOLUTIONARY_ARCHITECTURE.md v1.0 -- 2026-04-12*
-*MetaGenesis Core v1.0.0-rc1 | 2407 tests | 20 claims | 22 checks*
+*MetaGenesis Core v1.0.0-rc1 | 2423 tests | 20 claims | 22 checks*

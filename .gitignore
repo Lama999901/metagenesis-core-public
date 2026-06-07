@@ -64,6 +64,14 @@ demos/open_data_demo_01/VERIFY_REPORT.json
 demos/open_data_demo_01/progress_runs/
 demos/open_data_demo_01/ledger_snapshots/
 
+# Demo client scenario runtime artifacts (produced by Check D run-then-verify)
+demos/client_scenarios/*/VERIFY_REPORT.json
+demos/client_scenarios/*/bundle/
+demos/client_scenarios/*/progress_runs/
+demos/client_scenarios/*/ledger_snapshots/
+demos/client_scenarios/*/ledger.jsonl
+demos/client_scenarios/*/data/
+
 # Temp fix/debug scripts (never commit these)
 fix_*.py
 fix_*.ps1
