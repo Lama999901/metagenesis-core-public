@@ -1,7 +1,7 @@
 # Regulatory Gap Analysis
 
 **Date:** 2026-04-16
-**Protocol version:** v1.0.0-rc1 (2407 tests, 20 claims, 5 verification layers, 8 innovations)
+**Protocol version:** v1.0.0-rc1 (2423 tests, 20 claims, 5 verification layers, 8 innovations)
 **Purpose:** Map MetaGenesis Core's 5-layer verification architecture and 20 scientific claims against 24 regulations a compliance officer, auditor, or regulator is likely to cite — with exact article / clause / section numbers, authoritative source links, and explicit `[GAP]` flags where MetaGenesis does not cover the requirement.
 
 ---

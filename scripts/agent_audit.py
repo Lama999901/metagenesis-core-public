@@ -3,7 +3,9 @@
 MetaGenesis Core — Semantic Audit
 =================================
 Verifies project coherence: physical anchors, claim matrix, innovations,
-demo scenarios, triple sync, patent integrity. Stdlib only. No subprocess.
+demo scenarios, triple sync, patent integrity. Stdlib only. Check D runs each
+demo run_scenario.py via subprocess (sys.executable) then verifies the fresh
+VERIFY_REPORT.json with the original genuine gate intact.
 
 Usage:
     python scripts/agent_audit.py              # full check
@@ -13,6 +15,7 @@ Usage:
 import io
 import json
 import re
+import subprocess
 import sys
 from collections import Counter
 from datetime import datetime
@@ -269,8 +272,30 @@ def check_demo_scenarios(config):
 
     for demo_dir in demo_folders:
         folder_name = demo_dir.name
-        run_ok = (demo_dir / "run_scenario.py").exists()
+        scenario_script = demo_dir / "run_scenario.py"
+        run_ok = scenario_script.exists()
         report_path = demo_dir / "VERIFY_REPORT.json"
+
+        # Run the scenario FRESH so VERIFY_REPORT.json is produced by an actual
+        # execution (not a stale/pre-committed artifact). run_scenario.py does
+        # os.chdir(REPO_ROOT) internally, so cwd=demo_dir is safe. On any failure
+        # we leave the report as-is and verify_ok will be evaluated below — a
+        # failed run must NOT be swallowed into a pass (anti-cheat: real verify).
+        if run_ok:
+            try:
+                subprocess.run(
+                    [sys.executable, str(scenario_script)],
+                    cwd=str(demo_dir),
+                    capture_output=True,
+                    text=True,
+                    encoding="utf-8",
+                    errors="replace",
+                    timeout=180,
+                )
+            except (subprocess.TimeoutExpired, OSError):
+                # Leave report untouched; gate below decides FAIL.
+                pass
+
         verify_ok = False
         if report_path.exists():
             try:

@@ -22,7 +22,7 @@
 
 | Parameter | Value |
 |---|---|
-| Tests | **2407 passing** |
+| Tests | **2423 passing** (2423 on Linux/CI; 2422 on win32, 1 platform skip) |
 | steward_audit | PASS |
 | CI | GREEN |
 | Active claims | **20** |
@@ -101,7 +101,7 @@ Physical anchor scope (SCOPE_001): MTR-1/2/3/4/5/6, DT-FEM-01, DRIFT-01, DT-CALI
 
 ```bash
 python scripts/steward_audit.py          # → STEWARD AUDIT: PASS
-python -m pytest tests/ -q               # → 2407 passed
+python -m pytest tests/ -q               # → 2423 passed (2422 + 1 skip on win32)
 python scripts/deep_verify.py            # → ALL 13 TESTS PASSED
 python demos/open_data_demo_01/run_demo.py  # → PASS PASS
 
