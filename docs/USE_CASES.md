@@ -1,6 +1,6 @@
 # Use Cases — MetaGenesis Core
 
-**Version:** v1.0.0-rc1 | **Claims:** 20 | **Tests:** 2423 | **Layers:** 5 | **Mode:** offline
+**Version:** v1.0.0-rc1 | **Claims:** 20 | **Tests:** 2428 | **Layers:** 5 | **Mode:** offline
 
 ---
 
@@ -390,4 +390,4 @@ Each domain section below follows the same structure: the computation, a real na
 
 ---
 
-*USE_CASES v2.0 — 2026-04-16 — MetaGenesis Core v1.0.0-rc1 — 14 domains, 20 active claims, 5-layer verification, 2423 tests PASS.*
+*USE_CASES v2.0 — 2026-04-16 — MetaGenesis Core v1.0.0-rc1 — 14 domains, 20 active claims, 5-layer verification, 2428 tests PASS.*
