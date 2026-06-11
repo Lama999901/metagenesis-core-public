@@ -29,7 +29,7 @@ line and exits non-zero **without writing a fabricated slice**.
 
 - **Dataset:** `PatronusAI/HaluBench` (public), split `test`, rows 0-49.
 - **Sealed snapshot SHA-256:**
-  `15ae5edbb633bf27856f6fd8281fc15ba53b08271403d77eb982d2ab29b41654`
+  `59fd523ed865d78863cac32d58d48b242103eb0e8b42d7dde78de6401e404806`
   (`data/halubench_slice.json`)
 - **Composition disclosure:** the slice is the *first 50 rows* of the split,
   chosen for determinism, not representativeness. The split is not shuffled, so

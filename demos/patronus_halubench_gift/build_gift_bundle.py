@@ -76,15 +76,18 @@ def fetch_slice() -> list:
 
 def write_referenced_figure() -> Path:
     note = DATA_DIR / "referenced_figure.md"
-    note.write_text(
-        "# Referenced figure (NOT recomputed by MetaGenesis)\n\n"
-        f"Patronus's published Lynx-70B overall figure: {REFERENCED_FIGURE}% "
-        "on HaluBench.\n\n"
-        f"Public source: {REFERENCED_SOURCE}\n\n"
-        "MetaGenesis Core did NOT recompute this number. This bundle seals a\n"
-        "50-sample dataset snapshot only; the figure above is cited as published\n"
-        "reference context, not a verified result.\n",
-        encoding="utf-8",
+    # write_bytes: LF line endings on every platform — these bytes are sealed
+    # by SHA-256, so the writes must be byte-deterministic (no CRLF translation).
+    note.write_bytes(
+        (
+            "# Referenced figure (NOT recomputed by MetaGenesis)\n\n"
+            f"Patronus's published Lynx-70B overall figure: {REFERENCED_FIGURE}% "
+            "on HaluBench.\n\n"
+            f"Public source: {REFERENCED_SOURCE}\n\n"
+            "MetaGenesis Core did NOT recompute this number. This bundle seals a\n"
+            "50-sample dataset snapshot only; the figure above is cited as published\n"
+            "reference context, not a verified result.\n"
+        ).encode("utf-8")
     )
     return note
 
@@ -126,8 +129,8 @@ def build_pack(slice_path: Path) -> Path:
         "files": files_entries,
         "root_hash": root_hash,
     }
-    (PACK_DIR / "pack_manifest.json").write_text(
-        json.dumps(manifest, indent=2, sort_keys=True), encoding="utf-8"
+    (PACK_DIR / "pack_manifest.json").write_bytes(
+        json.dumps(manifest, indent=2, sort_keys=True).encode("utf-8")
     )
     return PACK_DIR
 
@@ -167,9 +170,11 @@ def main() -> int:
             "length": len(rows),
             "rows": rows,
         }
-        slice_path.write_text(
-            json.dumps(slice_doc, indent=2, sort_keys=True, ensure_ascii=False),
-            encoding="utf-8",
+        # write_bytes for byte-determinism (LF everywhere; the hash seals bytes).
+        slice_path.write_bytes(
+            json.dumps(
+                slice_doc, indent=2, sort_keys=True, ensure_ascii=False
+            ).encode("utf-8")
         )
     slice_sha = _sha256_file(slice_path)
     print(f"Slice: {len(rows)} samples at {slice_path}")

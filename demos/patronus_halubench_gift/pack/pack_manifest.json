@@ -3,20 +3,20 @@
     {
       "bytes": 3306,
       "relpath": "README.md",
-      "sha256": "4d333996fe6a2009b37db9caf33758ac9cd3076f6e2d49a79b3095459fff05f4"
+      "sha256": "8b85cd9dc297db99764cf1bf184cd11a89d80a0949d7807173386e198f9b8e51"
     },
     {
-      "bytes": 73872,
+      "bytes": 73264,
       "relpath": "halubench_slice.json",
-      "sha256": "15ae5edbb633bf27856f6fd8281fc15ba53b08271403d77eb982d2ab29b41654"
+      "sha256": "59fd523ed865d78863cac32d58d48b242103eb0e8b42d7dde78de6401e404806"
     },
     {
-      "bytes": 352,
+      "bytes": 343,
       "relpath": "referenced_figure.md",
-      "sha256": "9cd22cf2ab83ede050498f9c23d574f1dfc1a996502ad93032f9a7c224af2def"
+      "sha256": "ab89ada61f95ceca9b1a549cde6d4a445c611f008a7c5873bce9993db4e1db1a"
     }
   ],
   "pack_version": "1",
   "protocol_version": 1,
-  "root_hash": "a68742e8724252570a4478562b8ccb7bb25b506ef3d7733f530c0dd4570fb64d"
+  "root_hash": "af1f04b2d51766db35bb23d5e8e1ca83168f5d72d779df162e87025ba63221e4"
 }

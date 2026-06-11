@@ -1,10 +1,10 @@
 {
   "version": "temporal-nist-v1",
-  "root_hash": "a68742e8724252570a4478562b8ccb7bb25b506ef3d7733f530c0dd4570fb64d",
-  "pre_commitment_hash": "6ab487ffb88568f009de9a36ab4a840327633c5d517b5c69f7f4984f87fa19e2",
-  "beacon_output_value": "86369242D0803EBC60BFA0F5428730F67319D4A92F6D751A142CAB4B5692C8726D92B36B449EA7FE206906882DB2412159B19DCD4D53692A2C42C298D185A50B",
-  "beacon_timestamp": "2026-06-11T06:46:00.000Z",
-  "beacon_pulse_uri": "https://beacon.nist.gov/beacon/2.0/chain/2/pulse/1827151",
+  "root_hash": "af1f04b2d51766db35bb23d5e8e1ca83168f5d72d779df162e87025ba63221e4",
+  "pre_commitment_hash": "0c5ec637f4810a3a89e99a00bc4fb357fb13343348646186c483e81f8ab15cd9",
+  "beacon_output_value": "C59543B6162A61E780F801584D5B5FBE2EE67C015AFEE6615E19EDF4F2FF831201F82E65926873B3AF7497302E87A6FC5B1E6E85C2EBAE3F0DABC44BDBBE6595",
+  "beacon_timestamp": "2026-06-11T06:50:00.000Z",
+  "beacon_pulse_uri": "https://beacon.nist.gov/beacon/2.0/chain/2/pulse/1827155",
   "beacon_status": "available",
-  "temporal_binding": "1aa12a741c72c8ec2c3675a14743854daf0b5860848ae4889a6794f05d26ba70"
+  "temporal_binding": "f496427a47de6b44d6216843cdf2e7a21592be25204b24c78e528b539f757117"
 }
