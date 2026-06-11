@@ -30,8 +30,6 @@ import time
 from datetime import datetime
 from pathlib import Path
 
-import pytest
-
 REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
@@ -62,46 +60,42 @@ class TestSecurityFindingsF1F3:
 
     # ── F1: smuggled (manifest-absent) file ────────────────────────────────
 
-    @pytest.mark.xfail(
-        reason=(
-            "PROP: _verify_pack does not enumerate pack dir against manifest "
-            "(smuggling vector, FAULT_012)"
-        ),
-        strict=True,
-    )
-    def test_f1_smuggled_file_should_be_rejected(self, tmp_path):
-        """SECURE expectation: a manifest-absent file in the pack is rejected.
+    def test_f1_smuggled_file_tripwire(self, tmp_path):
+        """Live tripwire for the FAULT_012 smuggling gap.
 
         mg.py:112 iterates only manifest['files'], never os.listdir(pack_dir),
-        so verify currently PASSES with the smuggled file present. strict=True
-        makes this a live tripwire: the day mg.py enumerates the pack dir, this
-        test starts passing and the xfail flips to a failure, signaling the fix.
+        so a file added to the pack but absent from pack_manifest.json is never
+        hashed or flagged: verify currently returns rc 0 / PASS with the smuggled
+        file present. This test ASSERTS that current (insecure) behavior, so it
+        is a passing test that pins the documented gap.
+
+        It is also a live tripwire: the day mg.py is hardened to enumerate the
+        pack directory and reject unlisted files, verify will return rc != 0,
+        this assertion will FAIL, and the failure message instructs the
+        maintainer to flip the test to the SECURE expectation (rc != 0) and
+        resolve FAULT_012. This gives the same fix-detecting behavior as a
+        strict-xfail without introducing a project-wide xfail (the suite's
+        canonical count invariant is collect == passed + win32_skip, with zero
+        xfails).
         """
         pack_dir = _build_pack(tmp_path)
         smuggled = pack_dir / "INJECTED.md"
         smuggled.write_text("smuggled payload not listed in pack_manifest.json")
-        r = _run_mg("pack", "verify", "--pack", str(pack_dir))
-        assert r.returncode != 0, (
-            "smuggled manifest-absent file should be rejected (FAULT_012)"
+
+        # The manifest was not changed, so the smuggled file is invisible to it.
+        manifest = json.loads(
+            (pack_dir / "pack_manifest.json").read_text(encoding="utf-8")
         )
-
-    def test_f1_smuggled_file_currently_passes(self, tmp_path):
-        """Companion green test pinning the CURRENT documented behavior.
-
-        Confirms the FAULT_012 gap: verify returns rc 0 / PASS even with an
-        extra file present that is absent from pack_manifest.json. This test is
-        the always-green half of the F1 tripwire pair.
-        """
-        pack_dir = _build_pack(tmp_path)
-        smuggled = pack_dir / "INJECTED.md"
-        smuggled.write_text("smuggled payload not listed in pack_manifest.json")
-        # The manifest itself was not changed, so the smuggled file is invisible.
-        manifest = json.loads((pack_dir / "pack_manifest.json").read_text(encoding="utf-8"))
         listed = {f["relpath"] for f in manifest["files"]}
         assert "INJECTED.md" not in listed, "smuggled file must not be in manifest"
+
         r = _run_mg("pack", "verify", "--pack", str(pack_dir))
-        assert r.returncode == 0, "current behavior: verify still returns rc 0"
-        assert "PASS" in r.stdout, "current behavior: verify still prints PASS"
+        assert r.returncode == 0 and "PASS" in r.stdout, (
+            "FAULT_012 TRIPWIRE FLIPPED: mg verify now rejects a manifest-absent "
+            "file (rc=" + str(r.returncode) + "). The smuggling gap appears fixed. "
+            "Update this test to assert rc != 0 (the SECURE expectation) and "
+            "resolve FAULT_012 in reports/known_faults.yaml."
+        )
 
     # ── F2: integrity passes, authenticity (signature) does not ────────────
 
