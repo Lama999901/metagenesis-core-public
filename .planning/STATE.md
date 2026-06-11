@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-04-16)
 Phase: Phase 28 (USE_CASES Deep Rewrite) — ready to plan
 Plan: —
 Status: Roadmap defined, awaiting `/gsd-plan-phase 28`
-Last activity: 2026-04-22 — Completed quick task 260421-s3f: agent_learn recursion signal diagnostic (verdict B — partial)
+Last activity: 2026-06-11 — Completed quick task 260610-w5t: F1-F3 security findings confirmed (F1 smuggling gap REAL → FAULT_012), SECURITY_MODEL.md, HaluBench gift bundle sealed + beacon-backed, count 2423→2428
 
 Progress: [··········] 0% (0/5 phases complete)
 
@@ -109,6 +109,10 @@ None. Research corpus is complete (22 incidents, 24 regulations, 10 alternatives
 | 260412-p78 | Deep audit: fix 2 skipped tests, sync 2405→2407, clean watchlist, reset main | 2026-04-13 | 5decfb9 | [260412-p78-reset-local-main-update-session-state-to](./quick/260412-p78-reset-local-main-update-session-state-to/) |
 | 260416-i4y | Fix TEST 6 forbidden terms - split literal strings | 2026-04-16 | c3d0416 | [260416-i4y-fix-test-6-forbidden-terms-split-literal](./quick/260416-i4y-fix-test-6-forbidden-terms-split-literal/) |
 | 260421-s3f | Diagnostic: validate agent_learn recursion signal integrity | 2026-04-22 | _pending_ | [260421-s3f-agent-learn-diagnostic](./quick/260421-s3f-agent-learn-diagnostic/) |
+| 260607-fu5 | Honesty fix: remove stale README:102 agent-memory claim, guard recurrence | 2026-06-07 | 03cc59d | — |
+| 260607-ijd | Genuine 22/22 agent_evolution (4 root causes fixed, count synced 2407→2423) | 2026-06-07 | 29ed669 | — |
+| 260608-str | Strategy capture: public docs/STRATEGY.md (PR #288) + private gitignored docs/DECISION_LOG.md | 2026-06-08 | 86316ff | — |
+| 260610-w5t | F1-F3 adversarial confirmation (FAULT_012), SECURITY_MODEL.md, HaluBench gift bundle (sealed, beacon-backed, mg verify PASS), counter-sync 2423→2428 | 2026-06-11 | 1b1c7aa | [260610-w5t-security-findings-f1-f3-adversarial-conf](./quick/260610-w5t-security-findings-f1-f3-adversarial-conf/) |
 
 ## Session Continuity
 
