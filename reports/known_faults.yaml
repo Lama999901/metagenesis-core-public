@@ -181,8 +181,8 @@ known_faults:
       from the manifest is neither hashed nor flagged (smuggling vector). A pack
       built by an untrusted party could carry an extra unlisted file alongside a
       valid manifest, and verify would still report PASS. Confirmed adversarially
-      in tests/steward/test_security_findings.py (strict-xfail tripwire plus a
-      companion test pinning the current behavior).
+      in tests/steward/test_security_findings.py via a live tripwire test that
+      pins the current behavior and fails the day the gap is closed.
     affected_claims: []
     status: "FAULT_EXPECTED"
     ticket_ref: "https://github.com/Lama999901/metagenesis-core-public/issues"

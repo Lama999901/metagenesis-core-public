@@ -79,8 +79,9 @@ from the manifest. A file added to the pack but never listed in the manifest is
 neither hashed nor flagged, so verify can report PASS with an unlisted file
 present (a smuggling vector). This is disclosed as **FAULT_012** in
 `reports/known_faults.yaml` and confirmed adversarially in
-`tests/steward/test_security_findings.py` (a strict-xfail tripwire plus a
-companion test pinning the current behavior).
+`tests/steward/test_security_findings.py` via a live tripwire test that pins the
+current behavior and fails — with instructions to flip to the secure
+expectation — the day `mg verify` is hardened to reject unlisted files.
 
 The **planned fix** is to enumerate the pack directory and reject any non-manifest
 file that is not listed. Until that ships, treat the manifest as the authoritative
