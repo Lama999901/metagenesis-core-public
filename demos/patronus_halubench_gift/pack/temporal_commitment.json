@@ -1,0 +1,10 @@
+{
+  "version": "temporal-nist-v1",
+  "root_hash": "a68742e8724252570a4478562b8ccb7bb25b506ef3d7733f530c0dd4570fb64d",
+  "pre_commitment_hash": "6ab487ffb88568f009de9a36ab4a840327633c5d517b5c69f7f4984f87fa19e2",
+  "beacon_output_value": "86369242D0803EBC60BFA0F5428730F67319D4A92F6D751A142CAB4B5692C8726D92B36B449EA7FE206906882DB2412159B19DCD4D53692A2C42C298D185A50B",
+  "beacon_timestamp": "2026-06-11T06:46:00.000Z",
+  "beacon_pulse_uri": "https://beacon.nist.gov/beacon/2.0/chain/2/pulse/1827151",
+  "beacon_status": "available",
+  "temporal_binding": "1aa12a741c72c8ec2c3675a14743854daf0b5860848ae4889a6794f05d26ba70"
+}

@@ -1,0 +1,22 @@
+{
+  "files": [
+    {
+      "bytes": 3306,
+      "relpath": "README.md",
+      "sha256": "4d333996fe6a2009b37db9caf33758ac9cd3076f6e2d49a79b3095459fff05f4"
+    },
+    {
+      "bytes": 73872,
+      "relpath": "halubench_slice.json",
+      "sha256": "15ae5edbb633bf27856f6fd8281fc15ba53b08271403d77eb982d2ab29b41654"
+    },
+    {
+      "bytes": 352,
+      "relpath": "referenced_figure.md",
+      "sha256": "9cd22cf2ab83ede050498f9c23d574f1dfc1a996502ad93032f9a7c224af2def"
+    }
+  ],
+  "pack_version": "1",
+  "protocol_version": 1,
+  "root_hash": "a68742e8724252570a4478562b8ccb7bb25b506ef3d7733f530c0dd4570fb64d"
+}

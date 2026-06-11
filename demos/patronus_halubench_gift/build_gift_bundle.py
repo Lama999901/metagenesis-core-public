@@ -10,8 +10,10 @@ from docs.patronus.ai, not recomputed. See README.md for the full
 proves / does-NOT-prove block.
 
 Network: the slice is fetched over the HuggingFace datasets-server rows endpoint
-using only the standard library (urllib). If HuggingFace is unreachable, this
-script prints a clear blocker line and exits non-zero WITHOUT writing a
+using only the standard library (urllib). If data/halubench_slice.json already
+exists (a previously fetched real snapshot), it is reused so the bundle can be
+rebuilt fully offline. If no cached slice exists and HuggingFace is unreachable,
+this script prints a clear blocker line and exits non-zero WITHOUT writing a
 fabricated slice.
 """
 
@@ -132,34 +134,45 @@ def build_pack(slice_path: Path) -> Path:
 
 def main() -> int:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
-
-    # 1. Fetch the deterministic slice (network step).
-    try:
-        rows = fetch_slice()
-    except (urllib.error.URLError, urllib.error.HTTPError, OSError, RuntimeError) as e:
-        print(
-            "BLOCKER: HuggingFace datasets-server unreachable — "
-            "no dataset slice written, no data fabricated. "
-            f"Reason: {e}"
-        )
-        return 1
-
-    # 2. Save the slice deterministically (sort_keys for a stable hash).
     slice_path = DATA_DIR / "halubench_slice.json"
-    slice_doc = {
-        "dataset": DATASET,
-        "config": CONFIG,
-        "split": SPLIT,
-        "offset": 0,
-        "length": len(rows),
-        "rows": rows,
-    }
-    slice_path.write_text(
-        json.dumps(slice_doc, indent=2, sort_keys=True, ensure_ascii=False),
-        encoding="utf-8",
-    )
+
+    # 1. Obtain the deterministic slice. A cached slice (a previously fetched
+    #    REAL snapshot, sealed by its SHA-256) is reused so the bundle rebuilds
+    #    fully offline; otherwise fetch from HuggingFace. Never fabricated.
+    if slice_path.exists():
+        slice_doc = json.loads(slice_path.read_text(encoding="utf-8"))
+        if slice_doc.get("dataset") != DATASET or slice_doc.get("split") != SPLIT:
+            print("BLOCKER: cached slice metadata does not match the expected "
+                  f"dataset/split ({DATASET}/{SPLIT}) — refusing to build.")
+            return 1
+        rows = slice_doc.get("rows", [])
+        print(f"Using cached {len(rows)}-sample snapshot: {slice_path}")
+    else:
+        try:
+            rows = fetch_slice()
+        except (urllib.error.URLError, urllib.error.HTTPError, OSError, RuntimeError) as e:
+            print(
+                "BLOCKER: HuggingFace datasets-server unreachable — "
+                "no dataset slice written, no data fabricated. "
+                f"Reason: {e}"
+            )
+            return 1
+
+        # 2. Save the slice deterministically (sort_keys for a stable hash).
+        slice_doc = {
+            "dataset": DATASET,
+            "config": CONFIG,
+            "split": SPLIT,
+            "offset": 0,
+            "length": len(rows),
+            "rows": rows,
+        }
+        slice_path.write_text(
+            json.dumps(slice_doc, indent=2, sort_keys=True, ensure_ascii=False),
+            encoding="utf-8",
+        )
     slice_sha = _sha256_file(slice_path)
-    print(f"Wrote {len(rows)}-sample slice: {slice_path}")
+    print(f"Slice: {len(rows)} samples at {slice_path}")
     print(f"halubench_slice.json SHA-256: {slice_sha}")
 
     # 3. Referenced (not recomputed) figure note.
@@ -168,6 +181,23 @@ def main() -> int:
     # 4. Assemble pack and verify.
     pack_dir = build_pack(slice_path)
     print(f"Built pack: {pack_dir}")
+
+    # A temporal commitment from a previous build binds the OLD root_hash; if
+    # the rebuild changed the pack content, remove it BEFORE verify (Layer 5
+    # would otherwise fail on a binding that no longer applies).
+    manifest = json.loads(
+        (PACK_DIR / "pack_manifest.json").read_text(encoding="utf-8")
+    )
+    root_hash = manifest["root_hash"]
+    tc_path = PACK_DIR / "temporal_commitment.json"
+    if tc_path.exists():
+        tc_existing = json.loads(tc_path.read_text(encoding="utf-8"))
+        if tc_existing.get("root_hash") != root_hash:
+            tc_path.unlink()
+            print(
+                "Stale temporal commitment removed "
+                "(root_hash changed on rebuild)."
+            )
 
     r = subprocess.run(
         [sys.executable, str(MG_SCRIPT), "verify", "--pack", str(pack_dir)],
@@ -181,6 +211,38 @@ def main() -> int:
         print(r.stderr.strip())
         return 1
     print("Gift bundle verified PASS.")
+
+    # 5. Optional Layer 5: temporal commitment (anti-backdating). Attached only
+    #    when the NIST Beacon is reachable AND no commitment exists yet — a
+    #    previously attached commitment binds the original sealing time and must
+    #    not be overwritten on offline rebuilds. Never written in degraded form.
+    if tc_path.exists():
+        # Still present after the pre-verify staleness check, so it is bound to
+        # the current root_hash and Layer 5 just verified it.
+        print(
+            "Temporal commitment already present and bound to the current "
+            "root_hash — kept as-is (Layer 5 active)."
+        )
+        return 0
+
+    try:
+        sys.path.insert(0, str(REPO_ROOT))
+        from scripts.mg_temporal import (
+            create_temporal_commitment,
+            write_temporal_commitment,
+        )
+
+        tc = create_temporal_commitment(root_hash)
+        if tc.get("beacon_status") == "available":
+            write_temporal_commitment(PACK_DIR, tc)
+            print("Temporal commitment attached (NIST Beacon, Layer 5).")
+        else:
+            print(
+                "NIST Beacon unreachable — temporal commitment skipped "
+                "(verify still PASSES; Layer 5 is optional for this bundle)."
+            )
+    except Exception as e:
+        print(f"Temporal commitment skipped ({e}).")
     return 0
 
 
