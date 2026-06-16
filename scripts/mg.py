@@ -137,6 +137,36 @@ def _verify_pack(pack_dir: Path) -> tuple[bool, str, dict]:
     report["manifest_ok"] = True
     report["checks"].append({"name": "manifest_integrity", "status": "pass"})
 
+    # FAULT_012 fix: smuggled-file detection.
+    # The loop above hashes every file LISTED in the manifest, but a file added
+    # to the pack yet absent from pack_manifest.json is never hashed or flagged
+    # (the "smuggling" vector). Enumerate the pack directory and reject any file
+    # that is neither manifest-listed nor one of the verification meta-files that
+    # are legitimately written OUTSIDE the manifest. Those meta-files are exactly
+    # three, all at the pack root: pack_manifest.json (the manifest itself,
+    # excluded by the pack builder), bundle_signature.json (written post-build by
+    # `mg sign`), and temporal_commitment.json (written post-build by mg_temporal).
+    # The match is on the root-relative POSIX path, so a file smuggled into a
+    # subdirectory under one of these names (e.g. evidence/x/temporal_commitment.json)
+    # is still rejected. The verification receipt is written to a caller-supplied
+    # path outside the pack by convention and is therefore not a pack meta-file.
+    _PACK_META_FILES = {
+        "pack_manifest.json",
+        "bundle_signature.json",
+        "temporal_commitment.json",
+    }
+    listed_relpaths = {e["relpath"] for e in manifest["files"]}
+    for fp in sorted(pack_dir.rglob("*")):
+        if not fp.is_file():
+            continue
+        rel = fp.relative_to(pack_dir).as_posix()
+        if rel in listed_relpaths or rel in _PACK_META_FILES:
+            continue
+        report["checks"].append({"name": "no_smuggled_files", "status": "fail", "details": rel})
+        report["errors"].append(f"Unlisted file in pack (smuggled): {rel}")
+        return False, f"Unlisted file in pack (smuggled): {rel}", report
+    report["checks"].append({"name": "no_smuggled_files", "status": "pass"})
+
     evidence_index_path = pack_dir / "evidence_index.json"
     if evidence_index_path.exists():
         ok2, msg2, _ = _verify_semantic(pack_dir, evidence_index_path)
