@@ -4,7 +4,7 @@
 
 *The first cryptographic standard that closes the 80-year gap in digital computation: any result, provably real, anchored to physical law.*
 
-[![Tests](https://img.shields.io/badge/Tests-2423%20passing-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-2428%20passing-brightgreen.svg)](tests/)
 [![Real Ratio](https://img.shields.io/badge/Real%20Verified-51.2%25-blue.svg)](proof_library/)
 [![Patent Pending](https://img.shields.io/badge/Patent-Pending%20%2363%2F996%2C819-orange.svg)](ppa/README_PPA.md)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19521091.svg)](https://doi.org/10.5281/zenodo.19521091)
@@ -99,7 +99,7 @@ Level 4 — Intentionally absent A system that can rewrite its own rules provide
 
 Level 4 is missing on purpose. A notary cannot notarize their own documents. A verification system that autonomously adjusts its own success criteria would be circular: it passes because it decided it should pass. The human gate at Level 3 is not a weakness — it is the mechanism that makes everything below it trustworthy.
 
-The learning loop is real, and so is its honesty about its own limits: a pre-2026-04-28 window of the agent-memory record was lost in a working-copy cleanup (the 2026-04-28 data-loss event), and that learning history is unrecoverable. The decision history of that window survives in commits, tags, and `EVOLUTION_LOG.md`, and the verifiable claim surface — 20 claims, 2423 tests, the 5-layer chain — was 100% intact throughout. The gap was detected, audited, and registered rather than hidden, which is itself evidence the protocol's self-application works. The system reads its own coverage reports and decides what to build next — but a human decides whether to change the rules.
+The learning loop is real, and so is its honesty about its own limits: a pre-2026-04-28 window of the agent-memory record was lost in a working-copy cleanup (the 2026-04-28 data-loss event), and that learning history is unrecoverable. The decision history of that window survives in commits, tags, and `EVOLUTION_LOG.md`, and the verifiable claim surface — 20 claims, 2428 tests, the 5-layer chain — was 100% intact throughout. The gap was detected, audited, and registered rather than hidden, which is itself evidence the protocol's self-application works. The system reads its own coverage reports and decides what to build next — but a human decides whether to change the rules.
 
 Full architecture: [docs/EVOLUTIONARY_ARCHITECTURE.md](docs/EVOLUTIONARY_ARCHITECTURE.md)
 
@@ -348,7 +348,7 @@ Full limitations: `reports/known_faults.yaml` and `SECURITY.md`
 This is not a prototype.
 
 ```
-Tests:           2423 passing (2423 on Linux/CI; 2422 on win32 — 1 platform skip)
+Tests:           2428 passing (2428 on Linux/CI; 2422 on win32 — 1 platform skip)
 Real ratio:      51.2% (21 verified against real external data / 41 total)
 Claims:          20 active across 8 domains
 Layers:          5 independent (proven by CERT-11)
@@ -362,7 +362,7 @@ Dependencies:    Python 3.11+ stdlib only (zero external dependencies)
 
 ```bash
 python scripts/steward_audit.py         # STEWARD AUDIT: PASS
-python -m pytest tests/ -q              # 2423 passed (2422 + 1 skip on win32)
+python -m pytest tests/ -q              # 2428 passed (2422 + 1 skip on win32)
 python scripts/deep_verify.py           # ALL 13 TESTS PASSED
 python scripts/agent_evolution.py       # ALL 22 CHECKS PASSED
 ```
@@ -414,7 +414,7 @@ Yehor Bazhynov — inventor, USPTO #63/996,819.
 
 Construction worker by day. Built this after shifts and weekends. No CS degree. No team. No funding.
 
-2423 tests. Patent filed. 60 days.
+2428 tests. Patent filed. 60 days.
 
 There is a deeper paradox here.
 
@@ -501,4 +501,4 @@ Commercial licensing available for organizations building on the protocol.
 
 ---
 
-*MetaGenesis Core v1.0.0-rc1 | 2423 tests | 51.2% real | Patent Pending #63/996,819*
+*MetaGenesis Core v1.0.0-rc1 | 2428 tests | 51.2% real | Patent Pending #63/996,819*

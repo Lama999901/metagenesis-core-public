@@ -1,3 +1,7 @@
 # Merge strategies to reduce conflicts on frequently-updated files
 index.html merge=union
 .planning/** merge=ours
+
+# Gift bundle is hash-sealed: bytes must be identical on every platform,
+# so git must never translate line endings for these files
+demos/patronus_halubench_gift/** -text

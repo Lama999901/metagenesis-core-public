@@ -1,20 +1,20 @@
 ---
 # Known Faults Registry
 # Authority: MetaGenesis Core / STEW-01
-# Last updated: 2026-03-19 (steward_audit PASS, 2423 tests PASS)
+# Last updated: 2026-03-19 (steward_audit PASS, 2428 tests PASS)
 
 known_faults:
   - fault_id: "ENV_001"
     category: "TEST_ENVIRONMENT"
     severity: "EXPECTED"
     description: >
-      All 2423 tests pass in the reference environment (Python 3.11+, stdlib only).
+      All 2428 tests pass in the reference environment (Python 3.11+, stdlib only).
       No database dependencies. No external services. No network required.
       Local environment deviations may require matching Python version.
     affected_claims: []
     status: "FAULT_EXPECTED"
     ticket_ref: "https://github.com/Lama999901/metagenesis-core-public/issues"
-    mitigation: "Run: python -m pytest tests/ -q  # → 2423 passed"
+    mitigation: "Run: python -m pytest tests/ -q  # → 2428 passed"
 
   - fault_id: "SCOPE_001"
     category: "PROTOCOL_SCOPE"
@@ -45,7 +45,7 @@ known_faults:
       Testing this via pytest would require pytest testing itself through a
       subprocess chain, which is circular and produces no additional confidence.
       The 13 proof tests that deep_verify.py orchestrates ARE the tests —
-      they run directly in the main test suite (2423 tests) and are verified
+      they run directly in the main test suite (2428 tests) and are verified
       by CERT-02 through CERT-12. Excluding deep_verify.py, code coverage
       is 91.9%. This is the honest ceiling. Reporting 88% overall (including
       the untestable orchestrator) would misrepresent the actual state of
@@ -172,6 +172,26 @@ known_faults:
     ticket_ref: "https://github.com/Lama999901/metagenesis-core-public/issues"
     mitigation: "Always use fingerprint_file() from data_integrity.py instead of raw hashlib. See CLAUDE.md BUG 2."
 
+  - fault_id: "FAULT_012"
+    category: "INTEGRITY_SCOPE"
+    severity: "MEDIUM"
+    description: >
+      mg verify enumerates only the files listed in pack_manifest.json and does
+      not enumerate the pack directory, so a file added to the pack but absent
+      from the manifest is neither hashed nor flagged (smuggling vector). A pack
+      built by an untrusted party could carry an extra unlisted file alongside a
+      valid manifest, and verify would still report PASS. Confirmed adversarially
+      in tests/steward/test_security_findings.py via a live tripwire test that
+      pins the current behavior and fails the day the gap is closed.
+    affected_claims: []
+    status: "FAULT_EXPECTED"
+    ticket_ref: "https://github.com/Lama999901/metagenesis-core-public/issues"
+    mitigation: >
+      Planned fix is to enumerate the pack directory and fail on any unlisted
+      non-manifest file. Until then, treat the manifest as the authoritative file
+      set and reject packs from untrusted builders. See docs/SECURITY_MODEL.md
+      for the integrity-scope limit.
+
 fault_classification:
   FAULT_EXPECTED: "Known issue that does not impact system operation"
   FAULT_RESOLVED: "Issue that has been fixed"
@@ -179,8 +199,8 @@ fault_classification:
 
 audit_metadata:
   generated: "2026-03-15"
-  total_faults: 11
+  total_faults: 12
   critical_faults: 0
-  expected_faults: 11
+  expected_faults: 12
   system_impact: "NONE — no external dependencies, stdlib only"
-  ci_impact: "NONE — 2423 tests pass, steward_audit PASS"
+  ci_impact: "NONE — 2428 tests pass, steward_audit PASS"
