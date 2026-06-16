@@ -71,22 +71,24 @@ cannot be predicted before its publication time. Do not mistake the receipt
 timestamp for proof-of-time. If you need to prove *when* a bundle existed, rely
 on the temporal commitment layer, not the receipt's `verification_timestamp`.
 
-### 4. Smuggling limitation — manifest-absent files are not flagged
+### 4. Smuggling detection — manifest-absent files are rejected (FAULT_012 RESOLVED)
 
-`mg verify` checks every file **listed in** `pack_manifest.json`, but it does not
-currently fail on extra files that are present in the pack directory yet absent
-from the manifest. A file added to the pack but never listed in the manifest is
-neither hashed nor flagged, so verify can report PASS with an unlisted file
-present (a smuggling vector). This is disclosed as **FAULT_012** in
+`mg verify` checks every file **listed in** `pack_manifest.json` and, since the
+FAULT_012 fix, also enumerates the pack directory and **fails** on any extra file
+present on disk that is absent from the manifest. A file added to the pack but
+never listed in the manifest is therefore detected and rejected (verify returns
+rc != 0), closing the earlier smuggling vector where verify could report PASS with
+an unlisted file present.
+
+The enumeration is recursive and matches on the root-relative path, so a file
+smuggled into a subdirectory is rejected too. Exactly three verification
+meta-files are written outside the manifest and are excluded by name at the pack
+root: `pack_manifest.json` (the manifest itself), `bundle_signature.json` (written
+post-build by `mg sign`), and `temporal_commitment.json` (written post-build by
+the temporal layer). This is disclosed as **FAULT_012 (RESOLVED)** in
 `reports/known_faults.yaml` and confirmed adversarially in
-`tests/steward/test_security_findings.py` via a live tripwire test that pins the
-current behavior and fails — with instructions to flip to the secure
-expectation — the day `mg verify` is hardened to reject unlisted files.
-
-The **planned fix** is to enumerate the pack directory and reject any non-manifest
-file that is not listed. Until that ships, treat the manifest as the authoritative
-file set and reject packs from untrusted builders — verify what the manifest
-commits to, and do not assume the manifest covers every byte on disk.
+`tests/steward/test_security_findings.py`, which asserts that both a root-level and
+a nested smuggled file drive verification to a non-zero return code.
 
 ---
 

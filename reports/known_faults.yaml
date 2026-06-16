@@ -1,7 +1,7 @@
 ---
 # Known Faults Registry
 # Authority: MetaGenesis Core / STEW-01
-# Last updated: 2026-03-19 (steward_audit PASS, 2428 tests PASS)
+# Last updated: 2026-06-15 (FAULT_012 RESOLVED; steward_audit PASS, 2428 tests PASS)
 
 known_faults:
   - fault_id: "ENV_001"
@@ -176,21 +176,25 @@ known_faults:
     category: "INTEGRITY_SCOPE"
     severity: "MEDIUM"
     description: >
-      mg verify enumerates only the files listed in pack_manifest.json and does
-      not enumerate the pack directory, so a file added to the pack but absent
-      from the manifest is neither hashed nor flagged (smuggling vector). A pack
-      built by an untrusted party could carry an extra unlisted file alongside a
-      valid manifest, and verify would still report PASS. Confirmed adversarially
-      in tests/steward/test_security_findings.py via a live tripwire test that
-      pins the current behavior and fails the day the gap is closed.
+      RESOLVED in commit 9dbd075. Previously mg verify enumerated only the files
+      listed in pack_manifest.json and did not enumerate the pack directory, so a
+      file added to the pack but absent from the manifest was neither hashed nor
+      flagged (smuggling vector): a pack built by an untrusted party could carry
+      an extra unlisted file alongside a valid manifest and still report PASS.
+      _verify_pack now enumerates the pack directory (recursively) after the
+      manifest-integrity check and fails verification on any file that is neither
+      manifest-listed nor one of the three verification meta-files written
+      outside the manifest (pack_manifest.json, bundle_signature.json,
+      temporal_commitment.json). The adversarial test in
+      tests/steward/test_security_findings.py now asserts the secure expectation
+      (root-level and nested smuggled file -> rc != 0).
     affected_claims: []
-    status: "FAULT_EXPECTED"
+    status: "FAULT_RESOLVED"
     ticket_ref: "https://github.com/Lama999901/metagenesis-core-public/issues"
     mitigation: >
-      Planned fix is to enumerate the pack directory and fail on any unlisted
-      non-manifest file. Until then, treat the manifest as the authoritative file
-      set and reject packs from untrusted builders. See docs/SECURITY_MODEL.md
-      for the integrity-scope limit.
+      Fixed in commit 9dbd075 by enumerating the pack directory and failing on any
+      unlisted non-manifest file (smuggled-file detection in scripts/mg.py
+      _verify_pack). The gift bundle and signed packs continue to verify PASS.
 
 fault_classification:
   FAULT_EXPECTED: "Known issue that does not impact system operation"
@@ -201,6 +205,7 @@ audit_metadata:
   generated: "2026-03-15"
   total_faults: 12
   critical_faults: 0
-  expected_faults: 12
+  expected_faults: 11
+  resolved_faults: 1
   system_impact: "NONE — no external dependencies, stdlib only"
   ci_impact: "NONE — 2428 tests pass, steward_audit PASS"
