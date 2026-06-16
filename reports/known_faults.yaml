@@ -176,7 +176,7 @@ known_faults:
     category: "INTEGRITY_SCOPE"
     severity: "MEDIUM"
     description: >
-      RESOLVED in commit 9dbd075. Previously mg verify enumerated only the files
+      RESOLVED in commit 28ef306. Previously mg verify enumerated only the files
       listed in pack_manifest.json and did not enumerate the pack directory, so a
       file added to the pack but absent from the manifest was neither hashed nor
       flagged (smuggling vector): a pack built by an untrusted party could carry
@@ -192,7 +192,7 @@ known_faults:
     status: "FAULT_RESOLVED"
     ticket_ref: "https://github.com/Lama999901/metagenesis-core-public/issues"
     mitigation: >
-      Fixed in commit 9dbd075 by enumerating the pack directory and failing on any
+      Fixed in commit 28ef306 by enumerating the pack directory and failing on any
       unlisted non-manifest file (smuggled-file detection in scripts/mg.py
       _verify_pack). The gift bundle and signed packs continue to verify PASS.
 
