@@ -54,6 +54,38 @@ each as the integrity layer beneath their own evidence and tooling:
 - Legitimacy engine: open-science publication + active presence in one community + participation
   in the relevant standards conversations.
 
+## Where this is most valuable
+
+The core value is narrow and worth stating plainly: MetaGenesis is a **trust / verification
+layer — proof, not trust — for computational claims**. It is **not** a model or simulation
+builder. It creates no models, improves no models, and replaces no physical measurement. With
+that boundary fixed, the architecture genuinely supports three high-value applications:
+
+- **(a) Digital-twin credibility.** Proving, tamper-evidently, that a digital twin's output
+  agrees with physics within a *stated* error bound — the FDA / ASME V&V 40 credibility
+  question. This is what the existing digital-twin claims already do: DT-FEM-01 (FEM
+  displacement against an E = 70 GPa anchor), DT-SENSOR-01 (sensor-stream integrity), and
+  DT-CALIB-LOOP-01 (calibration convergence). *Honest limit:* it proves agreement with the
+  declared anchor within the declared bound and that the evidence is untampered — it does
+  **not** make the twin more accurate, does **not** prove the twin's number is "correct"
+  (FAULT_006), and does **not** replace physical validation.
+
+- **(b) Multiscale credibility.** Verifying that each link in a chain of approximations
+  (quantum → molecular dynamics → continuum) is internally sound and that its *stated*
+  uncertainty is real and untampered. The existing physical-anchor chain
+  (E = 70 GPa → MTR-1 → DT-FEM-01 → DRIFT-01) is the **seed** of this pattern: cross-claim
+  hashes already link one calibrated result to the next, end to end. *Honest limit:* today this
+  links in-scope claims that share an anchor — it is a direction the architecture points
+  toward, **not** a shipped multiscale verifier. It does **not** create or improve any of the
+  underlying models and does **not** detect contamination in their inputs.
+
+- **(c) Verifiable AI / eval results — the near wedge.** Cryptographic proof plus a temporal
+  commitment for a benchmark or eval result, so a reported number is independently checkable
+  offline and cannot be backdated — **without** zero-knowledge proving overhead or a
+  distributed-ledger dependency. *Honest limit:* for these domains the protocol provides
+  tamper-evident provenance only (SCOPE_001); it does **not** detect training- or eval-data
+  contamination and does **not** certify the number is "correct."
+
 ## Open-science path (JOSS) — honest timeline
 
 The repository has been public since March 2026; the customary six-month public-history window

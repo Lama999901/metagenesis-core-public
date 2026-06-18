@@ -2,15 +2,18 @@
 """Adversarial confirmation of security-review findings F1, F2, F3.
 
 These tests confirm three findings from an external security review against the
-real verifier (scripts/mg.py). They use ONLY new tests and never modify mg.py.
+real verifier (scripts/mg.py).
 
-  F1 (smuggling)   : mg verify enumerates only files listed in pack_manifest.json
-                     and does NOT enumerate the pack directory, so a file added to
-                     the pack but absent from the manifest is never hashed or
-                     flagged. Tracked as FAULT_012 in reports/known_faults.yaml.
-                     The SECURE expectation (reject the smuggled file) is a
-                     strict-xfail tripwire that flips to a failure the day mg.py
-                     is hardened. A companion green test pins the current behavior.
+  F1 (smuggling)   : RESOLVED. mg verify now enumerates the pack directory (not
+                     just the files listed in pack_manifest.json) and rejects any
+                     file that is neither manifest-listed nor one of the three
+                     verification meta-files written outside the manifest
+                     (pack_manifest.json, bundle_signature.json,
+                     temporal_commitment.json). A file added to the pack but
+                     absent from the manifest now causes verify to return rc != 0.
+                     Tracked as FAULT_012 (RESOLVED) in reports/known_faults.yaml.
+                     The test below asserts this SECURE expectation directly,
+                     for both a root-level and a nested smuggled file.
 
   F2 (sig scope)   : Integrity and authenticity are two distinct steps.
                      mg verify --pack passes on an UNSIGNED pack (integrity),
@@ -60,24 +63,23 @@ class TestSecurityFindingsF1F3:
 
     # ── F1: smuggled (manifest-absent) file ────────────────────────────────
 
-    def test_f1_smuggled_file_tripwire(self, tmp_path):
-        """Live tripwire for the FAULT_012 smuggling gap.
+    def test_f1_smuggled_file_rejected(self, tmp_path):
+        """SECURE expectation for FAULT_012 (RESOLVED): smuggled file → rc != 0.
 
-        mg.py:112 iterates only manifest['files'], never os.listdir(pack_dir),
-        so a file added to the pack but absent from pack_manifest.json is never
-        hashed or flagged: verify currently returns rc 0 / PASS with the smuggled
-        file present. This test ASSERTS that current (insecure) behavior, so it
-        is a passing test that pins the documented gap.
+        mg verify now enumerates the pack directory in addition to the manifest,
+        so a file added to the pack but absent from pack_manifest.json is
+        detected and rejected. This is the adversarial test required by the fix:
+        a valid pack plus an extra unlisted file must FAIL verification. Two
+        scenarios are covered to pin the secure behavior:
 
-        It is also a live tripwire: the day mg.py is hardened to enumerate the
-        pack directory and reject unlisted files, verify will return rc != 0,
-        this assertion will FAIL, and the failure message instructs the
-        maintainer to flip the test to the SECURE expectation (rc != 0) and
-        resolve FAULT_012. This gives the same fix-detecting behavior as a
-        strict-xfail without introducing a project-wide xfail (the suite's
-        canonical count invariant is collect == passed + win32_skip, with zero
-        xfails).
+          1. a root-level smuggled file (INJECTED.md), and
+          2. a smuggled file nested in a subdirectory (sub/EVIL.json),
+
+        both of which must drive verify to a non-zero return code. The companion
+        check confirms the smuggled file is genuinely invisible to the manifest
+        (so rejection comes from directory enumeration, not from a hash change).
         """
+        # ── Scenario 1: root-level smuggled file ──────────────────────────────
         pack_dir = _build_pack(tmp_path)
         smuggled = pack_dir / "INJECTED.md"
         smuggled.write_text("smuggled payload not listed in pack_manifest.json")
@@ -90,11 +92,29 @@ class TestSecurityFindingsF1F3:
         assert "INJECTED.md" not in listed, "smuggled file must not be in manifest"
 
         r = _run_mg("pack", "verify", "--pack", str(pack_dir))
-        assert r.returncode == 0 and "PASS" in r.stdout, (
-            "FAULT_012 TRIPWIRE FLIPPED: mg verify now rejects a manifest-absent "
-            "file (rc=" + str(r.returncode) + "). The smuggling gap appears fixed. "
-            "Update this test to assert rc != 0 (the SECURE expectation) and "
-            "resolve FAULT_012 in reports/known_faults.yaml."
+        assert r.returncode != 0, (
+            "FAULT_012 regression: a valid pack carrying an extra unlisted "
+            "root-level file must FAIL verification (rc != 0), got rc="
+            + str(r.returncode)
+        )
+
+        # ── Scenario 2: smuggled file nested in a subdirectory ────────────────
+        pack_dir2 = _build_pack(tmp_path / "p2")
+        nested_dir = pack_dir2 / "sub"
+        nested_dir.mkdir()
+        (nested_dir / "EVIL.json").write_text("{\"smuggled\": true}")
+
+        manifest2 = json.loads(
+            (pack_dir2 / "pack_manifest.json").read_text(encoding="utf-8")
+        )
+        listed2 = {f["relpath"] for f in manifest2["files"]}
+        assert "sub/EVIL.json" not in listed2, "nested smuggled file must not be in manifest"
+
+        r2 = _run_mg("pack", "verify", "--pack", str(pack_dir2))
+        assert r2.returncode != 0, (
+            "FAULT_012 regression: a valid pack carrying an extra unlisted "
+            "file nested in a subdirectory must FAIL verification (rc != 0), "
+            "got rc=" + str(r2.returncode)
         )
 
     # ── F2: integrity passes, authenticity (signature) does not ────────────

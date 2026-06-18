@@ -1,8 +1,8 @@
 # MetaGenesis Core
 
-**A notary for computations.**
+**Verifiable evidence for computational claims — proof, not trust.**
 
-*The first cryptographic standard that closes the 80-year gap in digital computation: any result, provably real, anchored to physical law.*
+*Package any computational result into a self-contained bundle that anyone can independently verify offline — no zero-knowledge proving overhead, no distributed-ledger infrastructure, just SHA-256 and one command on any machine.*
 
 [![Tests](https://img.shields.io/badge/Tests-2428%20passing-brightgreen.svg)](tests/)
 [![Real Ratio](https://img.shields.io/badge/Real%20Verified-51.2%25-blue.svg)](proof_library/)
@@ -13,7 +13,7 @@
 
 ---
 
-Like a notary certifies a document, MetaGenesis Core certifies that a computer produced exactly this result, at exactly this time, in exactly this way.
+The mechanism is a **notary for computations**: like a notary certifies that a document was signed, MetaGenesis Core certifies that a computer produced exactly this result, at exactly this time, in exactly this way — and, for claims with a known physical constant, that the result agrees with that physical anchor (SCOPE_001).
 
 Without access to the computer. Without trusting anyone. In 60 seconds.
 
@@ -21,6 +21,20 @@ Without access to the computer. Without trusting anyone. In 60 seconds.
 python scripts/mg.py verify --pack bundle.zip
 # PASS  or  FAIL: <specific layer and reason>
 ```
+
+### What this proves / What it does NOT prove
+
+**Proves:**
+- **Tamper-evidence** — any change to a verified bundle's bytes is detected.
+- **Independent offline verifiability** — a third party re-checks the bundle with one command, no network and no model access required.
+- **Timestamped provenance** — when the bundle was committed, via the NIST Beacon temporal-commitment layer.
+- **Physical-anchor agreement** — for the in-scope claims only, that the result agrees with a measured or defined physical constant (SCOPE_001).
+
+**Does NOT prove:**
+- That a model's reported number is "correct" — a notary certifies that a document was signed, not that its contents are true (FAULT_006).
+- Detection of training- or input-data contamination.
+- Creation or improvement of any model or simulation — MetaGenesis Core builds none.
+- A replacement for physical validation or measurement.
 
 ---
 
@@ -284,21 +298,13 @@ No existing tool does this. Experiment trackers record what happened. Docker rep
 
 ## The Deeper Vision
 
-Every simulation is a claim about physical reality.
+Every simulation is a claim about physical reality — and today most are accepted on trust.
 
-Molecular dynamics says this material behaves this way. FEM says this structure holds under this load. A digital twin says the turbine is still calibrated. A drug calculation says this compound has these properties.
+Molecular dynamics says this material behaves this way. FEM says this structure holds under this load. A digital twin says the turbine is still calibrated. A drug calculation says this compound has these properties. Each is an assertion a reviewer must simply accept, or re-run the entire environment to check. There has been no standard of proof.
 
-Boeing builds in digital before metal. Rolls-Royce runs engines in simulation before they exist. Quantum chemistry calculates molecules before synthesis. The infrastructure for verified digital reality already exists.
+MetaGenesis Core is a verification layer for those claims. For domains with a known physical constant, it produces tamper-evident evidence that a result agrees with that anchor within a stated error bound (SCOPE_001), independently checkable offline. It does not build, run, or improve the simulation, and it does not prove the simulation's number is "correct" (FAULT_006) — it proves what was computed, when, how, and that it agrees with the anchor you committed to.
 
-What was missing: trust. Every simulation is an assertion that anyone must simply accept — or re-run the entire environment to check. There was no standard of proof.
-
-MetaGenesis Core is that standard. The notary layer between digital and physical reality.
-
-When every simulation is anchored to SI 2019 constants — when aluminum in a digital model is cryptographically proven to behave like aluminum in the physical world — we stop simulating reality and start proving it.
-
-Verified digital laboratories. Zero-cost experiments. Digital twins that cannot lie. Science that proves itself.
-
-kB = 1.380649e-23 J/K. Defined 2019. Will never change. Build on that, and what you build outlasts everything.
+The anchor is what makes this durable: kB = 1.380649e-23 J/K, defined 2019, will never change. A verification chain grounded there outlasts any company, government, or standards body.
 
 ---
 

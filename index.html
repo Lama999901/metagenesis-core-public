@@ -1589,7 +1589,7 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
       <div class="hbio">
         <div class="hero-pitch">Your result <span class="hp-arr">&#8594;</span> evidence bundle <span class="hp-arr">&#8594;</span> any reviewer runs <span>one command</span> <span class="hp-arr">&#8594;</span> <span>PASS</span> or FAIL. Offline. No trust required.</div>
         <div class="hbio-label">What this is</div>
-        <p class="hbio-text">Every field that produces computational claims faces the same gap: the number was reported &#8212; but can anyone verify it came from the reported computation? ML benchmarks nobody could audit. Simulations nobody could trace. Regulatory submissions built on trust. <strong>MetaGenesis Core is the notary for computations:</strong> any result packaged into a tamper-evident bundle, verified offline with one command, in 60 seconds. For physics and simulation domains &#8212; <strong>the chain is anchored to physical reality itself, not an invented threshold.</strong></p>
+        <p class="hbio-text">Every field that produces computational claims faces the same gap: the number was reported &#8212; but can anyone verify it came from the reported computation? ML benchmarks nobody could audit. Simulations nobody could trace. Regulatory submissions built on trust. <strong>MetaGenesis Core is the notary for computations:</strong> any result packaged into a tamper-evident bundle, verified offline with one command, in 60 seconds. No zero-knowledge proving overhead and no distributed-ledger infrastructure &#8212; just SHA-256, on any machine. For physics and simulation domains &#8212; <strong>the chain is anchored to physical reality itself (SCOPE_001), not an invented threshold.</strong></p>
         <div class="hero-trust">
           <span class="hero-trust-label">Regulatory alignment</span>
           <a class="htbadge" href="#regulatory">EU AI Act Art.&nbsp;9</a>
@@ -1656,6 +1656,32 @@ a.reg-chip:hover{border-color:var(--c);background:rgba(0,229,255,.10)}
   <div class="ti"><span class="tn" style="font-size:14px">PASS</span><span class="tl">steward_audit</span></div>
   <div class="ti"><span class="tn" style="font-size:14px">MIT</span><span class="tl">License</span></div>
 </div></div>
+
+<div class="div"></div>
+<div class="w"><section class="sec sec-dark">
+  <div class="stag rv">What this proves &#8212; and what it does not</div>
+  <h2 class="rv d1" style="--h2d:0s">Verifiable evidence, scoped honestly.</h2>
+  <div class="rv d2" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:28px">
+    <div style="border:1px solid rgba(74,222,128,.25);border-radius:12px;padding:24px 26px;background:rgba(74,222,128,.04)">
+      <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ok);font-weight:700;margin-bottom:14px">What this PROVES</div>
+      <ul style="margin:0;padding-left:18px;line-height:1.7;color:var(--txt2)">
+        <li><strong>Tamper-evidence</strong> &#8212; any change to a verified bundle's bytes is detected.</li>
+        <li><strong>Independent offline verifiability</strong> &#8212; a third party re-checks the bundle with one command, no network and no model access.</li>
+        <li><strong>Timestamped provenance</strong> &#8212; when the bundle was committed (NIST Beacon temporal layer).</li>
+        <li><strong>Physical-anchor agreement</strong> &#8212; for the in-scope claims only, agreement with a measured or defined physical constant (SCOPE_001).</li>
+      </ul>
+    </div>
+    <div style="border:1px solid rgba(238,247,251,.14);border-radius:12px;padding:24px 26px;background:rgba(238,247,251,.02)">
+      <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);font-weight:700;margin-bottom:14px">What this does NOT prove</div>
+      <ul style="margin:0;padding-left:18px;line-height:1.7;color:var(--txt3)">
+        <li>That a model's reported number is &#8220;correct&#8221; &#8212; a notary certifies a document was signed, not that its contents are true (FAULT_006).</li>
+        <li>Detection of training- or input-data contamination.</li>
+        <li>Creation or improvement of any model or simulation &#8212; MetaGenesis Core builds none.</li>
+        <li>A replacement for physical validation or measurement.</li>
+      </ul>
+    </div>
+  </div>
+</section></div>
 
 <div class="div"></div>
 <div class="w"><section class="sec sec-dark">
